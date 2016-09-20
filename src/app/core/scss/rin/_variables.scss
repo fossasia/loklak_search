@@ -1,0 +1,546 @@
+$primary:           		#3498db;
+$accent:            		#2980b9;
+$success:           		#2ecc71;
+$info:              		#9b59b6;
+$warning:           		#e67e22;
+$danger:            		#e74c3c;
+$white:						#ffffff;
+
+$body-bg:       			#e8eaea;
+$text:						#515e5f;
+
+$topbar-bg:					$white;
+$topbar-color:				#364141;
+$topbar-shadow:				0px 1px 5px 0px rgba(0,0,0,0.6);
+$topbar-height:				64px;
+
+$sidebar-bg:				lighten($accent, 5%);
+$sidebar-color:				$white;
+$sidebar-shadow:			1px 1px 5px 0px rgba(0,0,0,0.4);
+$sidebar-width:				230px;
+$sidebar-adjusted: 			7.5px;
+
+$gray-dark:                 #373a3c;
+$gray:                      #55595c;
+$gray-light:                #818a91;
+$gray-lighter:              #eceeef;
+$gray-lightest:             #f7f7f9;
+
+$brand-primary:             $primary;
+$brand-accent:              $accent;
+$brand-success:             $success;
+$brand-info:                $info;
+$brand-warning:             $warning;
+$brand-danger:              $danger;
+
+$body-bg:                    $body-bg;
+$body-color:                 $text;
+
+$link-color:                 $brand-primary;
+$link-decoration:            none;
+$link-hover-color:           darken($link-color, 15%);
+$link-hover-decoration:      underline;
+
+$font-family-sans-serif:     "Muli", Helvetica, Arial, sans-serif;
+$font-family-serif:          Georgia, "Times New Roman", Times, serif;
+$font-family-monospace:      Menlo, Monaco, Consolas, "Courier New", monospace;
+$font-family-base:           $font-family-sans-serif;
+
+// Pixel value used to responsively scale all typography. Applied to the `<html>` element.
+$font-size-root:             16px;
+
+$font-size-base:             1rem;
+$font-size-lg:               1.25rem;
+$font-size-sm:               .875rem;
+$font-size-xs:               .75rem;
+
+$font-size-h1:               2.5rem;
+$font-size-h2:               2rem;
+$font-size-h3:               1.75rem;
+$font-size-h4:               1.5rem;
+$font-size-h5:               1.25rem;
+$font-size-h6:               1rem;
+
+$display1-size:               6rem;
+$display2-size:               5.5rem;
+$display3-size:               4.5rem;
+$display4-size:               3.5rem;
+
+$display1-weight:             300;
+$display2-weight:             300;
+$display3-weight:             300;
+$display4-weight:             300;
+
+$line-height:                1.5;
+
+$headings-margin-bottom:     ($spacer / 2);
+$headings-font-family:       inherit;
+$headings-font-weight:       500;
+$headings-line-height:       1.1;
+$headings-color:             inherit;
+
+$lead-font-size:             1.25rem;
+$lead-font-weight:           300;
+
+$text-muted:                  $gray-light;
+
+$abbr-border-color:           $gray-light;
+
+$blockquote-small-color:      $gray-light;
+$blockquote-font-size:        ($font-size-base * 1.25);
+$blockquote-border-color:     $gray-lighter;
+
+$hr-border-color:             rgba(0,0,0,.1);
+$hr-border-width:             $border-width;
+
+$dt-font-weight:              bold;
+
+$nested-kbd-font-weight:      bold;
+
+$list-inline-padding:         5px;
+
+$line-height-lg:         (4 / 3);
+$line-height-sm:         1.5;
+
+$border-radius:          .25rem;
+$border-radius-lg:       .3rem;
+$border-radius-sm:       .2rem;
+
+$component-active-color: #fff;
+$component-active-bg:    $brand-primary;
+
+$caret-width:            .3em;
+$caret-width-lg:         $caret-width;
+
+$table-cell-padding:            .75rem;
+$table-sm-cell-padding:         .3rem;
+
+$table-bg:                      transparent;
+$table-bg-accent:               #f9f9f9;
+$table-bg-hover:                #f5f5f5;
+$table-bg-active:               $table-bg-hover;
+
+$table-border-width:            $border-width;
+$table-border-color:            $gray-lighter;
+
+$btn-padding-x:                  1rem;
+$btn-padding-y:                  .375rem;
+$btn-font-weight:                normal;
+
+$btn-primary-color:              #fff;
+$btn-primary-bg:                 $brand-primary;
+$btn-primary-border:             $btn-primary-bg;
+
+$btn-secondary-color:            $gray-dark;
+$btn-secondary-bg:               #fff;
+$btn-secondary-border:           #ccc;
+
+$btn-info-color:                 #fff;
+$btn-info-bg:                    $brand-info;
+$btn-info-border:                $btn-info-bg;
+
+$btn-success-color:              #fff;
+$btn-success-bg:                 $brand-success;
+$btn-success-border:             $btn-success-bg;
+
+$btn-warning-color:              #fff;
+$btn-warning-bg:                 $brand-warning;
+$btn-warning-border:             $btn-warning-bg;
+
+$btn-danger-color:               #fff;
+$btn-danger-bg:                  $brand-danger;
+$btn-danger-border:              $btn-danger-bg;
+
+$btn-link-disabled-color:        $gray-light;
+
+$btn-padding-x-sm:               .75rem;
+$btn-padding-y-sm:               .25rem;
+
+$btn-padding-x-lg:               1.25rem;
+$btn-padding-y-lg:               .75rem;
+
+$btn-border-radius:              $border-radius;
+$btn-border-radius-lg:           $border-radius-lg;
+$btn-border-radius-sm:           $border-radius-sm;
+
+$input-padding-x:                .75rem;
+$input-padding-y:                .375rem;
+
+$input-bg:                       #fff;
+$input-bg-disabled:              $gray-lighter;
+
+$input-color:                    $gray;
+$input-border-color:             #ccc;
+$input-btn-border-width:         $border-width; // For form controls and buttons
+$input-box-shadow:               inset 0 1px 1px rgba(0,0,0,.075);
+
+$input-border-radius:            $border-radius;
+$input-border-radius-lg:         $border-radius-lg;
+$input-border-radius-sm:         $border-radius-sm;
+
+$input-border-focus:             #66afe9;
+$input-box-shadow-focus:         rgba(102,175,233,.6);
+
+$input-color-placeholder:        #999;
+
+$input-padding-x-sm:             .75rem;
+$input-padding-y-sm:             .275rem;
+
+$input-padding-x-lg:             1.25rem;
+$input-padding-y-lg:             .75rem;
+
+$input-height:                   (($font-size-base * $line-height) + ($input-padding-y * 2));
+$input-height-lg:                (($font-size-lg * $line-height-lg) + ($input-padding-y-lg * 2));
+$input-height-sm:                (($font-size-sm * $line-height-sm) + ($input-padding-y-sm * 2));
+
+$form-group-margin-bottom:       $spacer-y;
+
+$input-group-addon-bg:           $gray-lighter;
+$input-group-addon-border-color: $input-border-color;
+
+$cursor-disabled:                not-allowed;
+
+// Form validation icons
+$form-icon-success: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2MTIgNzkyIj48cGF0aCBmaWxsPSIjNWNiODVjIiBkPSJNMjMzLjggNjEwYy0xMy4zIDAtMjYtNi0zNC0xNi44TDkwLjUgNDQ4LjhDNzYuMyA0MzAgODAgNDAzLjMgOTguOCAzODljMTguOC0xNC4yIDQ1LjUtMTAuNCA1OS44IDguNGw3MiA5NUw0NTEuMyAyNDJjMTIuNS0yMCAzOC44LTI2LjIgNTguOC0xMy43IDIwIDEyLjQgMjYgMzguNyAxMy43IDU4LjhMMjcwIDU5MGMtNy40IDEyLTIwLjIgMTkuNC0zNC4zIDIwaC0yeiIvPjwvc3ZnPg==";
+$form-icon-warning: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2MTIgNzkyIj48cGF0aCBmaWxsPSIjZjBhZDRlIiBkPSJNNjAzIDY0MC4ybC0yNzguNS01MDljLTMuOC02LjYtMTAuOC0xMC42LTE4LjUtMTAuNnMtMTQuNyA0LTE4LjUgMTAuNkw5IDY0MC4yYy0zLjcgNi41LTMuNiAxNC40LjIgMjAuOCAzLjggNi41IDEwLjggMTAuNCAxOC4zIDEwLjRoNTU3YzcuNiAwIDE0LjYtNCAxOC40LTEwLjQgMy41LTYuNCAzLjYtMTQuNCAwLTIwLjh6bS0yNjYuNC0zMGgtNjEuMlY1NDloNjEuMnY2MS4yem0wLTEwN2gtNjEuMlYzMDRoNjEuMnYxOTl6Ii8+PC9zdmc+";
+$form-icon-danger: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2MTIgNzkyIj48cGF0aCBmaWxsPSIjZDk1MzRmIiBkPSJNNDQ3IDU0NC40Yy0xNC40IDE0LjQtMzcuNiAxNC40LTUyIDBsLTg5LTkyLjctODkgOTIuN2MtMTQuNSAxNC40LTM3LjcgMTQuNC01MiAwLTE0LjQtMTQuNC0xNC40LTM3LjYgMC01Mmw5Mi40LTk2LjMtOTIuNC05Ni4zYy0xNC40LTE0LjQtMTQuNC0zNy42IDAtNTJzMzcuNi0xNC4zIDUyIDBsODkgOTIuOCA4OS4yLTkyLjdjMTQuNC0xNC40IDM3LjYtMTQuNCA1MiAwIDE0LjMgMTQuNCAxNC4zIDM3LjYgMCA1MkwzNTQuNiAzOTZsOTIuNCA5Ni40YzE0LjQgMTQuNCAxNC40IDM3LjYgMCA1MnoiLz48L3N2Zz4=";
+
+
+// Dropdowns
+//
+// Dropdown menu container and contents.
+
+$dropdown-bg:                    #fff;
+$dropdown-border-color:          rgba(0,0,0,.15);
+$dropdown-border-width:          $border-width;
+$dropdown-divider-bg:            #e5e5e5;
+
+$dropdown-link-color:            $gray-dark;
+$dropdown-link-hover-color:      darken($gray-dark, 5%);
+$dropdown-link-hover-bg:         #f5f5f5;
+
+$dropdown-link-active-color:     $component-active-color;
+$dropdown-link-active-bg:        $component-active-bg;
+
+$dropdown-link-disabled-color:   $gray-light;
+
+$dropdown-header-color:          $gray-light;
+
+
+// Z-index master list
+//
+// Warning: Avoid customizing these values. They're used for a bird's eye view
+// of components dependent on the z-axis and are designed to all work together.
+
+$zindex-navbar:            1000;
+$zindex-dropdown:          1000;
+$zindex-popover:           1060;
+$zindex-tooltip:           1070;
+$zindex-navbar-fixed:      1030;
+$zindex-navbar-sticky:     1030;
+$zindex-modal-bg:          1040;
+$zindex-modal:             1050;
+
+
+// Navbar
+
+$navbar-border-radius:              $border-radius;
+$navbar-padding-horizontal:         $spacer;
+$navbar-padding-vertical:           ($spacer / 2);
+
+$navbar-dark-color:                 rgba(255,255,255,.5);
+$navbar-dark-hover-color:           rgba(255,255,255,.75);
+$navbar-dark-active-color:          rgba(255,255,255,1);
+$navbar-dark-disabled-color:        rgba(255,255,255,.25);
+
+$navbar-light-color:                rgba(0,0,0,.3);
+$navbar-light-hover-color:          rgba(0,0,0,.6);
+$navbar-light-active-color:         rgba(0,0,0,.8);
+$navbar-light-disabled-color:       rgba(0,0,0,.15);
+
+
+// Navs
+
+$nav-link-padding:                          .5em 1em;
+$nav-link-hover-bg:                         $gray-lighter;
+
+$nav-disabled-link-color:                   $gray-light;
+$nav-disabled-link-hover-color:             $gray-light;
+
+$nav-tabs-border-color:                     #ddd;
+
+$nav-tabs-link-border-width:                $border-width;
+$nav-tabs-link-hover-border-color:          $gray-lighter;
+
+$nav-tabs-active-link-hover-bg:             $body-bg;
+$nav-tabs-active-link-hover-color:          $gray;
+$nav-tabs-active-link-hover-border-color:   #ddd;
+
+$nav-tabs-justified-link-border-color:            #ddd;
+$nav-tabs-justified-active-link-border-color:     $body-bg;
+
+$nav-pills-border-radius:                   $border-radius;
+$nav-pills-active-link-hover-bg:            $component-active-bg;
+$nav-pills-active-link-hover-color:         $component-active-color;
+
+
+// Pagination
+
+$pagination-padding-x:                .75rem;
+$pagination-padding-y:                .5rem;
+$pagination-padding-x-sm:             .75rem;
+$pagination-padding-y-sm:             .275rem;
+$pagination-padding-x-lg:             1.5rem;
+$pagination-padding-y-lg:             .75rem;
+
+
+$pagination-color:                     $link-color;
+$pagination-bg:                        #fff;
+$pagination-border-width:              $border-width;
+$pagination-border-color:              #ddd;
+
+$pagination-hover-color:               $link-hover-color;
+$pagination-hover-bg:                  $gray-lighter;
+$pagination-hover-border:              #ddd;
+
+$pagination-active-color:              #fff;
+$pagination-active-bg:                 $brand-primary;
+$pagination-active-border:             $brand-primary;
+
+$pagination-disabled-color:            $gray-light;
+$pagination-disabled-bg:               #fff;
+$pagination-disabled-border:           #ddd;
+
+
+// Pager
+
+$pager-bg:                             $pagination-bg;
+$pager-border-width:                   $border-width;
+$pager-border-color:                   $pagination-border-color;
+$pager-border-radius:                  15px;
+
+$pager-hover-bg:                       $pagination-hover-bg;
+
+$pager-active-bg:                      $pagination-active-bg;
+$pager-active-color:                   $pagination-active-color;
+
+$pager-disabled-color:                 $pagination-disabled-color;
+
+
+// Jumbotron
+
+$jumbotron-padding:              2rem;
+$jumbotron-bg:                   $gray-lighter;
+
+
+// Form states and alerts
+//
+// Define colors for form feedback states and, by default, alerts.
+
+$state-success-text:             #3c763d;
+$state-success-bg:               #dff0d8;
+$state-success-border:           darken($state-success-bg, 5%);
+
+$state-info-text:                #31708f;
+$state-info-bg:                  #d9edf7;
+$state-info-border:              darken($state-info-bg, 7%);
+
+$state-warning-text:             #8a6d3b;
+$state-warning-bg:               #fcf8e3;
+$state-warning-border:           darken($state-warning-bg, 5%);
+
+$state-danger-text:              #a94442;
+$state-danger-bg:                #f2dede;
+$state-danger-border:            darken($state-danger-bg, 5%);
+
+
+// Cards
+$card-spacer-x:            1.25rem;
+$card-spacer-y:            .75rem;
+$card-border-width:        1px;
+$card-border-radius:       $border-radius;
+$card-border-color:        #e5e5e5;
+$card-border-radius-inner: $card-border-radius;
+$card-cap-bg:              #f5f5f5;
+$card-bg:                  #fff;
+
+$card-link-hover-color:    #fff;
+
+
+// Tooltips
+
+$tooltip-max-width:           200px;
+$tooltip-color:               #fff;
+$tooltip-bg:                  #000;
+$tooltip-opacity:             .9;
+
+$tooltip-arrow-width:         5px;
+$tooltip-arrow-color:         $tooltip-bg;
+
+
+// Popovers
+
+$popover-bg:                          #fff;
+$popover-max-width:                   276px;
+$popover-border-width:                $border-width;
+$popover-border-color:                rgba(0,0,0,.2);
+
+$popover-title-bg:                    darken($popover-bg, 3%);
+
+$popover-arrow-width:                 10px;
+$popover-arrow-color:                 $popover-bg;
+
+$popover-arrow-outer-width:           ($popover-arrow-width + 1);
+$popover-arrow-outer-color:           fade-in($popover-border-color, 0.05);
+
+
+// Labels
+
+$label-default-bg:            $gray-light;
+$label-primary-bg:            $brand-primary;
+$label-success-bg:            $brand-success;
+$label-info-bg:               $brand-info;
+$label-warning-bg:            $brand-warning;
+$label-danger-bg:             $brand-danger;
+
+$label-color:                 #fff;
+$label-link-hover-color:      #fff;
+$label-font-weight:           bold;
+
+
+// Modals
+
+// Padding applied to the modal body
+$modal-inner-padding:         15px;
+
+$modal-title-padding:         15px;
+$modal-title-line-height:     $line-height;
+
+$modal-content-bg:                             #fff;
+$modal-content-border-color:                   rgba(0,0,0,.2);
+
+$modal-backdrop-bg:           #000;
+$modal-backdrop-opacity:      .5;
+$modal-header-border-color:   #e5e5e5;
+$modal-footer-border-color:   $modal-header-border-color;
+
+$modal-lg:                    900px;
+$modal-md:                    600px;
+$modal-sm:                    300px;
+
+
+// Alerts
+//
+// Define alert colors, border radius, and padding.
+
+$alert-padding:               15px;
+$alert-border-radius:         $border-radius;
+$alert-link-font-weight:      bold;
+$alert-border-width:          $border-width;
+
+$alert-success-bg:            $state-success-bg;
+$alert-success-text:          $state-success-text;
+$alert-success-border:        $state-success-border;
+
+$alert-info-bg:               $state-info-bg;
+$alert-info-text:             $state-info-text;
+$alert-info-border:           $state-info-border;
+
+$alert-warning-bg:            $state-warning-bg;
+$alert-warning-text:          $state-warning-text;
+$alert-warning-border:        $state-warning-border;
+
+$alert-danger-bg:             $state-danger-bg;
+$alert-danger-text:           $state-danger-text;
+$alert-danger-border:         $state-danger-border;
+
+
+// Progress bars
+
+$progress-bg:                 #f5f5f5;
+$progress-bar-color:          #fff;
+$progress-border-radius:      $border-radius;
+
+$progress-bar-bg:             $brand-primary;
+$progress-bar-success-bg:     $brand-success;
+$progress-bar-warning-bg:     $brand-warning;
+$progress-bar-danger-bg:      $brand-danger;
+$progress-bar-info-bg:        $brand-info;
+
+
+// List group
+
+$list-group-bg:                 #fff;
+$list-group-border-color:       #ddd;
+$list-group-border-width:       $border-width;
+$list-group-border-radius:      $border-radius;
+
+$list-group-hover-bg:           #f5f5f5;
+$list-group-active-color:       $component-active-color;
+$list-group-active-bg:          $component-active-bg;
+$list-group-active-border:      $list-group-active-bg;
+$list-group-active-text-color:  lighten($list-group-active-bg, 40%);
+
+$list-group-disabled-color:      $gray-light;
+$list-group-disabled-bg:         $gray-lighter;
+$list-group-disabled-text-color: $list-group-disabled-color;
+
+$list-group-link-color:         #555;
+$list-group-link-hover-color:   $list-group-link-color;
+$list-group-link-heading-color: #333;
+
+
+// Image thumbnails
+
+$thumbnail-padding:           .25rem;
+$thumbnail-bg:                $body-bg;
+$thumbnail-border-width:      $border-width;
+$thumbnail-border-color:      #ddd;
+$thumbnail-border-radius:     $border-radius;
+
+
+// Breadcrumbs
+
+$breadcrumb-padding-vertical:   .75rem;
+$breadcrumb-padding-horizontal: 1rem;
+
+$breadcrumb-bg:                 $gray-lighter;
+$breadcrumb-divider-color:      $gray-light;
+$breadcrumb-active-color:       $gray-light;
+$breadcrumb-divider:            "/";
+
+
+// Carousel
+
+$carousel-text-shadow:                        0 1px 2px rgba(0,0,0,.6);
+
+$carousel-control-color:                      #fff;
+$carousel-control-width:                      15%;
+$carousel-control-opacity:                    .5;
+$carousel-control-font-size:                  20px;
+
+$carousel-indicator-active-bg:                #fff;
+$carousel-indicator-border-color:             #fff;
+
+$carousel-caption-color:                      #fff;
+
+
+// Close
+
+$close-font-weight:           bold;
+$close-color:                 #000;
+$close-text-shadow:           0 1px 0 #fff;
+
+
+// Code
+
+$code-color:                  #bd4147;
+$code-bg:                     #f7f7f9;
+
+$kbd-color:                   #fff;
+$kbd-bg:                      #333;
+
+$pre-bg:                      #f7f7f9;
+$pre-color:                   $gray-dark;
+$pre-border-color:            #ccc;
+$pre-scrollable-max-height:   340px;
