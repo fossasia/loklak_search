@@ -20,7 +20,7 @@ Our chat channel is on gitter here: https://gitter.im/loklak/loklak
 
 ## Installation
 
-How to install the service will be documented here.
+There is no 'installation' process for loklak_search, it consist of web pages which must work in a local environment, hosted in the file system and hosted as github pages as well. This repository will host the pages as github pages.
 
 ## Technology Stack
 
