@@ -1,0 +1,27 @@
+html {
+  background-color: $body-bg;
+}
+body {
+  background-color: $body-bg;
+  -webkit-font-smoothing: antialiased;
+}
+a {
+	cursor: pointer;
+	cursor: hand;
+
+	&:hover {
+		text-decoration: none;
+	}
+}
+.wrapper {
+	padding-top: 66px;
+	padding-left: $sidebar-width;
+}
+.container-fluid {
+	margin-right: auto;
+    margin-left: auto;
+    padding: 0.9375rem;
+}
+.break {
+	margin-top: 15px;
+}

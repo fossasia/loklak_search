@@ -1,0 +1,51 @@
+#sidebar {
+
+	.sidebar {
+	    position: fixed;
+	    top: $topbar-height;
+	    bottom: 0;
+	    left: 0;
+	    z-index: 1000;
+	    display: block;
+	    width: $sidebar-width;
+	    background-color: $sidebar-bg;
+	    color: $sidebar-color;
+	    box-shadow: $sidebar-shadow;
+	    height: 100%;
+	}
+	.sidebar-link {
+		padding: .55rem .2rem;
+		margin-top: .25rem;
+
+		i {
+			color: darken($white, 10%);
+			margin-left: .75rem;
+			margin-right: .5rem;
+		}
+		a {
+			color: darken($white, 10%);
+		}
+	}
+	.active {
+		background-color: lighten($sidebar-bg, 10%);
+
+		i {
+			color: $white;
+		}
+		a {
+			color: $white;
+		}
+	}
+	.sidebar-footer {
+		position: fixed;
+		bottom: 0;
+		left: 0;
+		width: $sidebar-width;
+		text-align: center;
+		padding: 15px 5px;
+
+		img {
+			max-width: $sidebar-width/3;
+		}
+	}
+}
