@@ -26,7 +26,14 @@ There is no 'installation' process for loklak_search, it consist of web pages wh
 
 ### Components
 
-* AngularJS
+* **Angular2**
+	The frontend of the web application is built using Angular2 with Typesctipt.
+
+* **angular-cli**
+	The application development process is simplified using the CLI.
+
+* **Karma and Protractor**
+	The unit and end-to-end tests are governed by these test runners using `Jasmine` as a framework and Angular2's `testing api`. 
 
 ## Services and Dependencies
 
@@ -52,7 +59,7 @@ We have the following branches
 	 PRs to gh-pages must pass a build check and a unit-test check on Travis
  * **gh-pages**
    This contains shipped code. After significant features/bugfixes are accumulated on development, we make a version update, and make a release.
-`
+
 ## License
 
 This project is currently licensed under the The MIT License (MIT). A copy of LICENSE.md should be present along with the source code. To obtain the software under a different license, please contact FOSSASIA.
