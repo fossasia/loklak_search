@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
-import { LoklakSearchRoutingModule } from './app-routing.module';
+import { LoklakAppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 
@@ -18,7 +18,7 @@ import { HomeModule } from './home/home.module';
 		FormsModule,
 		HttpModule,
 
-		LoklakSearchRoutingModule,
+		LoklakAppRoutingModule,
 		HomeModule
 	],
 	providers: [],
