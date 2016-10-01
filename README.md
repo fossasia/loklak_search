@@ -10,7 +10,7 @@ The loklak_search creates a website using the loklak server as a data source. Th
 
 In order to run the service you can use the API of http://api.loklak.org or install your own loklak server data storage engine. [loklak_server](https://github.com/loklak/loklak_server) is a server application which collects messages from various social media tweet sources, including twitter. The server contains a search index and a peer-to-peer index sharing interface. All messages are stored in an elasticsearch index.
 
---
+---
 
 ## Communication
 
@@ -26,7 +26,7 @@ There is no 'installation' process for loklak_search, it consist of web pages wh
 
 ### Components
 
-* AngularJS
+* Angular2
 
 ## Services and Dependencies
 
@@ -52,7 +52,7 @@ We have the following branches
 	 PRs to gh-pages must pass a build check and a unit-test check on Travis
  * **gh-pages**
    This contains shipped code. After significant features/bugfixes are accumulated on development, we make a version update, and make a release.
-`
+
 ## License
 
 This project is currently licensed under the The MIT License (MIT). A copy of LICENSE.md should be present along with the source code. To obtain the software under a different license, please contact FOSSASIA.
