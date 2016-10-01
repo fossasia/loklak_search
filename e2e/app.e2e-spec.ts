@@ -9,6 +9,6 @@ describe('loklak-search App', function () {
 
 	it('should display message saying Loklak Search!', () => {
 		page.navigateTo();
-		expect(page.getParagraphText()).toEqual('Loklak Search!');
+		expect(page.getHeaderText()).toEqual('Loklak Search!');
 	});
 });

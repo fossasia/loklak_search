@@ -12,23 +12,23 @@ declare var __karma__: any;
 declare var require: any;
 
 // Prevent Karma from running prematurely.
-__karma__.loaded = function () {};
+__karma__.loaded = function () { };
 
 
 Promise.all([
-  System.import('@angular/core/testing'),
-  System.import('@angular/platform-browser-dynamic/testing')
+	System.import('@angular/core/testing'),
+	System.import('@angular/platform-browser-dynamic/testing')
 ])
-  // First, initialize the Angular testing environment.
-  .then(([testing, testingBrowser]) => {
-    testing.getTestBed().initTestEnvironment(
-      testingBrowser.BrowserDynamicTestingModule,
-      testingBrowser.platformBrowserDynamicTesting()
-    );
-  })
-  // Then we find all the tests.
-  .then(() => require.context('./', true, /\.spec\.ts/))
-  // And load the modules.
-  .then(context => context.keys().map(context))
-  // Finally, start Karma to run the tests.
-  .then(__karma__.start, __karma__.error);
+	// First, initialize the Angular testing environment.
+	.then(([testing, testingBrowser]) => {
+		testing.getTestBed().initTestEnvironment(
+			testingBrowser.BrowserDynamicTestingModule,
+			testingBrowser.platformBrowserDynamicTesting()
+		);
+	})
+	// Then we find all the tests.
+	.then(() => require.context('./', true, /\.spec\.ts/))
+	// And load the modules.
+	.then(context => context.keys().map(context))
+	// Finally, start Karma to run the tests.
+	.then(__karma__.start, __karma__.error);
