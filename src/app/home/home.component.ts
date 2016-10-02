@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 	private header: string = 'Loklak Search!';
+	private headerImageUrl: string = 'assets/images/cow_200x233.png';
 
 	constructor() { }
 
