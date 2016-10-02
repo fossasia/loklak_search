@@ -1,13 +1,27 @@
 /* tslint:disable:no-unused-variable */
 
 import { TestBed, async } from '@angular/core/testing';
+
+import { Component } from '@angular/core';
+
 import { HomeComponent } from './home.component';
+
+/**
+ * Stub component for SearchBarComponent
+ */
+@Component({
+	selector: 'home-search-bar',
+	template: ''
+})
+class SearchBarStubComponent { }
+
 
 describe('Component: Home', () => {
 	beforeEach(() => {
 		TestBed.configureTestingModule({
 			declarations: [
-				HomeComponent
+				HomeComponent,
+				SearchBarStubComponent
 			],
 		});
 	});
@@ -34,7 +48,7 @@ describe('Component: Home', () => {
 	it('should have a correct headerImageUrl property', () => {
 		let fixture = TestBed.createComponent(HomeComponent);
 		let component = fixture.debugElement.componentInstance;
-		expect(component.headerImageUrl).toBe('assets/images/cow_200x233.png');
+		expect(component.headerImageUrl).toBe('assets/images/cow_150x175.png');
 	});
 
 	it('should render header cow image correctly', async(() => {
@@ -50,5 +64,13 @@ describe('Component: Home', () => {
 
 		expect(relativePath).toBe(component.headerImageUrl);
 		expect(image.alt).toBe('Loklak Cow');	// Correct alt text 'Loklak Cow' must be present.
+	}));
+
+	it('should have a home-search-bar component', async(() => {
+		let fixture = TestBed.createComponent(HomeComponent);
+		fixture.detectChanges();
+		let component = fixture.debugElement.componentInstance;
+		let compiled = fixture.debugElement.nativeElement;
+		expect(compiled.querySelector('div.wrapper home-search-bar')).toBeTruthy();
 	}));
 });
