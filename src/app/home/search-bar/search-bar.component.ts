@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { SearchModel } from '../../shared/classes';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
 	selector: 'home-search-bar',
@@ -7,15 +6,16 @@ import { SearchModel } from '../../shared/classes';
 	styleUrls: ['./search-bar.component.scss']
 })
 export class SearchBarComponent implements OnInit {
-	private searchModel = new SearchModel();
+	private query: string = null;
 	public submitted: boolean = false;
 
-	constructor() { }
+	@Output() queryEvent: EventEmitter<any> = new EventEmitter();
 
-	ngOnInit() {
-	}
+	ngOnInit() { }
 
-	get queryJSON() {
-		return JSON.stringify(this.searchModel);
+	private handleQueryRequest(): void {
+		if (this.query) {
+			this.queryEvent.emit({ query : this.query });
+		}
 	}
 }

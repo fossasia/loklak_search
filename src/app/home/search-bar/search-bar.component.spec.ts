@@ -22,11 +22,11 @@ describe('Component: SearchBar', () => {
 		expect(component).toBeTruthy();
 	});
 
-	it('should have a searchModel and submitted properties', () => {
+	it('should have a query and submitted properties', () => {
 		let fixture = TestBed.createComponent(SearchBarComponent);
 		let component = fixture.debugElement.componentInstance;
 
-		expect(component.searchModel).not.toBeUndefined();
+		expect(component.query).not.toBeUndefined();
 		expect(component.submitted).not.toBeUndefined();
 	});
 
@@ -43,5 +43,52 @@ describe('Component: SearchBar', () => {
 		expect(inpEl).toBeTruthy();
 		expect(inpLabel).toBeTruthy();
 		expect(inpLabel.textContent).not.toBe('');
+	}));
+
+	it('should have a query and input field', async(() => {	// Sanity Test
+		let fixture = TestBed.createComponent(SearchBarComponent);
+		fixture.detectChanges();
+		let de = fixture.debugElement;
+		let comp = de.componentInstance;
+		let el = de.nativeElement;
+
+		let inpEl: HTMLInputElement = el.querySelector('input#search');
+
+		expect(comp.query).toBeFalsy();	// Sanity test for clean initial query term.
+		expect(inpEl.value).toBe('');	// Sanity test for clean search field.
+	}));
+
+	it('should have a data-flow from model to search field', async(() => {
+		let fixture = TestBed.createComponent(SearchBarComponent);
+		fixture.detectChanges();
+		let de = fixture.debugElement;
+		let comp = de.componentInstance;
+		let el = de.nativeElement;
+
+		let inpEl: HTMLInputElement = el.querySelector('input#search');
+
+		comp.query = 'Foobar';
+		fixture.detectChanges();
+
+		fixture.whenStable().then(() => {
+			expect(inpEl.value).toBe('Foobar');
+		});
+	}));
+
+	it('should have a data-flow from search field to model', async(() => {
+		let fixture = TestBed.createComponent(SearchBarComponent);
+		fixture.detectChanges();
+		let de = fixture.debugElement;
+		let comp = de.componentInstance;
+		let el = de.nativeElement;
+
+		let inpEl: HTMLInputElement = el.querySelector('input#search');
+		inpEl.value = 'Foobar';
+
+		let evt: Event = document.createEvent('Event');
+		evt.initEvent('input', true, false);
+		inpEl.dispatchEvent(evt);
+
+		expect(comp.query).toBe('Foobar');
 	}));
 });

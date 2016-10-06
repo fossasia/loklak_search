@@ -1,10 +1,13 @@
 /* tslint:disable:no-unused-variable */
 
-import { TestBed, async } from '@angular/core/testing';
-
+import { TestBed, async, inject } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { HomeComponent } from './home.component';
+
+import { RouterStub } from '../../testing';
 
 /**
  * Stub component for SearchBarComponent
@@ -19,10 +22,16 @@ class SearchBarStubComponent { }
 describe('Component: Home', () => {
 	beforeEach(() => {
 		TestBed.configureTestingModule({
+			imports: [
+				RouterTestingModule
+			],
 			declarations: [
 				HomeComponent,
 				SearchBarStubComponent
 			],
+			providers: [
+				{ provide: Router, useClass: RouterStub }
+			]
 		});
 	});
 
