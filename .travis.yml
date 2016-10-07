@@ -2,15 +2,7 @@ sudo: required
 dist: trusty
 language: node_js
 node_js:
-  - '5.6.0'
-
-addons:
-  apt:
-    sources:
-      - google-chrome
-    packages:
-      - google-chrome-stable
-      - google-chrome-beta
+  - 6
 
 before_install:
   - export CHROME_BIN=chromium-browser
@@ -25,3 +17,6 @@ script:
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
+
+cache:
+  directories: node_modules
