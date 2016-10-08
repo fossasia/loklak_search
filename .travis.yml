@@ -20,3 +20,9 @@ after_success:
 
 cache:
   directories: node_modules
+  
+# safelist
+branches:
+  only:
+  - master
+  - gh-pages
