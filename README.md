@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/fossasia/loklak_search.svg?branch=master)](https://travis-ci.org/fossasia/loklak_search)
 [![Join the chat at https://gitter.im/loklak/loklak](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/loklak/loklak)
 [![Code Climate](https://codeclimate.com/github/fossasia/loklak_search/badges/gpa.svg)](https://codeclimate.com/github/fossasia/loklak_search)
-[![codecov](https://codecov.io/gh/fossasia/loklak_search/branch/gh-pages/graph/badge.svg)](https://codecov.io/gh/fossasia/loklak_search)
+[![codecov](https://codecov.io/gh/fossasia/loklak_search/branch/master/graph/badge.svg)](https://codecov.io/gh/fossasia/loklak_search)
 [![Dependency Status](https://gemnasium.com/badges/github.com/fossasia/loklak_search.svg)](https://gemnasium.com/github.com/fossasia/loklak_search)
 
 The loklak_search creates a website using the loklak server as a data source. The goal is to get a search site, that offers timeline search as well as custom media search, account and geolocation search.
