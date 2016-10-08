@@ -25,3 +25,9 @@ script:
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
+
+# safelist
+branches:
+  only:
+  - master
+  - gh-pages
