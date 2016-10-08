@@ -3,11 +3,11 @@
 		<label for="search">Search On Loklak.</label>
 
 		<input type="text" class="form-control" id="search" required
-						[(ngModel)]="searchModel.query" name="query" placeholder="I'm feeling Awsome!">
+						[(ngModel)]="query" name="search" placeholder="I'm feeling Awsome!" (keyup.enter)="handleQueryRequest()">
 
 		<span class="input-group-btn">
 			<button class="btn btn-default" role="button" type="button"
-							aria-roledescription="Search the web using loklak search.">
+							aria-roledescription="Search the web using loklak search." (click)="handleQueryRequest()">
 				<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
 			</button>
 		</span>
