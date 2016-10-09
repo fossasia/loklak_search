@@ -1,3 +1,11 @@
-<p>
-  feed works!
-</p>
+<h3> {{query}} </h3>
+
+<div *ngIf="search_results" class="wrapper">
+	<div class="well" *ngFor="let item of search_results">
+		<span><b>{{item.screen_name}}</b></span>
+		<p>
+			{{item.text}}
+		</p>
+		<span>{{item.timestamp}}</span>
+	</div>
+</div>
