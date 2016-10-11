@@ -17,3 +17,9 @@ test:
   override:
     - ng build
     - ng test --watch=false
+
+# Safelist
+general:
+  branches:
+    only:
+      - master
