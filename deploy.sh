@@ -47,7 +47,7 @@ git checkout $SOURCE_BRANCH
 
 # Actual building and setup of current push or PR.
 npm install
-ng build --prod --base-href /loklak_search/  # Has to find the repo-name dynamically instead of hardcoding
+ng build
 git checkout $TARGET_BRANCH
 mv dist/* .
 
