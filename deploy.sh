@@ -37,13 +37,9 @@ cd ..
 git config user.name "Travis CI"
 git config user.email "$COMMIT_AUTHOR_EMAIL"
 
-# Cleaning up the old repo's gh-pages branch.
-rm -rf repo/* || exit 0
+# Cleaning up the old repo's gh-pages branch except CNAME file and 404.html
+find repo/* ! -name "CNAME" ! -name "404.html" -maxdepth 1  -exec rm -rf {} \; 2> /dev/null
 cd repo
-
-# Recreating CNAME file for gh-pages (removed in previous step)
-touch CNAME
-echo "loklak.fossasia.org" >> CNAME
 
 git add --all
 git commit -m "Travis CI Clean Deploy : ${SHA}"
