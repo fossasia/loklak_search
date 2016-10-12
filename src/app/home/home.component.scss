@@ -26,6 +26,29 @@ div.wrapper {
 		text-align: center;
 	}
 
+	div.search-form {
+		div.input-group{
+			width: 100%;
+			padding: 10px;
+
+			label {
+				visibility: hidden;
+				display: none;
+			}
+
+			input {
+				font-size: larger;
+			}
+
+			input,
+			span.input-group-btn button {
+				height: 40px;
+				background: transparent;
+			}
+		}
+	}
+
+
 	@media (max-height: 500px) and (orientation: landscape){
 		margin-top: 0px;
 

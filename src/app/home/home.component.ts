@@ -14,10 +14,12 @@ export class HomeComponent implements OnInit {
 		private router: Router
 	) { }
 
-	ngOnInit() {
-	}
+	ngOnInit() { }
 
-	private handleTypeStart(event: any) {
-		this.router.navigateByUrl(`/search?query=${event.query}`, { skipLocationChange: true });
+	private handleTypeStart(event: KeyboardEvent): void {
+		if (event.charCode === 13) {	// Early exit if Enter is pressed
+			return;
+		}
+		this.router.navigateByUrl(`/search`, { skipLocationChange: true });
 	}
 }

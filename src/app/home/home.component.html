@@ -1,7 +1,22 @@
 <div class="wrapper">
 	<img src="{{headerImageUrl}}" alt="Loklak Cow" width="150" height="175">
 	<h1>{{header}}</h1>
-	<home-search-bar
-		(typeStartEvent)="handleTypeStart($event)"></home-search-bar>
+
+	<div class="form-group search-form">
+		<div class="input-group">
+			<label for="search">Search On Loklak.</label>
+
+			<input type="text" class="form-control" id="search" required name="search"
+							placeholder="I'm feeling awesome!" (keypress)="handleTypeStart($event)" />
+
+			<span class="input-group-btn">
+				<button class="btn btn-default" role="button" type="button"
+								aria-roledescription="Search the web using loklak search." >
+					<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+				</button>
+			</span>
+		</div>
+	</div>
+
 	<h5>Distributed Social Media Message Search Engine</h5>
 </div>

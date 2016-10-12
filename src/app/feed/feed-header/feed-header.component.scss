@@ -1,6 +1,6 @@
 .wrapper{
-	padding: 5px 0px;
-	background: #f5f5f5;
+	min-height: 60px;
+	background: #f1f1f1;
 	border-bottom: 1px solid #ddd;
 	display: flex;
 	justify-content: space-between;
@@ -34,7 +34,7 @@
 
 				input,
 				span.input-group-btn button {
-					height: 40px;
+					height: 38px;
 				}
 
 				span.input-group-btn button {

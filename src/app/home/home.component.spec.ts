@@ -75,11 +75,11 @@ describe('Component: Home', () => {
 		expect(image.alt).toBe('Loklak Cow');	// Correct alt text 'Loklak Cow' must be present.
 	}));
 
-	it('should have a home-search-bar component', async(() => {
+	it('should have an input element for search inputs', async(() => {
 		let fixture = TestBed.createComponent(HomeComponent);
 		fixture.detectChanges();
 		let component = fixture.debugElement.componentInstance;
 		let compiled = fixture.debugElement.nativeElement;
-		expect(compiled.querySelector('div.wrapper home-search-bar')).toBeTruthy();
+		expect(compiled.querySelector('div.wrapper div.search-form input#search')).toBeTruthy();
 	}));
 });
