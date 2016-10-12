@@ -2,12 +2,12 @@
 	<div class="input-group">
 		<label for="search">Search On Loklak.</label>
 
-		<input type="text" class="form-control" id="search" required
-						[(ngModel)]="query" name="search" placeholder="I'm feeling Awsome!" (keyup.enter)="handleQueryRequest()">
+		<input type="text" class="form-control" id="search" required name="search"
+						[(ngModel)]="query" placeholder="I'm feeling Awesome!" (keyup)="handleTypeStart()" />
 
 		<span class="input-group-btn">
 			<button class="btn btn-default" role="button" type="button"
-							aria-roledescription="Search the web using loklak search." (click)="handleQueryRequest()">
+							aria-roledescription="Search the web using loklak search." >
 				<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
 			</button>
 		</span>

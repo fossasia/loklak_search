@@ -17,7 +17,7 @@ export class HomeComponent implements OnInit {
 	ngOnInit() {
 	}
 
-	private handleQueryRequest(event: any) {
-		this.router.navigateByUrl(`/search/${event.query}`);
+	private handleTypeStart(event: any) {
+		this.router.navigateByUrl(`/search?query=${event.query}`, { skipLocationChange: true });
 	}
 }

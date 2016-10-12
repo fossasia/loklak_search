@@ -1,0 +1,47 @@
+.wrapper{
+	padding: 5px 0px;
+	background: #f5f5f5;
+	border-bottom: 1px solid #ddd;
+	display: flex;
+	justify-content: space-between;
+
+	div.logo-and-form {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: space-around;
+
+		div.logo {
+			padding: 10px;
+		}
+
+		div.search-form {
+			max-width: 600px;
+
+			div.input-group{
+				width: 100%;
+				padding: 10px;
+
+				label {
+					visibility: hidden;
+					display: none;
+				}
+
+				input {
+					font-size: larger;
+					display: inline-block;
+				}
+
+				input,
+				span.input-group-btn button {
+					height: 40px;
+				}
+
+				span.input-group-btn button {
+					background: #d81b60;
+					color: white;
+				}
+			}
+		}
+	}
+}

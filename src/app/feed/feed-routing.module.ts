@@ -5,7 +5,7 @@ import { FeedComponent } from './feed.component';
 
 const routes: Routes = [
 	{
-		path: 'search/:query',
+		path: 'search',
 		component: FeedComponent
 	}
 ];

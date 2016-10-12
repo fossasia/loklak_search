@@ -22,12 +22,11 @@ describe('Component: SearchBar', () => {
 		expect(component).toBeTruthy();
 	});
 
-	it('should have a query and submitted properties', () => {
+	it('should have a query property', () => {
 		let fixture = TestBed.createComponent(SearchBarComponent);
 		let component = fixture.debugElement.componentInstance;
 
 		expect(component.query).not.toBeUndefined();
-		expect(component.submitted).not.toBeUndefined();
 	});
 
 	it('should render an input element with proper label and semantics.', async(() => {

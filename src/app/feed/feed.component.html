@@ -1,11 +1,15 @@
-<h3> {{query}} </h3>
+<feed-header
+			query="{{query}}"
+			(queryEvent)="handleQueryRequest($event)"></feed-header>
 
-<div *ngIf="search_results" class="wrapper">
-	<div class="well" *ngFor="let item of search_results">
-		<span><b>{{item.screen_name}}</b></span>
-		<p>
-			{{item.text}}
-		</p>
-		<span>{{item.timestamp}}</span>
+<div class="outer-wrapper">
+	<div *ngIf="search_results" class="wrapper">
+		<div class="well" *ngFor="let item of search_results">
+			<span><b>{{item.screen_name}}</b></span>
+			<p>
+				{{item.text}}
+			</p>
+			<span>{{item.timestamp}}</span>
+		</div>
 	</div>
 </div>

@@ -1,6 +1,7 @@
 <div class="wrapper">
 	<img src="{{headerImageUrl}}" alt="Loklak Cow" width="150" height="175">
 	<h1>{{header}}</h1>
-	<home-search-bar (queryEvent)="handleQueryRequest($event)"></home-search-bar>
+	<home-search-bar
+		(typeStartEvent)="handleTypeStart($event)"></home-search-bar>
 	<h5>Distributed Social Media Message Search Engine</h5>
 </div>

@@ -1,5 +1,6 @@
 /* tslint:disable:no-unused-variable */
 
+import { Component, Input } from '@angular/core';
 import { TestBed, async } from '@angular/core/testing';
 import { Route } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -10,6 +11,14 @@ import { SearchService } from '../shared/services';
 
 class SearchServiceStub { }
 
+@Component({
+	selector: 'feed-header',
+	template: ''
+})
+class FeedHeaderStub {
+	@Input() private query;
+}
+
 describe('Component: Feed', () => {
 	beforeEach(() => {
 		TestBed.configureTestingModule({
@@ -18,6 +27,7 @@ describe('Component: Feed', () => {
 			],
 			declarations: [
 				FeedComponent,
+				FeedHeaderStub
 			],
 			providers: [
 				{ provide: SearchService, useClass: SearchServiceStub }

@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, Title } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule,JsonpModule } from '@angular/http';
 
@@ -24,6 +24,8 @@ import { SearchService } from './shared/services';
 		FeedModule
 	],
 	providers: [
+		Title,
+
 		SearchService
 	],
 	bootstrap: [AppComponent]
