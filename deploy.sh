@@ -54,7 +54,7 @@ mv dist/* .
 
 # Staging the new build for commit; and then commiting the lastest build
 git add .
-git commit --amend --no-edit
+git commit --amend --no-edit --allow-empty
 
 # Actual push to gh-pages branch via Travis
 git push --force $SSH_REPO $TARGET_BRANCH
