@@ -1,5 +1,4 @@
 #!/bin/bash
-set -e # Exit with nonzero exit code if anything fails
 
 SOURCE_BRANCH="master"
 TARGET_BRANCH="gh-pages"
@@ -54,7 +53,18 @@ mv dist/* .
 
 # Staging the new build for commit; and then commiting the lastest build
 git add .
-git commit --amend --no-edit
+git commit --amend --no-edit --allow-empty
 
-# Actual push to gh-pages branch via Travis
-git push --force $SSH_REPO $TARGET_BRANCH
+# Deploying only if the build has changed
+if [ -z `git diff --name-only HEAD HEAD~1` ]; then
+
+  echo "No Changes in the Build; exiting"
+  exit 0
+
+else
+  # There are changes in the Build; push the changes to gh-pages
+  echo "There are changes in the Build; pushing the changes to gh-pages"
+
+  # Actual push to gh-pages branch via Travis
+  git push --force $SSH_REPO $TARGET_BRANCH
+fi
