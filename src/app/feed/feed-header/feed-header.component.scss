@@ -30,6 +30,13 @@
 				input {
 					font-size: larger;
 					display: inline-block;
+					box-shadow: none;
+				}
+
+				input:focus {
+					box-shadow: none;
+					border-color: #4285f4;
+					outline: #6897e6 auto 1px;
 				}
 
 				input,
