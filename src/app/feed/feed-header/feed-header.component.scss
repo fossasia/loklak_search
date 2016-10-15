@@ -1,5 +1,5 @@
 .wrapper{
-	min-height: 60px;
+	min-height: 59px;
 	background: #f1f1f1;
 	border-bottom: 1px solid #ddd;
 	display: flex;
@@ -12,7 +12,7 @@
 		justify-content: space-around;
 
 		div.logo {
-			padding: 10px;
+			padding: 6px;
 		}
 
 		div.search-form {
@@ -41,7 +41,7 @@
 
 				input,
 				span.input-group-btn button {
-					height: 38px;
+					height: 39px;
 				}
 
 				span.input-group-btn button {
