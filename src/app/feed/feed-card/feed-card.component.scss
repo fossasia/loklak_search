@@ -1,0 +1,94 @@
+a.post-link {
+	text-decoration: none;
+	color: black;
+
+	div.card {
+		padding: 10px;
+		border-bottom: 2px solid #f3f3f3;
+		display: flex;
+		flex-direction: row;
+
+		&:hover {
+			background: #f5f8fa;
+		}
+
+		div.card-image {
+			margin-top: 2px;
+			width: 60px;
+			display: flex;
+			flex-direction: row;
+			justify-content: space-around;
+
+			img {
+				border-radius: 5px;
+			}
+		}
+
+		div.card-content {
+			margin-left: 15px;
+
+			div.card-header {
+				margin-bottom: 5px;
+
+				a#profile-link {
+					text-decoration: none;
+					color: inherit;
+
+					&:hover .name,
+					&:focus .name{
+						color: #2280d0;
+					}
+
+					span.name {
+						color: black;
+						font-size: 1.1em;
+					}
+					span.handle {
+						color: grey;
+						font-size: 0.95em;
+					}
+				}
+			}
+
+			div.card-text{
+				word-break: break-word;
+
+				p {
+					word-wrap: break-word;
+				}
+			}
+
+			div.card-footer {
+				max-width: 200px;
+				margin-top: 12px;
+				display: flex;
+				justify-content: space-between;
+
+				i.md-20{
+					font-size: 20px;
+				}
+
+				div.action {
+					color: #aab8c2;
+					display: flex;
+
+					div.counter{
+						margin-left: 5px;
+					}
+				}
+
+				div.reply:hover {
+					color: #89C9FA;
+				}
+
+				div.retweet:hover {
+					color: #19cf86;
+				}
+
+				div.like:hover {
+					color: #e81c4f;
+				}
+			}
+		}
+	}
+}

@@ -11,7 +11,7 @@ import { SearchService } from '../shared/services';
 export class FeedComponent implements OnInit {
 	private query: string = null;
 	private search_metadata: JSON = null;	// Temporarily as a JSON in future it will be a model object
-	private search_results: JSON[] = null; // Temporarily as a JSON in future it will be a model object
+	private search_results: Array<JSON> = new Array(); // Temporarily as a JSON in future it will be a model object
 
 	constructor(
 		private router: Router,
@@ -44,6 +44,7 @@ export class FeedComponent implements OnInit {
 											.subscribe((fetchedResults: JSON) => {
 												this.search_metadata = fetchedResults['search_metadata'];
 												this.search_results = fetchedResults['statuses'];
+												console.log(this.search_results);
 											});
 	}
 

@@ -1,0 +1,42 @@
+<a class="post-link" href="{{feedItem.link}}" target="_blank">
+	<div class="card">
+		<div class="card-image">
+			<a href="{{profileURL}}" target="_blank">
+				<img src="{{feedItem.user.profile_image_url_https}}" alt="Profile Image" width="50" height="50" />
+			</a>
+		</div>
+		<div class="card-content">
+			<div class="card-header">
+				<a href="{{profileURL}}" target="_blank" id="profile-link">
+					<span class="name">
+						<b>{{profileName}}</b>
+					</span>
+					&nbsp;
+					<span class="handle">
+						@{{feedItem.user.screen_name}}
+					</span>
+				</a>
+			</div>
+			<div class="card-text">
+				<p [innerHTML]="itemText | linky:{ mention: 'twitter', hashtag: 'twitter', stripPrefix: false}"></p>
+			</div>
+			<div class="card-footer">
+				<div class="action reply">
+					<i class="material-icons md-20">reply</i>
+				</div>
+				<div class="action retweet">
+					<i class="material-icons md-20">repeat</i>
+					<div class="counter retweet-count">
+						{{retweetCount}}
+					</div>
+				</div>
+				<div class="action like">
+					<i class="material-icons md-20">favorite_border</i>
+					<div class="counter like-count">
+						{{favouriteCount}}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</a>

@@ -19,6 +19,14 @@ class FeedHeaderStub {
 	@Input() private query;
 }
 
+@Component({
+	selector: 'feed-card',
+	template: ''
+})
+class FeedCardStub {
+	@Input() private feedItem;
+}
+
 describe('Component: Feed', () => {
 	beforeEach(() => {
 		TestBed.configureTestingModule({
@@ -27,7 +35,8 @@ describe('Component: Feed', () => {
 			],
 			declarations: [
 				FeedComponent,
-				FeedHeaderStub
+				FeedHeaderStub,
+				FeedCardStub
 			],
 			providers: [
 				{ provide: SearchService, useClass: SearchServiceStub }

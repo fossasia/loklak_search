@@ -10,7 +10,7 @@ export class SearchService {
 	private static apiUrl: URL = new URL('http://api.loklak.org/api/search.json');
 	private static maximum_records_fetch: string = '10';
 	private static minified_results: string = 'true';
-	private static source: string = 'cache';
+	private static source: string = 'all';
 
 	constructor(
 		private jsonp: Jsonp

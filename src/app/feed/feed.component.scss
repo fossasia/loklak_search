@@ -2,9 +2,20 @@
 	padding-top: 15px;
 
 	.wrapper {
-		max-width: 700px;
-		margin: auto;
+		max-width: 600px;
 		padding: 0px 10px;
 		font-family: Roboto, Heveltica, Arial, sans-serif;
+	}
+
+	@media(min-width: 881px) {
+		.wrapper {
+			margin-left: 140px;
+		}
+	}
+
+	@media(max-width: 880px) {
+		.wrapper{
+			margin: 0 auto;
+		}
 	}
 }
