@@ -4,12 +4,8 @@
 
 <div class="outer-wrapper">
 	<div *ngIf="search_results" class="wrapper">
-		<div class="well" *ngFor="let item of search_results">
-			<span><b>{{item.screen_name}}</b></span>
-			<p>
-				{{item.text}}
-			</p>
-			<span>{{item.timestamp}}</span>
+		<div *ngFor="let item of search_results">
+			<feed-card [feedItem]="item"></feed-card>
 		</div>
 	</div>
 </div>
