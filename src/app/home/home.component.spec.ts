@@ -13,10 +13,10 @@ import { RouterStub } from '../../testing';
  * Stub component for SearchBarComponent
  */
 @Component({
-	selector: 'home-search-bar',
+	selector: 'home-footer',
 	template: ''
 })
-class SearchBarStubComponent { }
+class FooterStubComponent { }
 
 
 describe('Component: Home', () => {
@@ -27,7 +27,7 @@ describe('Component: Home', () => {
 			],
 			declarations: [
 				HomeComponent,
-				SearchBarStubComponent
+				FooterStubComponent
 			],
 			providers: [
 				{ provide: Router, useClass: RouterStub }

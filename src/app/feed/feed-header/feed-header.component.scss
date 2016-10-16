@@ -21,6 +21,12 @@
 			div.input-group{
 				width: 100%;
 				padding: 10px;
+				min-width: 600px;
+
+				@media(max-width: 600px) {
+					width: 100vw;
+					min-width: 0;
+				}
 
 				label {
 					visibility: hidden;
@@ -28,7 +34,9 @@
 				}
 
 				input {
-					font-size: larger;
+					font-size: 16px;
+					word-spacing: 1.5pt;
+					letter-spacing: 0.5pt;
 					display: inline-block;
 					box-shadow: none;
 				}
@@ -36,7 +44,6 @@
 				input:focus {
 					box-shadow: none;
 					border-color: #4285f4;
-					outline: #6897e6 auto 1px;
 				}
 
 				input,
