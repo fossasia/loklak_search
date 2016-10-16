@@ -8,6 +8,9 @@ import { AppComponent } from './app.component';
 
 import { HomeModule } from './home/home.module';
 import { FeedModule } from './feed/feed.module';
+import { AboutModule } from './about/about.module';
+import { ImprintModule } from './imprint/imprint.module';
+import { TermsModule } from './terms/terms.module';
 import { SearchService } from './shared/services';
 
 @NgModule({
@@ -21,7 +24,10 @@ import { SearchService } from './shared/services';
 
 		LoklakAppRoutingModule,
 		HomeModule,
-		FeedModule
+		FeedModule,
+		AboutModule,
+		ImprintModule,
+		TermsModule
 	],
 	providers: [
 		Title,

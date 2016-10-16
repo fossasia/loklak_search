@@ -27,8 +27,9 @@ div.wrapper {
 	}
 
 	div.search-form {
-		div.input-group{
 			width: 100%;
+
+		div.input-group{
 			padding: 10px;
 
 			label {
@@ -37,7 +38,15 @@ div.wrapper {
 			}
 
 			input {
-				font-size: larger;
+				font-size: 16px;
+				word-spacing: 1.5pt;
+				letter-spacing: 0.5pt;
+				box-shadow: none;
+			}
+
+			input:focus {
+				box-shadow: none;
+				border-color: #4285f4;
 			}
 
 			input,
@@ -48,6 +57,11 @@ div.wrapper {
 		}
 	}
 
+	home-footer {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+	}
 
 	@media (max-height: 500px) and (orientation: landscape){
 		margin-top: 0px;
@@ -55,6 +69,10 @@ div.wrapper {
 		img {
 			width: 120px;
 			height: auto;
+		}
+
+		home-footer {
+			bottom: -40px;
 		}
 	}
 }

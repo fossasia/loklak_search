@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { LoklakHomeRoutingModule } from './home-routing.module';
 
 import { HomeComponent } from './home.component';
+import { HomeFooterComponent } from './home-footer/home-footer.component';
 
 @NgModule({
 	imports: [
@@ -14,7 +15,8 @@ import { HomeComponent } from './home.component';
 		LoklakHomeRoutingModule
 	],
 	declarations: [
-		HomeComponent
+		HomeComponent,
+		HomeFooterComponent
 	],
 	exports: []
 })

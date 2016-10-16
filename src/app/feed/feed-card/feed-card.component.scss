@@ -7,6 +7,7 @@ a.post-link {
 		border-bottom: 2px solid #f3f3f3;
 		display: flex;
 		flex-direction: row;
+		flex-wrap: nowrap;
 
 		&:hover {
 			background: #f5f8fa;
@@ -15,9 +16,6 @@ a.post-link {
 		div.card-image {
 			margin-top: 2px;
 			width: 60px;
-			display: flex;
-			flex-direction: row;
-			justify-content: space-around;
 
 			img {
 				border-radius: 5px;
@@ -26,6 +24,7 @@ a.post-link {
 
 		div.card-content {
 			margin-left: 15px;
+			flex: 1;
 
 			div.card-header {
 				margin-bottom: 5px;
