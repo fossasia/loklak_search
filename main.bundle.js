@@ -44789,7 +44789,48 @@ var HomeComponent = (function () {
     }
     HomeComponent.prototype.ngOnInit = function () { };
     HomeComponent.prototype.handleTypeStart = function (event) {
-        if (event.charCode === 13) {
+        // Keypress events not working well with Firefox during the switching of the page from home to feed.
+        // Thus we need to use keydown event and then filter out only the "Character Keys"
+        // This filtering process can be extended till more precise keypress event.
+        // Please update this list as the project progresses.
+        switch (event.keyCode) {
+            case 8: // Backspace / Mac Delete
+            case 9: // Tab
+            case 13: // Enter
+            case 14: // Return (Gecko old) [Obsolete]
+            case 16: // Shift
+            case 17: // Ctrl
+            case 18: // Alt
+            case 19: // Pause/Break
+            case 20: // Caps Lock
+            case 27: // Escape
+            case 32: // Space
+            case 33: // Pg Up
+            case 34: // Pg Down
+            case 35: // End
+            case 36: // Home
+            case 37: // Left
+            case 38: // Up
+            case 39: // Right
+            case 40: // Down
+            case 41: // Linux Select
+            case 44: // Print Screen
+            case 45: // Insert
+            case 46: // Delete
+            case 93: // Context Menu
+            case 144: // Num Lock
+            case 145: // Scroll Lock
+            // Mac CMD Key
+            case 91: // Safari, Chrome
+            case 93: // Safari, Chrome
+            case 224: // Firefox
+            // Mac Num Lock
+            case 12:
+                return;
+            default:
+                break;
+        }
+        if (event.keyCode >= 112 && event.keyCode <= 135) {
             return;
         }
         this.router.navigateByUrl("/search", { skipLocationChange: true });
@@ -66926,7 +66967,7 @@ module.exports = "<footer>\n\t<div class=\"left-side\">\n\t\t<a routerLink=\"/ab
 /* 662 */
 /***/ function(module, exports) {
 
-module.exports = "<div class=\"wrapper\">\n\t<img src=\"{{headerImageUrl}}\" alt=\"Loklak Cow\" width=\"150\" height=\"175\">\n\t<h1>{{header}}</h1>\n\n\t<div class=\"form-group search-form\">\n\t\t<div class=\"input-group\">\n\t\t\t<label for=\"search\">Search On Loklak.</label>\n\n\t\t\t<input type=\"text\" class=\"form-control\" id=\"search\" required name=\"search\"\n\t\t\t\t\t\t\tplaceholder=\"I'm feeling awesome!\" (keypress)=\"handleTypeStart($event)\" />\n\n\t\t\t<span class=\"input-group-btn\">\n\t\t\t\t<button class=\"btn btn-default\" role=\"button\" type=\"button\" tabindex=\"-1\"\n\t\t\t\t\t\t\t\taria-roledescription=\"Search the web using loklak search.\" >\n\t\t\t\t\t<span class=\"glyphicon glyphicon-search\" aria-hidden=\"true\"></span>\n\t\t\t\t</button>\n\t\t\t</span>\n\t\t</div>\n\t</div>\n\n\t<h5>Distributed Social Media Message Search Engine</h5>\n\n\t<home-footer></home-footer>\n</div>\n";
+module.exports = "<div class=\"wrapper\">\n\t<img src=\"{{headerImageUrl}}\" alt=\"Loklak Cow\" width=\"150\" height=\"175\">\n\t<h1>{{header}}</h1>\n\n\t<div class=\"form-group search-form\">\n\t\t<div class=\"input-group\">\n\t\t\t<label for=\"search\">Search On Loklak.</label>\n\n\t\t\t<input type=\"text\" class=\"form-control\" id=\"search\" required name=\"search\"\n\t\t\t\t\t\t\tplaceholder=\"I'm feeling awesome!\" (keydown)=\"handleTypeStart($event)\" />\n\n\t\t\t<span class=\"input-group-btn\">\n\t\t\t\t<button class=\"btn btn-default\" role=\"button\" type=\"button\" tabindex=\"-1\"\n\t\t\t\t\t\t\t\taria-roledescription=\"Search the web using loklak search.\" >\n\t\t\t\t\t<span class=\"glyphicon glyphicon-search\" aria-hidden=\"true\"></span>\n\t\t\t\t</button>\n\t\t\t</span>\n\t\t</div>\n\t</div>\n\n\t<h5>Distributed Social Media Message Search Engine</h5>\n\n\t<home-footer></home-footer>\n</div>\n";
 
 /***/ },
 /* 663 */
