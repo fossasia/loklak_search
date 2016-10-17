@@ -3,11 +3,22 @@
 			(queryEvent)="handleQueryRequest($event)"></feed-header>
 
 <div class="outer-wrapper">
-	<div *ngIf="search_results" class="wrapper">
+	<div *ngIf="loading" class="loading">
+	</div>
+	<div *ngIf="!loading && resultsLoaded" class="wrapper">
 		<div *ngFor="let item of search_results">
 			<feed-card [feedItem]="item"></feed-card>
 		</div>
 	</div>
+
+	<div *ngIf="!loading && noResultsFound" class="results-not-found">
+		<feed-not-found
+					query="{{query}}"></feed-not-found>
+	</div>
+
 </div>
 
-<app-footer [class.non-sticky]="resultsLoaded"></app-footer>
+<app-footer
+		[class.non-sticky]="resultsLoaded"
+		[class.stick-at-bottom]="noResultsFound"
+		[class.loading]="loading"></app-footer>

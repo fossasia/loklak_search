@@ -10,6 +10,7 @@ import { FeedComponent } from './feed.component';
 import { FeedHeaderComponent } from './feed-header/feed-header.component';
 import { FeedCardComponent } from './feed-card/feed-card.component';
 import { FooterModule } from '../footer/footer.module';
+import { FeedNotFoundComponent } from './feed-not-found/feed-not-found.component';
 
 @NgModule({
 	imports: [
@@ -24,7 +25,8 @@ import { FooterModule } from '../footer/footer.module';
 	declarations: [
 		FeedComponent,
 		FeedHeaderComponent,
-		FeedCardComponent
+		FeedCardComponent,
+		FeedNotFoundComponent
 	]
 })
 export class FeedModule { }
