@@ -44825,12 +44825,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 var HomeComponent = (function () {
-    function HomeComponent(router) {
+    function HomeComponent(router, elementRef) {
         this.router = router;
+        this.elementRef = elementRef;
         this.header = 'Loklak Search!';
         this.headerImageUrl = 'assets/images/cow_150x175.png';
     }
-    HomeComponent.prototype.ngOnInit = function () { };
+    HomeComponent.prototype.ngOnInit = function () {
+        this.focusTextbox();
+    };
+    HomeComponent.prototype.focusTextbox = function () {
+        this.elementRef.nativeElement.querySelector('div.search-form input#search').focus();
+    };
     HomeComponent.prototype.handleTypeStart = function (event) {
         // Keypress events not working well with Firefox during the switching of the page from home to feed.
         // Thus we need to use keydown event and then filter out only the "Character Keys"
@@ -44884,10 +44890,10 @@ var HomeComponent = (function () {
             template: __webpack_require__(663),
             styles: [__webpack_require__(675)]
         }), 
-        __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */]) === 'function' && _a) || Object])
+        __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"]) === 'function' && _b) || Object])
     ], HomeComponent);
     return HomeComponent;
-    var _a;
+    var _a, _b;
 }());
 
 
