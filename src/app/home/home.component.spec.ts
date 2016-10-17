@@ -9,15 +9,11 @@ import { HomeComponent } from './home.component';
 
 import { RouterStub } from '../../testing';
 
-/**
- * Stub component for SearchBarComponent
- */
 @Component({
-	selector: 'home-footer',
+	selector: 'app-footer',
 	template: ''
 })
-class FooterStubComponent { }
-
+class FooterComponentStub { }
 
 describe('Component: Home', () => {
 	beforeEach(() => {
@@ -27,7 +23,7 @@ describe('Component: Home', () => {
 			],
 			declarations: [
 				HomeComponent,
-				FooterStubComponent
+				FooterComponentStub
 			],
 			providers: [
 				{ provide: Router, useClass: RouterStub }

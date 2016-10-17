@@ -57,22 +57,17 @@ div.wrapper {
 		}
 	}
 
-	home-footer {
+	app-footer {
 		position: absolute;
 		bottom: 0;
 		left: 0;
-	}
 
-	@media (max-height: 500px) and (orientation: landscape){
-		margin-top: 0px;
-
-		img {
-			width: 120px;
-			height: auto;
+		@media(max-width: 768px) {
+			transform: translateY(100%);
 		}
 
-		home-footer {
-			bottom: -40px;
+		@media(orientation: landscape) and (max-height: 500px) {
+			transform: translateY(100%);
 		}
 	}
 }

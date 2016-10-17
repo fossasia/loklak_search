@@ -9,6 +9,7 @@ import { LoklakFeedRoutingModule } from './feed-routing.module';
 import { FeedComponent } from './feed.component';
 import { FeedHeaderComponent } from './feed-header/feed-header.component';
 import { FeedCardComponent } from './feed-card/feed-card.component';
+import { FooterModule } from '../footer/footer.module';
 
 @NgModule({
 	imports: [
@@ -17,7 +18,8 @@ import { FeedCardComponent } from './feed-card/feed-card.component';
 
 		LinkyModule,
 
-		LoklakFeedRoutingModule
+		LoklakFeedRoutingModule,
+		FooterModule
 	],
 	declarations: [
 		FeedComponent,
