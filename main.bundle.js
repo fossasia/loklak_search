@@ -44879,6 +44879,9 @@ var HomeComponent = (function () {
             default:
                 break;
         }
+        if (event.metaKey || event.ctrlKey || event.altKey) {
+            return;
+        }
         if (event.keyCode >= 112 && event.keyCode <= 135) {
             return;
         }
