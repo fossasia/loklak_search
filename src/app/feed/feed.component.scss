@@ -18,3 +18,13 @@
 		}
 	}
 }
+
+app-footer {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	transform: translateY(100%);
+}
+app-footer.non-sticky {
+	position: static;
+}

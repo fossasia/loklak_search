@@ -1,6 +1,5 @@
 footer {
 	width: 100vw;
-	height: 40px;
 	background: #f2f2f2;
 	padding: 0px 14px;
 	border-top: 1px solid #e4e4e4;
@@ -13,21 +12,10 @@ footer {
 		padding: 0px 14px;
 		color: #666;
 		font-size: small;
+		line-height: 40px;
 	}
 
-	div.left-side {
-		margin-right: 50px;
-	}
-
-	div.right-side {
-		margin-left: 50px;
-	}
-
-	@media(max-width: 480px){
+	@media(max-width: 400px) {
 		justify-content: space-around;
-
-		div {
-			margin: 0 !important;
-		}
 	}
 }

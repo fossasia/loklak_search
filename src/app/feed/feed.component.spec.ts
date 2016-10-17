@@ -27,6 +27,12 @@ class FeedCardStub {
 	@Input() private feedItem;
 }
 
+@Component({
+	selector: 'app-footer',
+	template: ''
+})
+class FooterComponentStub { }
+
 describe('Component: Feed', () => {
 	beforeEach(() => {
 		TestBed.configureTestingModule({
@@ -36,7 +42,8 @@ describe('Component: Feed', () => {
 			declarations: [
 				FeedComponent,
 				FeedHeaderStub,
-				FeedCardStub
+				FeedCardStub,
+				FooterComponentStub
 			],
 			providers: [
 				{ provide: SearchService, useClass: SearchServiceStub }
