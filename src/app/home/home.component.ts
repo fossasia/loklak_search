@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -11,10 +11,17 @@ export class HomeComponent implements OnInit {
 	private headerImageUrl: string = 'assets/images/cow_150x175.png';
 
 	constructor(
-		private router: Router
+		private router: Router,
+		private elementRef: ElementRef
 	) { }
 
-	ngOnInit() { }
+	ngOnInit() {
+		this.focusTextbox();
+	}
+
+	private focusTextbox() {
+		this.elementRef.nativeElement.querySelector('div.search-form input#search').focus();
+	}
 
 	private handleTypeStart(event: KeyboardEvent): void {
 		// Keypress events not working well with Firefox during the switching of the page from home to feed.
