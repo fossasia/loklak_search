@@ -33,6 +33,14 @@ class FeedCardStub {
 })
 class FooterComponentStub { }
 
+@Component({
+	selector: 'feed-not-found',
+	template: ''
+})
+class FeedNotFoundComponentStub {
+	@Input() private query;
+}
+
 describe('Component: Feed', () => {
 	beforeEach(() => {
 		TestBed.configureTestingModule({
@@ -43,7 +51,8 @@ describe('Component: Feed', () => {
 				FeedComponent,
 				FeedHeaderStub,
 				FeedCardStub,
-				FooterComponentStub
+				FooterComponentStub,
+				FeedNotFoundComponentStub
 			],
 			providers: [
 				{ provide: SearchService, useClass: SearchServiceStub }

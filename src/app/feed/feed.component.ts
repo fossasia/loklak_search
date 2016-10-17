@@ -13,6 +13,8 @@ export class FeedComponent implements OnInit {
 	private search_metadata: JSON = null;	// Temporarily as a JSON in future it will be a model object
 	private search_results: Array<JSON> = new Array(); // Temporarily as a JSON in future it will be a model object
 	private resultsLoaded: boolean = false;
+	private noResultsFound: boolean = false;
+	private loading: boolean = false;
 
 	constructor(
 		private router: Router,
@@ -41,11 +43,19 @@ export class FeedComponent implements OnInit {
 	}
 
 	private loadResults() {
+		this.loading = true;
 		this.searchService.fetchQuery(this.query)
 											.subscribe((fetchedResults: JSON) => {
 												this.search_metadata = fetchedResults['search_metadata'];
 												this.search_results = fetchedResults['statuses'];
-												this.resultsLoaded = true;
+												if (this.search_results.length) {
+													this.resultsLoaded = true;
+													this.noResultsFound = false;
+												} else {
+													this.resultsLoaded = false;
+													this.noResultsFound = true;
+												}
+												this.loading = false;
 											});
 	}
 

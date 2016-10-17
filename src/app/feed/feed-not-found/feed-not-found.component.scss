@@ -1,0 +1,30 @@
+.wrapper {
+	max-width: 700px;
+	padding: 10px;
+	margin-top: 20px;
+	margin-left: 128px;
+
+	@media(max-width: 880px) {
+		margin: 0 auto;
+	}
+
+	h2 {
+		margin: 0;
+		font-size: 2em;
+	}
+
+	.content {
+		padding: 30px 0px;
+		border-bottom: 2px solid #f3f3f3;
+		color: #222;
+
+		p {
+			font-size: medium;
+		}
+
+		ul {
+			padding: 15px;
+			font-size: 1.1em;
+		}
+	}
+}

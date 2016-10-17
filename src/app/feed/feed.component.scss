@@ -28,3 +28,22 @@ app-footer {
 app-footer.non-sticky {
 	position: static;
 }
+
+app-footer.stick-at-bottom{
+	transform: translateY(0%);
+
+	@media(max-height: 400px) {
+		position: static;
+	}
+
+	@media(max-width: 365px) {
+		position: static;
+	}
+}
+
+app-footer.loading{
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	transform: translateY(100%);
+}
