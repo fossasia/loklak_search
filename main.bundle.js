@@ -63590,7 +63590,7 @@ var FeedHeaderComponent = (function () {
     function FeedHeaderComponent() {
         this.query = null;
         this.queryEvent = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
-        this.bannerImageUrl = 'assets/images/loklak_banner_252x45.png';
+        this.bannerImageUrl = 'assets/images/loklak_banner_206x45.png';
     }
     FeedHeaderComponent.prototype.ngOnInit = function () {
     };
