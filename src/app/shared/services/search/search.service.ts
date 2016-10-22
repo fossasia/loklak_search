@@ -5,6 +5,8 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/throw';
 
+import { ApiResponse } from '../../classes';
+
 @Injectable()
 export class SearchService {
 	private static apiUrl: URL = new URL('http://api.loklak.org/api/search.json');
@@ -17,7 +19,7 @@ export class SearchService {
 	) { }
 
 	// TODO: make the searchParams as configureable model rather than this approach.
-	public fetchQuery(query: string): Observable<any> {
+	public fetchQuery(query: string): Observable<ApiResponse> {
 		let searchParams = new URLSearchParams();
 		searchParams.set('q', query);
 		searchParams.set('callback', 'JSONP_CALLBACK');
@@ -30,9 +32,9 @@ export class SearchService {
 								.catch(this.handleError);
 	}
 
-	private extractData(res: Response): JSON {
+	private extractData(res: Response): ApiResponse {
 		try {
-			return res.json();
+			return <ApiResponse>res.json();
 		} catch (error) {
 			console.error(error);
 		}
