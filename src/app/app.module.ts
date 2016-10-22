@@ -1,6 +1,6 @@
 import { BrowserModule, Title } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpModule,JsonpModule } from '@angular/http';
+import { HttpModule, JsonpModule } from '@angular/http';
 
 import { LoklakAppRoutingModule } from './app-routing.module';
 

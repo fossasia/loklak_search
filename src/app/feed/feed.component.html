@@ -6,7 +6,7 @@
 	<div *ngIf="loading" class="loading">
 	</div>
 	<div *ngIf="!loading && resultsLoaded" class="wrapper">
-		<div *ngFor="let item of search_results">
+		<div *ngFor="let item of apiResponseResults">
 			<feed-card [feedItem]="item"></feed-card>
 		</div>
 	</div>

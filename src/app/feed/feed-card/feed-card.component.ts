@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { ApiResponseResult } from '../../shared/classes';
 
 @Component({
 	selector: 'feed-card',
@@ -6,7 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
 	styleUrls: ['./feed-card.component.scss']
 })
 export class FeedCardComponent implements OnInit {
-	@Input() private feedItem: any; // Temporarily as a JSON in future it will be a model object
+	@Input() private feedItem: ApiResponseResult;
 
 	constructor() { }
 

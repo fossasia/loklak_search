@@ -15,7 +15,7 @@ class SearchServiceStub { }
 	selector: 'feed-header',
 	template: ''
 })
-class FeedHeaderStub {
+class FeedHeaderStubComponent {
 	@Input() private query;
 }
 
@@ -23,7 +23,7 @@ class FeedHeaderStub {
 	selector: 'feed-card',
 	template: ''
 })
-class FeedCardStub {
+class FeedCardStubComponent {
 	@Input() private feedItem;
 }
 
@@ -31,13 +31,13 @@ class FeedCardStub {
 	selector: 'app-footer',
 	template: ''
 })
-class FooterComponentStub { }
+class FooterComponentStubComponent { }
 
 @Component({
 	selector: 'feed-not-found',
 	template: ''
 })
-class FeedNotFoundComponentStub {
+class FeedNotFoundStubComponent {
 	@Input() private query;
 }
 
@@ -49,10 +49,10 @@ describe('Component: Feed', () => {
 			],
 			declarations: [
 				FeedComponent,
-				FeedHeaderStub,
-				FeedCardStub,
-				FooterComponentStub,
-				FeedNotFoundComponentStub
+				FeedHeaderStubComponent,
+				FeedCardStubComponent,
+				FooterComponentStubComponent,
+				FeedNotFoundStubComponent
 			],
 			providers: [
 				{ provide: SearchService, useClass: SearchServiceStub }
