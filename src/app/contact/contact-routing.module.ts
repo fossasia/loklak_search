@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { TermsComponent } from './terms.component';
+import { ContactComponent } from './contact.component';
 
 const routes: Routes = [
 	{
-		path: 'terms',
+		path: 'contact',
 		pathMatch: 'full',
-		component: TermsComponent
+		component: ContactComponent
 	}
 ];
 
@@ -16,4 +16,4 @@ const routes: Routes = [
 	exports: [RouterModule],
 	providers: []
 })
-export class LoklakTermsRoutingModule { }
+export class LoklakContactRoutingModule { }

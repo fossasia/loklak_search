@@ -1,20 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { LoklakAboutRoutingModule } from './about-routing.module';
-import { AboutComponent } from './about.component';
-
+import { LoklakContactRoutingModule } from './contact-routing.module';
+import { ContactComponent } from './contact.component';
 import { FooterModule } from '../footer/footer.module';
 
 @NgModule({
 	imports: [
 		CommonModule,
 
-		LoklakAboutRoutingModule,
+		LoklakContactRoutingModule,
 		FooterModule
 	],
 	declarations: [
-		AboutComponent
+		ContactComponent
 	]
 })
-export class AboutModule { }
+export class ContactModule { }

@@ -1,16 +1,17 @@
 /* tslint:disable:no-unused-variable */
 
 import { TestBed, async } from '@angular/core/testing';
-import { AboutComponent } from './about.component';
+import { ContactComponent } from './contact.component';
+
 
 @Component({
 	selector: 'app-footer',
 	template: ''
 })
 
-describe('Component: About', () => {
+describe('Component: Contact', () => {
 	it('should create an instance', () => {
-		let component = new AboutComponent();
+		let component = new ContactComponent();
 		expect(component).toBeTruthy();
 	});
 });
