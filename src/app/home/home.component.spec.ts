@@ -13,7 +13,7 @@ import { RouterStub } from '../../testing';
 	selector: 'app-footer',
 	template: ''
 })
-class FooterStubComponent { }
+class FooterComponentStub { }
 
 describe('Component: Home', () => {
 	beforeEach(() => {
@@ -23,7 +23,7 @@ describe('Component: Home', () => {
 			],
 			declarations: [
 				HomeComponent,
-				FooterStubComponent
+				FooterComponentStub
 			],
 			providers: [
 				{ provide: Router, useClass: RouterStub }

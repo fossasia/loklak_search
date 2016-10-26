@@ -6,23 +6,24 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { AboutComponent } from './about.component';
+import { ContactComponent } from './contact.component';
 
 import { RouterStub } from '../../testing';
+
 @Component({
 	selector: 'app-footer',
 	template: ''
 })
 class FooterComponent { }
 
-describe('Component: About', () => {
+describe('Component: Contact', () => {
 	beforeEach(() => {
 		TestBed.configureTestingModule({
 			imports: [
 				RouterTestingModule
 			],
 			declarations: [
-				AboutComponent,
+				ContactComponent,
 				FooterComponent
 			],
 			providers: [
@@ -32,9 +33,7 @@ describe('Component: About', () => {
 	});
 
 	it('should create an instance', () => {
-		let component = new AboutComponent();
+		let component = new ContactComponent();
 		expect(component).toBeTruthy();
 	});
 });
-
-

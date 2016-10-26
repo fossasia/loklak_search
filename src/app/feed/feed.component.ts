@@ -2,7 +2,6 @@ import { Component, OnInit, ElementRef } from '@angular/core';
 import { Location } from '@angular/common';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { SearchService } from '../shared/services';
-import { ApiResponse, ApiResponseMetadata, ApiResponseResult } from '../shared/classes';
 
 @Component({
 	selector: 'app-feed',
@@ -11,10 +10,8 @@ import { ApiResponse, ApiResponseMetadata, ApiResponseResult } from '../shared/c
 })
 export class FeedComponent implements OnInit {
 	private query: string = null;
-	private apiResponse: ApiResponse = new ApiResponse();
-	private apiResponseMetadata: ApiResponseMetadata = new ApiResponseMetadata();
-	private apiResponseResults: Array<ApiResponseResult> = new Array<ApiResponseResult>();
-
+	private search_metadata: JSON = null;	// Temporarily as a JSON in future it will be a model object
+	private search_results: Array<JSON> = new Array(); // Temporarily as a JSON in future it will be a model object
 	private resultsLoaded: boolean = false;
 	private noResultsFound: boolean = false;
 	private loading: boolean = false;
@@ -48,19 +45,17 @@ export class FeedComponent implements OnInit {
 	private loadResults() {
 		this.loading = true;
 		this.searchService.fetchQuery(this.query)
-											.subscribe((fetchedResults: ApiResponse) => {
-												this.apiResponse = fetchedResults;
-												this.loading = false;
-												this.apiResponseMetadata = this.apiResponse.search_metadata;
-												this.apiResponseResults = this.apiResponse.statuses;
-
-												if (this.apiResponseResults.length) {
+											.subscribe((fetchedResults: JSON) => {
+												this.search_metadata = fetchedResults['search_metadata'];
+												this.search_results = fetchedResults['statuses'];
+												if (this.search_results.length) {
 													this.resultsLoaded = true;
 													this.noResultsFound = false;
 												} else {
 													this.resultsLoaded = false;
 													this.noResultsFound = true;
 												}
+												this.loading = false;
 											});
 	}
 
