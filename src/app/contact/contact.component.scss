@@ -13,12 +13,11 @@
 	.navbar{
 		margin-bottom: 0px !important;
 	}
-	.image-banner{
-		min-height: 450px;
-		background: url('../../assets/images/newbanner.jpg') #000 top center no-repeat;
-		overflow: hidden;
-	    max-width: none
-	}
+	 .image-banner{
+   		position: relative;
+   		height: 450px;
+   		overflow: hidden;
+   }
 	.navbar-brand {
 	  padding: 0px;
 	}
