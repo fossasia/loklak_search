@@ -44638,34 +44638,23 @@ function provideRouterInitializer() {
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_autolinker__ = __webpack_require__(487);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_autolinker___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_autolinker__);
-/* harmony export (binding) */ __webpack_require__.d(exports, "LinkyPipe", function() { return LinkyPipe; });
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
+"use strict";
+var core_1 = __webpack_require__(0);
+var Autolinker = __webpack_require__(487);
 var LinkyPipe = (function () {
     function LinkyPipe() {
     }
     LinkyPipe.prototype.transform = function (value, options) {
-        return __WEBPACK_IMPORTED_MODULE_1_autolinker__["link"](value, options);
+        return Autolinker.link(value, options);
     };
-    LinkyPipe = __decorate([
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Pipe"])({ name: 'linky' }), 
-        __metadata('design:paramtypes', [])
-    ], LinkyPipe);
+    LinkyPipe.decorators = [
+        { type: core_1.Pipe, args: [{ name: 'linky' },] },
+    ];
+    LinkyPipe.ctorParameters = [];
     return LinkyPipe;
 }());
-
+exports.LinkyPipe = LinkyPipe;
+//# sourceMappingURL=linky-pipe.js.map
 
 /***/ },
 /* 313 */
@@ -59203,15 +59192,6 @@ function getResolve(route) {
 
 "use strict";
 "use strict";
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
 function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
@@ -59220,13 +59200,13 @@ var linky_pipe_1 = __webpack_require__(312);
 var LinkyModule = (function () {
     function LinkyModule() {
     }
-    LinkyModule = __decorate([
-        core_1.NgModule({
-            declarations: [linky_pipe_1.LinkyPipe],
-            exports: [linky_pipe_1.LinkyPipe],
-        }), 
-        __metadata('design:paramtypes', [])
-    ], LinkyModule);
+    LinkyModule.decorators = [
+        { type: core_1.NgModule, args: [{
+                    declarations: [linky_pipe_1.LinkyPipe],
+                    exports: [linky_pipe_1.LinkyPipe],
+                },] },
+    ];
+    LinkyModule.ctorParameters = [];
     return LinkyModule;
 }());
 exports.LinkyModule = LinkyModule;
@@ -67236,7 +67216,7 @@ metadata.exp({metadata: function metadata(metadataKey, metadataValue){
 /* 663 */
 /***/ function(module, exports, __webpack_require__) {
 
-module.exports = "<nav class=\"navbar navbar-default\">\n   <div class=\"container\">\n      <div class=\"navbar-header\">\n         <button type=\"button\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\"#navbar\">\n         <span class=\"sr-only\">Toggle navigation</span>\n         <span class=\"icon-bar\"></span>\n         <span class=\"icon-bar\"></span>\n         <span class=\"icon-bar\"></span>\n         </button>\n         <a class=\"navbar-brand\" href=\"/\"><img src=\"" + __webpack_require__(225) + "\" alt=\"Loklak\">\n         </a>\n      </div>\n      <div id=\"navbar\" class=\"navbar-collapse collapse\">\n         <ul class=\"nav navbar-nav navbar-right\">\n            <li ><a href=\"/\">Home</a></li>\n            <li class=\"active\"><a href=\"/about\">About</a></li>\n            <li><a href=\"/contact\">Contact</a></li>\n         </ul>\n      </div>\n      <!--/.nav-collapse -->\n   </div>\n   <!--/.container -->\n</nav>\n<div class=\"image-banner\">\n   <img src=\"" + __webpack_require__(375) + "\" class=\"img-responsive about-banner\">\n</div>\n<div class=\"row\">\n   <div class=\"container\">\n      <br>\n      <h2 class=\"text-center\">Our mission is to make the world’s social media information openly accessible and useful generating open knowledge for all.</h2>\n      <br>\n      <div class=\"text-center\"><a href=\"/search?query=#OpenData\" target=\"_self\">#OpenData</a> <a href=\"/search?query=#OpenSource\" target=\"_self\">#OpenSource</a> <a href=\"/search?query=#OpenKnowledge\" target=\"_self\">#OpenKnowledge</a></div> <br><br>\n      <hr>\n      <h3>About Us</h3>\n      <div class=\"row\">\n         <div class=\"col-lg-4 col-sm-12\">\n            <h5 class=\"bold\">News from us</h5>\n            <p>Heroku is a cloud application platform – a new way of building and deploying web apps and a PaaS service to host applications in various programming languages and frameworks on its cloud. The entire architecture behind the messengers has been written with nodejs and deployed to heroku as its production for one main reason which is that it provides a verified and signed SSL Certificate along with its deployment which is useful for facebook messenger integration of susi as well as useful for telegram to trigger webhooks on SSL......<a href=\"http://blog.loklak.net/keeping-alive-the-messenger-architecture-on-free-heroku-dynos/\" target=\"_self\">Read More</a></p>\n         </div>\n         <div class=\"col-lg-4 col-sm-12\">\n            <h5 class=\"bold\">Developers</h5>\n            <p>Wanna know how to set up loklak yourself or you would like to develop an app based on loklak. On <a href=\"http://api.loklak.org\" target=\"_self\">api.loklak.org</a> you find more info about our APIs.</p>\n         </div>\n         <div class=\"col-lg-4 col-sm-12\">\n            <h5 class=\"bold\">Contribute to our projects</h5>\n            <p>Ever wondered what life as a developers looks like or what benefits you might expect as an Open Source contributor? Search for an issue to solve on our repositories with <a href=\"https://github.com/fossasia?utf8=%E2%9C%93&query=loklak\" target=\"_self\">FOSSASIA (https://github.com/fossasia?utf8=%E2%9C%93&query=loklak)</a> or the <a href=\"http://github.com/loklak/\" target=\"_self\">loklak org (http://github.com/loklak/)</a> and check out feature requests and issues.</p>\n         </div>\n      </div>\n      <hr>\n      <h3>Contact Us</h3>\n      <p>If you would like to get in touch with us, please our information is available <a href=\"/contact/\" target=\"_self\">here</a></p>\n   </div>\n</div>\n<br>\n<app-footer></app-footer>\n";
+module.exports = "<nav class=\"navbar navbar-default\">\n   <div class=\"container\">\n      <div class=\"navbar-header\">\n         <button type=\"button\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\"#navbar\">\n         <span class=\"sr-only\">Toggle navigation</span>\n         <span class=\"icon-bar\"></span>\n         <span class=\"icon-bar\"></span>\n         <span class=\"icon-bar\"></span>\n         </button>\n         <a class=\"navbar-brand\" href=\"/\"><img src=\"" + __webpack_require__(225) + "\" alt=\"Loklak\">\n         </a>\n      </div>\n      <div id=\"navbar\" class=\"navbar-collapse collapse\">\n         <ul class=\"nav navbar-nav navbar-right\">\n            <li ><a href=\"/\">Home</a></li>\n            <li class=\"active\"><a href=\"/about\">About</a></li>\n            <li><a href=\"/contact\">Contact</a></li>\n         </ul>\n      </div>\n      <!--/.nav-collapse -->\n   </div>\n   <!--/.container -->\n</nav>\n<div class=\"image-banner\">\n   <img src=\"" + __webpack_require__(375) + "\" class=\"img-responsive about-banner\">\n</div>\n<div class=\"row\">\n   <div class=\"container\">\n      <br>\n      <h2 class=\"text-center\">Our mission is to make the world’s social media information openly accessible and useful generating open knowledge for all.</h2>\n      <br>\n      <div class=\"text-center\"><a href=\"/search?query=#OpenData\" target=\"_self\">#OpenData</a> <a href=\"/search?query=#OpenSource\" target=\"_self\">#OpenSource</a> <a href=\"/search?query=#OpenKnowledge\" target=\"_self\">#OpenKnowledge</a></div> <br><br>\n      <hr>\n      <h3>About Us</h3>\n      <div class=\"row\">\n         <div class=\"col-lg-4 col-sm-12\">\n            <h5 class=\"bold\">News from us</h5>\n            <p>Read up on our latest news and browse our <a href=\"http://blog.loklak.net\" target=\"_self\">blog</a> for updates on our work.</p>\n         </div>\n         <div class=\"col-lg-4 col-sm-12\">\n            <h5 class=\"bold\">Developers</h5>\n            <p>Wanna know how to set up loklak yourself or you would like to develop an app based on loklak. On <a href=\"http://api.loklak.org\" target=\"_self\">api.loklak.org</a> you find more info about our APIs.</p>\n         </div>\n         <div class=\"col-lg-4 col-sm-12\">\n            <h5 class=\"bold\">Contribute to our projects</h5>\n            <p>Ever wondered what life as a developers looks like or what benefits you might expect as an Open Source contributor? Search for an issue to solve on our repositories with <a href=\"https://github.com/fossasia?utf8=%E2%9C%93&query=loklak\" target=\"_self\">FOSSASIA</a> or the <a href=\"http://github.com/loklak/\" target=\"_self\">loklak GitHub organization</a> and check out feature requests and open issues.</p>\n         </div>\n      </div>\n      <hr>\n      <h3>Contact Us</h3>\n      <p>If you would like to get in touch with us, please our information is available <a href=\"/contact/\" target=\"_self\">here</a></p>\n   </div>\n</div>\n<br>\n<app-footer></app-footer>\n";
 
 /***/ },
 /* 664 */
