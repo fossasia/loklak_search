@@ -8,7 +8,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 export class FeedHeaderComponent implements OnInit {
 	@Input() private query: string = null;
 	@Output() private queryEvent: EventEmitter<any> = new EventEmitter();
-	private bannerImageUrl = 'assets/images/loklak_banner_206x45.png';
+	private bannerImageUrl = 'assets/images/logo.png';
 
 	constructor() { }
 
