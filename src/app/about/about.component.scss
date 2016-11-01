@@ -1,4 +1,4 @@
-.about-banner{
+.banner{
    width: 100%;
    position: absolute;
    bottom: 0;
@@ -32,3 +32,11 @@
    .text-center{
    text-align: center;
    }
+   @media screen and (max-width:990px){
+   .image-banner {
+    height: 190px;
+    }
+    .banner{
+    top:0;
+    }
+}
