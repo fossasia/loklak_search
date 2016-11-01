@@ -37,3 +37,12 @@
   #right{
     width:67.7%;
   }
+  @media only screen and (max-width: 500px) {
+    /* For mobile phones: */
+    #left{
+        width: 100%;
+    }
+    #right{
+        width: 100%;
+    }
+}
