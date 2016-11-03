@@ -63660,6 +63660,9 @@ var FeedCardComponent = (function () {
             case 'hashtag': {
                 return "<a href='/search?query=%23" + match.getHashtag() + "'>#" + match.getHashtag() + "</a>";
             }
+            case 'mention': {
+                return "<a href='/search?query=from%3A" + match.getMention() + "'>@" + match.getMention() + "</a>";
+            }
         }
     };
     __decorate([
