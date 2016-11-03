@@ -52,4 +52,12 @@ export class FeedCardComponent implements OnInit {
 
 		return (favourites === 0) ? '' : favourites.toString();
 	}
+
+	private changeLinkUrls(match: any) {
+		switch (match.getType()) {
+			case 'hashtag': {
+				return `<a href='/search?query=%23${match.getHashtag()}'>#${match.getHashtag()}</a>`;
+			}
+		}
+	}
 }
