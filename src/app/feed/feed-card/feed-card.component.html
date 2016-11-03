@@ -18,7 +18,7 @@
 				</a>
 			</div>
 			<div class="card-text">
-				<p [innerHTML]="itemText | linky:{ mention: 'twitter', hashtag: 'twitter', stripPrefix: false}"></p>
+				<p [innerHTML]="itemText | linky:{ mention: 'twitter', hashtag: 'twitter', stripPrefix: false, replaceFn: changeLinkUrls }"></p>
 			</div>
 			<div class="card-footer">
 				<div class="action reply">
