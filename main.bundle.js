@@ -63655,6 +63655,13 @@ var FeedCardComponent = (function () {
         enumerable: true,
         configurable: true
     });
+    FeedCardComponent.prototype.changeLinkUrls = function (match) {
+        switch (match.getType()) {
+            case 'hashtag': {
+                return "<a href='/search?query=%23" + match.getHashtag() + "'>#" + match.getHashtag() + "</a>";
+            }
+        }
+    };
     __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(), 
         __metadata('design:type', (typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__shared_classes__["c" /* ApiResponseResult */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__shared_classes__["c" /* ApiResponseResult */]) === 'function' && _a) || Object)
@@ -67234,7 +67241,7 @@ module.exports = "\n  <nav class=\"navbar navbar-default\">\n    <div class=\"co
 /* 666 */
 /***/ function(module, exports) {
 
-module.exports = "<a class=\"post-link\" href=\"{{feedItem.link}}\" target=\"_blank\">\n\t<div class=\"card\">\n\t\t<div class=\"card-image\">\n\t\t\t<a href=\"{{profileURL}}\" target=\"_blank\">\n\t\t\t\t<img src=\"{{feedItem.user.profile_image_url_https}}\" alt=\"Profile Image\" width=\"50\" height=\"50\" />\n\t\t\t</a>\n\t\t</div>\n\t\t<div class=\"card-content\">\n\t\t\t<div class=\"card-header\">\n\t\t\t\t<a href=\"{{profileURL}}\" target=\"_blank\" id=\"profile-link\">\n\t\t\t\t\t<span class=\"name\">\n\t\t\t\t\t\t<b>{{profileName}}</b>\n\t\t\t\t\t</span>\n\t\t\t\t\t&nbsp;\n\t\t\t\t\t<span class=\"handle\">\n\t\t\t\t\t\t@{{feedItem.user.screen_name}}\n\t\t\t\t\t</span>\n\t\t\t\t</a>\n\t\t\t</div>\n\t\t\t<div class=\"card-text\">\n\t\t\t\t<p [innerHTML]=\"itemText | linky:{ mention: 'twitter', hashtag: 'twitter', stripPrefix: false}\"></p>\n\t\t\t</div>\n\t\t\t<div class=\"card-footer\">\n\t\t\t\t<div class=\"action reply\">\n\t\t\t\t\t<i class=\"material-icons md-20\">reply</i>\n\t\t\t\t</div>\n\t\t\t\t<div class=\"action retweet\">\n\t\t\t\t\t<i class=\"material-icons md-20\">repeat</i>\n\t\t\t\t\t<div class=\"counter retweet-count\">\n\t\t\t\t\t\t{{retweetCount}}\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t\t<div class=\"action like\">\n\t\t\t\t\t<i class=\"material-icons md-20\">favorite_border</i>\n\t\t\t\t\t<div class=\"counter like-count\">\n\t\t\t\t\t\t{{favouriteCount}}\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\t</div>\n</a>\n";
+module.exports = "<a class=\"post-link\" href=\"{{feedItem.link}}\" target=\"_blank\">\n\t<div class=\"card\">\n\t\t<div class=\"card-image\">\n\t\t\t<a href=\"{{profileURL}}\" target=\"_blank\">\n\t\t\t\t<img src=\"{{feedItem.user.profile_image_url_https}}\" alt=\"Profile Image\" width=\"50\" height=\"50\" />\n\t\t\t</a>\n\t\t</div>\n\t\t<div class=\"card-content\">\n\t\t\t<div class=\"card-header\">\n\t\t\t\t<a href=\"{{profileURL}}\" target=\"_blank\" id=\"profile-link\">\n\t\t\t\t\t<span class=\"name\">\n\t\t\t\t\t\t<b>{{profileName}}</b>\n\t\t\t\t\t</span>\n\t\t\t\t\t&nbsp;\n\t\t\t\t\t<span class=\"handle\">\n\t\t\t\t\t\t@{{feedItem.user.screen_name}}\n\t\t\t\t\t</span>\n\t\t\t\t</a>\n\t\t\t</div>\n\t\t\t<div class=\"card-text\">\n\t\t\t\t<p [innerHTML]=\"itemText | linky:{ mention: 'twitter', hashtag: 'twitter', stripPrefix: false, replaceFn: changeLinkUrls }\"></p>\n\t\t\t</div>\n\t\t\t<div class=\"card-footer\">\n\t\t\t\t<div class=\"action reply\">\n\t\t\t\t\t<i class=\"material-icons md-20\">reply</i>\n\t\t\t\t</div>\n\t\t\t\t<div class=\"action retweet\">\n\t\t\t\t\t<i class=\"material-icons md-20\">repeat</i>\n\t\t\t\t\t<div class=\"counter retweet-count\">\n\t\t\t\t\t\t{{retweetCount}}\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t\t<div class=\"action like\">\n\t\t\t\t\t<i class=\"material-icons md-20\">favorite_border</i>\n\t\t\t\t\t<div class=\"counter like-count\">\n\t\t\t\t\t\t{{favouriteCount}}\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\t</div>\n</a>\n";
 
 /***/ },
 /* 667 */
