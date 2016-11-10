@@ -1,18 +1,20 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ApiResponseResult } from '../../shared/classes';
-
+import {Observable} from 'rxjs/Rx';
 @Component({
 	selector: 'feed-card',
 	templateUrl: './feed-card.component.html',
 	styleUrls: ['./feed-card.component.scss']
 })
 export class FeedCardComponent implements OnInit {
+	private datetime: string = null;
 	@Input() private feedItem: ApiResponseResult;
 
 	constructor() { }
-
-	ngOnInit() { }
-
+	ngOnInit() {
+	let timer = Observable.timer ( 0 , 10000);
+	timer.subscribe(t => this.ttt());
+	}
 	private get profileURL(): string {
 		return `https://twitter.com/${this.feedItem.screen_name}/`;
 	}
@@ -63,4 +65,58 @@ export class FeedCardComponent implements OnInit {
 			}
 		}
 	}
+
+	private  ttt(): any {
+		this.datetime = this.tdiff();
+	}
+
+
+	private tdiff(): string {
+	let since: string = null ;
+	let createdadt = this.feedItem.created_at;
+	let today = new Date().toISOString();  // current time  in ISO format
+	console.log(today);
+	let todaytime = new Date(today).getTime();  // current time in ms
+	console.log(todaytime);
+	let tweetday = new Date(createdadt).toISOString(); // tweeted time  in TSO format
+	console.log(tweetday);
+	let tweettime = new Date(tweetday).getTime();  // tweeted at in ms
+	console.log(tweettime);
+	let tt = todaytime - tweettime;  // (current time-tweeted at) in ms
+	console.log(tt);
+	let sinceMin = Math.floor(Math.abs((todaytime - tweettime)) / 60000);
+	let now = (new Date()).getFullYear();
+	let months = 'Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec'.split(' ');
+	let date2 = new Date(createdadt);
+	console.log(sinceMin);
+		if (sinceMin === 0) {
+			let sinceSec = Math.round((todaytime - tweettime) / 1000);
+			if (sinceSec <= 24) {
+			since = 'now' ;
+			}
+			else {
+				since = sinceSec + 's' ;
+			}
+		}
+		else if (sinceMin >= 1 && sinceMin < 60) {
+		since = sinceMin + 'm' ;
+		}
+		else if (sinceMin < 1440) {
+		let sinceHr = Math.round(sinceMin / 60);
+		since = sinceHr + 'h' ;
+		}
+		else if (date2.getFullYear() === now) {
+			since = months[date2.getMonth()] + ' ' + date2.getDate()  ;
+		}
+		else {
+			since = date2.getDate() + ' ' + months[date2.getMonth()] + ' ' + date2.getFullYear()  ;
+		}
+		console.log(since);
+return since;
+	}
+
+
 }
+
+
+
