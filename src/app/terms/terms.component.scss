@@ -1,48 +1,58 @@
 .about-banner{
-    width: 100%;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    top: -10%;
-    overflow:hidden;
-  }
-  .bold{
-    font-weight: 700;
-  }
-  .navbar{
-    margin-bottom: 0px !important;
-  }
-  .navbar-brand {
-    padding: 0px;
-  }
-  .navbar-brand>img {
-    height: 100%;
-    padding: 15px;
-    width: auto;
-  }
-  .navbar-brand>img {
-    padding: 7px 15px;
-  }
-  .text-center{
-    text-align: center;
-  }
-  .link{
-    margin-top:2px;
-    font-weight: 700;
-  }
-  #left{
-    width:22.6993866%;
-  }
-  #right{
-    width:67.7%;
-  }
-  @media only screen and (max-width: 500px) {
-    /* For mobile phones: */
-    #left{
-        width: 100%;
-    }
-    #right{
-        width: 100%;
-    }
+	width: 100%;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	top: -10%;
+	overflow:hidden;
+}
+
+.bold{
+	font-weight: 700;
+}
+
+.navbar{
+	margin-bottom: 0px !important;
+}
+
+.navbar-brand {
+	padding: 0px;
+}
+
+.navbar-brand>img {
+	height: 100%;
+	padding: 15px;
+	width: auto;
+}
+
+.navbar-brand>img {
+	padding: 7px 15px;
+}
+
+.text-center{
+	text-align: center;
+}
+
+.link{
+	margin-top:2px;
+	font-weight: 700;
+}
+
+#left{
+	width:22.6993866%;
+}
+
+#right{
+	width:67.7%;
+}
+
+@media only screen and (max-width: 500px) {
+	#left{
+			width: 100%;
+	}
+
+	#right{
+			width: 100%;
+	}
 }
