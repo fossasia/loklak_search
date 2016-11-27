@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ApiResponseResult } from '../../shared/classes';
 import {Observable} from 'rxjs/Rx';
+
 @Component({
 	selector: 'feed-card',
 	templateUrl: './feed-card.component.html',
@@ -11,10 +12,12 @@ export class FeedCardComponent implements OnInit {
 	@Input() private feedItem: ApiResponseResult;
 
 	constructor() { }
+
 	ngOnInit() {
-	let timer = Observable.timer ( 0 , 10000);
-	timer.subscribe(t => this.ttt());
+		let timer = Observable.timer (0 , 10000);
+		timer.subscribe(t => this.ttt());
 	}
+
 	private get profileURL(): string {
 		return `https://twitter.com/${this.feedItem.screen_name}/`;
 	}
@@ -72,23 +75,18 @@ export class FeedCardComponent implements OnInit {
 
 
 	private tdiff(): string {
-	let since: string = null ;
-	let createdadt = this.feedItem.created_at;
-	let today = new Date().toISOString();  // current time  in ISO format
-	console.log(today);
-	let todaytime = new Date(today).getTime();  // current time in ms
-	console.log(todaytime);
-	let tweetday = new Date(createdadt).toISOString(); // tweeted time  in TSO format
-	console.log(tweetday);
-	let tweettime = new Date(tweetday).getTime();  // tweeted at in ms
-	console.log(tweettime);
-	let tt = todaytime - tweettime;  // (current time-tweeted at) in ms
-	console.log(tt);
-	let sinceMin = Math.floor(Math.abs((todaytime - tweettime)) / 60000);
-	let now = (new Date()).getFullYear();
-	let months = 'Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec'.split(' ');
-	let date2 = new Date(createdadt);
-	console.log(sinceMin);
+		let since: string = null ;
+		let createdadt = this.feedItem.created_at;
+		let today = new Date().toISOString();  // current time  in ISO format
+		let todaytime = new Date(today).getTime();  // current time in ms
+		let tweetday = new Date(createdadt).toISOString(); // tweeted time  in TSO format
+		let tweettime = new Date(tweetday).getTime();  // tweeted at in ms
+		let tt = todaytime - tweettime;  // (current time-tweeted at) in ms
+		let sinceMin = Math.floor(Math.abs((todaytime - tweettime)) / 60000);
+		let now = (new Date()).getFullYear();
+		let months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+		let date2 = new Date(createdadt);
+
 		if (sinceMin === 0) {
 			let sinceSec = Math.round((todaytime - tweettime) / 1000);
 			if (sinceSec <= 24) {
@@ -111,11 +109,9 @@ export class FeedCardComponent implements OnInit {
 		else {
 			since = date2.getDate() + ' ' + months[date2.getMonth()] + ' ' + date2.getFullYear()  ;
 		}
-		console.log(since);
-return since;
+
+		return since;
 	}
-
-
 }
 
 
