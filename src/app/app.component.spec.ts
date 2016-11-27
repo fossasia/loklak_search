@@ -12,6 +12,9 @@ describe('App: LoklakSearch', () => {
 				AppComponent,
 				RouterOutletStubComponent
 			],
+        providers: [
+            { provide: Router, useClass: RouterStub }
+            ]
 		});
 	});
 
