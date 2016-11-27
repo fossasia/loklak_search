@@ -9,8 +9,8 @@ import {Router, NavigationEnd} from '@angular/router';
 export class AppComponent {
 	title = 'Loklak Search!';
         constructor(private router: Router) {
-            router.events.subscribe((val : any ) => {
-                if (val instanceof NavigationEnd) {
+            router.events.subscribe(event : Event => {
+                if (event is NavigationEnd) {
                     window.scrollTo(0, 0);
                     }
             });
