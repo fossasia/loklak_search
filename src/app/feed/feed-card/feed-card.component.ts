@@ -43,12 +43,17 @@ export class FeedCardComponent implements OnInit {
 		let div = document.createElement('div');
 		div.innerHTML = html;
 		let text = div.textContent || div.innerText || '';
+
+		for (let short_link in this.feedItem.unshorten) {
+		if (this.feedItem.unshorten.hasOwnProperty(short_link)) {
+			text = text.replace(short_link, this.feedItem.unshorten[short_link]);
+			}
+		}
 		return text;
 	}
 
 	private get retweetCount(): string {
 		let retweets = this.feedItem.retweet_count;
-
 		return (retweets === 0) ? '' : retweets.toString();
 	}
 
@@ -59,8 +64,10 @@ export class FeedCardComponent implements OnInit {
 	}
 
 	private changeLinkUrls(match: any) {
+
 		switch (match.getType()) {
 			case 'hashtag': {
+
 				return `<a href='/search?query=%23${match.getHashtag()}'>#${match.getHashtag()}</a>`;
 			}
 			case 'mention': { // tslint:disable-line
@@ -113,6 +120,3 @@ export class FeedCardComponent implements OnInit {
 		return since;
 	}
 }
-
-
-
