@@ -56,6 +56,7 @@ export class ApiResponseResult {
 		public screen_name: string = null,
 		public source_type: string = null,
 		public text: string = null,
+		public unshorten: Object = null,
 		public text_length: number = null,
 		public timestamp: string = null,
 		public user: ApiResponseUser = new ApiResponseUser(),
