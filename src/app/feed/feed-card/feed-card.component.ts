@@ -7,7 +7,9 @@ import {Observable} from 'rxjs/Rx';
 	templateUrl: './feed-card.component.html',
 	styleUrls: ['./feed-card.component.scss']
 })
+
 export class FeedCardComponent implements OnInit {
+	static shortDictionary: { [key: string]: string; } = {};
 	private datetime: string = null;
 	@Input() private feedItem: ApiResponseResult;
 
@@ -43,6 +45,12 @@ export class FeedCardComponent implements OnInit {
 		let div = document.createElement('div');
 		div.innerHTML = html;
 		let text = div.textContent || div.innerText || '';
+		FeedCardComponent.shortDictionary = {};
+		for (let short_link in this.feedItem.unshorten) {
+			if (this.feedItem.unshorten.hasOwnProperty(short_link)) {
+				FeedCardComponent.shortDictionary[short_link] = this.feedItem.unshorten[short_link];
+				}
+		}
 		return text;
 	}
 
@@ -58,13 +66,21 @@ export class FeedCardComponent implements OnInit {
 		return (favourites === 0) ? '' : favourites.toString();
 	}
 
-	private changeLinkUrls(match: any) {
+	private changeLinkUrls(match: any): any {
 		switch (match.getType()) {
 			case 'hashtag': {
 				return `<a href='/search?query=%23${match.getHashtag()}'>#${match.getHashtag()}</a>`;
 			}
 			case 'mention': { // tslint:disable-line
 				return `<a href='/search?query=from%3A${match.getMention()}'>@${match.getMention()}</a>`;
+			}
+			case 'url': { // tslint:disable-line
+				if ( match.getUrl().indexOf( 'http://loklak.org/x' ) === -1 ) {
+					return true;
+				}
+					else {
+						return `<a href='${match.getUrl()}'>${FeedCardComponent.shortDictionary[match.getUrl()]}</a>`;
+					}
 			}
 		}
 	}
@@ -113,6 +129,3 @@ export class FeedCardComponent implements OnInit {
 		return since;
 	}
 }
-
-
-
