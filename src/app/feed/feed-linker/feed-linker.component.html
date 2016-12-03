@@ -1,0 +1,16 @@
+<div class="textWrapper">
+	<span *ngFor="let shard of shardArray">
+		<span *ngIf="shard.type === 0"> <!-- Plain -->
+			{{shard.text}}
+		</span>
+		<span *ngIf="shard.type === 1"> <!-- URL Links -->
+			<a [href]="shard.linkTo" target="_blank">{{shard.text}}</a>
+		</span>
+		<span *ngIf="shard.type === 2"> <!-- Hashtag -->
+			<a [routerLink]="shard.linkTo" [queryParams]="shard.queryParams" (click)="reload()">{{shard.text}}</a>
+		</span>
+		<span *ngIf="shard.type === 3"> <!-- Mention -->
+			<a [routerLink]="shard.linkTo" [queryParams]="shard.queryParams" (click)="reload()">{{shard.text}}</a>
+		</span>
+	</span>
+</div>

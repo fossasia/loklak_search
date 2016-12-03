@@ -58,6 +58,7 @@ export class ApiResponseResult {
 		public text: string = null,
 		public text_length: number = null,
 		public timestamp: string = null,
+		public unshorten: Object = null,
 		public user: ApiResponseUser = new ApiResponseUser(),
 		public videos: Array<string> = new Array<string>(),
 		public videos_count: number = null,
