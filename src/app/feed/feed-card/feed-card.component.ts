@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ApiResponseResult } from '../../shared/classes';
-import {Observable} from 'rxjs/Rx';
+import { Observable } from 'rxjs/Rx';
+
+import { AutolinkerConfig, ConfigLinkType } from '../../shared/configrations';
 
 @Component({
 	selector: 'feed-card',
@@ -8,14 +10,23 @@ import {Observable} from 'rxjs/Rx';
 	styleUrls: ['./feed-card.component.scss']
 })
 export class FeedCardComponent implements OnInit {
+	private readonly cardAutolinkerConfig: AutolinkerConfig = new AutolinkerConfig();
 	private datetime: string = null;
 	@Input() private feedItem: ApiResponseResult;
 
 	constructor() { }
 
 	ngOnInit() {
+		this.modifyAutolinkerConfig();
 		let timer = Observable.timer (0 , 10000);
 		timer.subscribe(t => this.ttt());
+	}
+
+	private modifyAutolinkerConfig() {
+		// hashtag and mention use the default configration strategy.
+		// Links use the one-to-one map strategy using unshorten property of feedItem
+		this.cardAutolinkerConfig.link.link_type = ConfigLinkType.OneToOneMap;
+		this.cardAutolinkerConfig.link.link_to = this.feedItem.unshorten;
 	}
 
 	private get profileURL(): string {
@@ -56,17 +67,6 @@ export class FeedCardComponent implements OnInit {
 		let favourites = this.feedItem.favourites_count;
 
 		return (favourites === 0) ? '' : favourites.toString();
-	}
-
-	private changeLinkUrls(match: any) {
-		switch (match.getType()) {
-			case 'hashtag': {
-				return `<a href='/search?query=%23${match.getHashtag()}'>#${match.getHashtag()}</a>`;
-			}
-			case 'mention': { // tslint:disable-line
-				return `<a href='/search?query=from%3A${match.getMention()}'>@${match.getMention()}</a>`;
-			}
-		}
 	}
 
 	private  ttt(): any {

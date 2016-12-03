@@ -22,7 +22,9 @@
 				</a>
 			</div>
 			<div class="card-text">
-				<p [innerHTML]="itemText | linky:{ mention: 'twitter', hashtag: 'twitter', stripPrefix: false, replaceFn: changeLinkUrls }"></p>
+				<feed-linker
+					[text]="itemText"
+					[config]="cardAutolinkerConfig"></feed-linker>
 			</div>
 			<div class="card-footer">
 				<div class="action reply">
