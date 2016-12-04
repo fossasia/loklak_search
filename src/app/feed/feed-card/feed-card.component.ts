@@ -26,7 +26,7 @@ export class FeedCardComponent implements OnInit {
 		// hashtag and mention use the default configration strategy.
 		// Links use the one-to-one map strategy using unshorten property of feedItem
 		this.cardAutolinkerConfig.link.link_type = ConfigLinkType.OneToOneMap;
-		this.cardAutolinkerConfig.link.link_to = this.feedItem.unshorten;
+		this.cardAutolinkerConfig.link.link_to = this.feedItem.unshorten || {};
 	}
 
 	private get profileURL(): string {
