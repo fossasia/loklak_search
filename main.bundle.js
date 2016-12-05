@@ -61513,7 +61513,7 @@ var FeedCardComponent = (function () {
         // hashtag and mention use the default configration strategy.
         // Links use the one-to-one map strategy using unshorten property of feedItem
         this.cardAutolinkerConfig.link.link_type = __WEBPACK_IMPORTED_MODULE_3__shared_configrations__["b" /* ConfigLinkType */].OneToOneMap;
-        this.cardAutolinkerConfig.link.link_to = this.feedItem.unshorten;
+        this.cardAutolinkerConfig.link.link_to = this.feedItem.unshorten || {};
     };
     Object.defineProperty(FeedCardComponent.prototype, "profileURL", {
         get: function () {
