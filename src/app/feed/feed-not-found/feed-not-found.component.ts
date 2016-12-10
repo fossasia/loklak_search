@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Query } from '../../models/query';
 
 @Component({
 	selector: 'feed-not-found',
@@ -6,7 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
 	styleUrls: ['./feed-not-found.component.scss']
 })
 export class FeedNotFoundComponent implements OnInit {
-	@Input() private query: string;
+	@Input() private query: Query;
 
 	constructor() { }
 
