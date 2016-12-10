@@ -2,8 +2,9 @@
 
 import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import { Router } from '@angular/router';
 
-import { RouterOutletStubComponent } from '../testing';
+import { RouterOutletStubComponent, RouterStub } from '../testing';
 
 describe('App: LoklakSearch', () => {
 	beforeEach(() => {
@@ -12,6 +13,9 @@ describe('App: LoklakSearch', () => {
 				AppComponent,
 				RouterOutletStubComponent
 			],
+        providers: [
+            { provide: Router, useClass: RouterStub }
+            ]
 		});
 	});
 
