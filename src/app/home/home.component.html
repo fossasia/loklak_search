@@ -7,7 +7,7 @@
 			<label for="search">Search On Loklak.</label>
 
 			<input type="text" class="form-control" id="search" required name="search"
-							placeholder="I'm feeling awesome!" (keydown)="handleTypeStart($event)" />
+							placeholder="I'm feeling awesome!" [formControl]="_queryControl" />
 
 			<span class="input-group-btn">
 				<button class="btn btn-default" role="button" type="button" tabindex="-1"
