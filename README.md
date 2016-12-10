@@ -20,9 +20,13 @@ Please join our mailing list to discuss questions regarding the project: https:/
 
 Our chat channel is on gitter here: https://gitter.im/loklak/loklak
 
-## Installation
+## Requirements
+* [Angular-cli](https://github.com/angular/angular-cli#installation)
+* node >= 6
+* npm >= 3
 
-There is no 'installation' process for loklak_search, it consist of web pages which must work in a local environment, hosted in the file system and hosted as github pages as well. This repository will host the pages as github pages.
+## Installation
+* ```npm install```
 
 ## Technology Stack
 
@@ -37,6 +41,16 @@ There is no 'installation' process for loklak_search, it consist of web pages wh
 ### Bower
 
 The goal is to use [Bower](http://bower.io) to manage front-end dependencies in future.
+
+## How to deploy?
+
+#### How to deploy locally?
+* [Install loklak_search](https://github.com/fossasia/loklak_search#installation)
+* ```ng serve```
+
+#### How to deploy with [Github Pages](https://pages.github.com/)?
+* ```git checkout master```
+* ```ng github-pages:deploy --message "Optional commit message"```
 
 ### Loklak Server
 See here to run your own https://github.com/loklak/loklak_server (recommended), and change `apiUrl` in config accordingly. Last resource, or for production is `http://api.loklak.org
