@@ -1,25 +1,22 @@
 /* tslint:disable:no-unused-variable */
 
-import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, Input } from '@angular/core';
 import { TestBed, async } from '@angular/core/testing';
 import { Route } from '@angular/router';
-import { ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
-import { StoreModule } from '@ngrx/store';
 
-import { reducer } from '../reducers';
 import { RouterStub } from '../../testing';
 import { FeedComponent } from './feed.component';
+import { SearchService } from '../shared/services';
 
+class SearchServiceStub { }
 
 @Component({
 	selector: 'feed-header',
 	template: ''
 })
 class FeedHeaderStubComponent {
-	@Input() private searchInputControl;
-	@Output() private searchEventEmitter: EventEmitter<any>;
+	@Input() private query;
 }
 
 @Component({
@@ -34,7 +31,7 @@ class FeedCardStubComponent {
 	selector: 'app-footer',
 	template: ''
 })
-class FooterStubComponent { }
+class FooterComponentStubComponent { }
 
 @Component({
 	selector: 'feed-not-found',
@@ -56,40 +53,25 @@ describe('Component: Feed', () => {
 	beforeEach(() => {
 		TestBed.configureTestingModule({
 			imports: [
-				RouterTestingModule,
-				ReactiveFormsModule,
-				StoreModule.provideStore(reducer)
+				RouterTestingModule
 			],
 			declarations: [
 				FeedComponent,
 				FeedHeaderStubComponent,
 				FeedCardStubComponent,
-				FooterStubComponent,
+				FooterComponentStubComponent,
 				FeedNotFoundStubComponent,
 				FeedLinkerStubComponent
+			],
+			providers: [
+				{ provide: SearchService, useClass: SearchServiceStub }
 			]
 		});
 	});
 
-	it('should create an instance', async(() => {
+	it('should create an instance', () => {
 		let fixture = TestBed.createComponent(FeedComponent);
 		let component = fixture.debugElement.componentInstance;
 		expect(component).toBeTruthy();
-	}));
-
-	it('should have a feed-header component', async(() => {
-		let fixture = TestBed.createComponent(FeedComponent);
-		let component = fixture.debugElement.componentInstance;
-		let compiled = fixture.debugElement.nativeElement;
-
-		expect(compiled.querySelector('feed-header')).toBeTruthy();
-	}));
-
-	it('should have an app-footoer component', async(() => {
-		let fixture = TestBed.createComponent(FeedComponent);
-		let component = fixture.debugElement.componentInstance;
-		let compiled = fixture.debugElement.nativeElement;
-
-		expect(compiled.querySelector('app-footer')).toBeTruthy();
-	}));
+	});
 });
