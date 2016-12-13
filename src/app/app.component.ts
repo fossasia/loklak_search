@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { Store } from '@ngrx/store';
-import * as fromRoot from './reducers';
 
 @Component({
 	selector: 'app-root',
@@ -8,7 +6,5 @@ import * as fromRoot from './reducers';
 	styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-	constructor (
-		private store: Store<fromRoot.State>
-	) { }
+	title = 'Loklak Search!';
 }

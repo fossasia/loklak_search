@@ -72,6 +72,10 @@ export class FeedLinkerComponent implements OnInit {
 		let searchRes = str.search(regexp);
 		return (searchRes === 0) ? true : false;
 	}
+
+	private reload() {
+		window.location.reload();
+	}
 }
 
 /**

@@ -1,19 +1,23 @@
-import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
 	selector: 'feed-header',
 	templateUrl: './feed-header.component.html',
-	styleUrls: ['./feed-header.component.scss'],
-	changeDetection: ChangeDetectionStrategy.OnPush
+	styleUrls: ['./feed-header.component.scss']
 })
 export class FeedHeaderComponent implements OnInit {
-	@Input() private searchInputControl: FormControl;
-	@Output() private searchEvantEmitter: EventEmitter<any> = new EventEmitter();
+	@Input() private query: string = null;
+	@Output() private queryEvent: EventEmitter<any> = new EventEmitter();
 	private bannerImageUrl = 'assets/images/logo.png';
 
 	constructor() { }
 
 	ngOnInit() {
+	}
+
+	private handleQueryRequest() {
+		if (this.query) {
+			this.queryEvent.emit({ query : this.query });
+		}
 	}
 }
