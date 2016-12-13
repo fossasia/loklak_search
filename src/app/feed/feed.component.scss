@@ -1,49 +1,31 @@
 .outer-wrapper {
-	padding-top: 15px;
+	min-height: 100vh;
 
-	.wrapper {
-		max-width: 600px;
-		padding: 0px 10px;
-	}
+	.feed-wrapper {
+		padding-top: 15px;
 
-	@media(min-width: 881px) {
 		.wrapper {
-			margin-left: 128px;
+			max-width: 600px;
+			padding: 0px 10px;
+		}
+
+		@media(min-width: 881px) {
+			.wrapper {
+				margin-left: 128px;
+			}
+		}
+
+		@media(max-width: 880px) {
+			.wrapper{
+				margin: 0 auto;
+			}
 		}
 	}
+}
 
-	@media(max-width: 880px) {
-		.wrapper{
-			margin: 0 auto;
-		}
+app-footer.peeking{
+	@media(min-height: 650px) {
+		position: absolute;
+		bottom: 0;
 	}
-}
-
-app-footer {
-	position: absolute;
-	bottom: 0;
-	left: 0;
-	transform: translateY(100%);
-}
-app-footer.non-sticky {
-	position: static;
-}
-
-app-footer.stick-at-bottom{
-	transform: translateY(0%);
-
-	@media(max-height: 400px) {
-		position: static;
-	}
-
-	@media(max-width: 365px) {
-		position: static;
-	}
-}
-
-app-footer.loading{
-	position: absolute;
-	bottom: 0;
-	left: 0;
-	transform: translateY(100%);
 }

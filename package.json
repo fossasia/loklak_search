@@ -20,14 +20,20 @@
     "@angular/platform-browser": "2.2.4",
     "@angular/platform-browser-dynamic": "2.2.4",
     "@angular/router": "3.2.4",
+    "@ngrx/core": "github:ngrx/core",
+    "@ngrx/effects": "github:ngrx/effects",
+    "@ngrx/router": "github:ngrx/router",
+    "@ngrx/store": "github:ngrx/store",
     "bootstrap": "^3.3.7",
     "core-js": "^2.4.1",
     "jquery": "^3.1.1",
-    "rxjs": "5.0.0-rc.4",
+    "reselect": "^2.5.4",
+    "rxjs": "5.0.0-rc.5",
     "ts-helpers": "^1.1.1",
     "zone.js": "^0.7.2"
   },
   "devDependencies": {
+    "@ngrx/store-devtools": "github:ngrx/store-devtools",
     "@types/jasmine": "^2.2.30",
     "angular-cli": "1.0.0-beta.21",
     "codelyzer": "~2.0.0-beta.1",
@@ -38,9 +44,10 @@
     "karma-cli": "^1.0.1",
     "karma-jasmine": "^1.0.2",
     "karma-remap-istanbul": "^0.2.1",
+    "ngrx-store-freeze": "^0.1.0",
     "protractor": "4.0.11",
     "ts-node": "1.7.0",
     "tslint": "^4.0.2",
-    "typescript": "2.0.10"
+    "typescript": "2.1.1"
   }
 }
