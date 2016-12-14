@@ -1,24 +1,27 @@
-<feed-header
-			query="{{query}}"
-			(queryEvent)="handleQueryRequest($event)"></feed-header>
-
 <div class="outer-wrapper">
-	<div *ngIf="loading" class="loading">
+	<feed-header
+				[searchInputControl]="_queryControl"
+				(searchEvantEmitter)="handleSearchQuery()"></feed-header>
+
+	<div class="searching">
+		<!-- Hook Up the Material Design Progress Bar. -->
 	</div>
-	<div *ngIf="!loading && resultsLoaded" class="wrapper">
-		<div *ngFor="let item of apiResponseResults">
-			<feed-card [feedItem]="item"></feed-card>
+
+	<div class="feed-wrapper">
+		<div *ngIf="(areResultsAvailable$ | async)" class="wrapper">
+			<div *ngFor="let item of (apiResponseResults$ | async)">
+				<feed-card [feedItem]="item"></feed-card>
+			</div>
+		</div>
+
+		<div class="results-not-found"
+					*ngIf="!(isSearching$ | async) &&
+								!(areResultsAvailable$ | async) &&
+								((query$ | async).queryString)" >
+			<feed-not-found [query]="(query$ | async)"></feed-not-found>
 		</div>
 	</div>
-
-	<div *ngIf="!loading && noResultsFound" class="results-not-found">
-		<feed-not-found
-					query="{{query}}"></feed-not-found>
-	</div>
-
 </div>
 
-<app-footer
-		[class.non-sticky]="resultsLoaded"
-		[class.stick-at-bottom]="noResultsFound"
-		[class.loading]="loading"></app-footer>
+<!-- Peek the footer when Results are not found -->
+<app-footer [class.peeking]="!(isSearching$ | async) && !(areResultsAvailable$ | async)"></app-footer>

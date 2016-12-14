@@ -5,12 +5,12 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/throw';
 
-import { ApiResponse } from '../../classes';
+import { ApiResponse } from '../../../models/api-response';
 
 @Injectable()
 export class SearchService {
 	private static apiUrl: URL = new URL('http://api.loklak.org/api/search.json');
-	private static maximum_records_fetch: string = '10';
+	private static maximum_records_fetch: string = '30';
 	private static minified_results: string = 'true';
 	private static source: string = 'all';
 
