@@ -1,0 +1,28 @@
+.feed-footer-wrapper {
+	padding: 20px;
+}
+
+	.feed-footer-heading {
+		font-size: 1.3em;
+		margin-bottom: 20px;
+		padding: 2px;
+	}
+
+		.feed-footer-query {
+			font-weight: 700;
+		}
+
+	.feed-footer-body {
+		display: flex;
+		width: 100%;
+	}
+
+		.feed-footer-column {
+			width : 50%;
+		}
+
+			.feed-footer-hashtag {
+				padding: 3px 0px;
+				font-size: 1.1em;
+				font-weight : 400;
+			}

@@ -29,15 +29,15 @@ export class FeedFooterComponent implements OnInit, OnChanges {
 					tag: x,
 					count: tagShards.filter(y => y === x).length,
 					queryParams: { query: `#${x}` }
-				}
+				};
 		}).sort((a, b) => (b.count - a.count));
 	}
 }
 
 class Tag {
 	constructor(
-		public tag: string = '',
-		public count: number = 0,
+		public tag: string,
+		public count: number,
 		public queryParams: any = null,
 	) { }
 }

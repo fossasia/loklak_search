@@ -35,6 +35,7 @@ class FeedCardStubComponent {
 	template: ''
 })
 class FeedFooterStubComponent {
+	@Input() private query;
 	@Input() private apiResponseResults;
 }
 
