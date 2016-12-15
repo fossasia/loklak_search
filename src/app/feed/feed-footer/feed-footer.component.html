@@ -1,0 +1,8 @@
+<div class="wrapper">
+	<div class="hashtags">
+		Hashtags related to {{query.queryString}}
+		<div class="hashtag" *ngFor="let tag of tagArray">
+			<a [routerLink]="['/search']" [queryParams]="tag.queryParams">#{{tag.tag}}</a>
+		</div>
+	</div>
+</div>

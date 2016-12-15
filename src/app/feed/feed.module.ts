@@ -6,6 +6,7 @@ import { LoklakFeedRoutingModule } from './feed-routing.module';
 
 import { FeedComponent } from './feed.component';
 import { FeedHeaderComponent } from './feed-header/feed-header.component';
+import { FeedFooterComponent } from './feed-footer/feed-footer.component';
 import { FeedCardComponent } from './feed-card/feed-card.component';
 import { FooterModule } from '../footer/footer.module';
 import { FeedNotFoundComponent } from './feed-not-found/feed-not-found.component';
@@ -46,6 +47,7 @@ import { FeedLinkerComponent } from './feed-linker/feed-linker.component';
 	declarations: [
 		FeedComponent,
 		FeedHeaderComponent,
+		FeedFooterComponent,
 		FeedCardComponent,
 		FeedNotFoundComponent,
 		FeedLinkerComponent
