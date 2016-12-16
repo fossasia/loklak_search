@@ -62,13 +62,7 @@ export interface ApiResponseResult {
 	without_luh_len: number;
 }
 
-export interface ApiFetchResponse {
-	search_metadata: ApiResponseMetadata;
-	statuses: ApiResponseResult[];
-}
-
 export interface ApiResponse {
 	search_metadata: ApiResponseMetadata;
 	statuses: ApiResponseResult[];
-	tags: Array<{ tag: string, count: number }>;
 }
