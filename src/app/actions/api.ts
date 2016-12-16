@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import { ApiResponse } from '../models/api-response';
+import { ApiFetchResponse } from '../models/api-response';
 import { Query } from '../models/query';
 import { actionTypeCheck } from '../shared/utils';
 
@@ -34,7 +34,7 @@ export class SearchAction implements Action {
 export class SearchCompleteSuccessAction implements Action {
 	type = ActionTypes.SEARCH_COMPLETE_SUCCESS;
 
-	constructor(public payload: ApiResponse) { }
+	constructor(public payload: ApiFetchResponse) { }
 }
 
 export class SearchCompleteFailAction implements Action {

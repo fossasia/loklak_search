@@ -28,6 +28,7 @@ export class FeedComponent implements OnInit, OnDestroy {
 	private isSearching$: Observable<boolean>;
 	private areResultsAvailable$: Observable<boolean>;
 	private apiResponseResults$: Observable<ApiResponseResult[]>;
+	private apiResponseTags$: Observable<Tag[]>;
 
 	constructor(
 		private route: ActivatedRoute,
@@ -82,6 +83,7 @@ export class FeedComponent implements OnInit, OnDestroy {
 		this.isSearching$ = this.store.select(fromRoot.getSearchLoading);
 		this.areResultsAvailable$ = this.store.select(fromRoot.getAreResultsAvailable);
 		this.apiResponseResults$ = this.store.select(fromRoot.getApiResponseEntities);
+		this.apiResponseTags$  = this.store.select(fromRoot.getApiResponseTags);
 	}
 
 	/**
@@ -134,4 +136,9 @@ export class FeedComponent implements OnInit, OnDestroy {
 	ngOnDestroy() {
 		this.__subscriptions__.forEach(subscription => subscription.unsubscribe());
 	}
+}
+
+interface Tag {
+	tag: string;
+	count: number;
 }

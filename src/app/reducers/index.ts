@@ -108,6 +108,7 @@ export const getApiResponseState = (state: State) => state.apiResponse;
  */
 export const getApiResponseEntities = createSelector(getApiResponseState, fromApiResponse.getEntities);
 export const getApiResponseMetadata = createSelector(getApiResponseState, fromApiResponse.getMetadata);
+export const getApiResponseTags = createSelector(getApiResponseState, fromApiResponse.getTags);
 export const getAreResultsValid = createSelector(getApiResponseState, fromApiResponse.isResultValid);
 
 
