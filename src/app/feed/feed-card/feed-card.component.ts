@@ -12,7 +12,7 @@ import { AutolinkerConfig, ConfigLinkType } from '../../shared/configrations';
 export class FeedCardComponent implements OnInit {
 	private readonly cardAutolinkerConfig: AutolinkerConfig = new AutolinkerConfig();
 	private datetime: string = null;
-	showStyle: string = ""; 
+	showStyle: string = null; 
 	@Input() private feedItem: ApiResponseResult;
 
 	constructor() { }
@@ -35,13 +35,12 @@ export class FeedCardComponent implements OnInit {
 	}
 
 	showTweet() {
-	    if(this.showStyle){
-	      return "visible";
-	    }else{
-	      return "";
-	    }
+		if (this.showStyle) {
+	    	return 'visible';
+		} else {
+			return '';
+		}
 	}
-	
 	private get profileName(): string {
 		// The api's response.user.name has some errors for verified accounts and profile names with emojis.
 		// It contains the an HTML part related to emojis in profile name.
