@@ -31,6 +31,15 @@ class FeedCardStubComponent {
 }
 
 @Component({
+	selector: 'feed-footer',
+	template: ''
+})
+class FeedFooterStubComponent {
+	@Input() private query;
+	@Input() private apiResponseResults;
+}
+
+@Component({
 	selector: 'app-footer',
 	template: ''
 })
@@ -63,6 +72,7 @@ describe('Component: Feed', () => {
 			declarations: [
 				FeedComponent,
 				FeedHeaderStubComponent,
+				FeedFooterStubComponent,
 				FeedCardStubComponent,
 				FooterStubComponent,
 				FeedNotFoundStubComponent,

@@ -1,0 +1,20 @@
+<div class="feed-footer-wrapper">
+	<div class="feed-footer-heading">
+		Hashtags related to
+		<span class="feed-footer-query">
+			{{query.queryString}}
+		</span>
+	</div>
+	<div class="feed-footer-body">
+		<div class="feed-footer-column">
+			<div class="feed-footer-hashtag" *ngFor="let tag of tagArray | slice:0:5; let i=index">
+				<a class="feed-footer-hashtag-link" [routerLink]="['/search']" [queryParams]="tag.queryParams">#{{tag.tag}}</a>
+			</div>
+		</div>
+		<div class="feed-footer-column">
+			<div class="feed-footer-hashtag" *ngFor="let tag of tagArray | slice:5:10; let i=index">
+				<a class="feed-footer-hashtag-link" [routerLink]="['/search']" [queryParams]="tag.queryParams">#{{tag.tag}}</a>
+			</div>
+		</div>
+	</div>
+</div>

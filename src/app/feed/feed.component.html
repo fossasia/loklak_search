@@ -12,6 +12,7 @@
 			<div *ngFor="let item of (apiResponseResults$ | async)">
 				<feed-card [feedItem]="item"></feed-card>
 			</div>
+			<feed-footer [query] = "(query$ | async)" [apiResponseResults]="(apiResponseResults$ | async)"></feed-footer>
 		</div>
 
 		<div class="results-not-found"
