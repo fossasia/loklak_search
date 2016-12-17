@@ -1,5 +1,5 @@
-import { Component, OnInit, OnChanges, Input, Output } from '@angular/core';
-import { ApiResponseResult } from '../../shared/classes';
+import { Component, OnInit, Input, Output } from '@angular/core';
+import { Query } from '../../models/query';
 
 @Component({
 	selector: 'feed-footer',
@@ -7,37 +7,16 @@ import { ApiResponseResult } from '../../shared/classes';
 	styleUrls: ['./feed-footer.component.scss']
 })
 
-export class FeedFooterComponent implements OnInit, OnChanges {
-	@Input() private query: string;
-	@Input() private apiResponseResults: Array<ApiResponseResult> = new Array<ApiResponseResult>();
-	private tagArray: Array<Tag> = new Array<Tag>();
+export class FeedFooterComponent implements OnInit {
+	@Input() private query: Query;
+	@Input() private apiResponseTags: Array<Tag> = new Array<Tag>();
 
 	constructor() { }
 
-	ngOnChanges() {
-		this.generateTags();
-	}
-
 	ngOnInit() { }
-
-	private generateTags() {
-		let tagArrayShards = this.apiResponseResults.map((a) => (a.hashtags));
-		let tagShards = [].concat(...tagArrayShards);
-		this.tagArray = Array.from(new Set(tagShards)).map(
-			(x) => {
-				return {
-					tag: x,
-					count: tagShards.filter(y => y === x).length,
-					queryParams: { query: `#${x}` }
-				};
-		}).sort((a, b) => (b.count - a.count));
-	}
 }
 
-class Tag {
-	constructor(
-		public tag: string,
-		public count: number,
-		public queryParams: any = null,
-	) { }
+interface Tag {
+	tag: string;
+	count: number;
 }

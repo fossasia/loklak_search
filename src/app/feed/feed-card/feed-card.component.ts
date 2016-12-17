@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ApiResponseResult } from '../../shared/classes';
+import { ApiResponseResult } from '../../models/api-response';
 import { Observable } from 'rxjs/Rx';
 
 import { AutolinkerConfig, ConfigLinkType } from '../../shared/configrations';
