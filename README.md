@@ -49,8 +49,13 @@ The goal is to use [Bower](http://bower.io) to manage front-end dependencies in 
 * ```ng serve```
 
 #### How to deploy with [Github Pages](https://pages.github.com/)?
-* ```git checkout master```
-* ```ng github-pages:deploy --message "Optional commit message"```
+With these very simple steps you can have loklak_search deployed:
+* **Step 1:** Fork loklak_search repository and clone it to your desktop
+* **Step 2:** Then checkout to your master branch `git checkout master`
+* **Step 3:** Deploy running this : ```ng github-pages:deploy --message "Optional commit message" --base-href="loklak_search"```
+* **Step 4:** Visit `https://username.github.io/loklak_search` and you should see the search running
+* **Step 5:** As you search you might see that that it cant find anything, to resolve this, on search you will see there is a red shield on search bar, click on it and allow to load scripts
+* **Step 6:** Reload and you will have a function loklak search page deployed with github pages.
 
 ### Loklak Server
 See here to run your own https://github.com/loklak/loklak_server (recommended), and change `apiUrl` in config accordingly. Last resource, or for production is `http://api.loklak.org
