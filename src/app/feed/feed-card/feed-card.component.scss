@@ -43,7 +43,7 @@ a.post-link {
 						font-size: 1.1em;
 					}
 					span.handle {
-						color: grey;
+						color: gray;
 						font-size: 0.95em;
 					}
 				}
@@ -90,4 +90,87 @@ a.post-link {
 			}
 		}
 	}
+}
+
+.overlay {
+	visibility: hidden;
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	padding-top: 80px;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	z-index: 1000;
+	background-color: rgba(0, 0, 0, 0.5);
+
+	.overlay-content{
+		width: 600px;
+		height: 280px;
+		background-color: white;
+		margin: 0 auto;
+		border: solid gray 1px;
+		border-radius: 8px;
+		padding: 30px;
+		position: relative;
+
+		.lightbox-close{
+			border: none;
+			width: 40px;
+			height: 40px;
+			font-size: 30px;
+			position: absolute;
+			right: 30px;
+			top: 20px;
+			background: white;
+			color: gray;
+			cursor: pointer;
+		}
+
+		.lightbox-img{
+			float: left;
+			width: 48px;
+			height: 48px;
+			border-radius: 5px;
+		}
+
+		.lightbox-name{
+			float: left;
+			margin-top: 8px;
+			margin-left: 10px;
+			margin-bottom: 0;
+			font-size: 18px;
+		}
+
+		.lightbox-nickname{
+			position: absolute;
+			color: gray;
+			left: 86px;
+			margin-top: 30px;
+			font-size: 14px;
+		}
+
+		.lightbox-tweet{
+			position: absolute;
+			top: 90px;
+			font-size: 20px;
+			text-align: left;
+			width: 500px;
+		}
+
+		.lightbox-btn{
+			position: absolute;
+			right: 20px;
+			top: 190px;
+			border: none;
+			color: white;
+			background-color: #00aced;
+			padding: 10px 25px;
+			font-size: 16px;
+			border-radius: 5px;
+			text-decoration: none;
+			cursor: pointer;
+		}
+	}
+
 }

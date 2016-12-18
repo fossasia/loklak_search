@@ -12,6 +12,7 @@ import { AutolinkerConfig, ConfigLinkType } from '../../shared/configrations';
 export class FeedCardComponent implements OnInit {
 	private readonly cardAutolinkerConfig: AutolinkerConfig = new AutolinkerConfig();
 	private datetime: string = null;
+	showStyle: string = "";
 	@Input() private feedItem: ApiResponseResult;
 
 	constructor() { }
@@ -31,6 +32,14 @@ export class FeedCardComponent implements OnInit {
 
 	private get profileURL(): string {
 		return `https://twitter.com/${this.feedItem.screen_name}/`;
+	}
+
+	showTweet() {
+		if (this.showStyle) {
+			return "visible";
+		} else {
+			return "";
+		}
 	}
 
 	private get profileName(): string {
