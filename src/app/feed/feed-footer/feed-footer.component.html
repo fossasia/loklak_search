@@ -1,20 +1,17 @@
-<div class="feed-footer-wrapper">
-	<div class="feed-footer-heading">
-		Hashtags related to
-		<span class="feed-footer-query">
-			{{query.queryString}}
-		</span>
+<div class="wrapper">
+	<div class="heading">
+		Hashtags related to <span class="query">{{query.queryString}}</span>
 	</div>
-	<div class="feed-footer-body">
-		<div class="feed-footer-column">
-			<div class="feed-footer-hashtag" *ngFor="let tag of apiResponseTags | slice:0:5; let i=index">
-				<a class="feed-footer-hashtag-link" [routerLink]="['/search']" [queryParams]="{ query : '#' + tag.tag }">#{{tag.tag}}</a>
-			</div>
-		</div>
-		<div class="feed-footer-column">
-			<div class="feed-footer-hashtag" *ngFor="let tag of apiResponseTags | slice:5:10; let i=index">
-				<a class="feed-footer-hashtag-link" [routerLink]="['/search']" [queryParams]="{ query : '#' + tag.tag }">#{{tag.tag}}</a>
-			</div>
-		</div>
+	<div class="hashtags">
+		<ul class="column">
+			<li class="hashtag" *ngFor="let tag of apiResponseTags | slice:0:5">
+				<a [routerLink]="['/search']" [queryParams]="{ query : '#' + tag.tag }">#{{tag.tag}}</a>
+			</li>
+		</ul>
+		<ul class="column">
+			<li class="hashtag" *ngFor="let tag of apiResponseTags | slice:5:10">
+				<a [routerLink]="['/search']" [queryParams]="{ query : '#' + tag.tag }">#{{tag.tag}}</a>
+			</li>
+		</ul>
 	</div>
 </div>
