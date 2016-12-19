@@ -1,11 +1,21 @@
-<a class="post-link" href="{{feedItem.link}}" target="_blank">
-	<div class="card">
+<a class="post-link"  target="_blank">
+	<div class="card" (click)="showStyle = !showStyle;">
 		<div class="card-image">
 			<a href="{{profileURL}}" target="_blank">
 				<img src="{{feedItem.user.profile_image_url_https}}" alt="Profile Image" width="50" height="50" />
 			</a>
 		</div>
 		<div class="card-content">
+			<div class="overlay" [style.visibility]="showTweet()">
+				<div class="overlay-content">
+					<button class="lightbox-close" (click)="showStyle = showStyle;">x</button>
+					<img class="lightbox-img" src="{{feedItem.user.profile_image_url_https}}"/>
+					<h3 class="lightbox-name">{{profileName}}</h3>
+						<p class="lightbox-nickname">@{{feedItem.user.screen_name}}</p>
+						<p class="lightbox-tweet">{{itemText}}</p>
+						<a class="lightbox-btn" href="{{feedItem.link}}">View on Twitter</a>
+				</div>
+			</div>
 			<div class="card-header">
 				<a href="{{profileURL}}" target="_blank" id="profile-link">
 					<span class="name">
