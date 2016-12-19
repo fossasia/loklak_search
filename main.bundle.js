@@ -47195,7 +47195,7 @@ var getApiResponseState = function (state) { return state.apiResponse; };
  */
 var getApiResponseEntities = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_reselect__["createSelector"])(getApiResponseState, __WEBPACK_IMPORTED_MODULE_3__api_response__["b" /* getEntities */]);
 var getApiResponseMetadata = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_reselect__["createSelector"])(getApiResponseState, __WEBPACK_IMPORTED_MODULE_3__api_response__["c" /* getMetadata */]);
-var getApiResponseTags = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_reselect__["createSelector"])(getApiResponseState, __WEBPACK_IMPORTED_MODULE_3__api_response__["d" /* getTags */]);
+var getApiResponseTags = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_reselect__["createSelector"])(getApiResponseState, __WEBPACK_IMPORTED_MODULE_3__api_response__["d" /* getHashtags */]);
 var getAreResultsValid = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_reselect__["createSelector"])(getApiResponseState, __WEBPACK_IMPORTED_MODULE_3__api_response__["e" /* isResultValid */]);
 /**
  * Just like with the ApiResponse selectors, we also have to compose the
@@ -65066,7 +65066,7 @@ HomeModule = __decorate([
 /* harmony export (immutable) */ exports["a"] = reducer;
 /* harmony export (binding) */ __webpack_require__.d(exports, "b", function() { return getEntities; });
 /* harmony export (binding) */ __webpack_require__.d(exports, "c", function() { return getMetadata; });
-/* harmony export (binding) */ __webpack_require__.d(exports, "d", function() { return getTags; });
+/* harmony export (binding) */ __webpack_require__.d(exports, "d", function() { return getHashtags; });
 /* harmony export (binding) */ __webpack_require__.d(exports, "e", function() { return isResultValid; });
 
 /**
@@ -65074,13 +65074,13 @@ HomeModule = __decorate([
  *
  * @prop: metadata: null
  * @prop: entities: []
- * @prop: tags: []
+ * @prop: hashtags: []
  * @prop: valid: true
  */
 var initialState = {
     metadata: null,
     entities: [],
-    tags: [],
+    hashtags: [],
     valid: true
 };
 /**
@@ -65096,17 +65096,14 @@ function reducer(state, action) {
     switch (action.type) {
         case __WEBPACK_IMPORTED_MODULE_0__actions_api__["a" /* ActionTypes */].SEARCH_COMPLETE_SUCCESS: {
             var apiResponse = action.payload;
-            var tagShards_1 = [].concat.apply([], apiResponse.statuses.map(function (a) { return (a.hashtags); }));
-            var tagArray = Array.from(new Set(tagShards_1)).map(function (x) {
-                return {
-                    tag: x,
-                    count: tagShards_1.filter(function (y) { return y === x; }).length,
-                };
+            var tagStrings_1 = [].concat.apply([], apiResponse.statuses.map(function (a) { return (a.hashtags); }));
+            var hashtags = Array.from(new Set(tagStrings_1)).map(function (tag) {
+                return { tag: tag, count: tagStrings_1.filter(function (y) { return y === tag; }).length };
             }).sort(function (a, b) { return (b.count - a.count); });
             return {
                 metadata: apiResponse.search_metadata,
                 entities: apiResponse.statuses,
-                tags: tagArray,
+                hashtags: hashtags,
                 valid: true
             };
         }
@@ -65130,7 +65127,7 @@ function reducer(state, action) {
  */
 var getEntities = function (state) { return state.entities; };
 var getMetadata = function (state) { return state.metadata; };
-var getTags = function (state) { return state.tags; };
+var getHashtags = function (state) { return state.hashtags; };
 var isResultValid = function (state) { return state.valid; };
 
 
@@ -68520,7 +68517,7 @@ module.exports = "a.post-link {\n  text-decoration: none;\n  color: black; }\n  
 /* 770 */
 /***/ function(module, exports) {
 
-module.exports = ".feed-footer-wrapper {\n  padding: 20px; }\n\n.feed-footer-heading {\n  font-size: 1.3em;\n  margin-bottom: 20px;\n  padding: 2px; }\n\n.feed-footer-query {\n  font-weight: 700; }\n\n.feed-footer-body {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  width: 100%; }\n\n.feed-footer-column {\n  width: 50%; }\n\n.feed-footer-hashtag {\n  padding: 3px 0px;\n  font-size: 1.1em;\n  font-weight: 400; }\n"
+module.exports = ".wrapper {\n  padding: 20px; }\n  .wrapper .heading {\n    font-size: 1.3em;\n    margin-bottom: 20px;\n    padding: 2px; }\n    .wrapper .heading .query {\n      font-weight: 700; }\n  .wrapper .hashtags {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -ms-flex-wrap: wrap;\n        flex-wrap: wrap; }\n    .wrapper .hashtags ul.column {\n      list-style: none;\n      padding: 0;\n      margin: 0;\n      -webkit-box-flex: 1;\n          -ms-flex: 1;\n              flex: 1; }\n    .wrapper .hashtags li {\n      padding: 3px 10px;\n      font-size: 1.1em;\n      font-weight: 400; }\n"
 
 /***/ },
 /* 771 */
@@ -68592,7 +68589,7 @@ module.exports = "<a class=\"post-link\" href=\"{{feedItem.link}}\" target=\"_bl
 /* 782 */
 /***/ function(module, exports) {
 
-module.exports = "<div class=\"feed-footer-wrapper\">\n\t<div class=\"feed-footer-heading\">\n\t\tHashtags related to\n\t\t<span class=\"feed-footer-query\">\n\t\t\t{{query.queryString}}\n\t\t</span>\n\t</div>\n\t<div class=\"feed-footer-body\">\n\t\t<div class=\"feed-footer-column\">\n\t\t\t<div class=\"feed-footer-hashtag\" *ngFor=\"let tag of apiResponseTags | slice:0:5; let i=index\">\n\t\t\t\t<a class=\"feed-footer-hashtag-link\" [routerLink]=\"['/search']\" [queryParams]=\"{ query : '#' + tag.tag }\">#{{tag.tag}}</a>\n\t\t\t</div>\n\t\t</div>\n\t\t<div class=\"feed-footer-column\">\n\t\t\t<div class=\"feed-footer-hashtag\" *ngFor=\"let tag of apiResponseTags | slice:5:10; let i=index\">\n\t\t\t\t<a class=\"feed-footer-hashtag-link\" [routerLink]=\"['/search']\" [queryParams]=\"{ query : '#' + tag.tag }\">#{{tag.tag}}</a>\n\t\t\t</div>\n\t\t</div>\n\t</div>\n</div>\n"
+module.exports = "<div class=\"wrapper\">\n\t<div class=\"heading\">\n\t\tHashtags related to <span class=\"query\">{{query.queryString}}</span>\n\t</div>\n\t<div class=\"hashtags\">\n\t\t<ul class=\"column\">\n\t\t\t<li class=\"hashtag\" *ngFor=\"let tag of apiResponseTags | slice:0:5\">\n\t\t\t\t<a [routerLink]=\"['/search']\" [queryParams]=\"{ query : '#' + tag.tag }\">#{{tag.tag}}</a>\n\t\t\t</li>\n\t\t</ul>\n\t\t<ul class=\"column\">\n\t\t\t<li class=\"hashtag\" *ngFor=\"let tag of apiResponseTags | slice:5:10\">\n\t\t\t\t<a [routerLink]=\"['/search']\" [queryParams]=\"{ query : '#' + tag.tag }\">#{{tag.tag}}</a>\n\t\t\t</li>\n\t\t</ul>\n\t</div>\n</div>\n"
 
 /***/ },
 /* 783 */
