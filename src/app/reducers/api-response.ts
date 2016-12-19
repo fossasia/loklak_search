@@ -8,14 +8,14 @@ import * as api from '../actions/api';
  * Here the `State` contains three properties:
  * @prop [metadata: ApiResponseMetadata] metadata of the response which comes from api
  * @prop [entities: ApiResponseResult[]] array of response items returned by the api.
- * @prop [tags: Array<{ tag: string, count: number }>] array of tags computed from entities.
+ * @prop [hashtags: Array<{ tag: string, count: number }>] array of hashtags computed from entities.
  * @prop [valid: boolean] shows the validity of data present in state.
  * 												Used to detect wheather the loading has been success/fail.
  */
 export interface State {
 	metadata: ApiResponseMetadata;
 	entities: ApiResponseResult[];
-	tags: Array<{ tag: string, count: number }>;
+	hashtags: Array<{ tag: string, count: number }>;
 	valid: boolean;
 }
 
@@ -24,13 +24,13 @@ export interface State {
  *
  * @prop: metadata: null
  * @prop: entities: []
- * @prop: tags: []
+ * @prop: hashtags: []
  * @prop: valid: true
  */
 const initialState: State = {
 	metadata: null,
 	entities: [],
-	tags: [],
+	hashtags: [],
 	valid: true
 };
 
@@ -48,18 +48,15 @@ export function reducer(state: State = initialState, action: api.Actions): State
 		case api.ActionTypes.SEARCH_COMPLETE_SUCCESS: {
 			const apiResponse = action.payload;
 
-			let tagShards = [].concat(...apiResponse.statuses.map((a) => (a.hashtags)));
-			let tagArray = Array.from(new Set(tagShards)).map(
-				(x) => {
-					return {
-						tag: x,
-						count: tagShards.filter(y => y === x).length,
-					};
+			let tagStrings = [].concat(...apiResponse.statuses.map((a) => (a.hashtags)));
+			let hashtags = Array.from(new Set(tagStrings)).map(tag => {
+					return { tag, count: tagStrings.filter(y => y === tag).length };
 			}).sort((a, b) => (b.count - a.count));
+
 			return {
 				metadata: apiResponse.search_metadata,
 				entities: apiResponse.statuses,
-				tags: tagArray,
+				hashtags,
 				valid: true
 			};
 		}
@@ -89,6 +86,6 @@ export const getEntities = (state: State) => state.entities;
 
 export const getMetadata = (state: State) => state.metadata;
 
-export const getTags = (state: State) => state.tags;
+export const getHashtags = (state: State) => state.hashtags;
 
 export const isResultValid = (state: State) => state.valid;

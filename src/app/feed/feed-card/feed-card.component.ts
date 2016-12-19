@@ -12,7 +12,7 @@ import { AutolinkerConfig, ConfigLinkType } from '../../shared/configrations';
 export class FeedCardComponent implements OnInit {
 	private readonly cardAutolinkerConfig: AutolinkerConfig = new AutolinkerConfig();
 	private datetime: string = null;
-	showStyle: string = "";
+	showStyle: string = null;
 	@Input() private feedItem: ApiResponseResult;
 
 	constructor() { }
@@ -36,9 +36,9 @@ export class FeedCardComponent implements OnInit {
 
 	showTweet() {
 		if (this.showStyle) {
-			return "visible";
+			return 'visible';
 		} else {
-			return "";
+			return '';
 		}
 	}
 
