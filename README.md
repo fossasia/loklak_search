@@ -20,40 +20,42 @@ Please join our mailing list to discuss questions regarding the project: https:/
 
 Our chat channel is on gitter here: https://gitter.im/loklak/loklak
 
-## Requirements
-* [Angular-cli](https://github.com/angular/angular-cli#installation)
-* node >= 6
-* npm >= 3
-
-## Installation
-* ```npm install```
-
 ## Technology Stack
-
-### Components
+##### Components
 * HTML - Structure of the web page generated.
 * CSS - Styling options and details ofthe web page.
 * Javascript(JSON) - Used to store information for deploying the application such as dependencies.
 * Angular2 - Structure for deployment of the web page.
 
 ## Services and Dependencies
+* Bower - The goal is to use [Bower](http://bower.io) to manage front-end dependencies in future.
 
-### Bower
+## Requirements
+* [Angular-cli](https://github.com/angular/angular-cli#installation)
+* node --version >= 6
+* npm --version >= 3
 
-The goal is to use [Bower](http://bower.io) to manage front-end dependencies in future.
-
+## Installation
+First we will need to install angular-cli by using the following command:
+```sh
+$ npm install -g angular-cli
+```
+After installing anular-cli we need to install our required node modules, so we will do that by using the following command:
+```sh 
+$ npm install
+```
 ## How to deploy?
+##### Running on localhost:
+* **Step 1:** Fork loklak_search repository and clone it to your desktop
+* **Step 2:** Then cd into that cloned folder
+* **Step 3:** Deploy locally by running this :```$ ng serve```
 
-#### How to deploy locally?
-* [Install loklak_search](https://github.com/fossasia/loklak_search#installation)
-* ```ng serve```
-
-#### How to deploy with [Github Pages](https://pages.github.com/)?
+#### For deploying with [Github Pages](https://pages.github.com/):
 With these very simple steps you can have loklak_search deployed:
 * **Step 1:** Fork loklak_search repository and clone it to your desktop
-* **Step 2:** Then checkout to your master branch `git checkout master`
-* **Step 3:** Deploy running this : ```ng github-pages:deploy --message "Optional commit message" --base-href="/loklak_search/"```
-* **Step 4:** Visit `https://username.github.io/loklak_search` and you should see the search running
+* **Step 2:** Then checkout to your master branch `$ git checkout master`
+* **Step 3:** Deploy running this : ```$ ng github-pages:deploy --message "Optional commit message" --base-href="/loklak_search/"```
+* **Step 4:** Visit `https://yourusername.github.io/loklak_search` and you should see the search running
 * **Step 5:** As you search you might see that that it cant find anything, to resolve this, on search you will see there is a red shield on search bar, click on it and allow to load scripts
 * **Step 6:** Reload and you will have a function loklak search page deployed with github pages.
 
