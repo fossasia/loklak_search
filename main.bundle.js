@@ -68562,7 +68562,7 @@ module.exports = "footer {\n  width: 100vw;\n  background: #f2f2f2;\n  padding: 
 /* 776 */
 /***/ function(module, exports) {
 
-module.exports = ":host {\n  width: 100%;\n  height: 100%;\n  min-height: 100vh;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -ms-flex-pack: distribute;\n      justify-content: space-around;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center; }\n\ndiv.wrapper {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  -ms-flex-pack: distribute;\n      justify-content: space-around;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  width: 500px;\n  margin-top: -10vh; }\n  div.wrapper h1 {\n    font-weight: 300;\n    text-align: center;\n    font-size: 2.5em;\n    margin: 20px 0px; }\n  div.wrapper h5 {\n    text-align: center; }\n  div.wrapper div.search-form {\n    width: 100%; }\n    div.wrapper div.search-form div.input-group {\n      padding: 10px; }\n      div.wrapper div.search-form div.input-group label {\n        visibility: hidden;\n        display: none; }\n      div.wrapper div.search-form div.input-group input {\n        font-size: 16px;\n        word-spacing: 1.5pt;\n        letter-spacing: 0.5pt;\n        box-shadow: none; }\n      div.wrapper div.search-form div.input-group input:focus {\n        box-shadow: none;\n        border-color: #4285f4; }\n      div.wrapper div.search-form div.input-group input,\n      div.wrapper div.search-form div.input-group span.input-group-btn button {\n        height: 40px;\n        background: transparent; }\n  div.wrapper app-footer {\n    position: absolute;\n    bottom: 0;\n    left: 0; }\n    @media (max-width: 768px) {\n      div.wrapper app-footer {\n        -webkit-transform: translateY(100%);\n                transform: translateY(100%); } }\n    @media (orientation: landscape) and (max-height: 500px) {\n      div.wrapper app-footer {\n        -webkit-transform: translateY(100%);\n                transform: translateY(100%); } }\n"
+module.exports = ":host {\n  width: 100%;\n  height: 100%;\n  min-height: 100vh;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -ms-flex-pack: distribute;\n      justify-content: space-around;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center; }\n\ndiv.wrapper {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  -ms-flex-pack: distribute;\n      justify-content: space-around;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  width: 500px;\n  margin-top: -30vh; }\n  div.wrapper img {\n    max-width: 25%;\n    height: auto; }\n  div.wrapper h1 {\n    font-weight: 300;\n    text-align: center;\n    font-size: 2.5em;\n    margin: 15px 0px 0px 0px;\n    font-family: Courier New; }\n  div.wrapper h5 {\n    text-align: center; }\n  div.wrapper div.search-form {\n    background-color: #fff;\n    height: 44px;\n    vertical-align: top;\n    border-radius: 2px;\n    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);\n    margin: 20px 0px 20px 0;\n    min-width: 584px;\n    border: 0 !important;\n    outline: 0 !important;\n    -webkit-transition: box-shadow 200ms cubic-bezier(0.4, 0, 0.2, 1);\n    transition: box-shadow 200ms cubic-bezier(0.4, 0, 0.2, 1); }\n    div.wrapper div.search-form div.input-group {\n      border: 0 !important;\n      height: 44px; }\n      div.wrapper div.search-form div.input-group label {\n        visibility: hidden;\n        display: none; }\n      div.wrapper div.search-form div.input-group input {\n        padding: 10px 15px;\n        font-size: 16px;\n        word-spacing: 1.5pt;\n        letter-spacing: 0.5pt;\n        box-shadow: none;\n        width: 100%;\n        border: 0 !important;\n        outline: 0 !important;\n        font: 16px arial,sans-serif;\n        line-height: 44px;\n        height: 44px !important;\n        min-width: 440px; }\n      div.wrapper div.search-form div.input-group input:focus {\n        box-shadow: none;\n        border-color: none; }\n      div.wrapper div.search-form div.input-group input,\n      div.wrapper div.search-form div.input-group span.input-group-btn button {\n        height: 40px;\n        background: transparent; }\n  div.wrapper div.search-form:hover {\n    box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08); }\n  div.wrapper app-footer {\n    position: absolute;\n    bottom: 0;\n    left: 0; }\n\n@media screen and (max-width: 880px) {\n  div.wrapper div.search-form {\n    min-width: 260px;\n    margin: 20px 15px 20px 15px; }\n    div.wrapper div.search-form input {\n      min-width: 230px !important; } }\n"
 
 /***/ },
 /* 777 */
@@ -68634,7 +68634,7 @@ module.exports = "<footer>\n\t<div class=\"left-side\">\n\t\t<a routerLink=\"/ab
 /* 788 */
 /***/ function(module, exports) {
 
-module.exports = "<div class=\"wrapper\">\n\t<img src=\"{{headerImageUrl}}\" alt=\"Loklak Cow\" width=\"150\" height=\"175\">\n\t<h1>{{header}}</h1>\n\n\t<div class=\"form-group search-form\">\n\t\t<div class=\"input-group\">\n\t\t\t<label for=\"search\">Search On Loklak.</label>\n\n\t\t\t<input type=\"text\" class=\"form-control\" id=\"search\" required name=\"search\"\n\t\t\t\t\t\t\tplaceholder=\"I'm feeling awesome!\" [formControl]=\"_queryControl\" />\n\n\t\t\t<span class=\"input-group-btn\">\n\t\t\t\t<button class=\"btn btn-default\" role=\"button\" type=\"button\" tabindex=\"-1\"\n\t\t\t\t\t\t\t\taria-roledescription=\"Search the web using loklak search.\" >\n\t\t\t\t\t<span class=\"glyphicon glyphicon-search\" aria-hidden=\"true\"></span>\n\t\t\t\t</button>\n\t\t\t</span>\n\t\t</div>\n\t</div>\n\n\t<h5>Distributed Social Media Message Search Engine</h5>\n\n\t<app-footer></app-footer>\n</div>\n"
+module.exports = "<div class=\"wrapper\">\n\t<img src=\"{{headerImageUrl}}\" alt=\"Loklak Cow\" width=\"auto\" height=\"120\">\n\n\t<h1>{{header}}</h1>\n\t<div class=\"form-group search-form\">\n\t\t<div class=\"input-group\">\n\t\t\t<label for=\"search\">Search On Loklak.</label>\n\n\t\t\t<input type=\"text\" id=\"search\" required name=\"search\"\n\t\t\t\t\t\t\t [formControl]=\"_queryControl\" />\n\n\t\t\t<span class=\"input-group-btn\">\n\t\t\t\t<button class=\"btn\" role=\"button\" type=\"button\" tabindex=\"-1\"\n\t\t\t\t\t\t\t\taria-roledescription=\"Search the web using loklak search.\" >\n\t\t\t\t\t\t<span class=\"glyphicon glyphicon-search\" aria-hidden=\"true\"></span>\n\t\t\t\t</button>\n\t\t\t</span>\n\t\t</div>\n\t\t\n\t</div>\n\t\n\t<h5>Distributed Social Media Message Search Engine</h5>\n\n\t<app-footer></app-footer>\n</div>\n"
 
 /***/ },
 /* 789 */
@@ -80669,9 +80669,9 @@ var Zone$1 = (function (global) {
             task.cancelFn = null;
             return value;
         };
-        Zone.__symbol__ = __symbol__;
         return Zone;
     }());
+    Zone.__symbol__ = __symbol__;
     
     var ZoneDelegate = (function () {
         function ZoneDelegate(zone, parentDelegate, zoneSpec) {
@@ -80916,7 +80916,7 @@ var Zone$1 = (function (global) {
                 }
             }
             while (_uncaughtPromiseErrors.length) {
-                var _loop_1 = function() {
+                var _loop_1 = function () {
                     var uncaughtPromiseError = _uncaughtPromiseErrors.shift();
                     try {
                         uncaughtPromiseError.zone.runGuarded(function () {
@@ -81173,12 +81173,11 @@ var Zone$1 = (function (global) {
     function ZoneAwareError() {
         // Create an Error.
         var error = NativeError.apply(this, arguments);
-        this.message = error.message;
         // Save original stack trace
-        this.originalStack = error.stack;
+        error.originalStack = error.stack;
         // Process the stack trace and rewrite the frames.
-        if (ZoneAwareError[stackRewrite] && this.originalStack) {
-            var frames_1 = this.originalStack.split('\n');
+        if (ZoneAwareError[stackRewrite] && error.originalStack) {
+            var frames_1 = error.originalStack.split('\n');
             var zoneFrame = _currentZoneFrame;
             var i = 0;
             // Find the first frame
@@ -81208,12 +81207,12 @@ var Zone$1 = (function (global) {
                     }
                 }
             }
-            this.stack = this.zoneAwareStack = frames_1.join('\n');
+            error.stack = error.zoneAwareStack = frames_1.join('\n');
         }
+        return error;
     }
-    
     // Copy the prototype so that instanceof operator works as expected
-    ZoneAwareError.prototype = Object.create(NativeError.prototype);
+    ZoneAwareError.prototype = NativeError.prototype;
     ZoneAwareError[Zone.__symbol__('blacklistedStackFrames')] = blackListedStackFrames;
     ZoneAwareError[stackRewrite] = false;
     if (NativeError.hasOwnProperty('stackTraceLimit')) {
@@ -81321,7 +81320,12 @@ var Zone$1 = (function (global) {
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-var zoneSymbol = function (n) { return ("__zone_symbol__" + n); };
+/**
+ * Suppress closure compiler errors about unknown 'Zone' variable
+ * @fileoverview
+ * @suppress {undefinedVars}
+ */
+var zoneSymbol = function (n) { return "__zone_symbol__" + n; };
 var _global$1 = typeof window === 'object' && window || typeof self === 'object' && self || global;
 function bindArguments(args, source) {
     for (var i = args.length - 1; i >= 0; i--) {
@@ -81333,7 +81337,7 @@ function bindArguments(args, source) {
 }
 function patchPrototype(prototype, fnNames) {
     var source = prototype.constructor['name'];
-    var _loop_1 = function(i) {
+    var _loop_1 = function (i) {
         var name_1 = fnNames[i];
         var delegate = prototype[name_1];
         if (delegate) {
@@ -82005,7 +82009,7 @@ var unboundKey = zoneSymbol('unbound');
 // for `onwhatever` properties and replace them with zone-bound functions
 // - Chrome (for now)
 function patchViaCapturingAllTheEvents() {
-    var _loop_1 = function(i) {
+    var _loop_1 = function (i) {
         var property = eventNames[i];
         var onproperty = 'on' + property;
         self.addEventListener(property, function (event) {
