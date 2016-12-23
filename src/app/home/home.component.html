@@ -1,23 +1,24 @@
 <div class="wrapper">
-	<img src="{{headerImageUrl}}" alt="Loklak Cow" width="150" height="175">
-	<h1>{{header}}</h1>
+	<img src="{{headerImageUrl}}" alt="Loklak Cow" width="auto" height="120">
 
+	<h1>{{header}}</h1>
 	<div class="form-group search-form">
 		<div class="input-group">
 			<label for="search">Search On Loklak.</label>
 
-			<input type="text" class="form-control" id="search" required name="search"
-							placeholder="I'm feeling awesome!" [formControl]="_queryControl" />
+			<input type="text" id="search" required name="search"
+							 [formControl]="_queryControl" />
 
 			<span class="input-group-btn">
-				<button class="btn btn-default" role="button" type="button" tabindex="-1"
+				<button class="btn" role="button" type="button" tabindex="-1"
 								aria-roledescription="Search the web using loklak search." >
-					<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+						<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
 				</button>
 			</span>
 		</div>
+		
 	</div>
-
+	
 	<h5>Distributed Social Media Message Search Engine</h5>
 
 	<app-footer></app-footer>
