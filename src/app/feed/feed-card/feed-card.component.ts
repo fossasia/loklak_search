@@ -81,11 +81,6 @@ export class FeedCardComponent implements OnInit {
 	private  ttt(): any {
 		this.datetime = this.tdiff();
 	}
-    
-private get twitterlink() : string {
-    let linker= this.feedItem.link;
-    return linker.toString();
-    }
 
 
 	private tdiff(): string {
