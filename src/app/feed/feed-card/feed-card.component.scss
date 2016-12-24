@@ -78,14 +78,17 @@ a.post-link {
 
 				div.reply:hover {
 					color: #89C9FA;
+                    cursor: pointer;
 				}
 
 				div.retweet:hover {
 					color: #19cf86;
+                    cursor: pointer;
 				}
 
 				div.like:hover {
 					color: #e81c4f;
+                    cursor: pointer;
 				}
 			}
 		}
@@ -149,6 +152,12 @@ a.post-link {
 			margin-top: 30px;
 			font-size: 14px;
 		}
+        
+        .lightbox-timestamp{
+            margin-left: 15px;
+            color:black;
+            font-size: 13px;
+        }
 
 		.lightbox-tweet{
 			position: absolute;
@@ -161,7 +170,7 @@ a.post-link {
 		.lightbox-btn{
 			position: absolute;
 			right: 20px;
-			top: 190px;
+			top: 205px;
 			border: none;
 			color: white;
 			background-color: #00aced;
@@ -171,6 +180,48 @@ a.post-link {
 			text-decoration: none;
 			cursor: pointer;
 		}
+        
+        .lightbox-actions{
+            position: absolute;
+            left: 20px;
+			top: 190px;
+				margin-top: 30px;
+				display: flex;
+				justify-content: space-between;
+
+				i.lightbox-md-20{
+					font-size: 20px;
+				}
+
+            
+            .lightbox-action {
+					color: #aab8c2;
+					display: flex;
+
+					.lightbox-counter{
+						margin-left: 5px; 
+					}
+				}
+                
+				.lightbox-reply:hover {
+					color: #89C9FA;
+                    cursor: pointer;
+				}
+
+				.lightbox-retweet:hover {
+					color: #19cf86;
+                    cursor : pointer;
+				}
+
+				.lightbox-like:hover {
+					color: #e81c4f;
+                    cursor : pointer;
+				}
+            
+            .lightbox-space {
+                margin-left: 60px;
+            }
+        }
 	}
 
 }
