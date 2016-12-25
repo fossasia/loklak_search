@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { AutolinkerConfig, ConfigLinkType } from '../../shared/configrations';
 
 @Component({
@@ -9,12 +9,20 @@ import { AutolinkerConfig, ConfigLinkType } from '../../shared/configrations';
 export class FeedLinkerComponent implements OnInit {
 	@Input() private text: String;
 	@Input() private config: AutolinkerConfig;
+	@Output() onShowed = new EventEmitter<boolean>();
 	private shardArray: Array<Shard> = new Array<Shard>();
 
 	constructor() { }
 
 	ngOnInit() {
 		this.generateShards();
+	}
+
+	showHideLightbox(shard: Shard) {
+		if (shard.type === 1) {
+			window.open(shard.linkTo, '_blank');
+		}
+		this.onShowed.emit(true);
 	}
 
 	private generateShards() {

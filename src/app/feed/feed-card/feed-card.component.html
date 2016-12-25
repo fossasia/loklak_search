@@ -40,7 +40,7 @@
                 </div>
 			</div>
 			<div class="card-header">
-				<a href="{{profileURL}}" target="_blank" id="profile-link">
+				<a href="{{profileURL}}" target="_blank" id="profile-link" (click)="showHideLightbox(profileURL)">
 					<span class="name">
 						<b>{{profileName}}</b>
 					</span>
@@ -57,7 +57,7 @@
 			<div class="card-text">
 				<feed-linker
 					[text]="itemText"
-					[config]="cardAutolinkerConfig"></feed-linker>
+					[config]="cardAutolinkerConfig" (onShowed)="onShowed($event)" ></feed-linker>
 			</div>
 			<div class="card-footer">
 				<div class="action reply">
