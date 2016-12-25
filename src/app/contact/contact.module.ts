@@ -4,13 +4,15 @@ import { CommonModule } from '@angular/common';
 import { LoklakContactRoutingModule } from './contact-routing.module';
 import { ContactComponent } from './contact.component';
 import { FooterModule } from '../footer/footer.module';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
 	imports: [
 		CommonModule,
 
 		LoklakContactRoutingModule,
-		FooterModule
+		FooterModule,
+		RouterModule
 	],
 	declarations: [
 		ContactComponent
