@@ -64363,6 +64363,15 @@ var FeedCardComponent = (function () {
         var timer = __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__["Observable"].timer(0, 10000);
         timer.subscribe(function (t) { return _this.ttt(); });
     };
+    FeedCardComponent.prototype.onShowed = function (show) {
+        if (show) {
+            this.showStyle = !this.showStyle;
+        }
+    };
+    FeedCardComponent.prototype.showHideLightbox = function (link) {
+        window.open(link, '_blank');
+        this.onShowed(true);
+    };
     FeedCardComponent.prototype.modifyAutolinkerConfig = function () {
         // hashtag and mention use the default configration strategy.
         // Links use the one-to-one map strategy using unshorten property of feedItem
@@ -64600,10 +64609,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 var FeedLinkerComponent = (function () {
     function FeedLinkerComponent() {
+        this.onShowed = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["_7" /* EventEmitter */]();
         this.shardArray = new Array();
     }
     FeedLinkerComponent.prototype.ngOnInit = function () {
         this.generateShards();
+    };
+    FeedLinkerComponent.prototype.showHideLightbox = function (shard) {
+        if (shard.type === 1) {
+            window.open(shard.linkTo, '_blank');
+        }
+        this.onShowed.emit(true);
     };
     FeedLinkerComponent.prototype.generateShards = function () {
         var splitTextArray = this.text.split(' ');
@@ -64667,6 +64683,10 @@ __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Input */])(),
     __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__shared_configrations__["a" /* AutolinkerConfig */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__shared_configrations__["a" /* AutolinkerConfig */]) === "function" && _a || Object)
 ], FeedLinkerComponent.prototype, "config", void 0);
+__decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Output */])(),
+    __metadata("design:type", Object)
+], FeedLinkerComponent.prototype, "onShowed", void 0);
 FeedLinkerComponent = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["G" /* Component */])({
         selector: 'feed-linker',
@@ -68592,7 +68612,7 @@ module.exports = "\n  <nav class=\"navbar navbar-default\">\n    <div class=\"co
 /* 781 */
 /***/ function(module, exports) {
 
-module.exports = "<a class=\"post-link\"  target=\"_blank\">\n\t<div class=\"card\" (click)=\"showStyle = !showStyle;\">\n\t\t<div class=\"card-image\">\n\t\t\t<a href=\"{{profileURL}}\" target=\"_blank\">\n\t\t\t\t<img src=\"{{feedItem.user.profile_image_url_https}}\" alt=\"Profile Image\" width=\"50\" height=\"50\" />\n\t\t\t</a>\n\t\t</div>\n\t\t<div class=\"card-content\">\n\t\t\t<div class=\"overlay\" [style.visibility]=\"showTweet()\">\n\t\t\t\t<div class=\"overlay-content\">\n\t\t\t\t\t<button class=\"lightbox-close\" (click)=\"showStyle = showStyle;\">x</button>\n\t\t\t\t\t<a href=\"{{profileURL}}\" target=\"_blank\" id=\"profile-link\">\n                        <img class=\"lightbox-img\" src=\"{{feedItem.user.profile_image_url_https}}\"/>\n\t\t\t\t\t<h3 class=\"lightbox-name\">{{profileName}} <span class=\"lightbox-timestamp\">\n\t\t\t\t\t\t{{datetime}}\n\t\t\t\t\t</span></h3>\n\t\t\t\t\t\t<p class=\"lightbox-nickname\">@{{feedItem.user.screen_name}}</p>\n                    </a>\n\t\t\t\t\t\t<p class=\"lightbox-tweet\"><feed-linker\n\t\t\t\t\t[text]=\"itemText\"\n\t\t\t\t\t[config]=\"cardAutolinkerConfig\"></feed-linker></p>\n                    <div class=\"lightbox-actions\">\n                    <div class=\"lightbox-action lightbox-reply lightbox-space\">\n\t\t\t\t\t<i class=\"material-icons lightbox-md-20\">reply</i>\n\t\t\t\t</div>\n\t\t\t\t<div class=\"lightbox-action lightbox-retweet lightbox-space\">\n\t\t\t\t\t<i class=\"material-icons lightbox-md-20\">repeat</i>\n\t\t\t\t\t<div class=\"lightbox-counter lightbox-retweet-count\">\n\t\t\t\t\t\t{{retweetCount}}\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t\t<div class=\"lightbox-action lightbox-like lightbox-space\">\n\t\t\t\t\t<i class=\"material-icons lightbox-md-20\">favorite_border</i>\n\t\t\t\t\t<div class=\"lightbox-counter lightbox-like-count\">\n\t\t\t\t\t\t{{favouriteCount}}\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t\t</div>\n                <a class=\"lightbox-btn\" href=\"{{feedItem.link}}\">View on Twitter</a>\n                </div>\n\t\t\t</div>\n\t\t\t<div class=\"card-header\">\n\t\t\t\t<a href=\"{{profileURL}}\" target=\"_blank\" id=\"profile-link\">\n\t\t\t\t\t<span class=\"name\">\n\t\t\t\t\t\t<b>{{profileName}}</b>\n\t\t\t\t\t</span>\n\t\t\t\t\t&nbsp;\n\t\t\t\t\t<span class=\"handle\">\n\t\t\t\t\t\t@{{feedItem.user.screen_name}}\n\t\t\t\t\t</span>\n\t\t\t\t\t&nbsp;\n\t\t\t\t\t<span class=\"timestamp\">\n\t\t\t\t\t\t{{datetime}}\n\t\t\t\t\t</span>\n\t\t\t\t</a>\n\t\t\t</div>\n\t\t\t<div class=\"card-text\">\n\t\t\t\t<feed-linker\n\t\t\t\t\t[text]=\"itemText\"\n\t\t\t\t\t[config]=\"cardAutolinkerConfig\"></feed-linker>\n\t\t\t</div>\n\t\t\t<div class=\"card-footer\">\n\t\t\t\t<div class=\"action reply\">\n\t\t\t\t\t<i class=\"material-icons md-20\">reply</i>\n\t\t\t\t</div>\n\t\t\t\t<div class=\"action retweet\">\n\t\t\t\t\t<i class=\"material-icons md-20\">repeat</i>\n\t\t\t\t\t<div class=\"counter retweet-count\">\n\t\t\t\t\t\t{{retweetCount}}\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t\t<div class=\"action like\">\n\t\t\t\t\t<i class=\"material-icons md-20\">favorite_border</i>\n\t\t\t\t\t<div class=\"counter like-count\">\n\t\t\t\t\t\t{{favouriteCount}}\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\t</div>\n</a>\n"
+module.exports = "<a class=\"post-link\"  target=\"_blank\">\n\t<div class=\"card\" (click)=\"showStyle = !showStyle;\">\n\t\t<div class=\"card-image\">\n\t\t\t<a href=\"{{profileURL}}\" target=\"_blank\">\n\t\t\t\t<img src=\"{{feedItem.user.profile_image_url_https}}\" alt=\"Profile Image\" width=\"50\" height=\"50\" />\n\t\t\t</a>\n\t\t</div>\n\t\t<div class=\"card-content\">\n\t\t\t<div class=\"overlay\" [style.visibility]=\"showTweet()\">\n\t\t\t\t<div class=\"overlay-content\">\n\t\t\t\t\t<button class=\"lightbox-close\" (click)=\"showStyle = showStyle;\">x</button>\n\t\t\t\t\t<a href=\"{{profileURL}}\" target=\"_blank\" id=\"profile-link\">\n                        <img class=\"lightbox-img\" src=\"{{feedItem.user.profile_image_url_https}}\"/>\n\t\t\t\t\t<h3 class=\"lightbox-name\">{{profileName}} <span class=\"lightbox-timestamp\">\n\t\t\t\t\t\t{{datetime}}\n\t\t\t\t\t</span></h3>\n\t\t\t\t\t\t<p class=\"lightbox-nickname\">@{{feedItem.user.screen_name}}</p>\n                    </a>\n\t\t\t\t\t\t<p class=\"lightbox-tweet\"><feed-linker\n\t\t\t\t\t[text]=\"itemText\"\n\t\t\t\t\t[config]=\"cardAutolinkerConfig\"></feed-linker></p>\n                    <div class=\"lightbox-actions\">\n                    <div class=\"lightbox-action lightbox-reply lightbox-space\">\n\t\t\t\t\t<i class=\"material-icons lightbox-md-20\">reply</i>\n\t\t\t\t</div>\n\t\t\t\t<div class=\"lightbox-action lightbox-retweet lightbox-space\">\n\t\t\t\t\t<i class=\"material-icons lightbox-md-20\">repeat</i>\n\t\t\t\t\t<div class=\"lightbox-counter lightbox-retweet-count\">\n\t\t\t\t\t\t{{retweetCount}}\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t\t<div class=\"lightbox-action lightbox-like lightbox-space\">\n\t\t\t\t\t<i class=\"material-icons lightbox-md-20\">favorite_border</i>\n\t\t\t\t\t<div class=\"lightbox-counter lightbox-like-count\">\n\t\t\t\t\t\t{{favouriteCount}}\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t\t</div>\n                <a class=\"lightbox-btn\" href=\"{{feedItem.link}}\">View on Twitter</a>\n                </div>\n\t\t\t</div>\n\t\t\t<div class=\"card-header\">\n\t\t\t\t<a href=\"{{profileURL}}\" target=\"_blank\" id=\"profile-link\" (click)=\"showHideLightbox(profileURL)\">\n\t\t\t\t\t<span class=\"name\">\n\t\t\t\t\t\t<b>{{profileName}}</b>\n\t\t\t\t\t</span>\n\t\t\t\t\t&nbsp;\n\t\t\t\t\t<span class=\"handle\">\n\t\t\t\t\t\t@{{feedItem.user.screen_name}}\n\t\t\t\t\t</span>\n\t\t\t\t\t&nbsp;\n\t\t\t\t\t<span class=\"timestamp\">\n\t\t\t\t\t\t{{datetime}}\n\t\t\t\t\t</span>\n\t\t\t\t</a>\n\t\t\t</div>\n\t\t\t<div class=\"card-text\">\n\t\t\t\t<feed-linker\n\t\t\t\t\t[text]=\"itemText\"\n\t\t\t\t\t[config]=\"cardAutolinkerConfig\" (onShowed)=\"onShowed($event)\" ></feed-linker>\n\t\t\t</div>\n\t\t\t<div class=\"card-footer\">\n\t\t\t\t<div class=\"action reply\">\n\t\t\t\t\t<i class=\"material-icons md-20\">reply</i>\n\t\t\t\t</div>\n\t\t\t\t<div class=\"action retweet\">\n\t\t\t\t\t<i class=\"material-icons md-20\">repeat</i>\n\t\t\t\t\t<div class=\"counter retweet-count\">\n\t\t\t\t\t\t{{retweetCount}}\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t\t<div class=\"action like\">\n\t\t\t\t\t<i class=\"material-icons md-20\">favorite_border</i>\n\t\t\t\t\t<div class=\"counter like-count\">\n\t\t\t\t\t\t{{favouriteCount}}\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\t</div>\n</a>\n"
 
 /***/ },
 /* 782 */
@@ -68610,7 +68630,7 @@ module.exports = "<div class=\"wrapper\">\n\t<div class=\"logo-and-form\">\n\t\t
 /* 784 */
 /***/ function(module, exports) {
 
-module.exports = "<div class=\"textWrapper\">\n\t<span *ngFor=\"let shard of shardArray\">\n\t\t<span *ngIf=\"shard.type === 0\"> <!-- Plain -->\n\t\t\t{{shard.text}}\n\t\t</span>\n\t\t<span *ngIf=\"shard.type === 1\"> <!-- URL Links -->\n\t\t\t<a [href]=\"shard.linkTo\" target=\"_blank\">{{shard.text}}</a>\n\t\t</span>\n\t\t<span *ngIf=\"shard.type === 2\"> <!-- Hashtag -->\n\t\t\t<a [routerLink]=\"shard.linkTo\" [queryParams]=\"shard.queryParams\">{{shard.text}}</a>\n\t\t</span>\n\t\t<span *ngIf=\"shard.type === 3\"> <!-- Mention -->\n\t\t\t<a [routerLink]=\"shard.linkTo\" [queryParams]=\"shard.queryParams\">{{shard.text}}</a>\n\t\t</span>\n\t</span>\n</div>\n"
+module.exports = "<div class=\"textWrapper\">\n\t<span *ngFor=\"let shard of shardArray\">\n\t\t<span *ngIf=\"shard.type === 0\"> <!-- Plain -->\n\t\t\t{{shard.text}}\n\t\t</span>\n\t\t<span *ngIf=\"shard.type === 1\"  > <!-- URL Links -->\n\t\t\t<a  [href]=\"shard.linkTo\" target=\"_blank\" (click)=\"showHideLightbox(shard)\" >{{shard.text}}</a>\n\t\t</span>\n\t\t<span *ngIf=\"shard.type === 2\" (click)=\"showHideLightbox(shard)\" > <!-- Hashtag -->\n\t\t\t<a [routerLink]=\"shard.linkTo\" [queryParams]=\"shard.queryParams\">{{shard.text}}</a>\n\t\t</span>\n\t\t<span *ngIf=\"shard.type === 3\" (click)=\"showHideLightbox(shard)\" > <!-- Mention -->\n\t\t\t<a [routerLink]=\"shard.linkTo\" [queryParams]=\"shard.queryParams\">{{shard.text}}</a>\n\t\t</span>\n\t</span>\n</div>\n"
 
 /***/ },
 /* 785 */
