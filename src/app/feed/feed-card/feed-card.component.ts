@@ -12,7 +12,7 @@ import { AutolinkerConfig, ConfigLinkType } from '../../shared/configrations';
 export class FeedCardComponent implements OnInit {
 	private readonly cardAutolinkerConfig: AutolinkerConfig = new AutolinkerConfig();
 	private datetime: string = null;
-	showStyle: string = null;
+	showStyle: boolean = null;
 	@Input() private feedItem: ApiResponseResult;
 
 	constructor() { }
@@ -21,6 +21,15 @@ export class FeedCardComponent implements OnInit {
 		this.modifyAutolinkerConfig();
 		let timer = Observable.timer (0 , 10000);
 		timer.subscribe(t => this.ttt());
+	}
+	onShowed(show: boolean) {
+		if (show) {
+			this.showStyle = !this.showStyle;
+		}
+	}
+	showHideLightbox(link: string) {
+		window.open(link, '_blank');
+		this.onShowed(true);
 	}
 
 	private modifyAutolinkerConfig() {
@@ -122,6 +131,3 @@ export class FeedCardComponent implements OnInit {
 		return since;
 	}
 }
-
-
-
