@@ -10,7 +10,7 @@ import { SuggestResponse } from '../../../models/api-response';
 @Injectable()
 export class SuggestService {
 	private static apiUrl: URL = new URL('http://api.loklak.org/api/suggest.json');
-	private static minified_results: string = 'true';
+	private static minified_results: boolean = true;
 	private static order: string = 'desc';
 	private static orderby: string = 'query_count';
 
@@ -23,7 +23,7 @@ export class SuggestService {
 	public fetchQuery(query: string): Observable<SuggestResponse> {
 		let searchParams = new URLSearchParams();
 		searchParams.set('q', query);
-		searchParams.set('minified', SuggestService.minified_results);
+		searchParams.set('minified', SuggestService.minified_results.toString());
 		searchParams.set('order', SuggestService.order);
 		searchParams.set('orderby', SuggestService.orderby);
 
