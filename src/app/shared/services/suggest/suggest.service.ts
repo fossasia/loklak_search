@@ -10,7 +10,7 @@ import { SuggestResponse } from '../../../models/api-response';
 @Injectable()
 export class SuggestService {
 	private static apiUrl: URL = new URL('http://api.loklak.org/api/suggest.json');
-	private static minified_results: boolean = true;
+	private static minified_results: string = 'true';
 	private static order: string = 'desc';
 	private static orderby: string = 'query_count';
 
