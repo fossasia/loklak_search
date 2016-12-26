@@ -21,7 +21,7 @@ export class SuggestService {
 	) { }
 
 	// TODO: make the searchParams as configureable model rather than this approach.
-	public fetchQuery(query: string): Observable<ApiResponse> {
+	public fetchQuery(query: string): Observable<SuggestResponse> {
 		let searchParams = new URLSearchParams();
 		searchParams.set('q', query);
 		searchParams.set('minified', SuggestService.minified_results);
