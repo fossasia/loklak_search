@@ -68,40 +68,34 @@ export interface ApiResponse {
 }
 
 
-export class SuggestMetadata {
-	constructor(
-	 client: string = null,
-	 count: string = null,
-	 hits: number = null,
-	 query: string = null,
-	 order: string = null,
-	 orderby: string = null
-	) { }
+export interface SuggestMetadata {
+	 client: string = null;
+	 count: string = null;
+	 hits: number = null;
+	 query: string = null;
+	 order: string = null;
+	 orderby: string = null;
 }
 
-export class SuggestResults{
-	constructor(
-	 query: string = null,
-	 query_count: number = null,
-	 source_type: string = null,
-	 message_period: number = null,
-	 retrieval_last: string = null,
-	 messages_per_day: number = null,
-	 query_length: number = null,
-	 timezoneOffset: number = null,
-	 retrieval_next: string = null,
-	 score_retrieval: number = null,
-	 query_last: string = null,
-	 expected_next: string = null,
-	 score_suggest: number = null,
-	 retrieval_count: number = null,
-	 query_first: string = null
-	) { }
+export interface SuggestResults{
+	 query: string = null;
+	 query_count: number = null;
+	 source_type: string = null;
+	 message_period: number = null;
+	 retrieval_last: string = null;
+	 messages_per_day: number = null;
+	 query_length: number = null;
+	 timezoneOffset: number = null;
+	 retrieval_next: string = null;
+	 score_retrieval: number = null;
+	 query_last: string = null;
+	 expected_next: string = null;
+	 score_suggest: number = null;
+	 retrieval_count: number = null;
+	 query_first: string = null;
 }
 
-export class SuggestResponse{
-	constructor(
-	 search_metadata: SuggestMetadata = new SuggestMetadata(),
-	 queries: Array<SuggestResults> = new Array<SuggestResults>()
-	) { }
+export interface SuggestResponse{
+	 search_metadata: SuggestMetadata;
+	 queries: SuggestResults[];
 }
