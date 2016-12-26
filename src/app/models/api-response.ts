@@ -67,7 +67,6 @@ export interface ApiResponse {
 	statuses: ApiResponseResult[];
 }
 
-
 export interface SuggestMetadata {
 	client: string;
 	count: string;
@@ -77,8 +76,7 @@ export interface SuggestMetadata {
 	orderby: string;
 }
 
-
-export interface SuggestResults{
+export interface SuggestResults {
 	query: string;
 	query_count: number;
 	source_type: string;
@@ -96,8 +94,7 @@ export interface SuggestResults{
 	query_first: string;
 }
 
-
-export interface SuggestResponse{
+export interface SuggestResponse {
 	search_metadata: SuggestMetadata;
 	queries: SuggestResults[];
 }
