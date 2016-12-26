@@ -13,18 +13,20 @@ const mockJsonpProvider = {
 };
 
 describe('Service: Suggest', () => {
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      providers: [
-      	MockBackend,
-		BaseRequestOptions,
-		{ provide: Jsonp, useValue: mockJsonpProvider},
-      	SuggestService
-      ]
-    });
-  });
+	beforeEach(() => {
+		TestBed.configureTestingModule({
+    		providers: [
+	      		MockBackend,
+				BaseRequestOptions,
+				{ provide: Jsonp, useValue: mockJsonpProvider},
+	      		SuggestService
+      		]
+    	});
+	});
 
-  it('should create an instance of Suggest Service', inject([SuggestService], (service: SuggestService) => {
-    expect(service).toBeTruthy();
-  }));
+	it('should create an instance of Suggest Service', 
+		inject([SuggestService], (service: SuggestService) => {
+    		expect(service).toBeTruthy();
+	}));
+
 });
