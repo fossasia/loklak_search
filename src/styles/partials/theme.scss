@@ -1,0 +1,16 @@
+a {
+	color: $link-color;
+}
+
+a:hover {
+	color: $link-hover-color;
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+hr {
+	margin-top: 20px;
+	margin-bottom: 20px;
+	border: 0;
+	border-top: 1px solid $line-color;
+}

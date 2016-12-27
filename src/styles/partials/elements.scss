@@ -1,0 +1,154 @@
+
+
+/****HOME PAGE SEARCH BOX ELEMENTS****/
+
+
+.input-group {
+	display: table;
+}
+
+.input-group-btn {
+	display: table-cell;
+	width: 1%;
+}
+
+.btn {
+	border: 1px solid transparent;
+	display: inline-block;
+	padding: 6px 12px;
+	vertical-align: middle;
+	border-radius: 4px;
+	border-top-left-radius: 0px;
+	border-bottom-left-radius: 0px;
+}
+
+.search-icon {
+	background-image: url($search-icon);
+  background-position: center;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  width: 18px;
+  height: 18px;
+}
+
+/****NAVBAR ELEMENTS****/
+
+.navbar {
+	background-color: $background-color-navbar;
+	border:1px solid $border-color-navbar;
+	margin: 0;
+	padding: 0;
+}
+
+	#navbar-toggle-cbox {
+		display: none;
+	}
+
+	.navbar-header {
+		width: 100%;
+	}
+
+		.navbar-brand {
+			display: block;
+			height: 50px;
+		}
+
+		.navbar-toggle {
+			border: 1px solid $border-color-button;
+			border-radius : 4px;
+			float: right;
+			margin: 8px 15px 8px 0px;
+			padding: 7px 8px;
+		}
+
+	.navbar-collapse {
+		display: none;
+		border: 1px solid $border-color-navbar;
+
+		li {
+			position: relative;
+			display: block;
+
+			a {
+				color: $navigation-link-color;
+				display: block;
+				padding: 10px 15px;
+				line-height: 20px;
+			}
+
+			a:hover {
+				color: $primary-color;
+				text-decoration: none;
+			}
+
+		}
+	}
+
+		#navbar-toggle-cbox:checked ~ .navbar-collapse {
+		  display: block;
+		}
+
+.list-icon {
+	background-image: url($list-icon);
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: 100%;
+	cursor: pointer;
+	width: 24px;
+	height: 20px;
+}
+
+@media #{$breakpoint-small} {
+	.navbar-header {
+		width: auto;
+		float: left;
+	}
+
+	.navbar-toggle {
+		display: none;
+	}
+
+	.navbar-collapse {
+		display: block;
+		height: 50px;
+		border: none;
+
+		ul {
+			position: relative;
+			float: right;
+
+			li {
+				float:left;
+
+				a {
+					padding-top: 15px;
+					padding-bottom: 15px;
+				}
+			}
+		}
+	}
+}
+
+/****SEARCHPAGE NAVBAR ELEMENTS****/
+
+.search-icon-white {
+	background-image: url($search-icon-white);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  cursor: pointer;
+  width: 20px;
+  height: 19px;
+}
+
+.form-control {
+	color: $alternate-color;
+	border: 1px solid $border-color-navbar;
+	padding: 6px 12px;
+	width: 100%;
+	transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+
+.header-search-btn {
+	padding: 6px 8px;
+}

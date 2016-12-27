@@ -1,0 +1,39 @@
+.container {
+	margin: 0 auto;
+	width: 100%;
+}
+
+.container:after,
+.row:after {
+      content: "";
+      display: table;
+      clear: both;
+      }
+
+[class*='col-'] {
+  float: left;
+  padding: 0px 15px;
+  width: 100%;
+  min-height: 1px;
+}
+
+@media #{$breakpoint-small} {
+	.container {
+		width: 95%;
+		max-width: 1170px;
+	}
+
+	@for $i from 1 through 12 {
+    .col-sm-#{$i} {
+        width: 100% / 12 * $i;
+    }
+	}
+}
+
+@media #{$breakpoint-large} {
+	@for $i from 1 through 12 {
+    .col-lg-#{$i} {
+        width: 100% / 12 * $i;
+    }
+	}
+}
