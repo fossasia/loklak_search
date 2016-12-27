@@ -54,6 +54,14 @@ class FeedNotFoundStubComponent {
 }
 
 @Component({
+	selector: 'feed-pagination',
+	template: ''
+})
+class FeedPaginationStubComponent {
+	@Output() private paginate;
+}
+
+@Component({
 	selector: 'feed-linker',
 	template: ''
 })
@@ -76,7 +84,8 @@ describe('Component: Feed', () => {
 				FeedCardStubComponent,
 				FooterStubComponent,
 				FeedNotFoundStubComponent,
-				FeedLinkerStubComponent
+				FeedLinkerStubComponent,
+				FeedPaginationStubComponent
 			]
 		});
 	});
@@ -95,7 +104,7 @@ describe('Component: Feed', () => {
 		expect(compiled.querySelector('feed-header')).toBeTruthy();
 	}));
 
-	it('should have an app-footoer component', async(() => {
+	it('should have an app-footer component', async(() => {
 		let fixture = TestBed.createComponent(FeedComponent);
 		let component = fixture.debugElement.componentInstance;
 		let compiled = fixture.debugElement.nativeElement;

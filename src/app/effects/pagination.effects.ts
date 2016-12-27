@@ -1,20 +1,21 @@
 import { Injectable } from '@angular/core';
 import { Location } from '@angular/common';
 import { Effect, Actions } from '@ngrx/effects';
-import { Action } from '@ngrx/store';
+import { Store, Action } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
-import { empty } from 'rxjs/observable/empty';
 import { of } from 'rxjs/observable/of';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/switchMap';
-import 'rxjs/add/operator/debounceTime';
-import 'rxjs/add/operator/skip';
 import 'rxjs/add/operator/takeUntil';
+import 'rxjs/add/operator/withLatestFrom';
+import 'rxjs/add/operator/distinctUntilChanged';
 
 import { SearchService } from '../services';
+import { Query } from '../models/query';
 import * as apiAction from '../actions/api';
-import { Query, ReloactionAfterQuery } from '../models/query';
+import * as paginationAction from '../actions/pagination';
+import * as fromRoot from '../reducers';
 
 /**
  * Effects offer a way to isolate and easily test side-effects within your
@@ -31,33 +32,35 @@ import { Query, ReloactionAfterQuery } from '../models/query';
  */
 
 @Injectable()
-export class ApiSearchEffects {
+export class PaginationEffects {
+	private query: Query;
+	private page: number;
+	private lastRecord: number;
 
 	@Effect()
-	search$: Observable<Action>
+	pagination$: Observable<Action>
 		= this.actions$
-					.ofType(apiAction.ActionTypes.SEARCH)
-					.debounceTime(200)
-					.map((action: apiAction.SearchAction) => action.payload)
-					.switchMap(query => {
+					.ofType(paginationAction.ActionTypes.NEXT_PAGE)
+					.map((action: paginationAction.NextPageAction) => action.payload)
+					.withLatestFrom(this.store, (action, state) => {
+						this.query = state.search.query;
+						this.page = state.pagination.page;
+						this.lastRecord = state.apiResponse.entities.length;
+					})
+					.switchMap(() => {
+						const nextSearch$ = this.actions$.ofType(apiAction.ActionTypes.SEARCH);
 
-						const nextSearch$ = this.actions$.ofType(apiAction.ActionTypes.SEARCH).skip(1);
-
-						return this.apiSearchService.fetchQuery(query.queryString)
+						return this.apiSearchService.fetchQuery(this.query.queryString, this.lastRecord)
 																				.takeUntil(nextSearch$)
 																				.map(response => {
-																					if (query.location === ReloactionAfterQuery.RELOCATE) {
-																						this.location.go(`/search?query=${query.queryString}`);
-																					}
-																					return new apiAction.SearchCompleteSuccessAction(response);
+																					return new paginationAction.PaginationCompleteSuccessAction(response);
 																				})
-																				.catch(() => of(new apiAction.SearchCompleteFailAction('')));
+																				.catch(() => of(new paginationAction.PaginationCompleteFailAction('')));
 					});
 
 	constructor(
 		private actions$: Actions,
 		private apiSearchService: SearchService,
-		private location: Location
+		private store: Store<fromRoot.State>
 	) { }
-
 }

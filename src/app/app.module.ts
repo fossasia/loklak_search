@@ -9,6 +9,7 @@ import { EffectsModule } from '@ngrx/effects';
 
 import { reducer } from './reducers';
 import { ApiSearchEffects } from './effects/api-search.effects';
+import { PaginationEffects } from './effects/pagination.effects';
 
 import { LoklakAppRoutingModule } from './app-routing.module';
 
@@ -19,7 +20,7 @@ import { FeedModule } from './feed/feed.module';
 import { AboutModule } from './about/about.module';
 import { ContactModule } from './contact/contact.module';
 import { TermsModule } from './terms/terms.module';
-import { SearchService } from './shared/services';
+import { SearchService } from './services';
 
 @NgModule({
 	declarations: [
@@ -90,6 +91,7 @@ import { SearchService } from './shared/services';
      * See: https://github.com/ngrx/effects/blob/master/docs/api.md#run
      */
 		EffectsModule.run(ApiSearchEffects),
+		EffectsModule.run(PaginationEffects),
 
 		/**
 		 * Defines the routes at `root` level of the application.

@@ -12,6 +12,10 @@
 			<div *ngFor="let item of (apiResponseResults$ | async)">
 				<feed-card [feedItem]="item"></feed-card>
 			</div>
+
+			<feed-pagination
+				(paginate)="loadMoreResults(event$)"></feed-pagination>
+
 			<feed-footer [query] = "(query$ | async)" [apiResponseTags]="(apiResponseTags$ | async)"></feed-footer>
 		</div>
 

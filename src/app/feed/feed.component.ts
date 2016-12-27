@@ -9,6 +9,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { Store } from '@ngrx/store';
 import * as fromRoot from '../reducers';
 import * as apiAction from '../actions/api';
+import * as paginationAction from '../actions/pagination';
 
 import { ApiResponse, ApiResponseMetadata, ApiResponseResult } from '../models/api-response';
 import { Query, ReloactionAfterQuery } from '../models/query';
@@ -126,8 +127,15 @@ export class FeedComponent implements OnInit, OnDestroy {
 	 * There is an only need to change the location as the current request
 	 * is already being fetched (ngrx/effects).
 	 */
-	handleSearchQuery() {
+	private handleSearchQuery() {
 		this.location.go('/search', `query=${this.queryString}`);
+	}
+
+	/**
+	 * Loads more results by dispatching the `NextPageAction`.
+	 */
+	private loadMoreResults(event) {
+		this.store.dispatch(new paginationAction.NextPageAction(''));
 	}
 
 	/**
