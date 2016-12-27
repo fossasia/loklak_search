@@ -39,6 +39,7 @@ import { combineReducers } from '@ngrx/store';
  */
 import * as fromSearch from './search';
 import * as fromApiResponse from './api-response';
+import * as fromPagination from './pagination';
 
 /**
  * As mentioned, we treat each reducer like a table in a database. This means
@@ -47,6 +48,7 @@ import * as fromApiResponse from './api-response';
 export interface State {
 	search: fromSearch.State;
 	apiResponse: fromApiResponse.State;
+	pagination: fromPagination.State;
 }
 
 /**
@@ -58,7 +60,8 @@ export interface State {
  */
 const reducers = {
 	search: fromSearch.reducer,
-	apiResponse: fromApiResponse.reducer
+	apiResponse: fromApiResponse.reducer,
+	pagination: fromPagination.reducer,
 };
 
 // const developmentReducer: ActionReducer<State> = compose(storeFreeze, combineReducers)(reducers);
@@ -107,10 +110,10 @@ export const getApiResponseState = (state: State) => state.apiResponse;
  * is shared across all subscribers.
  */
 export const getApiResponseEntities = createSelector(getApiResponseState, fromApiResponse.getEntities);
-export const getApiResponseMetadata = createSelector(getApiResponseState, fromApiResponse.getMetadata);
+export const getApiResponsePages = createSelector(getApiResponseState, fromApiResponse.getPages);
 export const getApiResponseTags = createSelector(getApiResponseState, fromApiResponse.getHashtags);
 export const getAreResultsValid = createSelector(getApiResponseState, fromApiResponse.isResultValid);
-
+export const getLastRecordIndex = createSelector(getApiResponseState, fromApiResponse.lastRecord);
 
 /**
  * Just like with the ApiResponse selectors, we also have to compose the
@@ -120,6 +123,16 @@ export const getSearchState = (state: State) => state.search;
 
 export const getSearchQuery = createSelector(getSearchState, fromSearch.getQuery);
 export const getSearchLoading = createSelector(getSearchState, fromSearch.getLoading);
+
+
+/**
+ * Selectors For Pageination.
+ */
+export const getPaginationState = (state: State) => state.pagination;
+
+export const getPaginationPage = createSelector(getPaginationState, fromPagination.getPage);
+export const getPageLoading = createSelector(getPaginationState, fromPagination.getPageLoading);
+
 
 /**
  * Some selector functions create joins across parts of state. This selector
@@ -133,3 +146,6 @@ export const getIsSearchSuccess =
 
 export const getAreResultsAvailable =
 	createSelector(getApiResponseEntities, entities => (entities.length) ? true : false );
+
+export const getApiResponsePage = createSelector(getApiResponsePages, getPaginationPage, (pages, page) => pages[page]);
+export const getPageEntities = createSelector(getApiResponsePages, getPaginationPage, (pages, page) => pages[page].statuses);

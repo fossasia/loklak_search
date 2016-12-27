@@ -5,13 +5,13 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/throw';
 
-import { ApiResponse } from '../../../models/api-response';
+import { ApiResponse } from '../models/api-response';
 
 @Injectable()
 export class SearchService {
-	private static apiUrl: URL = new URL('http://api.loklak.org/api/search.json');
-	private static maximum_records_fetch: string = '30';
-	private static minified_results: string = 'true';
+	private static readonly apiUrl: URL = new URL('http://api.loklak.org/api/search.json');
+	private static maximum_records_fetch: number = 30;
+	private static minified_results: boolean = true;
 	private static source: string = 'all';
 
 	constructor(
@@ -19,13 +19,14 @@ export class SearchService {
 	) { }
 
 	// TODO: make the searchParams as configureable model rather than this approach.
-	public fetchQuery(query: string): Observable<ApiResponse> {
+	public fetchQuery(query: string, lastRecord = 0): Observable<ApiResponse> {
 		let searchParams = new URLSearchParams();
 		searchParams.set('q', query);
 		searchParams.set('callback', 'JSONP_CALLBACK');
-		searchParams.set('minified', SearchService.minified_results);
+		searchParams.set('minified', SearchService.minified_results.toString());
 		searchParams.set('source', SearchService.source);
-		searchParams.set('maximumRecords', SearchService.maximum_records_fetch);
+		searchParams.set('maximumRecords', SearchService.maximum_records_fetch.toString());
+		searchParams.set('startRecord', (lastRecord + 1).toString());
 
 		return this.jsonp.get(SearchService.apiUrl.toString(), {search : searchParams})
 								.map(this.extractData)

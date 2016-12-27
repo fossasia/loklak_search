@@ -1,7 +1,6 @@
 import { Action } from '@ngrx/store';
-import { ApiResponse } from '../models/api-response';
-import { Query } from '../models/query';
 import { actionTypeCheck } from '../utils';
+import { ApiResponse } from '../models/api-response';
 
 /**
  * For each action type in an action group, make a simple
@@ -12,10 +11,11 @@ import { actionTypeCheck } from '../utils';
  * action types in the application are unique.
  */
 export const ActionTypes = {
-	SEARCH: actionTypeCheck('[Api] Search'),
-	SEARCH_COMPLETE_SUCCESS: actionTypeCheck('[Api] Search Complete Success'),
-	SEARCH_COMPLETE_FAIL: actionTypeCheck('[Api] Search Complete Fail')
+	NEXT_PAGE: actionTypeCheck('[Pagination] Next Page'),
+	PAGINATION_COMPLETE_SUCCESS: actionTypeCheck('[Pagination] Pagination Complete Success'),
+	PAGINATION_COMPLETE_FAIL: actionTypeCheck('[Pagination] Pagination Complete Fail')
 };
+
 
 /**
  * Every action is comprised of at least a type and an optional
@@ -25,29 +25,30 @@ export const ActionTypes = {
  * See Discriminated Unions: https://www.typescriptlang.org/docs/handbook/advanced-types.html#discriminated-unions
  */
 
-export class SearchAction implements Action {
-	type = ActionTypes.SEARCH;
+export class NextPageAction implements Action {
+	type = ActionTypes.NEXT_PAGE;
 
-	constructor(public payload: Query) { }
+	constructor (public payload: any) { }
 }
 
-export class SearchCompleteSuccessAction implements Action {
-	type = ActionTypes.SEARCH_COMPLETE_SUCCESS;
+export class PaginationCompleteSuccessAction implements Action {
+	type = ActionTypes.PAGINATION_COMPLETE_SUCCESS;
 
 	constructor(public payload: ApiResponse) { }
 }
 
-export class SearchCompleteFailAction implements Action {
-	type = ActionTypes.SEARCH_COMPLETE_FAIL;
+export class PaginationCompleteFailAction implements Action {
+	type = ActionTypes.PAGINATION_COMPLETE_FAIL;
 
 	constructor(public payload: any) { }
 }
+
 
 /**
  * Export a type alias of all actions in this action group
  * so that reducers can easily compose action types
  */
 export type Actions
-	= SearchAction
-	| SearchCompleteSuccessAction
-	| SearchCompleteFailAction;
+	= NextPageAction
+	| PaginationCompleteSuccessAction
+	| PaginationCompleteFailAction;
