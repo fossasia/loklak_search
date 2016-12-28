@@ -35,12 +35,12 @@ div.wrapper {
 			height: 44px;
 			vertical-align: top;
 			border-radius: 2px;
-			box-shadow: 0 2px 2px 0 rgba(0,0,0,0.16),0 0 0 1px rgba(0,0,0,0.08);			
+			box-shadow: 0 2px 2px 0 rgba(0,0,0,0.16),0 0 0 1px rgba(0,0,0,0.08);
 			margin: 20px 0px 20px 0;
 			min-width: 584px;
 			border: 0 !important;
 			outline: 0 !important;
-			transition: box-shadow 200ms cubic-bezier(0.4, 0.0, 0.2, 1);	
+			transition: box-shadow 200ms cubic-bezier(0.4, 0.0, 0.2, 1);
 
 		div.input-group{
 			border: 0 !important;
@@ -69,7 +69,7 @@ div.wrapper {
 			input:focus {
 				box-shadow: none;
 				border-color: none;
-				
+
 			}
 
 			input,
@@ -79,7 +79,7 @@ div.wrapper {
 			}
 
 		}
-		
+
 	}
 	div.search-form:hover{
 			box-shadow: 0 3px 8px 0 rgba(0,0,0,0.16),0 0 0 1px rgba(0,0,0,0.08);
@@ -89,6 +89,7 @@ div.wrapper {
 		position: absolute;
 		bottom: 0;
 		left: 0;
+		right: 0;
 	}
 }
 
@@ -96,7 +97,7 @@ div.wrapper {
 	div.wrapper {
 		div.search-form {
 			min-width:260px;
-			margin: 20px 15px 20px 15px;		
+			margin: 20px 15px 20px 15px;
 
 
 				input{

@@ -1,3 +1,30 @@
+body{
+	color: $primary-color;
+	margin: 0;
+	padding: 0;
+	width: 100vw;
+	min-height: 100vh;
+	background: #fff;
+	overflow-x: hidden;
+}
+
+a {
+	color: $link-color;
+}
+
+a:hover {
+	color: $link-hover-color;
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+hr {
+	margin-top: 20px;
+	margin-bottom: 20px;
+	border: 0;
+	border-top: 1px solid $line-color;
+}
+
 
 
 /****HOME PAGE SEARCH BOX ELEMENTS****/
@@ -20,15 +47,6 @@
 	border-radius: 4px;
 	border-top-left-radius: 0px;
 	border-bottom-left-radius: 0px;
-}
-
-.search-icon {
-	background-image: url($search-icon);
-  background-position: center;
-  background-repeat: no-repeat;
-  cursor: pointer;
-  width: 18px;
-  height: 18px;
 }
 
 /****NAVBAR ELEMENTS****/
@@ -88,16 +106,6 @@
 		  display: block;
 		}
 
-.list-icon {
-	background-image: url($list-icon);
-	background-position: center;
-	background-repeat: no-repeat;
-	background-size: 100%;
-	cursor: pointer;
-	width: 24px;
-	height: 20px;
-}
-
 @media #{$breakpoint-small} {
 	.navbar-header {
 		width: auto;
@@ -129,7 +137,26 @@
 	}
 }
 
-/****SEARCHPAGE NAVBAR ELEMENTS****/
+/****ICONS****/
+
+.search-icon {
+	background-image: url($search-icon);
+  background-position: center;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  width: 18px;
+  height: 18px;
+}
+
+.list-icon {
+	background-image: url($list-icon);
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: 100%;
+	cursor: pointer;
+	width: 24px;
+	height: 20px;
+}
 
 .search-icon-white {
 	background-image: url($search-icon-white);
@@ -139,16 +166,4 @@
   cursor: pointer;
   width: 20px;
   height: 19px;
-}
-
-.form-control {
-	color: $alternate-color;
-	border: 1px solid $border-color-navbar;
-	padding: 6px 12px;
-	width: 100%;
-	transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-}
-
-.header-search-btn {
-	padding: 6px 8px;
 }
