@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { LoklakTermsRoutingModule } from './terms-routing.module';
 import { TermsComponent } from './terms.component';
+import { NavbarModule } from '../navbar/navbar.module';
 import { FooterModule } from '../footer/footer.module';
 import { RouterModule } from '@angular/router';
 
@@ -11,6 +12,7 @@ import { RouterModule } from '@angular/router';
 		CommonModule,
 
 		LoklakTermsRoutingModule,
+		NavbarModule,
 		FooterModule,
 		RouterModule
 	],

@@ -25,10 +25,7 @@ hr {
 	border-top: 1px solid $line-color;
 }
 
-
-
-/****HOME PAGE SEARCH BOX ELEMENTS****/
-
+/****SEARCH BOX ELEMENTS****/
 
 .input-group {
 	display: table;
@@ -49,121 +46,18 @@ hr {
 	border-bottom-left-radius: 0px;
 }
 
-/****NAVBAR ELEMENTS****/
-
-.navbar {
-	background-color: $background-color-navbar;
-	border:1px solid $border-color-navbar;
-	margin: 0;
-	padding: 0;
-}
-
-	#navbar-toggle-cbox {
-		display: none;
-	}
-
-	.navbar-header {
-		width: 100%;
-	}
-
-		.navbar-brand {
-			display: block;
-			height: 50px;
-		}
-
-		.navbar-toggle {
-			border: 1px solid $border-color-button;
-			border-radius : 4px;
-			float: right;
-			margin: 8px 15px 8px 0px;
-			padding: 7px 8px;
-		}
-
-	.navbar-collapse {
-		display: none;
-		border: 1px solid $border-color-navbar;
-
-		li {
-			position: relative;
-			display: block;
-
-			a {
-				color: $navigation-link-color;
-				display: block;
-				padding: 10px 15px;
-				line-height: 20px;
-			}
-
-			a:hover {
-				color: $primary-color;
-				text-decoration: none;
-			}
-
-		}
-	}
-
-		#navbar-toggle-cbox:checked ~ .navbar-collapse {
-		  display: block;
-		}
-
-@media #{$breakpoint-small} {
-	.navbar-header {
-		width: auto;
-		float: left;
-	}
-
-	.navbar-toggle {
-		display: none;
-	}
-
-	.navbar-collapse {
-		display: block;
-		height: 50px;
-		border: none;
-
-		ul {
-			position: relative;
-			float: right;
-
-			li {
-				float:left;
-
-				a {
-					padding-top: 15px;
-					padding-bottom: 15px;
-				}
-			}
-		}
-	}
-}
-
 /****ICONS****/
 
-.search-icon {
-	background-image: url($search-icon);
-  background-position: center;
-  background-repeat: no-repeat;
-  cursor: pointer;
-  width: 18px;
-  height: 18px;
-}
+/* Rules for sizing the icon. */
+.material-icons.md-18 { font-size: 18px; }
+.material-icons.md-24 { font-size: 24px; }
+.material-icons.md-36 { font-size: 36px; }
+.material-icons.md-48 { font-size: 48px; }
 
-.list-icon {
-	background-image: url($list-icon);
-	background-position: center;
-	background-repeat: no-repeat;
-	background-size: 100%;
-	cursor: pointer;
-	width: 24px;
-	height: 20px;
-}
+/* Rules for using icons as black on a light background. */
+.material-icons.md-dark { color: rgba(0, 0, 0, 0.54); }
+.material-icons.md-dark.md-inactive { color: rgba(0, 0, 0, 0.26); }
 
-.search-icon-white {
-	background-image: url($search-icon-white);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: 100%;
-  cursor: pointer;
-  width: 20px;
-  height: 19px;
-}
+/* Rules for using icons as white on a dark background. */
+.material-icons.md-light { color: rgba(255, 255, 255, 1); }
+.material-icons.md-light.md-inactive { color: rgba(255, 255, 255, 0.3); }
