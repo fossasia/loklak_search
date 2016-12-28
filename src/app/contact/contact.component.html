@@ -43,7 +43,33 @@
 			</address>			
 			<hr>
 			<h5>Report a safety or abuse issue affecting our products.<br><br>
-			If you know of a safety or abuse problem with any of Loklak's services, we'd like to hear about it right away. Please use our <a href="">contact</a> form to report the issue.</h5><br><br>
+			If you know of a safety or abuse problem with any of Loklak's services, we'd like to hear about it right away. Please use our <a (click)="showLightbox=!showLightbox;" class="contactformlink">contact</a> form to report the issue.</h5><br><br>
 		</div>
+    <div class="overlay" [style.visibility]="showcontactform()">
+      <div class="overlay-content">
+       <button class="lightbox-close" (click)="showLightbox =!showLightbox;">x</button>
+       <h2 class="lightbox-header">Report an Issue</h2>
+       <form #f="ngForm" (ngSubmit)="OnSubmit(f.value); showsend=false;" novalidate>
+       <label for="name">*Name: <input type="text" name="name" placeholder="Enter Your Name" [(ngModel)]="issue.name" #name="ngModel" required> 
+       <small [hidden]="name.valid || (name.pristine && !f.submitted)">
+            Required
+        </small>
+          </label>
+         <label for="email">*Email: <input type="email" name="email" placeholder="Enter Your Email" [(ngModel)]="issue.email" #email="ngModel" required>
+         <small [hidden]="email.valid || (email.pristine && !f.submitted)">
+            Required
+        </small>
+        </label>
+         <label for="input">*Issue:
+          <input type="text" name="input" placeholder="Share with us your issue" class="issue-text" [(ngModel)]="issue.input" #input="ngModel" required>
+         <small [hidden]="input.valid || (input.pristine && !f.submitted)">
+            Required
+        </small>
+         </label>
+         <input type="submit" value="Submit" class="submitbutton" [disabled]="!f.valid">
+         <div [hidden]="showsend" class="reported">Your issue have been reported.</div>
+       </form> 
+      </div>
+    </div>
 	</div>
 <app-footer></app-footer>
