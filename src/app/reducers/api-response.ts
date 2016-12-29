@@ -1,6 +1,7 @@
 import { createSelector } from 'reselect';
 import { ApiResponse, ApiResponseResult, ApiResponseMetadata, ApiResponseUser } from '../models/api-response';
 import * as api from '../actions/api';
+import * as pagination from '../actions/pagination';
 
 /**
  * Each reducer module must import the local `State` which it controls.
@@ -13,7 +14,7 @@ import * as api from '../actions/api';
  * 												Used to detect wheather the loading has been success/fail.
  */
 export interface State {
-	metadata: ApiResponseMetadata;
+	pages: ApiResponse[];
 	entities: ApiResponseResult[];
 	hashtags: Array<{ tag: string, count: number }>;
 	valid: boolean;
@@ -28,7 +29,7 @@ export interface State {
  * @prop: valid: true
  */
 const initialState: State = {
-	metadata: null,
+	pages: [],
 	entities: [],
 	hashtags: [],
 	valid: true
@@ -43,18 +44,18 @@ const initialState: State = {
  * Here the reducer controls the part of state which is responsilble for storing the
  * results fetched from the API.
  */
-export function reducer(state: State = initialState, action: api.Actions): State {
+export function reducer(state: State = initialState, action: api.Actions | pagination.Actions): State {
 	switch (action.type) {
 		case api.ActionTypes.SEARCH_COMPLETE_SUCCESS: {
 			const apiResponse = action.payload;
 
-			let tagStrings = [].concat(...apiResponse.statuses.map((a) => (a.hashtags)));
+			let tagStrings = [].concat(...apiResponse.statuses.map(item => item.hashtags));
 			let hashtags = Array.from(new Set(tagStrings)).map(tag => {
 					return { tag, count: tagStrings.filter(y => y === tag).length };
-			}).sort((a, b) => (b.count - a.count));
+			});
 
 			return {
-				metadata: apiResponse.search_metadata,
+				pages: [ apiResponse ],
 				entities: apiResponse.statuses,
 				hashtags,
 				valid: true
@@ -65,6 +66,27 @@ export function reducer(state: State = initialState, action: api.Actions): State
 			return Object.assign({}, state, {
 				valid: false
 			});
+		}
+
+		case pagination.ActionTypes.PAGINATION_COMPLETE_SUCCESS: {
+			const apiResponse = action.payload;
+
+			let oldTagStrings = state.hashtags.map(hashtag => hashtag.tag);
+			let tagStrings = oldTagStrings.concat(...apiResponse.statuses.map(item => item.hashtags));
+			let hashtags = Array.from(new Set(tagStrings)).map(tag => {
+					return { tag, count: tagStrings.filter(y => y === tag).length };
+			});
+
+			return Object.assign({}, state, {
+				pages:	[...state.pages, apiResponse],
+				entities: [...state.entities, ...apiResponse.statuses],
+				hashtags: [...hashtags],
+				valid: true
+			});
+		}
+
+		case pagination.ActionTypes.PAGINATION_COMPLETE_FAIL: {
+			return state;
 		}
 
 		default: {
@@ -84,8 +106,10 @@ export function reducer(state: State = initialState, action: api.Actions): State
 
 export const getEntities = (state: State) => state.entities;
 
-export const getMetadata = (state: State) => state.metadata;
+export const getPages = (state: State) => state.pages;
 
 export const getHashtags = (state: State) => state.hashtags;
 
 export const isResultValid = (state: State) => state.valid;
+
+export const lastRecord = (state: State) => state.entities.length - 1;
