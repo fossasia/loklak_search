@@ -10,9 +10,11 @@
 	<div class="feed-wrapper">
 		<div *ngIf="(areResultsAvailable$ | async)" class="wrapper">
 			<div *ngFor="let item of (apiResponseResults$ | async)">
-				<feed-card [feedItem]="item"></feed-card>
+				<feed-card [feedItem]="item" (FeedData)="Updatedata($event)" (showLightBox)="showhidelightbox($event)"></feed-card>
 			</div>
-
+			<div *ngIf="(visibility)">
+			<feed-lightbox [feedItem]="(feedTweet$ | async)" (hidelightbox)="showhidelightbox($event)"></feed-lightbox>
+			</div>
 			<feed-pagination
 				(paginate)="loadMoreResults(event$)"></feed-pagination>
 
