@@ -1,0 +1,57 @@
+<div class="overlay">
+	<div class="overlay-content">
+	<button class="form-close" (click)="hidecontactform.emit(false)">x</button>
+	<form class="contact-form" [formGroup]="ContactForm" novalidate (ngSubmit)="sendtosuperuser(ContactForm.value); showsubmit()">
+<fieldset>
+<legend>Contact Form</legend>
+<div class="form-group">
+    <label class="form-label" for="name">*Name </label>
+    <input type="text" formControlName="name" id="name" placeholder="Your name">
+    <small *ngIf="!(ContactForm.controls.name.valid || (ContactForm.controls.name.pristine && !submitted))">
+    	Name is required
+    	</small>
+    	</div>
+    	<div class="form-group">
+    	<label class="form-label" for="email">*Email </label>
+    <input type="email" formControlName="email" id="email" placeholder="xyz@example.com">
+   <small  *ngIf="!(ContactForm.controls.email.valid || (ContactForm.controls.email.pristine && !submitted))">
+    	Email is required
+    	</small> 
+    	</div>
+    	<div class="form-group">
+    	<label class="form-label" for="number">*Number </label>
+   		<input type="tel" formControlName="Number" id="number" placeholder="+(Country Code)-(Number)">
+   		<small  *ngIf="!(ContactForm.controls.Number.valid || (ContactForm.controls.Number.pristine && !submitted))">
+    	Number is required.
+    	</small> 
+    </div>
+    <div class="form-group">
+    <label class="form-label" >*Type of Issue </label>
+    <label for="option-one" class="form-radio">
+     <input id="option-one" type="radio" name="type" value="General Suggestion" checked formControlName="type">
+            General Suggestion 
+        </label>
+        <label for="option-two" class="form-radio">
+            <input id="option-two" type="radio" name="type" value="Safety issue" formControlName="type">
+            Abuse/Safety Issue
+        </label>
+    <small  *ngIf="!(ContactForm.controls.type.valid || (ContactForm.controls.type.pristine && !submitted))">
+    	Issue type is required
+    	</small> 
+    	</div>
+    	<div class="form-group">
+    	<label class="form-label" for="input">*Description</label>
+    <input type="text" class="inputtext"formControlName="input" id="input" placeholder="Minimum 100 words">
+   <small *ngIf="!(ContactForm.controls.input.valid || (ContactForm.controls.input.pristine && !submitted))">
+    	Describe more.
+    	</small> 
+    	</div>
+    	<div class="form-group">
+    	<small>*Required</small>
+<button type="submit" [disabled]="!ContactForm.valid">Submit</button>
+<small *ngIf="submitted && ContactForm.valid ">Your Form has been submitted</small>
+</div>
+</fieldset>
+</form>
+</div>
+</div>

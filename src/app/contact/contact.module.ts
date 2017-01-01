@@ -1,21 +1,27 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { LoklakContactRoutingModule } from './contact-routing.module';
 import { ContactComponent } from './contact.component';
 import { FooterModule } from '../footer/footer.module';
 import { RouterModule } from '@angular/router';
+import { ContactFormComponent } from './contact-form/contact-form.component';
 
 @NgModule({
 	imports: [
 		CommonModule,
-
+		FormsModule,
+		ReactiveFormsModule,
+		FormsModule,
 		LoklakContactRoutingModule,
 		FooterModule,
 		RouterModule
 	],
 	declarations: [
-		ContactComponent
+		ContactComponent,
+		ContactFormComponent
 	]
 })
 export class ContactModule { }

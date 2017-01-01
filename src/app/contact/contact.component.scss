@@ -40,6 +40,10 @@
 	text-align: center;
 }
 
+a {
+	cursor: pointer;
+}
+
 @media screen and (max-width:990px){
 	.image-banner {
 		height: 190px;
