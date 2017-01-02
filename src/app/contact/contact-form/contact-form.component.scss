@@ -10,7 +10,7 @@
 	background-color: rgba(0, 0, 0, 0.5);
 
 	.overlay-content{
-		width: 500px;
+		width: 620px;
 		height: 560px;
 		background-color: white;
 		margin: 0 auto;
@@ -50,12 +50,12 @@
     			box-sizing: border-box;
     			*display: inline;
     			*zoom: 1;
-    			width: 60%;
+    			width: 70%;
 			}
 
 			textarea {
-				max-height: 100px;
-				max-width: 60%;
+				max-height: 150px;
+				max-width: 70%;
 			}
 
  			legend {
@@ -67,7 +67,9 @@
     			border-bottom: 1px solid #e5e5e5;
 			}
 
- 			
+			.validators {
+				text-align: center;
+			} 			
 
 
  			.form-group {
@@ -78,7 +80,7 @@
     				text-align: left;
     				display: inline-block;
     				vertical-align: middle;
-    				width: 10em;
+    				width: 9.5em;
     				margin: 0 1em 0 0;
 
 				}

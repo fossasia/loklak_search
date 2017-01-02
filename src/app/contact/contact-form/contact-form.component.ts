@@ -5,7 +5,6 @@ interface User {
 	name: string;
 	email: string;
 	Number: number;
-	type: string;
 	input: string;
 }
 
@@ -34,8 +33,7 @@ export class ContactFormComponent implements OnInit {
 			name: new FormControl('', [<any>Validators.required]),
 			email: new FormControl('', [<any>Validators.required]),
 			Number: new FormControl('', [<any>Validators.required, <any>Validators.minLength(12)]),
-			type: new FormControl('', [<any>Validators.required]),
-			input: new FormControl('', [<any>Validators.required, <any>Validators.minLength(100)])
+			input: new FormControl('', [<any>Validators.required, <any>Validators.minLength(200)])
 			});
 	}
 
