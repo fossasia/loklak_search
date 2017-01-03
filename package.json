@@ -5,7 +5,7 @@
   "angular-cli": {},
   "scripts": {
     "start": "ng serve",
-    "lint": "tslint \"src/**/*.ts\"",
+    "lint": "tslint \"src/**/*.ts\" and sass-lint 'src/**/*.scss' -v -q",
     "test": "ng test",
     "pree2e": "webdriver-manager update",
     "e2e": "protractor"
@@ -44,6 +44,7 @@
     "karma-remap-istanbul": "^0.2.1",
     "ngrx-store-freeze": "^0.1.0",
     "protractor": "4.0.11",
+    "sass-lint": "1.10.2",
     "ts-node": "1.7.0",
     "tslint": "^4.0.2",
     "typescript": "2.1.1"
