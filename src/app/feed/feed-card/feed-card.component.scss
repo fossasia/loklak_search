@@ -1,6 +1,7 @@
 a.post-link {
 	text-decoration: none;
 	color: black;
+	cursor: default;
 
 	div.card {
 		padding: 10px;
@@ -152,7 +153,7 @@ a.post-link {
 			margin-top: 30px;
 			font-size: 14px;
 		}
-        
+
         .lightbox-timestamp{
             margin-left: 15px;
             color:black;
@@ -180,7 +181,7 @@ a.post-link {
 			text-decoration: none;
 			cursor: pointer;
 		}
-        
+
         .lightbox-actions{
             position: absolute;
             left: 20px;
@@ -193,16 +194,16 @@ a.post-link {
 					font-size: 20px;
 				}
 
-            
+
             .lightbox-action {
 					color: #aab8c2;
 					display: flex;
 
 					.lightbox-counter{
-						margin-left: 5px; 
+						margin-left: 5px;
 					}
 				}
-                
+
 				.lightbox-reply:hover {
 					color: #89C9FA;
                     cursor: pointer;
@@ -217,38 +218,38 @@ a.post-link {
 					color: #e81c4f;
                     cursor : pointer;
 				}
-            
+
             .lightbox-space {
                 margin-left: 60px;
             }
         }
 	}
-    
+
     @media screen and (max-width:600px) {
-        
+
         .overlay-content{
-            
+
             width:100%;
             height: 400px;
             position: relative;
-            
+
             .lightbox-close{
-                
+
                 position:absolute;
                 left:90%;
             }
-            
+
             .lightbox-btn{
                 position:absolute;
                 left:5%;
                 top:85%;
             }
-            
+
             .lightbox-actions{
                 position: absolute;
                 top:68%;
                 right:20%
-                
+
             }
         }
 }

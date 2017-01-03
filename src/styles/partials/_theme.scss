@@ -1,0 +1,63 @@
+body{
+	color: $primary-color;
+	margin: 0;
+	padding: 0;
+	width: 100vw;
+	min-height: 100vh;
+	background: #fff;
+	overflow-x: hidden;
+}
+
+a {
+	color: $link-color;
+}
+
+a:hover {
+	color: $link-hover-color;
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+hr {
+	margin-top: 20px;
+	margin-bottom: 20px;
+	border: 0;
+	border-top: 1px solid $line-color;
+}
+
+/****SEARCH BOX ELEMENTS****/
+
+.input-group {
+	display: table;
+}
+
+.input-group-btn {
+	display: table-cell;
+	width: 1%;
+}
+
+.btn {
+	border: 1px solid transparent;
+	display: inline-block;
+	padding: 6px 12px;
+	vertical-align: middle;
+	border-radius: 4px;
+	border-top-left-radius: 0px;
+	border-bottom-left-radius: 0px;
+}
+
+/****ICONS****/
+
+/* Rules for sizing the icon. */
+.material-icons.md-18 { font-size: 18px; }
+.material-icons.md-24 { font-size: 24px; }
+.material-icons.md-36 { font-size: 36px; }
+.material-icons.md-48 { font-size: 48px; }
+
+/* Rules for using icons as black on a light background. */
+.material-icons.md-dark { color: rgba(0, 0, 0, 0.54); }
+.material-icons.md-dark.md-inactive { color: rgba(0, 0, 0, 0.26); }
+
+/* Rules for using icons as white on a dark background. */
+.material-icons.md-light { color: rgba(255, 255, 255, 1); }
+.material-icons.md-light.md-inactive { color: rgba(255, 255, 255, 0.3); }
