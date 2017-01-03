@@ -5,8 +5,7 @@
   "angular-cli": {},
   "scripts": {
     "start": "ng serve",
-    "lint": "tslint \"src/**/*.ts\"",
-    "sass-lint": "sass-lint 'src/**/*.scss' -v -q",
+    "lint": "tslint \"src/**/*.ts\" and sass-lint 'src/**/*.scss' -v -q",
     "test": "ng test",
     "pree2e": "webdriver-manager update",
     "e2e": "protractor"
