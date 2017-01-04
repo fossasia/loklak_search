@@ -3,11 +3,18 @@
 }
 
 button {
-	width: 100%;
+	display: block;
+	margin: 0 auto;
 	font-size: 1.1em;
 	padding: 5px;
 	color: #2865a1;
-	background: #f1f8fb;
-	border: 1px solid #bbcadc;
-	border-radius: 3px;
+	font-weight: 700;
+	background: transparent;
+	border: none;
+	cursor: pointer;
+}
+
+button:focus{
+	border: none;
+	outline: none;
 }
