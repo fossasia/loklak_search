@@ -69019,7 +69019,7 @@ module.exports = ".wrapper {\n  max-width: 700px;\n  padding: 10px;\n  margin-to
 /* 771 */
 /***/ function(module, exports) {
 
-module.exports = ":host {\n  display: block; }\n\nbutton {\n  width: 100%;\n  font-size: 1.1em;\n  padding: 5px;\n  color: #2865a1;\n  background: #f1f8fb;\n  border: 1px solid #bbcadc;\n  border-radius: 3px; }\n"
+module.exports = ":host {\n  display: block; }\n\nbutton {\n  display: block;\n  margin: 0 auto;\n  font-size: 1.1em;\n  padding: 5px;\n  color: #2865a1;\n  font-weight: 700;\n  background: transparent;\n  border: none;\n  cursor: pointer; }\n\nbutton:focus {\n  border: none;\n  outline: none; }\n"
 
 /***/ },
 /* 772 */
