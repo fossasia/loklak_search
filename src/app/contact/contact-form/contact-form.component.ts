@@ -4,8 +4,9 @@ import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms'
 interface User {
 	name: string;
 	email: string;
-	Number: number;
-	input: string;
+	countrycode : number;
+	telephone: number;
+	message: string;
 }
 
 @Component({
@@ -32,8 +33,9 @@ export class ContactFormComponent implements OnInit {
 		this.ContactForm = new FormGroup({
 			name: new FormControl('', [<any>Validators.required]),
 			email: new FormControl('', [<any>Validators.required]),
-			Number: new FormControl('', [<any>Validators.required, <any>Validators.minLength(12)]),
-			input: new FormControl('', [<any>Validators.required, <any>Validators.minLength(200)])
+			countrycode: new FormControl('213',[<any>Validators.required]),
+			telephone: new FormControl('', [<any>Validators.required]),
+			message: new FormControl('', [<any>Validators.required, <any>Validators.minLength(200)])
 			});
 	}
 

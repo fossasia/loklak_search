@@ -37,9 +37,7 @@
 			
 		
 
- 			input[type="text"],
- 			input[type="email"],
- 			input[type="tel"],
+ 			input,
  			textarea {
     			padding: 0.5em 0.6em;
     			display: inline-block;
@@ -86,17 +84,26 @@
 				}
 			}
 
-			 .form-radio {
-			 	text-align: center;
-    			display: block;
-			} 
+			.telephonegroup {
+
+				display: inline-block;
+				width:70%;
+
+				input {
+    			width:63.5%;
+				}
+				
+			select {
+				padding:0.5em 0.6em 0px 2px;
+				font-size: 12px;
+       			height:3.1em;
+        		width: 33%;
+			}
+		}
 
 			button {
 				width:100%
 			}
-
-
-
 
 			}
 

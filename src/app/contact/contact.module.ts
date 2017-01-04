@@ -14,7 +14,6 @@ import { ContactFormComponent } from './contact-form/contact-form.component';
 		CommonModule,
 		FormsModule,
 		ReactiveFormsModule,
-		FormsModule,
 		LoklakContactRoutingModule,
 		FooterModule,
 		RouterModule
