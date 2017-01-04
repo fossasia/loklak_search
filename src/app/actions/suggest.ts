@@ -12,9 +12,9 @@ import { actionTypeCheck } from '../utils';
  * action types in the application are unique.
  */
 export const ActionTypes = {
-	SUGGEST: actionTypeCheck('[Api] Search'),
-	SUGGEST_COMPLETE_SUCCESS: actionTypeCheck('[Api] Search Complete Success'),
-	SUGGEST_COMPLETE_FAIL: actionTypeCheck('[Api] Search Complete Fail')
+	SUGGEST: actionTypeCheck('[Api] Suggest'),
+	SUGGEST_COMPLETE_SUCCESS: actionTypeCheck('[Api] Suggest Complete Success'),
+	SUGGEST_COMPLETE_FAIL: actionTypeCheck('[Api] Suggest Complete Fail')
 };
 
 /**

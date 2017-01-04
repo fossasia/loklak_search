@@ -40,7 +40,7 @@ import { FooterModule } from '../footer/footer.module';
 		FooterModule
 	],
 	declarations: [
-		/**
+		/**mysql
 		 * The `<app-home>` component of the application which is the source origin of application.
 		 * It controls the `design` and `logic` for the `Home Page` of the application.
 		 */
