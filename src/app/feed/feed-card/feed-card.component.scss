@@ -108,8 +108,9 @@ a.post-link {
 	background-color: rgba(0, 0, 0, 0.5);
 
 	.overlay-content{
+		max-width: 90%;
+		height: 400px !important;
 		width: 600px;
-		height: 280px;
 		background-color: white;
 		margin: 0 auto;
 		border: solid gray 1px;
@@ -152,12 +153,12 @@ a.post-link {
 			margin-top: 30px;
 			font-size: 14px;
 		}
-        
-        .lightbox-timestamp{
-            margin-left: 15px;
-            color:black;
-            font-size: 13px;
-        }
+
+      .lightbox-timestamp{
+          margin-left: 15px;
+          color:black;
+          font-size: 13px;
+      }
 
 		.lightbox-tweet{
 			position: absolute;
@@ -178,14 +179,15 @@ a.post-link {
 			font-size: 16px;
 			border-radius: 5px;
 			text-decoration: none;
+			margin-top: 10px;
 			cursor: pointer;
 		}
-        
+
         .lightbox-actions{
             position: absolute;
             left: 20px;
 			top: 190px;
-				margin-top: 30px;
+				margin-top: 20px;
 				display: flex;
 				justify-content: space-between;
 
@@ -193,16 +195,16 @@ a.post-link {
 					font-size: 20px;
 				}
 
-            
+
             .lightbox-action {
 					color: #aab8c2;
 					display: flex;
 
 					.lightbox-counter{
-						margin-left: 5px; 
+						margin-left: 5px;
 					}
 				}
-                
+
 				.lightbox-reply:hover {
 					color: #89C9FA;
                     cursor: pointer;
@@ -217,38 +219,38 @@ a.post-link {
 					color: #e81c4f;
                     cursor : pointer;
 				}
-            
+
             .lightbox-space {
                 margin-left: 60px;
             }
         }
 	}
-    
+
     @media screen and (max-width:600px) {
-        
+
         .overlay-content{
-            
+
             width:100%;
             height: 400px;
             position: relative;
-            
+
             .lightbox-close{
-                
+
                 position:absolute;
                 left:90%;
             }
-            
+
             .lightbox-btn{
                 position:absolute;
                 left:5%;
                 top:85%;
             }
-            
+
             .lightbox-actions{
                 position: absolute;
                 top:68%;
                 right:20%
-                
+
             }
         }
 }
