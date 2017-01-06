@@ -21,16 +21,16 @@
 					[config]="cardAutolinkerConfig"></feed-linker></p>
                     <div class="lightbox-actions">
                     <div class="lightbox-action lightbox-reply lightbox-space">
-					<a onclick="window.open(this.href, 'openwin','left=20,top=20,width=700,height=500,toolbar=1,resizable=0');return false;" href="https://twitter.com/intent/tweet?in_reply_to={{feedItem.id_str}}"><i class="material-icons lightbox-md-20">reply</i></a>
+					<a target="_blank" href="https://twitter.com/intent/tweet?in_reply_to={{feedItem.id_str}}"><i class="material-icons lightbox-md-20">reply</i></a>
 				</div>
 				<div class="lightbox-action lightbox-retweet lightbox-space">
-					<a onclick="window.open(this.href, 'openwin','left=20,top=20,width=700,height=500,toolbar=1,resizable=0'); return false;" href="https://twitter.com/intent/retweet?tweet_id={{feedItem.id_str}}"><i class="material-icons lightbox-md-20">repeat</i></a>
+					<a target="_blank" href="https://twitter.com/intent/retweet?tweet_id={{feedItem.id_str}}"><i class="material-icons lightbox-md-20">repeat</i></a>
 					<div class="lightbox-counter lightbox-retweet-count">
 						{{retweetCount}}
 					</div>
 				</div>
 				<div class="lightbox-action lightbox-like lightbox-space">
-					<a onclick="window.open(this.href, 'openwin','left=20,top=20,width=700,height=500,toolbar=1,resizable=0'); return false;" href="https://twitter.com/intent/like?tweet_id={{feedItem.id_str}}"><i class="material-icons lightbox-md-20">favorite_border</i></a>
+					<a target="_blank" href="https://twitter.com/intent/like?tweet_id={{feedItem.id_str}}"><i class="material-icons lightbox-md-20">favorite_border</i></a>
 					<div class="lightbox-counter lightbox-like-count">
 						{{favouriteCount}}
 					</div>
@@ -61,16 +61,16 @@
 			</div>
 			<div class="card-footer">
 				<div class="action reply">
-					<a onclick="window.open(this.href, 'openwin','left=20,top=20,width=700,height=500,toolbar=1,resizable=0');return false;" href="https://twitter.com/intent/tweet?in_reply_to={{feedItem.id_str}}"><i class="material-icons md-20">reply</i></a>
+					<a target="_blank" href="https://twitter.com/intent/tweet?in_reply_to={{feedItem.id_str}}"><i class="material-icons md-20">reply</i></a>
 				</div>
 				<div class="action retweet">
-					<a onclick="window.open(this.href, 'openwin','left=20,top=20,width=700,height=500,toolbar=1,resizable=0'); return false;" href="https://twitter.com/intent/retweet?tweet_id={{feedItem.id_str}}"><i class="material-icons md-20">repeat</i></a>
+					<a target="_blank" href="https://twitter.com/intent/retweet?tweet_id={{feedItem.id_str}}"><i class="material-icons md-20">repeat</i></a>
 					<div class="counter retweet-count">
 						{{retweetCount}}
 					</div>
 				</div>
 				<div class="action like">
-					<a onclick="window.open(this.href, 'openwin','left=20,top=20,width=700,height=500,toolbar=1,resizable=0'); return false;" href="https://twitter.com/intent/like?tweet_id={{feedItem.id_str}}"><i class="material-icons md-20">favorite_border</i></a>
+					<a target="_blank" href="https://twitter.com/intent/like?tweet_id={{feedItem.id_str}}"><i class="material-icons md-20">favorite_border</i></a>
 					<div class="counter like-count">
 						{{favouriteCount}}
 					</div>
