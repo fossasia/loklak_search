@@ -28,7 +28,7 @@ export class ContactFormComponent implements OnInit {
 									  {code:376 , name:'Andorra (+376)'},
 	 								  {code:244 , name:'Angola (+244)'},
 	 								  {code:1264 , name:'Anguilla (+1264)'},
-	 								  {code:1268 , name:'Antigua &amp; Barbuda (+1268)'},
+	 								  {code:1268 , name:'Antigua & Barbuda (+1268)'},
 	 								  {code:54 , name:'Argentina (+54)'},
 	 								  {code:374 , name:'Armenia (+374)'},
 	 								  {code:297 ,name:'Aruba (+297)'},
@@ -185,7 +185,7 @@ export class ContactFormComponent implements OnInit {
 	 								  {code:7 ,name:'Russia (+7)'},
 	 								  {code:250 ,name:'Rwanda (+250)'},
 	 								  {code:378 ,name:'San Marino (+378)'},
-	 								  {code:239 ,name:'Sao Tome &amp; Principe (+239)'},
+	 								  {code:239 ,name:'Sao Tome & Principe (+239)'},
 	 								  {code:966 ,name:'Saudi Arabia (+966)'},
 	 								  {code:221 ,name:'Senegal (+221)'},
 	 								  {code:381 ,name:'Serbia (+381)'},
@@ -213,12 +213,12 @@ export class ContactFormComponent implements OnInit {
 	 								  {code:66 ,name:'Thailand (+66)'},
 	 								  {code:228 ,name:'Togo (+228)'},
 	 								  {code:676 ,name:'Tonga (+676)'},
-	 								  {code:1868 ,name:'Trinidad &amp; Tobago (+1868)'},
+	 								  {code:1868 ,name:'Trinidad & Tobago (+1868)'},
 	 								  {code:216 ,name:'Tunisia (+216)'},
 	 								  {code:90 ,name:'Turkey (+90)'},
 	 								  {code:7 ,name:'Turkmenistan (+7)'},
 	 								  {code:993 ,name:'Turkmenistan (+993)'},
-	 								  {code:1649 ,name:'Turks &amp; Caicos Islands (+1649)'},
+	 								  {code:1649 ,name:'Turks & Caicos Islands (+1649)'},
 	 								  {code:688 ,name:'Tuvalu (+688)'},
 	 								  {code:256 ,name:'Uganda (+256)'},
 	 								  {code:44 ,name:'UK (+44)'},
@@ -233,7 +233,7 @@ export class ContactFormComponent implements OnInit {
 	 								  {code:84 ,name:'Vietnam (+84)'},
 	 								  {code:1284 ,name:'Virgin Islands - British (+1284)'},
 	 								  {code:1340 ,name:'Virgin Islands - US (+1340)'},
-	 								  {code:681 ,name:'Wallis &amp; Futuna (+681)'},
+	 								  {code:681 ,name:'Wallis & Futuna (+681)'},
 	 								  {code:969 ,name:'Yemen (North)(+969)'},
 	 								  {code:967 ,name:'Yemen (South)(+967)'},
 	 								  {code:260 ,name:'Zambia (+260)'},
@@ -264,9 +264,9 @@ export class ContactFormComponent implements OnInit {
        	headers.append('Content-Type', 'application/X-www-form-urlencoded');
        	headers.append('Accept','application/json');
 
-       	    this.http.post('http://formspree.io/gr8achint.sharma@gmail.com', data , {headers: headers}).subscribe((response) => {
+       	    this.http.post('https://formspree.io/gr8achint.sharma@gmail.com', data , {headers: headers}).subscribe((response) => {
             if(response.json().success) {
-                this.http.post('http://formspree.io/gr8achint.sharma@gmail.com', data, {headers: headers}).subscribe((response) => {
+                this.http.post('https://formspree.io/gr8achint.sharma@gmail.com', data, {headers: headers}).subscribe((response) => {
             if(response.json().success) {
               console.log('Sent successfully');
             }

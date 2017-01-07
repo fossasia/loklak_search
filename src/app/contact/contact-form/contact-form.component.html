@@ -1,45 +1,45 @@
 <div class="overlay">
-	<div class="overlay-content">
-	<button class="form-close" (click)="hidecontactform.emit(false)">x</button>
-	<form class="contact-form" [formGroup]="ContactForm" novalidate (ngSubmit)="sendtosuperuser(ContactForm.value); showsubmit()" method="POST" action="http://formspree.io/gr8achint.sharma@gmail.com">
+    <div class="overlay-content">
+    <button class="form-close" (click)="hidecontactform.emit(false)">x</button>
+    <form class="contact-form" [formGroup]="ContactForm" novalidate (ngSubmit)="sendtosuperuser(ContactForm.value); showsubmit()" method="POST" action="https://formspree.io/gr8achint.sharma@gmail.com">
 <fieldset>
 <legend>Contact Form</legend>
 <div class="form-group">
     <label class="form-label" for="name">*Name </label>
     <input type="text" formControlName="name" id="name" placeholder="Your name" name="name">
     <div class="validators"><small *ngIf="!(ContactForm.controls.name.valid || (ContactForm.controls.name.pristine && !submitted))">
-    	Name is required
-    	</small></div>
-    	</div>
-    	<div class="form-group">
-    	<label class="form-label" for="email">*Email </label>
+        Name is required
+        </small></div>
+        </div>
+        <div class="form-group">
+        <label class="form-label" for="email">*Email </label>
     <input type="email" formControlName="email" id="email" placeholder="xyz@example.com" name="email">
    <div class="validators"><small  *ngIf="!(ContactForm.controls.email.valid || (ContactForm.controls.email.pristine && !submitted))">
-    	Email is required
-    	</small> </div>
-    	</div>
-    	<div class="form-group">
-    	<label class="form-label" for="telephone">*Mobile Number </label>
+        Email is required
+        </small> </div>
+        </div>
+        <div class="form-group">
+        <label class="form-label" for="telephone">*Mobile Number </label>
         <span class="telephonegroup">
         <select formControlName="countrycode" id="telephone" name="countrycode" placeholder="Country Code" [(ngModel)]="selectedValue" >
         <option *ngFor="let c of countries" [value]="c.code">{{c.name}}</option>
 </select> -
-   		<input type="tel" formControlName="telephone" id="telephone" placeholder="Mobile Number" name="telephone">
+        <input type="tel" formControlName="telephone" id="telephone" placeholder="Mobile Number" name="telephone">
         </span>
-   		<div class="validators"><small  *ngIf="!(ContactForm.controls.telephone.valid || (ContactForm.controls.telephone.pristine && !submitted))">
-    	 Mobile Number is required.
-    	</small> </div>
+        <div class="validators"><small  *ngIf="!(ContactForm.controls.telephone.valid || (ContactForm.controls.telephone.pristine && !submitted))">
+         Mobile Number is required.
+        </small> </div>
     </div>
-    	<div class="form-group">
-    	<label class="form-label" for="input">*Message</label>
+        <div class="form-group">
+        <label class="form-label" for="input">*Message</label>
     <textarea rows="30" cols="8" type="text" formControlName="message" id="input" name="message" placeholder="Minimum 100 words"></textarea>
    <div class="validators"><small *ngIf="!(ContactForm.controls.message.valid || (ContactForm.controls.message.pristine && !submitted))">
-    	Describe more with Minimum 100 words.
-    	</small> </div>
-    	</div>
-    	<div class="form-group">
-    	<small>*All fields are mandatory</small>
-<button type="submit" [disabled]="!ContactForm.valid" value="submit">Submit</button>
+        Describe more with Minimum 100 words.
+        </small> </div>
+        </div>
+        <div class="form-group">
+        <small>*All fields are mandatory</small>
+<button type="submit" [disabled]="!ContactForm.valid" value="submit">Submit<input type="hidden" name="_next" value="/contact" /></button>
 <small *ngIf="submitted && ContactForm.valid ">Your Form has been submitted</small>
 </div>
 </fieldset>
