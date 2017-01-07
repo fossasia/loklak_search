@@ -1,0 +1,87 @@
+.navbar {
+	background-color: rgb(248,248,248);
+	border:1px solid rgb(231,231,231);
+	margin: 0;
+	padding: 0;
+}
+
+	#navbar-toggle-cbox {
+		display: none;
+	}
+
+	.navbar-header {
+		width: 100%;
+	}
+
+		.navbar-brand {
+			display: block;
+			height: 50px;
+		}
+
+		.navbar-toggle {
+			height: 38px;
+			width: 40px;
+			border: 1px solid rgb(221,221,221);
+			border-radius : 4px;
+			float: right;
+			margin: 8px 15px 8px 0px;
+			padding: 7px 8px;
+		}
+
+	.navbar-collapse {
+		display: none;
+		border: 1px solid rgb(231,231,231);
+
+		li {
+			position: relative;
+			display: block;
+
+			a {
+				color: rgb(119,119,119);
+				display: block;
+				padding: 10px 15px;
+				line-height: 20px;
+			}
+
+			a:hover {
+				color: rgb(51,51,51);
+				text-decoration: none;
+			}
+
+		}
+	}
+
+		#navbar-toggle-cbox:checked ~ .navbar-collapse {
+		  display: block;
+		}
+
+@media only screen and (min-width: 768px) {
+	.navbar-header {
+		width: auto;
+		float: left;
+	}
+
+	.navbar-toggle {
+		display: none;
+	}
+
+	.navbar-collapse {
+		display: block;
+		height: 50px;
+		border: none;
+
+		ul {
+			position: relative;
+			float: right;
+
+			li {
+				float:left;
+
+				a {
+					padding-top: 15px;
+					padding-bottom: 15px;
+				}
+			}
+		}
+	}
+}

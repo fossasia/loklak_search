@@ -5,6 +5,7 @@ import { LoklakAboutRoutingModule } from './about-routing.module';
 import { AboutComponent } from './about.component';
 
 import { FooterModule } from '../footer/footer.module';
+import { NavbarModule } from '../navbar/navbar.module';
 import { RouterModule } from '@angular/router';
 
 @NgModule({
@@ -12,6 +13,7 @@ import { RouterModule } from '@angular/router';
 		CommonModule,
 
 		LoklakAboutRoutingModule,
+		NavbarModule,
 		FooterModule,
 		RouterModule
 	],

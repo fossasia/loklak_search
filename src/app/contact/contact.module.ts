@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { LoklakContactRoutingModule } from './contact-routing.module';
 import { ContactComponent } from './contact.component';
 import { FooterModule } from '../footer/footer.module';
+import { NavbarModule } from '../navbar/navbar.module';
 import { RouterModule } from '@angular/router';
 
 @NgModule({
@@ -11,6 +12,7 @@ import { RouterModule } from '@angular/router';
 		CommonModule,
 
 		LoklakContactRoutingModule,
+		NavbarModule,
 		FooterModule,
 		RouterModule
 	],

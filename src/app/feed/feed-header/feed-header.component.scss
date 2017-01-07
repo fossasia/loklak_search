@@ -34,6 +34,11 @@
 				}
 
 				input {
+					color: rgb(85,85,85);
+					border: 1px solid rgb(231,231,231);
+					padding: 6px 12px;
+					width: 100%;
+					transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
 					font-size: 16px;
 					word-spacing: 1.5pt;
 					letter-spacing: 0.5pt;
@@ -48,10 +53,11 @@
 
 				input,
 				span.input-group-btn button {
-					height: 39px;
+					height: 38px;
 				}
 
 				span.input-group-btn button {
+					padding: 6px 8px;
 					background: #d81b60;
 					color: white;
 				}
