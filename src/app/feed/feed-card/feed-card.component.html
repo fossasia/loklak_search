@@ -21,16 +21,16 @@
 					[config]="cardAutolinkerConfig"></feed-linker></p>
                     <div class="lightbox-actions">
                     <div class="lightbox-action lightbox-reply lightbox-space">
-					<a target="_blank" href="https://twitter.com/intent/tweet?in_reply_to={{feedItem.id_str}}"><i class="material-icons lightbox-md-20">reply</i></a>
+					<a onclick="window.open(this.href)" href="https://twitter.com/intent/tweet?in_reply_to={{feedItem.id_str}}"><i class="material-icons lightbox-md-20">reply</i></a>
 				</div>
 				<div class="lightbox-action lightbox-retweet lightbox-space">
-					<a target="_blank" href="https://twitter.com/intent/retweet?tweet_id={{feedItem.id_str}}"><i class="material-icons lightbox-md-20">repeat</i></a>
+					<a onclick="window.open(this.href)" href="https://twitter.com/intent/retweet?tweet_id={{feedItem.id_str}}"><i class="material-icons lightbox-md-20">repeat</i></a>
 					<div class="lightbox-counter lightbox-retweet-count">
 						{{retweetCount}}
 					</div>
 				</div>
 				<div class="lightbox-action lightbox-like lightbox-space">
-					<a target="_blank" href="https://twitter.com/intent/like?tweet_id={{feedItem.id_str}}"><i class="material-icons lightbox-md-20">favorite_border</i></a>
+					<a onclick="window.open(this.href)" href="https://twitter.com/intent/like?tweet_id={{feedItem.id_str}}"><i class="material-icons lightbox-md-20">favorite_border</i></a>
 					<div class="lightbox-counter lightbox-like-count">
 						{{favouriteCount}}
 					</div>
