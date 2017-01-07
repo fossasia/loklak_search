@@ -1,22 +1,20 @@
-import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ApiResponseResult } from '../../models/api-response';
 import { Observable } from 'rxjs/Rx';
 
 import { AutolinkerConfig, ConfigLinkType } from '../../shared/configrations';
 
 @Component({
-	selector: 'feed-card',
-	templateUrl: './feed-card.component.html',
-	styleUrls: ['./feed-card.component.scss'],
-	changeDetection: ChangeDetectionStrategy.OnPush
+	selector: 'feed-lightbox',
+	templateUrl: './feed-lightbox.component.html',
+	styleUrls: ['./feed-lightbox.component.scss'],
 })
-export class FeedCardComponent implements OnInit {
+export class FeedLightboxComponent implements OnInit {
 	private readonly cardAutolinkerConfig: AutolinkerConfig = new AutolinkerConfig();
 	private datetime: string = null;
-	private showStyle: boolean = true;
 	@Input() private feedItem: ApiResponseResult;
-	@Output() private FeedData: EventEmitter<any> = new EventEmitter();
-	@Output() private showLightBox: EventEmitter<any> = new EventEmitter();
+	@Output() private hidelightbox: EventEmitter<any> = new EventEmitter();
+
 	constructor() { }
 
 	ngOnInit() {
@@ -24,6 +22,8 @@ export class FeedCardComponent implements OnInit {
 		let timer = Observable.timer (0 , 10000);
 		timer.subscribe(t => this.ttt());
 	}
+
+
 	private modifyAutolinkerConfig() {
 		// hashtag and mention use the default configration strategy.
 		// Links use the one-to-one map strategy using unshorten property of feedItem
@@ -74,7 +74,6 @@ export class FeedCardComponent implements OnInit {
 	private  ttt(): any {
 		this.datetime = this.tdiff();
 	}
-
 
 
 	private tdiff(): string {

@@ -10,6 +10,7 @@ import { Store } from '@ngrx/store';
 import * as fromRoot from '../reducers';
 import * as apiAction from '../actions/api';
 import * as paginationAction from '../actions/pagination';
+import * as lightboxAction from '../actions/lightbox';
 
 import { ApiResponse, ApiResponseMetadata, ApiResponseResult } from '../models/api-response';
 import { Query, ReloactionAfterQuery } from '../models/query';
@@ -30,7 +31,8 @@ export class FeedComponent implements OnInit, OnDestroy {
 	private areResultsAvailable$: Observable<boolean>;
 	private apiResponseResults$: Observable<ApiResponseResult[]>;
 	private apiResponseTags$: Observable<Tag[]>;
-
+	private feedTweet$: Observable<ApiResponseResult>;
+	private visibility: Observable<boolean>;
 	constructor(
 		private route: ActivatedRoute,
 		private location: Location,
@@ -44,6 +46,7 @@ export class FeedComponent implements OnInit, OnDestroy {
 		this.getDataFromStore();
 		this.subscribeQueryString();
 		this.setupSearchField();
+
 	}
 
 	/**
@@ -85,6 +88,7 @@ export class FeedComponent implements OnInit, OnDestroy {
 		this.areResultsAvailable$ = this.store.select(fromRoot.getAreResultsAvailable);
 		this.apiResponseResults$ = this.store.select(fromRoot.getApiResponseEntities);
 		this.apiResponseTags$  = this.store.select(fromRoot.getApiResponseTags);
+		this.feedTweet$ = this.store.select(fromRoot.getLigthboxData);
 	}
 
 	/**
@@ -136,6 +140,14 @@ export class FeedComponent implements OnInit, OnDestroy {
 	 */
 	private loadMoreResults(event) {
 		this.store.dispatch(new paginationAction.NextPageAction(''));
+	}
+
+	private Updatedata(event) {
+		this.store.dispatch(new lightboxAction.UpdateTweet(event));
+	}
+
+	private showhidelightbox(event) {
+		this.visibility = event;
 	}
 
 	/**
