@@ -21,22 +21,22 @@
 					[config]="cardAutolinkerConfig"></feed-linker></p>
                     <div class="lightbox-actions">
                     <div class="lightbox-action lightbox-reply lightbox-space">
-					<i class="material-icons lightbox-md-20">reply</i>
+					<a onclick="window.open(this.href)" href="https://twitter.com/intent/tweet?in_reply_to={{feedItem.id_str}}"><i class="material-icons lightbox-md-20">reply</i></a>
 				</div>
 				<div class="lightbox-action lightbox-retweet lightbox-space">
-					<i class="material-icons lightbox-md-20">repeat</i>
+					<a onclick="window.open(this.href)" href="https://twitter.com/intent/retweet?tweet_id={{feedItem.id_str}}"><i class="material-icons lightbox-md-20">repeat</i></a>
 					<div class="lightbox-counter lightbox-retweet-count">
 						{{retweetCount}}
 					</div>
 				</div>
 				<div class="lightbox-action lightbox-like lightbox-space">
-					<i class="material-icons lightbox-md-20">favorite_border</i>
+					<a onclick="window.open(this.href)" href="https://twitter.com/intent/like?tweet_id={{feedItem.id_str}}"><i class="material-icons lightbox-md-20">favorite_border</i></a>
 					<div class="lightbox-counter lightbox-like-count">
 						{{favouriteCount}}
 					</div>
 				</div>
 				</div>
-                <a class="lightbox-btn" href="{{feedItem.link}}">View on Twitter</a>
+                <a class="lightbox-btn" target="_blank" href="{{feedItem.link}}">View on Twitter</a>
                 </div>
 			</div>
 			<div class="card-header">
@@ -61,16 +61,16 @@
 			</div>
 			<div class="card-footer">
 				<div class="action reply">
-					<i class="material-icons md-20">reply</i>
+					<a target="_blank" href="https://twitter.com/intent/tweet?in_reply_to={{feedItem.id_str}}"><i class="material-icons md-20">reply</i></a>
 				</div>
 				<div class="action retweet">
-					<i class="material-icons md-20">repeat</i>
+					<a target="_blank" href="https://twitter.com/intent/retweet?tweet_id={{feedItem.id_str}}"><i class="material-icons md-20">repeat</i></a>
 					<div class="counter retweet-count">
 						{{retweetCount}}
 					</div>
 				</div>
 				<div class="action like">
-					<i class="material-icons md-20">favorite_border</i>
+					<a target="_blank" href="https://twitter.com/intent/like?tweet_id={{feedItem.id_str}}"><i class="material-icons md-20">favorite_border</i></a>
 					<div class="counter like-count">
 						{{favouriteCount}}
 					</div>
