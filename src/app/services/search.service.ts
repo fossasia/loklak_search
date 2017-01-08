@@ -12,7 +12,8 @@ export class SearchService {
 	private static readonly apiUrl: URL = new URL('http://api.loklak.org/api/search.json');
 	private static maximum_records_fetch: number = 30;
 	private static minified_results: boolean = true;
-	private static source: string = 'all';
+	private static source: string = 'cache';
+	private static fields: string = 'created_at,screen_name,mentions,hashtags';
 
 	constructor(
 		private jsonp: Jsonp
@@ -27,14 +28,16 @@ export class SearchService {
 		searchParams.set('source', SearchService.source);
 		searchParams.set('maximumRecords', SearchService.maximum_records_fetch.toString());
 		searchParams.set('startRecord', (lastRecord + 1).toString());
-
+		searchParams.set('fields', SearchService.fields);
 		return this.jsonp.get(SearchService.apiUrl.toString(), {search : searchParams})
 								.map(this.extractData)
 								.catch(this.handleError);
-	}
 
+	}
+	
 	private extractData(res: Response): ApiResponse {
 		try {
+			console.log(res);
 			return <ApiResponse>res.json();
 		} catch (error) {
 			console.error(error);

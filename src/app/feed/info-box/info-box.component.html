@@ -1,0 +1,60 @@
+<div class="info-box">
+			
+            <div class="row">
+                <div class="col-sm-6 col-md-6">
+                    <h4>Top Twitterers</h4>
+                     <table class="table leaderboard">
+                    <tbody>
+                    <tr class="leaderboard-item" *ngFor="let item of topTwitterers">
+                                            <td style="width: 11vh;" style="width: 11vh;">
+                                                <img src="http://avatars.io/twitter/{{item[0]}}" alt="{{item[0]}}">
+                                                <span class="label leaderboard-label">{{item[1]}}</span>
+                                            </td>
+                                            <td class="leaderboard-text">
+                                                <a href="/search?q=@{{item[0]}}" target="_blank">@{{item[0]}}</a>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                        </table>
+                     
+                </div>
+                <div class="col-sm-6 col-md-6">
+                <h4>Top Hashtags</h4>
+                <table class="table">
+                                    <tbody>
+                                        <tr class="leaderboard-item"  *ngFor ="let item of topHashtags">
+                                            <td style="width: 11vh;">
+                                                <div  class="leaderboard-count">{{item[1]}}</div>
+                                            </td>
+                                            <td class="leaderboard-text">
+                                                <a href="/search?q={{item[0]}}" target="_blank">#{{item[0]}}</a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                    
+                </div>
+                </div>
+                <div class="row">
+                <div class="col-sm-6 col-md-6">
+                    <h4>Top Mentions</h4>
+                     <table class="table">
+                                    <tbody>
+                                        <tr class="leaderboard-item" *ngFor="let item of topMentions">
+                                            <td style="width: 11vh;" style="width: 11vh;">
+                                                <img src="http://avatars.io/twitter/{{item[0]}}" alt="">
+                                                <span class="label leaderboard-label">{{item[1]}}</span>
+                                            </td>
+                                            <td class="leaderboard-text">
+                                                <a href="/search?q={{item[0]}}" target="_blank">@{{item[0]}}</a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                        </table>
+                </div>
+                
+            </div>
+</div>   
+                    
+      
+

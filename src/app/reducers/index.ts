@@ -114,6 +114,7 @@ export const getApiResponsePages = createSelector(getApiResponseState, fromApiRe
 export const getApiResponseTags = createSelector(getApiResponseState, fromApiResponse.getHashtags);
 export const getAreResultsValid = createSelector(getApiResponseState, fromApiResponse.isResultValid);
 export const getLastRecordIndex = createSelector(getApiResponseState, fromApiResponse.lastRecord);
+export const getApiAggregations = createSelector(getApiResponseState, fromApiResponse.getAggregations);
 
 /**
  * Just like with the ApiResponse selectors, we also have to compose the

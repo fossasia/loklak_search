@@ -3,9 +3,16 @@
 
 	.feed-wrapper {
 		padding-top: 15px;
+		display: flex;
+		flex-direction: row;
+		display: -webkit-box;
+		display: -moz-box;
+		display: -ms-flexbox;
+		display: -webkit-flex;
+		display: flex;
 
 		.wrapper {
-			max-width: 600px;
+			max-width: 500px;
 			padding: 0px 10px;
 		}
 
@@ -32,4 +39,14 @@ app-footer.peeking{
 		position: absolute;
 		bottom: 0;
 	}
+}
+
+
+@media all and (max-width:1000px){
+		.feed-wrapper{
+			flex-direction: row-reverse;
+			-webkit-flex-flow: column wrap;
+		    flex-flow: column wrap;
+		}
+
 }

@@ -11,7 +11,7 @@ import * as fromRoot from '../reducers';
 import * as apiAction from '../actions/api';
 import * as paginationAction from '../actions/pagination';
 
-import { ApiResponse, ApiResponseMetadata, ApiResponseResult } from '../models/api-response';
+import { ApiResponse, ApiResponseMetadata, ApiResponseResult, ApiResponseAggregations } from '../models/api-response';
 import { Query, ReloactionAfterQuery } from '../models/query';
 
 
@@ -30,13 +30,13 @@ export class FeedComponent implements OnInit, OnDestroy {
 	private areResultsAvailable$: Observable<boolean>;
 	private apiResponseResults$: Observable<ApiResponseResult[]>;
 	private apiResponseTags$: Observable<Tag[]>;
-
+	private apiResponseAggregations: Observable<ApiResponseAggregations>;
 	constructor(
 		private route: ActivatedRoute,
 		private location: Location,
 		private store: Store<fromRoot.State>,
 		private elementRef: ElementRef,
-	) { }
+	) {  }
 
 	ngOnInit() {
 		this.focusTextbox();
@@ -84,7 +84,8 @@ export class FeedComponent implements OnInit, OnDestroy {
 		this.isSearching$ = this.store.select(fromRoot.getSearchLoading);
 		this.areResultsAvailable$ = this.store.select(fromRoot.getAreResultsAvailable);
 		this.apiResponseResults$ = this.store.select(fromRoot.getApiResponseEntities);
-		this.apiResponseTags$  = this.store.select(fromRoot.getApiResponseTags);
+		this.apiResponseTags$  = this.store.select(fromRoot.getApiResponseTags); 	
+		this.apiResponseAggregations = 	this.store.select(fromRoot.getApiAggregations);
 	}
 
 	/**

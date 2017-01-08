@@ -1,0 +1,72 @@
+:host {
+	display: block;
+}
+
+.info-box {
+		-webkit-box-shadow: 0 2px 2px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08);
+		box-shadow: 0 2px 2px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08);
+		border-radius: 2px;
+		min-height: 420px;
+		width: 400px;	
+        margin-bottom: 20px;
+}
+
+.leaderboard-item {
+    text-align: left;
+    border-bottom: 2px solid #ccc;
+    /*margin: 8px;*/
+    padding: 4px 0;
+    font-size: 2.5vh;
+    img {
+        border-radius: 50%;
+    }
+    td {
+        position: relative;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        img {
+            height: 4vh;
+            width: 4vh;
+            line-height: 4vh;
+        }
+    }
+}
+
+
+.leaderboard-count {
+    background-color: #337ab7;
+    height: 4vh;
+    width: 4vh;
+    padding: 1vh 0;
+    text-align: center;
+    border-radius: 50%;
+    font-weight: bold;
+    font-size: 1.8vh;
+    color: #fff;
+}
+
+.leaderboard-label {
+    top: -2px;
+    font-size: 2vh;
+    position: absolute;
+    left: 2.8vh;
+    text-align: center;
+    line-height: .9;
+    padding: 3px 3px;
+    background-color: #337ab7;
+    border-radius: 50%;
+    color: #fff;
+}
+
+.leaderboard-text {
+    a {
+        font-size: 1.8vh;
+        height: 4vh;
+        line-height: 4vh;
+    }
+}
+.leaderboard-container {
+    width: 32vw;
+    max-height: 19.5vw;
+    overflow: hidden;
+}
