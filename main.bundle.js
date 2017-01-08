@@ -64570,7 +64570,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 var FeedCardComponent = (function () {
-    function FeedCardComponent() {
+    function FeedCardComponent(ref) {
+        this.ref = ref;
         this.cardAutolinkerConfig = new __WEBPACK_IMPORTED_MODULE_3__shared_configrations__["a" /* AutolinkerConfig */]();
         this.datetime = null;
         this.showStyle = null;
@@ -64656,6 +64657,7 @@ var FeedCardComponent = (function () {
     });
     FeedCardComponent.prototype.ttt = function () {
         this.datetime = this.tdiff();
+        this.ref.markForCheck();
     };
     FeedCardComponent.prototype.tdiff = function () {
         var since = null;
@@ -64683,7 +64685,7 @@ var FeedCardComponent = (function () {
         }
         else if (sinceMin < 1440) {
             var sinceHr = Math.round(sinceMin / 60);
-            since = sinceHr + 'h';
+            since = sinceHr + 'h ago';
         }
         else if (date2.getFullYear() === now) {
             since = months[date2.getMonth()] + ' ' + date2.getDate();
@@ -64703,12 +64705,13 @@ FeedCardComponent = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["G" /* Component */])({
         selector: 'feed-card',
         template: __webpack_require__(780),
-        styles: [__webpack_require__(766)]
+        styles: [__webpack_require__(766)],
+        changeDetection: __WEBPACK_IMPORTED_MODULE_0__angular_core__["d" /* ChangeDetectionStrategy */].OnPush
     }),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["i" /* ChangeDetectorRef */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["i" /* ChangeDetectorRef */]) === "function" && _b || Object])
 ], FeedCardComponent);
 
-var _a;
+var _a, _b;
 
 
 /***/ },
