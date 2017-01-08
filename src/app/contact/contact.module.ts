@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
 
 import { LoklakContactRoutingModule } from './contact-routing.module';
 import { ContactComponent } from './contact.component';
@@ -10,7 +12,8 @@ import { RouterModule } from '@angular/router';
 @NgModule({
 	imports: [
 		CommonModule,
-
+		BrowserModule,
+		FormsModule,
 		LoklakContactRoutingModule,
 		NavbarModule,
 		FooterModule,
