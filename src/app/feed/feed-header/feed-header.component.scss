@@ -29,6 +29,8 @@
 				border: 0 !important;
 				padding: 0;
 				min-width: 600px;
+				display: flex;
+				align-items: center;
 
 				@media(max-width: 600px) {
 					min-width: 0;

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { ApiResponseResult } from '../../models/api-response';
 import { Observable } from 'rxjs/Rx';
 
@@ -7,7 +7,8 @@ import { AutolinkerConfig, ConfigLinkType } from '../../shared/configrations';
 @Component({
 	selector: 'feed-card',
 	templateUrl: './feed-card.component.html',
-	styleUrls: ['./feed-card.component.scss']
+	styleUrls: ['./feed-card.component.scss'],
+	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FeedCardComponent implements OnInit {
 	private readonly cardAutolinkerConfig: AutolinkerConfig = new AutolinkerConfig();
@@ -15,13 +16,14 @@ export class FeedCardComponent implements OnInit {
 	showStyle: boolean = null;
 	@Input() private feedItem: ApiResponseResult;
 
-	constructor() { }
+	constructor(private ref: ChangeDetectorRef) { }
 
 	ngOnInit() {
 		this.modifyAutolinkerConfig();
 		let timer = Observable.timer (0 , 10000);
 		timer.subscribe(t => this.ttt());
 	}
+
 	onShowed(show: boolean) {
 		if (show) {
 			this.showStyle = !this.showStyle;
@@ -89,6 +91,7 @@ export class FeedCardComponent implements OnInit {
 
 	private  ttt(): any {
 		this.datetime = this.tdiff();
+		this.ref.markForCheck();
 	}
 
 
@@ -119,7 +122,7 @@ export class FeedCardComponent implements OnInit {
 		}
 		else if (sinceMin < 1440) {
 		let sinceHr = Math.round(sinceMin / 60);
-		since = sinceHr + 'h' ;
+		since = sinceHr + 'h ago' ;
 		}
 		else if (date2.getFullYear() === now) {
 			since = months[date2.getMonth()] + ' ' + date2.getDate()  ;
