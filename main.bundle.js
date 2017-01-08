@@ -69118,7 +69118,7 @@ module.exports = "<div class=\"outer-wrapper\">\n\t<feed-header\n\t\t\t\t[search
 /* 787 */
 /***/ function(module, exports) {
 
-module.exports = "<footer>\n\t<div class=\"left-side\">\n\t\t<a routerLink=\"/about\">About</a>\n\t\t<a href=\"http://blog.loklak.net\">Blog</a>\n\t\t<a href=\"http://api.loklak.org\">Developers</a>\n\t</div>\n\t<div class=\"right-side\">\n\t\t<a routerLink=\"/terms\">Terms</a>\n\t\t<a routerLink=\"/contact\">Contact</a>\n\t</div>\n</footer>\n"
+module.exports = "<footer>\n\t<div class=\"left-side\">\n\t\t<a routerLink=\"/about\">About</a>\n\t\t<a href=\"http://blog.loklak.net\">Blog</a>\n\t\t<a href=\"http://dev.loklak.org\">Developers</a>\n\t\t<a href=\"http://api.loklak.org\">API</a>\n\t\t<a href=\"http://apps.loklak.org\">Apps</a>\n\t</div>\n\t<div class=\"right-side\">\n\t\t<a routerLink=\"/terms\">Terms</a>\n\t\t<a routerLink=\"/contact\">Contact</a>\n\t</div>\n</footer>\n"
 
 /***/ },
 /* 788 */
