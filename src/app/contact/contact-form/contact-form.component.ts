@@ -44,10 +44,10 @@ export class ContactFormComponent implements OnInit {
 		headers.append('Content-Type', 'application/X-www-form-urlencoded');
 		headers.append('Accept', 'application/json');
 
-		this.http.post('https://formspree.io/gr8achint.sharma@gmail.com', data, {headers: headers})
+		this.http.post('https://formspree.io/office@fossasia.org', data, {headers: headers})
 			.subscribe((response) => {
 				if (response.json().success) {
-					this.http.post('https://formspree.io/gr8achint.sharma@gmail.com', data, {headers: headers})
+					this.http.post('https://formspree.io/office@fossasia.org', data, {headers: headers})
 						.subscribe((responsesent) => {
 							if (responsesent.json().success) {
 								console.log('Sent successfully');
