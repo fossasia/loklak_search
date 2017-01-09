@@ -12,7 +12,17 @@
 		justify-content: space-around;
 
 		div.logo {
-			padding: 6px;
+			display: block;
+			height: 50px;
+			font-family: "Courier New";
+			padding:15px 15px;
+			font-size:35px;
+			color: #C8254D;
+			line-height: 20px;
+		}
+
+		a:hover {
+			text-decoration: none;
 		}
 
 		div.search-form {
