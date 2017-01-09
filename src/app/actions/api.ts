@@ -28,7 +28,7 @@ export const ActionTypes = {
 export class SearchAction implements Action {
 	type = ActionTypes.SEARCH;
 
-	constructor(public payload: Query) { }
+	constructor(public payload: Query) {  }
 }
 
 export class SearchCompleteSuccessAction implements Action {

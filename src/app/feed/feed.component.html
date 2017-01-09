@@ -19,10 +19,9 @@
 			<feed-footer [query] = "(query$ | async)" [apiResponseTags]="(apiResponseTags$ | async)"></feed-footer>
 		</div>
 		<div *ngIf="(areResultsAvailable$ | async)" class="wrapper">
-				
-					<info-box></info-box>
-				
+			<info-box [query] = "(query$ | async)" [apiResponseAggregations]="(apiResponseAggregations$ | async)"></info-box>
 		</div>
+		
 		<div class="results-not-found"
 					*ngIf="!(isSearching$ | async) &&
 								!(areResultsAvailable$ | async) &&

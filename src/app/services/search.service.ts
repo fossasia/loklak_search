@@ -37,7 +37,6 @@ export class SearchService {
 	
 	private extractData(res: Response): ApiResponse {
 		try {
-			console.log(res);
 			return <ApiResponse>res.json();
 		} catch (error) {
 			console.error(error);

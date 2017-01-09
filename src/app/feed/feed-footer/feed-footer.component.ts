@@ -15,7 +15,6 @@ export class FeedFooterComponent implements OnInit {
 
 	ngOnInit() {
 		this.sortTags();
-		console.log(this.apiResponseTags);
 	}
 
 	private sortTags() {

@@ -11,19 +11,20 @@ import { Query, ReloactionAfterQuery } from '../../models/query';
 	styleUrls: ['./info-box.component.scss']
 })
 export class InfoBoxComponent implements OnInit {
-	private datetime: string = null;
-	private data = this.store['source']['value']['apiResponse']['aggregations'];
-	@Input() private topHashtags;
-	@Input() private topMentions;
-	@Input() private topTwitterers;
+	@Input() private query: Query;
+	@Input() private apiResponseAggregations: ApiResponseAggregations;
+	private topHashtags;
+	private topMentions;
+	private topTwitterers;
 	constructor(
 		private store: Store<fromRoot.State>
 		) { }
 
 	ngOnInit() {
-		this.sortHashtags(this.data);
-		this.sortTwiterers(this.data);
-		this.sortMentions(this.data);
+		this.sortHashtags(this.apiResponseAggregations);
+		this.sortTwiterers(this.apiResponseAggregations);
+		this.sortMentions(this.apiResponseAggregations);
+		console.log(this.apiResponseAggregations);
 	}
 	sortHashtags(statistics){
 		let sortable = [];

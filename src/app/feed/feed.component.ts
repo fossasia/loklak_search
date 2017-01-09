@@ -30,7 +30,7 @@ export class FeedComponent implements OnInit, OnDestroy {
 	private areResultsAvailable$: Observable<boolean>;
 	private apiResponseResults$: Observable<ApiResponseResult[]>;
 	private apiResponseTags$: Observable<Tag[]>;
-	private apiResponseAggregations: Observable<ApiResponseAggregations>;
+	private apiResponseAggregations$: Observable<ApiResponseAggregations>;
 	constructor(
 		private route: ActivatedRoute,
 		private location: Location,
@@ -85,7 +85,8 @@ export class FeedComponent implements OnInit, OnDestroy {
 		this.areResultsAvailable$ = this.store.select(fromRoot.getAreResultsAvailable);
 		this.apiResponseResults$ = this.store.select(fromRoot.getApiResponseEntities);
 		this.apiResponseTags$  = this.store.select(fromRoot.getApiResponseTags); 	
-		this.apiResponseAggregations = 	this.store.select(fromRoot.getApiAggregations);
+		this.apiResponseAggregations$ = this.store.select(fromRoot.getApiAggregations);
+		console.log(this.store.select(fromRoot.getApiAggregations));
 	}
 
 	/**

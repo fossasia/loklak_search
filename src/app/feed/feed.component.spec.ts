@@ -69,6 +69,15 @@ class FeedLinkerStubComponent {
 	@Input() private query;
 }
 
+@Component({
+	selector: 'info-box',
+	template: ''
+})
+class InfoBoxStubComponent { 
+	@Input() private query;
+	@Input() private apiResponseAggregations;
+}
+
 describe('Component: Feed', () => {
 	beforeEach(() => {
 		TestBed.configureTestingModule({
@@ -85,7 +94,8 @@ describe('Component: Feed', () => {
 				FooterStubComponent,
 				FeedNotFoundStubComponent,
 				FeedLinkerStubComponent,
-				FeedPaginationStubComponent
+				FeedPaginationStubComponent,
+				InfoBoxStubComponent
 			]
 		});
 	});
@@ -110,5 +120,13 @@ describe('Component: Feed', () => {
 		let compiled = fixture.debugElement.nativeElement;
 
 		expect(compiled.querySelector('app-footer')).toBeTruthy();
+	}));
+
+	it('should have an info-box component', async(() => {
+		let fixture = TestBed.createComponent(FeedComponent);
+		let component = fixture.debugElement.componentInstance;
+		let compiled = fixture.debugElement.nativeElement;
+
+		expect(compiled.querySelector('info-box')).toBeTruthy();
 	}));
 });
