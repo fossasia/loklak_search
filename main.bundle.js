@@ -47100,6 +47100,8 @@ var FeedComponent = (function () {
         this.areResultsAvailable$ = this.store.select(__WEBPACK_IMPORTED_MODULE_5__reducers__["c" /* getAreResultsAvailable */]);
         this.apiResponseResults$ = this.store.select(__WEBPACK_IMPORTED_MODULE_5__reducers__["d" /* getApiResponseEntities */]);
         this.apiResponseTags$ = this.store.select(__WEBPACK_IMPORTED_MODULE_5__reducers__["e" /* getApiResponseTags */]);
+        this.isNextPageLoading$ = this.store.select(__WEBPACK_IMPORTED_MODULE_5__reducers__["f" /* getPageLoading */]);
+        this.areMorePagesAvailable$ = this.store.select(__WEBPACK_IMPORTED_MODULE_5__reducers__["g" /* getPagesAvailable */]);
     };
     /**
      * Sets up a subscription for the `query$` so that it can be used
@@ -47262,7 +47264,7 @@ var _a, _b, _c;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__search__ = __webpack_require__(602);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__api_response__ = __webpack_require__(600);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pagination__ = __webpack_require__(601);
-/* harmony export (immutable) */ exports["f"] = reducer;
+/* harmony export (immutable) */ exports["h"] = reducer;
 /* unused harmony export getApiResponseState */
 /* harmony export (binding) */ __webpack_require__.d(exports, "d", function() { return getApiResponseEntities; });
 /* unused harmony export getApiResponsePages */
@@ -47274,7 +47276,8 @@ var _a, _b, _c;
 /* harmony export (binding) */ __webpack_require__.d(exports, "b", function() { return getSearchLoading; });
 /* unused harmony export getPaginationState */
 /* unused harmony export getPaginationPage */
-/* unused harmony export getPageLoading */
+/* harmony export (binding) */ __webpack_require__.d(exports, "f", function() { return getPageLoading; });
+/* harmony export (binding) */ __webpack_require__.d(exports, "g", function() { return getPagesAvailable; });
 /* unused harmony export getIsSearchSuccess */
 /* harmony export (binding) */ __webpack_require__.d(exports, "c", function() { return getAreResultsAvailable; });
 /* unused harmony export getApiResponsePage */
@@ -47376,6 +47379,7 @@ var getSearchLoading = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_reselec
 var getPaginationState = function (state) { return state.pagination; };
 var getPaginationPage = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_reselect__["createSelector"])(getPaginationState, __WEBPACK_IMPORTED_MODULE_4__pagination__["b" /* getPage */]);
 var getPageLoading = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_reselect__["createSelector"])(getPaginationState, __WEBPACK_IMPORTED_MODULE_4__pagination__["c" /* getPageLoading */]);
+var getPagesAvailable = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_reselect__["createSelector"])(getPaginationState, __WEBPACK_IMPORTED_MODULE_4__pagination__["d" /* getPagesAvailable */]);
 /**
  * Some selector functions create joins across parts of state. This selector
  * composes the search loading and result validity to return a boolean to indicate
@@ -64179,7 +64183,7 @@ AppModule = __decorate([
          * meta-reducer. This returns all providers for an @ngrx/store
          * based application.
          */
-            __WEBPACK_IMPORTED_MODULE_4__ngrx_store__["g" /* StoreModule */].provideStore(__WEBPACK_IMPORTED_MODULE_7__reducers__["f" /* reducer */]),
+            __WEBPACK_IMPORTED_MODULE_4__ngrx_store__["g" /* StoreModule */].provideStore(__WEBPACK_IMPORTED_MODULE_7__reducers__["h" /* reducer */]),
             /**
              * Store devtools instrument the store retaining past versions of state
              * and recalculating new states. This enables powerful time-travel
@@ -65048,6 +65052,14 @@ var FeedPaginationComponent = (function () {
     return FeedPaginationComponent;
 }());
 __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Input */])(),
+    __metadata("design:type", Boolean)
+], FeedPaginationComponent.prototype, "isNextPageLoading", void 0);
+__decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Input */])(),
+    __metadata("design:type", Boolean)
+], FeedPaginationComponent.prototype, "areMorePagesAvailable", void 0);
+__decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Output */])(),
     __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["_7" /* EventEmitter */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["_7" /* EventEmitter */]) === "function" && _a || Object)
 ], FeedPaginationComponent.prototype, "paginate", void 0);
@@ -65505,6 +65517,7 @@ var lastRecord = function (state) { return state.entities.length - 1; };
 /* harmony export (immutable) */ exports["a"] = reducer;
 /* harmony export (binding) */ __webpack_require__.d(exports, "b", function() { return getPage; });
 /* harmony export (binding) */ __webpack_require__.d(exports, "c", function() { return getPageLoading; });
+/* harmony export (binding) */ __webpack_require__.d(exports, "d", function() { return getPagesAvailable; });
 
 /**
  * There is always a need of initial state to be passed onto the store.
@@ -65513,7 +65526,8 @@ var lastRecord = function (state) { return state.entities.length - 1; };
  */
 var initialState = {
     page: 0,
-    pageLoading: false
+    pageLoading: false,
+    pagesAvailable: true
 };
 /**
  * The actual reducer function. Reducers can be thought of as the tables in the DataBase.
@@ -65527,21 +65541,23 @@ function reducer(state, action) {
     if (state === void 0) { state = initialState; }
     switch (action.type) {
         case __WEBPACK_IMPORTED_MODULE_0__actions_pagination__["a" /* ActionTypes */].NEXT_PAGE: {
-            return {
+            return Object.assign({}, state, {
                 page: state.page + 1,
                 pageLoading: true
-            };
+            });
         }
         case __WEBPACK_IMPORTED_MODULE_0__actions_pagination__["a" /* ActionTypes */].PAGINATION_COMPLETE_SUCCESS: {
             return Object.assign({}, state, {
-                pageLoading: false
+                pageLoading: false,
+                pagesAvailable: (action.payload.statuses.length < 30 ? false : true),
             });
         }
         case __WEBPACK_IMPORTED_MODULE_0__actions_pagination__["a" /* ActionTypes */].PAGINATION_COMPLETE_FAIL: {
-            return {
+            return Object.assign({}, state, {
                 page: state.page - 1,
-                pageLoading: false
-            };
+                pageLoading: false,
+                pagesAvailable: false
+            });
         }
         default: {
             return state;
@@ -65558,6 +65574,7 @@ function reducer(state, action) {
  */
 var getPage = function (state) { return state.page; };
 var getPageLoading = function (state) { return state.pageLoading; };
+var getPagesAvailable = function (state) { return state.pagesAvailable; };
 
 
 /***/ },
@@ -69021,7 +69038,7 @@ module.exports = ".wrapper {\n  max-width: 700px;\n  padding: 10px;\n  margin-to
 /* 771 */
 /***/ function(module, exports) {
 
-module.exports = ":host {\n  display: block; }\n\nbutton {\n  display: block;\n  margin: 0 auto;\n  font-size: 1.1em;\n  padding: 5px;\n  color: #2865a1;\n  font-weight: 700;\n  background: transparent;\n  border: none;\n  cursor: pointer; }\n\nbutton:focus {\n  border: none;\n  outline: none; }\n"
+module.exports = ":host {\n  display: block; }\n\nbutton {\n  display: block;\n  margin: 0 auto;\n  font-size: 1.1em;\n  padding: 5px;\n  color: #2865a1;\n  font-weight: 700;\n  background: transparent;\n  border: none;\n  cursor: pointer; }\n  button:focus {\n    border: none;\n    outline: none; }\n\n.loading {\n  border-radius: 50%;\n  margin: 0 auto;\n  width: 24px;\n  height: 24px;\n  border: 2px solid #d81b60;\n  border-top-color: rgba(216, 97, 96, 0.2);\n  -webkit-animation: spin 1s infinite linear;\n          animation: spin 1s infinite linear; }\n\n@-webkit-keyframes spin {\n  0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg); }\n  100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg); } }\n\n@keyframes spin {\n  0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg); }\n  100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg); } }\n"
 
 /***/ },
 /* 772 */
@@ -69105,13 +69122,13 @@ module.exports = "<div class=\"wrapper\">\n\t<h2>Your search <b>{{query.queryStr
 /* 785 */
 /***/ function(module, exports) {
 
-module.exports = "<button (click)=\"paginate.emit()\">Show more</button>\n"
+module.exports = "<div>\n\t<div *ngIf=\"(areMorePagesAvailable) && (!isNextPageLoading)\">\n\t\t<button (click)=\"paginate.emit()\">Show more</button>\n\t</div>\n\t<div *ngIf=\"(isNextPageLoading)\">\n\t\t<div class=\"loading\">\n\t\t</div>\n\t</div>\n</div>\n\n\n"
 
 /***/ },
 /* 786 */
 /***/ function(module, exports) {
 
-module.exports = "<div class=\"outer-wrapper\">\n\t<feed-header\n\t\t\t\t[searchInputControl]=\"_queryControl\"\n\t\t\t\t(searchEvantEmitter)=\"handleSearchQuery()\"></feed-header>\n\n\t<div class=\"searching\">\n\t\t<!-- Hook Up the Material Design Progress Bar. -->\n\t</div>\n\n\t<div class=\"feed-wrapper\">\n\t\t<div *ngIf=\"(areResultsAvailable$ | async)\" class=\"wrapper\">\n\t\t\t<div *ngFor=\"let item of (apiResponseResults$ | async)\">\n\t\t\t\t<feed-card [feedItem]=\"item\"></feed-card>\n\t\t\t</div>\n\n\t\t\t<feed-pagination\n\t\t\t\t(paginate)=\"loadMoreResults(event$)\"></feed-pagination>\n\n\t\t\t<feed-footer [query] = \"(query$ | async)\" [apiResponseTags]=\"(apiResponseTags$ | async)\"></feed-footer>\n\t\t</div>\n\n\t\t<div class=\"results-not-found\"\n\t\t\t\t\t*ngIf=\"!(isSearching$ | async) &&\n\t\t\t\t\t\t\t\t!(areResultsAvailable$ | async) &&\n\t\t\t\t\t\t\t\t((query$ | async).queryString)\" >\n\t\t\t<feed-not-found [query]=\"(query$ | async)\"></feed-not-found>\n\t\t</div>\n\t</div>\n</div>\n\n<!-- Peek the footer when Results are not found -->\n<app-footer [class.peeking]=\"!(isSearching$ | async) && !(areResultsAvailable$ | async)\"></app-footer>\n"
+module.exports = "<div class=\"outer-wrapper\">\n\t<feed-header\n\t\t\t\t[searchInputControl]=\"_queryControl\"\n\t\t\t\t(searchEvantEmitter)=\"handleSearchQuery()\"></feed-header>\n\n\t<div class=\"searching\">\n\t\t<!-- Hook Up the Material Design Progress Bar. -->\n\t</div>\n\n\t<div class=\"feed-wrapper\">\n\t\t<div *ngIf=\"(areResultsAvailable$ | async)\" class=\"wrapper\">\n\t\t\t<div *ngFor=\"let item of (apiResponseResults$ | async)\">\n\t\t\t\t<feed-card [feedItem]=\"item\"></feed-card>\n\t\t\t</div>\n\n\t\t\t<feed-pagination\n\t\t\t\t(paginate)=\"loadMoreResults(event$)\"\n\t\t\t\t[isNextPageLoading]=\"(isNextPageLoading$ | async)\"\n\t\t\t\t[areMorePagesAvailable]=\"(areMorePagesAvailable$ | async)\"></feed-pagination>\n\n\t\t\t<feed-footer [query] = \"(query$ | async)\" [apiResponseTags]=\"(apiResponseTags$ | async)\"></feed-footer>\n\t\t</div>\n\n\t\t<div class=\"results-not-found\"\n\t\t\t\t\t*ngIf=\"!(isSearching$ | async) &&\n\t\t\t\t\t\t\t\t!(areResultsAvailable$ | async) &&\n\t\t\t\t\t\t\t\t((query$ | async).queryString)\" >\n\t\t\t<feed-not-found [query]=\"(query$ | async)\"></feed-not-found>\n\t\t</div>\n\t</div>\n</div>\n\n<!-- Peek the footer when Results are not found -->\n<app-footer [class.peeking]=\"!(isSearching$ | async) && !(areResultsAvailable$ | async)\"></app-footer>\n"
 
 /***/ },
 /* 787 */
