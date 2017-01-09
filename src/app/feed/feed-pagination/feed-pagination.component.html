@@ -1,1 +1,11 @@
-<button (click)="paginate.emit()">Show more</button>
+<div>
+	<div *ngIf="(areMorePagesAvailable) && (!isNextPageLoading)">
+		<button (click)="paginate.emit()">Show more</button>
+	</div>
+	<div *ngIf="(isNextPageLoading)">
+		<div class="loading">
+		</div>
+	</div>
+</div>
+
+

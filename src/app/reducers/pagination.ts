@@ -10,6 +10,7 @@ import * as pagination from '../actions/pagination';
 export interface State {
 	page: number;
 	pageLoading: Boolean;
+	pagesAvailable: Boolean;
 }
 
 
@@ -20,7 +21,8 @@ export interface State {
  */
 const initialState = {
 	page: 0,
-	pageLoading: false
+	pageLoading: false,
+	pagesAvailable: true
 };
 
 
@@ -35,23 +37,25 @@ const initialState = {
 export function reducer(state: State = initialState, action: pagination.Actions): State {
 	switch (action.type) {
 		case pagination.ActionTypes.NEXT_PAGE: {
-			return {
+			return Object.assign({}, state, {
 				page: state.page + 1,
 				pageLoading: true
-			};
+			});
 		}
 
 		case pagination.ActionTypes.PAGINATION_COMPLETE_SUCCESS: {
 			return Object.assign({}, state, {
-				pageLoading: false
+				pageLoading: false,
+				pagesAvailable: (action.payload.statuses.length < 30 ? false : true),
 			});
 		}
 
 		case pagination.ActionTypes.PAGINATION_COMPLETE_FAIL: {
-			return {
+			return Object.assign({}, state, {
 				page: state.page - 1,
-				pageLoading: false
-			};
+				pageLoading: false,
+				pagesAvailable: false
+			});
 		}
 
 		default: {
@@ -73,3 +77,5 @@ export function reducer(state: State = initialState, action: pagination.Actions)
 export const getPage = (state: State) => state.page;
 
 export const getPageLoading = (state: State) => state.pageLoading;
+
+export const getPagesAvailable = (state: State) => state.pagesAvailable;

@@ -14,7 +14,9 @@
 			</div>
 
 			<feed-pagination
-				(paginate)="loadMoreResults(event$)"></feed-pagination>
+				(paginate)="loadMoreResults(event$)"
+				[isNextPageLoading]="(isNextPageLoading$ | async)"
+				[areMorePagesAvailable]="(areMorePagesAvailable$ | async)"></feed-pagination>
 
 			<feed-footer [query] = "(query$ | async)" [apiResponseTags]="(apiResponseTags$ | async)"></feed-footer>
 		</div>

@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, ChangeDetectionStrategy, EventEmitter } from '@angular/core';
+import { Component, Input, OnInit, Output, ChangeDetectionStrategy, EventEmitter } from '@angular/core';
 
 @Component({
 	selector: 'feed-pagination',
@@ -7,6 +7,8 @@ import { Component, OnInit, Output, ChangeDetectionStrategy, EventEmitter } from
 	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FeedPaginationComponent implements OnInit {
+	@Input() private isNextPageLoading : boolean;
+	@Input() private areMorePagesAvailable : boolean;
 	@Output() paginate: EventEmitter<any> = new EventEmitter();
 
 	constructor() { }
