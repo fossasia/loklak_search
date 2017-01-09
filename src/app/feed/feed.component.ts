@@ -11,7 +11,7 @@ import * as fromRoot from '../reducers';
 import * as apiAction from '../actions/api';
 import * as paginationAction from '../actions/pagination';
 
-import { ApiResponse, ApiResponseMetadata, ApiResponseResult } from '../models/api-response';
+import { ApiResponse, ApiResponseMetadata, ApiResponseResult, ApiResponseAggregations } from '../models/api-response';
 import { Query, ReloactionAfterQuery } from '../models/query';
 
 
@@ -30,15 +30,16 @@ export class FeedComponent implements OnInit, OnDestroy {
 	private areResultsAvailable$: Observable<boolean>;
 	private apiResponseResults$: Observable<ApiResponseResult[]>;
 	private apiResponseTags$: Observable<Tag[]>;
+	private apiResponseAggregations$: Observable<ApiResponseAggregations>;
 	private isNextPageLoading$: Observable<boolean>;
 	private areMorePagesAvailable$: Observable<boolean>;
-
+	
 	constructor(
 		private route: ActivatedRoute,
 		private location: Location,
 		private store: Store<fromRoot.State>,
 		private elementRef: ElementRef,
-	) { }
+	) {  }
 
 	ngOnInit() {
 		this.focusTextbox();
@@ -89,6 +90,7 @@ export class FeedComponent implements OnInit, OnDestroy {
 		this.apiResponseTags$  = this.store.select(fromRoot.getApiResponseTags);
 		this.isNextPageLoading$ = this.store.select(fromRoot.getPageLoading);
 		this.areMorePagesAvailable$ = this.store.select(fromRoot.getPagesAvailable);
+		this.apiResponseAggregations$ = this.store.select(fromRoot.getApiAggregations);
 	}
 
 	/**

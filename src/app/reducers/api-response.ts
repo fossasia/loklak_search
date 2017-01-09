@@ -1,5 +1,5 @@
 import { createSelector } from 'reselect';
-import { ApiResponse, ApiResponseResult, ApiResponseMetadata, ApiResponseUser } from '../models/api-response';
+import { ApiResponse, ApiResponseResult, ApiResponseMetadata, ApiResponseUser, ApiResponseAggregations } from '../models/api-response';
 import * as api from '../actions/api';
 import * as pagination from '../actions/pagination';
 
@@ -10,6 +10,7 @@ import * as pagination from '../actions/pagination';
  * @prop [metadata: ApiResponseMetadata] metadata of the response which comes from api
  * @prop [entities: ApiResponseResult[]] array of response items returned by the api.
  * @prop [hashtags: Array<{ tag: string, count: number }>] array of hashtags computed from entities.
+ * @prop [aggregations: ApiResponseAggregations] array of Mentions, Hashtags, Screen Names and Date Created.
  * @prop [valid: boolean] shows the validity of data present in state.
  * 												Used to detect wheather the loading has been success/fail.
  */
@@ -17,6 +18,7 @@ export interface State {
 	pages: ApiResponse[];
 	entities: ApiResponseResult[];
 	hashtags: Array<{ tag: string, count: number }>;
+	aggregations: ApiResponseAggregations;
 	valid: boolean;
 }
 
@@ -26,12 +28,14 @@ export interface State {
  * @prop: metadata: null
  * @prop: entities: []
  * @prop: hashtags: []
+ * @prop: aggregations: null
  * @prop: valid: true
  */
 const initialState: State = {
 	pages: [],
 	entities: [],
 	hashtags: [],
+	aggregations: null,
 	valid: true
 };
 
@@ -58,6 +62,7 @@ export function reducer(state: State = initialState, action: api.Actions | pagin
 				pages: [ apiResponse ],
 				entities: apiResponse.statuses,
 				hashtags,
+				aggregations: apiResponse.aggregations,
 				valid: true
 			};
 		}
@@ -81,6 +86,7 @@ export function reducer(state: State = initialState, action: api.Actions | pagin
 				pages:	[...state.pages, apiResponse],
 				entities: [...state.entities, ...apiResponse.statuses],
 				hashtags: [...hashtags],
+				aggregations: apiResponse.aggregations,
 				valid: true
 			});
 		}
@@ -113,3 +119,5 @@ export const getHashtags = (state: State) => state.hashtags;
 export const isResultValid = (state: State) => state.valid;
 
 export const lastRecord = (state: State) => state.entities.length - 1;
+
+export const getAggregations = (state: State) => state.aggregations;
