@@ -16,6 +16,15 @@
 		.navbar-brand {
 			display: block;
 			height: 50px;
+			font-family: "Courier New";
+			padding:15px 15px;
+			font-size:40px;
+			color: #C8254D;
+			line-height: 20px;
+		}
+
+		a:hover {
+			text-decoration: none;
 		}
 
 		.navbar-toggle {

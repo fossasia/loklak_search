@@ -10,7 +10,6 @@ import { FormControl } from '@angular/forms';
 export class FeedHeaderComponent implements OnInit {
 	@Input() private searchInputControl: FormControl;
 	@Output() private searchEvantEmitter: EventEmitter<any> = new EventEmitter();
-	private bannerImageUrl = 'assets/images/logo.png';
 
 	constructor() { }
 
