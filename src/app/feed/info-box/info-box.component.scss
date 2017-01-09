@@ -46,16 +46,18 @@
 }
 
 .leaderboard-label {
-    top: -2px;
-    font-size: 2vh;
+    top: -8px;
+    font-size: 1.62vh;
     position: absolute;
     left: 2.8vh;
     text-align: center;
-    line-height: .9;
-    padding: 3px 3px;
+    line-height: 3vh;
+    /* padding: 3px 3px; */
     background-color: #337ab7;
     border-radius: 50%;
     color: #fff;
+    width: 3vh;
+    height: 3vh;
 }
 
 .leaderboard-text {

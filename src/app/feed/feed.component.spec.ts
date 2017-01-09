@@ -122,11 +122,4 @@ describe('Component: Feed', () => {
 		expect(compiled.querySelector('app-footer')).toBeTruthy();
 	}));
 
-	it('should have an info-box component', async(() => {
-		let fixture = TestBed.createComponent(FeedComponent);
-		let component = fixture.debugElement.componentInstance;
-		let compiled = fixture.debugElement.nativeElement;
-
-		expect(compiled.querySelector('info-box')).toBeTruthy();
-	}));
 });

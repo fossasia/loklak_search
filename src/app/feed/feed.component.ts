@@ -86,7 +86,6 @@ export class FeedComponent implements OnInit, OnDestroy {
 		this.apiResponseResults$ = this.store.select(fromRoot.getApiResponseEntities);
 		this.apiResponseTags$  = this.store.select(fromRoot.getApiResponseTags); 	
 		this.apiResponseAggregations$ = this.store.select(fromRoot.getApiAggregations);
-		console.log(this.store.select(fromRoot.getApiAggregations));
 	}
 
 	/**
