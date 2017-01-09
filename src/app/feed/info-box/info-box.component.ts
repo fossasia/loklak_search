@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Store } from '@ngrx/store';
 import * as fromRoot from '../../reducers';
 import * as apiAction from '../../actions/api';
-import { ApiResponseResult, ApiResponseAggregations } from '../../models/api-response';
+import { ApiResponseAggregations } from '../../models/api-response';
 import { Query, ReloactionAfterQuery } from '../../models/query';
 
 @Component({

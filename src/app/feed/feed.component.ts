@@ -31,6 +31,9 @@ export class FeedComponent implements OnInit, OnDestroy {
 	private apiResponseResults$: Observable<ApiResponseResult[]>;
 	private apiResponseTags$: Observable<Tag[]>;
 	private apiResponseAggregations$: Observable<ApiResponseAggregations>;
+	private isNextPageLoading$: Observable<boolean>;
+	private areMorePagesAvailable$: Observable<boolean>;
+	
 	constructor(
 		private route: ActivatedRoute,
 		private location: Location,
@@ -84,7 +87,9 @@ export class FeedComponent implements OnInit, OnDestroy {
 		this.isSearching$ = this.store.select(fromRoot.getSearchLoading);
 		this.areResultsAvailable$ = this.store.select(fromRoot.getAreResultsAvailable);
 		this.apiResponseResults$ = this.store.select(fromRoot.getApiResponseEntities);
-		this.apiResponseTags$  = this.store.select(fromRoot.getApiResponseTags); 	
+		this.apiResponseTags$  = this.store.select(fromRoot.getApiResponseTags);
+		this.isNextPageLoading$ = this.store.select(fromRoot.getPageLoading);
+		this.areMorePagesAvailable$ = this.store.select(fromRoot.getPagesAvailable);
 		this.apiResponseAggregations$ = this.store.select(fromRoot.getApiAggregations);
 	}
 

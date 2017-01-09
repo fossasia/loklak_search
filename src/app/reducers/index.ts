@@ -133,7 +133,7 @@ export const getPaginationState = (state: State) => state.pagination;
 
 export const getPaginationPage = createSelector(getPaginationState, fromPagination.getPage);
 export const getPageLoading = createSelector(getPaginationState, fromPagination.getPageLoading);
-
+export const getPagesAvailable = createSelector(getPaginationState, fromPagination.getPagesAvailable);
 
 /**
  * Some selector functions create joins across parts of state. This selector

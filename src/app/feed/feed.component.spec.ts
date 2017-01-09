@@ -58,6 +58,8 @@ class FeedNotFoundStubComponent {
 	template: ''
 })
 class FeedPaginationStubComponent {
+	@Input() private isNextPageLoading;
+	@Input() private areMorePagesAvailable;
 	@Output() private paginate;
 }
 
