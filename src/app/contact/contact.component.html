@@ -20,7 +20,10 @@
 			</address>
 			<hr>
 			<h5>Report a safety or abuse issue affecting our products.<br><br>
-			If you know of a safety or abuse problem with any of Loklak's services, we'd like to hear about it right away. Please use our <a href="">contact</a> form to report the issue.</h5><br><br>
+			If you know of a safety or abuse problem with any of Loklak's services, we'd like to hear about it right away. Please use our <a (click)="formcontrol=true">contact</a> form to report the issue.</h5><br><br>
 		</div>
+    <div *ngIf="formcontrol">
+  <contact-form (hidecontactform)="contactform($event)"></contact-form>
+  </div>
 	</div>
-<app-footer></app-footer>
+  <app-footer></app-footer>

@@ -109,8 +109,9 @@ a.post-link {
 	background-color: rgba(0, 0, 0, 0.5);
 
 	.overlay-content{
+		max-width: 90%;
+		height: 60vh;
 		width: 600px;
-		height: 280px;
 		background-color: white;
 		margin: 0 auto;
 		border: solid gray 1px;
@@ -154,11 +155,11 @@ a.post-link {
 			font-size: 14px;
 		}
 
-        .lightbox-timestamp{
-            margin-left: 15px;
-            color:black;
-            font-size: 13px;
-        }
+    .lightbox-timestamp{
+        margin-left: 15px;
+        color:black;
+        font-size: 13px;
+    }
 
 		.lightbox-tweet{
 			position: absolute;
@@ -171,7 +172,7 @@ a.post-link {
 		.lightbox-btn{
 			position: absolute;
 			right: 20px;
-			top: 205px;
+			bottom: 5%;
 			border: none;
 			color: white;
 			background-color: #00aced;
@@ -179,14 +180,15 @@ a.post-link {
 			font-size: 16px;
 			border-radius: 5px;
 			text-decoration: none;
+			margin-top: 10px;
 			cursor: pointer;
 		}
 
         .lightbox-actions{
             position: absolute;
             left: 20px;
-			top: 190px;
-				margin-top: 30px;
+				bottom: 20%;
+				margin-top: 20px;
 				display: flex;
 				justify-content: space-between;
 
@@ -230,7 +232,7 @@ a.post-link {
         .overlay-content{
 
             width:100%;
-            height: 400px;
+            height: 60vh;
             position: relative;
 
             .lightbox-close{
@@ -242,14 +244,13 @@ a.post-link {
             .lightbox-btn{
                 position:absolute;
                 left:5%;
-                top:85%;
+                bottom: 5%;
             }
 
             .lightbox-actions{
                 position: absolute;
-                top:68%;
-                right:20%
-
+                bottom: 20%;
+                right:20%;
             }
         }
 }

@@ -61,8 +61,15 @@ export interface ApiResponseResult {
 	without_lu_len: number;
 	without_luh_len: number;
 }
+export interface ApiResponseAggregations {
+    hashtags : Object;
+    screen_name : Object;
+    mentions : Object;
+    created_at : Object;
+}
 
 export interface ApiResponse {
 	search_metadata: ApiResponseMetadata;
 	statuses: ApiResponseResult[];
+	aggregations: ApiResponseAggregations;
 }

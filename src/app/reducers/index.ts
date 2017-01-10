@@ -114,6 +114,7 @@ export const getApiResponsePages = createSelector(getApiResponseState, fromApiRe
 export const getApiResponseTags = createSelector(getApiResponseState, fromApiResponse.getHashtags);
 export const getAreResultsValid = createSelector(getApiResponseState, fromApiResponse.isResultValid);
 export const getLastRecordIndex = createSelector(getApiResponseState, fromApiResponse.lastRecord);
+export const getApiAggregations = createSelector(getApiResponseState, fromApiResponse.getAggregations);
 
 /**
  * Just like with the ApiResponse selectors, we also have to compose the
@@ -132,7 +133,7 @@ export const getPaginationState = (state: State) => state.pagination;
 
 export const getPaginationPage = createSelector(getPaginationState, fromPagination.getPage);
 export const getPageLoading = createSelector(getPaginationState, fromPagination.getPageLoading);
-
+export const getPagesAvailable = createSelector(getPaginationState, fromPagination.getPagesAvailable);
 
 /**
  * Some selector functions create joins across parts of state. This selector

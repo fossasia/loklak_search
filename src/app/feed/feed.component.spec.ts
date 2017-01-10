@@ -58,6 +58,8 @@ class FeedNotFoundStubComponent {
 	template: ''
 })
 class FeedPaginationStubComponent {
+	@Input() private isNextPageLoading;
+	@Input() private areMorePagesAvailable;
 	@Output() private paginate;
 }
 
@@ -67,6 +69,15 @@ class FeedPaginationStubComponent {
 })
 class FeedLinkerStubComponent {
 	@Input() private query;
+}
+
+@Component({
+	selector: 'info-box',
+	template: ''
+})
+class InfoBoxStubComponent { 
+	@Input() private query;
+	@Input() private apiResponseAggregations;
 }
 
 describe('Component: Feed', () => {
@@ -85,7 +96,8 @@ describe('Component: Feed', () => {
 				FooterStubComponent,
 				FeedNotFoundStubComponent,
 				FeedLinkerStubComponent,
-				FeedPaginationStubComponent
+				FeedPaginationStubComponent,
+				InfoBoxStubComponent
 			]
 		});
 	});
@@ -111,4 +123,5 @@ describe('Component: Feed', () => {
 
 		expect(compiled.querySelector('app-footer')).toBeTruthy();
 	}));
+
 });

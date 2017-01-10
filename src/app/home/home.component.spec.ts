@@ -46,14 +46,14 @@ describe('Component: Home', () => {
 	it('should have a header as Loklak Search!', async(() => {
 		let fixture = TestBed.createComponent(HomeComponent);
 		let component = fixture.debugElement.componentInstance;
-		expect(component.header).toBe('Loklak Search!');
+		expect(component.header).toBe('loklak Search!');
 	}));
 
 	it('should render header in a h1 tag', async(() => {
 		let fixture = TestBed.createComponent(HomeComponent);
 		fixture.detectChanges();
 		let compiled = fixture.debugElement.nativeElement;
-		expect(compiled.querySelector('div.wrapper h1').textContent).toBe('Loklak Search!');
+		expect(compiled.querySelector('div.wrapper h1').textContent).toBe('loklak Search!');
 	}));
 
 	it('should have logo with correct alt text property', async(() => {

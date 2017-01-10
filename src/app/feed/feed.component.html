@@ -14,11 +14,16 @@
 			</div>
 
 			<feed-pagination
-				(paginate)="loadMoreResults(event$)"></feed-pagination>
+				(paginate)="loadMoreResults(event$)"
+				[isNextPageLoading]="(isNextPageLoading$ | async)"
+				[areMorePagesAvailable]="(areMorePagesAvailable$ | async)"></feed-pagination>
 
 			<feed-footer [query] = "(query$ | async)" [apiResponseTags]="(apiResponseTags$ | async)"></feed-footer>
 		</div>
-
+		<div *ngIf="(areResultsAvailable$ | async)" class="wrapper">
+			<info-box [query] = "(query$ | async)" [apiResponseAggregations]="(apiResponseAggregations$ | async)"></info-box>
+		</div>
+		
 		<div class="results-not-found"
 					*ngIf="!(isSearching$ | async) &&
 								!(areResultsAvailable$ | async) &&

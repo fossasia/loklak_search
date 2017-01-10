@@ -12,6 +12,8 @@ import { FooterModule } from '../footer/footer.module';
 import { FeedNotFoundComponent } from './feed-not-found/feed-not-found.component';
 import { FeedLinkerComponent } from './feed-linker/feed-linker.component';
 import { FeedPaginationComponent } from './feed-pagination/feed-pagination.component';
+import { InfoBoxComponent } from './info-box/info-box.component';
+
 
 @NgModule({
 	imports: [
@@ -52,7 +54,8 @@ import { FeedPaginationComponent } from './feed-pagination/feed-pagination.compo
 		FeedCardComponent,
 		FeedNotFoundComponent,
 		FeedLinkerComponent,
-		FeedPaginationComponent
+		FeedPaginationComponent,
+		InfoBoxComponent
 	]
 })
 export class FeedModule { }
