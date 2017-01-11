@@ -3,16 +3,16 @@
 
 	.feed-wrapper {
 		padding-top: 15px;
-		display: flex;
 		flex-direction: row;
 		display: -webkit-box;
 		display: -moz-box;
 		display: -ms-flexbox;
 		display: -webkit-flex;
 		display: flex;
+		justify-content: space-between;
+		margin: 0 6.3% 0 140px;
 
 		.wrapper {
-			max-width: 500px;
 			padding: 0px 10px;
 		}
 
@@ -21,8 +21,12 @@
 		}
 
 		@media(min-width: 881px) {
-			.wrapper {
-				margin-left: 128px;
+			.feed-results {
+				width: 56%;
+			}
+
+			.feed-info-box {
+				width: 42%;
 			}
 		}
 

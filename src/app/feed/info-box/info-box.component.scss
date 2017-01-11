@@ -7,8 +7,13 @@
 		box-shadow: 0 2px 2px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08);
 		border-radius: 2px;
 		min-height: 420px;
-		width: 400px;	
-        margin-bottom: 20px;
+		width: 100%;
+    margin-bottom: 20px;
+}
+
+.row:first-child {
+	display: flex;
+	justify-content: space-between;
 }
 
 .leaderboard-item {

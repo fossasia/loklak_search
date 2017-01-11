@@ -8,7 +8,7 @@
 	</div>
 
 	<div class="feed-wrapper">
-		<div *ngIf="(areResultsAvailable$ | async)" class="wrapper">
+		<div *ngIf="(areResultsAvailable$ | async)" class="wrapper feed-results">
 			<div *ngFor="let item of (apiResponseResults$ | async)">
 				<feed-card [feedItem]="item"></feed-card>
 			</div>
@@ -20,10 +20,10 @@
 
 			<feed-footer [query] = "(query$ | async)" [apiResponseTags]="(apiResponseTags$ | async)"></feed-footer>
 		</div>
-		<div *ngIf="(areResultsAvailable$ | async)" class="wrapper">
+		<div *ngIf="(areResultsAvailable$ | async)" class="wrapper feed-info-box">
 			<info-box [query] = "(query$ | async)" [apiResponseAggregations]="(apiResponseAggregations$ | async)"></info-box>
 		</div>
-		
+
 		<div class="results-not-found"
 					*ngIf="!(isSearching$ | async) &&
 								!(areResultsAvailable$ | async) &&
