@@ -80,10 +80,19 @@ div.wrapper {
 			}
 
 		}
-
 	}
 	div.search-form:hover{
 			box-shadow: 0 3px 8px 0 rgba(0,0,0,0.16),0 0 0 1px rgba(0,0,0,0.08);
+	}
+	.help-text{
+			font-size: 10pt;
+			text-align: center;
+
+			.highlight{
+				background-color: #eeeeee;
+    			border-radius: 6px;
+    			padding: 1px 3px;
+			}
 	}
 
 	app-footer {
