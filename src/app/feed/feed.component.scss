@@ -2,35 +2,34 @@
 	min-height: calc(90vh - 41px);
 
 	.feed-wrapper {
-		padding-top: 15px;
+		padding-top: 5vh;
 		flex-direction: row;
-		display: -webkit-box;
-		display: -moz-box;
-		display: -ms-flexbox;
-		display: -webkit-flex;
-		display: flex;
-		justify-content: space-between;
-		margin: 0 6.3% 0 140px;
 
 		.wrapper {
-			padding: 0px 10px;
+			margin-left: 150px;
+			float: left;
 		}
 
 		feed-pagination {
 			margin-top: 10px;
 		}
 
-		@media(min-width: 881px) {
+		@media(min-width: 1000px) {
 			.feed-results {
-				width: 56%;
-			}
-
-			.feed-info-box {
-				width: 42%;
+				width: 632px;
 			}
 		}
 
-		@media(max-width: 880px) {
+		.feed-info-box {
+
+			@media(min-width: 1180px) {
+				width: calc(100% - 812px);
+				max-width: 454px;
+				margin-left: 30px;
+			}
+		}
+
+		@media(max-width: 1000px) {
 			.wrapper{
 				margin: 0 auto;
 			}
