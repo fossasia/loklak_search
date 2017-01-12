@@ -21,18 +21,18 @@
     border-bottom: 2px solid #ccc;
     /*margin: 8px;*/
     padding: 4px 0;
-    font-size: 2.5vh;
+    font-size: 14px;
+    height: 40px;
     img {
         border-radius: 50%;
     }
     td {
         position: relative;
-        padding-left: 0 !important;
-        padding-right: 0 !important;
+        padding-left: 10px;
+        padding-right: 0;
         img {
-            height: 4vh;
-            width: 4vh;
-            line-height: 4vh;
+            height: 30px;
+            width: 30px;
         }
     }
 }
@@ -40,40 +40,33 @@
 
 .leaderboard-count {
     background-color: #337ab7;
-    height: 4vh;
-    width: 4vh;
-    padding: 1vh 0;
+    height: 30px;
+    width: 30px;
+    padding: 8px 0;
     text-align: center;
     border-radius: 50%;
     font-weight: bold;
-    font-size: 1.8vh;
+    font-size: 14px;
     color: #fff;
 }
 
 .leaderboard-label {
     top: -8px;
-    font-size: 1.62vh;
+    font-size: 14px;
     position: absolute;
-    left: 2.8vh;
+    left: 20px;
     text-align: center;
-    line-height: 3vh;
-    /* padding: 3px 3px; */
+    line-height: 24px;
     background-color: #337ab7;
     border-radius: 50%;
     color: #fff;
-    width: 3vh;
-    height: 3vh;
+    width: 23px;
+    height: 23px;
 }
 
 .leaderboard-text {
     a {
-        font-size: 1.8vh;
-        height: 4vh;
-        line-height: 4vh;
+        font-size: 14px;
+        line-height: 21px;
     }
-}
-.leaderboard-container {
-    width: 32vw;
-    max-height: 19.5vw;
-    overflow: hidden;
 }
