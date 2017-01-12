@@ -1,0 +1,17 @@
+{
+ "attr-name-ignore-regex": false,
+ "attr-name-style":["dash"],
+ "attr-no-dup": true,
+ "attr-quote-style":["quoted"],
+ "attr-req-value": true,
+ "indent-style": ["tabs"],
+ "line-max-len": ["140"],
+ "class-style":false,
+ "class-no-dup": true,
+ "id-class-ignore-regex": false,
+ "id-no-dup": true,
+ "img-req-src": true,
+ "tag-name-lowercase": true,
+ "tag-name-match": true,
+ "title-no-dup": true
+}
