@@ -5,25 +5,62 @@
 </div>
 
 	<div class="container">
-		<div class="address">
-			<h3>Contact Us</h3>
-			<hr>
-			<address>
+			
+			<div class="row">
+				<h3>Contact Us</h3>
+				<hr>
+			<div class="col-sm-12 col-md-6 col-lg-6">
+				<h5>If you would like to get updates about our activities and new releases, please subscribe to our newsletter here:</h5>
+				<form action="http://news.fossasia.org/subscribe" [formGroup]="SubscribeForm" novalidate (ngSubmit)="sendtosuperuser(SubscribeForm.value); showsubmit()" class="form-inline" method="POST" role="form">
+				
+					<div class="form-group">
+						<input type="text" formControlName="name" id="name" name="name" placeholder="Name">
+					<div class="validators"><small *ngIf="!(SubscribeForm.controls.name.valid || (SubscribeForm.controls.name.pristine && !submitted))"> Name is required</small></div>
+					</div>		
+					
+					<div class="form-group">	
+						<input type="email" formControlName="email" id="email" name="email" placeholder="Email Address">
+					<div class="validators"><small  *ngIf="!(SubscribeForm.controls.email.valid || (SubscribeForm.controls.email.pristine && !submitted))"> Email is required </small> </div>
+					</div>
+									
+					<br>
+					<button type="submit" class="btn" [disabled]="!SubscribeForm.valid" value="submit">Subscribe<input type="hidden" name="_next" value="/contact" /></button>
+					<small *ngIf="submitted && SubscribeForm.valid ">Your Form has been submitted</small>
+				</form>
+				<h5>If you are a developer, please join our <a href="https://groups.google.com/forum/#!forum/loklak" target="_blank">mailing list</a> to discuss development questions about the project.
+				You can also find us on our chat channel on Gitter  <a href="https://gitter.im/loklak/loklak" target="_blank">here.</a></h5>
+
+			
+			</div>
+			<div class="col-sm-12 col-md-6 col-lg-6">
+				
+				<sebm-google-map [latitude]="lat" [longitude]="lng">
+					<sebm-google-map-marker [latitude]="lat" [longitude]="lng" [label]="'Loklak'"></sebm-google-map-marker>
+				</sebm-google-map>
+				<address>
 				<h4 class="bold">Loklak</h4>
 				93 Mau Than Street<br>
 				Can Tho<br>
 				Viet Nam<br>
-				Phone +84 (0) 907 65 29 27<br>
-				Email: support@loklak.net<br>
+				Phone: +84 (0) 907 65 29 27<br>
+				Email: <a href="mailto:support@loklak.net">support@loklak.net</a><br>
 				Board of Directors: Phuc Hau Dang<br>
-				Loklak Ltd. is registered in Can Tho, Viet Nam.
-			</address>
+				<b>Loklak Ltd.</b> is registered in Can Tho, Viet Nam.
+				</address>
+			</div>
+			</div>
 			<hr>
-			<h5>Report a safety or abuse issue affecting our products.<br><br>
-			If you know of a safety or abuse problem with any of Loklak's services, we'd like to hear about it right away. Please use our <a (click)="formcontrol=true">contact</a> form to report the issue.</h5><br><br>
-		</div>
+			<div class="row">
+			<div class="col-sm-12 col-md-12">
+				 <h5>Report a safety or abuse issue affecting our products.<br><br>
+			If you know of a safety or abuse problem with any of Loklak's services, we'd like to hear about it right away. Please use our <a (click)="formcontrol=true">contact</a> form to report the issue.</h5><br>
+			</div>
+				
+			</div>
+			
+			
+			</div>
     <div *ngIf="formcontrol">
-  <contact-form (hidecontactform)="contactform($event)"></contact-form>
+  <contact-form (hideContactForm)="ContactForm($event)"></contact-form>
   </div>
-	</div>
   <app-footer></app-footer>

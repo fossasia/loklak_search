@@ -31,11 +31,31 @@
 	padding: 15px;
 	width: auto;
 }
-
+address{
+    border: 1px solid;
+	padding: 10px;
+	background: #f9f9f9;
+    border-color: #f2f2f2;
+    border-radius: 4px;
+	
+}
+input{
+	border-radius: 4px;
+    margin: 5px 0px;
+    box-shadow: none;
+    border: 1px solid #ccc;
+    padding: 6px 10px;
+    outline: 0;
+}
+.sebm-google-map-container {
+  height: 200px;
+}
 .navbar-brand>img {
 	padding: 7px 15px;
 }
-
+.btn{
+	border-radius: 4px !important;
+}
 .text-center{
 	text-align: center;
 }
