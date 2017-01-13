@@ -65914,7 +65914,7 @@ var SearchService = (function () {
     return SearchService;
 }());
 SearchService.apiUrl = new URL('http://api.loklak.org/api/search.json');
-SearchService.maximum_records_fetch = 30;
+SearchService.maximum_records_fetch = 20;
 SearchService.minified_results = true;
 SearchService.source = 'cache';
 SearchService.fields = 'created_at,screen_name,mentions,hashtags';
