@@ -1,46 +1,13 @@
 <a class="post-link"  target="_blank">
-	<div class="card" (click)="showStyle = !showStyle;">
+	<div class="card" (click)="showLightBox.emit({feedIndex : feedIndex , show : 'show'})">
 		<div class="card-image">
-			<a href="{{profileURL}}" target="_blank">
+			<a (click)="showHideLightbox(profileURL)">
 				<img src="{{feedItem.user.profile_image_url_https}}" alt="Profile Image" width="50" height="50" />
 			</a>
 		</div>
 		<div class="card-content">
-			<div class="overlay" [style.visibility]="showTweet()">
-				<div class="overlay-content">
-					<button class="lightbox-close" (click)="showStyle = showStyle;">x</button>
-					<a href="{{profileURL}}" target="_blank" id="profile-link">
-                        <img class="lightbox-img" src="{{feedItem.user.profile_image_url_https}}"/>
-					<h3 class="lightbox-name">{{profileName}} <span class="lightbox-timestamp">
-						{{datetime}}
-					</span></h3>
-						<p class="lightbox-nickname">@{{feedItem.user.screen_name}}</p>
-                    </a>
-						<p class="lightbox-tweet"><feed-linker
-					[text]="itemText"
-					[config]="cardAutolinkerConfig"></feed-linker></p>
-                    <div class="lightbox-actions">
-                    <div class="lightbox-action lightbox-reply lightbox-space">
-					<a onclick="window.open(this.href)" href="https://twitter.com/intent/tweet?in_reply_to={{feedItem.id_str}}"><i class="material-icons lightbox-md-20">reply</i></a>
-				</div>
-				<div class="lightbox-action lightbox-retweet lightbox-space">
-					<a onclick="window.open(this.href)" href="https://twitter.com/intent/retweet?tweet_id={{feedItem.id_str}}"><i class="material-icons lightbox-md-20">repeat</i></a>
-					<div class="lightbox-counter lightbox-retweet-count">
-						{{retweetCount}}
-					</div>
-				</div>
-				<div class="lightbox-action lightbox-like lightbox-space">
-					<a onclick="window.open(this.href)" href="https://twitter.com/intent/like?tweet_id={{feedItem.id_str}}"><i class="material-icons lightbox-md-20">favorite_border</i></a>
-					<div class="lightbox-counter lightbox-like-count">
-						{{favouriteCount}}
-					</div>
-				</div>
-				</div>
-                <a onclick="window.open(this.href)" class="lightbox-btn" target="_blank" href="{{feedItem.link}}">View on Twitter</a>
-                </div>
-			</div>
 			<div class="card-header">
-				<a href="{{profileURL}}" target="_blank" id="profile-link" (click)="showHideLightbox(profileURL)">
+				<a id="profile-link" (click)="showHideLightbox(profileURL)">
 					<span class="name">
 						<b>{{profileName}}</b>
 					</span>
@@ -57,7 +24,7 @@
 			<div class="card-text">
 				<feed-linker
 					[text]="itemText"
-					[config]="cardAutolinkerConfig" (onShowed)="onShowed($event)" ></feed-linker>
+					[config]="cardAutolinkerConfig" (click)="showLightBox.emit({show : 'hide'})"></feed-linker>
 			</div>
 			<div class="card-footer">
 				<div class="action reply">

@@ -14,7 +14,9 @@ import { actionTypeCheck } from '../utils';
 export const ActionTypes = {
 	SEARCH: actionTypeCheck('[Api] Search'),
 	SEARCH_COMPLETE_SUCCESS: actionTypeCheck('[Api] Search Complete Success'),
-	SEARCH_COMPLETE_FAIL: actionTypeCheck('[Api] Search Complete Fail')
+	SEARCH_COMPLETE_FAIL: actionTypeCheck('[Api] Search Complete Fail'),
+	SELECT_RESULT: actionTypeCheck('[Api] Select Lightbox'),
+	UNSELECT_RESULT: actionTypeCheck('[Api Unselect Lightbox')
 };
 
 /**
@@ -43,6 +45,20 @@ export class SearchCompleteFailAction implements Action {
 	constructor(public payload: any) { }
 }
 
+export class SelectLightbox implements Action {
+	type = ActionTypes.SELECT_RESULT;
+
+	constructor(public payload: number) { }
+
+}
+
+export class UnSelectLightbox implements Action {
+	type = ActionTypes.UNSELECT_RESULT;
+
+	constructor(public payload: null) { }
+	
+}
+
 /**
  * Export a type alias of all actions in this action group
  * so that reducers can easily compose action types
@@ -50,4 +66,6 @@ export class SearchCompleteFailAction implements Action {
 export type Actions
 	= SearchAction
 	| SearchCompleteSuccessAction
-	| SearchCompleteFailAction;
+	| SearchCompleteFailAction
+	| SelectLightbox
+	| UnSelectLightbox;

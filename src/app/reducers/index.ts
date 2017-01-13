@@ -136,6 +136,12 @@ export const getPageLoading = createSelector(getPaginationState, fromPagination.
 export const getPagesAvailable = createSelector(getPaginationState, fromPagination.getPagesAvailable);
 
 /**
+*Selectors For LightBox.
+*/
+export const getLightboxIsSelected = createSelector(getApiResponseState, fromApiResponse.isSelected);
+export const getLightboxgetSelectedItem = createSelector(getApiResponseState, fromApiResponse.getSelectedItem);
+
+/**
  * Some selector functions create joins across parts of state. This selector
  * composes the search loading and result validity to return a boolean to indicate
  * wheather the results were found or not.

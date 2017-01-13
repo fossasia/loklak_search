@@ -1,23 +1,21 @@
-import { Component, OnInit, Input, ChangeDetectionStrategy, ChangeDetectorRef, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ApiResponseResult } from '../../models/api-response';
 import { Observable } from 'rxjs/Rx';
 
 import { AutolinkerConfig, ConfigLinkType } from '../../shared/configrations';
 
 @Component({
-	selector: 'feed-card',
-	templateUrl: './feed-card.component.html',
-	styleUrls: ['./feed-card.component.scss'],
-	changeDetection: ChangeDetectionStrategy.OnPush
+	selector: 'feed-lightbox',
+	templateUrl: './feed-lightbox.component.html',
+	styleUrls: ['./feed-lightbox.component.scss'],
 })
-export class FeedCardComponent implements OnInit {
+export class FeedLightboxComponent implements OnInit {
 	private readonly cardAutolinkerConfig: AutolinkerConfig = new AutolinkerConfig();
 	private datetime: string = null;
 	@Input() private feedItem: ApiResponseResult;
-	@Input() private feedIndex: number;
-	@Output() private showLightBox: EventEmitter<any> = new EventEmitter();
+	@Output() private hideLightBox: EventEmitter<any> = new EventEmitter();
 
-	constructor(private ref: ChangeDetectorRef) { }
+	constructor() { }
 
 	ngOnInit() {
 		this.modifyAutolinkerConfig();
@@ -25,15 +23,6 @@ export class FeedCardComponent implements OnInit {
 		timer.subscribe(t => this.ttt());
 	}
 
-	onShowed(show: boolean) {
-		if (show) {
-			this.showLightBox.emit({show : 'hide'});
-		}
-	}
-	showHideLightbox(link: string) {
-		window.open(link, '_blank');
-		this.onShowed(true);
-	}
 
 	private modifyAutolinkerConfig() {
 		// hashtag and mention use the default configration strategy.
@@ -45,7 +34,6 @@ export class FeedCardComponent implements OnInit {
 	private get profileURL(): string {
 		return `https://twitter.com/${this.feedItem.screen_name}/`;
 	}
-
 
 	private get profileName(): string {
 		// The api's response.user.name has some errors for verified accounts and profile names with emojis.
@@ -59,6 +47,11 @@ export class FeedCardComponent implements OnInit {
 		div.innerHTML = html;
 		let text = div.textContent || div.innerText || '';
 		return text;
+	}
+
+	private onShowed(event)
+	{
+		this.hideLightBox.emit();
 	}
 
 	private get itemText(): string {
@@ -85,7 +78,6 @@ export class FeedCardComponent implements OnInit {
 
 	private  ttt(): any {
 		this.datetime = this.tdiff();
-		this.ref.markForCheck();
 	}
 
 
@@ -116,7 +108,7 @@ export class FeedCardComponent implements OnInit {
 		}
 		else if (sinceMin < 1440) {
 		let sinceHr = Math.round(sinceMin / 60);
-		since = sinceHr + 'h ago' ;
+		since = sinceHr + 'h' ;
 		}
 		else if (date2.getFullYear() === now) {
 			since = months[date2.getMonth()] + ' ' + date2.getDate()  ;
