@@ -4,7 +4,7 @@
 			{{shard.text}}
 		</span>
 		<span *ngIf="shard.type === 1"  > <!-- URL Links -->
-			<a  [href]="shard.linkTo" target="_blank" (click)="showHideLightbox(shard)" >{{shard.text}}</a>
+			<a (click)="showHideLightbox(shard)" >{{shard.text}}</a>
 		</span>
 		<span *ngIf="shard.type === 2" (click)="showHideLightbox(shard)" > <!-- Hashtag -->
 			<a [routerLink]="shard.linkTo" [queryParams]="shard.queryParams">{{shard.text}}</a>
