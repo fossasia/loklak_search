@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, OnChanges, Input } from '@angular/core';
 import { Store } from '@ngrx/store';
 import * as fromRoot from '../../reducers';
 import * as apiAction from '../../actions/api';
@@ -10,7 +10,7 @@ import { Query, ReloactionAfterQuery } from '../../models/query';
 	templateUrl: './info-box.component.html',
 	styleUrls: ['./info-box.component.scss']
 })
-export class InfoBoxComponent implements OnInit {
+export class InfoBoxComponent implements OnInit, OnChanges {
 	@Input() private query: Query;
 	@Input() private apiResponseAggregations: ApiResponseAggregations;
 	private topHashtags;
@@ -20,7 +20,9 @@ export class InfoBoxComponent implements OnInit {
 		private store: Store<fromRoot.State>
 		) { }
 
-	ngOnInit() {
+	ngOnInit() { }
+
+	ngOnChanges() {
 		this.sortHashtags(this.apiResponseAggregations);
 		this.sortTwiterers(this.apiResponseAggregations);
 		this.sortMentions(this.apiResponseAggregations);
