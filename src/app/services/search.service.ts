@@ -10,7 +10,7 @@ import { ApiResponse } from '../models/api-response';
 @Injectable()
 export class SearchService {
 	private static readonly apiUrl: URL = new URL('http://api.loklak.org/api/search.json');
-	private static maximum_records_fetch: number = 30;
+	private static maximum_records_fetch: number = 20;
 	private static minified_results: boolean = true;
 	private static source: string = 'cache';
 	private static fields: string = 'created_at,screen_name,mentions,hashtags';
