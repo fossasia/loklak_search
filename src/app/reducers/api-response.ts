@@ -20,6 +20,8 @@ export interface State {
 	hashtags: Array<{ tag: string, count: number }>;
 	aggregations: ApiResponseAggregations;
 	valid: boolean;
+	selected: number;
+	selectedavail: boolean;
 }
 
 /**
@@ -36,7 +38,9 @@ const initialState: State = {
 	entities: [],
 	hashtags: [],
 	aggregations: null,
-	valid: true
+	valid: true,
+	selected: null,
+	selectedavail: false
 };
 
 
@@ -63,7 +67,9 @@ export function reducer(state: State = initialState, action: api.Actions | pagin
 				entities: apiResponse.statuses,
 				hashtags,
 				aggregations: apiResponse.aggregations,
-				valid: true
+				valid: true,
+				selected: null,
+				selectedavail: false
 			};
 		}
 
@@ -95,6 +101,21 @@ export function reducer(state: State = initialState, action: api.Actions | pagin
 			return state;
 		}
 
+		case api.ActionTypes.SELECT_RESULT: {
+			let present = (action.payload+1) ? true : false;
+			return Object.assign({}, state, {
+				selectedavail: present,
+				selected: action.payload
+			});
+		}
+
+		case api.ActionTypes.UNSELECT_RESULT: {
+			return Object.assign({}, state, {
+				selectavail: false,
+				selected: null
+			});
+		}
+
 		default: {
 			return state;
 		}
@@ -121,3 +142,7 @@ export const isResultValid = (state: State) => state.valid;
 export const lastRecord = (state: State) => state.entities.length - 1;
 
 export const getAggregations = (state: State) => state.aggregations;
+
+export const isSelected = (state: State) => state.selectedavail;
+
+export const getSelectedItem = (state: State) => state.entities[state.selected];

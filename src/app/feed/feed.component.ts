@@ -33,6 +33,10 @@ export class FeedComponent implements OnInit, OnDestroy {
 	private apiResponseAggregations$: Observable<ApiResponseAggregations>;
 	private isNextPageLoading$: Observable<boolean>;
 	private areMorePagesAvailable$: Observable<boolean>;
+	private visibility: boolean = false;
+	private display: boolean = true;
+	private isLightboxSelected$: Observable<boolean>;
+	private LightboxgetSelectedItem$: Observable<ApiResponseResult>;
 	
 	constructor(
 		private route: ActivatedRoute,
@@ -91,6 +95,8 @@ export class FeedComponent implements OnInit, OnDestroy {
 		this.isNextPageLoading$ = this.store.select(fromRoot.getPageLoading);
 		this.areMorePagesAvailable$ = this.store.select(fromRoot.getPagesAvailable);
 		this.apiResponseAggregations$ = this.store.select(fromRoot.getApiAggregations);
+		this.isLightboxSelected$ = this.store.select(fromRoot.getLightboxIsSelected);
+		this.LightboxgetSelectedItem$ = this.store.select(fromRoot.getLightboxgetSelectedItem);
 	}
 
 	/**
@@ -142,6 +148,33 @@ export class FeedComponent implements OnInit, OnDestroy {
 	 */
 	private loadMoreResults(event) {
 		this.store.dispatch(new paginationAction.NextPageAction(''));
+	}
+
+	/** 
+	/* Lightbox handling :- showlightbox updates the lightbox with feed and hidelightbox removes the feed
+	*/
+
+	private showhidelightbox(event) {
+		if(event.show == 'hide') {
+			this.visibility= false;
+			this.store.dispatch(new apiAction.UnSelectLightbox(event));
+			this.display= false;
+		}
+		else if((event.feedIndex+1)&&(event.show == 'show') && (this.display==false)) {
+			this.display=true;
+			this.visibility=false;
+
+		}
+		else if ((event.feedIndex+1)&&(event.show == 'show') && (this.display==true)){
+			this.visibility= true;
+			this.store.dispatch(new apiAction.SelectLightbox(event.feedIndex));
+		}
+
+	}
+
+	private hidelightbox(event) {
+		this.visibility= false;
+		this.store.dispatch(new apiAction.UnSelectLightbox(event));
 	}
 
 	/**

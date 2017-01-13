@@ -13,6 +13,7 @@ import { FeedNotFoundComponent } from './feed-not-found/feed-not-found.component
 import { FeedLinkerComponent } from './feed-linker/feed-linker.component';
 import { FeedPaginationComponent } from './feed-pagination/feed-pagination.component';
 import { InfoBoxComponent } from './info-box/info-box.component';
+import { FeedLightboxComponent } from './feed-lightbox/feed-lightbox.component';
 
 
 @NgModule({
@@ -55,7 +56,8 @@ import { InfoBoxComponent } from './info-box/info-box.component';
 		FeedNotFoundComponent,
 		FeedLinkerComponent,
 		FeedPaginationComponent,
-		InfoBoxComponent
+		InfoBoxComponent,
+		FeedLightboxComponent
 	]
 })
 export class FeedModule { }

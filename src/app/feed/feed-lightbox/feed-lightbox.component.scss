@@ -1,0 +1,161 @@
+.overlay {
+	visibility: visible;
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	padding-top: 80px;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	z-index: 1000;
+	background-color: rgba(0, 0, 0, 0.5);
+
+	.overlay-content{
+		max-width: 90%;
+		height: 60vh;
+		width: 600px;
+		background-color: white;
+		margin: 0 auto;
+		border: solid gray 1px;
+		border-radius: 8px;
+		padding: 30px;
+		position: relative;
+
+		.lightbox-close{
+			border: none;
+			width: 40px;
+			height: 40px;
+			font-size: 30px;
+			position: absolute;
+			right: 30px;
+			top: 20px;
+			background: white;
+			color: gray;
+			cursor: pointer;
+		}
+
+		.lightbox-img{
+			float: left;
+			width: 48px;
+			height: 48px;
+			border-radius: 5px;
+		}
+
+		.lightbox-name{
+			float: left;
+			margin-top: 8px;
+			margin-left: 10px;
+			margin-bottom: 0;
+			font-size: 18px;
+		}
+
+		.lightbox-nickname{
+			position: absolute;
+			color: gray;
+			left: 86px;
+			margin-top: 30px;
+			font-size: 14px;
+		}
+
+    .lightbox-timestamp{
+        margin-left: 15px;
+        color:black;
+        font-size: 13px;
+    }
+
+		.lightbox-tweet{
+			position: absolute;
+			top: 90px;
+			font-size: 20px;
+			text-align: left;
+			max-width: 500px;
+		}
+
+		.lightbox-btn{
+			position: absolute;
+			right: 20px;
+			bottom: 5%;
+			border: none;
+			color: white;
+			background-color: #00aced;
+			padding: 10px 25px;
+			font-size: 16px;
+			border-radius: 5px;
+			text-decoration: none;
+			margin-top: 10px;
+			cursor: pointer;
+		}
+
+        .lightbox-actions{
+            position: absolute;
+            left: 20px;
+				bottom: 20%;
+				margin-top: 20px;
+				display: flex;
+				justify-content: space-between;
+
+				i.lightbox-md-20{
+					font-size: 20px;
+				}
+
+
+            .lightbox-action {
+					color: #aab8c2;
+					display: flex;
+
+					.lightbox-counter{
+						margin-left: 5px;
+					}
+				}
+
+				.lightbox-reply:hover {
+					color: #89C9FA;
+                    cursor: pointer;
+				}
+
+				.lightbox-retweet:hover {
+					color: #19cf86;
+                    cursor : pointer;
+				}
+
+				.lightbox-like:hover {
+					color: #e81c4f;
+                    cursor : pointer;
+				}
+
+            .lightbox-space {
+                margin-left: 60px;
+            }
+        }
+	}
+
+    @media screen and (max-width:600px) {
+
+        .overlay-content{
+
+            width:100%;
+            height: 60vh;
+            position: relative;
+
+            .lightbox-close{
+
+                position:absolute;
+                left:90%;
+            }
+
+            .lightbox-btn{
+                position:absolute;
+                left:5%;
+                bottom: 5%;
+            }
+
+            .lightbox-actions{
+                position: absolute;
+                bottom: 20%;
+                right:20%;
+            }
+        }
+}
+
+
+}

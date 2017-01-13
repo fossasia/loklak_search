@@ -28,6 +28,8 @@ class FeedHeaderStubComponent {
 })
 class FeedCardStubComponent {
 	@Input() private feedItem;
+	@Input() private feedIndex;
+	@Output() private showLightBox: EventEmitter<any>;
 }
 
 @Component({
@@ -80,6 +82,15 @@ class InfoBoxStubComponent {
 	@Input() private apiResponseAggregations;
 }
 
+@Component({
+	selector: 'feed-lightbox',
+	template: ''
+})
+class FeedLightboxStubComponent {
+	@Input() private feedItem;
+	@Output() private hideLightBox: EventEmitter<any>;
+}
+
 describe('Component: Feed', () => {
 	beforeEach(() => {
 		TestBed.configureTestingModule({
@@ -97,7 +108,8 @@ describe('Component: Feed', () => {
 				FeedNotFoundStubComponent,
 				FeedLinkerStubComponent,
 				FeedPaginationStubComponent,
-				InfoBoxStubComponent
+				InfoBoxStubComponent,
+				FeedLightboxStubComponent
 			]
 		});
 	});
