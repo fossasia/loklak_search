@@ -66,15 +66,3 @@ export class InfoBoxComponent implements OnInit, OnChanges {
 	}
 }
 
-interface Hashtags {
-	tweet: string;
-	count: number;
-}
-interface Mentions {
-	name: string;
-	count: number;
-}
-interface Twitterers {
-	name: string;
-	count: number;
-}
