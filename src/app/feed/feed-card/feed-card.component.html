@@ -7,7 +7,7 @@
 		</div>
 		<div class="card-content">
 			<div class="card-header">
-				<a id="profile-link" (click)="showHideLightbox(profileURL)">
+				<a id="profile-link" [routerLink]="['/search']" [queryParams]="{ query : 'from:' + feedItem.user.screen_name }" (click)="showLightBox.emit({show : 'hide'})">
 					<span class="name">
 						<b>{{profileName}}</b>
 					</span>

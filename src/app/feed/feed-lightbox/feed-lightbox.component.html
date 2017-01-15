@@ -3,6 +3,8 @@
 					<button class="lightbox-close" (click)="hideLightBox.emit()">x</button>
 					<a href="{{profileURL}}" target="_blank" id="profile-link">
                         <img class="lightbox-img" src="{{feedItem.user.profile_image_url_https}}"/>
+                        </a>
+                    <a [routerLink]="['/search']" [queryParams]="{ query : 'from:' + feedItem.user.screen_name }" (click)="hideLightBox.emit()" id="profile-link">
 					<h3 class="lightbox-name">{{profileName}} <span class="lightbox-timestamp">
 						{{datetime}}
 					</span></h3>
