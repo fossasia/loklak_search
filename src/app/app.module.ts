@@ -21,6 +21,7 @@ import { AboutModule } from './about/about.module';
 import { ContactModule } from './contact/contact.module';
 import { TermsModule } from './terms/terms.module';
 import { SearchService } from './services';
+import { PageNotFoundModule } from './pagenotfound/pagenotfound.module';
 
 @NgModule({
 	declarations: [
@@ -122,7 +123,13 @@ import { SearchService } from './services';
 		/**
 		 * Module defines the `TermsAndServices Page` for the Loklak Project.
 		 */
-		TermsModule
+		TermsModule,
+
+		/** 
+		/* Module defines the '404 Not found Page' for the Loklak Project.
+		*/
+
+		PageNotFoundModule
 	],
 	providers: [
 		/**
