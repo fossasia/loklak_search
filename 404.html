@@ -1,13 +1,24 @@
 <!doctype html>
 <html>
-  <head>
-    <!-- This stores the URL the user was attempting to go to in sessionStorage,
-    and then redirects all 404 responses to the app’s index.html page -->
-    <script>
-      sessionStorage.redirect = location.href;
-    </script>
-    <meta http-equiv="refresh" content="0;URL='http://loklak.net/'"></meta>
-  </head>
-  <body>
-  </body>
+<head>
+  <meta charset="utf-8">
+  <title>Loklak Search</title>
+  <base href="/loklak_search/">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicons/favicon.png">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<script>
+		(function(){
+			var redirect = sessionStorage.redirect;
+			delete sessionStorage.redirect;
+			if (redirect && redirect != location.href) {
+				history.replaceState(null, null, redirect);
+			}
+		})();
+	</script>
+<link href="styles.009e427cb9d67f05d947ec43f0aec71f.bundle.css" rel="stylesheet"></head>
+	<body>
+		<app-root></app-root>
+	<script type="text/javascript" src="inline.d41d8cd98f00b204e980.bundle.js"></script><script type="text/javascript" src="styles.b2328beb0372c051d06d.bundle.js"></script><script type="text/javascript" src="main.ca1d4cb2b55619da6260.bundle.js"></script></body>
 </html>
