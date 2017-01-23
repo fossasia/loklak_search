@@ -141,6 +141,7 @@ export class FeedComponent implements OnInit, OnDestroy {
 	 */
 	private handleSearchQuery() {
 		this.location.go('/search', `query=${this.queryString}`);
+		this.store.dispatch(new paginationAction.RevertPaginationState(''));
 	}
 
 	/**
