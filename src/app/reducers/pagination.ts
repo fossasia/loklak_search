@@ -46,7 +46,7 @@ export function reducer(state: State = initialState, action: pagination.Actions)
 		case pagination.ActionTypes.PAGINATION_COMPLETE_SUCCESS: {
 			return Object.assign({}, state, {
 				pageLoading: false,
-				pagesAvailable: (action.payload.statuses.length < 30 ? false : true),
+				pagesAvailable: (action.payload.statuses.length < 20 ? false : true),
 			});
 		}
 
