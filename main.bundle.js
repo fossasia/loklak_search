@@ -66284,7 +66284,7 @@ function reducer(state, action) {
                 pages: state.pages.concat([apiResponse]),
                 entities: state.entities.concat(apiResponse.statuses),
                 hashtags: hashtags.slice(),
-                aggregations: apiResponse.aggregations,
+                aggregations: apiResponse.aggregations || state.aggregations,
                 valid: true
             });
         }
@@ -66368,7 +66368,7 @@ function reducer(state, action) {
         case __WEBPACK_IMPORTED_MODULE_0__actions_pagination__["a" /* ActionTypes */].PAGINATION_COMPLETE_SUCCESS: {
             return Object.assign({}, state, {
                 pageLoading: false,
-                pagesAvailable: (action.payload.statuses.length < 30 ? false : true),
+                pagesAvailable: (action.payload.statuses.length < 20 ? false : true),
             });
         }
         case __WEBPACK_IMPORTED_MODULE_0__actions_pagination__["a" /* ActionTypes */].PAGINATION_COMPLETE_FAIL: {
