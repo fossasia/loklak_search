@@ -31475,8 +31475,10 @@ var StoreDevtoolActions = {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return STORE_DEVTOOLS_CONFIG; });
+/* harmony export (binding) */ __webpack_require__.d(exports, "c", function() { return INITIAL_OPTIONS; });
 
 var STORE_DEVTOOLS_CONFIG = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["w" /* OpaqueToken */]('@ngrx/devtools Options');
+var INITIAL_OPTIONS = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["w" /* OpaqueToken */]('@ngrx/devtools Initial Config');
 
 
 /***/ },
@@ -64059,7 +64061,8 @@ function toPayload(action) {
 /* unused harmony export _createReducer */
 /* unused harmony export _createStateIfExtension */
 /* unused harmony export _createReducerIfExtension */
-/* unused harmony export _createExtensionOptions */
+/* unused harmony export noMonitor */
+/* unused harmony export _createOptions */
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return StoreDevtoolsModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -64118,24 +64121,23 @@ function _createReducerIfExtension(extension, injector) {
         return new __WEBPACK_IMPORTED_MODULE_1__ngrx_store__["c" /* Reducer */](dispatcher, reducer);
     }
 }
-function _createExtensionOptions() {
-    return {
-        maxAge: Infinity,
-        monitor: function () { return null; }
-    };
+function noMonitor() {
+    return null;
+}
+function _createOptions(_options) {
+    var DEFAULT_OPTIONS = { monitor: noMonitor };
+    var options = typeof _options === 'function' ? _options() : _options;
+    options = Object.assign({}, DEFAULT_OPTIONS, options);
+    if (options.maxAge && options.maxAge < 2) {
+        throw new Error("Devtools 'maxAge' cannot be less than 2, got " + options.maxAge);
+    }
+    return options;
 }
 var StoreDevtoolsModule = (function () {
     function StoreDevtoolsModule() {
     }
     StoreDevtoolsModule.instrumentStore = function (_options) {
         if (_options === void 0) { _options = {}; }
-        var DEFAULT_OPTIONS = {
-            monitor: function () { return null; }
-        };
-        var options = Object.assign({}, DEFAULT_OPTIONS, _options);
-        if (options.maxAge && options.maxAge < 2) {
-            throw new Error("Devtools 'maxAge' cannot be less than 2, got " + options.maxAge);
-        }
         return {
             ngModule: StoreDevtoolsModule,
             providers: [
@@ -64145,15 +64147,24 @@ var StoreDevtoolsModule = (function () {
                     useFactory: _createState
                 },
                 {
+                    provide: __WEBPACK_IMPORTED_MODULE_3__config__["c" /* INITIAL_OPTIONS */],
+                    useValue: _options
+                },
+                {
                     provide: __WEBPACK_IMPORTED_MODULE_1__ngrx_store__["c" /* Reducer */],
                     deps: [__WEBPACK_IMPORTED_MODULE_2__devtools__["b" /* DevtoolsDispatcher */], __WEBPACK_IMPORTED_MODULE_1__ngrx_store__["f" /* INITIAL_REDUCER */]],
                     useFactory: _createReducer
                 },
-                { provide: __WEBPACK_IMPORTED_MODULE_3__config__["a" /* STORE_DEVTOOLS_CONFIG */], useValue: options }
+                {
+                    provide: __WEBPACK_IMPORTED_MODULE_3__config__["a" /* STORE_DEVTOOLS_CONFIG */],
+                    deps: [__WEBPACK_IMPORTED_MODULE_3__config__["c" /* INITIAL_OPTIONS */]],
+                    useFactory: _createOptions
+                }
             ]
         };
     };
-    StoreDevtoolsModule.instrumentOnlyWithExtension = function () {
+    StoreDevtoolsModule.instrumentOnlyWithExtension = function (_options) {
+        if (_options === void 0) { _options = {}; }
         return {
             ngModule: StoreDevtoolsModule,
             providers: [
@@ -64168,8 +64179,13 @@ var StoreDevtoolsModule = (function () {
                     useFactory: _createReducerIfExtension
                 },
                 {
+                    provide: __WEBPACK_IMPORTED_MODULE_3__config__["c" /* INITIAL_OPTIONS */],
+                    useValue: _options
+                },
+                {
                     provide: __WEBPACK_IMPORTED_MODULE_3__config__["a" /* STORE_DEVTOOLS_CONFIG */],
-                    useFactory: _createExtensionOptions
+                    deps: [__WEBPACK_IMPORTED_MODULE_3__config__["c" /* INITIAL_OPTIONS */]],
+                    useFactory: _createOptions
                 }
             ]
         };
@@ -70280,7 +70296,7 @@ module.exports = "<div class=\"info-box\">\n\t<div class=\"row\">\n\t\t<div clas
 /* 803 */
 /***/ function(module, exports) {
 
-module.exports = "<footer>\n\t<div class=\"left-side\">\n\t\t<a routerLink=\"/about\">About</a>\n\t\t<a href=\"http://blog.loklak.net\">Blog</a>\n\t\t<a href=\"http://dev.loklak.org\">Developers</a>\n\t\t<a href=\"http://api.loklak.org\">API</a>\n\t\t<a href=\"http://apps.loklak.org\">Apps</a>\n\t</div>\n\t<div class=\"right-side\">\n\t\t<a routerLink=\"/terms\">Terms</a>\n\t\t<a routerLink=\"/contact\">Contact</a>\n\t</div>\n</footer>\n"
+module.exports = "<footer>\n\t<div class=\"left-side\">\n\t\t<a routerLink=\"/about\">About</a>\n\t\t<a href=\"http://blog.loklak.net\">Blog</a>\n\t\t<a href=\"http://dev.loklak.org\">Developers</a>\n\t\t<a href=\"http://api.loklak.org\">API</a>\n\t\t<a href=\"http://apps.loklak.org\">Apps</a>\n\t\t<a href=\"https://github.com/fossasia/loklak_search\">Code</a>\n\t</div>\n\t<div class=\"right-side\">\n\t\t<a routerLink=\"/terms\">Terms</a>\n\t\t<a routerLink=\"/contact\">Contact</a>\n\t</div>\n</footer>\n"
 
 /***/ },
 /* 804 */
