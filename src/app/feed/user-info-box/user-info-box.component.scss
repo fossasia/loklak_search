@@ -77,6 +77,34 @@
 			}
 		}
 
+.preloader {
+	width: 100%;
+	height: 420px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+	.loading {
+		border-radius: 50%;
+		margin: 0 auto;
+	  width: 24px;
+	  height: 24px;
+	  border: 2px solid rgb(216,27,96);
+	  border-top-color: rgba(216,97,96,0.2);
+	  animation: spin 1s infinite linear;
+	}
+
+	@keyframes spin {
+	  0% {
+	    transform: rotate(0deg);
+	  }
+	  100% {
+	    transform: rotate(360deg);
+	  }
+	}
+
+
 
 
 
