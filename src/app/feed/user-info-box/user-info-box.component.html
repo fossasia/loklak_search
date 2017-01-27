@@ -1,0 +1,57 @@
+<div class="info-box">
+	<div *ngIf="(isUserResponseLoading)" class="preloader">
+		Loading...
+	</div>
+	<div *ngIf="(!isUserResponseLoading)" class="wrapper">
+		<div class="image-gallery">
+			<div class="profile-banner-image">
+				<img src="{{ apiResponseUser.profile_banner_url }}/web"/>
+			</div>
+			<div class="profile-image">
+				<img src="{{ apiResponseUser.profile_image_url }}"/>
+			</div>
+		</div>
+		<div class="description">
+			<div class="heading">
+				<h2>{{ apiResponseUser.name }}</h2>
+				<span>@{{ apiResponseUser.screen_name }}</span>
+			</div>
+			<div class="desc">
+				<feed-linker
+					[text]="apiResponseUser.description"
+					[config]="cardAutolinkerConfig"></feed-linker>
+			</div>
+			<div class="listing">
+				<ul class="list-container">
+					<li class="list-item">
+						<span class="item-label">Tweets:</span>
+						<span class="item-content">{{ apiResponseUser.statuses_count }}</span>
+					</li>
+					<li class="list-item">
+						<span class="item-label">Following:</span>
+						<span class="item-content">{{ apiResponseUser.friends_count }}</span>
+					</li>
+					<li class="list-item">
+						<span class="item-label">Followers:</span>
+						<span class="item-content">{{ apiResponseUser.followers_count }}</span>
+					</li>
+					<li class="list-item">
+						<span class="item-label">Likes:</span>
+						<span class="item-content">{{ apiResponseUser.favourites_count }}</span>
+					</li>
+					<li class="list-item">
+						<span class="item-label">Location:</span>
+						<span class="item-content">{{ apiResponseUser.location }}</span>
+					</li>
+					<li class="list-item">
+						<span class="item-label">Website:</span>
+						<span class="item-content"><a href="{{ apiResponseUser.entities.url.urls[0].url }}">{{ apiResponseUser.entities.url.urls[0].expanded_url }}</a></span>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+

@@ -77,9 +77,18 @@ class FeedLinkerStubComponent {
 	selector: 'info-box',
 	template: ''
 })
-class InfoBoxStubComponent { 
+class InfoBoxStubComponent {
 	@Input() private query;
 	@Input() private apiResponseAggregations;
+}
+
+@Component({
+	selector: 'user-info-box',
+	template: ''
+})
+class UserInfoBoxComponent {
+	@Input() private apiResponseUser;
+	@Input() private isUserResponseLoading;
 }
 
 @Component({

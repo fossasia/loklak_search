@@ -13,6 +13,7 @@ import { FeedNotFoundComponent } from './feed-not-found/feed-not-found.component
 import { FeedLinkerComponent } from './feed-linker/feed-linker.component';
 import { FeedPaginationComponent } from './feed-pagination/feed-pagination.component';
 import { InfoBoxComponent } from './info-box/info-box.component';
+import { UserInfoBoxComponent } from './user-info-box/user-info-box.component';
 import { FeedLightboxComponent } from './feed-lightbox/feed-lightbox.component';
 import { InViewport } from '../shared//in-viewport.directive';
 
@@ -59,7 +60,9 @@ import { InViewport } from '../shared//in-viewport.directive';
 		FeedPaginationComponent,
 		InfoBoxComponent,
 		FeedLightboxComponent,
-		InViewport
+		InViewport,
+		UserInfoBoxComponent,
+		FeedLightboxComponent
 	]
 })
 export class FeedModule { }
