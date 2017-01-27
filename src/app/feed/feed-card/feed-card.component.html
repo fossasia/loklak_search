@@ -1,8 +1,8 @@
 <a class="post-link"  target="_blank">
-	<div class="card" (click)="showLightBox.emit({feedIndex : feedIndex , show : 'show'})">
+	<div class="card" (click)="showLightBox.emit({feedIndex : feedIndex , show : 'show'})" in-viewport (inViewport)="inview($event)">
 		<div class="card-image">
 			<a (click)="showHideLightbox(profileURL)">
-				<img src="{{feedItem.user.profile_image_url_https}}" alt="Profile Image" width="50" height="50" />
+				<img src="{{feedItem.user.profile_image_url_https}}" alt="Profile Image" width="50" height="50"  *ngIf="inviewport" />
 			</a>
 		</div>
 		<div class="card-content">
