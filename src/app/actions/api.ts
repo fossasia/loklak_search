@@ -1,6 +1,7 @@
 import { Action } from '@ngrx/store';
 import { ApiResponse } from '../models/api-response';
 import { Query } from '../models/query';
+import { UserApiResponse } from '../models/api-user-response';
 import { actionTypeCheck } from '../utils';
 
 /**
@@ -16,7 +17,10 @@ export const ActionTypes = {
 	SEARCH_COMPLETE_SUCCESS: actionTypeCheck('[Api] Search Complete Success'),
 	SEARCH_COMPLETE_FAIL: actionTypeCheck('[Api] Search Complete Fail'),
 	SELECT_RESULT: actionTypeCheck('[Api] Select Lightbox'),
-	UNSELECT_RESULT: actionTypeCheck('[Api Unselect Lightbox')
+	UNSELECT_RESULT: actionTypeCheck('[Api Unselect Lightbox'),
+	FETCH_USER: actionTypeCheck('[Api] Fetch User'),
+	FETCH_USER_SUCCESS: actionTypeCheck('[Api] Fetch User Success'),
+	FETCH_USER_FAIL: actionTypeCheck('[Api] Fetch User Fail')
 };
 
 /**
@@ -56,7 +60,25 @@ export class UnSelectLightbox implements Action {
 	type = ActionTypes.UNSELECT_RESULT;
 
 	constructor(public payload: null) { }
-	
+
+}
+
+export class FetchUserAction implements Action {
+	type = ActionTypes.FETCH_USER;
+
+	constructor(public payload: Query) { }
+}
+
+export class FetchUserSuccessAction implements Action {
+	type = ActionTypes.FETCH_USER_SUCCESS;
+
+	constructor(public payload: UserApiResponse) {}
+}
+
+export class FetchUserFailAction implements Action {
+	type = ActionTypes.FETCH_USER_FAIL;
+
+	constructor(public payload: any) {}
 }
 
 /**
@@ -68,4 +90,7 @@ export type Actions
 	| SearchCompleteSuccessAction
 	| SearchCompleteFailAction
 	| SelectLightbox
-	| UnSelectLightbox;
+	| UnSelectLightbox
+	| FetchUserAction
+	| FetchUserSuccessAction
+	| FetchUserFailAction;
