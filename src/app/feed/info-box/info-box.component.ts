@@ -1,5 +1,6 @@
 import { Component, OnInit, OnChanges, Input } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs/Rx';
 import * as fromRoot from '../../reducers';
 import * as apiAction from '../../actions/api';
 import { ApiResponseAggregations } from '../../models/api-response';
@@ -13,6 +14,8 @@ import { Query, ReloactionAfterQuery } from '../../models/query';
 export class InfoBoxComponent implements OnInit, OnChanges {
 	@Input() private query: Query;
 	@Input() private apiResponseAggregations: ApiResponseAggregations;
+	private inviewporttwitters: Observable<boolean>;
+	private inviewportmentions: Observable<boolean>;
 	private topHashtags;
 	private topMentions;
 	private topTwitterers;
@@ -63,6 +66,19 @@ export class InfoBoxComponent implements OnInit, OnChanges {
             sortable = (sortable.slice(0, 10));
             this.topMentions = sortable;
             return this.topMentions;
+	}
+
+	private inviewtwitters(event) {
+		if(event.value == true) {
+			this.inviewporttwitters=event.value;
+		}
+	}
+
+	private inviewmentions(event) {
+		if(event.value == true)
+		{
+		this.inviewportmentions=event.value;
+		}
 	}
 }
 

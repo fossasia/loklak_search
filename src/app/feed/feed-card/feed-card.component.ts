@@ -1,7 +1,6 @@
 import { Component, OnInit, Input, ChangeDetectionStrategy, ChangeDetectorRef, Output, EventEmitter } from '@angular/core';
 import { ApiResponseResult } from '../../models/api-response';
 import { Observable } from 'rxjs/Rx';
-
 import { AutolinkerConfig, ConfigLinkType } from '../../shared/configrations';
 
 @Component({
@@ -13,6 +12,7 @@ import { AutolinkerConfig, ConfigLinkType } from '../../shared/configrations';
 export class FeedCardComponent implements OnInit {
 	private readonly cardAutolinkerConfig: AutolinkerConfig = new AutolinkerConfig();
 	private datetime: string = null;
+	private inviewport: Observable<boolean>;
 	@Input() private feedItem: ApiResponseResult;
 	@Input() private feedIndex: number;
 	@Output() private showLightBox: EventEmitter<any> = new EventEmitter();
@@ -126,5 +126,13 @@ export class FeedCardComponent implements OnInit {
 		}
 
 		return since;
+	}
+
+	private inview(event) {
+		if(event.value == true)
+		{
+		this.inviewport=event.value;
+		}
+
 	}
 }
