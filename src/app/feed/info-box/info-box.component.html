@@ -6,7 +6,7 @@
 				<tbody>
 					<tr class="leaderboard-item" *ngFor="let item of topTwitterers">
 						<td>
-							<img src="http://avatars.io/twitter/{{item[0]}}" alt="{{item[0]}}" *ngIf="inviewporttwitters">
+							<img src="https://twitter.com/{{item[0]}}/profile_image?size=normal" alt="{{item[0]}}" *ngIf="inviewporttwitters">
 							<span class="label leaderboard-label">{{item[1]}}</span>
 						</td>
 						<td class="leaderboard-text">
@@ -39,7 +39,7 @@
 				<tbody>
 					<tr class="leaderboard-item" *ngFor="let item of topMentions">
 						<td>
-							<img src="http://avatars.io/twitter/{{item[0]}}" alt="" *ngIf="inviewportmentions">
+							<img src="https://twitter.com/{{item[0]}}/profile_image?size=normal" alt="" *ngIf="inviewportmentions">
 							<span class="label leaderboard-label">{{item[1]}}</span>
 						</td>
 						<td class="leaderboard-text">
