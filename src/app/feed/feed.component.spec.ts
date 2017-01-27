@@ -86,7 +86,7 @@ class InfoBoxStubComponent {
 	selector: 'user-info-box',
 	template: ''
 })
-class UserInfoBoxComponent {
+class UserInfoBoxStubComponent {
 	@Input() private apiResponseUser;
 	@Input() private isUserResponseLoading;
 }
@@ -118,6 +118,7 @@ describe('Component: Feed', () => {
 				FeedLinkerStubComponent,
 				FeedPaginationStubComponent,
 				InfoBoxStubComponent,
+				UserInfoBoxStubComponent,
 				FeedLightboxStubComponent
 			]
 		});
