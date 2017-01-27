@@ -46,7 +46,7 @@ describe('Component: Home', () => {
 	it('should have a header as Loklak Search!', async(() => {
 		let fixture = TestBed.createComponent(HomeComponent);
 		let component = fixture.debugElement.componentInstance;
-		expect(component.header).toBe('loklak Search!');
+		expect(component.header).toBe('Search!');
 	}));
 
 	it('should render header in a h1 tag', async(() => {

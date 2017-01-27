@@ -17,7 +17,7 @@ import { Query, ReloactionAfterQuery } from '../models/query';
 })
 export class HomeComponent implements OnInit, OnDestroy {
 	private __subscriptions__: Subscription[] = new Array<Subscription>();
-	private header: string = 'loklak Search!';
+	private header: string = 'Search!';
 	private headerImageUrl: string = 'assets/images/cow_150x175.png';
 	private _queryControl: FormControl = new FormControl();
 
