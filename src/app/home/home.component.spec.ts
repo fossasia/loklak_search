@@ -53,7 +53,7 @@ describe('Component: Home', () => {
 		let fixture = TestBed.createComponent(HomeComponent);
 		fixture.detectChanges();
 		let compiled = fixture.debugElement.nativeElement;
-		expect(compiled.querySelector('div.wrapper h1').textContent).toBe('loklak Search!');
+		expect(compiled.querySelector('div.wrapper h1').textContent).toBe('Search!');
 	}));
 
 	it('should have logo with correct alt text property', async(() => {
