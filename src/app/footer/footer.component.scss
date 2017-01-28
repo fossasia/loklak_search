@@ -16,7 +16,17 @@ footer {
 		line-height: 40px;
 	}
 
-	@media(max-width: 400px) {
-		justify-content: space-around;
+	@media(max-width: 549px) {
+		justify-content: center;
+		.left-side {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: center;
+		}
+		.right-side {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: center;
+		}
 	}
 }
