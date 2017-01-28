@@ -92,7 +92,7 @@ export function reducer(state: State = initialState, action: api.Actions | pagin
 				pages:	[...state.pages, apiResponse],
 				entities: [...state.entities, ...apiResponse.statuses],
 				hashtags: [...hashtags],
-				aggregations: apiResponse.aggregations,
+				aggregations: apiResponse.aggregations || state.aggregations,
 				valid: true
 			});
 		}

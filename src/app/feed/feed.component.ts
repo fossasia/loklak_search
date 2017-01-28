@@ -13,6 +13,7 @@ import * as paginationAction from '../actions/pagination';
 
 import { ApiResponse, ApiResponseMetadata, ApiResponseResult, ApiResponseAggregations } from '../models/api-response';
 import { Query, ReloactionAfterQuery } from '../models/query';
+import { UserApiResponse } from '../models/api-user-response';
 
 
 @Component({
@@ -37,7 +38,10 @@ export class FeedComponent implements OnInit, OnDestroy {
 	private display: boolean = true;
 	private isLightboxSelected$: Observable<boolean>;
 	private LightboxgetSelectedItem$: Observable<ApiResponseResult>;
-	
+	private apiResponseUser$: Observable<UserApiResponse>;
+	private isUserResponseLoading$: Observable<boolean>;
+	private showUserInfo$: Observable<boolean>;
+
 	constructor(
 		private route: ActivatedRoute,
 		private location: Location,
@@ -70,16 +74,25 @@ export class FeedComponent implements OnInit, OnDestroy {
 	private queryFromURL(): void {
 		this.__subscriptions__.push(
 			this.route.queryParams
-								.subscribe((params: Params) => {
-									let queryParam = params['query'] || '';
-									if (queryParam) {
-										this.store.dispatch(new apiAction.SearchAction({
-											queryString: queryParam,
-											location: ReloactionAfterQuery.NONE
-										}));
-										this._queryControl.setValue(queryParam);
-									}
-								})
+				.subscribe((params: Params) => {
+					let queryParam = params['query'] || '';
+					if (queryParam) {
+						this.store.dispatch(new apiAction.SearchAction({
+							queryString: queryParam,
+							location: ReloactionAfterQuery.NONE
+						}));
+						this._queryControl.setValue(queryParam);
+						var re = new RegExp(/^from:\s*([a-zA-Z0-9_@]+)/, 'i');
+						var matches = re.exec(queryParam);
+						if(matches !== null) {
+							var screenName: string = matches[1];
+							this.store.dispatch(new apiAction.FetchUserAction({
+								queryString: screenName,
+								location: ReloactionAfterQuery.NONE
+							}));
+						}
+					}
+				})
 		);
 	}
 
@@ -97,6 +110,9 @@ export class FeedComponent implements OnInit, OnDestroy {
 		this.apiResponseAggregations$ = this.store.select(fromRoot.getApiAggregations);
 		this.isLightboxSelected$ = this.store.select(fromRoot.getLightboxIsSelected);
 		this.LightboxgetSelectedItem$ = this.store.select(fromRoot.getLightboxgetSelectedItem);
+		this.apiResponseUser$ = this.store.select(fromRoot.getApiUserResponse);
+		this.isUserResponseLoading$ = this.store.select(fromRoot.isUserResponseLoading);
+		this.showUserInfo$ = this.store.select(fromRoot.getShowUserInfo);
 	}
 
 	/**
@@ -129,6 +145,20 @@ export class FeedComponent implements OnInit, OnDestroy {
 															queryString: query,
 															location: ReloactionAfterQuery.RELOCATE
 														}));
+														var re = new RegExp(/^from:\s*([a-zA-Z0-9_@]+)/, 'i');
+														var matches = re.exec(query);
+														if(matches !== null) {
+															var screenName: string = matches[1];
+															this.store.dispatch(new apiAction.FetchUserAction({
+																queryString: screenName,
+																location: ReloactionAfterQuery.NONE
+															}));
+														}
+														// if(matches !== null) {
+														// 	this.store.dispatch(new apiAction.FetchUserAction({
+														// 		screenName: screenName
+														// 	}));
+														// }
 													}
 												})
 		);
@@ -150,7 +180,7 @@ export class FeedComponent implements OnInit, OnDestroy {
 		this.store.dispatch(new paginationAction.NextPageAction(''));
 	}
 
-	/** 
+	/**
 	/* Lightbox handling :- showlightbox updates the lightbox with feed and hidelightbox removes the feed
 	*/
 

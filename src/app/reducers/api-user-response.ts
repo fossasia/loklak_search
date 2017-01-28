@@ -1,28 +1,24 @@
 import { createSelector } from 'reselect';
-import * as pagination from '../actions/pagination';
+import * as api from '../actions/api';
+import { UserApiResponse } from '../models/api-user-response';
 
 /**
  * Each reducer module must import the local `State` which it controls.
  *
- * Here the `State` contains two properties:
- * @prop [page: string] page to be shown.
  */
 export interface State {
-	page: number;
-	pageLoading: Boolean;
-	pagesAvailable: Boolean;
+	user: UserApiResponse;
+	showUserInfo: boolean;
+	loading: boolean;
 }
-
 
 /**
  * There is always a need of initial state to be passed onto the store.
- *
- * @prop: page: 0
- */
-const initialState = {
-	page: 0,
-	pageLoading: false,
-	pagesAvailable: true
+*/
+const initialState: State = {
+	user: null,
+	showUserInfo: false,
+	loading: false
 };
 
 
@@ -32,29 +28,38 @@ const initialState = {
  * `State` of the application they control.
  *
  * Here the reducer cotrols that part of the state which is shows the state of the application
- * wheather it is searching and what is it searching for.
+ * wheather the userDetails are being retrieved and the userDetails.
  */
-export function reducer(state: State = initialState, action: pagination.Actions): State {
+export function reducer(state: State = initialState, action: api.Actions): State {
 	switch (action.type) {
-		case pagination.ActionTypes.NEXT_PAGE: {
+		case api.ActionTypes.SEARCH: {
 			return Object.assign({}, state, {
-				page: state.page + 1,
-				pageLoading: true
+				user: null,
+				showUserInfo: false
+			})
+		}
+
+		case api.ActionTypes.FETCH_USER: {
+
+			return Object.assign({}, state, {
+				showUserInfo: true,
+				loading: true
 			});
 		}
 
-		case pagination.ActionTypes.PAGINATION_COMPLETE_SUCCESS: {
+		case api.ActionTypes.FETCH_USER_SUCCESS: {
+			const userResponse = action.payload;
+
 			return Object.assign({}, state, {
-				pageLoading: false,
-				pagesAvailable: (action.payload.statuses.length < 20 ? false : true),
+				user: userResponse.user,
+				loading: false
 			});
 		}
+		case api.ActionTypes.FETCH_USER_FAIL: {
 
-		case pagination.ActionTypes.PAGINATION_COMPLETE_FAIL: {
 			return Object.assign({}, state, {
-				page: state.page - 1,
-				pageLoading: false,
-				pagesAvailable: false
+				loading: false,
+				showUserInfo: false
 			});
 		}
 
@@ -74,8 +79,8 @@ export function reducer(state: State = initialState, action: pagination.Actions)
  * use-case.
  */
 
-export const getPage = (state: State) => state.page;
+export const getUserResponse = (state: State) => state.user;
 
-export const getPageLoading = (state: State) => state.pageLoading;
+export const isUserResponseLoading = (state: State) => state.loading;
 
-export const getPagesAvailable = (state: State) => state.pagesAvailable;
+export const showUserInfo = (state: State) => state.showUserInfo;
