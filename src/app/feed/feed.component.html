@@ -3,7 +3,7 @@
 				[searchInputControl]="_queryControl"
 				(searchEvantEmitter)="handleSearchQuery()"></feed-header>
 
-	<div class="searching">
+	<div *ngIf="(isSearching$ | async)" class="searching">
 		<!-- Hook Up the Material Design Progress Bar. -->
 	</div>
 
