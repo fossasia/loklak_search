@@ -63,3 +63,12 @@ app-footer.peeking{
 	border-top-color: rgba(216,97,96,0.2);
 	animation: spin 1s infinite linear;
 }
+
+@keyframes spin {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
