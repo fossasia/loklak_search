@@ -3,11 +3,11 @@
 				[searchInputControl]="_queryControl"
 				(searchEvantEmitter)="handleSearchQuery()"></feed-header>
 
-	<div class="searching">
+	<div *ngIf="(isSearching$ | async)" class="searching">
 		<!-- Hook Up the Material Design Progress Bar. -->
 	</div>
 
-	<div class="feed-wrapper">
+	<div *ngIf="!(isSearching$ | async)" class="feed-wrapper">
 		<div *ngIf="(areResultsAvailable$ | async)" class="wrapper feed-results">
 			<div *ngFor="let item of (apiResponseResults$ | async); let i = index ">
 				<feed-card [feedItem]="item" [feedIndex]="i" (showLightBox)="showhidelightbox($event);"></feed-card>
