@@ -23,6 +23,7 @@ export class SuggestService {
 	public fetchQuery(query: string): Observable<SuggestResponse> {
 		let searchParams = new URLSearchParams();
 		searchParams.set('q', query);
+		searchParams.set('callback', 'JSONP_CALLBACK');
 		searchParams.set('minified', SuggestService.minified_results.toString());
 		searchParams.set('order', SuggestService.order);
 		searchParams.set('orderby', SuggestService.orderby);

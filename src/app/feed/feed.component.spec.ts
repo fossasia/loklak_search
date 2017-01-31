@@ -19,6 +19,7 @@ import { FeedComponent } from './feed.component';
 })
 class FeedHeaderStubComponent {
 	@Input() private searchInputControl;
+	@Input() private Suggesstionlist;
 	@Output() private searchEventEmitter: EventEmitter<any>;
 }
 

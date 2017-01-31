@@ -1,11 +1,13 @@
 <div class="outer-wrapper">
 	<feed-header
 				[searchInputControl]="_queryControl"
+				[Suggesstionlist]="(suggestResponse$ | async)"
 				(searchEvantEmitter)="handleSearchQuery()"></feed-header>
 
 	<div *ngIf="(isSearching$ | async)" class="searching">
 		<!-- Hook Up the Material Design Progress Bar. -->
 	</div>
+	<br>
 
 	<div *ngIf="!(isSearching$ | async)" class="feed-wrapper">
 		<div *ngIf="(areResultsAvailable$ | async)" class="wrapper feed-results">

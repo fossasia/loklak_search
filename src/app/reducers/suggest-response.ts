@@ -1,5 +1,5 @@
 import { createSelector } from 'reselect';
-import { SuggestMetadata, SuggestResults, SuggestResponse } from '../models/suggest-response';
+import { SuggestMetadata, SuggestResults, SuggestResponse } from '../models/api-suggest';
 import * as suggest from '../actions/suggest';
 
 export interface State {
@@ -16,7 +16,7 @@ export interface State {
  * @prop: valid: true
  */
 const initialState: State = {
-	metadata: {},
+	metadata: null,
 	entities: [],
 	valid: true
 };
@@ -37,12 +37,12 @@ export function reducer(state: State = initialState, action: suggest.Actions): S
 
 			return {
 				metadata: suggestResponse.suggest_metadata,
-				entities: suggestResponse.statuses,
+				entities: suggestResponse.queries,
 				valid: true
 			};
 		}
 
-		case api.ActionTypes.SUGGEST_COMPLETE_FAIL: {
+		case suggest.ActionTypes.SUGGEST_COMPLETE_FAIL: {
 			return Object.assign({}, state, {
 				valid: false
 			});
