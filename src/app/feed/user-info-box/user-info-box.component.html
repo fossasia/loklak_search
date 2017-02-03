@@ -41,11 +41,11 @@
 					</li>
 					<li class="list-item">
 						<span class="item-label">Location:</span>
-						<span class="item-content">{{ apiResponseUser.location }}</span>
+						<span class="item-content" *ngIf="apiResponseUser.location">{{ apiResponseUser.location }}</span>
 					</li>
 					<li class="list-item">
 						<span class="item-label">Website:</span>
-						<span class="item-content"><a href="{{ apiResponseUser.entities.url.urls[0].url }}">{{ apiResponseUser.entities.url.urls[0].expanded_url }}</a></span>
+						<span class="item-content" *ngIf="apiResponseUser.entities.url"><a href="{{ apiResponseUser.entities.url.urls[0].url }}">{{ apiResponseUser.entities.url.urls[0].expanded_url }}</a></span>
 					</li>
 				</ul>
 			</div>
