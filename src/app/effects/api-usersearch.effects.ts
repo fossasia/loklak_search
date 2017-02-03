@@ -12,8 +12,8 @@ import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/skip';
 import 'rxjs/add/operator/takeUntil';
 
-import { SuggestService } from '../services';
-import * as suggestAction from '../actions/suggest';
+import { UserService } from '../services';
+import * as apiAction from '../actions/api';
 import { Query, ReloactionAfterQuery } from '../models/query';
 
 /**
@@ -31,29 +31,29 @@ import { Query, ReloactionAfterQuery } from '../models/query';
  */
 
 @Injectable()
-export class SuggestEffects {
+export class ApiUserSearchEffects {
 
 	@Effect()
-	suggest$: Observable<Action>
+	search$: Observable<Action>
 		= this.actions$
-					.ofType(suggestAction.ActionTypes.SUGGEST)
+					.ofType(apiAction.ActionTypes.FETCH_USER)
 					.debounceTime(200)
-					.map((action: suggestAction.SuggestAction) => action.payload)
+					.map((action: apiAction.FetchUserAction) => action.payload)
 					.switchMap(query => {
-						const nextSuggest$ = this.actions$.ofType(suggestAction.ActionTypes.SUGGEST);
+						console.log("Hello");
+						const nextSearch$ = this.actions$.ofType(apiAction.ActionTypes.SEARCH).skip(1);
 
-						return this.suggestService.fetchQuery(query.queryString)
-																				.takeUntil(nextSuggest$)
+						return this.apiUserService.fetchQuery(query.queryString)
+																				.takeUntil(nextSearch$)
 																				.map(response => {
-																					return new suggestAction.SuggestCompleteSuccessAction(response);
+																					return new apiAction.FetchUserSuccessAction(response);
 																				})
-																				.catch(() => of(new suggestAction.SuggestCompleteFailAction('')));
+																				.catch(() => of(new apiAction.FetchUserFailAction('')));
 					});
 
 	constructor(
 		private actions$: Actions,
-		private suggestService: SuggestService,
-		private location: Location
+		private apiUserService: UserService,
 	) { }
 
 }

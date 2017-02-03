@@ -5,37 +5,32 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/throw';
 
-import { SuggestResponse } from '../models/api-suggest';
+import { UserApiResponse } from '../models/api-user-response';
 
 @Injectable()
-export class SuggestService {
-	private static apiUrl: URL = new URL('http://api.loklak.org/api/suggest.json');
+export class UserService {
+	private static readonly apiUrl: URL = new URL('http://api.loklak.org/api/user.json');
 	private static minified_results: boolean = true;
-	private static order: string = 'desc';
-	private static orderby: string = 'query_count';
-
 
 	constructor(
 		private jsonp: Jsonp
 	) { }
 
 	// TODO: make the searchParams as configureable model rather than this approach.
-	public fetchQuery(query: string): Observable<SuggestResponse> {
+	public fetchQuery(user: string): Observable<UserApiResponse> {
 		let searchParams = new URLSearchParams();
-		searchParams.set('q', query);
+		searchParams.set('screen_name', user);
 		searchParams.set('callback', 'JSONP_CALLBACK');
-		searchParams.set('minified', SuggestService.minified_results.toString());
-		searchParams.set('order', SuggestService.order);
-		searchParams.set('orderby', SuggestService.orderby);
-
-		return this.jsonp.get(SuggestService.apiUrl.toString(), {search : searchParams})
+		searchParams.set('minified', UserService.minified_results.toString());
+		return this.jsonp.get(UserService.apiUrl.toString(), {search : searchParams})
 								.map(this.extractData)
 								.catch(this.handleError);
+
 	}
 
-	private extractData(res: Response): SuggestResponse {
+	private extractData(res: Response): UserApiResponse {
 		try {
-			return <SuggestResponse>res.json();
+			return <UserApiResponse>res.json();
 		} catch (error) {
 			console.error(error);
 		}

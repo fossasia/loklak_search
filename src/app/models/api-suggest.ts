@@ -28,5 +28,5 @@ export interface SuggestResults {
 
 export interface SuggestResponse {
 	suggest_metadata: SuggestMetadata;
-	statuses: SuggestResults[];
+	queries: SuggestResults[];
 }

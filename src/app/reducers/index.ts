@@ -3,6 +3,7 @@ import { ActionReducer } from '@ngrx/store';
 import { environment } from '../../environments/environment';
 import { ApiResponse } from '../models/api-response';
 
+
 /**
  * The compose function is one of our most handy tools. In basic terms, you give
  * it any number of functions and it returns a function. This new function
@@ -40,6 +41,9 @@ import { combineReducers } from '@ngrx/store';
 import * as fromSearch from './search';
 import * as fromApiResponse from './api-response';
 import * as fromPagination from './pagination';
+import * as fromApiUserResponse from './api-user-response';
+import * as fromSuggestService from './suggest';
+import * as fromSuggestResponse from './suggest-response';
 
 /**
  * As mentioned, we treat each reducer like a table in a database. This means
@@ -49,6 +53,9 @@ export interface State {
 	search: fromSearch.State;
 	apiResponse: fromApiResponse.State;
 	pagination: fromPagination.State;
+	apiUserResponse: fromApiUserResponse.State;
+	suggestService: fromSuggestService.State;
+	suggestResponse: fromSuggestResponse.State;
 }
 
 /**
@@ -62,6 +69,9 @@ const reducers = {
 	search: fromSearch.reducer,
 	apiResponse: fromApiResponse.reducer,
 	pagination: fromPagination.reducer,
+	apiUserResponse: fromApiUserResponse.reducer,
+	suggestService: fromSuggestService.reducer,
+	suggestResponse: fromSuggestResponse.reducer
 };
 
 // const developmentReducer: ActionReducer<State> = compose(storeFreeze, combineReducers)(reducers);
@@ -136,10 +146,38 @@ export const getPageLoading = createSelector(getPaginationState, fromPagination.
 export const getPagesAvailable = createSelector(getPaginationState, fromPagination.getPagesAvailable);
 
 /**
+ * Selectors for UserApiResponse
+ */
+
+export const getApiUserResponseState = (state: State) => state.apiUserResponse;
+
+export const getApiUserResponse = createSelector(getApiUserResponseState, fromApiUserResponse.getUserResponse);
+export const isUserResponseLoading = createSelector(getApiUserResponseState, fromApiUserResponse.isUserResponseLoading);
+export const getShowUserInfo = createSelector(getApiUserResponseState, fromApiUserResponse.showUserInfo);
+
+/**
 *Selectors For LightBox.
 */
 export const getLightboxIsSelected = createSelector(getApiResponseState, fromApiResponse.isSelected);
 export const getLightboxgetSelectedItem = createSelector(getApiResponseState, fromApiResponse.getSelectedItem);
+
+/**
+*Selectors For Suggest Service
+*/
+export const getSuggestServiceState = (state: State) => state.suggestService;
+
+export const getSuggestServiceQuery = createSelector(getSuggestServiceState, fromSuggestService.getQuery);
+export const getSuggestServiceLoading = createSelector(getSuggestServiceState, fromSuggestService.getLoading);
+
+/**
+*Selectors For Suggest Response
+*/
+export const getSuggestResponseState = (state: State) => state.suggestResponse;
+
+export const getSuggestResponseEntities = createSelector(getSuggestResponseState, fromSuggestResponse.getEntities);
+export const isSuggestResponseValid = createSelector(getSuggestResponseState, fromSuggestResponse.isResultValid);
+export const getSuggestServiceLastResponse = createSelector(getSuggestResponseState, fromSuggestResponse.lastRecord);
+
 
 /**
  * Some selector functions create joins across parts of state. This selector

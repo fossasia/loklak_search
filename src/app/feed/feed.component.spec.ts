@@ -19,6 +19,7 @@ import { FeedComponent } from './feed.component';
 })
 class FeedHeaderStubComponent {
 	@Input() private searchInputControl;
+	@Input() private Suggesstionlist;
 	@Output() private searchEventEmitter: EventEmitter<any>;
 }
 
@@ -77,9 +78,18 @@ class FeedLinkerStubComponent {
 	selector: 'info-box',
 	template: ''
 })
-class InfoBoxStubComponent { 
+class InfoBoxStubComponent {
 	@Input() private query;
 	@Input() private apiResponseAggregations;
+}
+
+@Component({
+	selector: 'user-info-box',
+	template: ''
+})
+class UserInfoBoxStubComponent {
+	@Input() private apiResponseUser;
+	@Input() private isUserResponseLoading;
 }
 
 @Component({
@@ -109,6 +119,7 @@ describe('Component: Feed', () => {
 				FeedLinkerStubComponent,
 				FeedPaginationStubComponent,
 				InfoBoxStubComponent,
+				UserInfoBoxStubComponent,
 				FeedLightboxStubComponent
 			]
 		});
