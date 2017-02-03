@@ -77,6 +77,52 @@
 			}
 		}
 
+.gallery {
+	padding: 15px;
+
+	h3 {
+		margin-top: 0;
+	}
+}
+
+	.gallery-container {
+		display: flex;
+		justify-content: flex-start;
+		flex-wrap: wrap;
+	}
+
+		.gallery-item {
+			margin-right: 10px;
+			width: 94px;
+			margin-bottom: 10px;
+
+			&:last-child {
+				margin-right: 0;
+			}
+		}
+
+			.item-image {
+
+				display: flex;
+				justify-content: center;
+
+				img {
+					width: 94px;
+					height: 94px;
+				}
+			}
+
+			.item-desc {
+				text-align: center;
+			}
+
+				.item-handle {
+					font-size: 13px;
+					color: #777;
+					word-break: break-all;
+				}
+
+
 .preloader {
 	width: 100%;
 	height: 420px;
@@ -103,8 +149,6 @@
 	    transform: rotate(360deg);
 	  }
 	}
-
-
 
 
 

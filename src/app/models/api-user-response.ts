@@ -49,3 +49,16 @@ export interface UserApiResponse {
 	location_point: string[],
 	location_mark: string[]
 }
+
+export interface UserTopology {
+	retrieval_date: string,
+	complete: boolean,
+	followers_count: number,
+	unfollowers_count: number,
+	following_count: number,
+	unfollowing_count: number;
+	followers: UserApiResponse[],
+	unfollowers: UserApiResponse[],
+	following: UserApiResponse[],
+	unfollowing: UserApiResponse[]
+}

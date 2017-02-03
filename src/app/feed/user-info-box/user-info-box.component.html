@@ -50,6 +50,46 @@
 				</ul>
 			</div>
 		</div>
+		<div class="following gallery" *ngIf="apiResponseUserFollowing.length > 0">
+			<h3>Following</h3>
+			<ul class="gallery-container">
+				<li class="gallery-item"  *ngFor="let item of (apiResponseUserFollowing.slice(0,12)); let i = index ">
+					<a [routerLink]="['/search']" [queryParams]="{ query : 'from:' + item.screen_name }">
+						<div class="item-image">
+							<img src="{{ item.profile_image_url }}"/>
+						</div>
+						<div class="item-desc">
+							<div class="item-name">
+								{{ item.name }}
+							</div>
+							<div class="item-handle">
+								@{{ item.screen_name }}
+							</div>
+						</div>
+					</a>
+				</li>
+			</ul>
+		</div>
+		<div class="followers gallery" *ngIf="apiResponseUserFollowers.length > 0">
+			<h3>Followers</h3>
+			<ul class="gallery-container">
+				<li class="gallery-item"  *ngFor="let item of (apiResponseUserFollowers.slice(0,12)); let i = index ">
+					<a [routerLink]="['/search']" [queryParams]="{ query : 'from:' + item.screen_name }">
+						<div class="item-image">
+							<img src="{{ item.profile_image_url }}"/>
+						</div>
+						<div class="item-desc">
+							<div class="item-name">
+								{{ item.name }}
+							</div>
+							<div class="item-handle">
+								@{{ item.screen_name }}
+							</div>
+						</div>
+					</a>
+				</li>
+			</ul>
+		</div>
 	</div>
 </div>
 
