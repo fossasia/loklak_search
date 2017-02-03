@@ -13,8 +13,8 @@ import { AutolinkerConfig, ConfigLinkType } from '../../shared/configrations';
 })
 export class UserInfoBoxComponent implements OnInit, OnChanges {
 	@Input() private apiResponseUser : UserApiResponse;
-	@Input() private apiResponseUserFollowing : UserApiResponse[];
-	@Input() private apiResponseUserFollowers : UserApiResponse[];
+	@Input() private apiResponseUserFollowing : Array<UserApiResponse>;
+	@Input() private apiResponseUserFollowers : Array<UserApiResponse>;
 	@Input() private isUserResponseLoading : boolean;
 	private readonly cardAutolinkerConfig: AutolinkerConfig = new AutolinkerConfig();
 
@@ -36,7 +36,7 @@ export class UserInfoBoxComponent implements OnInit, OnChanges {
 		this.cardAutolinkerConfig.link.link_to = {};
 	}
 
-	filterUsers(users: UserApiResponse[]) {
+	filterUsers(users: Array<UserApiResponse>) {
 		users.sort(function (a,b) {
 			return b.followers_count- a.followers_count;
 		});
