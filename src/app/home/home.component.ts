@@ -6,6 +6,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { Store } from '@ngrx/store';
 import * as fromRoot from '../reducers';
 import * as apiAction from '../actions/api';
+import * as suggestServiceAction from '../actions/suggest';
 
 import { Query, ReloactionAfterQuery } from '../models/query';
 
@@ -47,6 +48,10 @@ export class HomeComponent implements OnInit, OnDestroy {
 		this.__subscriptions__.push(
 			this._queryControl.valueChanges
 												.subscribe((value) => {
+													this.store.dispatch(new suggestServiceAction.SuggestAction({
+															queryString: value,
+															location: ReloactionAfterQuery.NONE
+														}));
 													this.store.dispatch(new apiAction.SearchAction({
 														queryString: value,
 														location: ReloactionAfterQuery.NONE

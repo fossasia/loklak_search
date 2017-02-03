@@ -10,8 +10,10 @@ import { Store } from '@ngrx/store';
 import * as fromRoot from '../reducers';
 import * as apiAction from '../actions/api';
 import * as paginationAction from '../actions/pagination';
+import * as suggestServiceAction from '../actions/suggest';
 
 import { ApiResponse, ApiResponseMetadata, ApiResponseResult, ApiResponseAggregations } from '../models/api-response';
+import { SuggestMetadata, SuggestResults, SuggestResponse } from '../models/api-suggest';
 import { Query, ReloactionAfterQuery } from '../models/query';
 import { UserApiResponse } from '../models/api-user-response';
 
@@ -41,6 +43,9 @@ export class FeedComponent implements OnInit, OnDestroy {
 	private apiResponseUser$: Observable<UserApiResponse>;
 	private isUserResponseLoading$: Observable<boolean>;
 	private showUserInfo$: Observable<boolean>;
+	private suggestServiceQuery$: Observable<Query>;
+	private isSuggestServiceLoading$: Observable<boolean>;
+	private suggestResponse$: Observable<SuggestResults[]>;
 
 	constructor(
 		private route: ActivatedRoute,
@@ -113,6 +118,10 @@ export class FeedComponent implements OnInit, OnDestroy {
 		this.apiResponseUser$ = this.store.select(fromRoot.getApiUserResponse);
 		this.isUserResponseLoading$ = this.store.select(fromRoot.isUserResponseLoading);
 		this.showUserInfo$ = this.store.select(fromRoot.getShowUserInfo);
+		this.suggestServiceQuery$ = this.store.select(fromRoot.getSuggestServiceQuery);
+		this.isSuggestServiceLoading$ = this.store.select(fromRoot.getSuggestServiceLoading);
+		this.suggestResponse$ = this.store.select(fromRoot.getSuggestResponseEntities);
+
 	}
 
 	/**
@@ -141,6 +150,10 @@ export class FeedComponent implements OnInit, OnDestroy {
 			this._queryControl.valueChanges
 												.subscribe(query => {
 													if (this.queryString !== query) {
+														this.store.dispatch(new suggestServiceAction.SuggestAction({
+															queryString: query,
+															location: ReloactionAfterQuery.NONE
+														}));
 														this.store.dispatch(new apiAction.SearchAction({
 															queryString: query,
 															location: ReloactionAfterQuery.RELOCATE
@@ -154,6 +167,7 @@ export class FeedComponent implements OnInit, OnDestroy {
 																location: ReloactionAfterQuery.NONE
 															}));
 														}
+
 														// if(matches !== null) {
 														// 	this.store.dispatch(new apiAction.FetchUserAction({
 														// 		screenName: screenName

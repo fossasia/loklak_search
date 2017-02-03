@@ -11,6 +11,7 @@ import { reducer } from './reducers';
 import { ApiSearchEffects } from './effects/api-search.effects';
 import { PaginationEffects } from './effects/pagination.effects';
 import { ApiUserSearchEffects } from './effects/api-usersearch.effects';
+import { SuggestEffects } from './effects/api-suggest.effects';
 
 import { LoklakAppRoutingModule } from './app-routing.module';
 
@@ -21,7 +22,7 @@ import { FeedModule } from './feed/feed.module';
 import { AboutModule } from './about/about.module';
 import { ContactModule } from './contact/contact.module';
 import { TermsModule } from './terms/terms.module';
-import { SearchService, UserService } from './services';
+import { SearchService, UserService,SuggestService } from './services';
 import { PageNotFoundModule } from './pagenotfound/pagenotfound.module';
 
 @NgModule({
@@ -94,6 +95,7 @@ import { PageNotFoundModule } from './pagenotfound/pagenotfound.module';
      */
 		EffectsModule.run(ApiSearchEffects),
 		EffectsModule.run(PaginationEffects),
+		EffectsModule.run(SuggestEffects),
 		EffectsModule.run(ApiUserSearchEffects),
 
 		/**
@@ -145,7 +147,8 @@ import { PageNotFoundModule } from './pagenotfound/pagenotfound.module';
 		 * The major service used for making queries to the `Backend Lokalak Server`.
 		 */
 		SearchService,
-		UserService
+		UserService,
+		SuggestService
 	],
 	bootstrap: [AppComponent]
 })
