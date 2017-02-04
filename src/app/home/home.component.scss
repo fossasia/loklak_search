@@ -76,14 +76,17 @@ div.wrapper {
 			input:focus {
 				box-shadow: none;
 				border-color: none;
+				cursor: text;
 
 			}
 
-			input,
 			span.input-group-btn button {
 				height: 40px;
 				background: transparent;
 				cursor: pointer;
+			}
+			input{
+				cursor: text;
 			}
 
 		}

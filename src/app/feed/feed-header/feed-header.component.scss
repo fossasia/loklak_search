@@ -40,7 +40,7 @@
 			border-bottom: 1px solid black; 
 
 			@media(max-width: 1000px) {
-				width: calc(100% - 180px);
+				width: calc(100% - 20px);
 			}
 
 			div.input-group{
@@ -124,12 +124,33 @@
 	}
 }
 
-@media all and (max-width: 600px){
+@media all and (max-width: 768px){
 	.logo-and-form{
-		padding: 0 25px 0 10px;
+		padding: 0 20px 0 10px;
+		display: block !important;
+
+		a {
+			text-align: center;
+		}
 	}
 	span.input-group-btn button{
 		background: #d81b60;
 		color: white;
 	}
+	div.search-form {
+			margin: auto !important;
+
+				input{
+				min-width : 230px !important;
+			}
+
+	}
+	div.suggesstion-box{		
+		width: calc(100% - 50px) !important;
+		max-height: 90px !important;
+		left: 20px !important;
+		top: 90px !important;
+	}
+
+
 }
