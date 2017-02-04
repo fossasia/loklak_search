@@ -13,6 +13,8 @@ import { AutolinkerConfig, ConfigLinkType } from '../../shared/configrations';
 })
 export class UserInfoBoxComponent implements OnInit, OnChanges {
 	@Input() private apiResponseUser : UserApiResponse;
+	@Input() private apiResponseUserFollowing : Array<UserApiResponse>;
+	@Input() private apiResponseUserFollowers : Array<UserApiResponse>;
 	@Input() private isUserResponseLoading : boolean;
 	private readonly cardAutolinkerConfig: AutolinkerConfig = new AutolinkerConfig();
 
@@ -22,13 +24,23 @@ export class UserInfoBoxComponent implements OnInit, OnChanges {
 		this.modifyAutolinkerConfig();
 	}
 
-	ngOnChanges() { }
+	ngOnChanges() {
+		this.apiResponseUserFollowing = this.filterUsers(this.apiResponseUserFollowing);
+		this.apiResponseUserFollowers = this.filterUsers(this.apiResponseUserFollowers);
+	}
 
 	private modifyAutolinkerConfig() {
 		// hashtag and mention use the default configration strategy.
 		// Links use the one-to-one map strategy using unshorten property of feedItem
 		this.cardAutolinkerConfig.link.link_type = ConfigLinkType.OneToOneMap;
 		this.cardAutolinkerConfig.link.link_to = {};
+	}
+
+	filterUsers(users: Array<UserApiResponse>) {
+		users.sort(function (a,b) {
+			return b.followers_count- a.followers_count;
+		});
+		return users;
 	}
 }
 

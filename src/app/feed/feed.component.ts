@@ -41,6 +41,8 @@ export class FeedComponent implements OnInit, OnDestroy {
 	private isLightboxSelected$: Observable<boolean>;
 	private LightboxgetSelectedItem$: Observable<ApiResponseResult>;
 	private apiResponseUser$: Observable<UserApiResponse>;
+	private apiResponseUserFollowers$: Observable<UserApiResponse[]>;
+	private apiResponseUserFollowing$: Observable<UserApiResponse[]>;
 	private isUserResponseLoading$: Observable<boolean>;
 	private showUserInfo$: Observable<boolean>;
 	private suggestServiceQuery$: Observable<Query>;
@@ -116,6 +118,8 @@ export class FeedComponent implements OnInit, OnDestroy {
 		this.isLightboxSelected$ = this.store.select(fromRoot.getLightboxIsSelected);
 		this.LightboxgetSelectedItem$ = this.store.select(fromRoot.getLightboxgetSelectedItem);
 		this.apiResponseUser$ = this.store.select(fromRoot.getApiUserResponse);
+		this.apiResponseUserFollowing$ = this.store.select(fromRoot.getApiUserFollowingResponse);
+		this.apiResponseUserFollowers$ = this.store.select(fromRoot.getApiUserFollowersResponse);
 		this.isUserResponseLoading$ = this.store.select(fromRoot.isUserResponseLoading);
 		this.showUserInfo$ = this.store.select(fromRoot.getShowUserInfo);
 		this.suggestServiceQuery$ = this.store.select(fromRoot.getSuggestServiceQuery);

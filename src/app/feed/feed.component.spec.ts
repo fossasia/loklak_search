@@ -89,6 +89,8 @@ class InfoBoxStubComponent {
 })
 class UserInfoBoxStubComponent {
 	@Input() private apiResponseUser;
+	@Input() private apiResponseUserFollowing;
+	@Input() private apiResponseUserFollowers;
 	@Input() private isUserResponseLoading;
 }
 

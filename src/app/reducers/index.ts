@@ -152,6 +152,8 @@ export const getPagesAvailable = createSelector(getPaginationState, fromPaginati
 export const getApiUserResponseState = (state: State) => state.apiUserResponse;
 
 export const getApiUserResponse = createSelector(getApiUserResponseState, fromApiUserResponse.getUserResponse);
+export const getApiUserFollowersResponse = createSelector(getApiUserResponseState, fromApiUserResponse.getUSerFollowers);
+export const getApiUserFollowingResponse = createSelector(getApiUserResponseState, fromApiUserResponse.getUserFollowing);
 export const isUserResponseLoading = createSelector(getApiUserResponseState, fromApiUserResponse.isUserResponseLoading);
 export const getShowUserInfo = createSelector(getApiUserResponseState, fromApiUserResponse.showUserInfo);
 

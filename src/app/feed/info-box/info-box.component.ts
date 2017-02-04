@@ -29,7 +29,6 @@ export class InfoBoxComponent implements OnInit, OnChanges {
 		this.sortHashtags(this.apiResponseAggregations);
 		this.sortTwiterers(this.apiResponseAggregations);
 		this.sortMentions(this.apiResponseAggregations);
-		console.log(this.apiResponseAggregations);
 	}
 	sortHashtags(statistics){
 		let sortable = [];
