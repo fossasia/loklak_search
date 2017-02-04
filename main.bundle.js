@@ -21338,9 +21338,10 @@ var RouterOutletMap = (function () {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils__ = __webpack_require__(256);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return ActionTypes; });
-/* harmony export (binding) */ __webpack_require__.d(exports, "d", function() { return NextPageAction; });
+/* harmony export (binding) */ __webpack_require__.d(exports, "e", function() { return NextPageAction; });
 /* harmony export (binding) */ __webpack_require__.d(exports, "b", function() { return PaginationCompleteSuccessAction; });
 /* harmony export (binding) */ __webpack_require__.d(exports, "c", function() { return PaginationCompleteFailAction; });
+/* harmony export (binding) */ __webpack_require__.d(exports, "d", function() { return RevertPaginationState; });
 
 /**
  * For each action type in an action group, make a simple
@@ -21353,7 +21354,8 @@ var RouterOutletMap = (function () {
 var ActionTypes = {
     NEXT_PAGE: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["a" /* actionTypeCheck */])('[Pagination] Next Page'),
     PAGINATION_COMPLETE_SUCCESS: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["a" /* actionTypeCheck */])('[Pagination] Pagination Complete Success'),
-    PAGINATION_COMPLETE_FAIL: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["a" /* actionTypeCheck */])('[Pagination] Pagination Complete Fail')
+    PAGINATION_COMPLETE_FAIL: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["a" /* actionTypeCheck */])('[Pagination] Pagination Complete Fail'),
+    REVERT_PAGINATION_STATE: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["a" /* actionTypeCheck */])('[Pagination] Revert Back Pagination State')
 };
 /**
  * Every action is comprised of at least a type and an optional
@@ -21382,6 +21384,13 @@ var PaginationCompleteFailAction = (function () {
         this.type = ActionTypes.PAGINATION_COMPLETE_FAIL;
     }
     return PaginationCompleteFailAction;
+}());
+var RevertPaginationState = (function () {
+    function RevertPaginationState(payload) {
+        this.payload = payload;
+        this.type = ActionTypes.REVERT_PAGINATION_STATE;
+    }
+    return RevertPaginationState;
 }());
 
 
@@ -47275,6 +47284,7 @@ var FeedComponent = (function () {
                         location: __WEBPACK_IMPORTED_MODULE_9__models_query__["a" /* ReloactionAfterQuery */].NONE
                     }));
                 }
+                _this.store.dispatch(new __WEBPACK_IMPORTED_MODULE_7__actions_pagination__["d" /* RevertPaginationState */](''));
             }
         }));
     };
@@ -47293,11 +47303,13 @@ var FeedComponent = (function () {
         this.isLightboxSelected$ = this.store.select(__WEBPACK_IMPORTED_MODULE_5__reducers__["i" /* getLightboxIsSelected */]);
         this.LightboxgetSelectedItem$ = this.store.select(__WEBPACK_IMPORTED_MODULE_5__reducers__["j" /* getLightboxgetSelectedItem */]);
         this.apiResponseUser$ = this.store.select(__WEBPACK_IMPORTED_MODULE_5__reducers__["k" /* getApiUserResponse */]);
-        this.isUserResponseLoading$ = this.store.select(__WEBPACK_IMPORTED_MODULE_5__reducers__["l" /* isUserResponseLoading */]);
-        this.showUserInfo$ = this.store.select(__WEBPACK_IMPORTED_MODULE_5__reducers__["m" /* getShowUserInfo */]);
-        this.suggestServiceQuery$ = this.store.select(__WEBPACK_IMPORTED_MODULE_5__reducers__["n" /* getSuggestServiceQuery */]);
-        this.isSuggestServiceLoading$ = this.store.select(__WEBPACK_IMPORTED_MODULE_5__reducers__["o" /* getSuggestServiceLoading */]);
-        this.suggestResponse$ = this.store.select(__WEBPACK_IMPORTED_MODULE_5__reducers__["p" /* getSuggestResponseEntities */]);
+        this.apiResponseUserFollowing$ = this.store.select(__WEBPACK_IMPORTED_MODULE_5__reducers__["l" /* getApiUserFollowingResponse */]);
+        this.apiResponseUserFollowers$ = this.store.select(__WEBPACK_IMPORTED_MODULE_5__reducers__["m" /* getApiUserFollowersResponse */]);
+        this.isUserResponseLoading$ = this.store.select(__WEBPACK_IMPORTED_MODULE_5__reducers__["n" /* isUserResponseLoading */]);
+        this.showUserInfo$ = this.store.select(__WEBPACK_IMPORTED_MODULE_5__reducers__["o" /* getShowUserInfo */]);
+        this.suggestServiceQuery$ = this.store.select(__WEBPACK_IMPORTED_MODULE_5__reducers__["p" /* getSuggestServiceQuery */]);
+        this.isSuggestServiceLoading$ = this.store.select(__WEBPACK_IMPORTED_MODULE_5__reducers__["q" /* getSuggestServiceLoading */]);
+        this.suggestResponse$ = this.store.select(__WEBPACK_IMPORTED_MODULE_5__reducers__["r" /* getSuggestResponseEntities */]);
     };
     /**
      * Sets up a subscription for the `query$` so that it can be used
@@ -47340,6 +47352,7 @@ var FeedComponent = (function () {
                         location: __WEBPACK_IMPORTED_MODULE_9__models_query__["a" /* ReloactionAfterQuery */].NONE
                     }));
                 }
+                _this.store.dispatch(new __WEBPACK_IMPORTED_MODULE_7__actions_pagination__["d" /* RevertPaginationState */](''));
             }
         }));
     };
@@ -47355,7 +47368,7 @@ var FeedComponent = (function () {
      * Loads more results by dispatching the `NextPageAction`.
      */
     FeedComponent.prototype.loadMoreResults = function (event) {
-        this.store.dispatch(new __WEBPACK_IMPORTED_MODULE_7__actions_pagination__["d" /* NextPageAction */](''));
+        this.store.dispatch(new __WEBPACK_IMPORTED_MODULE_7__actions_pagination__["e" /* NextPageAction */](''));
     };
     /**
     /* Lightbox handling :- showlightbox updates the lightbox with feed and hidelightbox removes the feed
@@ -47540,7 +47553,7 @@ PageNotFoundComponent = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__api_user_response__ = __webpack_require__(614);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__suggest__ = __webpack_require__(618);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__suggest_response__ = __webpack_require__(617);
-/* harmony export (immutable) */ exports["q"] = reducer;
+/* harmony export (immutable) */ exports["s"] = reducer;
 /* unused harmony export getApiResponseState */
 /* harmony export (binding) */ __webpack_require__.d(exports, "d", function() { return getApiResponseEntities; });
 /* unused harmony export getApiResponsePages */
@@ -47557,15 +47570,17 @@ PageNotFoundComponent = __decorate([
 /* harmony export (binding) */ __webpack_require__.d(exports, "g", function() { return getPagesAvailable; });
 /* unused harmony export getApiUserResponseState */
 /* harmony export (binding) */ __webpack_require__.d(exports, "k", function() { return getApiUserResponse; });
-/* harmony export (binding) */ __webpack_require__.d(exports, "l", function() { return isUserResponseLoading; });
-/* harmony export (binding) */ __webpack_require__.d(exports, "m", function() { return getShowUserInfo; });
+/* harmony export (binding) */ __webpack_require__.d(exports, "m", function() { return getApiUserFollowersResponse; });
+/* harmony export (binding) */ __webpack_require__.d(exports, "l", function() { return getApiUserFollowingResponse; });
+/* harmony export (binding) */ __webpack_require__.d(exports, "n", function() { return isUserResponseLoading; });
+/* harmony export (binding) */ __webpack_require__.d(exports, "o", function() { return getShowUserInfo; });
 /* harmony export (binding) */ __webpack_require__.d(exports, "i", function() { return getLightboxIsSelected; });
 /* harmony export (binding) */ __webpack_require__.d(exports, "j", function() { return getLightboxgetSelectedItem; });
 /* unused harmony export getSuggestServiceState */
-/* harmony export (binding) */ __webpack_require__.d(exports, "n", function() { return getSuggestServiceQuery; });
-/* harmony export (binding) */ __webpack_require__.d(exports, "o", function() { return getSuggestServiceLoading; });
+/* harmony export (binding) */ __webpack_require__.d(exports, "p", function() { return getSuggestServiceQuery; });
+/* harmony export (binding) */ __webpack_require__.d(exports, "q", function() { return getSuggestServiceLoading; });
 /* unused harmony export getSuggestResponseState */
-/* harmony export (binding) */ __webpack_require__.d(exports, "p", function() { return getSuggestResponseEntities; });
+/* harmony export (binding) */ __webpack_require__.d(exports, "r", function() { return getSuggestResponseEntities; });
 /* unused harmony export isSuggestResponseValid */
 /* unused harmony export getSuggestServiceLastResponse */
 /* unused harmony export getIsSearchSuccess */
@@ -47682,8 +47697,10 @@ var getPagesAvailable = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_resele
  */
 var getApiUserResponseState = function (state) { return state.apiUserResponse; };
 var getApiUserResponse = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_reselect__["createSelector"])(getApiUserResponseState, __WEBPACK_IMPORTED_MODULE_5__api_user_response__["b" /* getUserResponse */]);
-var isUserResponseLoading = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_reselect__["createSelector"])(getApiUserResponseState, __WEBPACK_IMPORTED_MODULE_5__api_user_response__["c" /* isUserResponseLoading */]);
-var getShowUserInfo = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_reselect__["createSelector"])(getApiUserResponseState, __WEBPACK_IMPORTED_MODULE_5__api_user_response__["d" /* showUserInfo */]);
+var getApiUserFollowersResponse = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_reselect__["createSelector"])(getApiUserResponseState, __WEBPACK_IMPORTED_MODULE_5__api_user_response__["c" /* getUSerFollowers */]);
+var getApiUserFollowingResponse = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_reselect__["createSelector"])(getApiUserResponseState, __WEBPACK_IMPORTED_MODULE_5__api_user_response__["d" /* getUserFollowing */]);
+var isUserResponseLoading = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_reselect__["createSelector"])(getApiUserResponseState, __WEBPACK_IMPORTED_MODULE_5__api_user_response__["e" /* isUserResponseLoading */]);
+var getShowUserInfo = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_reselect__["createSelector"])(getApiUserResponseState, __WEBPACK_IMPORTED_MODULE_5__api_user_response__["f" /* showUserInfo */]);
 /**
 *Selectors For LightBox.
 */
@@ -64715,7 +64732,7 @@ AppModule = __decorate([
          * meta-reducer. This returns all providers for an @ngrx/store
          * based application.
          */
-            __WEBPACK_IMPORTED_MODULE_4__ngrx_store__["g" /* StoreModule */].provideStore(__WEBPACK_IMPORTED_MODULE_7__reducers__["q" /* reducer */]),
+            __WEBPACK_IMPORTED_MODULE_4__ngrx_store__["g" /* StoreModule */].provideStore(__WEBPACK_IMPORTED_MODULE_7__reducers__["s" /* reducer */]),
             /**
              * Store devtools instrument the store retaining past versions of state
              * and recalculating new states. This enables powerful time-travel
@@ -66260,7 +66277,6 @@ var InfoBoxComponent = (function () {
         this.sortHashtags(this.apiResponseAggregations);
         this.sortTwiterers(this.apiResponseAggregations);
         this.sortMentions(this.apiResponseAggregations);
-        console.log(this.apiResponseAggregations);
     };
     InfoBoxComponent.prototype.sortHashtags = function (statistics) {
         var sortable = [];
@@ -66359,12 +66375,21 @@ var UserInfoBoxComponent = (function () {
     UserInfoBoxComponent.prototype.ngOnInit = function () {
         this.modifyAutolinkerConfig();
     };
-    UserInfoBoxComponent.prototype.ngOnChanges = function () { };
+    UserInfoBoxComponent.prototype.ngOnChanges = function () {
+        this.apiResponseUserFollowing = this.filterUsers(this.apiResponseUserFollowing);
+        this.apiResponseUserFollowers = this.filterUsers(this.apiResponseUserFollowers);
+    };
     UserInfoBoxComponent.prototype.modifyAutolinkerConfig = function () {
         // hashtag and mention use the default configration strategy.
         // Links use the one-to-one map strategy using unshorten property of feedItem
         this.cardAutolinkerConfig.link.link_type = __WEBPACK_IMPORTED_MODULE_2__shared_configrations__["b" /* ConfigLinkType */].OneToOneMap;
         this.cardAutolinkerConfig.link.link_to = {};
+    };
+    UserInfoBoxComponent.prototype.filterUsers = function (users) {
+        users.sort(function (a, b) {
+            return b.followers_count - a.followers_count;
+        });
+        return users;
     };
     return UserInfoBoxComponent;
 }());
@@ -66372,6 +66397,14 @@ __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Input */])(),
     __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__models_api_user_response__["UserApiResponse"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__models_api_user_response__["UserApiResponse"]) === "function" && _a || Object)
 ], UserInfoBoxComponent.prototype, "apiResponseUser", void 0);
+__decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Input */])(),
+    __metadata("design:type", Object)
+], UserInfoBoxComponent.prototype, "apiResponseUserFollowing", void 0);
+__decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Input */])(),
+    __metadata("design:type", Object)
+], UserInfoBoxComponent.prototype, "apiResponseUserFollowers", void 0);
 __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Input */])(),
     __metadata("design:type", Boolean)
@@ -66813,14 +66846,18 @@ var getSelectedItem = function (state) { return state.entities[state.selected]; 
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__actions_api__ = __webpack_require__(67);
 /* harmony export (immutable) */ exports["a"] = reducer;
 /* harmony export (binding) */ __webpack_require__.d(exports, "b", function() { return getUserResponse; });
-/* harmony export (binding) */ __webpack_require__.d(exports, "c", function() { return isUserResponseLoading; });
-/* harmony export (binding) */ __webpack_require__.d(exports, "d", function() { return showUserInfo; });
+/* harmony export (binding) */ __webpack_require__.d(exports, "c", function() { return getUSerFollowers; });
+/* harmony export (binding) */ __webpack_require__.d(exports, "d", function() { return getUserFollowing; });
+/* harmony export (binding) */ __webpack_require__.d(exports, "e", function() { return isUserResponseLoading; });
+/* harmony export (binding) */ __webpack_require__.d(exports, "f", function() { return showUserInfo; });
 
 /**
  * There is always a need of initial state to be passed onto the store.
 */
 var initialState = {
     user: null,
+    followers: [],
+    following: [],
     showUserInfo: false,
     loading: false
 };
@@ -66851,6 +66888,8 @@ function reducer(state, action) {
             var userResponse = action.payload;
             return Object.assign({}, state, {
                 user: userResponse.user,
+                followers: userResponse.topology.followers,
+                following: userResponse.topology.following,
                 loading: false
             });
         }
@@ -66874,6 +66913,8 @@ function reducer(state, action) {
  * use-case.
  */
 var getUserResponse = function (state) { return state.user; };
+var getUSerFollowers = function (state) { return state.followers; };
+var getUserFollowing = function (state) { return state.following; };
 var isUserResponseLoading = function (state) { return state.loading; };
 var showUserInfo = function (state) { return state.showUserInfo; };
 
@@ -66927,6 +66968,12 @@ function reducer(state, action) {
                 page: state.page - 1,
                 pageLoading: false,
                 pagesAvailable: false
+            });
+        }
+        case __WEBPACK_IMPORTED_MODULE_0__actions_pagination__["a" /* ActionTypes */].REVERT_PAGINATION_STATE: {
+            return Object.assign({}, state, {
+                pageLoading: false,
+                pagesAvailable: true
             });
         }
         default: {
@@ -67323,10 +67370,13 @@ var UserService = (function () {
     }
     // TODO: make the searchParams as configureable model rather than this approach.
     UserService.prototype.fetchQuery = function (user) {
+        var screen_name = user.charAt(0).toUpperCase() + user.slice(1);
         var searchParams = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* URLSearchParams */]();
-        searchParams.set('screen_name', user);
+        searchParams.set('screen_name', screen_name);
+        searchParams.set('followers', UserService.followers_count.toString());
+        searchParams.set('following', UserService.following_count.toString());
         searchParams.set('callback', 'JSONP_CALLBACK');
-        searchParams.set('minified', UserService.minified_results.toString());
+        // searchParams.set('minified', UserService.minified_results.toString());
         return this.jsonp.get(UserService.apiUrl.toString(), { search: searchParams })
             .map(this.extractData)
             .catch(this.handleError);
@@ -67350,6 +67400,8 @@ var UserService = (function () {
 }());
 UserService.apiUrl = new URL('http://api.loklak.org/api/user.json');
 UserService.minified_results = true;
+UserService.followers_count = 100;
+UserService.following_count = 100;
 UserService = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["b" /* Injectable */])(),
     __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Jsonp */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Jsonp */]) === "function" && _a || Object])
@@ -71030,7 +71082,7 @@ module.exports = ":host {\n  display: block; }\n\n.info-box {\n  box-shadow: 0 2
 /* 796 */
 /***/ function(module, exports) {
 
-module.exports = ":host {\n  display: block; }\n\n.info-box {\n  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);\n  border-radius: 2px;\n  min-height: 420px;\n  width: 100%;\n  margin-bottom: 20px; }\n\n.image-gallery {\n  width: 100%;\n  height: 150px;\n  position: relative; }\n\n.profile-banner-image {\n  position: absolute;\n  top: 0;\n  right: 0;\n  bottom: 0;\n  left: 0; }\n  .profile-banner-image img {\n    width: 100%;\n    height: 100%; }\n\n.profile-image {\n  position: absolute;\n  bottom: 0;\n  left: 50px;\n  background: #FFFFFF;\n  height: 75px; }\n  .profile-image img {\n    margin: 5px;\n    height: calc(100% - 10px); }\n\n.heading {\n  width: 100%;\n  padding: 15px;\n  border-bottom: 1px solid rgba(0, 0, 0, 0.1); }\n  .heading h2 {\n    margin: 0 0 10px 0; }\n  .heading span {\n    font-size: 13px;\n    color: #777; }\n\n.desc {\n  padding: 15px; }\n\n.listing {\n  padding: 0px 15px 15px 15px; }\n\n.list-item {\n  padding: 3px 0 3px 0; }\n  .list-item .item-label {\n    font-weight: 700; }\n\n.preloader {\n  width: 100%;\n  height: 420px;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center; }\n\n.loading {\n  border-radius: 50%;\n  margin: 0 auto;\n  width: 24px;\n  height: 24px;\n  border: 2px solid #d81b60;\n  border-top-color: rgba(216, 97, 96, 0.2);\n  -webkit-animation: spin 1s infinite linear;\n          animation: spin 1s infinite linear; }\n\n@-webkit-keyframes spin {\n  0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg); }\n  100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg); } }\n\n@keyframes spin {\n  0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg); }\n  100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg); } }\n"
+module.exports = ":host {\n  display: block; }\n\n.info-box {\n  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);\n  border-radius: 2px;\n  min-height: 420px;\n  width: 100%;\n  margin-bottom: 20px; }\n\n.image-gallery {\n  width: 100%;\n  height: 150px;\n  position: relative; }\n\n.profile-banner-image {\n  position: absolute;\n  top: 0;\n  right: 0;\n  bottom: 0;\n  left: 0; }\n  .profile-banner-image img {\n    width: 100%;\n    height: 100%; }\n\n.profile-image {\n  position: absolute;\n  bottom: 0;\n  left: 50px;\n  background: #FFFFFF;\n  height: 75px; }\n  .profile-image img {\n    margin: 5px;\n    height: calc(100% - 10px); }\n\n.heading {\n  width: 100%;\n  padding: 15px;\n  border-bottom: 1px solid rgba(0, 0, 0, 0.1); }\n  .heading h2 {\n    margin: 0 0 10px 0; }\n  .heading span {\n    font-size: 13px;\n    color: #777; }\n\n.desc {\n  padding: 15px; }\n\n.listing {\n  padding: 0px 15px 15px 15px; }\n\n.list-item {\n  padding: 3px 0 3px 0; }\n  .list-item .item-label {\n    font-weight: 700; }\n\n.gallery {\n  padding: 15px; }\n  .gallery h3 {\n    margin-top: 0; }\n\n.gallery-container {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: start;\n      -ms-flex-pack: start;\n          justify-content: flex-start;\n  -ms-flex-wrap: wrap;\n      flex-wrap: wrap; }\n\n.gallery-item {\n  margin-right: 10px;\n  width: 94px;\n  margin-bottom: 10px; }\n  .gallery-item:last-child {\n    margin-right: 0; }\n\n.item-image {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center; }\n  .item-image img {\n    width: 94px;\n    height: 94px; }\n\n.item-desc {\n  text-align: center; }\n\n.item-handle {\n  font-size: 13px;\n  color: #777;\n  word-break: break-all; }\n\n.item-followers {\n  font-size: 13px; }\n\n.preloader {\n  width: 100%;\n  height: 420px;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center; }\n\n.loading {\n  border-radius: 50%;\n  margin: 0 auto;\n  width: 24px;\n  height: 24px;\n  border: 2px solid #d81b60;\n  border-top-color: rgba(216, 97, 96, 0.2);\n  -webkit-animation: spin 1s infinite linear;\n          animation: spin 1s infinite linear; }\n\n@-webkit-keyframes spin {\n  0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg); }\n  100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg); } }\n\n@keyframes spin {\n  0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg); }\n  100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg); } }\n"
 
 /***/ },
 /* 797 */
@@ -71132,7 +71184,7 @@ module.exports = "<div>\n\t<div *ngIf=\"(areMorePagesAvailable) && (!isNextPageL
 /* 813 */
 /***/ function(module, exports) {
 
-module.exports = "<div class=\"outer-wrapper\">\n\t<feed-header\n\t\t\t\t[searchInputControl]=\"_queryControl\"\n\t\t\t\t[Suggesstionlist]=\"(suggestResponse$ | async)\"\n\t\t\t\t(searchEvantEmitter)=\"handleSearchQuery()\"></feed-header>\n\n\t<div *ngIf=\"(isSearching$ | async)\" class=\"searching\">\n\t\t<!-- Hook Up the Material Design Progress Bar. -->\n\t</div>\n\t<br>\n\n\t<div *ngIf=\"!(isSearching$ | async)\" class=\"feed-wrapper\">\n\t\t<div *ngIf=\"(areResultsAvailable$ | async)\" class=\"wrapper feed-results\">\n\t\t\t<div *ngFor=\"let item of (apiResponseResults$ | async); let i = index \">\n\t\t\t\t<feed-card [feedItem]=\"item\" [feedIndex]=\"i\" (showLightBox)=\"showhidelightbox($event);\"></feed-card>\n\t\t\t</div>\n\t\t\t<div *ngIf=\"visibility\">\n\t\t\t\t<feed-lightbox [feedItem]=\"(LightboxgetSelectedItem$ | async)\" (hideLightBox)=\"hidelightbox($event)\"></feed-lightbox>\n\t\t\t</div>\n\t\t\t<feed-pagination\n\t\t\t\t(paginate)=\"loadMoreResults(event$)\"\n\t\t\t\t[isNextPageLoading]=\"(isNextPageLoading$ | async)\"\n\t\t\t\t[areMorePagesAvailable]=\"(areMorePagesAvailable$ | async)\"></feed-pagination>\n\n\t\t\t<feed-footer [query] = \"(query$ | async)\" [apiResponseTags]=\"(apiResponseTags$ | async)\"></feed-footer>\n\t\t</div>\n\t\t<div *ngIf=\"(areResultsAvailable$ | async) && !(isSearching$ | async)\" class=\"wrapper feed-info-box\">\n\t\t\t\t<info-box *ngIf=\"!(showUserInfo$ | async)\" [query] = \"(query$ | async)\" [apiResponseAggregations]=\"(apiResponseAggregations$ | async)\"></info-box>\n\t\t\t\t<user-info-box *ngIf=\"(showUserInfo$ | async)\" [apiResponseUser] = \"(apiResponseUser$ | async)\" [isUserResponseLoading]= \"(isUserResponseLoading$ | async)\"></user-info-box>\n\t\t</div>\n\n\t\t<div class=\"results-not-found\"\n\t\t\t\t\t*ngIf=\"!(isSearching$ | async) &&\n\t\t\t\t\t\t\t\t!(areResultsAvailable$ | async) &&\n\t\t\t\t\t\t\t\t((query$ | async).queryString)\" >\n\t\t\t<feed-not-found [query]=\"(query$ | async)\"></feed-not-found>\n\t\t</div>\n\t</div>\n</div>\n\n<!-- Peek the footer when Results are not found -->\n<app-footer [class.peeking]=\"!(isSearching$ | async) && !(areResultsAvailable$ | async)\"></app-footer>\n"
+module.exports = "<div class=\"outer-wrapper\">\n\t<feed-header\n\t\t\t\t[searchInputControl]=\"_queryControl\"\n\t\t\t\t[Suggesstionlist]=\"(suggestResponse$ | async)\"\n\t\t\t\t(searchEvantEmitter)=\"handleSearchQuery()\"></feed-header>\n\n\t<div *ngIf=\"(isSearching$ | async)\" class=\"searching\">\n\t\t<!-- Hook Up the Material Design Progress Bar. -->\n\t</div>\n\t<br>\n\n\t<div *ngIf=\"!(isSearching$ | async)\" class=\"feed-wrapper\">\n\t\t<div *ngIf=\"(areResultsAvailable$ | async)\" class=\"wrapper feed-results\">\n\t\t\t<div *ngFor=\"let item of (apiResponseResults$ | async); let i = index \">\n\t\t\t\t<feed-card [feedItem]=\"item\" [feedIndex]=\"i\" (showLightBox)=\"showhidelightbox($event);\"></feed-card>\n\t\t\t</div>\n\t\t\t<div *ngIf=\"visibility\">\n\t\t\t\t<feed-lightbox [feedItem]=\"(LightboxgetSelectedItem$ | async)\" (hideLightBox)=\"hidelightbox($event)\"></feed-lightbox>\n\t\t\t</div>\n\t\t\t<feed-pagination\n\t\t\t\t(paginate)=\"loadMoreResults(event$)\"\n\t\t\t\t[isNextPageLoading]=\"(isNextPageLoading$ | async)\"\n\t\t\t\t[areMorePagesAvailable]=\"(areMorePagesAvailable$ | async)\"></feed-pagination>\n\n\t\t\t<feed-footer [query] = \"(query$ | async)\" [apiResponseTags]=\"(apiResponseTags$ | async)\"></feed-footer>\n\t\t</div>\n\t\t<div *ngIf=\"(areResultsAvailable$ | async) && !(isSearching$ | async)\" class=\"wrapper feed-info-box\">\n\t\t\t\t<info-box *ngIf=\"!(showUserInfo$ | async)\" [query] = \"(query$ | async)\" [apiResponseAggregations]=\"(apiResponseAggregations$ | async)\"></info-box>\n\t\t\t\t<user-info-box\n\t\t\t\t\t*ngIf=\"(showUserInfo$ | async)\"\n\t\t\t\t\t[apiResponseUser] = \"(apiResponseUser$ | async)\"\n\t\t\t\t\t[apiResponseUserFollowing] = \"(apiResponseUserFollowing$ | async)\"\n\t\t\t\t\t[apiResponseUserFollowers] = \"(apiResponseUserFollowers$ | async)\"\n\t\t\t\t\t[isUserResponseLoading]= \"(isUserResponseLoading$ | async)\"></user-info-box>\n\t\t</div>\n\n\t\t<div class=\"results-not-found\"\n\t\t\t\t\t*ngIf=\"!(isSearching$ | async) &&\n\t\t\t\t\t\t\t\t!(areResultsAvailable$ | async) &&\n\t\t\t\t\t\t\t\t((query$ | async).queryString)\" >\n\t\t\t<feed-not-found [query]=\"(query$ | async)\"></feed-not-found>\n\t\t</div>\n\t</div>\n</div>\n\n<!-- Peek the footer when Results are not found -->\n<app-footer [class.peeking]=\"!(isSearching$ | async) && !(areResultsAvailable$ | async)\"></app-footer>\n"
 
 /***/ },
 /* 814 */
@@ -71144,7 +71196,7 @@ module.exports = "<div class=\"info-box\">\n\t<div class=\"row\">\n\t\t<div clas
 /* 815 */
 /***/ function(module, exports) {
 
-module.exports = "<div class=\"info-box\">\n\t<div *ngIf=\"(isUserResponseLoading)\" class=\"preloader\">\n\t\t<div class=\"loading\"></div>\n\t</div>\n\t<div *ngIf=\"(!isUserResponseLoading)\" class=\"wrapper\">\n\t\t<div class=\"image-gallery\">\n\t\t\t<div class=\"profile-banner-image\">\n\t\t\t\t<img src=\"{{ apiResponseUser.profile_banner_url }}/600x200\"/>\n\t\t\t</div>\n\t\t\t<div class=\"profile-image\">\n\t\t\t\t<img src=\"{{ apiResponseUser.profile_image_url }}\"/>\n\t\t\t</div>\n\t\t</div>\n\t\t<div class=\"description\">\n\t\t\t<div class=\"heading\">\n\t\t\t\t<h2>{{ apiResponseUser.name }}</h2>\n\t\t\t\t<span>@{{ apiResponseUser.screen_name }}</span>\n\t\t\t</div>\n\t\t\t<div class=\"desc\">\n\t\t\t\t<feed-linker\n\t\t\t\t\t[text]=\"apiResponseUser.description\"\n\t\t\t\t\t[config]=\"cardAutolinkerConfig\"></feed-linker>\n\t\t\t</div>\n\t\t\t<div class=\"listing\">\n\t\t\t\t<ul class=\"list-container\">\n\t\t\t\t\t<li class=\"list-item\">\n\t\t\t\t\t\t<span class=\"item-label\">Tweets:</span>\n\t\t\t\t\t\t<span class=\"item-content\">{{ apiResponseUser.statuses_count }}</span>\n\t\t\t\t\t</li>\n\t\t\t\t\t<li class=\"list-item\">\n\t\t\t\t\t\t<span class=\"item-label\">Following:</span>\n\t\t\t\t\t\t<span class=\"item-content\">{{ apiResponseUser.friends_count }}</span>\n\t\t\t\t\t</li>\n\t\t\t\t\t<li class=\"list-item\">\n\t\t\t\t\t\t<span class=\"item-label\">Followers:</span>\n\t\t\t\t\t\t<span class=\"item-content\">{{ apiResponseUser.followers_count }}</span>\n\t\t\t\t\t</li>\n\t\t\t\t\t<li class=\"list-item\">\n\t\t\t\t\t\t<span class=\"item-label\">Likes:</span>\n\t\t\t\t\t\t<span class=\"item-content\">{{ apiResponseUser.favourites_count }}</span>\n\t\t\t\t\t</li>\n\t\t\t\t\t<li class=\"list-item\">\n\t\t\t\t\t\t<span class=\"item-label\">Location:</span>\n\t\t\t\t\t\t<span class=\"item-content\">{{ apiResponseUser.location }}</span>\n\t\t\t\t\t</li>\n\t\t\t\t\t<li class=\"list-item\">\n\t\t\t\t\t\t<span class=\"item-label\">Website:</span>\n\t\t\t\t\t\t<span class=\"item-content\"><a href=\"{{ apiResponseUser.entities.url.urls[0].url }}\">{{ apiResponseUser.entities.url.urls[0].expanded_url }}</a></span>\n\t\t\t\t\t</li>\n\t\t\t\t</ul>\n\t\t\t</div>\n\t\t</div>\n\t</div>\n</div>\n\n\n\n"
+module.exports = "<div class=\"info-box\">\n\t<div *ngIf=\"(isUserResponseLoading)\" class=\"preloader\">\n\t\t<div class=\"loading\"></div>\n\t</div>\n\t<div *ngIf=\"(!isUserResponseLoading)\" class=\"wrapper\">\n\t\t<div class=\"image-gallery\">\n\t\t\t<div class=\"profile-banner-image\">\n\t\t\t\t<img src=\"{{ apiResponseUser.profile_banner_url }}/600x200\"/>\n\t\t\t</div>\n\t\t\t<div class=\"profile-image\">\n\t\t\t\t<img src=\"{{ apiResponseUser.profile_image_url }}\"/>\n\t\t\t</div>\n\t\t</div>\n\t\t<div class=\"description\">\n\t\t\t<div class=\"heading\">\n\t\t\t\t<h2>{{ apiResponseUser.name }}</h2>\n\t\t\t\t<span>@{{ apiResponseUser.screen_name }}</span>\n\t\t\t</div>\n\t\t\t<div class=\"desc\">\n\t\t\t\t<feed-linker\n\t\t\t\t\t[text]=\"apiResponseUser.description\"\n\t\t\t\t\t[config]=\"cardAutolinkerConfig\"></feed-linker>\n\t\t\t</div>\n\t\t\t<div class=\"listing\">\n\t\t\t\t<ul class=\"list-container\">\n\t\t\t\t\t<li class=\"list-item\">\n\t\t\t\t\t\t<span class=\"item-label\">Tweets:</span>\n\t\t\t\t\t\t<span class=\"item-content\">{{ apiResponseUser.statuses_count }}</span>\n\t\t\t\t\t</li>\n\t\t\t\t\t<li class=\"list-item\">\n\t\t\t\t\t\t<span class=\"item-label\">Following:</span>\n\t\t\t\t\t\t<span class=\"item-content\">{{ apiResponseUser.friends_count }}</span>\n\t\t\t\t\t</li>\n\t\t\t\t\t<li class=\"list-item\">\n\t\t\t\t\t\t<span class=\"item-label\">Followers:</span>\n\t\t\t\t\t\t<span class=\"item-content\">{{ apiResponseUser.followers_count }}</span>\n\t\t\t\t\t</li>\n\t\t\t\t\t<li class=\"list-item\">\n\t\t\t\t\t\t<span class=\"item-label\">Likes:</span>\n\t\t\t\t\t\t<span class=\"item-content\">{{ apiResponseUser.favourites_count }}</span>\n\t\t\t\t\t</li>\n\t\t\t\t\t<li class=\"list-item\">\n\t\t\t\t\t\t<span class=\"item-label\">Location:</span>\n\t\t\t\t\t\t<span class=\"item-content\">{{ apiResponseUser.location }}</span>\n\t\t\t\t\t</li>\n\t\t\t\t\t<li class=\"list-item\">\n\t\t\t\t\t\t<span class=\"item-label\">Website:</span>\n\t\t\t\t\t\t<span class=\"item-content\"><a href=\"{{ apiResponseUser.entities.url.urls[0].url }}\">{{ apiResponseUser.entities.url.urls[0].expanded_url }}</a></span>\n\t\t\t\t\t</li>\n\t\t\t\t</ul>\n\t\t\t</div>\n\t\t</div>\n\t\t<div class=\"followers gallery\" *ngIf=\"apiResponseUserFollowers.length > 0\">\n\t\t\t<h3>Followers</h3>\n\t\t\t<ul class=\"gallery-container\">\n\t\t\t\t<li class=\"gallery-item\"  *ngFor=\"let item of (apiResponseUserFollowers.slice(0,12)); let i = index \">\n\t\t\t\t\t<a [routerLink]=\"['/search']\" [queryParams]=\"{ query : 'from:' + item.screen_name }\">\n\t\t\t\t\t\t<div class=\"item-image\">\n\t\t\t\t\t\t\t<img src=\"{{ item.profile_image_url }}\"/>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<div class=\"item-desc\">\n\t\t\t\t\t\t\t<div class=\"item-name\">\n\t\t\t\t\t\t\t\t{{ item.name }}\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t<div class=\"item-handle\">\n\t\t\t\t\t\t\t\t@{{ item.screen_name }}\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t<div class=\"item-followers\">\n\t\t\t\t\t\t\t\t<span class=\"item-label\">Followers: </span><span class=\"item-content\">{{ item.followers_count }}</span>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</a>\n\t\t\t\t</li>\n\t\t\t</ul>\n\t\t</div>\n\t\t<div class=\"following gallery\" *ngIf=\"apiResponseUserFollowing.length > 0\">\n\t\t\t<h3>Following</h3>\n\t\t\t<ul class=\"gallery-container\">\n\t\t\t\t<li class=\"gallery-item\"  *ngFor=\"let item of (apiResponseUserFollowing.slice(0,12)); let i = index \">\n\t\t\t\t\t<a [routerLink]=\"['/search']\" [queryParams]=\"{ query : 'from:' + item.screen_name }\">\n\t\t\t\t\t\t<div class=\"item-image\">\n\t\t\t\t\t\t\t<img src=\"{{ item.profile_image_url }}\"/>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<div class=\"item-desc\">\n\t\t\t\t\t\t\t<div class=\"item-name\">\n\t\t\t\t\t\t\t\t{{ item.name }}\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t<div class=\"item-handle\">\n\t\t\t\t\t\t\t\t@{{ item.screen_name }}\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t<div class=\"item-followers\">\n\t\t\t\t\t\t\t\t<span class=\"item-label\">Followers: </span><span class=\"item-content\">{{ item.followers_count }}</span>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</a>\n\t\t\t\t</li>\n\t\t\t</ul>\n\t\t</div>\n\t</div>\n</div>\n\n\n\n"
 
 /***/ },
 /* 816 */
