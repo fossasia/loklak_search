@@ -98,6 +98,7 @@ export class FeedComponent implements OnInit, OnDestroy {
 								location: ReloactionAfterQuery.NONE
 							}));
 						}
+						this.store.dispatch(new paginationAction.RevertPaginationState(''));
 					}
 				})
 		);
@@ -171,6 +172,7 @@ export class FeedComponent implements OnInit, OnDestroy {
 																location: ReloactionAfterQuery.NONE
 															}));
 														}
+														this.store.dispatch(new paginationAction.RevertPaginationState(''));
 
 														// if(matches !== null) {
 														// 	this.store.dispatch(new apiAction.FetchUserAction({
