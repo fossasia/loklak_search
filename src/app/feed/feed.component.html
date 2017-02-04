@@ -26,7 +26,12 @@
 		</div>
 		<div *ngIf="(areResultsAvailable$ | async) && !(isSearching$ | async)" class="wrapper feed-info-box">
 				<info-box *ngIf="!(showUserInfo$ | async)" [query] = "(query$ | async)" [apiResponseAggregations]="(apiResponseAggregations$ | async)"></info-box>
-				<user-info-box *ngIf="(showUserInfo$ | async) && (apiResponseUser$ | async)" [apiResponseUser] = "(apiResponseUser$ | async)" [isUserResponseLoading]= "(isUserResponseLoading$ | async)"></user-info-box>
+				<user-info-box
+					*ngIf="(showUserInfo$ | async) && (apiResponseUser$ | async)"
+					[apiResponseUser] = "(apiResponseUser$ | async)"
+					[apiResponseUserFollowing] = "(apiResponseUserFollowing$ | async)"
+					[apiResponseUserFollowers] = "(apiResponseUserFollowers$ | async)"
+					[isUserResponseLoading]= "(isUserResponseLoading$ | async)"></user-info-box>
 		</div>
 
 		<div class="results-not-found"

@@ -13,7 +13,8 @@ import { ApiResponse } from '../models/api-response';
 export const ActionTypes = {
 	NEXT_PAGE: actionTypeCheck('[Pagination] Next Page'),
 	PAGINATION_COMPLETE_SUCCESS: actionTypeCheck('[Pagination] Pagination Complete Success'),
-	PAGINATION_COMPLETE_FAIL: actionTypeCheck('[Pagination] Pagination Complete Fail')
+	PAGINATION_COMPLETE_FAIL: actionTypeCheck('[Pagination] Pagination Complete Fail'),
+	REVERT_PAGINATION_STATE: actionTypeCheck('[Pagination] Revert Back Pagination State')
 };
 
 
@@ -43,6 +44,12 @@ export class PaginationCompleteFailAction implements Action {
 	constructor(public payload: any) { }
 }
 
+export class RevertPaginationState implements Action {
+	type = ActionTypes.REVERT_PAGINATION_STATE;
+
+	constructor(public payload: any) { }
+}
+
 
 /**
  * Export a type alias of all actions in this action group
@@ -51,4 +58,5 @@ export class PaginationCompleteFailAction implements Action {
 export type Actions
 	= NextPageAction
 	| PaginationCompleteSuccessAction
-	| PaginationCompleteFailAction;
+	| PaginationCompleteFailAction
+	| RevertPaginationState;

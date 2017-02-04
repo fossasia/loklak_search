@@ -8,6 +8,8 @@ import { UserApiResponse } from '../models/api-user-response';
  */
 export interface State {
 	user: UserApiResponse;
+	followers: UserApiResponse[];
+	following: UserApiResponse[];
 	showUserInfo: boolean;
 	loading: boolean;
 }
@@ -17,6 +19,8 @@ export interface State {
 */
 const initialState: State = {
 	user: null,
+	followers: [],
+	following: [],
 	showUserInfo: false,
 	loading: false
 };
@@ -49,9 +53,10 @@ export function reducer(state: State = initialState, action: api.Actions): State
 
 		case api.ActionTypes.FETCH_USER_SUCCESS: {
 			const userResponse = action.payload;
-
 			return Object.assign({}, state, {
 				user: userResponse.user,
+				followers: userResponse.topology.followers,
+				following: userResponse.topology.following,
 				loading: false
 			});
 		}
@@ -80,6 +85,10 @@ export function reducer(state: State = initialState, action: api.Actions): State
  */
 
 export const getUserResponse = (state: State) => state.user;
+
+export const getUSerFollowers = (state: State) => state.followers;
+
+export const getUserFollowing = (state: State) => state.following;
 
 export const isUserResponseLoading = (state: State) => state.loading;
 

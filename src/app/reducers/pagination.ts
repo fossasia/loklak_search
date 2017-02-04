@@ -58,6 +58,13 @@ export function reducer(state: State = initialState, action: pagination.Actions)
 			});
 		}
 
+		case pagination.ActionTypes.REVERT_PAGINATION_STATE: {
+			return Object.assign({}, state, {
+				pageLoading: false,
+				pagesAvailable: true
+			});
+		}
+
 		default: {
 			return state;
 		}
