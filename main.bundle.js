@@ -47362,7 +47362,8 @@ var FeedComponent = (function () {
      * is already being fetched (ngrx/effects).
      */
     FeedComponent.prototype.handleSearchQuery = function () {
-        this.location.go('/search', "query=" + this.queryString);
+        var URIquery = encodeURIComponent(this.queryString);
+        this.location.go('/search', "query=" + URIquery);
     };
     /**
      * Loads more results by dispatching the `NextPageAction`.
@@ -65073,7 +65074,8 @@ var ApiSearchEffects = (function () {
                 .takeUntil(nextSearch$)
                 .map(function (response) {
                 if (query.location === __WEBPACK_IMPORTED_MODULE_13__models_query__["a" /* ReloactionAfterQuery */].RELOCATE) {
-                    _this.location.go("/search?query=" + query.queryString);
+                    var URIquery = encodeURIComponent(query.queryString);
+                    _this.location.go("/search?query=" + URIquery);
                 }
                 return new __WEBPACK_IMPORTED_MODULE_12__actions_api__["b" /* SearchCompleteSuccessAction */](response);
             })
