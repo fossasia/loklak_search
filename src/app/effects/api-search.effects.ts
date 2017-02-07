@@ -47,7 +47,8 @@ export class ApiSearchEffects {
 																				.takeUntil(nextSearch$)
 																				.map(response => {
 																					if (query.location === ReloactionAfterQuery.RELOCATE) {
-																						this.location.go(`/search?query=${query.queryString}`);
+																						let URIquery = encodeURIComponent(query.queryString);
+																						this.location.go(`/search?query=${URIquery}`);
 																					}
 																					return new apiAction.SearchCompleteSuccessAction(response);
 																				})

@@ -190,7 +190,8 @@ export class FeedComponent implements OnInit, OnDestroy {
 	 * is already being fetched (ngrx/effects).
 	 */
 	private handleSearchQuery() {
-		this.location.go('/search', `query=${this.queryString}`);
+		let URIquery = encodeURIComponent(this.queryString);
+		this.location.go('/search', `query=${URIquery}`);
 	}
 
 	/**
