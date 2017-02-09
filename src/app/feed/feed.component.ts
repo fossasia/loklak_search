@@ -48,6 +48,7 @@ export class FeedComponent implements OnInit, OnDestroy {
 	private suggestServiceQuery$: Observable<Query>;
 	private isSuggestServiceLoading$: Observable<boolean>;
 	private suggestResponse$: Observable<SuggestResults[]>;
+	private showUserFeed$: Observable<boolean>;
 
 	constructor(
 		private route: ActivatedRoute,
@@ -84,23 +85,36 @@ export class FeedComponent implements OnInit, OnDestroy {
 				.subscribe((params: Params) => {
 					let queryParam = params['query'] || '';
 					if (queryParam) {
-						this.store.dispatch(new apiAction.SearchAction({
-							queryString: queryParam,
-							location: ReloactionAfterQuery.NONE
-						}));
-						this._queryControl.setValue(queryParam);
-						var re = new RegExp(/^from:\s*([a-zA-Z0-9_@]+)/, 'i');
-						var matches = re.exec(queryParam);
-						if(matches !== null) {
-							var screenName: string = matches[1];
+						let re = new RegExp(/^followers:\s*([a-zA-Z0-9_@]+)/, 'i');
+						let matches = re.exec(queryParam);
+						if(matches == null) {
+							this.store.dispatch(new apiAction.SearchAction({
+								queryString: queryParam,
+								location: ReloactionAfterQuery.NONE
+							}));
+							this._queryControl.setValue(queryParam);
+							re = new RegExp(/^from:\s*([a-zA-Z0-9_@]+)/, 'i');
+							matches = re.exec(queryParam);
+							if(matches !== null) {
+								let screenName: string = matches[1];
+								this.store.dispatch(new apiAction.FetchUserAction({
+									queryString: screenName,
+									location: ReloactionAfterQuery.NONE
+								}));
+							}
+							this.store.dispatch(new apiAction.ShowSearchResults(''));
+						}	else {
+							let screenName: string = matches[1];
 							this.store.dispatch(new apiAction.FetchUserAction({
 								queryString: screenName,
 								location: ReloactionAfterQuery.NONE
 							}));
+							this.store.dispatch(new apiAction.ShowUserFeed(''));
 						}
 						this.store.dispatch(new paginationAction.RevertPaginationState(''));
 					}
-				})
+				}
+			)
 		);
 	}
 
@@ -126,7 +140,7 @@ export class FeedComponent implements OnInit, OnDestroy {
 		this.suggestServiceQuery$ = this.store.select(fromRoot.getSuggestServiceQuery);
 		this.isSuggestServiceLoading$ = this.store.select(fromRoot.getSuggestServiceLoading);
 		this.suggestResponse$ = this.store.select(fromRoot.getSuggestResponseEntities);
-
+		this.showUserFeed$ = this.store.select(fromRoot.getShowUserFeed);
 	}
 
 	/**
@@ -153,34 +167,40 @@ export class FeedComponent implements OnInit, OnDestroy {
 		this._queryControl.setValue(this.queryString);
 		this.__subscriptions__.push(
 			this._queryControl.valueChanges
-												.subscribe(query => {
-													if (this.queryString !== query) {
-														this.store.dispatch(new suggestServiceAction.SuggestAction({
-															queryString: query,
-															location: ReloactionAfterQuery.NONE
-														}));
-														this.store.dispatch(new apiAction.SearchAction({
-															queryString: query,
-															location: ReloactionAfterQuery.RELOCATE
-														}));
-														var re = new RegExp(/^from:\s*([a-zA-Z0-9_@]+)/, 'i');
-														var matches = re.exec(query);
-														if(matches !== null) {
-															var screenName: string = matches[1];
-															this.store.dispatch(new apiAction.FetchUserAction({
-																queryString: screenName,
-																location: ReloactionAfterQuery.NONE
-															}));
-														}
-														this.store.dispatch(new paginationAction.RevertPaginationState(''));
-
-														// if(matches !== null) {
-														// 	this.store.dispatch(new apiAction.FetchUserAction({
-														// 		screenName: screenName
-														// 	}));
-														// }
-													}
-												})
+				.subscribe(query => {
+					if (this.queryString !== query) {
+						let re = new RegExp(/^followers:\s*([a-zA-Z0-9_@]+)/, 'i');
+						let matches = re.exec(query);
+						if(matches == null) {
+							this.store.dispatch(new suggestServiceAction.SuggestAction({
+								queryString: query,
+								location: ReloactionAfterQuery.NONE
+							}));
+							this.store.dispatch(new apiAction.SearchAction({
+								queryString: query,
+								location: ReloactionAfterQuery.RELOCATE
+							}));
+							re = new RegExp(/^from:\s*([a-zA-Z0-9_@]+)/, 'i');
+							matches = re.exec(query);
+							if(matches !== null) {
+								let screenName: string = matches[1];
+								this.store.dispatch(new apiAction.FetchUserAction({
+									queryString: screenName,
+									location: ReloactionAfterQuery.NONE
+								}));
+							}
+							this.store.dispatch(new apiAction.ShowSearchResults(''));
+						} else {
+							let screenName: string = matches[1];
+							this.store.dispatch(new apiAction.FetchUserAction({
+								queryString: screenName,
+								location: ReloactionAfterQuery.NONE
+							}));
+							this.store.dispatch(new apiAction.ShowUserFeed(''));
+						}
+						this.store.dispatch(new paginationAction.RevertPaginationState(''));
+					}
+				})
 		);
 	}
 

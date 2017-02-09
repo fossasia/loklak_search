@@ -40,7 +40,6 @@ export class ApiUserSearchEffects {
 					.debounceTime(200)
 					.map((action: apiAction.FetchUserAction) => action.payload)
 					.switchMap(query => {
-						console.log("Hello");
 						const nextSearch$ = this.actions$.ofType(apiAction.ActionTypes.SEARCH).skip(1);
 
 						return this.apiUserService.fetchQuery(query.queryString)
