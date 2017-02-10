@@ -44,6 +44,30 @@
 		</div>
 
 	</div>
+
+	<div *ngIf="(showUserFeed$ | async)">
+
+		<div *ngIf="(isUserResponseLoading$ | async)" class="searching">
+		</div>
+		<br/>
+
+		<div *ngIf="!(isUserResponseLoading$ | async)" class="feed-wrapper">
+			<div class="wrapper feed-results" *ngIf="((apiResponseUserFollowers$ | async).length > 0)">
+					<div *ngFor="let item of (apiResponseUserFollowers$ | async); let i = index ">
+
+
+					</div>
+			</div>
+			<div class="wrapper feed-info-box" *ngIf="!(isUserResponseLoading$ | async) && ((apiResponseUserFollowers$ | async).length > 0)">
+					<user-info-box
+						*ngIf="(showUserInfo$ | async)"
+						[apiResponseUser] = "(apiResponseUser$ | async)"
+						[apiResponseUserFollowers] = "[]"
+						[apiResponseUserFollowing] = "(apiResponseUserFollowing$ | async)"
+						[isUserResponseLoading]= "(isUserResponseLoading$ | async)"></user-info-box>
+			</div>
+		</div>
+	</div>
 </div>
 
 <!-- Peek the footer when Results are not found -->
