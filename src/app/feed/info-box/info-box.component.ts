@@ -19,8 +19,22 @@ export class InfoBoxComponent implements OnInit, OnChanges {
 	private topHashtags;
 	private topMentions;
 	private topTwitterers;
+
+	
+	public barChartOptions:any = {
+	   scaleShowVerticalLines: false,
+	   responsive: true
+	 };
+	public barChartLabels:string[] = ["0"];
+	public barChartType:string = 'bar';
+	public barChartLegend:boolean = true;
+	public  barChartData:any[] = [
+	   {data: [0], label: 'Tweet Frequency'}
+	];
+
 	constructor(
 		private store: Store<fromRoot.State>
+
 		) { }
 
 	ngOnInit() { }
@@ -29,6 +43,7 @@ export class InfoBoxComponent implements OnInit, OnChanges {
 		this.sortHashtags(this.apiResponseAggregations);
 		this.sortTwiterers(this.apiResponseAggregations);
 		this.sortMentions(this.apiResponseAggregations);
+		this.getChartData(this.apiResponseAggregations);
 	}
 	sortHashtags(statistics){
 		let sortable = [];
@@ -79,5 +94,25 @@ export class InfoBoxComponent implements OnInit, OnChanges {
 		this.inviewportmentions=event.value;
 		}
 	}
+	getChartData(statistics){
+		var data = [];
+		var labels = [];
+		var chosen_attr = statistics.created_at;
+
+
+		for (var property in chosen_attr) {
+                if (chosen_attr.hasOwnProperty(property)) {
+                    labels.push(property);
+                    data.push(chosen_attr[property]);
+                }
+        }
+
+		this.barChartData[0].data = data;
+		this.barChartLabels = labels;
+        return this.barChartData[0].data, this.barChartLabels;
+
+	}
+
+
 }
 

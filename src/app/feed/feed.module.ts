@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { LoklakFeedRoutingModule } from './feed-routing.module';
-
+import { ChartsModule } from 'ng2-charts/ng2-charts';
 import { FeedComponent } from './feed.component';
 import { FeedHeaderComponent } from './feed-header/feed-header.component';
 import { FeedFooterComponent } from './feed-footer/feed-footer.component';
@@ -48,7 +48,11 @@ import { InViewport } from '../shared//in-viewport.directive';
 		/**
 		 * Declares a UI based footer module which is completely interoperable.
 		 */
-		FooterModule
+		FooterModule,
+		/**
+		* For showing Tweet Frequency in the searches
+		**/
+		ChartsModule
 	],
 	declarations: [
 		FeedComponent,
