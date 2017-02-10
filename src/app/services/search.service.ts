@@ -12,7 +12,7 @@ export class SearchService {
 	private static readonly apiUrl: URL = new URL('http://api.loklak.org/api/search.json');
 	private static maximum_records_fetch: number = 20;
 	private static minified_results: boolean = true;
-	private static source: string = 'cache';
+	private static source: string = 'all';
 	private static fields: string = 'created_at,screen_name,mentions,hashtags';
 
 	constructor(
@@ -34,7 +34,7 @@ export class SearchService {
 								.catch(this.handleError);
 
 	}
-	
+
 	private extractData(res: Response): ApiResponse {
 		try {
 			return <ApiResponse>res.json();
