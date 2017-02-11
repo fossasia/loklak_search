@@ -12,6 +12,7 @@ import { ApiSearchEffects } from './effects/api-search.effects';
 import { PaginationEffects } from './effects/pagination.effects';
 import { ApiUserSearchEffects } from './effects/api-usersearch.effects';
 import { SuggestEffects } from './effects/api-suggest.effects';
+import { ApiAggregationEffects } from './effects/api-aggregation.effects';
 
 import { LoklakAppRoutingModule } from './app-routing.module';
 
@@ -22,7 +23,7 @@ import { FeedModule } from './feed/feed.module';
 import { AboutModule } from './about/about.module';
 import { ContactModule } from './contact/contact.module';
 import { TermsModule } from './terms/terms.module';
-import { SearchService, UserService,SuggestService } from './services';
+import { SearchService, UserService,SuggestService,AggregationService } from './services';
 import { PageNotFoundModule } from './pagenotfound/pagenotfound.module';
 
 @NgModule({
@@ -97,6 +98,7 @@ import { PageNotFoundModule } from './pagenotfound/pagenotfound.module';
 		EffectsModule.run(PaginationEffects),
 		EffectsModule.run(SuggestEffects),
 		EffectsModule.run(ApiUserSearchEffects),
+		EffectsModule.run(ApiAggregationEffects),
 
 		/**
 		 * Defines the routes at `root` level of the application.
@@ -148,7 +150,8 @@ import { PageNotFoundModule } from './pagenotfound/pagenotfound.module';
 		 */
 		SearchService,
 		UserService,
-		SuggestService
+		SuggestService,
+		AggregationService
 	],
 	bootstrap: [AppComponent]
 })

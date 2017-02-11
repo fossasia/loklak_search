@@ -62,15 +62,14 @@ export function reducer(state: State = initialState, action: api.Actions | pagin
 					return { tag, count: tagStrings.filter(y => y === tag).length };
 			});
 
-			return {
+			return Object.assign({}, state, {
 				pages: [ apiResponse ],
 				entities: apiResponse.statuses,
 				hashtags,
-				aggregations: apiResponse.aggregations,
 				valid: true,
 				selected: null,
 				selectedavail: false
-			};
+			});
 		}
 
 		case api.ActionTypes.SEARCH_COMPLETE_FAIL: {
@@ -92,7 +91,6 @@ export function reducer(state: State = initialState, action: api.Actions | pagin
 				pages:	[...state.pages, apiResponse],
 				entities: [...state.entities, ...apiResponse.statuses],
 				hashtags: [...hashtags],
-				aggregations: apiResponse.aggregations || state.aggregations,
 				valid: true
 			});
 		}
@@ -113,6 +111,22 @@ export function reducer(state: State = initialState, action: api.Actions | pagin
 			return Object.assign({}, state, {
 				selectavail: false,
 				selected: null
+			});
+		}
+
+		case api.ActionTypes.FETCH_AGGREGATION_SUCCESS: {
+			const apiResponse = action.payload;
+
+			return Object.assign({}, state, {
+				aggregations: apiResponse.aggregations
+			});
+		}
+
+		case api.ActionTypes.FETCH_AGGREGATION_FAIL: {
+			const apiResponse = action.payload;
+
+			return Object.assign({}, state, {
+				aggregations: apiResponse.aggregations || state.aggregations
 			});
 		}
 
