@@ -88,6 +88,10 @@ export class FeedComponent implements OnInit, OnDestroy {
 							queryString: queryParam,
 							location: ReloactionAfterQuery.NONE
 						}));
+						this.store.dispatch(new apiAction.FetchAggregationAction({
+							queryString: queryParam,
+							location: ReloactionAfterQuery.NONE
+						}));
 						this._queryControl.setValue(queryParam);
 						var re = new RegExp(/^from:\s*([a-zA-Z0-9_@]+)/, 'i');
 						var matches = re.exec(queryParam);
@@ -160,6 +164,10 @@ export class FeedComponent implements OnInit, OnDestroy {
 															location: ReloactionAfterQuery.NONE
 														}));
 														this.store.dispatch(new apiAction.SearchAction({
+															queryString: query,
+															location: ReloactionAfterQuery.RELOCATE
+														}));
+														this.store.dispatch(new apiAction.FetchAggregationAction({
 															queryString: query,
 															location: ReloactionAfterQuery.RELOCATE
 														}));

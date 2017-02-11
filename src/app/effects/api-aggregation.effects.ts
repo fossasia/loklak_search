@@ -12,7 +12,7 @@ import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/skip';
 import 'rxjs/add/operator/takeUntil';
 
-import { SearchService, AggregationService } from '../services';
+import { AggregationService } from '../services';
 import * as apiAction from '../actions/api';
 import { Query, ReloactionAfterQuery } from '../models/query';
 
@@ -31,7 +31,7 @@ import { Query, ReloactionAfterQuery } from '../models/query';
  */
 
 @Injectable()
-export class ApiSearchEffects {
+export class ApiAggregationEffects {
 
 	@Effect()
 	search$: Observable<Action>
@@ -43,21 +43,17 @@ export class ApiSearchEffects {
 
 						const nextSearch$ = this.actions$.ofType(apiAction.ActionTypes.SEARCH).skip(1);
 
-						return this.apiSearchService.fetchQuery(query.queryString)
+						return this.apiAggregationService.fetchQuery(query.queryString)
 																				.takeUntil(nextSearch$)
 																				.map(response => {
-																					if (query.location === ReloactionAfterQuery.RELOCATE) {
-																						let URIquery = encodeURIComponent(query.queryString);
-																						this.location.go(`/search?query=${URIquery}`);
-																					}
-																					return new apiAction.SearchCompleteSuccessAction(response);
+																					return new apiAction.FetchAggregationSuccessAction(response);
 																				})
 																				.catch(() => of(new apiAction.SearchCompleteFailAction('')));
 					});
 
 	constructor(
 		private actions$: Actions,
-		private apiSearchService: SearchService,
+		private apiAggregationService: AggregationService,
 		private location: Location
 	) { }
 
