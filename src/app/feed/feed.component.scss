@@ -22,7 +22,33 @@
 			.feed-results {
 				width: 632px;
 			}
+
+			.user-feed-results {
+				width: 1120px;
+			}
 		}
+
+		.user-feed-results {
+			display:flex;
+			flex-wrap: wrap;
+			justify-content: space-between;
+		}
+
+			.card-wrapper {
+
+				width: 100%;
+
+				@media(min-width: 600px) {
+					width: 49%;
+				}
+
+				@media(min-width: 1000px) {
+					width: 24%;
+				}
+
+				margin-bottom: 15px;
+				border: 1px solid #e1e8ed;
+			}
 
 		.feed-info-box {
 
@@ -76,4 +102,5 @@ app-footer.peeking{
 		transform: rotate(360deg);
 	}
 }
+
 

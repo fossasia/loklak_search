@@ -31,8 +31,8 @@
 					<user-info-box
 						*ngIf="(showUserInfo$ | async)"
 						[apiResponseUser] = "(apiResponseUser$ | async)"
-						[apiResponseUserFollowing] = "(apiResponseUserFollowing$ | async)"
-						[apiResponseUserFollowers] = "(apiResponseUserFollowers$ | async)"
+						[apiResponseUserFollowing] = "sortUsers(apiResponseUserFollowing$ | async)"
+						[apiResponseUserFollowers] = "sortUsers(apiResponseUserFollowers$ | async)"
 						[isUserResponseLoading]= "(isUserResponseLoading$ | async)"></user-info-box>
 			</div>
 			<div class="results-not-found"
@@ -52,19 +52,10 @@
 		<br/>
 
 		<div *ngIf="!(isUserResponseLoading$ | async)" class="feed-wrapper">
-			<div class="wrapper feed-results" *ngIf="((apiResponseUserFollowers$ | async).length > 0)">
-					<div *ngFor="let item of (apiResponseUserFollowers$ | async); let i = index ">
-
-
+			<div class="wrapper user-feed-results" *ngIf="((apiResponseUserFollowers$ | async).length > 0)">
+					<div *ngFor="let item of sortUsers(apiResponseUserFollowers$ | async); let i = index " class="card-wrapper">
+						<feed-user-card [feedItem] = "item" [feedIndex]="i"></feed-user-card>
 					</div>
-			</div>
-			<div class="wrapper feed-info-box" *ngIf="!(isUserResponseLoading$ | async) && ((apiResponseUserFollowers$ | async).length > 0)">
-					<user-info-box
-						*ngIf="(showUserInfo$ | async)"
-						[apiResponseUser] = "(apiResponseUser$ | async)"
-						[apiResponseUserFollowers] = "[]"
-						[apiResponseUserFollowing] = "(apiResponseUserFollowing$ | async)"
-						[isUserResponseLoading]= "(isUserResponseLoading$ | async)"></user-info-box>
 			</div>
 		</div>
 	</div>

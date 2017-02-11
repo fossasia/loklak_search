@@ -25,8 +25,6 @@ export class UserInfoBoxComponent implements OnInit, OnChanges {
 	}
 
 	ngOnChanges() {
-		this.apiResponseUserFollowing = this.filterUsers(this.apiResponseUserFollowing);
-		this.apiResponseUserFollowers = this.filterUsers(this.apiResponseUserFollowers);
 	}
 
 	private modifyAutolinkerConfig() {
@@ -34,13 +32,6 @@ export class UserInfoBoxComponent implements OnInit, OnChanges {
 		// Links use the one-to-one map strategy using unshorten property of feedItem
 		this.cardAutolinkerConfig.link.link_type = ConfigLinkType.OneToOneMap;
 		this.cardAutolinkerConfig.link.link_to = {};
-	}
-
-	filterUsers(users: Array<UserApiResponse>) {
-		users.sort(function (a,b) {
-			return b.followers_count- a.followers_count;
-		});
-		return users;
 	}
 }
 

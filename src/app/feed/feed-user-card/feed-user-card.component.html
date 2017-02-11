@@ -1,0 +1,20 @@
+<div class="card-wrapper">
+	<div class="card-header">
+		<div class="card-banner" [ngStyle] = "{'background-color': '#' + feedItem.profile_link_color }">
+			<img *ngIf="feedItem.profile_banner_url" src="{{ feedItem.profile_banner_url }}/600x200"/>
+		</div>
+		<div class="profile-image">
+			<img src="{{ feedItem.profile_image_url }}"/>
+		</div>
+	</div>
+	<div class="card-title">
+		<h4>{{ feedItem.name }}</h4>
+		<span>@{{ feedItem.screen_name }}</span>
+	</div>
+	<div class="card-desc">
+		<span>Followers: {{ feedItem.followers_count }}</span>
+		<feed-linker
+			[text]="feedItem.description"
+			[config]="cardAutolinkerConfig"></feed-linker>
+	</div>
+</div>

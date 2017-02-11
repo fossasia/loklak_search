@@ -45,6 +45,9 @@ export class ApiUserSearchEffects {
 						return this.apiUserService.fetchQuery(query.queryString)
 																				.takeUntil(nextSearch$)
 																				.map(response => {
+																					if (query.location === ReloactionAfterQuery.RELOCATE) {
+																						this.location.go(`/search?query=followers:${query.queryString}`);
+																					}
 																					return new apiAction.FetchUserSuccessAction(response);
 																				})
 																				.catch(() => of(new apiAction.FetchUserFailAction('')));
@@ -53,6 +56,7 @@ export class ApiUserSearchEffects {
 	constructor(
 		private actions$: Actions,
 		private apiUserService: UserService,
+		private location: Location
 	) { }
 
 }

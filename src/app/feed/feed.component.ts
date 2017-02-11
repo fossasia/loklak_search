@@ -107,7 +107,7 @@ export class FeedComponent implements OnInit, OnDestroy {
 							let screenName: string = matches[1];
 							this.store.dispatch(new apiAction.FetchUserAction({
 								queryString: screenName,
-								location: ReloactionAfterQuery.NONE
+								location: ReloactionAfterQuery.RELOCATE
 							}));
 							this.store.dispatch(new apiAction.ShowUserFeed(''));
 						}
@@ -194,7 +194,7 @@ export class FeedComponent implements OnInit, OnDestroy {
 							let screenName: string = matches[1];
 							this.store.dispatch(new apiAction.FetchUserAction({
 								queryString: screenName,
-								location: ReloactionAfterQuery.NONE
+								location: ReloactionAfterQuery.RELOCATE
 							}));
 							this.store.dispatch(new apiAction.ShowUserFeed(''));
 						}
@@ -253,6 +253,13 @@ export class FeedComponent implements OnInit, OnDestroy {
 	 */
 	ngOnDestroy() {
 		this.__subscriptions__.forEach(subscription => subscription.unsubscribe());
+	}
+
+	sortUsers(users: Array<UserApiResponse>) {
+		users.sort(function (a,b) {
+			return b.followers_count- a.followers_count;
+		});
+		return users;
 	}
 }
 

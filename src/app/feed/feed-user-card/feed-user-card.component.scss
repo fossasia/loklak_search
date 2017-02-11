@@ -1,1 +1,52 @@
+.card-wrapper {
+	padding-bottom: 10px;
+}
 
+	.card-header {
+		position: relative;
+		width: 100%;
+	}
+
+		.card-banner {
+			height: 83.33px;
+			width: 100%;
+
+			img {
+				width: 100%;
+			}
+		}
+
+		.profile-image {
+
+			img {
+				position: absolute;
+				bottom: -20px;
+				left: 4%;
+			}
+		}
+
+	.card-title {
+		margin-bottom: 10px;
+		margin-left: 4%;
+		margin-right: 4%;
+
+		h4 {
+			margin-top: 30px;
+			margin-bottom: 0px;
+		}
+
+		span {
+			font-size: 13px;
+			color: #777;
+		}
+	}
+
+	.card-desc {
+		margin-left: 4%;
+		margin-right: 4%;
+
+		span {
+			display: inline-block;
+			margin-bottom: 10px;
+		}
+	}
