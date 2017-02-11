@@ -67365,7 +67365,7 @@ var SearchService = (function () {
 SearchService.apiUrl = new URL('http://api.loklak.org/api/search.json');
 SearchService.maximum_records_fetch = 20;
 SearchService.minified_results = true;
-SearchService.source = 'cache';
+SearchService.source = 'all';
 SearchService.fields = 'created_at,screen_name,mentions,hashtags';
 SearchService = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
