@@ -7,12 +7,14 @@
 			<img src="{{ feedItem.profile_image_url }}"/>
 		</div>
 	</div>
-	<div class="card-title">
-		<h4>{{ feedItem.name }}</h4>
-		<span>@{{ feedItem.screen_name }}</span>
-	</div>
+	<a [routerLink]="['/search']" [queryParams]="{ query : 'from:' + feedItem.screen_name }">
+		<div class="card-title">
+			<h4>{{ feedItem.name }}</h4>
+			<span>@{{ feedItem.screen_name }}</span>
+		</div>
+	</a>
 	<div class="card-desc">
-		<span>Followers: {{ feedItem.followers_count }}</span>
+		<span><a [routerLink]="['/search']" [queryParams]="{ query : 'followers:' + feedItem.screen_name }">Followers: {{ feedItem.followers_count }}</a></span>
 		<feed-linker
 			[text]="feedItem.description"
 			[config]="cardAutolinkerConfig"></feed-linker>

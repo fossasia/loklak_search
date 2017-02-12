@@ -95,6 +95,15 @@ class UserInfoBoxStubComponent {
 }
 
 @Component({
+	selector: 'feed-user-card',
+	template: ''
+})
+class FeedUserCardStubComponent {
+	@Input() private feedItem;
+	@Input() private feedIndex;
+}
+
+@Component({
 	selector: 'feed-lightbox',
 	template: ''
 })
@@ -122,6 +131,7 @@ describe('Component: Feed', () => {
 				FeedPaginationStubComponent,
 				InfoBoxStubComponent,
 				UserInfoBoxStubComponent,
+				FeedUserCardStubComponent,
 				FeedLightboxStubComponent
 			]
 		});

@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ChangeDetectionStrategy, ElementRef } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectionStrategy, ElementRef, Inject, HostListener } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Location } from '@angular/common';
 import { Router, ActivatedRoute, Params } from '@angular/router';
@@ -16,6 +16,7 @@ import { ApiResponse, ApiResponseMetadata, ApiResponseResult, ApiResponseAggrega
 import { SuggestMetadata, SuggestResults, SuggestResponse } from '../models/api-suggest';
 import { Query, ReloactionAfterQuery } from '../models/query';
 import { UserApiResponse } from '../models/api-user-response';
+import { DOCUMENT } from "@angular/platform-browser";
 
 
 @Component({
@@ -49,12 +50,14 @@ export class FeedComponent implements OnInit, OnDestroy {
 	private isSuggestServiceLoading$: Observable<boolean>;
 	private suggestResponse$: Observable<SuggestResults[]>;
 	private showUserFeed$: Observable<boolean>;
+	private index: number = 12;
 
 	constructor(
 		private route: ActivatedRoute,
 		private location: Location,
 		private store: Store<fromRoot.State>,
 		private elementRef: ElementRef,
+		@Inject(DOCUMENT) private document: Document
 	) {  }
 
 	ngOnInit() {
@@ -64,7 +67,6 @@ export class FeedComponent implements OnInit, OnDestroy {
 		this.subscribeQueryString();
 		this.setupSearchField();
 	}
-
 	/**
 	 * Focus the search box on the `Loading` of the Feedpage.
 	 */
@@ -96,17 +98,15 @@ export class FeedComponent implements OnInit, OnDestroy {
 							re = new RegExp(/^from:\s*([a-zA-Z0-9_@]+)/, 'i');
 							matches = re.exec(queryParam);
 							if(matches !== null) {
-								let screenName: string = matches[1];
 								this.store.dispatch(new apiAction.FetchUserAction({
-									queryString: screenName,
+									queryString: queryParam,
 									location: ReloactionAfterQuery.NONE
 								}));
 							}
 							this.store.dispatch(new apiAction.ShowSearchResults(''));
 						}	else {
-							let screenName: string = matches[1];
 							this.store.dispatch(new apiAction.FetchUserAction({
-								queryString: screenName,
+								queryString: queryParam,
 								location: ReloactionAfterQuery.RELOCATE
 							}));
 							this.store.dispatch(new apiAction.ShowUserFeed(''));
@@ -183,17 +183,15 @@ export class FeedComponent implements OnInit, OnDestroy {
 							re = new RegExp(/^from:\s*([a-zA-Z0-9_@]+)/, 'i');
 							matches = re.exec(query);
 							if(matches !== null) {
-								let screenName: string = matches[1];
 								this.store.dispatch(new apiAction.FetchUserAction({
-									queryString: screenName,
+									queryString: query,
 									location: ReloactionAfterQuery.NONE
 								}));
 							}
 							this.store.dispatch(new apiAction.ShowSearchResults(''));
 						} else {
-							let screenName: string = matches[1];
 							this.store.dispatch(new apiAction.FetchUserAction({
-								queryString: screenName,
+								queryString: query,
 								location: ReloactionAfterQuery.RELOCATE
 							}));
 							this.store.dispatch(new apiAction.ShowUserFeed(''));
@@ -247,6 +245,18 @@ export class FeedComponent implements OnInit, OnDestroy {
 		this.visibility= false;
 		this.store.dispatch(new apiAction.UnSelectLightbox(event));
 	}
+
+	@HostListener("window:scroll", [])
+  onWindowScroll() {
+    if(this.document.body.scrollTop + this.document.body.clientHeight == this.document.body.scrollHeight) {
+    	let subscriber = this.apiResponseUserFollowers$.subscribe(apiResponseUserFollowers => {
+    		let length = apiResponseUserFollowers.length;
+    		if(length > this.index) {
+    			this.index += 12;
+    		}
+    	});
+    }
+  }
 
 	/**
 	 * Clearup all the subscription when component is destroyed.

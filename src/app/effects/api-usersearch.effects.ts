@@ -42,11 +42,14 @@ export class ApiUserSearchEffects {
 					.switchMap(query => {
 						const nextSearch$ = this.actions$.ofType(apiAction.ActionTypes.SEARCH).skip(1);
 
-						return this.apiUserService.fetchQuery(query.queryString)
+						let re = new RegExp(/^(followers|from):\s*([a-zA-Z0-9_@]+)/, 'i');
+						let matches = re.exec(query.queryString);
+						let screenName : string = matches[2];
+						return this.apiUserService.fetchQuery(screenName)
 																				.takeUntil(nextSearch$)
 																				.map(response => {
 																					if (query.location === ReloactionAfterQuery.RELOCATE) {
-																						this.location.go(`/search?query=followers:${query.queryString}`);
+																						this.location.go(`/search?query=${query.queryString}`);
 																					}
 																					return new apiAction.FetchUserSuccessAction(response);
 																				})

@@ -47,6 +47,15 @@ export function reducer(state: State = initialState, action: api.Actions): State
 			});
 		}
 
+		case api.ActionTypes.FETCH_USER: {
+			const query = action.payload;
+
+			return Object.assign({}, state, {
+				query,
+				loading: true
+			})
+		}
+
 		case api.ActionTypes.SEARCH_COMPLETE_SUCCESS:
 		case api.ActionTypes.SEARCH_COMPLETE_FAIL: {
 

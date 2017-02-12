@@ -51,11 +51,16 @@
 		</div>
 		<br/>
 
-		<div *ngIf="!(isUserResponseLoading$ | async)" class="feed-wrapper">
-			<div class="wrapper user-feed-results" *ngIf="((apiResponseUserFollowers$ | async).length > 0)">
-					<div *ngFor="let item of sortUsers(apiResponseUserFollowers$ | async); let i = index " class="card-wrapper">
+		<div class="feed-wrapper">
+			<div class="wrapper user-feed-results" id="user-feed-wrapper" *ngIf="!(isUserResponseLoading$ | async ) && ((apiResponseUserFollowers$ | async).length > 0)">
+					<div *ngFor="let item of sortUsers(apiResponseUserFollowers$ | async).slice(0,index); let i = index " class="card-wrapper">
 						<feed-user-card [feedItem] = "item" [feedIndex]="i"></feed-user-card>
 					</div>
+			</div>
+			<div class="results-not-found"
+						*ngIf="!(isUserResponseLoading$ | async) &&
+									((apiResponseUserFollowers$ | async).length == 0)">
+				<feed-not-found [query]="(query$ | async)"></feed-not-found>
 			</div>
 		</div>
 	</div>
