@@ -14,6 +14,7 @@ import { Query, ReloactionAfterQuery } from '../../models/query';
 export class InfoBoxComponent implements OnInit, OnChanges {
 	@Input() private query: Query;
 	@Input() private apiResponseAggregations: ApiResponseAggregations;
+	@Input() private isAggregationResponseLoading: boolean;
 	private inviewporttwitters: Observable<boolean>;
 	private inviewportmentions: Observable<boolean>;
 	private topHashtags;

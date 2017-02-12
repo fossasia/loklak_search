@@ -38,7 +38,7 @@ export class ApiAggregationEffects {
 		= this.actions$
 					.ofType(apiAction.ActionTypes.SEARCH)
 					.debounceTime(200)
-					.map((action: apiAction.SearchAction) => action.payload)
+					.map((action: apiAction.FetchAggregationAction) => action.payload)
 					.switchMap(query => {
 
 						const nextSearch$ = this.actions$.ofType(apiAction.ActionTypes.SEARCH).skip(1);
