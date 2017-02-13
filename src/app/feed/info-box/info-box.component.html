@@ -1,4 +1,8 @@
 <div class="info-box">
+<div *ngIf="(isAggregationResponseLoading)" class="preloader">
+		<div class="loading"></div>
+	</div>
+	<div class="wrapper" *ngIf="(!isAggregationResponseLoading)">
 	<div class="row">
 		<div class="col-sm-12 col-xs-12 col-md-6" in-viewport (inViewport)="inviewtwitters($event)">
 			<h4>Top Twitterers</h4>
@@ -58,6 +62,7 @@
 		            [legend]="barChartLegend"
 		            [chartType]="barChartType"></canvas>
 		
+	</div>
 	</div>
 </div>
 

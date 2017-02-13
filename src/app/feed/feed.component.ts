@@ -33,7 +33,6 @@ export class FeedComponent implements OnInit, OnDestroy {
 	private areResultsAvailable$: Observable<boolean>;
 	private apiResponseResults$: Observable<ApiResponseResult[]>;
 	private apiResponseTags$: Observable<Tag[]>;
-	private apiResponseAggregations$: Observable<ApiResponseAggregations>;
 	private isNextPageLoading$: Observable<boolean>;
 	private areMorePagesAvailable$: Observable<boolean>;
 	private visibility: boolean = false;
@@ -48,6 +47,9 @@ export class FeedComponent implements OnInit, OnDestroy {
 	private suggestServiceQuery$: Observable<Query>;
 	private isSuggestServiceLoading$: Observable<boolean>;
 	private suggestResponse$: Observable<SuggestResults[]>;
+	private apiResponseAggregations$: Observable<ApiResponseAggregations>;
+	private isAggregationResponseLoading$: Observable<boolean>;
+
 
 	constructor(
 		private route: ActivatedRoute,
@@ -119,7 +121,6 @@ export class FeedComponent implements OnInit, OnDestroy {
 		this.apiResponseTags$  = this.store.select(fromRoot.getApiResponseTags);
 		this.isNextPageLoading$ = this.store.select(fromRoot.getPageLoading);
 		this.areMorePagesAvailable$ = this.store.select(fromRoot.getPagesAvailable);
-		this.apiResponseAggregations$ = this.store.select(fromRoot.getApiAggregations);
 		this.isLightboxSelected$ = this.store.select(fromRoot.getLightboxIsSelected);
 		this.LightboxgetSelectedItem$ = this.store.select(fromRoot.getLightboxgetSelectedItem);
 		this.apiResponseUser$ = this.store.select(fromRoot.getApiUserResponse);
@@ -130,6 +131,8 @@ export class FeedComponent implements OnInit, OnDestroy {
 		this.suggestServiceQuery$ = this.store.select(fromRoot.getSuggestServiceQuery);
 		this.isSuggestServiceLoading$ = this.store.select(fromRoot.getSuggestServiceLoading);
 		this.suggestResponse$ = this.store.select(fromRoot.getSuggestResponseEntities);
+		this.apiResponseAggregations$ = this.store.select(fromRoot.getApiAggregationResponse);
+		this.isAggregationResponseLoading$ = this.store.select(fromRoot.isAggregationReaponseLoading);
 
 	}
 

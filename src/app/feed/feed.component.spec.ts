@@ -81,6 +81,7 @@ class FeedLinkerStubComponent {
 class InfoBoxStubComponent {
 	@Input() private query;
 	@Input() private apiResponseAggregations;
+	@Input() private isAggregationResponseLoading;
 }
 
 @Component({

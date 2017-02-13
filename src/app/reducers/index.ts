@@ -44,6 +44,7 @@ import * as fromPagination from './pagination';
 import * as fromApiUserResponse from './api-user-response';
 import * as fromSuggestService from './suggest';
 import * as fromSuggestResponse from './suggest-response';
+import * as fromAggregationResponse from './api-aggregations-response';
 
 /**
  * As mentioned, we treat each reducer like a table in a database. This means
@@ -56,6 +57,7 @@ export interface State {
 	apiUserResponse: fromApiUserResponse.State;
 	suggestService: fromSuggestService.State;
 	suggestResponse: fromSuggestResponse.State;
+	aggregationResponse: fromAggregationResponse.State;
 }
 
 /**
@@ -71,7 +73,8 @@ const reducers = {
 	pagination: fromPagination.reducer,
 	apiUserResponse: fromApiUserResponse.reducer,
 	suggestService: fromSuggestService.reducer,
-	suggestResponse: fromSuggestResponse.reducer
+	suggestResponse: fromSuggestResponse.reducer,
+	aggregationResponse: fromAggregationResponse.reducer
 };
 
 // const developmentReducer: ActionReducer<State> = compose(storeFreeze, combineReducers)(reducers);
@@ -124,7 +127,6 @@ export const getApiResponsePages = createSelector(getApiResponseState, fromApiRe
 export const getApiResponseTags = createSelector(getApiResponseState, fromApiResponse.getHashtags);
 export const getAreResultsValid = createSelector(getApiResponseState, fromApiResponse.isResultValid);
 export const getLastRecordIndex = createSelector(getApiResponseState, fromApiResponse.lastRecord);
-export const getApiAggregations = createSelector(getApiResponseState, fromApiResponse.getAggregations);
 
 /**
  * Just like with the ApiResponse selectors, we also have to compose the
@@ -156,6 +158,15 @@ export const getApiUserFollowersResponse = createSelector(getApiUserResponseStat
 export const getApiUserFollowingResponse = createSelector(getApiUserResponseState, fromApiUserResponse.getUserFollowing);
 export const isUserResponseLoading = createSelector(getApiUserResponseState, fromApiUserResponse.isUserResponseLoading);
 export const getShowUserInfo = createSelector(getApiUserResponseState, fromApiUserResponse.showUserInfo);
+
+/**
+* Selectrs for Aggregations
+*/
+
+export const getApiAggregationResponseState = (state: State) => state.aggregationResponse;
+
+export const getApiAggregationResponse = createSelector(getApiAggregationResponseState, fromAggregationResponse.getAggregations);
+export const isAggregationReaponseLoading = createSelector(getApiAggregationResponseState, fromAggregationResponse.isAggregationResponseLoading);
 
 /**
 *Selectors For LightBox.
