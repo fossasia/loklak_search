@@ -21,9 +21,6 @@ export const ActionTypes = {
 	FETCH_USER: actionTypeCheck('[Api] Fetch User'),
 	FETCH_USER_SUCCESS: actionTypeCheck('[Api] Fetch User Success'),
 	FETCH_USER_FAIL: actionTypeCheck('[Api] Fetch User Fail'),
-	FETCH_AGGREGATION: actionTypeCheck('[Api] Fetch Aggregation'),
-	FETCH_AGGREGATION_SUCCESS: actionTypeCheck('[Api] Fetch Aggregation Success'),
-	FETCH_AGGREGATION_FAIL: actionTypeCheck('[Api] Fetch Aggregation Fail')
 };
 
 /**
@@ -84,23 +81,6 @@ export class FetchUserFailAction implements Action {
 	constructor(public payload: any) {}
 }
 
-export class FetchAggregationAction implements Action {
-	type = ActionTypes.FETCH_AGGREGATION;
-
-	constructor(public payload: Query) { }
-}
-
-export class FetchAggregationSuccessAction implements Action {
-	type = ActionTypes.FETCH_AGGREGATION_SUCCESS;
-
-	constructor(public payload: ApiResponse) { }
-}
-
-export class FetchAggregationFailAction implements Action {
-	type = ActionTypes.FETCH_AGGREGATION_FAIL;
-
-	constructor(public payload: any) {}
-}
 
 /**
  * Export a type alias of all actions in this action group
@@ -114,7 +94,4 @@ export type Actions
 	| UnSelectLightbox
 	| FetchUserAction
 	| FetchUserSuccessAction
-	| FetchUserFailAction
-	| FetchAggregationAction
-	| FetchAggregationSuccessAction
-	| FetchAggregationFailAction;
+	| FetchUserFailAction;
