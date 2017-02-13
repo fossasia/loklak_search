@@ -248,11 +248,13 @@ export class FeedComponent implements OnInit, OnDestroy {
 
 	@HostListener("window:scroll", [])
   onWindowScroll() {
-    if(this.document.body.scrollTop + this.document.body.clientHeight == this.document.body.scrollHeight) {
+    if(this.document.body.scrollTop + this.document.body.clientHeight + 300 >= this.document.body.scrollHeight) {
     	let subscriber = this.apiResponseUserFollowers$.subscribe(apiResponseUserFollowers => {
     		let length = apiResponseUserFollowers.length;
-    		if(length > this.index) {
+    		if(this.index < 24 && length > this.index) {
     			this.index += 12;
+    		} else if(length > this.index) {
+    			this.index += 24;
     		}
     	});
     }
@@ -267,6 +269,9 @@ export class FeedComponent implements OnInit, OnDestroy {
 
 	sortUsers(users: Array<UserApiResponse>) {
 		users.sort(function (a,b) {
+			if(b.followers_count == a.followers_count) {
+				return b.statuses_count - a.statuses_count;
+			}
 			return b.followers_count- a.followers_count;
 		});
 		return users;
