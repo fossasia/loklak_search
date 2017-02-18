@@ -15,6 +15,7 @@ import 'rxjs/add/operator/takeUntil';
 import { SearchService, AggregationService } from '../services';
 import * as apiAction from '../actions/api';
 import { Query, ReloactionAfterQuery } from '../models/query';
+import { ApiResponse } from '../models/api-response';
 
 /**
  * Effects offer a way to isolate and easily test side-effects within your
@@ -43,14 +44,14 @@ export class ApiSearchEffects {
 
 						const nextSearch$ = this.actions$.ofType(apiAction.ActionTypes.SEARCH).skip(1);
 
-						return this.apiSearchService.fetchQuery(query.queryString)
+						return Observable.forkJoin([this.apiSearchService.fetchQuery(query.queryString),this.apiAggregationService.fetchQuery(query.queryString)])
 																				.takeUntil(nextSearch$)
-																				.map(response => {
+																				.map((response : ApiResponse[]) => {
 																					if (query.location === ReloactionAfterQuery.RELOCATE) {
 																						let URIquery = encodeURIComponent(query.queryString);
 																						this.location.go(`/search?query=${URIquery}`);
 																					}
-																					return new apiAction.SearchCompleteSuccessAction(response);
+																					return new apiAction.SearchCompleteSuccessAction(this.setvalues(response));
 																				})
 																				.catch(() => of(new apiAction.SearchCompleteFailAction('')));
 					});
@@ -58,7 +59,15 @@ export class ApiSearchEffects {
 	constructor(
 		private actions$: Actions,
 		private apiSearchService: SearchService,
+		private apiAggregationService: AggregationService,
 		private location: Location
 	) { }
+
+	private setvalues(val: ApiResponse[]): ApiResponse {
+		let apiResponse : ApiResponse = val[0];
+		let aggregationResponse : ApiResponse = val[1];
+		apiResponse.aggregations = aggregationResponse.aggregations;
+		return apiResponse;
+	} 
 
 }

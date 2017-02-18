@@ -40,7 +40,7 @@ const initialState: State = {
 	aggregations: null,
 	valid: true,
 	selected: null,
-	selectedavail: false
+	selectedavail: false,
 };
 
 
@@ -65,6 +65,7 @@ export function reducer(state: State = initialState, action: api.Actions | pagin
 			return Object.assign({}, state, {
 				pages: [ apiResponse ],
 				entities: apiResponse.statuses,
+				aggregations: apiResponse.aggregations,
 				hashtags,
 				valid: true,
 				selected: null,
@@ -90,6 +91,7 @@ export function reducer(state: State = initialState, action: api.Actions | pagin
 			return Object.assign({}, state, {
 				pages:	[...state.pages, apiResponse],
 				entities: [...state.entities, ...apiResponse.statuses],
+				aggregations: apiResponse.aggregations || state.aggregations,
 				hashtags: [...hashtags],
 				valid: true
 			});
@@ -111,22 +113,6 @@ export function reducer(state: State = initialState, action: api.Actions | pagin
 			return Object.assign({}, state, {
 				selectavail: false,
 				selected: null
-			});
-		}
-
-		case api.ActionTypes.FETCH_AGGREGATION_SUCCESS: {
-			const apiResponse = action.payload;
-
-			return Object.assign({}, state, {
-				aggregations: apiResponse.aggregations
-			});
-		}
-
-		case api.ActionTypes.FETCH_AGGREGATION_FAIL: {
-			const apiResponse = action.payload;
-
-			return Object.assign({}, state, {
-				aggregations: apiResponse.aggregations || state.aggregations
 			});
 		}
 
@@ -160,3 +146,4 @@ export const getAggregations = (state: State) => state.aggregations;
 export const isSelected = (state: State) => state.selectedavail;
 
 export const getSelectedItem = (state: State) => state.entities[state.selected];
+
