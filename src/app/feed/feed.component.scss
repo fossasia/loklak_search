@@ -87,6 +87,11 @@
 	animation: spin 1s infinite linear;
 }
 
+.pagination {
+	width: 100%;
+	padding: 20px;
+}
+
 @keyframes spin {
 	0% {
 		transform: rotate(0deg);
@@ -96,4 +101,19 @@
 	}
 }
 
+button {
+	display: block;
+	margin: 0 auto;
+	font-size: 1.1em;
+	padding: 5px;
+	color: #2865a1;
+	font-weight: 700;
+	background: transparent;
+	border: none;
+	cursor: pointer;
 
+	&:focus {
+		border: none;
+		outline: none;
+	}
+}

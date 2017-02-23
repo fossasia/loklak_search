@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ChangeDetectionStrategy, ElementRef, Inject, HostListener } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectionStrategy, ElementRef, HostListener } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Location } from '@angular/common';
 import { Router, ActivatedRoute, Params } from '@angular/router';
@@ -16,8 +16,6 @@ import { ApiResponse, ApiResponseMetadata, ApiResponseResult, ApiResponseAggrega
 import { SuggestMetadata, SuggestResults, SuggestResponse } from '../models/api-suggest';
 import { Query, ReloactionAfterQuery } from '../models/query';
 import { UserApiResponse } from '../models/api-user-response';
-import { DOCUMENT } from "@angular/platform-browser";
-
 
 @Component({
 	selector: 'app-feed',
@@ -56,8 +54,7 @@ export class FeedComponent implements OnInit, OnDestroy {
 		private route: ActivatedRoute,
 		private location: Location,
 		private store: Store<fromRoot.State>,
-		private elementRef: ElementRef,
-		@Inject(DOCUMENT) private document: Document
+		private elementRef: ElementRef
 	) {  }
 
 	ngOnInit() {
@@ -246,18 +243,16 @@ export class FeedComponent implements OnInit, OnDestroy {
 		this.store.dispatch(new apiAction.UnSelectLightbox(event));
 	}
 
-	@HostListener("window:scroll", [])
-  onWindowScroll() {
-    if(this.document.body.scrollTop + this.document.body.clientHeight + 300 >= this.document.body.scrollHeight) {
-    	let subscriber = this.apiResponseUserFollowers$.subscribe(apiResponseUserFollowers => {
-    		let length = apiResponseUserFollowers.length;
-    		if(this.index < 24 && length > this.index) {
-    			this.index += 12;
-    		} else if(length > this.index) {
-    			this.index += 24;
-    		}
-    	});
-    }
+	showMoreUsers() {
+  	let subscriber = this.apiResponseUserFollowers$.subscribe(apiResponseUserFollowers => {
+  		let length = apiResponseUserFollowers.length;
+  		if(this.index < 24 && length > this.index) {
+  			this.index += 12;
+  		} else if(length > this.index) {
+  			this.index += 24;
+  		}
+  	});
+  	subscriber.unsubscribe();
   }
 
 	/**
