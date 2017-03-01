@@ -1,6 +1,6 @@
 webpackJsonp([1,2],{
 
-/***/ 1070:
+/***/ 1073:
 /***/ function(module, exports) {
 
 /*
@@ -16,7 +16,7 @@ var stylesInDom = {},
 		};
 	},
 	isOldIE = memoize(function() {
-		return /msie [6-9]\b/.test(window.navigator.userAgent.toLowerCase());
+		return /msie [6-9]\b/.test(self.navigator.userAgent.toLowerCase());
 	}),
 	getHeadElement = memoize(function () {
 		return document.head || document.getElementsByTagName("head")[0];
@@ -253,31 +253,31 @@ function updateLink(linkElement, obj) {
 
 /***/ },
 
-/***/ 1073:
+/***/ 1076:
 /***/ function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(468);
+module.exports = __webpack_require__(469);
 
 
 /***/ },
 
-/***/ 468:
+/***/ 469:
 /***/ function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(781);
+var content = __webpack_require__(782);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // add the styles to the DOM
-var update = __webpack_require__(1070)(content, {});
+var update = __webpack_require__(1073)(content, {});
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
 	// When the styles change, update the <style> tags
 	if(!content.locals) {
-		module.hot.accept("!!./../../node_modules/css-loader/index.js?sourcemap!./../../node_modules/postcss-loader/index.js!./../../node_modules/sass-loader/index.js?sourcemap!./main.scss", function() {
-			var newContent = require("!!./../../node_modules/css-loader/index.js?sourcemap!./../../node_modules/postcss-loader/index.js!./../../node_modules/sass-loader/index.js?sourcemap!./main.scss");
+		module.hot.accept("!!../../node_modules/css-loader/index.js?sourcemap!../../node_modules/postcss-loader/index.js!../../node_modules/sass-loader/index.js?sourcemap!./main.scss", function() {
+			var newContent = require("!!../../node_modules/css-loader/index.js?sourcemap!../../node_modules/postcss-loader/index.js!../../node_modules/sass-loader/index.js?sourcemap!./main.scss");
 			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 			update(newContent);
 		});
@@ -288,10 +288,10 @@ if(false) {
 
 /***/ },
 
-/***/ 781:
+/***/ 782:
 /***/ function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(782)();
+exports = module.exports = __webpack_require__(783)();
 // imports
 
 
@@ -303,7 +303,7 @@ exports.push([module.i, "*, *:before, *:after {\n  box-sizing: border-box; }\n\n
 
 /***/ },
 
-/***/ 782:
+/***/ 783:
 /***/ function(module, exports) {
 
 /*
@@ -360,5 +360,5 @@ module.exports = function() {
 
 /***/ }
 
-},[1073]);
+},[1076]);
 //# sourceMappingURL=styles.bundle.map
