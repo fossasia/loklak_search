@@ -21,6 +21,8 @@ export const ActionTypes = {
 	FETCH_USER: actionTypeCheck('[Api] Fetch User'),
 	FETCH_USER_SUCCESS: actionTypeCheck('[Api] Fetch User Success'),
 	FETCH_USER_FAIL: actionTypeCheck('[Api] Fetch User Fail'),
+	SHOW_USER_FEED: actionTypeCheck('Show User Feed'),
+	SHOW_SEARCH_RESULTS: actionTypeCheck('Show Search Results')
 };
 
 /**
@@ -82,6 +84,18 @@ export class FetchUserFailAction implements Action {
 }
 
 
+export class ShowUserFeed implements Action {
+	type = ActionTypes.SHOW_USER_FEED;
+
+	constructor(public payload: any) {}
+}
+
+export class ShowSearchResults implements Action {
+	type = ActionTypes.SHOW_SEARCH_RESULTS;
+
+	constructor(public payload: any) {}
+}
+
 /**
  * Export a type alias of all actions in this action group
  * so that reducers can easily compose action types
@@ -94,4 +108,6 @@ export type Actions
 	| UnSelectLightbox
 	| FetchUserAction
 	| FetchUserSuccessAction
-	| FetchUserFailAction;
+	| FetchUserFailAction
+	| ShowUserFeed
+	| ShowSearchResults;

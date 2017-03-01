@@ -12,6 +12,7 @@ import { Query, ReloactionAfterQuery } from '../models/query';
 export interface State {
 	query: Query;
 	loading: boolean;
+	showUserFeed: boolean;
 }
 
 /**
@@ -22,7 +23,8 @@ export interface State {
  */
 const initialState: State = {
 	query: { queryString: '', location: ReloactionAfterQuery.NONE },
-	loading: false
+	loading: false,
+	showUserFeed: false
 };
 
 
@@ -45,11 +47,32 @@ export function reducer(state: State = initialState, action: api.Actions): State
 			});
 		}
 
+		case api.ActionTypes.FETCH_USER: {
+			const query = action.payload;
+
+			return Object.assign({}, state, {
+				query,
+				loading: true
+			})
+		}
+
 		case api.ActionTypes.SEARCH_COMPLETE_SUCCESS:
 		case api.ActionTypes.SEARCH_COMPLETE_FAIL: {
 
 			return Object.assign({}, state, {
 				loading: false
+			});
+		}
+
+		case api.ActionTypes.SHOW_SEARCH_RESULTS : {
+			return Object.assign({}, state, {
+				showUserFeed : false
+			});
+		}
+
+		case api.ActionTypes.SHOW_USER_FEED : {
+			return Object.assign({}, state, {
+				showUserFeed : true
 			});
 		}
 
@@ -72,3 +95,5 @@ export function reducer(state: State = initialState, action: api.Actions): State
 export const getQuery = (state: State) => state.query;
 
 export const getLoading = (state: State) => state.loading;
+
+export const showUserFeed = (state: State) => state.showUserFeed;

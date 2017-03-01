@@ -40,12 +40,17 @@ export class ApiUserSearchEffects {
 					.debounceTime(200)
 					.map((action: apiAction.FetchUserAction) => action.payload)
 					.switchMap(query => {
-						console.log("Hello");
 						const nextSearch$ = this.actions$.ofType(apiAction.ActionTypes.SEARCH).skip(1);
 
-						return this.apiUserService.fetchQuery(query.queryString)
+						let re = new RegExp(/^(followers|from):\s*([a-zA-Z0-9_@]+)/, 'i');
+						let matches = re.exec(query.queryString);
+						let screenName : string = matches[2];
+						return this.apiUserService.fetchQuery(screenName)
 																				.takeUntil(nextSearch$)
 																				.map(response => {
+																					if (query.location === ReloactionAfterQuery.RELOCATE) {
+																						this.location.go(`/search?query=${query.queryString}`);
+																					}
 																					return new apiAction.FetchUserSuccessAction(response);
 																				})
 																				.catch(() => of(new apiAction.FetchUserFailAction('')));
@@ -54,6 +59,7 @@ export class ApiUserSearchEffects {
 	constructor(
 		private actions$: Actions,
 		private apiUserService: UserService,
+		private location: Location
 	) { }
 
 }

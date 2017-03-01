@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ChangeDetectionStrategy, ElementRef } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectionStrategy, ElementRef, HostListener } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Location } from '@angular/common';
 import { Router, ActivatedRoute, Params } from '@angular/router';
@@ -16,7 +16,6 @@ import { ApiResponse, ApiResponseMetadata, ApiResponseResult, ApiResponseAggrega
 import { SuggestMetadata, SuggestResults, SuggestResponse } from '../models/api-suggest';
 import { Query, ReloactionAfterQuery } from '../models/query';
 import { UserApiResponse } from '../models/api-user-response';
-
 
 @Component({
 	selector: 'app-feed',
@@ -48,12 +47,14 @@ export class FeedComponent implements OnInit, OnDestroy {
 	private suggestServiceQuery$: Observable<Query>;
 	private isSuggestServiceLoading$: Observable<boolean>;
 	private suggestResponse$: Observable<SuggestResults[]>;
+	private showUserFeed$: Observable<boolean>;
+	private index: number = 12;
 
 	constructor(
 		private route: ActivatedRoute,
 		private location: Location,
 		private store: Store<fromRoot.State>,
-		private elementRef: ElementRef,
+		private elementRef: ElementRef
 	) {  }
 
 	ngOnInit() {
@@ -63,7 +64,6 @@ export class FeedComponent implements OnInit, OnDestroy {
 		this.subscribeQueryString();
 		this.setupSearchField();
 	}
-
 	/**
 	 * Focus the search box on the `Loading` of the Feedpage.
 	 */
@@ -84,23 +84,34 @@ export class FeedComponent implements OnInit, OnDestroy {
 				.subscribe((params: Params) => {
 					let queryParam = params['query'] || '';
 					if (queryParam) {
-						this.store.dispatch(new apiAction.SearchAction({
-							queryString: queryParam,
-							location: ReloactionAfterQuery.NONE
-						}));
-						this._queryControl.setValue(queryParam);
-						var re = new RegExp(/^from:\s*([a-zA-Z0-9_@]+)/, 'i');
-						var matches = re.exec(queryParam);
-						if(matches !== null) {
-							var screenName: string = matches[1];
-							this.store.dispatch(new apiAction.FetchUserAction({
-								queryString: screenName,
+						let re = new RegExp(/^followers:\s*([a-zA-Z0-9_@]+)/, 'i');
+						let matches = re.exec(queryParam);
+						if(matches == null) {
+							this.store.dispatch(new apiAction.SearchAction({
+								queryString: queryParam,
 								location: ReloactionAfterQuery.NONE
 							}));
+							this._queryControl.setValue(queryParam);
+							re = new RegExp(/^from:\s*([a-zA-Z0-9_@]+)/, 'i');
+							matches = re.exec(queryParam);
+							if(matches !== null) {
+								this.store.dispatch(new apiAction.FetchUserAction({
+									queryString: queryParam,
+									location: ReloactionAfterQuery.NONE
+								}));
+							}
+							this.store.dispatch(new apiAction.ShowSearchResults(''));
+						}	else {
+							this.store.dispatch(new apiAction.FetchUserAction({
+								queryString: queryParam,
+								location: ReloactionAfterQuery.RELOCATE
+							}));
+							this.store.dispatch(new apiAction.ShowUserFeed(''));
 						}
 						this.store.dispatch(new paginationAction.RevertPaginationState(''));
 					}
-				})
+				}
+			)
 		);
 	}
 
@@ -126,7 +137,7 @@ export class FeedComponent implements OnInit, OnDestroy {
 		this.suggestServiceQuery$ = this.store.select(fromRoot.getSuggestServiceQuery);
 		this.isSuggestServiceLoading$ = this.store.select(fromRoot.getSuggestServiceLoading);
 		this.suggestResponse$ = this.store.select(fromRoot.getSuggestResponseEntities);
-
+		this.showUserFeed$ = this.store.select(fromRoot.getShowUserFeed);
 	}
 
 	/**
@@ -153,34 +164,38 @@ export class FeedComponent implements OnInit, OnDestroy {
 		this._queryControl.setValue(this.queryString);
 		this.__subscriptions__.push(
 			this._queryControl.valueChanges
-												.subscribe(query => {
-													if (this.queryString !== query) {
-														this.store.dispatch(new suggestServiceAction.SuggestAction({
-															queryString: query,
-															location: ReloactionAfterQuery.NONE
-														}));
-														this.store.dispatch(new apiAction.SearchAction({
-															queryString: query,
-															location: ReloactionAfterQuery.RELOCATE
-														}));
-														var re = new RegExp(/^from:\s*([a-zA-Z0-9_@]+)/, 'i');
-														var matches = re.exec(query);
-														if(matches !== null) {
-															var screenName: string = matches[1];
-															this.store.dispatch(new apiAction.FetchUserAction({
-																queryString: screenName,
-																location: ReloactionAfterQuery.NONE
-															}));
-														}
-														this.store.dispatch(new paginationAction.RevertPaginationState(''));
-
-														// if(matches !== null) {
-														// 	this.store.dispatch(new apiAction.FetchUserAction({
-														// 		screenName: screenName
-														// 	}));
-														// }
-													}
-												})
+				.subscribe(query => {
+					if (this.queryString !== query) {
+						let re = new RegExp(/^followers:\s*([a-zA-Z0-9_@]+)/, 'i');
+						let matches = re.exec(query);
+						if(matches == null) {
+							this.store.dispatch(new suggestServiceAction.SuggestAction({
+								queryString: query,
+								location: ReloactionAfterQuery.NONE
+							}));
+							this.store.dispatch(new apiAction.SearchAction({
+								queryString: query,
+								location: ReloactionAfterQuery.RELOCATE
+							}));
+							re = new RegExp(/^from:\s*([a-zA-Z0-9_@]+)/, 'i');
+							matches = re.exec(query);
+							if(matches !== null) {
+								this.store.dispatch(new apiAction.FetchUserAction({
+									queryString: query,
+									location: ReloactionAfterQuery.NONE
+								}));
+							}
+							this.store.dispatch(new apiAction.ShowSearchResults(''));
+						} else {
+							this.store.dispatch(new apiAction.FetchUserAction({
+								queryString: query,
+								location: ReloactionAfterQuery.RELOCATE
+							}));
+							this.store.dispatch(new apiAction.ShowUserFeed(''));
+						}
+						this.store.dispatch(new paginationAction.RevertPaginationState(''));
+					}
+				})
 		);
 	}
 
@@ -228,11 +243,33 @@ export class FeedComponent implements OnInit, OnDestroy {
 		this.store.dispatch(new apiAction.UnSelectLightbox(event));
 	}
 
+	showMoreUsers() {
+  	let subscriber = this.apiResponseUserFollowers$.subscribe(apiResponseUserFollowers => {
+  		let length = apiResponseUserFollowers.length;
+  		if(this.index < 24 && length > this.index) {
+  			this.index += 12;
+  		} else if(length > this.index) {
+  			this.index += 24;
+  		}
+  	});
+  	subscriber.unsubscribe();
+  }
+
 	/**
 	 * Clearup all the subscription when component is destroyed.
 	 */
 	ngOnDestroy() {
 		this.__subscriptions__.forEach(subscription => subscription.unsubscribe());
+	}
+
+	sortUsers(users: Array<UserApiResponse>) {
+		users.sort(function (a,b) {
+			if(b.followers_count == a.followers_count) {
+				return b.statuses_count - a.statuses_count;
+			}
+			return b.followers_count- a.followers_count;
+		});
+		return users;
 	}
 }
 

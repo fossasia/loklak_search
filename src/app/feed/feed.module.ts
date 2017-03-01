@@ -15,6 +15,7 @@ import { FeedPaginationComponent } from './feed-pagination/feed-pagination.compo
 import { InfoBoxComponent } from './info-box/info-box.component';
 import { UserInfoBoxComponent } from './user-info-box/user-info-box.component';
 import { FeedLightboxComponent } from './feed-lightbox/feed-lightbox.component';
+import { FeedUserCardComponent } from './feed-user-card/feed-user-card.component';
 import { InViewport } from '../shared//in-viewport.directive';
 
 
@@ -66,7 +67,8 @@ import { InViewport } from '../shared//in-viewport.directive';
 		FeedLightboxComponent,
 		InViewport,
 		UserInfoBoxComponent,
-		FeedLightboxComponent
+		FeedLightboxComponent,
+		FeedUserCardComponent
 	]
 })
 export class FeedModule { }

@@ -11,8 +11,8 @@ import { UserApiResponse } from '../models/api-user-response';
 export class UserService {
 	private static readonly apiUrl: URL = new URL('http://api.loklak.org/api/user.json');
 	private static minified_results: boolean = true;
-	private static followers_count: number = 100;
-	private static following_count: number = 100;
+	private static followers_count: number = 1000;
+	private static following_count: number = 1000;
 
 	constructor(
 		private jsonp: Jsonp

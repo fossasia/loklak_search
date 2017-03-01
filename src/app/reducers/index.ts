@@ -134,7 +134,7 @@ export const getSearchState = (state: State) => state.search;
 
 export const getSearchQuery = createSelector(getSearchState, fromSearch.getQuery);
 export const getSearchLoading = createSelector(getSearchState, fromSearch.getLoading);
-
+export const getShowUserFeed = createSelector(getSearchState, fromSearch.showUserFeed);
 
 /**
  * Selectors For Pageination.

@@ -1,0 +1,22 @@
+<div class="card-wrapper">
+	<div class="card-header">
+		<div class="card-banner" [ngStyle] = "{'background-color': '#' + feedItem.profile_link_color }">
+			<img *ngIf="feedItem.profile_banner_url" src="{{ feedItem.profile_banner_url }}/600x200"/>
+		</div>
+		<div class="profile-image">
+			<img src="{{ feedItem.profile_image_url }}"/>
+		</div>
+	</div>
+	<a [routerLink]="['/search']" [queryParams]="{ query : 'from:' + feedItem.screen_name }">
+		<div class="card-title">
+			<h4>{{ feedItem.name }}</h4>
+			<span>@{{ feedItem.screen_name }}</span>
+		</div>
+	</a>
+	<div class="card-desc">
+		<span><a [routerLink]="['/search']" [queryParams]="{ query : 'followers:' + feedItem.screen_name }">Followers: {{ feedItem.followers_count }}</a></span>
+		<feed-linker
+			[text]="feedItem.description"
+			[config]="cardAutolinkerConfig"></feed-linker>
+	</div>
+</div>

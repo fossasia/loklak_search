@@ -47,17 +47,39 @@ export class HomeComponent implements OnInit, OnDestroy {
 	private setupSearchField() {
 		this.__subscriptions__.push(
 			this._queryControl.valueChanges
-												.subscribe((value) => {
-													this.store.dispatch(new suggestServiceAction.SuggestAction({
-															queryString: value,
-															location: ReloactionAfterQuery.NONE
-														}));
-													this.store.dispatch(new apiAction.SearchAction({
-														queryString: value,
-														location: ReloactionAfterQuery.NONE
-													}));
-													this.router.navigateByUrl(`/search`, { skipLocationChange: true });
-												})
+				.subscribe((value) => {
+					let re = new RegExp(/^followers:\s*([a-zA-Z0-9_@]+)/, 'i');
+					let matches = re.exec(value);
+					this.store.dispatch(new suggestServiceAction.SuggestAction({
+						queryString: value,
+						location: ReloactionAfterQuery.NONE
+					}));
+					if(matches == null) {
+						this.store.dispatch(new apiAction.SearchAction({
+							queryString: value,
+							location: ReloactionAfterQuery.RELOCATE
+						}));
+						re = new RegExp(/^from:\s*([a-zA-Z0-9_@]+)/, 'i');
+						matches = re.exec(value);
+						if(matches !== null) {
+							let screenName: string = matches[1];
+							this.store.dispatch(new apiAction.FetchUserAction({
+								queryString: screenName,
+								location: ReloactionAfterQuery.NONE
+							}));
+						}
+						this.store.dispatch(new apiAction.ShowSearchResults(''));
+					} else {
+						let screenName: string = matches[1];
+						this.store.dispatch(new apiAction.FetchUserAction({
+							queryString: screenName,
+							location: ReloactionAfterQuery.NONE
+						}));
+						this.store.dispatch(new apiAction.ShowUserFeed(''));
+					}
+					this.router.navigateByUrl(`/search`, { skipLocationChange: true });
+				}
+			)
 		);
 	}
 
