@@ -39,7 +39,7 @@
         </div>
         <div class="form-group">
         <small>*All fields are mandatory</small>
-<button type="submit" [disabled]="!ContactForm.valid" value="submit">Submit<input type="hidden" name="_next" value="/contact" /></button>
+<button type="submit" [disabled]="!ContactForm.valid" class="btn" value="submit">Submit<input type="hidden" name="_next" value="/contact" /></button>
 <small *ngIf="submitted && ContactForm.valid ">Your Form has been submitted</small>
 </div>
 </fieldset>

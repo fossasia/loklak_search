@@ -24,6 +24,7 @@
     "@ngrx/effects": "github:ngrx/effects",
     "@ngrx/router": "github:ngrx/router",
     "@ngrx/store": "github:ngrx/store",
+    "angular2-google-maps": "^0.17.0",
     "core-js": "^2.4.1",
     "ng2-charts": "^1.5.0",
     "reselect": "^2.5.4",

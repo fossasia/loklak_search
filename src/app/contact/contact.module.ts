@@ -11,6 +11,8 @@ import { NavbarModule } from '../navbar/navbar.module';
 import { RouterModule } from '@angular/router';
 import { ContactFormComponent } from './contact-form/contact-form.component';
 
+import { AgmCoreModule } from 'angular2-google-maps/core';
+
 @NgModule({
 	imports: [
 		CommonModule,
@@ -21,7 +23,10 @@ import { ContactFormComponent } from './contact-form/contact-form.component';
 		FooterModule,
 		RouterModule,
 		HttpModule,
-		JsonpModule
+		JsonpModule,
+		AgmCoreModule.forRoot({
+		      apiKey: 'AIzaSyB7iLsjY72WDuvj2j_HZ2VG8s40lNzvqqc'
+	    })
 	],
 	declarations: [
 		ContactComponent,
