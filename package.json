@@ -5,7 +5,7 @@
   "angular-cli": {},
   "scripts": {
     "start": "ng serve",
-    "lint": "tslint \"src/**/*.ts\" and sass-lint 'src/**/*.scss' -v -q",
+    "lint": "tslint 'src/**/*.ts' and sass-lint 'src/**/*.scss' --verbose -q and htmllint 'src/**/*.html' -v --verbose",
     "test": "ng test",
     "pree2e": "webdriver-manager update",
     "e2e": "protractor"
@@ -46,6 +46,7 @@
     "ngrx-store-freeze": "^0.1.0",
     "protractor": "4.0.11",
     "sass-lint": "1.10.2",
+    "htmllint": "0.5.0",
     "ts-node": "1.7.0",
     "tslint": "^4.0.2",
     "typescript": "2.1.1"
