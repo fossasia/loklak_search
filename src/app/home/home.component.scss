@@ -59,7 +59,7 @@ div.wrapper {
 			}
 
 			input {
-			    padding: 10px 15px;
+			  padding: 10px 15px;
 				font-size: 16px;
 				word-spacing: 1.5pt;
 				letter-spacing: 0.5pt;
@@ -69,8 +69,9 @@ div.wrapper {
 				outline :0 !important;
 				font: 16px arial,sans-serif;
 				line-height: 44px;
-    			height: 44px !important;
-    			min-width: 440px;
+    		height: 44px !important;
+    		min-width: 440px;
+				background: #FFFFFF !important;
 			}
 
 			input:focus {
