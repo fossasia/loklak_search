@@ -37,7 +37,7 @@
 			outline: 0 !important;
 			margin: 20px 0px 20px 0;
 			transition: box-shadow 200ms cubic-bezier(0.4, 0.0, 0.2, 1);
-			border-bottom: 1px solid black; 
+			border-bottom: 1px solid black;
 
 			@media(max-width: 1000px) {
 				width: calc(100% - 20px);
@@ -93,7 +93,7 @@
 			-webkit-box-shadow: 0 2px 2px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08);
 			box-shadow: 0 2px 2px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08);
 		}
-		div.suggesstion-box{		
+		div.suggesstion-box{
 				background-color: white;
 				width: 637px;
 				max-height:90px;
@@ -118,7 +118,6 @@
 		li:hover{
 			background: #F0F0F0;
 			word-wrap: break-word;
-
 		}
 
 	}
@@ -145,7 +144,7 @@
 			}
 
 	}
-	div.suggesstion-box{		
+	div.suggesstion-box{
 		width: calc(100% - 50px) !important;
 		max-height: 90px !important;
 		left: 20px !important;
