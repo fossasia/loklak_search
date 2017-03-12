@@ -8,7 +8,8 @@
     "lint": "tslint \"src/**/*.ts\" and sass-lint 'src/**/*.scss' -v -q",
     "test": "ng test",
     "pree2e": "webdriver-manager update",
-    "e2e": "protractor"
+    "e2e": "protractor",
+    "deploy": "ng build --env=prod --base-href=/loklak_search/ && cp ./dist/index.html ./dist/404.html && ./node_modules/.bin/angular-cli-ghpages --no-silent"
   },
   "private": true,
   "dependencies": {
