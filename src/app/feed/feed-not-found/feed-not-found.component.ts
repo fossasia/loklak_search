@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Query } from '../../models/query';
+import { Query } from '../../models';
 
 @Component({
 	selector: 'feed-not-found',

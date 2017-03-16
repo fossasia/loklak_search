@@ -38,7 +38,7 @@ Our chat channel is on gitter here: https://gitter.im/loklak/loklak
 ## Installation
 First we will need to install angular-cli by using the following command:
 ```sh
-$ npm install -g angular-cli
+$ npm install -g @angular/cli
 ```
 After installing anular-cli we need to install our required node modules, so we will do that by using the following command:
 ```sh 
@@ -78,4 +78,4 @@ We have the following branches
 
 ## License
 
-This project is currently licensed under the The MIT License (MIT). A copy of LICENSE.md should be present along with the source code. To obtain the software under a different license, please contact FOSSASIA.
+This project is currently licensed under The MIT License (MIT). A copy of LICENSE.md should be present along with the source code. To obtain the software under a different license, please contact FOSSASIA.
