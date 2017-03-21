@@ -23,7 +23,7 @@ import { FeedModule } from './feed/feed.module';
 import { AboutModule } from './about/about.module';
 import { ContactModule } from './contact/contact.module';
 import { TermsModule } from './terms/terms.module';
-import { SearchService, UserService, SuggestService, AggregationService } from './services';
+import { SearchService, UserService, SuggestService } from './services';
 import { PageNotFoundModule } from './pagenotfound/pagenotfound.module';
 
 @NgModule({
@@ -149,8 +149,7 @@ import { PageNotFoundModule } from './pagenotfound/pagenotfound.module';
 		 */
 		SearchService,
 		UserService,
-		SuggestService,
-		AggregationService
+		SuggestService
 	],
 	bootstrap: [AppComponent]
 })
