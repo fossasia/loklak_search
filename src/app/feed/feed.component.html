@@ -57,7 +57,7 @@
 						<feed-user-card [feedItem] = "item" [feedIndex]="i"></feed-user-card>
 					</div>
 					<div class="pagination">
-						<button (click)="showMoreUsers()">Show more</button>
+						<button *ngIf="index < (apiResponseUserFollowers$ | async).length" (click)="showMoreUsers()">Show more</button>
 					</div>
 			</div>
 			<div class="results-not-found"
