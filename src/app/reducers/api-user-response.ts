@@ -39,7 +39,8 @@ export function reducer(state: State = initialState, action: api.Actions): State
 		case api.ActionTypes.SEARCH: {
 			return Object.assign({}, state, {
 				user: null,
-				showUserInfo: false
+				showUserInfo: false,
+				loading: true
 			})
 		}
 
