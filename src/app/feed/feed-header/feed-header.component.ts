@@ -19,14 +19,14 @@ export class FeedHeaderComponent implements OnInit {
 
 	constructor() { }
 
-	ngOnInit() { 
-	this.query = this.searchInputControl.value;
-	this.visibility=true;
+	ngOnInit() {
+		this.query = this.searchInputControl.value;
+		this.visibility = true;
 	}
 
 	private select(item) {
 		this.query = item;
-		this.visibility=false;
+		this.visibility = false;
 	}
 
 	/*
@@ -36,12 +36,12 @@ export class FeedHeaderComponent implements OnInit {
 
 	private gotolink(event) {
 		let keycode = (event.keyCode ? event.keyCode : event.which);
-		if(keycode == '13') {
-		this.visibility = false;
-		this.searchEvantEmitter.emit();
+		if (keycode == '13') {
+			this.visibility = false;
+			this.searchEvantEmitter.emit();
 		}
 		else {
-			this.visibility=true;
+			this.visibility = true;
 		}
 	}
 }

@@ -14,7 +14,7 @@ import 'rxjs/add/operator/takeUntil';
 
 import { SearchService } from '../services';
 import * as apiAction from '../actions/api';
-import { Query, ReloactionAfterQuery } from '../models/query';
+import { Query, ReloactionAfterQuery } from '../models';
 import { ApiResponse } from '../models/api-response';
 
 /**

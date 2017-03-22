@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+import { MaterialModule } from '@angular/material';
+
 import { LoklakFeedRoutingModule } from './feed-routing.module';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
 import { FeedComponent } from './feed.component';
@@ -40,6 +42,12 @@ import { InViewport } from '../shared//in-viewport.directive';
 		 * for the "Model Driven Forms" which are easier to setup and test.
 		 */
 		ReactiveFormsModule,
+
+		/**
+ 		 * The module for material design components
+ 		 */
+		MaterialModule,
+
 
 		/**
 		 * Defines the routes at `feed` level of application.
