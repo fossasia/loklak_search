@@ -61,5 +61,4 @@ export class ApiSearchEffects {
 		private apiSearchService: SearchService,
 		private location: Location
 	) { }
-
 }

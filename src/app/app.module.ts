@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule, JsonpModule } from '@angular/http';
 
+import { MaterialModule } from '@angular/material';
+
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
@@ -65,6 +67,11 @@ import { PageNotFoundModule } from './pagenotfound/pagenotfound.module';
 		 * The `JsonpModule` is necessary for making`JSONP calls`, (used in `SearchService`).
 		 */
 		JsonpModule,
+
+		/**
+		 * The module for material design components
+		 */
+		MaterialModule,
 
 		/**
      * StoreModule.provideStore is imported once in the root module, accepting a reducer

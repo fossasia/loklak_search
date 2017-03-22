@@ -18,6 +18,7 @@
     "@angular/core": "^2.4.0",
     "@angular/forms": "^2.4.0",
     "@angular/http": "^2.4.0",
+    "@angular/material": "^2.0.0-beta.2",
     "@angular/platform-browser": "^2.4.0",
     "@angular/platform-browser-dynamic": "^2.4.0",
     "@angular/router": "^3.4.0",
@@ -27,6 +28,7 @@
     "@ngrx/store": "^2.0.0",
     "@ngrx/store-devtools": "^3.1.0",
     "core-js": "^2.4.1",
+    "hammerjs": "^2.0.8",
     "ng2-charts": "^1.5.0",
     "reselect": "^2.5.4",
     "rxjs": "^5.1.0",
@@ -34,7 +36,7 @@
     "zone.js": "^0.7.6"
   },
   "devDependencies": {
-    "@angular/cli": "1.0.0-rc.0",
+    "@angular/cli": "1.0.0-rc.2",
     "@angular/compiler-cli": "^2.4.0",
     "@types/jasmine": "2.5.38",
     "angular-cli-ghpages": "^0.5.0",
