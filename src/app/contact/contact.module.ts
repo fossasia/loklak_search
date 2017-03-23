@@ -4,6 +4,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule, JsonpModule } from '@angular/http';
 
+import { MaterialModule } from '@angular/material';
+
 import { LoklakContactRoutingModule } from './contact-routing.module';
 import { ContactComponent } from './contact.component';
 import { FooterModule } from '../footer/footer.module';
@@ -16,6 +18,12 @@ import { ContactFormComponent } from './contact-form/contact-form.component';
 		CommonModule,
 		FormsModule,
 		ReactiveFormsModule,
+
+		/**
+ 		 * The module for material design components
+ 		 */
+		MaterialModule,
+
 		LoklakContactRoutingModule,
 		NavbarModule,
 		FooterModule,

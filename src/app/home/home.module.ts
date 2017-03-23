@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+import { MaterialModule } from '@angular/material';
+
 import { LoklakHomeRoutingModule } from './home-routing.module';
 
 import { HomeComponent } from './home.component';
@@ -28,6 +30,11 @@ import { FooterModule } from '../footer/footer.module';
 		 * for the "Model Driven Forms" which are easier to setup and test.
 		 */
 		ReactiveFormsModule,
+
+		/**
+ 		 * The module for material design components
+ 		 */
+		MaterialModule,
 
 		/**
 		 * Defines the routes at `home` level of application.
