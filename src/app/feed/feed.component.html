@@ -6,6 +6,14 @@
 
 	<div *ngIf="!(showUserFeed$ | async)">
 
+	<div class="tabs">
+				<md-tab-group (selectedIndexChange)="filterresults($event)" >
+  					<md-tab label="All"></md-tab>
+  					<md-tab label="Images"></md-tab>
+  					<md-tab label="Videos"></md-tab>
+				</md-tab-group>
+			</div>
+
 		<div *ngIf="(isSearching$ | async)" class="searching">
 			<!-- Hook Up the Material Design Progress Bar. -->
 		</div>

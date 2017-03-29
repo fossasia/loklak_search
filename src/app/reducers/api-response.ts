@@ -42,6 +42,9 @@ const initialState: State = {
 	selected: null,
 	selectedavail: false,
 };
+let originalresult : ApiResponseResult[];
+
+
 
 
 /**
@@ -61,7 +64,8 @@ export function reducer(state: State = initialState, action: api.Actions | pagin
 			let hashtags = Array.from(new Set(tagStrings)).map(tag => {
 					return { tag, count: tagStrings.filter(y => y === tag).length };
 			});
-
+			originalresult = apiResponse.statuses || null;
+			console.log(originalresult);
 			return Object.assign({}, state, {
 				pages: [ apiResponse ],
 				entities: apiResponse.statuses,
@@ -113,6 +117,31 @@ export function reducer(state: State = initialState, action: api.Actions | pagin
 			return Object.assign({}, state, {
 				selectavail: false,
 				selected: null
+			});
+		}
+
+		case api.ActionTypes.SHOW_ALL_TWEETS: {
+			console.log(originalresult);
+			return Object.assign({},state, {
+				entities: originalresult
+			});
+		}
+
+		case api.ActionTypes.FILTER_IMAGE_TWEETS: {
+			let results = originalresult.filter(value => value.images_count > 0);
+			console.log(results);
+
+			return Object.assign({}, state, {
+				entities: results
+			});
+		}
+
+		case api.ActionTypes.FILTER_VIDEO_TWEETS: {
+			let results = originalresult.filter(value => value.videos_count > 0);
+			console.log(results);
+
+			return Object.assign({}, state, {
+				entities: results
 			});
 		}
 

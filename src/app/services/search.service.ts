@@ -10,7 +10,8 @@ import { ApiResponse } from '../models/api-response';
 @Injectable()
 export class SearchService {
 	private static readonly apiUrl: URL = new URL('http://api.loklak.org/api/search.json');
-	private static maximum_records_fetch: number = 20;
+	private static maximum_records_fetch: number = 100;
+	private static count: number = 100;
 	private static minified_results: boolean = true;
 	private static source: string = 'all';
 	private static fields: string = 'created_at,screen_name,mentions,hashtags';
@@ -26,6 +27,7 @@ export class SearchService {
 		searchParams.set('callback', 'JSONP_CALLBACK');
 		searchParams.set('minified', SearchService.minified_results.toString());
 		searchParams.set('source', SearchService.source);
+		searchParams.set('count',SearchService.count.toString());
 		searchParams.set('maximumRecords', SearchService.maximum_records_fetch.toString());
 		searchParams.set('startRecord', (lastRecord + 1).toString());
 		searchParams.set('fields', SearchService.fields);

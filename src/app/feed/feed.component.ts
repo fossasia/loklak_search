@@ -243,6 +243,21 @@ export class FeedComponent implements OnInit, OnDestroy {
 		this.store.dispatch(new apiAction.UnSelectLightbox(event));
 	}
 
+	private filterresults(filtervalue) {
+		if(filtervalue == 0) {
+			console.log("All");
+			this.store.dispatch(new apiAction.ShowAllTweets(filtervalue));
+		}
+		else if(filtervalue == 1) {
+			console.log("Images");
+			this.store.dispatch(new apiAction.FilterTweetsWithImages(filtervalue));
+		}
+		else if(filtervalue == 2) {
+			console.log("Videos");
+			this.store.dispatch(new apiAction.FilterTweetsWithVideos(filtervalue));
+		}
+	}
+
 	showMoreUsers() {
   	let subscriber = this.apiResponseUserFollowers$.subscribe(apiResponseUserFollowers => {
   		let length = apiResponseUserFollowers.length;

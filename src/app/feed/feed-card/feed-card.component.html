@@ -26,6 +26,12 @@
 					[text]="itemText"
 					[config]="cardAutolinkerConfig" (click)="showLightBox.emit({show : 'hide'})"></feed-linker>
 			</div>
+			<div class="card-image" *ngFor="let image of feedItem.images let i = index">
+					<img  src="{{feedItem.images[i]}}" width="500" height="320">
+					</div>
+					<div class="card-video" *ngFor="let video of feedItem.videos let i = index">
+					<video src="{{feedItem.videos[i]}}" width="500" height="320"></video>
+					</div>
 			<div class="card-footer">
 				<div class="action reply">
 					<a target="_blank" href="https://twitter.com/intent/tweet?in_reply_to={{feedItem.id_str}}"><i class="material-icons md-20">reply</i></a>
