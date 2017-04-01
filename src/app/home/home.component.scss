@@ -12,10 +12,10 @@ div.wrapper {
 	flex-direction: column;
 	justify-content: space-around;
 	align-items: center;
-	width: 500px;
-	margin-bottom: 50px;
+	width: 584px;
+	margin-bottom: 140px;
 	img{
-		max-width:25%;
+		max-width:21.406%;
 		height:auto;
 	}
 	h1 {
@@ -42,7 +42,7 @@ div.wrapper {
 			vertical-align: top;
 			border-radius: 2px;
 			box-shadow: 0 2px 2px 0 rgba(0,0,0,0.16),0 0 0 1px rgba(0,0,0,0.08);
-			margin: 20px 0px 20px 0;
+			margin: 20px 0 10px 0;
 			min-width: 584px;
 			border: 0 !important;
 			outline: 0 !important;
@@ -96,13 +96,12 @@ div.wrapper {
 			box-shadow: 0 3px 8px 0 rgba(0,0,0,0.16),0 0 0 1px rgba(0,0,0,0.08);
 	}
 	.help-text{
-			font-size: 10pt;
-			text-align: center;
+			font-size: 12px;
+			line-height: 1.4;
 
 			.highlight{
 				background-color: #eeeeee;
-    			border-radius: 6px;
-    			padding: 1px 3px;
+   			padding: 1px 3px;
 			}
 	}
 

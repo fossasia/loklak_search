@@ -52,7 +52,8 @@ describe('Component: Home', () => {
 		let image: HTMLImageElement = compiled.querySelector('div.wrapper img');
 
 		expect(image).toBeTruthy();
-		expect(image.alt).toBe('Loklak Cow');	// Correct alt text 'Loklak Cow' must be present.
+		expect(image.alt).toBe('loklak Search - Distributed Social Media Message Search Engine');
+		expect(image.title).toBe('loklak Search - Distributed Social Media Message Search Engine');
 	}));
 
 	it('should have "_queryControl" property.', async(() => {
