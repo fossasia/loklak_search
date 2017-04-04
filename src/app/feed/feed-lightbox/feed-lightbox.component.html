@@ -10,9 +10,16 @@
 					</span></h3>
 						<p class="lightbox-nickname">@{{feedItem.user.screen_name}}</p>
                     </a>
-						<p class="lightbox-tweet"><feed-linker
-					[text]="itemText"
-					[config]="cardAutolinkerConfig" (onShowed)="onShowed($event)"></feed-linker></p>
+						<p class="lightbox-tweet">
+							<feed-linker
+								[text]="itemText || ''"
+								[hashtags]="feedItem.hashtags || []"
+								[mentions]="feedItem.mentions || []"
+								[links]="feedItem.links || []"
+								[unshorten]="feedItem.unshorten || {}"
+								(onShowed)="onShowed($event)">
+							</feed-linker>
+						</p>
                     <div class="lightbox-actions">
                     <div class="lightbox-action lightbox-reply lightbox-space">
 					<a target="_blank" href="https://twitter.com/intent/tweet?in_reply_to={{feedItem.id_str}}"><i class="material-icons lightbox-md-20">reply</i></a>

@@ -23,8 +23,12 @@
 			</div>
 			<div class="card-text">
 				<feed-linker
-					[text]="itemText"
-					[config]="cardAutolinkerConfig" (click)="showLightBox.emit({show : 'hide'})"></feed-linker>
+					[text]="itemText || ''"
+					[hashtags]="feedItem.hashtags || []"
+					[mentions]="feedItem.mentions || []"
+					[links]="feedItem.links || []"
+					[unshorten]="feedItem.unshorten || {}"
+					(click)="showLightBox.emit({show : 'hide'})"></feed-linker>
 			</div>
 			<div class="card-footer">
 				<div class="action reply">
