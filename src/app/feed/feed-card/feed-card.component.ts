@@ -1,7 +1,6 @@
 import { Component, OnInit, Input, ChangeDetectionStrategy, ChangeDetectorRef, Output, EventEmitter } from '@angular/core';
 import { ApiResponseResult } from '../../models/api-response';
 import { Observable } from 'rxjs/Rx';
-import { AutolinkerConfig, ConfigLinkType } from '../../shared/configrations';
 
 @Component({
 	selector: 'feed-card',
@@ -10,7 +9,6 @@ import { AutolinkerConfig, ConfigLinkType } from '../../shared/configrations';
 	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FeedCardComponent implements OnInit {
-	private readonly cardAutolinkerConfig: AutolinkerConfig = new AutolinkerConfig();
 	private datetime: string = null;
 	private inviewport: Observable<boolean>;
 	@Input() private feedItem: ApiResponseResult;
@@ -20,7 +18,6 @@ export class FeedCardComponent implements OnInit {
 	constructor(private ref: ChangeDetectorRef) { }
 
 	ngOnInit() {
-		this.modifyAutolinkerConfig();
 		let timer = Observable.timer (0 , 10000);
 		timer.subscribe(t => this.ttt());
 	}
@@ -35,12 +32,6 @@ export class FeedCardComponent implements OnInit {
 		this.onShowed(true);
 	}
 
-	private modifyAutolinkerConfig() {
-		// hashtag and mention use the default configration strategy.
-		// Links use the one-to-one map strategy using unshorten property of feedItem
-		this.cardAutolinkerConfig.link.link_type = ConfigLinkType.OneToOneMap;
-		this.cardAutolinkerConfig.link.link_to = this.feedItem.unshorten || {};
-	}
 
 	private get profileURL(): string {
 		return `https://twitter.com/${this.feedItem.screen_name}/`;

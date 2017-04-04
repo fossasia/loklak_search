@@ -17,6 +17,6 @@
 		<span><a [routerLink]="['/search']" [queryParams]="{ query : 'followers:' + feedItem.screen_name }">Followers: {{ feedItem.followers_count }}</a></span>
 		<feed-linker
 			[text]="feedItem.description"
-			[config]="cardAutolinkerConfig"></feed-linker>
+			[useAll]="true"></feed-linker>
 	</div>
 </div>
