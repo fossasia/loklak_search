@@ -17,7 +17,7 @@
 					<img  src="{{feedItem.images[i]}}" width="500" height="320">
 					</div>
 					<div class="card-video" *ngFor="let video of feedItem.videos let i = index">
-					<video src="{{feedItem.videos[i]}}" width="500" height="320"></video>
+					<iframe [src]="feedItem.videos[i]"></iframe>
 					</div>
                     <div class="lightbox-actions">
                     <div class="lightbox-action lightbox-reply lightbox-space">

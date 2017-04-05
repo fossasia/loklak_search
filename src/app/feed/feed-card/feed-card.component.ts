@@ -1,7 +1,8 @@
-import { Component, OnInit, Input, ChangeDetectionStrategy, ChangeDetectorRef, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit , Input, ChangeDetectionStrategy, ChangeDetectorRef, Output, EventEmitter } from '@angular/core';
 import { ApiResponseResult } from '../../models/api-response';
 import { Observable } from 'rxjs/Rx';
 import { AutolinkerConfig, ConfigLinkType } from '../../shared/configrations';
+import {BrowserModule, DomSanitizer} from '@angular/platform-browser';
 
 @Component({
 	selector: 'feed-card',
@@ -17,12 +18,16 @@ export class FeedCardComponent implements OnInit {
 	@Input() private feedIndex: number;
 	@Output() private showLightBox: EventEmitter<any> = new EventEmitter();
 
-	constructor(private ref: ChangeDetectorRef) { }
+	constructor(private ref: ChangeDetectorRef,
+				private sanitizer: DomSanitizer) {
+		
+	}
 
 	ngOnInit() {
 		this.modifyAutolinkerConfig();
 		let timer = Observable.timer (0 , 10000);
 		timer.subscribe(t => this.ttt());
+		this.sanitizeURLs(this.feedItem.videos);
 	}
 
 	onShowed(show: boolean) {
@@ -134,5 +139,12 @@ export class FeedCardComponent implements OnInit {
 		this.inviewport=event.value;
 		}
 
+	}
+
+	private sanitizeURLs(links) {
+		for( let i = 0; i < links.length; i++)
+		{
+			links[i] = this.sanitizer.bypassSecurityTrustResourceUrl(links[i]);
+		}
 	}
 }

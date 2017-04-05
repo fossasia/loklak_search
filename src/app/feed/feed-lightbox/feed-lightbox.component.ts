@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ApiResponseResult } from '../../models/api-response';
 import { Observable } from 'rxjs/Rx';
-
+import {BrowserModule, DomSanitizer} from '@angular/platform-browser';
 import { AutolinkerConfig, ConfigLinkType } from '../../shared/configrations';
 
 @Component({
@@ -15,12 +15,14 @@ export class FeedLightboxComponent implements OnInit {
 	@Input() private feedItem: ApiResponseResult;
 	@Output() private hideLightBox: EventEmitter<any> = new EventEmitter();
 
-	constructor() { }
+	constructor(private sanitizer: DomSanitizer) {
+		}
 
 	ngOnInit() {
 		this.modifyAutolinkerConfig();
 		let timer = Observable.timer (0 , 10000);
 		timer.subscribe(t => this.ttt());
+		this.sanitizeURLs(this.feedItem.videos);
 	}
 
 
@@ -118,5 +120,12 @@ export class FeedLightboxComponent implements OnInit {
 		}
 
 		return since;
+	}
+
+	private sanitizeURLs(links) {
+		for( let i = 0; i < links.length; i++)
+		{
+			links[i] = this.sanitizer.bypassSecurityTrustResourceUrl(links[i]);
+		}
 	}
 }
