@@ -22,10 +22,7 @@ export const ActionTypes = {
 	FETCH_USER_SUCCESS: actionTypeCheck('[Api] Fetch User Success'),
 	FETCH_USER_FAIL: actionTypeCheck('[Api] Fetch User Fail'),
 	SHOW_USER_FEED: actionTypeCheck('Show User Feed'),
-	SHOW_SEARCH_RESULTS: actionTypeCheck('Show Search Results'),
-	SHOW_ALL_TWEETS: actionTypeCheck('Show all tweets'),
-	FILTER_IMAGE_TWEETS: actionTypeCheck('Show tweets with Images'),
-	FILTER_VIDEO_TWEETS: actionTypeCheck('Show tweets with Videos')
+	SHOW_SEARCH_RESULTS: actionTypeCheck('Show Search Results')
 };
 
 /**
@@ -99,22 +96,6 @@ export class ShowSearchResults implements Action {
 	constructor(public payload: any) {}
 }
 
-export class ShowAllTweets implements Action {
-	type = ActionTypes.SHOW_ALL_TWEETS;
-
-	constructor(public payload: any) {}
-}
-
-export class FilterTweetsWithImages implements Action {
-	type = ActionTypes.FILTER_IMAGE_TWEETS;
-
-	constructor(public payload: any) {}
-}
-export class FilterTweetsWithVideos implements Action {
-	type = ActionTypes.FILTER_VIDEO_TWEETS;
-
-	constructor(public payload: any) {}
-}
 
 /**
  * Export a type alias of all actions in this action group
@@ -130,6 +111,4 @@ export type Actions
 	| FetchUserSuccessAction
 	| FetchUserFailAction
 	| ShowUserFeed
-	| ShowSearchResults
-	| FilterTweetsWithImages
-	| FilterTweetsWithVideos;
+	| ShowSearchResults;

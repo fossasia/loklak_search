@@ -22,7 +22,6 @@ export class FeedLightboxComponent implements OnInit {
 		this.modifyAutolinkerConfig();
 		let timer = Observable.timer (0 , 10000);
 		timer.subscribe(t => this.ttt());
-		this.sanitizeURLs(this.feedItem.videos);
 	}
 
 
@@ -122,10 +121,4 @@ export class FeedLightboxComponent implements OnInit {
 		return since;
 	}
 
-	private sanitizeURLs(links) {
-		for( let i = 0; i < links.length; i++)
-		{
-			links[i] = this.sanitizer.bypassSecurityTrustResourceUrl(links[i]);
-		}
-	}
 }

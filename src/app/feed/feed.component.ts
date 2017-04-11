@@ -244,19 +244,27 @@ export class FeedComponent implements OnInit, OnDestroy {
 	}
 
 	private filterresults(filtervalue) {
+		this._queryControl.setValue(this.queryString);
+		let originalquery = this.queryString;
 		if(filtervalue == 0) {
 			console.log("All");
-			this.store.dispatch(new apiAction.ShowAllTweets(filtervalue));
 		}
 		else if(filtervalue == 1) {
 			console.log("Images");
-			this.store.dispatch(new apiAction.FilterTweetsWithImages(filtervalue));
+			this.queryString = this.queryString + ' /image';
 		}
 		else if(filtervalue == 2) {
 			console.log("Videos");
-			this.store.dispatch(new apiAction.FilterTweetsWithVideos(filtervalue));
+			this.queryString = this.queryString + ' /video';
 		}
-	}
+		this.store.dispatch(new apiAction.SearchAction({
+							queryString: this.queryString,
+							location: ReloactionAfterQuery.NONE
+						}));
+		this.queryString = originalquery;
+		this.store.dispatch(new paginationAction.RevertPaginationState(''));
+
+		}
 
 	showMoreUsers() {
   	let subscriber = this.apiResponseUserFollowers$.subscribe(apiResponseUserFollowers => {

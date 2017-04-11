@@ -42,13 +42,13 @@ export class ApiSearchEffects {
 					.map((action: apiAction.SearchAction) => action.payload)
 					.switchMap(query => {
 
+						let URIquery = encodeURIComponent(query.queryString);
 						const nextSearch$ = this.actions$.ofType(apiAction.ActionTypes.SEARCH).skip(1);
 
 						return this.apiSearchService.fetchQuery(query.queryString)
 							.takeUntil(nextSearch$)
 							.map((response) => {
 								if (query.location === ReloactionAfterQuery.RELOCATE) {
-									let URIquery = encodeURIComponent(query.queryString);
 									this.location.go(`/search?query=${URIquery}`);
 								}
 								return new apiAction.SearchCompleteSuccessAction(response);

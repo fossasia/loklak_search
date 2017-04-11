@@ -27,7 +27,7 @@ export class FeedCardComponent implements OnInit {
 		this.modifyAutolinkerConfig();
 		let timer = Observable.timer (0 , 10000);
 		timer.subscribe(t => this.ttt());
-		this.sanitizeURLs(this.feedItem.videos);
+		this.sanitizeandembedURLs(this.feedItem.videos);
 	}
 
 	onShowed(show: boolean) {
@@ -141,9 +141,13 @@ export class FeedCardComponent implements OnInit {
 
 	}
 
-	private sanitizeURLs(links) {
+	private sanitizeandembedURLs(links) {
 		for( let i = 0; i < links.length; i++)
 		{
+			let videoid = links[i].match(/(?:https?:\/{2})?(?:w{3}\.)?youtu(?:be)?\.(?:com|be)(?:\/watch\?v=|\/)([^\s&]+)/);
+			if(videoid != null) {
+   				links[i] = "http://www.youtube.com/embed/" + videoid[1];
+			}
 			links[i] = this.sanitizer.bypassSecurityTrustResourceUrl(links[i]);
 		}
 	}

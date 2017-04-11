@@ -13,12 +13,6 @@
 						<p class="lightbox-tweet"><feed-linker
 					[text]="itemText"
 					[config]="cardAutolinkerConfig" (onShowed)="onShowed($event)"></feed-linker></p>
-					<div class="card-image" *ngFor="let image of feedItem.images let i = index">
-					<img  src="{{feedItem.images[i]}}" width="500" height="320">
-					</div>
-					<div class="card-video" *ngFor="let video of feedItem.videos let i = index">
-					<iframe [src]="feedItem.videos[i]"></iframe>
-					</div>
                     <div class="lightbox-actions">
                     <div class="lightbox-action lightbox-reply lightbox-space">
 					<a target="_blank" href="https://twitter.com/intent/tweet?in_reply_to={{feedItem.id_str}}"><i class="material-icons lightbox-md-20">reply</i></a>
