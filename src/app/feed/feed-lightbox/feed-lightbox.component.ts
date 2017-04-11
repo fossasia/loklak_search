@@ -2,7 +2,6 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ApiResponseResult } from '../../models/api-response';
 import { Observable } from 'rxjs/Rx';
 import {BrowserModule, DomSanitizer} from '@angular/platform-browser';
-import { AutolinkerConfig, ConfigLinkType } from '../../shared/configrations';
 
 @Component({
 	selector: 'feed-lightbox',
@@ -10,7 +9,6 @@ import { AutolinkerConfig, ConfigLinkType } from '../../shared/configrations';
 	styleUrls: ['./feed-lightbox.component.scss'],
 })
 export class FeedLightboxComponent implements OnInit {
-	private readonly cardAutolinkerConfig: AutolinkerConfig = new AutolinkerConfig();
 	private datetime: string = null;
 	@Input() private feedItem: ApiResponseResult;
 	@Output() private hideLightBox: EventEmitter<any> = new EventEmitter();
@@ -19,17 +17,8 @@ export class FeedLightboxComponent implements OnInit {
 		}
 
 	ngOnInit() {
-		this.modifyAutolinkerConfig();
 		let timer = Observable.timer (0 , 10000);
 		timer.subscribe(t => this.ttt());
-	}
-
-
-	private modifyAutolinkerConfig() {
-		// hashtag and mention use the default configration strategy.
-		// Links use the one-to-one map strategy using unshorten property of feedItem
-		this.cardAutolinkerConfig.link.link_type = ConfigLinkType.OneToOneMap;
-		this.cardAutolinkerConfig.link.link_to = this.feedItem.unshorten || {};
 	}
 
 	private get profileURL(): string {

@@ -1,1 +1,2 @@
-export *  from './type';
+export * from './type';
+export * from './array';

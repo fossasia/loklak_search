@@ -1,6 +1,6 @@
 .wrapper{
-	min-height: 117px;
-	background: #f1f1f1;
+	min-height: 85px;
+	background: #fafafa;
 	border-bottom: 1px solid #ddd;
 	display: flex;
 	justify-content: space-between;
@@ -10,6 +10,7 @@
 		flex-wrap: wrap;
 		align-items: center;
 		width: 100%;
+		height: 85px;
 
 		@media(max-width: 1000px) {
 			justify-content: center;
@@ -95,11 +96,11 @@
 		}
 		div.suggesstion-box{
 				background-color: white;
-				width: 637px;
+				width: 632px;
 				max-height:90px;
 				position: absolute;
 				left: 156px;
-				top: 75px;
+				top: 63px;
 				border-radius: 2px;
 				box-shadow: 0 2px 2px 0 rgba(0,0,0,0.16),0 0 0 1px rgba(0,0,0,0.08);
 				overflow: hidden;
@@ -131,6 +132,9 @@
 		a {
 			text-align: center;
 		}
+	}
+	.wrapper{
+		min-height: 117px;
 	}
 	span.input-group-btn button{
 		background: #e91e63;

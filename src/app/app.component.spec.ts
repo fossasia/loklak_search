@@ -5,7 +5,10 @@ import { AppComponent } from './app.component';
 import { StoreModule } from '@ngrx/store';
 import { RouterTestingModule } from '@angular/router/testing';
 
-import { RouterOutletStubComponent } from '../testing';
+import { Component } from '@angular/core';
+
+@Component({selector: 'router-outlet', template: ''})
+export class RouterOutletStubComponent { }
 
 describe('App: LoklakSearch', () => {
 	beforeEach(() => {
