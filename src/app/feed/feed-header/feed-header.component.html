@@ -28,5 +28,12 @@
 									</li>
 									</ul>
 			</div>
+		<div class="tabs">
+				<md-tab-group (selectedIndexChange)="filtertabs.emit($event)" >
+  					<md-tab label="All"></md-tab>
+  					<md-tab label="Images"></md-tab>
+  					<md-tab label="Videos"></md-tab>
+				</md-tab-group>
+			</div>
 	</div>
 </div>

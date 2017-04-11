@@ -10,7 +10,7 @@
 		flex-wrap: wrap;
 		align-items: center;
 		width: 100%;
-		height: 85px;
+		height: 155px;
 
 		@media(max-width: 1000px) {
 			justify-content: center;
@@ -121,6 +121,11 @@
 			word-wrap: break-word;
 		}
 
+	}
+	div.tabs{
+		position: absolute;
+		top: 107px;
+		left: 150px;
 	}
 }
 

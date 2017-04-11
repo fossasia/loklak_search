@@ -14,6 +14,7 @@ export class FeedHeaderComponent implements OnInit {
 	@Input() private searchInputControl: FormControl;
 	@Input() private Suggesstionlist: SuggestResults[];
 	@Output() private searchEvantEmitter: EventEmitter<any> = new EventEmitter();
+	@Output() private filtertabs: EventEmitter<number> = new EventEmitter();
 	private query: FormControl;
 	private visibility: boolean;
 
@@ -43,6 +44,19 @@ export class FeedHeaderComponent implements OnInit {
 		else {
 			this.visibility = true;
 		}
+	}
+
+	private filterresults(filtervalue) {
+		if(filtervalue == 0) {
+			console.log("All");
+		}
+		else if(filtervalue == 1) {
+			console.log("Images");
+		}
+		else if(filtervalue == 2) {
+			console.log("Videos");
+		}
+		this.filtertabs.emit(filtervalue);
 	}
 }
 
