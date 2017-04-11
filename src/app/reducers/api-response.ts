@@ -44,8 +44,6 @@ const initialState: State = {
 };
 
 
-
-
 /**
  * The actual reducer function. Reducers can be thought of as the tables in the DataBase.
  * These are the functions which are responsible for maintaing, and updating the
