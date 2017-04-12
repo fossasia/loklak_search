@@ -47,15 +47,6 @@ export class FeedHeaderComponent implements OnInit {
 	}
 
 	private filterresults(filtervalue) {
-		if(filtervalue == 0) {
-			console.log("All");
-		}
-		else if(filtervalue == 1) {
-			console.log("Images");
-		}
-		else if(filtervalue == 2) {
-			console.log("Videos");
-		}
 		this.filtertabs.emit(filtervalue);
 	}
 }

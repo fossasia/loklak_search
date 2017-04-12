@@ -19,6 +19,7 @@ export class FeedLightboxComponent implements OnInit {
 	ngOnInit() {
 		let timer = Observable.timer (0 , 10000);
 		timer.subscribe(t => this.ttt());
+		this.sanitizeandembedURLs(this.feedItem.videos);
 	}
 
 	private get profileURL(): string {
@@ -108,6 +109,17 @@ export class FeedLightboxComponent implements OnInit {
 		}
 
 		return since;
+	}
+	private sanitizeandembedURLs(links) {
+		console.log(links);
+		for( let i = 0; i < links.length; i++)
+		{
+			let videoid = links[i].match(/(?:https?:\/{2})?(?:w{3}\.)?youtu(?:be)?\.(?:com|be)(?:\/watch\?v=|\/)([^\s&]+)/);
+			if(videoid != null) {
+   				links[i] = "http://www.youtube.com/embed/" + videoid[1];
+			}
+			links[i] = this.sanitizer.bypassSecurityTrustResourceUrl(links[i]);
+		}
 	}
 
 }

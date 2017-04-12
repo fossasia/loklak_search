@@ -247,14 +247,11 @@ export class FeedComponent implements OnInit, OnDestroy {
 		this._queryControl.setValue(this.queryString);
 		let originalquery = this.queryString;
 		if(filtervalue == 0) {
-			console.log("All");
 		}
 		else if(filtervalue == 1) {
-			console.log("Images");
 			this.queryString = this.queryString + ' /image';
 		}
 		else if(filtervalue == 2) {
-			console.log("Videos");
 			this.queryString = this.queryString + ' /video';
 		}
 		this.store.dispatch(new apiAction.SearchAction({
