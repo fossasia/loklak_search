@@ -10,7 +10,7 @@
 		flex-wrap: wrap;
 		align-items: center;
 		width: 100%;
-		height: 155px;
+		height: 148px;
 
 		@media(max-width: 1000px) {
 			justify-content: center;
@@ -100,10 +100,11 @@
 				max-height:90px;
 				position: absolute;
 				left: 156px;
-				top: 63px;
+				top: 94px;
 				border-radius: 2px;
 				box-shadow: 0 2px 2px 0 rgba(0,0,0,0.16),0 0 0 1px rgba(0,0,0,0.08);
 				overflow: hidden;
+				z-index: 1000;
 		}
 
 		ul{
@@ -124,8 +125,8 @@
 	}
 	div.tabs{
 		position: absolute;
-		top: 107px;
-		left: 150px;
+		top: 100px;
+		left: 156px;
 	}
 }
 

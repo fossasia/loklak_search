@@ -40,10 +40,12 @@ export class InfoBoxComponent implements OnInit, OnChanges {
 	ngOnInit() { }
 
 	ngOnChanges() {
+		if(this.apiResponseAggregations !== undefined) {
 		this.sortHashtags(this.apiResponseAggregations);
 		this.sortTwiterers(this.apiResponseAggregations);
 		this.sortMentions(this.apiResponseAggregations);
 		this.getChartData(this.apiResponseAggregations);
+		}
 	}
 	sortHashtags(statistics) {
 		let sortable = [];
