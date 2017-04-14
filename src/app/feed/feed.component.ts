@@ -260,8 +260,7 @@ export class FeedComponent implements OnInit, OnDestroy {
 						}));
 		this.queryString = originalquery;
 		this.store.dispatch(new paginationAction.RevertPaginationState(''));
-
-		}
+	}
 
 	showMoreUsers() {
   	let subscriber = this.apiResponseUserFollowers$.subscribe(apiResponseUserFollowers => {

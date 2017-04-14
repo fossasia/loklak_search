@@ -1,4 +1,4 @@
-import { Component, OnInit , Input, ChangeDetectionStrategy, ChangeDetectorRef, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectionStrategy, ChangeDetectorRef, Output, EventEmitter } from '@angular/core';
 import { ApiResponseResult } from '../../models/api-response';
 import { Observable } from 'rxjs/Rx';
 import {BrowserModule, DomSanitizer} from '@angular/platform-browser';
@@ -24,6 +24,7 @@ export class FeedCardComponent implements OnInit {
 	ngOnInit() {
 		let timer = Observable.timer (0 , 10000);
 		timer.subscribe(t => this.ttt());
+		this.imageURLs(this.feedItem.images);
 		this.sanitizeandembedURLs(this.feedItem.videos);
 	}
 
@@ -133,13 +134,23 @@ export class FeedCardComponent implements OnInit {
 	}
 
 	private sanitizeandembedURLs(links) {
-		for( let i = 0; i < links.length; i++)
-		{
+		links.forEach((link,i) => {
 			let videoid = links[i].match(/(?:https?:\/{2})?(?:w{3}\.)?youtu(?:be)?\.(?:com|be)(?:\/watch\?v=|\/)([^\s&]+)/);
 			if(videoid != null) {
    				links[i] = "http://www.youtube.com/embed/" + videoid[1];
 			}
 			links[i] = this.sanitizer.bypassSecurityTrustResourceUrl(links[i]);
-		}
+		})
+	}
+
+		private imageURLs(links) {
+		let img = new RegExp('https://pbs.twimg.com/media/');
+		links.forEach((link,i) => {
+			var res = img.exec(link);
+			if(res === null) {
+				links.splice(i,1);
+			}
+		})
+		console.log(this.feedItem.user.name, links.length);
 	}
 }
