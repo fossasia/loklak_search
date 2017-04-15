@@ -180,6 +180,10 @@ export const getSuggestResponseEntities = createSelector(getSuggestResponseState
 export const isSuggestResponseValid = createSelector(getSuggestResponseState, fromSuggestResponse.isResultValid);
 export const getSuggestServiceLastResponse = createSelector(getSuggestResponseState, fromSuggestResponse.lastRecord);
 
+/**
+* Selectors For Media type Required
+*/
+export const getMediaType = createSelector(getApiResponseState, fromApiResponse.getMediaType);
 
 /**
  * Some selector functions create joins across parts of state. This selector

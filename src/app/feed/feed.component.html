@@ -2,9 +2,12 @@
 	<feed-header
 				[searchInputControl]="_queryControl"
 				[Suggesstionlist]="(suggestResponse$ | async)"
-				(searchEvantEmitter)="handleSearchQuery()"></feed-header>
+				[Selectedtab]="selectedTab"
+				(searchEvantEmitter)="handleSearchQuery()"
+				(filtertabs)="filterresults($event)"></feed-header>
 
 	<div *ngIf="!(showUserFeed$ | async)">
+
 
 		<div *ngIf="(isSearching$ | async)" class="searching">
 			<!-- Hook Up the Material Design Progress Bar. -->

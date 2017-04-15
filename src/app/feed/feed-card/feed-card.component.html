@@ -30,6 +30,24 @@
 					[unshorten]="feedItem.unshorten || {}"
 					(click)="showLightBox.emit({show : 'hide'})"></feed-linker>
 			</div>
+			<br>
+			<table *ngIf="feedItem.images_count != 0">
+			<tbody>
+				<tr>
+						<td *ngFor="let i of [0,1]">
+							<img *ngIf="i<=1" class="card-images" src="{{feedItem.images[i]}}" alt="" />
+						</td>
+				</tr>
+				<tr>
+						<td *ngFor="let i of [2,3]">
+							<img *ngIf="i>1" class="card-images" src="{{feedItem.images[i]}}" alt="" />
+						</td>
+				</tr>
+			</tbody>
+		</table>
+					<div  *ngFor="let video of feedItem.videos let i = index">
+					<iframe class="card-videos" [src]="feedItem.videos[i]" *ngIf="inviewport" allowfullscreen></iframe>
+					</div>
 			<div class="card-footer">
 				<div class="action reply">
 					<a target="_blank" href="https://twitter.com/intent/tweet?in_reply_to={{feedItem.id_str}}"><i class="material-icons md-20">reply</i></a>

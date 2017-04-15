@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ApiResponseResult } from '../../models/api-response';
 import { Observable } from 'rxjs/Rx';
+import {BrowserModule, DomSanitizer} from '@angular/platform-browser';
 
 @Component({
 	selector: 'feed-lightbox',
@@ -12,7 +13,8 @@ export class FeedLightboxComponent implements OnInit {
 	@Input() private feedItem: ApiResponseResult;
 	@Output() private hideLightBox: EventEmitter<any> = new EventEmitter();
 
-	constructor() { }
+	constructor(private sanitizer: DomSanitizer) {
+		}
 
 	ngOnInit() {
 		let timer = Observable.timer (0 , 10000);
@@ -107,4 +109,5 @@ export class FeedLightboxComponent implements OnInit {
 
 		return since;
 	}
+
 }

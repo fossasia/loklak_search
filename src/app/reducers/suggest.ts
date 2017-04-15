@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect';
 import * as suggest from '../actions/suggest';
-import { Query, ReloactionAfterQuery } from '../models/query';
+import { Query, ReloactionAfterQuery, MediaTypes } from '../models/query';
 
 /**
  * Each reducer module must import the local `State` which it controls.
@@ -21,7 +21,7 @@ export interface State {
  * @prop: loading: false
  */
 const initialState: State = {
-	query: { queryString: '', location: ReloactionAfterQuery.NONE },
+	query: { queryString: '', location: ReloactionAfterQuery.NONE, media: MediaTypes.ALL },
 	loading: false
 };
 

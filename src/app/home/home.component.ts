@@ -8,7 +8,7 @@ import * as fromRoot from '../reducers';
 import * as apiAction from '../actions/api';
 import * as suggestServiceAction from '../actions/suggest';
 
-import { Query, ReloactionAfterQuery } from '../models/query';
+import { Query, ReloactionAfterQuery, MediaTypes } from '../models/query';
 
 @Component({
 	selector: 'app-home',
@@ -52,12 +52,14 @@ export class HomeComponent implements OnInit, OnDestroy {
 					let matches = re.exec(value);
 					this.store.dispatch(new suggestServiceAction.SuggestAction({
 						queryString: value,
-						location: ReloactionAfterQuery.NONE
+						location: ReloactionAfterQuery.NONE,
+						media: MediaTypes.ALL
 					}));
 					if(matches == null) {
 						this.store.dispatch(new apiAction.SearchAction({
 							queryString: value,
-							location: ReloactionAfterQuery.RELOCATE
+							location: ReloactionAfterQuery.RELOCATE,
+							media: MediaTypes.ALL
 						}));
 						re = new RegExp(/^from:\s*([a-zA-Z0-9_@]+)/, 'i');
 						matches = re.exec(value);
@@ -65,7 +67,8 @@ export class HomeComponent implements OnInit, OnDestroy {
 							let screenName: string = matches[1];
 							this.store.dispatch(new apiAction.FetchUserAction({
 								queryString: screenName,
-								location: ReloactionAfterQuery.NONE
+								location: ReloactionAfterQuery.NONE,
+								media: MediaTypes.ALL
 							}));
 						}
 						this.store.dispatch(new apiAction.ShowSearchResults(''));
@@ -73,7 +76,8 @@ export class HomeComponent implements OnInit, OnDestroy {
 						let screenName: string = matches[1];
 						this.store.dispatch(new apiAction.FetchUserAction({
 							queryString: screenName,
-							location: ReloactionAfterQuery.NONE
+							location: ReloactionAfterQuery.NONE,
+							media: MediaTypes.ALL
 						}));
 						this.store.dispatch(new apiAction.ShowUserFeed(''));
 					}
