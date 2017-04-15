@@ -14,7 +14,7 @@ import 'rxjs/add/operator/takeUntil';
 
 import { SearchService } from '../services';
 import * as apiAction from '../actions/api';
-import { Query, ReloactionAfterQuery } from '../models';
+import { Query, ReloactionAfterQuery, MediaTypes } from '../models';
 import { ApiResponse } from '../models/api-response';
 
 /**
@@ -43,6 +43,7 @@ export class ApiSearchEffects {
 					.switchMap(query => {
 
 						let URIquery = encodeURIComponent(query.queryString);
+						this.correctquery(query);
 						const nextSearch$ = this.actions$.ofType(apiAction.ActionTypes.SEARCH).skip(1);
 
 						return this.apiSearchService.fetchQuery(query.queryString)
@@ -50,6 +51,15 @@ export class ApiSearchEffects {
 							.map((response) => {
 								if (query.location === ReloactionAfterQuery.RELOCATE) {
 									this.location.go(`/search?query=${URIquery}`);
+									if(query.media === MediaTypes.ALL) {
+									this.location.go(`/search?query=${URIquery}&media=all`);
+									}
+								else if(query.media === MediaTypes.IMAGES) {
+									this.location.go(`/search?query=${URIquery}&media=image`);
+									}
+								else if(query.media === MediaTypes.VIDEOS) {
+									this.location.go(`/search?query=${URIquery}&media=video`);
+									}
 								}
 								return new apiAction.SearchCompleteSuccessAction(response);
 							})
@@ -61,5 +71,14 @@ export class ApiSearchEffects {
 		private apiSearchService: SearchService,
 		private location: Location
 	) { }
+
+	correctquery(query) {
+		if(query.media === MediaTypes.IMAGES) {
+			query.queryString = query.queryString + ' /image';
+		}
+		else if(query.media === MediaTypes.VIDEOS) {
+			query.queryString = query.queryString + ' /video';
+		}
+	}
 
 }

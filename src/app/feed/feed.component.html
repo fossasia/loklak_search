@@ -2,6 +2,7 @@
 	<feed-header
 				[searchInputControl]="_queryControl"
 				[Suggesstionlist]="(suggestResponse$ | async)"
+				[Selectedtab]="selectedTab"
 				(searchEvantEmitter)="handleSearchQuery()"
 				(filtertabs)="filterresults($event)"></feed-header>
 

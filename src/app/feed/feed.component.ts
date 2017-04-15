@@ -14,7 +14,7 @@ import * as suggestServiceAction from '../actions/suggest';
 
 import { ApiResponse, ApiResponseMetadata, ApiResponseResult, ApiResponseAggregations } from '../models/api-response';
 import { SuggestMetadata, SuggestResults, SuggestResponse } from '../models/api-suggest';
-import { Query, ReloactionAfterQuery } from '../models/query';
+import { Query, ReloactionAfterQuery, MediaTypes } from '../models/query';
 import { UserApiResponse } from '../models/api-user-response';
 
 @Component({
@@ -48,7 +48,10 @@ export class FeedComponent implements OnInit, OnDestroy {
 	private isSuggestServiceLoading$: Observable<boolean>;
 	private suggestResponse$: Observable<SuggestResults[]>;
 	private showUserFeed$: Observable<boolean>;
+	private getMediaType$: Observable<MediaTypes>;
 	private index: number = 12;
+	private media: MediaTypes;
+	private selectedTab: number;
 
 	constructor(
 		private route: ActivatedRoute,
@@ -59,8 +62,9 @@ export class FeedComponent implements OnInit, OnDestroy {
 
 	ngOnInit() {
 		this.focusTextbox();
-		this.queryFromURL();
 		this.getDataFromStore();
+		this.queryFromURL();
+		this.subscribemedia();
 		this.subscribeQueryString();
 		this.setupSearchField();
 	}
@@ -83,13 +87,27 @@ export class FeedComponent implements OnInit, OnDestroy {
 			this.route.queryParams
 				.subscribe((params: Params) => {
 					let queryParam = params['query'] || '';
+					let mediaParam = params['media'] || '';
+					if(mediaParam === 'all') {
+						this.selectedTab = 0;
+						this.media = MediaTypes.ALL;
+					}
+					else if(mediaParam === 'image') {
+						this.selectedTab = 1;
+						this.media = MediaTypes.IMAGES;
+					}
+					else if(mediaParam === 'video') {
+						this.selectedTab = 2;
+						this.media = MediaTypes.VIDEOS;
+					}
 					if (queryParam) {
 						let re = new RegExp(/^followers:\s*([a-zA-Z0-9_@]+)/, 'i');
 						let matches = re.exec(queryParam);
 						if(matches == null) {
 							this.store.dispatch(new apiAction.SearchAction({
 								queryString: queryParam,
-								location: ReloactionAfterQuery.NONE
+								location: ReloactionAfterQuery.NONE,
+								media: this.media
 							}));
 							this._queryControl.setValue(queryParam);
 							re = new RegExp(/^from:\s*([a-zA-Z0-9_@]+)/, 'i');
@@ -97,14 +115,16 @@ export class FeedComponent implements OnInit, OnDestroy {
 							if(matches !== null) {
 								this.store.dispatch(new apiAction.FetchUserAction({
 									queryString: queryParam,
-									location: ReloactionAfterQuery.NONE
+									location: ReloactionAfterQuery.NONE,
+									media: this.media
 								}));
 							}
 							this.store.dispatch(new apiAction.ShowSearchResults(''));
 						}	else {
 							this.store.dispatch(new apiAction.FetchUserAction({
 								queryString: queryParam,
-								location: ReloactionAfterQuery.RELOCATE
+								location: ReloactionAfterQuery.RELOCATE,
+								media: this.media
 							}));
 							this.store.dispatch(new apiAction.ShowUserFeed(''));
 						}
@@ -138,6 +158,7 @@ export class FeedComponent implements OnInit, OnDestroy {
 		this.isSuggestServiceLoading$ = this.store.select(fromRoot.getSuggestServiceLoading);
 		this.suggestResponse$ = this.store.select(fromRoot.getSuggestResponseEntities);
 		this.showUserFeed$ = this.store.select(fromRoot.getShowUserFeed);
+		this.getMediaType$ = this.store.select(fromRoot.getMediaType);
 	}
 
 	/**
@@ -151,6 +172,15 @@ export class FeedComponent implements OnInit, OnDestroy {
 					.subscribe(query => {
 						this.queryString = query.queryString;
 					})
+		);
+	}
+
+	private subscribemedia(): void {
+		this.__subscriptions__.push(
+			this.getMediaType$
+							.subscribe(event => { 
+								this.media = event;
+						})
 		);
 	}
 
@@ -171,25 +201,29 @@ export class FeedComponent implements OnInit, OnDestroy {
 						if(matches == null) {
 							this.store.dispatch(new suggestServiceAction.SuggestAction({
 								queryString: query,
-								location: ReloactionAfterQuery.NONE
+								location: ReloactionAfterQuery.NONE,
+								media: this.media
 							}));
 							this.store.dispatch(new apiAction.SearchAction({
 								queryString: query,
-								location: ReloactionAfterQuery.RELOCATE
+								location: ReloactionAfterQuery.RELOCATE,
+								media: this.media
 							}));
 							re = new RegExp(/^from:\s*([a-zA-Z0-9_@]+)/, 'i');
 							matches = re.exec(query);
 							if(matches !== null) {
 								this.store.dispatch(new apiAction.FetchUserAction({
 									queryString: query,
-									location: ReloactionAfterQuery.NONE
+									location: ReloactionAfterQuery.NONE,
+									media: this.media
 								}));
 							}
 							this.store.dispatch(new apiAction.ShowSearchResults(''));
 						} else {
 							this.store.dispatch(new apiAction.FetchUserAction({
 								queryString: query,
-								location: ReloactionAfterQuery.RELOCATE
+								location: ReloactionAfterQuery.RELOCATE,
+								media: this.media
 							}));
 							this.store.dispatch(new apiAction.ShowUserFeed(''));
 						}
@@ -231,7 +265,7 @@ export class FeedComponent implements OnInit, OnDestroy {
 			this.visibility=false;
 
 		}
-		else if ((event.feedIndex+1)&&(event.show == 'show') && (this.display==true)){
+		else if ((event.feedIndex+1)&&(event.show == 'show') && (this.display==true)) {
 			this.visibility= true;
 			this.store.dispatch(new apiAction.SelectLightbox(event.feedIndex));
 		}
@@ -244,21 +278,20 @@ export class FeedComponent implements OnInit, OnDestroy {
 	}
 
 	private filterresults(filtervalue) {
-		this._queryControl.setValue(this.queryString);
-		let originalquery = this.queryString;
 		if(filtervalue == 0) {
+			this.store.dispatch(new apiAction.ShowAllFeeds(null));
 		}
 		else if(filtervalue == 1) {
-			this.queryString = this.queryString + ' /image';
+			this.store.dispatch(new apiAction.ShowImagesFeeds(null));
 		}
 		else if(filtervalue == 2) {
-			this.queryString = this.queryString + ' /video';
+			this.store.dispatch(new apiAction.ShowVideosFeeds(null));
 		}
 		this.store.dispatch(new apiAction.SearchAction({
-							queryString: this.queryString,
-							location: ReloactionAfterQuery.NONE
-						}));
-		this.queryString = originalquery;
+								queryString: this.queryString,
+								location: ReloactionAfterQuery.RELOCATE,
+								media: this.media
+							}));
 		this.store.dispatch(new paginationAction.RevertPaginationState(''));
 	}
 
@@ -278,6 +311,7 @@ export class FeedComponent implements OnInit, OnDestroy {
 	 * Clearup all the subscription when component is destroyed.
 	 */
 	ngOnDestroy() {
+		this.store.dispatch(new apiAction.ShowAllFeeds(null));
 		this.__subscriptions__.forEach(subscription => subscription.unsubscribe());
 	}
 

@@ -2,6 +2,7 @@ import { createSelector } from 'reselect';
 import { ApiResponse, ApiResponseResult, ApiResponseMetadata, ApiResponseUser, ApiResponseAggregations } from '../models/api-response';
 import * as api from '../actions/api';
 import * as pagination from '../actions/pagination';
+import { MediaTypes } from '../models/query';
 
 /**
  * Each reducer module must import the local `State` which it controls.
@@ -22,6 +23,7 @@ export interface State {
 	valid: boolean;
 	selected: number;
 	selectedavail: boolean;
+	media: MediaTypes
 }
 
 /**
@@ -41,6 +43,7 @@ const initialState: State = {
 	valid: true,
 	selected: null,
 	selectedavail: false,
+	media: MediaTypes.ALL
 };
 
 
@@ -115,6 +118,24 @@ export function reducer(state: State = initialState, action: api.Actions | pagin
 			});
 		}
 
+		case api.ActionTypes.SHOW_ALL_FEEDS: {
+			return Object.assign({}, state, {
+				media: MediaTypes.ALL
+			});
+		}
+
+		case api.ActionTypes.SHOW_IMAGES_FEEDS: {
+			return Object.assign({}, state, {
+				media: MediaTypes.IMAGES
+			});
+		}
+
+		case api.ActionTypes.SHOW_VIDEOS_FEEDS: {
+			return Object.assign({}, state, {
+				media: MediaTypes.VIDEOS
+			});
+		}
+
 		default: {
 			return state;
 		}
@@ -146,3 +167,4 @@ export const isSelected = (state: State) => state.selectedavail;
 
 export const getSelectedItem = (state: State) => state.entities[state.selected];
 
+export const getMediaType = (state: State) => state.media;

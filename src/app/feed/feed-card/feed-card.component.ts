@@ -151,6 +151,5 @@ export class FeedCardComponent implements OnInit {
 				links.splice(i,1);
 			}
 		})
-		console.log(this.feedItem.user.name, links.length);
 	}
 }

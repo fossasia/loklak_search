@@ -13,6 +13,7 @@ import { Location } from '@angular/common';
 export class FeedHeaderComponent implements OnInit {
 	@Input() private searchInputControl: FormControl;
 	@Input() private Suggesstionlist: SuggestResults[];
+	@Input() private Selectedtab: number;
 	@Output() private searchEvantEmitter: EventEmitter<any> = new EventEmitter();
 	@Output() private filtertabs: EventEmitter<number> = new EventEmitter();
 	private query: FormControl;

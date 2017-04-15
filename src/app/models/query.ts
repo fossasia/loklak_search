@@ -6,4 +6,11 @@ export enum ReloactionAfterQuery {
 export interface Query {
 	queryString: string;
 	location: ReloactionAfterQuery;
+	media: MediaTypes
+}
+
+export enum MediaTypes {
+	ALL,
+	IMAGES,
+	VIDEOS
 }
