@@ -22,7 +22,10 @@ export const ActionTypes = {
 	FETCH_USER_SUCCESS: actionTypeCheck('[Api] Fetch User Success'),
 	FETCH_USER_FAIL: actionTypeCheck('[Api] Fetch User Fail'),
 	SHOW_USER_FEED: actionTypeCheck('Show User Feed'),
-	SHOW_SEARCH_RESULTS: actionTypeCheck('Show Search Results')
+	SHOW_SEARCH_RESULTS: actionTypeCheck('Show Search Results'),
+	SHOW_ALL_FEEDS: actionTypeCheck('Show all tweets'),
+	SHOW_IMAGES_FEEDS: actionTypeCheck('Show tweets with images'),
+	SHOW_VIDEOS_FEEDS: actionTypeCheck('Show tweets with videos')
 };
 
 /**
@@ -96,6 +99,24 @@ export class ShowSearchResults implements Action {
 	constructor(public payload: any) {}
 }
 
+export class ShowAllFeeds implements Action {
+	type = ActionTypes.SHOW_ALL_FEEDS;
+
+	constructor(public payload: any) {}
+}
+
+export class ShowImagesFeeds implements Action {
+	type = ActionTypes.SHOW_IMAGES_FEEDS;
+
+	constructor(public payload: any) {}
+}
+
+export class ShowVideosFeeds implements Action {
+	type = ActionTypes.SHOW_VIDEOS_FEEDS;
+
+	constructor(public payload: any) {}
+}
+
 /**
  * Export a type alias of all actions in this action group
  * so that reducers can easily compose action types
@@ -110,4 +131,7 @@ export type Actions
 	| FetchUserSuccessAction
 	| FetchUserFailAction
 	| ShowUserFeed
-	| ShowSearchResults;
+	| ShowSearchResults
+	| ShowAllFeeds
+	| ShowImagesFeeds
+	| ShowVideosFeeds;

@@ -28,5 +28,14 @@
 									</li>
 									</ul>
 			</div>
-	</div>
+
+		</div>
+		<div class="tabslist">
+				<ul>
+					<li><a class="tabs" (click)="filterresults(0)" [style.color]="getcolor(0)">All</a></li>
+					<li><a class="tabs" (click)="filterresults(1)" [style.color]="getcolor(1)">Images</a></li>
+					<li><a class="tabs" (click)="filterresults(2)" [style.color]="getcolor(2)">Videos</a></li>
+				</ul>
+			<hr [style.left]="getcoordinates()">
+			</div>
 </div>

@@ -2,7 +2,8 @@
 	<feed-header
 				[searchInputControl]="_queryControl"
 				[Suggesstionlist]="(suggestResponse$ | async)"
-				(searchEvantEmitter)="handleSearchQuery()"></feed-header>
+				(searchEvantEmitter)="handleSearchQuery()"
+				(filtertabs)="filterresults($event)"></feed-header>
 
 	<div *ngIf="!(showUserFeed$ | async)">
 

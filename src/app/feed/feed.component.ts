@@ -231,7 +231,7 @@ export class FeedComponent implements OnInit, OnDestroy {
 			this.visibility=false;
 
 		}
-		else if ((event.feedIndex+1)&&(event.show == 'show') && (this.display==true)){
+		else if ((event.feedIndex+1)&&(event.show == 'show') && (this.display==true)) {
 			this.visibility= true;
 			this.store.dispatch(new apiAction.SelectLightbox(event.feedIndex));
 		}
@@ -241,6 +241,23 @@ export class FeedComponent implements OnInit, OnDestroy {
 	private hidelightbox(event) {
 		this.visibility= false;
 		this.store.dispatch(new apiAction.UnSelectLightbox(event));
+	}
+
+	private filterresults(filtervalue) {
+		this._queryControl.setValue(this.queryString);
+		let originalquery = this.queryString;
+		if(filtervalue == 1) {
+			this.queryString = this.queryString + ' /image';
+		}
+		else if(filtervalue == 2) {
+			this.queryString = this.queryString + ' /video';
+		}
+		this.store.dispatch(new apiAction.SearchAction({
+								queryString: this.queryString,
+								location: ReloactionAfterQuery.NONE
+							}));
+		this.queryString = originalquery;
+		this.store.dispatch(new paginationAction.RevertPaginationState(''));
 	}
 
 	showMoreUsers() {

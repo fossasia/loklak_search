@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, ChangeDetectionStrategy, ChangeDetectorRef, Output, EventEmitter } from '@angular/core';
 import { ApiResponseResult } from '../../models/api-response';
 import { Observable } from 'rxjs/Rx';
+import {BrowserModule, DomSanitizer} from '@angular/platform-browser';
 
 @Component({
 	selector: 'feed-card',
@@ -15,11 +16,16 @@ export class FeedCardComponent implements OnInit {
 	@Input() private feedIndex: number;
 	@Output() private showLightBox: EventEmitter<any> = new EventEmitter();
 
-	constructor(private ref: ChangeDetectorRef) { }
+	constructor(private ref: ChangeDetectorRef,
+				private sanitizer: DomSanitizer) {
+		
+	}
 
 	ngOnInit() {
 		let timer = Observable.timer (0 , 10000);
 		timer.subscribe(t => this.ttt());
+		this.imageURLs(this.feedItem.images);
+		this.sanitizeandembedURLs(this.feedItem.videos);
 	}
 
 	onShowed(show: boolean) {
@@ -125,5 +131,31 @@ export class FeedCardComponent implements OnInit {
 		this.inviewport=event.value;
 		}
 
+	}
+
+	private sanitizeandembedURLs(links) {
+		links.forEach((link,i) => {
+			let videoid = links[i].match(/(?:https?:\/{2})?(?:w{3}\.)?youtu(?:be)?\.(?:com|be)(?:\/watch\?v=|\/)([^\s&]+)/);
+			if(videoid != null) {
+   				links[i] = "http://www.youtube.com/embed/" + videoid[1];
+			}
+			links[i] = this.sanitizer.bypassSecurityTrustResourceUrl(links[i]);
+		})
+	}
+
+		private imageURLs(links) {
+		let img1 = new RegExp('https:\\/\\/abs\\.twimg\\.com\\/');
+		let img2 = new RegExp('https:\\/\\/pic\\.twitter\\.com\\/');
+		let img3 = new RegExp('https:\\/\\/www\\.instagram\\.com\\/')
+		let imgarr = [];
+		links.forEach((link,i) => {
+			var res1 = img1.exec(link);
+			var res2 = img2.exec(link);
+			var res3 = img3.exec(link);
+			if(res1 === null && res2 === null && res3 === null) {
+				imgarr.push(link);
+			}
+		})
+		this.feedItem.images = imgarr;
 	}
 }
