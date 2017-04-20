@@ -16,6 +16,10 @@ export class InfoBoxComponent implements OnInit, OnChanges {
 	@Input() private apiResponseAggregations: ApiResponseAggregations;
 	private inviewporttwitters: Observable<boolean>;
 	private inviewportmentions: Observable<boolean>;
+	private areTopHashtagsAvailable: boolean;
+	private areTopTwitterersAvailable: boolean;
+	private areTopMentionsAvailable: boolean;
+	private areFrequencyDataAvailable: boolean;
 	private topHashtags;
 	private topMentions;
 	private topTwitterers;
@@ -47,39 +51,66 @@ export class InfoBoxComponent implements OnInit, OnChanges {
 	}
 	sortHashtags(statistics) {
 		let sortable = [];
-		for (let s in statistics.hashtags) {
-			sortable.push([s, statistics.hashtags[s]]);
-		}
-		sortable.sort(function (a, b) {
+		/* A check for both the data and the individual objects is necessary, also if the data is not empty*/
+		if((statistics && statistics.hashtags!==undefined) && Object.keys(statistics.hashtags).length!==0) {
+			for (let s in statistics.hashtags) {
+				sortable.push([s, statistics.hashtags[s]]);
+			}
+			sortable.sort(function (a, b) {
 			return b[1] - a[1];
-		});
-		sortable = (sortable.slice(0, 10));
-		this.topHashtags = sortable;
-		return this.topHashtags;
+			});
+			sortable = (sortable.slice(0, 10));
+			this.topHashtags = sortable;
+			this.areTopHashtagsAvailable = true;
+			return this.topHashtags;
+
+		}
+		else if(typeof statistics === undefined){
+			this.topHashtags = [];
+			this.areTopHashtagsAvailable = false;
+			return this.topHashtags;
+		}		
 	}
 	sortTwiterers(statistics) {
 		let sortable = [];
-		for (let s in statistics.screen_name) {
-			sortable.push([s, statistics.screen_name[s]]);
+		if ((statistics && statistics.screen_name)!==undefined && (Object.keys(statistics.screen_name).length)!==0) {
+			for (let s in statistics.screen_name) {
+				sortable.push([s, statistics.screen_name[s]]);
+			}
+			sortable.sort(function (a, b) {
+				return b[1] - a[1];
+			});
+			sortable = (sortable.slice(0, 10));
+			this.topTwitterers = sortable;
+			this.areTopTwitterersAvailable = true;
+			return this.topTwitterers;
 		}
-		sortable.sort(function (a, b) {
-			return b[1] - a[1];
-		});
-		sortable = (sortable.slice(0, 10));
-		this.topTwitterers = sortable;
-		return this.topTwitterers;
+		else if (typeof statistics === undefined){
+			this.areTopTwitterersAvailable = false;
+			this.topTwitterers = [];
+			return this.topTwitterers;
+		}
+		
 	}
 	sortMentions(statistics) {
 		let sortable = [];
-		for (let s in statistics.mentions) {
+		if ((statistics && statistics.mentions)!==undefined && (Object.keys(statistics.mentions).length!==0)) {
+			for (let s in statistics.mentions) {
 			sortable.push([s, statistics.mentions[s]]);
+			}
+			sortable.sort(function (a, b) {
+				return b[1] - a[1];
+			});
+			sortable = (sortable.slice(0, 10));
+			this.topMentions = sortable;
+			this.areTopMentionsAvailable = true;
+			return this.topMentions;
 		}
-		sortable.sort(function (a, b) {
-			return b[1] - a[1];
-		});
-		sortable = (sortable.slice(0, 10));
-		this.topMentions = sortable;
-		return this.topMentions;
+		else{
+			this.areTopMentionsAvailable = false;
+			this.topMentions = [];
+			return this.topMentions;			
+		}		
 	}
 
 	private inviewtwitters(event) {
@@ -94,6 +125,7 @@ export class InfoBoxComponent implements OnInit, OnChanges {
 		}
 	}
 	getChartData(statistics) {
+		if ((statistics && statistics.created_at)!==undefined && (Object.keys(statistics.created_at).length!==0)) {
 		var data = [];
 		var labels = [];
 		var chosen_attr = statistics.created_at;
@@ -108,10 +140,15 @@ export class InfoBoxComponent implements OnInit, OnChanges {
 
 		this.barChartData[0].data = data;
 		this.barChartLabels = labels;
+		this.areFrequencyDataAvailable = true;
+		
 		return this.barChartData[0].data, this.barChartLabels;
+		}
+		else {
+			this.areFrequencyDataAvailable = false;
+		}
 
 	}
-
 
 }
 
