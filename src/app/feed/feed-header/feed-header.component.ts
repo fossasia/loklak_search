@@ -14,8 +14,10 @@ export class FeedHeaderComponent implements OnInit {
 	@Input() private searchInputControl: FormControl;
 	@Input() private Suggesstionlist: SuggestResults[];
 	@Output() private searchEvantEmitter: EventEmitter<any> = new EventEmitter();
+	@Output() private filtertabs: EventEmitter<number> = new EventEmitter();
 	private query: FormControl;
 	private visibility: boolean;
+	private selectedtab: number = 0;
 
 	constructor() { }
 
@@ -42,6 +44,29 @@ export class FeedHeaderComponent implements OnInit {
 		}
 		else {
 			this.visibility = true;
+		}
+	}
+
+	private filterresults(filtervalue) {
+		this.selectedtab = filtervalue;		
+		this.filtertabs.emit(filtervalue);
+	}
+
+	private getcolor(value) {
+		if(value == this.selectedtab) {
+			return "#4285F4";
+		}
+	}
+
+	private getcoordinates() {
+		if(this.selectedtab == 0) {
+			return "-80px";
+		}
+		else if(this.selectedtab == 1) {
+			return "-12px";
+		}
+		else if(this.selectedtab == 2) {
+			return "68px";
 		}
 	}
 }

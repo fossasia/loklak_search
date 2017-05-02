@@ -6,6 +6,7 @@ import { TestBed, async } from '@angular/core/testing';
 import { Route } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
+import { MaterialModule } from '@angular/material';
 import { StoreModule } from '@ngrx/store';
 
 import { reducer } from '../reducers';
@@ -118,6 +119,7 @@ describe('Component: Feed', () => {
 			imports: [
 				RouterTestingModule,
 				ReactiveFormsModule,
+				MaterialModule,
 				StoreModule.provideStore(reducer)
 			],
 			declarations: [
