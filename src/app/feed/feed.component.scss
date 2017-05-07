@@ -85,6 +85,14 @@
 	border: 5px solid rgb(216,27,96);
 	border-top-color: rgba(216,97,96,0.2);
 	animation: spin 1s infinite linear;
+	margin-bottom: 20px;
+}
+
+.searching-message {
+	word-break: break-word;
+	font-size: 2em;
+	padding: 10px;
+	margin: 0 23%;
 }
 
 .pagination {
