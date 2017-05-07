@@ -7,8 +7,13 @@
 
 	<div *ngIf="!(showUserFeed$ | async)">
 
-		<div *ngIf="(isSearching$ | async)" class="searching">
+		<div *ngIf="(isSearching$ | async)"> 
+			<div class="searching">
 			<!-- Hook Up the Material Design Progress Bar. -->
+			</div>
+			<div class="searching-message">
+			Searching social media messages of the last 30 days.
+			</div>
 		</div>
 		<br>
 
