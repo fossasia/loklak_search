@@ -15,7 +15,7 @@ div.wrapper {
 	width: 500px;
 	margin-top: -30vh;
 	img{
-		max-width:25%;
+		max-width:21.406%;
 		height:auto;
 	}
 	h1 {
@@ -23,7 +23,12 @@ div.wrapper {
 		text-align: center;
 		font-size: 2.5em;
 		margin: 15px 0px 0px 0px;
-    	font-family: Courier New;
+    	font-family: 'Roboto', sans-serif;
+    	.loklak{
+    		background:#f9f2f4;
+    		color:#d10042;
+    		font-family: Courier New;
+    	}
 	}
 
 	h2 {
