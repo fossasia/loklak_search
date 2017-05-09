@@ -8,9 +8,9 @@ import { Observable } from 'rxjs/Rx';
 	styleUrls: ['./feed-lightbox.component.scss'],
 })
 export class FeedLightboxComponent implements OnInit {
-	private datetime: string = null;
-	@Input() private feedItem: ApiResponseResult;
-	@Output() private hideLightBox: EventEmitter<any> = new EventEmitter();
+	public datetime: string = null;
+	@Input() feedItem: ApiResponseResult;
+	@Output() hideLightBox: EventEmitter<any> = new EventEmitter();
 
 	constructor() { }
 
@@ -19,11 +19,11 @@ export class FeedLightboxComponent implements OnInit {
 		timer.subscribe(t => this.ttt());
 	}
 
-	private get profileURL(): string {
+	public get profileURL(): string {
 		return `https://twitter.com/${this.feedItem.screen_name}/`;
 	}
 
-	private get profileName(): string {
+	public get profileName(): string {
 		// The api's response.user.name has some errors for verified accounts and profile names with emojis.
 		// It contains the an HTML part related to emojis in profile name.
 		// So to handle such cases we take browser's help to remove such undesired strings.
@@ -37,12 +37,11 @@ export class FeedLightboxComponent implements OnInit {
 		return text;
 	}
 
-	private onShowed(event)
-	{
+	public onShowed(event) {
 		this.hideLightBox.emit();
 	}
 
-	private get itemText(): string {
+	public get itemText(): string {
 		// HACK : To remove undesired string in profile name using browser.
 
 		let html = this.feedItem.text;
@@ -52,13 +51,13 @@ export class FeedLightboxComponent implements OnInit {
 		return text;
 	}
 
-	private get retweetCount(): string {
+	public get retweetCount(): string {
 		let retweets = this.feedItem.retweet_count;
 
 		return (retweets === 0) ? '' : retweets.toString();
 	}
 
-	private get favoriteCount(): string {
+	public get favoriteCount(): string {
 		let favourites = this.feedItem.favourites_count;
 
 		return (favourites === 0) ? '' : favourites.toString();

@@ -14,7 +14,7 @@ export class FeedLinkerComponent implements OnInit {
 	@Input() unshorten: Object = {};
 	@Input() useAll: Boolean = false;
 	@Output() onShowed = new EventEmitter<boolean>();
-	private shardArray: Array<Shard> = new Array<Shard>();
+	public shardArray: Array<Shard> = new Array<Shard>();
 
 	constructor() { }
 

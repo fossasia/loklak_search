@@ -7,7 +7,7 @@ import { Observable } from 'rxjs/Observable';
 	styleUrls: ['./contact.component.scss']
 })
 export class ContactComponent implements OnInit {
-	private formcontrol: Observable<boolean>;
+	public formcontrol = false;
 
 	constructor() { }
 

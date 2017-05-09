@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, ChangeDetectionStrategy, ChangeDetectorRef, Output, EventEmitter } from '@angular/core';
 import { ApiResponseResult } from '../../models/api-response';
 import { Observable } from 'rxjs/Rx';
-import {BrowserModule, DomSanitizer} from '@angular/platform-browser';
+import { BrowserModule, DomSanitizer } from '@angular/platform-browser';
 
 @Component({
 	selector: 'feed-card',
@@ -10,41 +10,41 @@ import {BrowserModule, DomSanitizer} from '@angular/platform-browser';
 	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FeedCardComponent implements OnInit {
-	private datetime: string = null;
-	private inviewport: Observable<boolean>;
-	@Input() private feedItem: ApiResponseResult;
-	@Input() private feedIndex: number;
-	@Output() private showLightBox: EventEmitter<any> = new EventEmitter();
+	public datetime: string = null;
+	public inviewport: Observable<boolean>;
+	@Input() feedItem: ApiResponseResult;
+	@Input() feedIndex: number;
+	@Output() showLightBox: EventEmitter<any> = new EventEmitter();
 
 	constructor(private ref: ChangeDetectorRef,
-				private sanitizer: DomSanitizer) {
-		
+		private sanitizer: DomSanitizer) {
 	}
 
 	ngOnInit() {
-		let timer = Observable.timer (0 , 10000);
+		let timer = Observable.timer(0, 10000);
 		timer.subscribe(t => this.ttt());
 		this.imageURLs(this.feedItem.images);
-		this.sanitizeandembedURLs(this.feedItem.videos);
+		this.sanitizeAndEmbedURLs(this.feedItem.videos);
 	}
 
 	onShowed(show: boolean) {
 		if (show) {
-			this.showLightBox.emit({show : 'hide'});
+			this.showLightBox.emit({ show: 'hide' });
 		}
 	}
+
 	showHideLightbox(link: string) {
 		window.open(link, '_blank');
 		this.onShowed(true);
 	}
 
 
-	private get profileURL(): string {
+	public get profileURL(): string {
 		return `https://twitter.com/${this.feedItem.screen_name}/`;
 	}
 
 
-	private get profileName(): string {
+	public get profileName(): string {
 		// The api's response.user.name has some errors for verified accounts and profile names with emojis.
 		// It contains the an HTML part related to emojis in profile name.
 		// So to handle such cases we take browser's help to remove such undesired strings.
@@ -58,7 +58,7 @@ export class FeedCardComponent implements OnInit {
 		return text;
 	}
 
-	private get itemText(): string {
+	public get itemText(): string {
 		// HACK : To remove undesired string in profile name using browser.
 
 		let html = this.feedItem.text;
@@ -68,26 +68,26 @@ export class FeedCardComponent implements OnInit {
 		return text;
 	}
 
-	private get retweetCount(): string {
+	public get retweetCount(): string {
 		let retweets = this.feedItem.retweet_count;
 
 		return (retweets === 0) ? '' : retweets.toString();
 	}
 
-	private get favoriteCount(): string {
+	public get favoriteCount(): string {
 		let favourites = this.feedItem.favourites_count;
 
 		return (favourites === 0) ? '' : favourites.toString();
 	}
 
-	private  ttt(): any {
+	public ttt(): any {
 		this.datetime = this.tdiff();
 		this.ref.markForCheck();
 	}
 
 
 	private tdiff(): string {
-		let since: string = null ;
+		let since: string = null;
 		let createdadt = this.feedItem.created_at;
 		let today = new Date().toISOString();  // current time  in ISO format
 		let todaytime = new Date(today).getTime();  // current time in ms
@@ -102,57 +102,55 @@ export class FeedCardComponent implements OnInit {
 		if (sinceMin === 0) {
 			let sinceSec = Math.round((todaytime - tweettime) / 1000);
 			if (sinceSec <= 24) {
-			since = 'now' ;
+				since = 'now';
 			}
 			else {
-				since = sinceSec + 's' ;
+				since = sinceSec + 's';
 			}
 		}
 		else if (sinceMin >= 1 && sinceMin < 60) {
-		since = sinceMin + 'm' ;
+			since = sinceMin + 'm';
 		}
 		else if (sinceMin < 1440) {
-		let sinceHr = Math.round(sinceMin / 60);
-		since = sinceHr + 'h ago' ;
+			let sinceHr = Math.round(sinceMin / 60);
+			since = sinceHr + 'h ago';
 		}
 		else if (date2.getFullYear() === now) {
-			since = months[date2.getMonth()] + ' ' + date2.getDate()  ;
+			since = months[date2.getMonth()] + ' ' + date2.getDate();
 		}
 		else {
-			since = date2.getDate() + ' ' + months[date2.getMonth()] + ' ' + date2.getFullYear()  ;
+			since = date2.getDate() + ' ' + months[date2.getMonth()] + ' ' + date2.getFullYear();
 		}
 
 		return since;
 	}
 
-	private inview(event) {
-		if(event.value == true)
-		{
-		this.inviewport=event.value;
+	public inview(event) {
+		if (event.value === true) {
+			this.inviewport = event.value;
 		}
-
 	}
 
-	private sanitizeandembedURLs(links) {
-		links.forEach((link,i) => {
+	private sanitizeAndEmbedURLs(links) {
+		links.forEach((link, i) => {
 			let videoid = links[i].match(/(?:https?:\/{2})?(?:w{3}\.)?youtu(?:be)?\.(?:com|be)(?:\/watch\?v=|\/)([^\s&]+)/);
-			if(videoid != null) {
-   				links[i] = "http://www.youtube.com/embed/" + videoid[1];
+			if (videoid !== null) {
+				links[i] = 'http://www.youtube.com/embed/' + videoid[1];
 			}
 			links[i] = this.sanitizer.bypassSecurityTrustResourceUrl(links[i]);
 		})
 	}
 
-		private imageURLs(links) {
+	private imageURLs(links) {
 		let img1 = new RegExp('https:\\/\\/abs\\.twimg\\.com\\/');
 		let img2 = new RegExp('https:\\/\\/pic\\.twitter\\.com\\/');
 		let img3 = new RegExp('https:\\/\\/www\\.instagram\\.com\\/')
 		let imgarr = [];
-		links.forEach((link,i) => {
-			var res1 = img1.exec(link);
-			var res2 = img2.exec(link);
-			var res3 = img3.exec(link);
-			if(res1 === null && res2 === null && res3 === null) {
+		links.forEach((link, i) => {
+			let res1 = img1.exec(link);
+			let res2 = img2.exec(link);
+			let res3 = img3.exec(link);
+			if (res1 === null && res2 === null && res3 === null) {
 				imgarr.push(link);
 			}
 		})

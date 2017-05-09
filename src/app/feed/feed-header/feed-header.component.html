@@ -21,7 +21,7 @@
 				</span>
 			</div>
 		</div>
-		<div class="container suggesstion-box" #suggestionbox *ngIf="visibility && Suggesstionlist.length > 0">
+		<div class="container suggesstion-box" #suggestionbox *ngIf="visibility && suggesstionList.length > 0">
 									<ul *ngFor="let item of Suggesstionlist">
 										<li (click)="select(item.query)">
 									{{item.query}}
@@ -32,10 +32,10 @@
 		</div>
 		<div class="tabslist">
 				<ul>
-					<li><a class="tabs" (click)="filterresults(0)" [style.color]="getcolor(0)">All</a></li>
-					<li><a class="tabs" (click)="filterresults(1)" [style.color]="getcolor(1)">Images</a></li>
-					<li><a class="tabs" (click)="filterresults(2)" [style.color]="getcolor(2)">Videos</a></li>
+					<li><a class="tabs" (click)="filterresults(0)" [style.color]="getColor(0)">All</a></li>
+					<li><a class="tabs" (click)="filterresults(1)" [style.color]="getColor(1)">Images</a></li>
+					<li><a class="tabs" (click)="filterresults(2)" [style.color]="getColor(2)">Videos</a></li>
 				</ul>
-			<hr [style.left]="getcoordinates()">
+			<hr [style.left]="getCoordinates()">
 			</div>
 </div>

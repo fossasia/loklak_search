@@ -7,8 +7,8 @@ import { Component, Input, OnInit, Output, ChangeDetectionStrategy, EventEmitter
 	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FeedPaginationComponent implements OnInit {
-	@Input() private isNextPageLoading : boolean;
-	@Input() private areMorePagesAvailable : boolean;
+	@Input() isNextPageLoading: boolean;
+	@Input() areMorePagesAvailable: boolean;
 	@Output() paginate: EventEmitter<any> = new EventEmitter();
 
 	constructor() { }

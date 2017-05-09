@@ -11,13 +11,13 @@ import { Location } from '@angular/common';
 	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FeedHeaderComponent implements OnInit {
-	@Input() private searchInputControl: FormControl;
-	@Input() private Suggesstionlist: SuggestResults[];
-	@Output() private searchEvantEmitter: EventEmitter<any> = new EventEmitter();
-	@Output() private filtertabs: EventEmitter<number> = new EventEmitter();
-	private query: FormControl;
-	private visibility: boolean;
-	private selectedtab: number = 0;
+	@Input() searchInputControl: FormControl;
+	@Input() suggesstionList: SuggestResults[];
+	@Output() searchEvantEmitter: EventEmitter<any> = new EventEmitter();
+	@Output() filtertabs: EventEmitter<number> = new EventEmitter();
+	public query: FormControl;
+	public visibility: boolean;
+	private selectedtab = 0;
 
 	constructor() { }
 
@@ -31,14 +31,14 @@ export class FeedHeaderComponent implements OnInit {
 		this.visibility = false;
 	}
 
-	/*
-	*to show hide the suggesstion box
-	* keycode 13 is the keycode of enter key
+	/**
+	 * To show hide the suggesstion box
+	 * keycode 13 is the keycode of enter key
 	*/
 
-	private gotolink(event) {
+	public gotolink(event) {
 		let keycode = (event.keyCode ? event.keyCode : event.which);
-		if (keycode == '13') {
+		if (keycode === '13') {
 			this.visibility = false;
 			this.searchEvantEmitter.emit();
 		}
@@ -47,26 +47,26 @@ export class FeedHeaderComponent implements OnInit {
 		}
 	}
 
-	private filterresults(filtervalue) {
-		this.selectedtab = filtervalue;		
+	public filterresults(filtervalue) {
+		this.selectedtab = filtervalue;
 		this.filtertabs.emit(filtervalue);
 	}
 
-	private getcolor(value) {
-		if(value == this.selectedtab) {
-			return "#4285F4";
+	public getColor(value) {
+		if (value === this.selectedtab) {
+			return '#4285F4';
 		}
 	}
 
-	private getcoordinates() {
-		if(this.selectedtab == 0) {
-			return "-80px";
+	public getCoordinates() {
+		if (this.selectedtab === 0) {
+			return '-80px';
 		}
-		else if(this.selectedtab == 1) {
-			return "-12px";
+		else if (this.selectedtab === 1) {
+			return '-12px';
 		}
-		else if(this.selectedtab == 2) {
-			return "68px";
+		else if (this.selectedtab === 2) {
+			return '68px';
 		}
 	}
 }

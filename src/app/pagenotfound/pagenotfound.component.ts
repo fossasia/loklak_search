@@ -1,17 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-pagenotfound',
-  templateUrl: './pagenotfound.component.html',
-  styleUrls: ['./pagenotfound.component.scss']
+	selector: 'app-pagenotfound',
+	templateUrl: './pagenotfound.component.html',
+	styleUrls: ['./pagenotfound.component.scss']
 })
 export class PageNotFoundComponent implements OnInit {
-	private header: string = 'loklak Search!';
-	private headerImageUrl: string = 'assets/images/cow_150x175.png';
+	public headerImageUrl = 'assets/images/cow_150x175.png';
 
-  constructor() { }
+	constructor() { }
 
-  ngOnInit() {
-  }
+	ngOnInit() {
+	}
 
 }

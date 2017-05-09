@@ -17,16 +17,16 @@ interface User {
 	styleUrls: ['./contact-form.component.scss']
 })
 export class ContactFormComponent implements OnInit {
-	private ContactForm: FormGroup;
-	private submitted: boolean = false;
-	private selectedValue = null;
-	private countries = countrycodearray;
-	@Output() private hidecontactform: EventEmitter<any> = new EventEmitter();
+	public contactForm: FormGroup;
+	public submitted = false;
+	public selectedValue = null;
+	public countries = countrycodearray;
+	@Output() hideContactForm: EventEmitter<any> = new EventEmitter();
 
 	constructor( private http: Http ) { }
 
 	ngOnInit() {
-		this.ContactForm = new FormGroup({
+		this.contactForm = new FormGroup({
 			name: new FormControl('', [<any>Validators.required]),
 			email: new FormControl('', [<any>Validators.required]),
 			countrycode: new FormControl('213', [<any>Validators.required]),
@@ -35,7 +35,7 @@ export class ContactFormComponent implements OnInit {
 			});
 	}
 
-	private sendtosuperuser(User) {
+	public sendtosuperuser(User) {
 		let headers = new Headers();
 		let formObj = User.getRawValue();
 		let data = JSON.stringify(formObj);
@@ -58,7 +58,7 @@ export class ContactFormComponent implements OnInit {
 		}
 
 
-	private showsubmit() {
+	public showSubmit() {
 		this.submitted = true;
 	}
 
