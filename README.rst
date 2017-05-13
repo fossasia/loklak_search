@@ -101,8 +101,9 @@ This project is currently licensed under The MIT License (MIT). A copy of LICENS
    :target: https://gitter.im/loklak/loklak
 .. |Code Climate| image:: https://codeclimate.com/github/fossasia/loklak_search/badges/gpa.svg
    :target: https://codeclimate.com/github/fossasia/loklak_search
-.. |codecov| image:: https://codecov.io/gh/fossasia/loklak_search/branch/master/graph/badge.svg
+.. |codecov| image:: https://codecov.io/gh/fossasia/loklak_search/branch/gh-pages/graph/badge.svg
    :target: https://codecov.io/gh/fossasia/loklak_search
+
 .. |Dependency Status| image:: https://gemnasium.com/badges/github.com/fossasia/loklak_search.svg
    :target: https://gemnasium.com/github.com/fossasia/loklak_search
    
