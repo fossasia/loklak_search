@@ -1,5 +1,4 @@
 # loklak_search
-[![codecov](https://codecov.io/gh/fossasia/loklak_search/branch/gh-pages/graph/badge.svg)](https://codecov.io/gh/fossasia/loklak_search)
 
 [![Build Status](https://travis-ci.org/fossasia/loklak_search.svg?branch=master)](https://travis-ci.org/fossasia/loklak_search)
 [![Join the chat at https://gitter.im/loklak/loklak](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/loklak/loklak)
