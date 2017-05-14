@@ -26,7 +26,7 @@ export class UserService {
 		searchParams.set('followers', UserService.followers_count.toString());
 		searchParams.set('following', UserService.following_count.toString());
 		searchParams.set('callback', 'JSONP_CALLBACK');
-		// searchParams.set('minified', UserService.minified_results.toString());
+		searchParams.set('minified', UserService.minified_results.toString());
 		return this.jsonp.get(UserService.apiUrl.toString(), {search : searchParams})
 								.map(this.extractData)
 								.catch(this.handleError);

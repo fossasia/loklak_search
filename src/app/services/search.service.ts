@@ -14,6 +14,8 @@ export class SearchService {
 	private static minified_results: boolean = true;
 	private static source: string = 'all';
 	private static fields: string = 'created_at,screen_name,mentions,hashtags';
+	private static limit: number = 10;
+	private static timezoneOffset : string = new Date().getTimezoneOffset().toString();
 
 	constructor(
 		private jsonp: Jsonp
@@ -22,13 +24,15 @@ export class SearchService {
 	// TODO: make the searchParams as configureable model rather than this approach.
 	public fetchQuery(query: string, lastRecord = 0): Observable<ApiResponse> {
 		let searchParams = new URLSearchParams();
-		searchParams.set('q', query);
+		searchParams.set('q', this.formatquery(query));
 		searchParams.set('callback', 'JSONP_CALLBACK');
 		searchParams.set('minified', SearchService.minified_results.toString());
 		searchParams.set('source', SearchService.source);
 		searchParams.set('maximumRecords', SearchService.maximum_records_fetch.toString());
+		searchParams.set('timezoneOffset', SearchService.timezoneOffset);
 		searchParams.set('startRecord', (lastRecord + 1).toString());
 		searchParams.set('fields', SearchService.fields);
+		searchParams.set('limit', SearchService.limit.toString());
 		return this.jsonp.get(SearchService.apiUrl.toString(), {search : searchParams})
 								.map(this.extractData)
 								.catch(this.handleError);
@@ -49,5 +53,25 @@ export class SearchService {
 									error.status ? `${error.status} - ${error.statusText}` : 'Server error';
 		console.error(errMsg); // Right now we are logging to console itself
 		return Observable.throw(errMsg);
+	}
+
+	private formatquery(query) {
+		/* 
+		* Encode the query in URI format
+		* Identifies # in the query and changes the query format
+		* Replaces blanck space with '+' 
+		*/
+		let p = new RegExp('#');
+		let encodedquery = encodeURIComponent(query);
+		encodedquery = encodedquery.replace(/%20/g, '+');
+		let queryarray = query.split(' ');
+		let hashtagfound = false;
+		queryarray.forEach((queries,i) => {
+			if((p.exec(queries) !== null) && hashtagfound == false) {
+				encodedquery = encodedquery + query;
+				hashtagfound = true;
+			}
+		})
+		return encodedquery;
 	}
 }
