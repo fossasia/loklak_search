@@ -25,11 +25,11 @@ import { UserApiResponse } from '../models/api-user-response';
 })
 export class FeedComponent implements OnInit, OnDestroy {
 	private __subscriptions__: Subscription[] = new Array<Subscription>();
-	private _queryControl: FormControl =  new FormControl();
+	public _queryControl: FormControl = new FormControl();
 	private query$: Observable<Query>;
 	private queryString: string;
-	private isSearching$: Observable<boolean>;
-	private areResultsAvailable$: Observable<boolean>;
+	public isSearching$: Observable<boolean>;
+	public areResultsAvailable$: Observable<boolean>;
 	private apiResponseResults$: Observable<ApiResponseResult[]>;
 	private apiResponseTags$: Observable<Tag[]>;
 	private apiResponseAggregations$: Observable<ApiResponseAggregations>;
@@ -46,16 +46,16 @@ export class FeedComponent implements OnInit, OnDestroy {
 	private showUserInfo$: Observable<boolean>;
 	private suggestServiceQuery$: Observable<Query>;
 	private isSuggestServiceLoading$: Observable<boolean>;
-	private suggestResponse$: Observable<SuggestResults[]>;
-	private showUserFeed$: Observable<boolean>;
-	private index: number = 12;
+	public suggestResponse$: Observable<SuggestResults[]>;
+	public showUserFeed$: Observable<boolean>;
+	private index = 12;
 
 	constructor(
 		private route: ActivatedRoute,
 		private location: Location,
 		private store: Store<fromRoot.State>,
 		private elementRef: ElementRef
-	) {  }
+	) { }
 
 	ngOnInit() {
 		this.focusTextbox();
@@ -86,7 +86,7 @@ export class FeedComponent implements OnInit, OnDestroy {
 					if (queryParam) {
 						let re = new RegExp(/^followers:\s*([a-zA-Z0-9_@]+)/, 'i');
 						let matches = re.exec(queryParam);
-						if(matches == null) {
+						if (matches == null) {
 							this.store.dispatch(new apiAction.SearchAction({
 								queryString: queryParam,
 								location: ReloactionAfterQuery.NONE
@@ -94,14 +94,14 @@ export class FeedComponent implements OnInit, OnDestroy {
 							this._queryControl.setValue(queryParam);
 							re = new RegExp(/^from:\s*([a-zA-Z0-9_@]+)/, 'i');
 							matches = re.exec(queryParam);
-							if(matches !== null) {
+							if (matches !== null) {
 								this.store.dispatch(new apiAction.FetchUserAction({
 									queryString: queryParam,
 									location: ReloactionAfterQuery.NONE
 								}));
 							}
 							this.store.dispatch(new apiAction.ShowSearchResults(''));
-						}	else {
+						} else {
 							this.store.dispatch(new apiAction.FetchUserAction({
 								queryString: queryParam,
 								location: ReloactionAfterQuery.RELOCATE
@@ -111,7 +111,7 @@ export class FeedComponent implements OnInit, OnDestroy {
 						this.store.dispatch(new paginationAction.RevertPaginationState(''));
 					}
 				}
-			)
+				)
 		);
 	}
 
@@ -123,7 +123,7 @@ export class FeedComponent implements OnInit, OnDestroy {
 		this.isSearching$ = this.store.select(fromRoot.getSearchLoading);
 		this.areResultsAvailable$ = this.store.select(fromRoot.getAreResultsAvailable);
 		this.apiResponseResults$ = this.store.select(fromRoot.getApiResponseEntities);
-		this.apiResponseTags$  = this.store.select(fromRoot.getApiResponseTags);
+		this.apiResponseTags$ = this.store.select(fromRoot.getApiResponseTags);
 		this.isNextPageLoading$ = this.store.select(fromRoot.getPageLoading);
 		this.areMorePagesAvailable$ = this.store.select(fromRoot.getPagesAvailable);
 		this.apiResponseAggregations$ = this.store.select(fromRoot.getApiAggregations);
@@ -148,9 +148,9 @@ export class FeedComponent implements OnInit, OnDestroy {
 	private subscribeQueryString(): void {
 		this.__subscriptions__.push(
 			this.query$
-					.subscribe(query => {
-						this.queryString = query.queryString;
-					})
+				.subscribe(query => {
+					this.queryString = query.queryString;
+				})
 		);
 	}
 
@@ -168,7 +168,7 @@ export class FeedComponent implements OnInit, OnDestroy {
 					if (this.queryString !== query) {
 						let re = new RegExp(/^followers:\s*([a-zA-Z0-9_@]+)/, 'i');
 						let matches = re.exec(query);
-						if(matches == null) {
+						if (matches == null) {
 							this.store.dispatch(new suggestServiceAction.SuggestAction({
 								queryString: query,
 								location: ReloactionAfterQuery.NONE
@@ -179,7 +179,7 @@ export class FeedComponent implements OnInit, OnDestroy {
 							}));
 							re = new RegExp(/^from:\s*([a-zA-Z0-9_@]+)/, 'i');
 							matches = re.exec(query);
-							if(matches !== null) {
+							if (matches !== null) {
 								this.store.dispatch(new apiAction.FetchUserAction({
 									queryString: query,
 									location: ReloactionAfterQuery.NONE
@@ -204,7 +204,7 @@ export class FeedComponent implements OnInit, OnDestroy {
 	 * There is an only need to change the location as the current request
 	 * is already being fetched (ngrx/effects).
 	 */
-	private handleSearchQuery() {
+	public handleSearchQuery() {
 		let URIquery = encodeURIComponent(this.queryString);
 		this.location.go('/search', `query=${URIquery}`);
 	}
@@ -212,7 +212,7 @@ export class FeedComponent implements OnInit, OnDestroy {
 	/**
 	 * Loads more results by dispatching the `NextPageAction`.
 	 */
-	private loadMoreResults(event) {
+	public loadMoreResults(event) {
 		this.store.dispatch(new paginationAction.NextPageAction(''));
 	}
 
@@ -221,56 +221,56 @@ export class FeedComponent implements OnInit, OnDestroy {
 	*/
 
 	private showhidelightbox(event) {
-		if(event.show == 'hide') {
-			this.visibility= false;
+		if (event.show == 'hide') {
+			this.visibility = false;
 			this.store.dispatch(new apiAction.UnSelectLightbox(event));
-			this.display= false;
+			this.display = false;
 		}
-		else if((event.feedIndex+1)&&(event.show == 'show') && (this.display==false)) {
-			this.display=true;
-			this.visibility=false;
+		else if ((event.feedIndex + 1) && (event.show == 'show') && (this.display == false)) {
+			this.display = true;
+			this.visibility = false;
 
 		}
-		else if ((event.feedIndex+1)&&(event.show == 'show') && (this.display==true)) {
-			this.visibility= true;
+		else if ((event.feedIndex + 1) && (event.show == 'show') && (this.display == true)) {
+			this.visibility = true;
 			this.store.dispatch(new apiAction.SelectLightbox(event.feedIndex));
 		}
 
 	}
 
-	private hidelightbox(event) {
-		this.visibility= false;
+	public hidelightbox(event) {
+		this.visibility = false;
 		this.store.dispatch(new apiAction.UnSelectLightbox(event));
 	}
 
-	private filterresults(filtervalue) {
+	public filterresults(filtervalue) {
 		this._queryControl.setValue(this.queryString);
 		let originalquery = this.queryString;
-		if(filtervalue == 1) {
+		if (filtervalue == 1) {
 			this.queryString = this.queryString + ' /image';
 		}
-		else if(filtervalue == 2) {
+		else if (filtervalue == 2) {
 			this.queryString = this.queryString + ' /video';
 		}
 		this.store.dispatch(new apiAction.SearchAction({
-								queryString: this.queryString,
-								location: ReloactionAfterQuery.NONE
-							}));
+			queryString: this.queryString,
+			location: ReloactionAfterQuery.NONE
+		}));
 		this.queryString = originalquery;
 		this.store.dispatch(new paginationAction.RevertPaginationState(''));
 	}
 
 	showMoreUsers() {
-  	let subscriber = this.apiResponseUserFollowers$.subscribe(apiResponseUserFollowers => {
-  		let length = apiResponseUserFollowers.length;
-  		if(this.index < 24 && length > this.index) {
-  			this.index += 12;
-  		} else if(length > this.index) {
-  			this.index += 24;
-  		}
-  	});
-  	subscriber.unsubscribe();
-  }
+		let subscriber = this.apiResponseUserFollowers$.subscribe(apiResponseUserFollowers => {
+			let length = apiResponseUserFollowers.length;
+			if (this.index < 24 && length > this.index) {
+				this.index += 12;
+			} else if (length > this.index) {
+				this.index += 24;
+			}
+		});
+		subscriber.unsubscribe();
+	}
 
 	/**
 	 * Clearup all the subscription when component is destroyed.
@@ -279,12 +279,12 @@ export class FeedComponent implements OnInit, OnDestroy {
 		this.__subscriptions__.forEach(subscription => subscription.unsubscribe());
 	}
 
-	sortUsers(users: Array<UserApiResponse>) {
-		users.sort(function (a,b) {
-			if(b.followers_count == a.followers_count) {
+	private sortUsers(users: Array<UserApiResponse>) {
+		users.sort(function (a, b) {
+			if (b.followers_count == a.followers_count) {
 				return b.statuses_count - a.statuses_count;
 			}
-			return b.followers_count- a.followers_count;
+			return b.followers_count - a.followers_count;
 		});
 		return users;
 	}

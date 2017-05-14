@@ -7,7 +7,7 @@ import { Query } from '../../models';
 	styleUrls: ['./feed-not-found.component.scss']
 })
 export class FeedNotFoundComponent implements OnInit {
-	@Input() private query: Query;
+	@Input() query: Query;
 
 	constructor() { }
 

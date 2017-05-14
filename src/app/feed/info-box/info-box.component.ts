@@ -16,25 +16,22 @@ export class InfoBoxComponent implements OnInit, OnChanges {
 	@Input() private apiResponseAggregations: ApiResponseAggregations;
 	private inviewporttwitters: Observable<boolean>;
 	private inviewportmentions: Observable<boolean>;
-	private areTopHashtagsAvailable: boolean;
-	private areTopTwitterersAvailable: boolean;
-	private areTopMentionsAvailable: boolean;
-	private areFrequencyDataAvailable: boolean;
+	public areTopHashtagsAvailable: boolean;
+	public areTopTwitterersAvailable: boolean;
+	public areTopMentionsAvailable: boolean;
+	public areFrequencyDataAvailable: boolean;
 	private topHashtags;
 	private topMentions;
 	private topTwitterers;
 
-
+	public barChartLabels: string[] = ['0'];
+	public barChartType = 'bar';
+	public barChartLegend = true;
+	public barChartData: any[] = [ { data: [0], label: 'Tweet Frequency' } ];
 	public barChartOptions: any = {
 		scaleShowVerticalLines: false,
 		responsive: true
 	};
-	public barChartLabels: string[] = ["0"];
-	public barChartType: string = 'bar';
-	public barChartLegend: boolean = true;
-	public barChartData: any[] = [
-		{ data: [0], label: 'Tweet Frequency' }
-	];
 
 	constructor(
 		private store: Store<fromRoot.State>
@@ -69,7 +66,7 @@ export class InfoBoxComponent implements OnInit, OnChanges {
 			this.topHashtags = [];
 			this.areTopHashtagsAvailable = false;
 			return this.topHashtags;
-		}		
+		}
 	}
 	sortTwiterers(statistics) {
 		let sortable = [];
@@ -90,7 +87,7 @@ export class InfoBoxComponent implements OnInit, OnChanges {
 			this.topTwitterers = [];
 			return this.topTwitterers;
 		}
-		
+
 	}
 	sortMentions(statistics) {
 		let sortable = [];
@@ -109,8 +106,8 @@ export class InfoBoxComponent implements OnInit, OnChanges {
 		else{
 			this.areTopMentionsAvailable = false;
 			this.topMentions = [];
-			return this.topMentions;			
-		}		
+			return this.topMentions;
+		}
 	}
 
 	private inviewtwitters(event) {
@@ -141,7 +138,7 @@ export class InfoBoxComponent implements OnInit, OnChanges {
 		this.barChartData[0].data = data;
 		this.barChartLabels = labels;
 		this.areFrequencyDataAvailable = true;
-		
+
 		return this.barChartData[0].data, this.barChartLabels;
 		}
 		else {

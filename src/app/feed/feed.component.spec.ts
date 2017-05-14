@@ -20,7 +20,7 @@ import { FeedComponent } from './feed.component';
 })
 class FeedHeaderStubComponent {
 	@Input() private searchInputControl;
-	@Input() private Suggesstionlist;
+	@Input() private suggesstionList;
 	@Output() private searchEventEmitter: EventEmitter<any>;
 }
 
@@ -29,9 +29,9 @@ class FeedHeaderStubComponent {
 	template: ''
 })
 class FeedCardStubComponent {
-	@Input() private feedItem;
-	@Input() private feedIndex;
-	@Output() private showLightBox: EventEmitter<any>;
+	@Input() feedItem;
+	@Input() feedIndex;
+	@Output() showLightBox: EventEmitter<any>;
 }
 
 @Component({

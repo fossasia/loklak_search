@@ -8,8 +8,8 @@ import { UserApiResponse } from '../../models/api-user-response';
 	styleUrls: ['./feed-user-card.component.scss'],
 })
 export class FeedUserCardComponent implements OnInit {
-	@Input() private feedItem: UserApiResponse;
-	@Input() private feedIndex: number;
+	@Input() feedItem: UserApiResponse;
+	@Input() feedIndex: number;
 
 	constructor() { }
 

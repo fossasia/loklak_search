@@ -8,8 +8,8 @@ import { Query } from '../../models';
 })
 
 export class FeedFooterComponent implements OnInit {
-	@Input() private query: Query;
-	@Input() private apiResponseTags: Array<Tag>;
+	@Input() query: Query;
+	@Input() apiResponseTags: Array<Tag>;
 
 	constructor() { }
 
