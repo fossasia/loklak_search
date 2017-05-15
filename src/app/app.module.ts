@@ -85,7 +85,7 @@ import { PageNotFoundModule } from './pagenotfound/pagenotfound.module';
      *
      * See: https://github.com/zalmoxisus/redux-devtools-extension
      */
-		StoreDevtoolsModule.instrumentOnlyWithExtension(),
+		StoreDevtoolsModule.instrumentStore(),
 
 		/**
      * EffectsModule.run() sets up the effects class to be initialized
