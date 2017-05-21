@@ -40,6 +40,8 @@ First we will need to install angular-cli by using the following command:
 ```sh
 $ npm install -g @angular/cli
 ```
+**Note:** use **sudo** before the command if using OSX or LINUX.
+
 After installing anular-cli we need to install our required node modules, so we will do that by using the following command:
 ```sh 
 $ npm install
