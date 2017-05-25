@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Location } from '@angular/common';
 import { Effect, Actions } from '@ngrx/effects';
-import { Action } from '@ngrx/store';
+import { Store, Action } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 import { empty } from 'rxjs/observable/empty';
 import { of } from 'rxjs/observable/of';
@@ -14,7 +14,8 @@ import 'rxjs/add/operator/takeUntil';
 
 import { SearchService } from '../services';
 import * as apiAction from '../actions/api';
-import { Query, ReloactionAfterQuery } from '../models';
+import * as fromRoot from '../reducers';
+import { Query, ReloactionAfterQuery, Media } from '../models';
 import { ApiResponse } from '../models/api-response';
 
 /**
@@ -41,15 +42,30 @@ export class ApiSearchEffects {
 					.debounceTime(200)
 					.map((action: apiAction.SearchAction) => action.payload)
 					.switchMap(query => {
+
+						let query$: string;
+						let mediatype: string;
+						if(query.media === Media.all) {
+							mediatype = 'all';
+							query$ = query.queryString;
+						}
+						if(query.media === Media.image) {
+							mediatype = 'image';
+							query$ = query.queryString + ' /image';
+						}
+						if(query.media === Media.video) {
+							mediatype = 'video';
+							query$ = query.queryString + ' /video';
+						}
 						
 						let URIquery = encodeURIComponent(query.queryString);
 						const nextSearch$ = this.actions$.ofType(apiAction.ActionTypes.SEARCH).skip(1);
 
-						return this.apiSearchService.fetchQuery(query.queryString)
+						return this.apiSearchService.fetchQuery(query$)
 							.takeUntil(nextSearch$)
 							.map((response) => {
 								if (query.location === ReloactionAfterQuery.RELOCATE) {
-									this.location.go(`/search?query=${URIquery}`);
+									this.location.go(`/search?query=${URIquery}&media=${mediatype}`);
 								}
 								return new apiAction.SearchCompleteSuccessAction(response);
 							})
@@ -59,7 +75,8 @@ export class ApiSearchEffects {
 	constructor(
 		private actions$: Actions,
 		private apiSearchService: SearchService,
-		private location: Location
+		private location: Location,
+		private store: Store<fromRoot.State>,
 	) { }
 
 }

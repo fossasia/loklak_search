@@ -3,9 +3,10 @@
 				[searchInputControl]="_queryControl"
 				[suggesstionList]="(suggestResponse$ | async)"
 				(searchEvantEmitter)="handleSearchQuery()"
-				(filtertabs)="filterresults($event)"></feed-header>
+				(filtertabs)="filterresults($event)"
+				[media]="media"></feed-header>
 
-	<div *ngIf="!(showUserFeed$ | async)">
+	<div *ngIf="!(showUserFeed$ | async) && queryString !== ''">
 
 		<div *ngIf="(isSearching$ | async)">
 			<div class="searching">
@@ -44,7 +45,7 @@
 			<div class="results-not-found"
 						*ngIf="!(areResultsAvailable$ | async) &&
 									((query$ | async).queryString)" >
-				<feed-not-found [query]="(query$ | async)"></feed-not-found>
+				<feed-not-found [query]="(query$ | async)" [media]="media"></feed-not-found>
 			</div>
 		</div>
 
@@ -67,7 +68,7 @@
 			</div>
 			<div class="results-not-found"
 						*ngIf="((apiResponseUserFollowers$ | async).length == 0)">
-				<feed-not-found [query]="(query$ | async)"></feed-not-found>
+				<feed-not-found [query]="(query$ | async)" [media]="media"></feed-not-found>
 			</div>
 		</div>
 	</div>

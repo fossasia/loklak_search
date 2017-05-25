@@ -4,6 +4,8 @@ import { Observable } from 'rxjs/Observable';
 import { SuggestResults } from '../../models/api-suggest';
 import { Location } from '@angular/common';
 
+import * as apiAction from '../../actions/api';
+
 @Component({
 	selector: 'feed-header',
 	templateUrl: './feed-header.component.html',
@@ -13,6 +15,7 @@ import { Location } from '@angular/common';
 export class FeedHeaderComponent implements OnInit {
 	@Input() searchInputControl: FormControl;
 	@Input() suggesstionList: SuggestResults[];
+	@Input() media: string;
 	@Output() searchEvantEmitter: EventEmitter<any> = new EventEmitter();
 	@Output() filtertabs: EventEmitter<number> = new EventEmitter();
 	public query: FormControl;
@@ -24,6 +27,7 @@ export class FeedHeaderComponent implements OnInit {
 	ngOnInit() {
 		this.query = this.searchInputControl.value;
 		this.visibility = true;
+		this.checkmedia();
 	}
 
 	private select(item) {
@@ -67,6 +71,18 @@ export class FeedHeaderComponent implements OnInit {
 		}
 		else if (this.selectedtab === 2) {
 			return '68px';
+		}
+	}
+
+	public checkmedia() {
+		if(this.media == 'all') {
+			this.selectedtab = 0;
+		}
+		else if(this.media == 'image') {
+			this.selectedtab = 1;
+		}
+		else if(this.media == 'video') {
+			this.selectedtab = 2;
 		}
 	}
 }

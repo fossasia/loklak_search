@@ -14,7 +14,7 @@ import * as suggestServiceAction from '../actions/suggest';
 
 import { ApiResponse, ApiResponseMetadata, ApiResponseResult, ApiResponseAggregations } from '../models/api-response';
 import { SuggestMetadata, SuggestResults, SuggestResponse } from '../models/api-suggest';
-import { Query, ReloactionAfterQuery } from '../models/query';
+import { Query, ReloactionAfterQuery, Media } from '../models/query';
 import { UserApiResponse } from '../models/api-user-response';
 
 @Component({
@@ -27,7 +27,9 @@ export class FeedComponent implements OnInit, OnDestroy {
 	private __subscriptions__: Subscription[] = new Array<Subscription>();
 	public _queryControl: FormControl = new FormControl();
 	private query$: Observable<Query>;
-	private queryString: string;
+	public media: string;
+	public media$: Media = Media.all;
+	public queryString: string;
 	public isSearching$: Observable<boolean>;
 	public areResultsAvailable$: Observable<boolean>;
 	private apiResponseResults$: Observable<ApiResponseResult[]>;
@@ -44,11 +46,15 @@ export class FeedComponent implements OnInit, OnDestroy {
 	private apiResponseUserFollowing$: Observable<UserApiResponse[]>;
 	private isUserResponseLoading$: Observable<boolean>;
 	private showUserInfo$: Observable<boolean>;
-	private suggestServiceQuery$: Observable<Query>;
+	private suggestServiceQuery$: Observable<string>;
 	private isSuggestServiceLoading$: Observable<boolean>;
 	public suggestResponse$: Observable<SuggestResults[]>;
 	public showUserFeed$: Observable<boolean>;
 	private index = 12;
+	private getAllSearch$: Observable<boolean>;
+	private getImagesSearch$: Observable<boolean>;
+	private getVideosSearch$: Observable<boolean>;
+	private getNewsSearch$:Observable<boolean>;
 
 	constructor(
 		private route: ActivatedRoute,
@@ -63,6 +69,7 @@ export class FeedComponent implements OnInit, OnDestroy {
 		this.getDataFromStore();
 		this.subscribeQueryString();
 		this.setupSearchField();
+		this.maintainmediastate();
 	}
 	/**
 	 * Focus the search box on the `Loading` of the Feedpage.
@@ -83,13 +90,27 @@ export class FeedComponent implements OnInit, OnDestroy {
 			this.route.queryParams
 				.subscribe((params: Params) => {
 					let queryParam = params['query'] || '';
+					this.media = params['media'] || '';
 					if (queryParam) {
 						let re = new RegExp(/^followers:\s*([a-zA-Z0-9_@]+)/, 'i');
 						let matches = re.exec(queryParam);
 						if (matches == null) {
+							if(this.media == 'all') {
+								this.media$ = Media.all;
+								this.store.dispatch(new apiAction.SearchAllFeeds(''));
+							}
+							else if(this.media == 'image') {
+								this.media$ = Media.image;
+								this.store.dispatch(new apiAction.SearchImagesFeeds(''));
+							}
+							else if(this.media == 'video') {
+								this.media$ = Media.video;
+								this.store.dispatch(new apiAction.SearchVideosFeeds(''));
+							}
 							this.store.dispatch(new apiAction.SearchAction({
 								queryString: queryParam,
-								location: ReloactionAfterQuery.NONE
+								location: ReloactionAfterQuery.NONE,
+								media: this.media$
 							}));
 							this._queryControl.setValue(queryParam);
 							re = new RegExp(/^from:\s*([a-zA-Z0-9_@]+)/, 'i');
@@ -97,14 +118,16 @@ export class FeedComponent implements OnInit, OnDestroy {
 							if (matches !== null) {
 								this.store.dispatch(new apiAction.FetchUserAction({
 									queryString: queryParam,
-									location: ReloactionAfterQuery.NONE
+									location: ReloactionAfterQuery.NONE,
+									media: this.media$
 								}));
 							}
 							this.store.dispatch(new apiAction.ShowSearchResults(''));
 						} else {
 							this.store.dispatch(new apiAction.FetchUserAction({
 								queryString: queryParam,
-								location: ReloactionAfterQuery.RELOCATE
+								location: ReloactionAfterQuery.RELOCATE,
+								media: this.media$
 							}));
 							this.store.dispatch(new apiAction.ShowUserFeed(''));
 						}
@@ -138,6 +161,10 @@ export class FeedComponent implements OnInit, OnDestroy {
 		this.isSuggestServiceLoading$ = this.store.select(fromRoot.getSuggestServiceLoading);
 		this.suggestResponse$ = this.store.select(fromRoot.getSuggestResponseEntities);
 		this.showUserFeed$ = this.store.select(fromRoot.getShowUserFeed);
+		this.getAllSearch$ = this.store.select(fromRoot.getAllSearch);
+		this.getImagesSearch$ = this.store.select(fromRoot.getImagesSearch);
+		this.getVideosSearch$ = this.store.select(fromRoot.getVideosSearch);
+		this.getNewsSearch$ = this.store.select(fromRoot.getNewsSearch);
 	}
 
 	/**
@@ -169,27 +196,27 @@ export class FeedComponent implements OnInit, OnDestroy {
 						let re = new RegExp(/^followers:\s*([a-zA-Z0-9_@]+)/, 'i');
 						let matches = re.exec(query);
 						if (matches == null) {
-							this.store.dispatch(new suggestServiceAction.SuggestAction({
-								queryString: query,
-								location: ReloactionAfterQuery.NONE
-							}));
+							this.store.dispatch(new suggestServiceAction.SuggestAction(query));
 							this.store.dispatch(new apiAction.SearchAction({
 								queryString: query,
-								location: ReloactionAfterQuery.RELOCATE
+								location: ReloactionAfterQuery.RELOCATE,
+								media: this.media$
 							}));
 							re = new RegExp(/^from:\s*([a-zA-Z0-9_@]+)/, 'i');
 							matches = re.exec(query);
 							if (matches !== null) {
 								this.store.dispatch(new apiAction.FetchUserAction({
 									queryString: query,
-									location: ReloactionAfterQuery.NONE
+									location: ReloactionAfterQuery.NONE,
+									media: this.media$
 								}));
 							}
 							this.store.dispatch(new apiAction.ShowSearchResults(''));
 						} else {
 							this.store.dispatch(new apiAction.FetchUserAction({
 								queryString: query,
-								location: ReloactionAfterQuery.RELOCATE
+								location: ReloactionAfterQuery.RELOCATE,
+								media: this.media$
 							}));
 							this.store.dispatch(new apiAction.ShowUserFeed(''));
 						}
@@ -244,19 +271,26 @@ export class FeedComponent implements OnInit, OnDestroy {
 	}
 
 	public filterresults(filtervalue) {
-		this._queryControl.setValue(this.queryString);
-		let originalquery = this.queryString;
+		if(filtervalue == 0) {
+			this.store.dispatch(new apiAction.SearchAllFeeds(''));
+			this.media="all";
+			this.media$ = Media.all;
+		}
 		if (filtervalue == 1) {
-			this.queryString = this.queryString + ' /image';
+			this.store.dispatch(new apiAction.SearchImagesFeeds(''));
+			this.media="image";
+			this.media$ = Media.image;
 		}
 		else if (filtervalue == 2) {
-			this.queryString = this.queryString + ' /video';
+			this.store.dispatch(new apiAction.SearchVideosFeeds(''));
+			this.media="video";
+			this.media$ = Media.video;
 		}
 		this.store.dispatch(new apiAction.SearchAction({
-			queryString: this.queryString,
-			location: ReloactionAfterQuery.NONE
-		}));
-		this.queryString = originalquery;
+								queryString: this.queryString,
+								location: ReloactionAfterQuery.RELOCATE,
+								media: this.media$
+							}));
 		this.store.dispatch(new paginationAction.RevertPaginationState(''));
 	}
 
@@ -270,6 +304,26 @@ export class FeedComponent implements OnInit, OnDestroy {
 			}
 		});
 		subscriber.unsubscribe();
+	}
+
+	private maintainmediastate() {
+		this.__subscriptions__.push(
+			this.getAllSearch$.subscribe(getAllSearch => {
+				 if(getAllSearch) {
+				 	this.media$ = Media.all;
+				 }
+			}),
+			this.getImagesSearch$.subscribe(getImagesSearch => {
+				if(getImagesSearch) {
+					this.media$ = Media.image;
+				}
+			}),
+			this.getVideosSearch$.subscribe(getVideosSearch => {
+				if(getVideosSearch) {
+					this.media$ = Media.video;
+				}
+			})
+		);
 	}
 
 	/**

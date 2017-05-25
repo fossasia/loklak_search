@@ -1,6 +1,5 @@
 import { Action } from '@ngrx/store';
 import { SuggestResponse } from '../models/api-suggest';
-import { Query } from '../models/query';
 import { actionTypeCheck } from '../utils';
 
 /**
@@ -28,7 +27,7 @@ export const ActionTypes = {
 export class SuggestAction implements Action {
 	type = ActionTypes.SUGGEST;
 
-	constructor(public payload: Query) { }
+	constructor(public payload: string) { }
 }
 
 export class SuggestCompleteSuccessAction implements Action {

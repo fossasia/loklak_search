@@ -12,7 +12,7 @@ import 'rxjs/add/operator/withLatestFrom';
 import 'rxjs/add/operator/distinctUntilChanged';
 
 import { SearchService } from '../services';
-import { Query } from '../models/query';
+import { Query, Media } from '../models/query';
 import * as apiAction from '../actions/api';
 import * as paginationAction from '../actions/pagination';
 import * as fromRoot from '../reducers';
@@ -48,6 +48,22 @@ export class PaginationEffects {
 						this.lastRecord = state.apiResponse.entities.length;
 					})
 					.switchMap(() => {
+
+						let query$: string;
+						let mediatype: string;
+						if(this.query.media === Media.all) {
+							mediatype = 'all';
+							query$ = this.query.queryString;
+						}
+						if(this.query.media === Media.image) {
+							mediatype = 'image';
+							query$ = this.query.queryString + ' /image';
+						}
+						if(this.query.media === Media.video) {
+							mediatype = 'video';
+							query$ = this.query.queryString + ' /video';
+						}
+						
 						const nextSearch$ = this.actions$.ofType(apiAction.ActionTypes.SEARCH);
 
 						return this.apiSearchService.fetchQuery(this.query.queryString, this.lastRecord)

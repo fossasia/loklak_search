@@ -23,9 +23,10 @@ export const ActionTypes = {
 	FETCH_USER_FAIL: actionTypeCheck('[Api] Fetch User Fail'),
 	SHOW_USER_FEED: actionTypeCheck('Show User Feed'),
 	SHOW_SEARCH_RESULTS: actionTypeCheck('Show Search Results'),
-	SHOW_ALL_FEEDS: actionTypeCheck('Show all tweets'),
-	SHOW_IMAGES_FEEDS: actionTypeCheck('Show tweets with images'),
-	SHOW_VIDEOS_FEEDS: actionTypeCheck('Show tweets with videos')
+	SEARCH_ALL_FEEDS: actionTypeCheck('Search all tweets'),
+	SEARCH_IMAGES_FEEDS: actionTypeCheck('Search tweets with images'),
+	SEARCH_VIDEOS_FEEDS: actionTypeCheck('Search tweets with videos'),
+	SEARCH_NEWS_FEEDS: actionTypeCheck('Search tweets from news resources'),
 };
 
 /**
@@ -99,20 +100,26 @@ export class ShowSearchResults implements Action {
 	constructor(public payload: any) {}
 }
 
-export class ShowAllFeeds implements Action {
-	type = ActionTypes.SHOW_ALL_FEEDS;
+export class SearchAllFeeds implements Action {
+	type = ActionTypes.SEARCH_ALL_FEEDS;
 
 	constructor(public payload: any) {}
 }
 
-export class ShowImagesFeeds implements Action {
-	type = ActionTypes.SHOW_IMAGES_FEEDS;
+export class SearchImagesFeeds implements Action {
+	type = ActionTypes.SEARCH_IMAGES_FEEDS;
 
 	constructor(public payload: any) {}
 }
 
-export class ShowVideosFeeds implements Action {
-	type = ActionTypes.SHOW_VIDEOS_FEEDS;
+export class SearchVideosFeeds implements Action {
+	type = ActionTypes.SEARCH_VIDEOS_FEEDS;
+
+	constructor(public payload: any) {}
+}
+
+export class SearchNewsFeeds implements Action {
+	type = ActionTypes.SEARCH_NEWS_FEEDS;
 
 	constructor(public payload: any) {}
 }
@@ -132,6 +139,7 @@ export type Actions
 	| FetchUserFailAction
 	| ShowUserFeed
 	| ShowSearchResults
-	| ShowAllFeeds
-	| ShowImagesFeeds
-	| ShowVideosFeeds;
+	| SearchAllFeeds
+	| SearchImagesFeeds
+	| SearchVideosFeeds
+	| SearchNewsFeeds;

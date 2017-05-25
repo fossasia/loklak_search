@@ -14,7 +14,6 @@ import 'rxjs/add/operator/takeUntil';
 
 import { SuggestService } from '../services';
 import * as suggestAction from '../actions/suggest';
-import { Query, ReloactionAfterQuery } from '../models/query';
 
 /**
  * Effects offer a way to isolate and easily test side-effects within your
@@ -42,7 +41,7 @@ export class SuggestEffects {
 					.switchMap(query => {
 						const nextSuggest$ = this.actions$.ofType(suggestAction.ActionTypes.SUGGEST);
 
-						return this.suggestService.fetchQuery(query.queryString)
+						return this.suggestService.fetchQuery(query)
 																				.takeUntil(nextSuggest$)
 																				.map(response => {
 																					return new suggestAction.SuggestCompleteSuccessAction(response);
