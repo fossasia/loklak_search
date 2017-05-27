@@ -21,6 +21,7 @@ import { FeedComponent } from './feed.component';
 class FeedHeaderStubComponent {
 	@Input() private searchInputControl;
 	@Input() private suggesstionList;
+	@Input() private media;
 	@Output() private searchEventEmitter: EventEmitter<any>;
 }
 
@@ -55,6 +56,7 @@ class FooterStubComponent { }
 })
 class FeedNotFoundStubComponent {
 	@Input() private query;
+	@Input() private media;
 }
 
 @Component({

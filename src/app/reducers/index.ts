@@ -44,6 +44,7 @@ import * as fromPagination from './pagination';
 import * as fromApiUserResponse from './api-user-response';
 import * as fromSuggestService from './suggest';
 import * as fromSuggestResponse from './suggest-response';
+import * as fromMediaSearch from './api-media-search';
 
 /**
  * As mentioned, we treat each reducer like a table in a database. This means
@@ -56,6 +57,7 @@ export interface State {
 	apiUserResponse: fromApiUserResponse.State;
 	suggestService: fromSuggestService.State;
 	suggestResponse: fromSuggestResponse.State;
+	mediaSearch: fromMediaSearch.State
 }
 
 /**
@@ -71,7 +73,8 @@ const reducers = {
 	pagination: fromPagination.reducer,
 	apiUserResponse: fromApiUserResponse.reducer,
 	suggestService: fromSuggestService.reducer,
-	suggestResponse: fromSuggestResponse.reducer
+	suggestResponse: fromSuggestResponse.reducer,
+	mediaSearch: fromMediaSearch.reducer
 };
 
 // const developmentReducer: ActionReducer<State> = compose(storeFreeze, combineReducers)(reducers);
@@ -179,6 +182,16 @@ export const getSuggestResponseState = (state: State) => state.suggestResponse;
 export const getSuggestResponseEntities = createSelector(getSuggestResponseState, fromSuggestResponse.getEntities);
 export const isSuggestResponseValid = createSelector(getSuggestResponseState, fromSuggestResponse.isResultValid);
 export const getSuggestServiceLastResponse = createSelector(getSuggestResponseState, fromSuggestResponse.lastRecord);
+
+/**
+*Selectors For Media Search
+*/
+export const getMediaSearch = (state: State) => state.mediaSearch;
+
+export const getAllSearch = createSelector(getMediaSearch, fromMediaSearch.getAllSearch);
+export const getImagesSearch = createSelector(getMediaSearch, fromMediaSearch.getImagesSearch);
+export const getVideosSearch = createSelector(getMediaSearch, fromMediaSearch.getVideosSearch);
+export const getNewsSearch = createSelector(getMediaSearch, fromMediaSearch.getNewsSearch);
 
 
 /**

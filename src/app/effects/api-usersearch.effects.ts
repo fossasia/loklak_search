@@ -48,9 +48,6 @@ export class ApiUserSearchEffects {
 						return this.apiUserService.fetchQuery(screenName)
 																				.takeUntil(nextSearch$)
 																				.map(response => {
-																					if (query.location === ReloactionAfterQuery.RELOCATE) {
-																						this.location.go(`/search?query=${query.queryString}`);
-																					}
 																					return new apiAction.FetchUserSuccessAction(response);
 																				})
 																				.catch(() => of(new apiAction.FetchUserFailAction('')));

@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect';
 import * as api from '../actions/api';
-import { Query, ReloactionAfterQuery } from '../models/query';
+import { Query, ReloactionAfterQuery, Media } from '../models/query';
 
 /**
  * Each reducer module must import the local `State` which it controls.
@@ -22,7 +22,7 @@ export interface State {
  * @prop: loading: false
  */
 const initialState: State = {
-	query: { queryString: '', location: ReloactionAfterQuery.NONE },
+	query: { queryString: '', location: ReloactionAfterQuery.NONE, media: Media.all },
 	loading: false,
 	showUserFeed: false
 };
@@ -45,6 +45,30 @@ export function reducer(state: State = initialState, action: api.Actions): State
 				query,
 				loading: true
 			});
+		}
+
+		case api.ActionTypes.SEARCH_ALL_FEEDS: {
+
+			return Object.assign({},state, {
+				query: { queryString: state.query.queryString, location: ReloactionAfterQuery.RELOCATE, media: Media.all },
+				loading: true
+			})
+		}
+
+		case api.ActionTypes.SEARCH_IMAGES_FEEDS: {
+
+			return Object.assign({},state, {
+				query: { queryString: state.query.queryString, location: ReloactionAfterQuery.RELOCATE, media: Media.image },
+				loading: true
+			})
+		}
+
+		case api.ActionTypes.SEARCH_VIDEOS_FEEDS: {
+
+			return Object.assign({},state, {
+				query: { queryString: state.query.queryString, location: ReloactionAfterQuery.RELOCATE, media: Media.video },
+				loading: true
+			})
 		}
 
 		case api.ActionTypes.FETCH_USER: {
