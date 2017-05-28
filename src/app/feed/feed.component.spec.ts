@@ -4,7 +4,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { TestBed, async } from '@angular/core/testing';
 import { Route } from '@angular/router';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormControl } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { MaterialModule } from '@angular/material';
 import { StoreModule } from '@ngrx/store';
@@ -19,9 +19,9 @@ import { FeedComponent } from './feed.component';
 	template: ''
 })
 class FeedHeaderStubComponent {
-	@Input() private searchInputControl;
-	@Input() private suggesstionList;
-	@Output() private searchEventEmitter: EventEmitter<any>;
+	@Input() query: string;
+	@Input() searchInputControl: FormControl;
+	@Input() suggestionList;
 }
 
 @Component({

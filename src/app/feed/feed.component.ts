@@ -1,4 +1,7 @@
-import { Component, OnInit, OnDestroy, ChangeDetectionStrategy, ElementRef, HostListener } from '@angular/core';
+import { Component,
+					OnInit, AfterViewInit, OnDestroy,
+					ChangeDetectionStrategy, ElementRef, HostListener } from '@angular/core';
+
 import { FormControl } from '@angular/forms';
 import { Location } from '@angular/common';
 import { Router, ActivatedRoute, Params } from '@angular/router';
@@ -23,11 +26,10 @@ import { UserApiResponse } from '../models/api-user-response';
 	styleUrls: ['./feed.component.scss'],
 	changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class FeedComponent implements OnInit, OnDestroy {
+export class FeedComponent implements OnInit, AfterViewInit, OnDestroy {
 	private __subscriptions__: Subscription[] = new Array<Subscription>();
-	public _queryControl: FormControl = new FormControl();
-	private query$: Observable<Query>;
-	private queryString: string;
+
+	public query$: Observable<Query>;
 	public isSearching$: Observable<boolean>;
 	public areResultsAvailable$: Observable<boolean>;
 	private apiResponseResults$: Observable<ApiResponseResult[]>;
@@ -35,8 +37,8 @@ export class FeedComponent implements OnInit, OnDestroy {
 	private apiResponseAggregations$: Observable<ApiResponseAggregations>;
 	private isNextPageLoading$: Observable<boolean>;
 	private areMorePagesAvailable$: Observable<boolean>;
-	private visibility: boolean = false;
-	private display: boolean = true;
+	private visibility = false;
+	private display = true;
 	private isLightboxSelected$: Observable<boolean>;
 	private LightboxgetSelectedItem$: Observable<ApiResponseResult>;
 	private apiResponseUser$: Observable<UserApiResponse>;
@@ -58,12 +60,14 @@ export class FeedComponent implements OnInit, OnDestroy {
 	) { }
 
 	ngOnInit() {
-		this.focusTextbox();
 		this.queryFromURL();
 		this.getDataFromStore();
-		this.subscribeQueryString();
-		this.setupSearchField();
 	}
+
+	ngAfterViewInit() {
+		this.focusTextbox();
+	}
+
 	/**
 	 * Focus the search box on the `Loading` of the Feedpage.
 	 */
@@ -81,37 +85,10 @@ export class FeedComponent implements OnInit, OnDestroy {
 	private queryFromURL(): void {
 		this.__subscriptions__.push(
 			this.route.queryParams
-				.subscribe((params: Params) => {
-					let queryParam = params['query'] || '';
-					if (queryParam) {
-						let re = new RegExp(/^followers:\s*([a-zA-Z0-9_@]+)/, 'i');
-						let matches = re.exec(queryParam);
-						if (matches == null) {
-							this.store.dispatch(new apiAction.SearchAction({
-								queryString: queryParam,
-								location: ReloactionAfterQuery.NONE
-							}));
-							this._queryControl.setValue(queryParam);
-							re = new RegExp(/^from:\s*([a-zA-Z0-9_@]+)/, 'i');
-							matches = re.exec(queryParam);
-							if (matches !== null) {
-								this.store.dispatch(new apiAction.FetchUserAction({
-									queryString: queryParam,
-									location: ReloactionAfterQuery.NONE
-								}));
-							}
-							this.store.dispatch(new apiAction.ShowSearchResults(''));
-						} else {
-							this.store.dispatch(new apiAction.FetchUserAction({
-								queryString: queryParam,
-								location: ReloactionAfterQuery.RELOCATE
-							}));
-							this.store.dispatch(new apiAction.ShowUserFeed(''));
-						}
-						this.store.dispatch(new paginationAction.RevertPaginationState(''));
-					}
-				}
-				)
+					.subscribe((params: Params) => {
+						let queryParam = params['query'] || '';
+						this.search(queryParam);
+					})
 		);
 	}
 
@@ -141,71 +118,52 @@ export class FeedComponent implements OnInit, OnDestroy {
 	}
 
 	/**
-	 * Sets up a subscription for the `query$` so that it can be used
-	 * to hold and transfer the latest value of query state in
-	 * `string` form instead of subscribing everytime.
+	 * Dispatches the search actions according to the type of the string.
+	 *
+	 * @param query : The query term which is dispatched to the store.
 	 */
-	private subscribeQueryString(): void {
-		this.__subscriptions__.push(
-			this.query$
-				.subscribe(query => {
-					this.queryString = query.queryString;
-				})
-		);
-	}
-
-	/**
-	 * Setup for the `FormControl` of the search field.
-	 * Set the initial value of input field from store.
-	 * Subscribes to the valueChange Observable, and dispatches `SearchAction`
-	 * if the value is different then already in store.
-	 */
-	private setupSearchField(): void {
-		this._queryControl.setValue(this.queryString);
-		this.__subscriptions__.push(
-			this._queryControl.valueChanges
-				.subscribe(query => {
-					if (this.queryString !== query) {
-						let re = new RegExp(/^followers:\s*([a-zA-Z0-9_@]+)/, 'i');
-						let matches = re.exec(query);
-						if (matches == null) {
-							this.store.dispatch(new suggestServiceAction.SuggestAction({
-								queryString: query,
-								location: ReloactionAfterQuery.NONE
-							}));
-							this.store.dispatch(new apiAction.SearchAction({
-								queryString: query,
-								location: ReloactionAfterQuery.RELOCATE
-							}));
-							re = new RegExp(/^from:\s*([a-zA-Z0-9_@]+)/, 'i');
-							matches = re.exec(query);
-							if (matches !== null) {
-								this.store.dispatch(new apiAction.FetchUserAction({
-									queryString: query,
-									location: ReloactionAfterQuery.NONE
-								}));
-							}
-							this.store.dispatch(new apiAction.ShowSearchResults(''));
-						} else {
-							this.store.dispatch(new apiAction.FetchUserAction({
-								queryString: query,
-								location: ReloactionAfterQuery.RELOCATE
-							}));
-							this.store.dispatch(new apiAction.ShowUserFeed(''));
-						}
-						this.store.dispatch(new paginationAction.RevertPaginationState(''));
+	public search(query: string) {
+		if (query) {
+				let re = new RegExp(/^followers:\s*([a-zA-Z0-9_@]+)/, 'i');
+				let matches = re.exec(query);
+				if (matches == null) {
+					this.store.dispatch(new suggestServiceAction.SuggestAction({
+						queryString: query,
+						location: ReloactionAfterQuery.NONE
+					}));
+					this.store.dispatch(new apiAction.SearchAction({
+						queryString: query,
+						location: ReloactionAfterQuery.RELOCATE
+					}));
+					re = new RegExp(/^from:\s*([a-zA-Z0-9_@]+)/, 'i');
+					matches = re.exec(query);
+					if (matches !== null) {
+						this.store.dispatch(new apiAction.FetchUserAction({
+							queryString: query,
+							location: ReloactionAfterQuery.NONE
+						}));
 					}
-				})
-		);
+					this.store.dispatch(new apiAction.ShowSearchResults(''));
+				} else {
+					this.store.dispatch(new apiAction.FetchUserAction({
+						queryString: query,
+						location: ReloactionAfterQuery.RELOCATE
+					}));
+					this.store.dispatch(new apiAction.ShowUserFeed(''));
+				}
+				this.store.dispatch(new paginationAction.RevertPaginationState(''));
+			}
 	}
 
 	/**
 	 * Handles the Query request when Enter key is pressed `explicitly` in input.
 	 * There is an only need to change the location as the current request
 	 * is already being fetched (ngrx/effects).
+	 *
+	 * @param query : The string term which is set as parameter to url.
 	 */
-	public handleSearchQuery() {
-		let URIquery = encodeURIComponent(this.queryString);
+	public relocateURL(query: string) {
+		let URIquery = encodeURIComponent(query);
 		this.location.go('/search', `query=${URIquery}`);
 	}
 
@@ -219,19 +177,18 @@ export class FeedComponent implements OnInit, OnDestroy {
 	/**
 	/* Lightbox handling :- showlightbox updates the lightbox with feed and hidelightbox removes the feed
 	*/
-
 	private showhidelightbox(event) {
-		if (event.show == 'hide') {
+		if (event.show === 'hide') {
 			this.visibility = false;
 			this.store.dispatch(new apiAction.UnSelectLightbox(event));
 			this.display = false;
 		}
-		else if ((event.feedIndex + 1) && (event.show == 'show') && (this.display == false)) {
+		else if ((event.feedIndex + 1) && (event.show === 'show') && (this.display === false)) {
 			this.display = true;
 			this.visibility = false;
 
 		}
-		else if ((event.feedIndex + 1) && (event.show == 'show') && (this.display == true)) {
+		else if ((event.feedIndex + 1) && (event.show === 'show') && (this.display === true)) {
 			this.visibility = true;
 			this.store.dispatch(new apiAction.SelectLightbox(event.feedIndex));
 		}
@@ -243,21 +200,10 @@ export class FeedComponent implements OnInit, OnDestroy {
 		this.store.dispatch(new apiAction.UnSelectLightbox(event));
 	}
 
-	public filterresults(filtervalue) {
-		this._queryControl.setValue(this.queryString);
-		let originalquery = this.queryString;
-		if (filtervalue == 1) {
-			this.queryString = this.queryString + ' /image';
-		}
-		else if (filtervalue == 2) {
-			this.queryString = this.queryString + ' /video';
-		}
-		this.store.dispatch(new apiAction.SearchAction({
-			queryString: this.queryString,
-			location: ReloactionAfterQuery.NONE
-		}));
-		this.queryString = originalquery;
-		this.store.dispatch(new paginationAction.RevertPaginationState(''));
+	public filterResults(query: string) {
+		/**
+		 * Implementation removed, Re-implementation will be required.
+		 */
 	}
 
 	showMoreUsers() {
@@ -281,7 +227,7 @@ export class FeedComponent implements OnInit, OnDestroy {
 
 	private sortUsers(users: Array<UserApiResponse>) {
 		users.sort(function (a, b) {
-			if (b.followers_count == a.followers_count) {
+			if (b.followers_count === a.followers_count) {
 				return b.statuses_count - a.statuses_count;
 			}
 			return b.followers_count - a.followers_count;

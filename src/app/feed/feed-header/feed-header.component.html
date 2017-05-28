@@ -9,33 +9,30 @@
 			<div class="input-group">
 				<label for="search">Search On Loklak.</label>
 
-				<input type="text" class="form-control" id="search" name="search" required
-								[formControl]="searchInputControl" placeholder="I'm feeling awesome!" (keyup)="gotolink($event)" [(ngModel)]=query (click)="visibility=true"/>
+				<input mdInput required autocomplete="off" type="text" id="search" name="search" placeholder="I'm feeling awesome!"
+								[formControl]="searchInputControl" [mdAutocomplete]="searchSuggestBox"
+								(keyup.enter)="relocateEvent.emit(query)" [(ngModel)]="query"/>
 
+				<md-autocomplete #searchSuggestBox="mdAutocomplete">
+					<md-option *ngFor="let suggestion of suggestionList.slice(0, 4)" [value]="suggestion.query">{{suggestion.query}}</md-option>
+				</md-autocomplete>
 
 				<span class="input-group-btn">
 					<button class="btn" role="button" type="button" tabindex="-1"
-									aria-roledescription="Search the web using loklak search." (click)="searchEvantEmitter.emit()">
+									aria-roledescription="Search the web using loklak search." (click)="relocateEvent.emit(query)">
 						<i class="material-icons material-icons.md-light">search</i>
 					</button>
 				</span>
 			</div>
 		</div>
-		<div class="container suggesstion-box" #suggestionbox *ngIf="visibility && suggesstionList.length > 0">
-									<ul *ngFor="let item of Suggesstionlist">
-										<li (click)="select(item.query)">
-									{{item.query}}
-									</li>
-									</ul>
-			</div>
 
 		</div>
 		<div class="tabslist">
 				<ul>
-					<li><a class="tabs" (click)="filterresults(0)" [style.color]="getColor(0)">All</a></li>
-					<li><a class="tabs" (click)="filterresults(1)" [style.color]="getColor(1)">Images</a></li>
-					<li><a class="tabs" (click)="filterresults(2)" [style.color]="getColor(2)">Videos</a></li>
+					<li><a class="tabs" (click)="filterResults(0)" [style.color]="getColor(0)">All</a></li>
+					<li><a class="tabs" (click)="filterResults(1)" [style.color]="getColor(1)">Images</a></li>
+					<li><a class="tabs" (click)="filterResults(2)" [style.color]="getColor(2)">Videos</a></li>
 				</ul>
 			<hr [style.left]="getCoordinates()">
-			</div>
+		</div>
 </div>

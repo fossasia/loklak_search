@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MaterialModule } from '@angular/material';
 
@@ -30,6 +31,11 @@ import { InViewport } from '../shared//in-viewport.directive';
 		 * The net effect is that an importer of `BrowserModule` gets `CommonModule` directives automatically.
 		 */
 		CommonModule,
+
+		/**
+		 * The module required for the animations to work.
+		 */
+		BrowserAnimationsModule,
 
 		/**
 		 * FormsModule declares all the important parts of the foem handling
