@@ -44,7 +44,7 @@
 				width: calc(100% - 20px);
 			}
 
-			div.input-group{
+			div.input-group {
 				border: 0 !important;
 				padding: 0;
 				width: 632px;
@@ -90,39 +90,13 @@
 				}
 			}
 		}
+
 		div.search-form:hover{
 			-webkit-box-shadow: 0 2px 2px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08);
 			box-shadow: 0 2px 2px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08);
 		}
-		div.suggesstion-box{
-				background-color: white;
-				width: 632px;
-				max-height:90px;
-				position: absolute;
-				left: 156px;
-				top: 63px;
-				border-radius: 2px;
-				box-shadow: 0 2px 2px 0 rgba(0,0,0,0.16),0 0 0 1px rgba(0,0,0,0.08);
-				overflow: hidden;
-				z-index: 1000;
-		}
-
-		ul{
-			cursor:default;
-		}
-
-		li{
-			padding-left: 12px;
-			font-size: 16px;
-			word-spacing: 1.5pt;
-			letter-spacing: 0.5pt;
-		}
-		li:hover{
-			background: #F0F0F0;
-			word-wrap: break-word;
-		}
-
 	}
+
 	div.tabs{
 		position: absolute;
 		top: 70px;

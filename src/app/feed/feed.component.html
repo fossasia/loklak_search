@@ -1,9 +1,10 @@
 <div class="outer-wrapper">
 	<feed-header
-				[searchInputControl]="_queryControl"
-				[suggesstionList]="(suggestResponse$ | async)"
-				(searchEvantEmitter)="handleSearchQuery()"
-				(filtertabs)="filterresults($event)"></feed-header>
+				[query]="(query$ | async).queryString"
+				[suggestionList]="(suggestResponse$ | async)"
+				(searchEvent)="search($event)"
+				(relocateEvent)="relocateURL($event)"
+				(filterTabs)="filterResults($event)"></feed-header>
 
 	<div *ngIf="!(showUserFeed$ | async)">
 
