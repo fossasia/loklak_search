@@ -82,10 +82,13 @@ import { PageNotFoundModule } from './pagenotfound/pagenotfound.module';
      *
      * To use the debugger, install the Redux Devtools extension for either
      * Chrome or Firefox
+		 *
+		 * The time travel debugging is pretty handy tool but it makes the application slow.
+		 * So the developer who need this can un-comment the line below.
      *
      * See: https://github.com/zalmoxisus/redux-devtools-extension
      */
-		StoreDevtoolsModule.instrumentOnlyWithExtension(),
+		// StoreDevtoolsModule.instrumentOnlyWithExtension(),
 
 		/**
      * EffectsModule.run() sets up the effects class to be initialized
