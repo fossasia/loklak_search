@@ -1,27 +1,29 @@
-<div class="wrapper">
-	<img src="{{headerImageUrl}}" alt="loklak Search - Distributed Social Media Message Search Engine" title="loklak Search - Distributed Social Media Message Search Engine" width="125px" height="145px">
+<div class="outer-wrapper">
+	<div class="wrapper">
+		<img src="{{headerImageUrl}}" alt="loklak Search - Distributed Social Media Message Search Engine"
+					title="loklak Search - Distributed Social Media Message Search Engine" width="125px" height="145px">
 
-	<h1><span class="loklak">loklak</span>&nbsp;Search!</h1>
-	<div class="form-group search-form">
-		<div class="input-group">
-			<label for="search">Search On Loklak.</label>
+		<h1><span class="loklak">loklak</span>&nbsp;Search!</h1>
 
-			<input type="text" id="search" required name="search"
-							 [formControl]="_queryControl" />
+		<div class="search-form">
 
-			<span class="input-group-btn">
-				<button class="btn" role="button" type="button" tabindex="-1"
-								aria-roledescription="Search the web using loklak search." >
-					<i class="material-icons material-icons.md-dark">search</i>
-				</button>
-			</span>
+			<div class="search-input" [ngClass]="{'focused': inputFocused }">
+					<input type="text" id="search" name="search" [formControl]="_queryControl"
+									(focus)="inputFocused=true" (focusout)="inputFocused=false"/>
+					<i id="search-suffix-icon" class="material-icons material-icons.md-dark">search</i>
+			</div>
+
 		</div>
 
-	</div>
 
-
-	<div class="help-text">
-		Use <span class="highlight">#hashtag</span>; <span class="highlight">"search text"</span> for exact matches; <span class="highlight">near:location</span> finds messages near a location; <span class="highlight">@user</span> finds user mentions, <span class="highlight">from:user</span> shows messages of a user; <span class="highlight">followers:user</span> find followers of a user.
+		<div class="help-text">
+			Use <span class="highlight">#hashtag</span>;&nbsp;
+			<span class="highlight">"search text"</span> for exact matches;&nbsp;
+			<span class="highlight">near:location</span> finds messages near a location;&nbsp;
+			<span class="highlight">@user</span> finds user mentions;&nbsp;
+			<span class="highlight">from:user</span> shows messages of a user;&nbsp;
+			<span class="highlight">followers:user</span> find followers of a user.
+		</div>
 	</div>
-	<app-footer></app-footer>
 </div>
+<app-footer></app-footer>

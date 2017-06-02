@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
-import { MaterialModule } from '@angular/material';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { LoklakHomeRoutingModule } from './home-routing.module';
 
@@ -20,21 +18,10 @@ import { FooterModule } from '../footer/footer.module';
 		CommonModule,
 
 		/**
-		 * FormsModule declares all the important parts of the foem handling
-		 * important for "Template Driven Forms".
-		 */
-		FormsModule,
-
-		/**
 		 * `ReactiveFormsModule` declares all the important providers and directives
 		 * for the "Model Driven Forms" which are easier to setup and test.
 		 */
 		ReactiveFormsModule,
-
-		/**
- 		 * The module for material design components
- 		 */
-		MaterialModule,
 
 		/**
 		 * Defines the routes at `home` level of application.
@@ -47,7 +34,7 @@ import { FooterModule } from '../footer/footer.module';
 		FooterModule
 	],
 	declarations: [
-		/**mysql
+		/**
 		 * The `<app-home>` component of the application which is the source origin of application.
 		 * It controls the `design` and `logic` for the `Home Page` of the application.
 		 */

@@ -1,5 +1,5 @@
 .outer-wrapper {
-	min-height: calc(90vh - 41px);
+	min-height: 100vh;
 
 	.feed-wrapper {
 		padding-top: 5vh;
@@ -67,6 +67,14 @@
 	}
 }
 
+@media (min-height: 550px) and (min-width: 768px) {
+	app-footer.peeking {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		width: 100vw;
+	}
+}
 
 @media all and (max-width:1000px){
 		.feed-wrapper{

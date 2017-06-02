@@ -20,6 +20,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 	private __subscriptions__: Subscription[] = new Array<Subscription>();
 	public headerImageUrl = 'assets/images/cow_150x175.png';
 	public _queryControl: FormControl = new FormControl();
+	public inputFocused = false;
 
 	constructor(
 		private router: Router,
