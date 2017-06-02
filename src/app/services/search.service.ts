@@ -24,7 +24,7 @@ export class SearchService {
 	// TODO: make the searchParams as configureable model rather than this approach.
 	public fetchQuery(query: string, lastRecord = 0): Observable<ApiResponse> {
 		let searchParams = new URLSearchParams();
-		searchParams.set('q', this.formatquery(query));
+		searchParams.set('q', query);
 		searchParams.set('callback', 'JSONP_CALLBACK');
 		searchParams.set('minified', SearchService.minified_results.toString());
 		searchParams.set('source', SearchService.source);
@@ -53,25 +53,5 @@ export class SearchService {
 									error.status ? `${error.status} - ${error.statusText}` : 'Server error';
 		console.error(errMsg); // Right now we are logging to console itself
 		return Observable.throw(errMsg);
-	}
-
-	private formatquery(query) {
-		/* 
-		* Encode the query in URI format
-		* Identifies # in the query and changes the query format
-		* Replaces blanck space with '+' 
-		*/
-		let p = new RegExp('#');
-		let encodedquery = encodeURIComponent(query);
-		encodedquery = encodedquery.replace(/%20/g, '+');
-		let queryarray = query.split(' ');
-		let hashtagfound = false;
-		queryarray.forEach((queries,i) => {
-			if((p.exec(queries) !== null) && hashtagfound == false) {
-				encodedquery = encodedquery + query;
-				hashtagfound = true;
-			}
-		})
-		return encodedquery;
 	}
 }
