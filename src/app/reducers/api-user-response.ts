@@ -41,7 +41,7 @@ export function reducer(state: State = initialState, action: api.Actions): State
 				user: null,
 				showUserInfo: false,
 				loading: true
-			})
+			});
 		}
 
 		case api.ActionTypes.FETCH_USER: {

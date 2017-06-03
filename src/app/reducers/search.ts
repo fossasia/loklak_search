@@ -53,7 +53,7 @@ export function reducer(state: State = initialState, action: api.Actions): State
 			return Object.assign({}, state, {
 				query,
 				loading: true
-			})
+			});
 		}
 
 		case api.ActionTypes.SEARCH_COMPLETE_SUCCESS:

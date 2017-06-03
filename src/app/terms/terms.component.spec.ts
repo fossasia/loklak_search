@@ -5,7 +5,7 @@ import { TermsComponent } from './terms.component';
 
 describe('Component: Terms', () => {
 	it('should create an instance', () => {
-		let component = new TermsComponent();
+		const component = new TermsComponent();
 		expect(component).toBeTruthy();
 	});
 });

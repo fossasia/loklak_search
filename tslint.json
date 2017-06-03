@@ -3,6 +3,7 @@
     "node_modules/codelyzer"
   ],
   "rules": {
+    "callable-types": true,
     "class-name": true,
     "comment-format": [
       true,
@@ -11,12 +12,14 @@
     "curly": true,
     "eofline": true,
     "forin": true,
+    "import-blacklist": [true, "rxjs"],
+    "import-spacing": true,
     "indent": [
       true,
       "tabs"
     ],
+    "interface-over-type-literal": true,
     "label-position": true,
-    "label-undefined": true,
     "max-line-length": [
       true,
       140
@@ -39,18 +42,17 @@
     ],
     "no-construct": true,
     "no-debugger": true,
-    "no-duplicate-key": true,
     "no-duplicate-variable": true,
     "no-empty": false,
+    "no-empty-interface": true,
     "no-eval": true,
-    "no-inferrable-types": true,
+    "no-inferrable-types": [true, "ignore-params"],
     "no-shadowed-variable": true,
     "no-string-literal": false,
-    "no-switch-case-fall-through": false, // Have to disable this following up on ts-lint error
+    "no-string-throw": true,
+    "no-switch-case-fall-through": true,
     "no-trailing-whitespace": true,
     "no-unused-expression": true,
-    "no-unused-variable": false,
-    "no-unreachable": true,
     "no-use-before-declare": true,
     "no-var-keyword": true,
     "object-literal-sort-keys": false,
@@ -60,6 +62,7 @@
       "check-catch",
       "check-whitespace"
     ],
+    "prefer-const": true,
     "quotemark": [
       true,
       "single"
@@ -82,6 +85,8 @@
         "variable-declaration": "nospace"
       }
     ],
+    "typeof-compare": true,
+    "unified-signatures": true,
     "variable-name": false,
     "whitespace": [
       true,
@@ -92,12 +97,8 @@
       "check-type"
     ],
 
-    "directive-selector-prefix": [false, "app"],
-    "component-selector-prefix": [false, "app"],
-    "directive-selector-name": [true, "camelCase"],
-    "component-selector-name": [true, "kebab-case"],
-    "directive-selector-type": [true, "attribute"],
-    "component-selector-type": [true, "element"],
+    "directive-selector": [false, "attribute", "app", "camelCase"],
+    "component-selector": [false, "element", "app", "kebab-case"],
     "use-input-property-decorator": true,
     "use-output-property-decorator": true,
     "use-host-property-decorator": true,
@@ -106,6 +107,10 @@
     "use-life-cycle-interface": true,
     "use-pipe-transform-interface": true,
     "component-class-suffix": true,
-    "directive-class-suffix": true
+    "directive-class-suffix": true,
+    "no-access-missing-member": true,
+    "templates-use-public": true,
+    "invoke-injectable": true
   }
 }
+

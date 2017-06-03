@@ -57,8 +57,8 @@ export function reducer(state: State = initialState, action: api.Actions | pagin
 		case api.ActionTypes.SEARCH_COMPLETE_SUCCESS: {
 			const apiResponse = action.payload;
 
-			let tagStrings = [].concat(...apiResponse.statuses.map(item => item.hashtags));
-			let hashtags = Array.from(new Set(tagStrings)).map(tag => {
+			const tagStrings = [].concat(...apiResponse.statuses.map(item => item.hashtags));
+			const hashtags = Array.from(new Set(tagStrings)).map(tag => {
 					return { tag, count: tagStrings.filter(y => y === tag).length };
 			});
 
@@ -82,9 +82,9 @@ export function reducer(state: State = initialState, action: api.Actions | pagin
 		case pagination.ActionTypes.PAGINATION_COMPLETE_SUCCESS: {
 			const apiResponse = action.payload;
 
-			let oldTagStrings = state.hashtags.map(hashtag => hashtag.tag);
-			let tagStrings = oldTagStrings.concat(...apiResponse.statuses.map(item => item.hashtags));
-			let hashtags = Array.from(new Set(tagStrings)).map(tag => {
+			const oldTagStrings = state.hashtags.map(hashtag => hashtag.tag);
+			const tagStrings = oldTagStrings.concat(...apiResponse.statuses.map(item => item.hashtags));
+			const hashtags = Array.from(new Set(tagStrings)).map(tag => {
 					return { tag, count: tagStrings.filter(y => y === tag).length };
 			});
 
@@ -102,7 +102,7 @@ export function reducer(state: State = initialState, action: api.Actions | pagin
 		}
 
 		case api.ActionTypes.SELECT_RESULT: {
-			let present = (action.payload+1) ? true : false;
+			const present = (action.payload + 1) ? true : false;
 			return Object.assign({}, state, {
 				selectedavail: present,
 				selected: action.payload

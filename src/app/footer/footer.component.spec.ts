@@ -5,7 +5,7 @@ import { FooterComponent } from './footer.component';
 
 describe('Component: Footer', () => {
 	it('should create an instance', () => {
-		let component = new FooterComponent();
+		const component = new FooterComponent();
 		expect(component).toBeTruthy();
 	});
 });

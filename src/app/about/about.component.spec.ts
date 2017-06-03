@@ -27,7 +27,7 @@ describe('Component: About', () => {
 		});
 	});
 	it('should create an instance', () => {
-		let component = TestBed.createComponent(AboutComponent);
+		const component = TestBed.createComponent(AboutComponent);
 		expect(component).toBeTruthy();
 	});
 });

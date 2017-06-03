@@ -86,7 +86,7 @@ export class FeedComponent implements OnInit, AfterViewInit, OnDestroy {
 		this.__subscriptions__.push(
 			this.route.queryParams
 					.subscribe((params: Params) => {
-						let queryParam = params['query'] || '';
+						const queryParam = params['query'] || '';
 						this.search(queryParam);
 					})
 		);
@@ -163,7 +163,7 @@ export class FeedComponent implements OnInit, AfterViewInit, OnDestroy {
 	 * @param query : The string term which is set as parameter to url.
 	 */
 	public relocateURL(query: string) {
-		let URIquery = encodeURIComponent(query);
+		const URIquery = encodeURIComponent(query);
 		this.location.go('/search', `query=${URIquery}`);
 	}
 
@@ -207,8 +207,8 @@ export class FeedComponent implements OnInit, AfterViewInit, OnDestroy {
 	}
 
 	showMoreUsers() {
-		let subscriber = this.apiResponseUserFollowers$.subscribe(apiResponseUserFollowers => {
-			let length = apiResponseUserFollowers.length;
+		const subscriber = this.apiResponseUserFollowers$.subscribe(apiResponseUserFollowers => {
+			const length = apiResponseUserFollowers.length;
 			if (this.index < 24 && length > this.index) {
 				this.index += 12;
 			} else if (length > this.index) {

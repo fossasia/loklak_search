@@ -5,7 +5,7 @@ import { FeedHeaderComponent } from './feed-header.component';
 
 describe('Component: FeedHeader', () => {
 	it('should create an instance', () => {
-		let component = new FeedHeaderComponent();
+		const component = new FeedHeaderComponent();
 		expect(component).toBeTruthy();
 	});
 });

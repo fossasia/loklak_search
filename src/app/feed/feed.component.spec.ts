@@ -140,23 +140,23 @@ describe('Component: Feed', () => {
 	});
 
 	it('should create an instance', async(() => {
-		let fixture = TestBed.createComponent(FeedComponent);
-		let component = fixture.debugElement.componentInstance;
+		const fixture = TestBed.createComponent(FeedComponent);
+		const component = fixture.debugElement.componentInstance;
 		expect(component).toBeTruthy();
 	}));
 
 	it('should have a feed-header component', async(() => {
-		let fixture = TestBed.createComponent(FeedComponent);
-		let component = fixture.debugElement.componentInstance;
-		let compiled = fixture.debugElement.nativeElement;
+		const fixture = TestBed.createComponent(FeedComponent);
+		const component = fixture.debugElement.componentInstance;
+		const compiled = fixture.debugElement.nativeElement;
 
 		expect(compiled.querySelector('feed-header')).toBeTruthy();
 	}));
 
 	it('should have an app-footer component', async(() => {
-		let fixture = TestBed.createComponent(FeedComponent);
-		let component = fixture.debugElement.componentInstance;
-		let compiled = fixture.debugElement.nativeElement;
+		const fixture = TestBed.createComponent(FeedComponent);
+		const component = fixture.debugElement.componentInstance;
+		const compiled = fixture.debugElement.nativeElement;
 
 		expect(compiled.querySelector('app-footer')).toBeTruthy();
 	}));

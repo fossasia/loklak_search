@@ -41,8 +41,8 @@ export class ApiSearchEffects {
 					.debounceTime(200)
 					.map((action: apiAction.SearchAction) => action.payload)
 					.switchMap(query => {
-						
-						let URIquery = encodeURIComponent(query.queryString);
+
+						const URIquery = encodeURIComponent(query.queryString);
 						const nextSearch$ = this.actions$.ofType(apiAction.ActionTypes.SEARCH).skip(1);
 
 						return this.apiSearchService.fetchQuery(query.queryString)

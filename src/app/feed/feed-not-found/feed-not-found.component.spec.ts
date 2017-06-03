@@ -5,7 +5,7 @@ import { FeedNotFoundComponent } from './feed-not-found.component';
 
 describe('Component: FeedNotFound', () => {
 	it('should create an instance', () => {
-		let component = new FeedNotFoundComponent();
+		const component = new FeedNotFoundComponent();
 		expect(component).toBeTruthy();
 	});
 });

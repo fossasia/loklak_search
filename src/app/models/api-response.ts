@@ -62,10 +62,10 @@ export interface ApiResponseResult {
 	without_luh_len: number;
 }
 export interface ApiResponseAggregations {
-    hashtags : Object;
-    screen_name : Object;
-    mentions : Object;
-    created_at : Object;
+	hashtags: Object;
+	screen_name: Object;
+	mentions: Object;
+	created_at: Object;
 }
 
 export interface ApiResponse {

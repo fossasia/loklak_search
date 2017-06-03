@@ -1,6 +1,5 @@
 {
   "project": {
-    "version": "1.0.0-beta.21",
     "name": "loklak_search"
   },
   "apps": [
@@ -8,19 +7,18 @@
       "root": "src",
       "outDir": "dist",
       "assets": [
-		"assets"
-	],
+				"assets"
+			],
       "index": "index.html",
       "main": "main.ts",
       "test": "test.ts",
+			"polyfills": "polyfills.ts",
       "tsconfig": "tsconfig.json",
       "prefix": "app",
-      "mobile": false,
       "styles": [
         "styles/main.scss"
       ],
-      "scripts": [
-			],
+      "scripts": [],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",
@@ -40,6 +38,16 @@
       "config": "./karma.conf.js"
     }
   },
+	"lint": [
+		{
+			"files": "src/**/*.ts",
+			"project": "src/tsconfig.json"
+		},
+		{
+			"files": "e2e/**/*.ts",
+			"project": "e2e/tsconfig.json"
+		}
+	],
   "defaults": {
     "styleExt": "scss",
     "prefixInterfaces": false

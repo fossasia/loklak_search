@@ -42,16 +42,16 @@ export class ApiUserSearchEffects {
 					.switchMap(query => {
 						const nextSearch$ = this.actions$.ofType(apiAction.ActionTypes.SEARCH).skip(1);
 
-						let re = new RegExp(/^(followers|from):\s*([a-zA-Z0-9_@]+)/, 'i');
-						let matches = re.exec(query.queryString);
+						const re = new RegExp(/^(followers|from):\s*([a-zA-Z0-9_@]+)/, 'i');
+						const matches = re.exec(query.queryString);
 						let follow_count;
-						if(matches[1] === 'from') {
+						if (matches[1] === 'from') {
 							follow_count = 10;
 						}
-						else if(matches[1] === 'followers') {
+						else if (matches[1] === 'followers') {
 							follow_count = 1000;
 						}
-						let screenName : string = matches[2];
+						const screenName: string = matches[2];
 						return this.apiUserService.fetchQuery(screenName, follow_count)
 																				.takeUntil(nextSearch$)
 																				.map(response => {

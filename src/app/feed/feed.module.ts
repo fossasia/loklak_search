@@ -19,7 +19,7 @@ import { InfoBoxComponent } from './info-box/info-box.component';
 import { UserInfoBoxComponent } from './user-info-box/user-info-box.component';
 import { FeedLightboxComponent } from './feed-lightbox/feed-lightbox.component';
 import { FeedUserCardComponent } from './feed-user-card/feed-user-card.component';
-import { InViewport } from '../shared//in-viewport.directive';
+import { InViewportDirective } from '../shared//in-viewport.directive';
 
 
 @NgModule({
@@ -79,7 +79,7 @@ import { InViewport } from '../shared//in-viewport.directive';
 		FeedPaginationComponent,
 		InfoBoxComponent,
 		FeedLightboxComponent,
-		InViewport,
+		InViewportDirective,
 		UserInfoBoxComponent,
 		FeedLightboxComponent,
 		FeedUserCardComponent
