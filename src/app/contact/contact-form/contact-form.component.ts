@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
-import {Http, Headers} from '@angular/http';
+import { Http, Headers } from '@angular/http';
 import { countrycodearray } from '../../shared/countrycode/countrycode';
 
 interface User {
@@ -36,9 +36,9 @@ export class ContactFormComponent implements OnInit {
 	}
 
 	public sendtosuperuser(User) {
-		let headers = new Headers();
-		let formObj = User.getRawValue();
-		let data = JSON.stringify(formObj);
+		const headers = new Headers();
+		const formObj = User.getRawValue();
+		const data = JSON.stringify(formObj);
 
 
 		headers.append('Content-Type', 'application/X-www-form-urlencoded');

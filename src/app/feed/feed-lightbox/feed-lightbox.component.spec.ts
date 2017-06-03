@@ -5,7 +5,7 @@ import { FeedLightboxComponent } from './feed-lightbox.component';
 
 describe('Component: FeedLightbox', () => {
 	it('should create an instance', () => {
-		let component = new FeedLightboxComponent();
+		const component = new FeedLightboxComponent();
 		expect(component).toBeTruthy();
 	});
 });

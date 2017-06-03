@@ -10,9 +10,9 @@ import { SuggestResponse } from '../models/api-suggest';
 @Injectable()
 export class SuggestService {
 	private static apiUrl: URL = new URL('http://api.loklak.org/api/suggest.json');
-	private static minified_results: boolean = true;
-	private static order: string = 'desc';
-	private static orderby: string = 'query_count';
+	private static minified_results = true;
+	private static order = 'desc';
+	private static orderby = 'query_count';
 
 
 	constructor(
@@ -21,7 +21,7 @@ export class SuggestService {
 
 	// TODO: make the searchParams as configureable model rather than this approach.
 	public fetchQuery(query: string): Observable<SuggestResponse> {
-		let searchParams = new URLSearchParams();
+		const searchParams = new URLSearchParams();
 		searchParams.set('q', query);
 		searchParams.set('callback', 'JSONP_CALLBACK');
 		searchParams.set('minified', SuggestService.minified_results.toString());
@@ -43,7 +43,7 @@ export class SuggestService {
 
 	private handleError (error: any) {
 		// In some advance version we can include a remote logging of errors
-		let errMsg = (error.message) ? error.message :
+		const errMsg = (error.message) ? error.message :
 									error.status ? `${error.status} - ${error.statusText}` : 'Server error';
 		console.error(errMsg); // Right now we are logging to console itself
 		return Observable.throw(errMsg);

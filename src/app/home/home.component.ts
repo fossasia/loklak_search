@@ -54,15 +54,15 @@ export class HomeComponent implements OnInit, OnDestroy {
 						queryString: value,
 						location: ReloactionAfterQuery.NONE
 					}));
-					if(matches == null) {
+					if (matches == null) {
 						this.store.dispatch(new apiAction.SearchAction({
 							queryString: value,
 							location: ReloactionAfterQuery.RELOCATE
 						}));
 						re = new RegExp(/^from:\s*([a-zA-Z0-9_@]+)/, 'i');
 						matches = re.exec(value);
-						if(matches !== null) {
-							let screenName: string = matches[1];
+						if (matches !== null) {
+							const screenName: string = matches[1];
 							this.store.dispatch(new apiAction.FetchUserAction({
 								queryString: screenName,
 								location: ReloactionAfterQuery.NONE
@@ -70,7 +70,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 						}
 						this.store.dispatch(new apiAction.ShowSearchResults(''));
 					} else {
-						let screenName: string = matches[1];
+						const screenName: string = matches[1];
 						this.store.dispatch(new apiAction.FetchUserAction({
 							queryString: screenName,
 							location: ReloactionAfterQuery.NONE

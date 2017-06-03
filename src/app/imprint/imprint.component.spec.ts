@@ -5,7 +5,7 @@ import { ImprintComponent } from './imprint.component';
 
 describe('Component: Imprint', () => {
 	it('should create an instance', () => {
-		let component = new ImprintComponent();
+		const component = new ImprintComponent();
 		expect(component).toBeTruthy();
 	});
 });

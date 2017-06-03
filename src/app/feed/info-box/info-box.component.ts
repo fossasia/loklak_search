@@ -27,7 +27,7 @@ export class InfoBoxComponent implements OnInit, OnChanges {
 	public barChartLabels: string[] = ['0'];
 	public barChartType = 'bar';
 	public barChartLegend = true;
-	public barChartData: any[] = [ { data: [0], label: 'Tweet Frequency' } ];
+	public barChartData: any[] = [{ data: [0], label: 'Tweet Frequency' }];
 	public barChartOptions: any = {
 		scaleShowVerticalLines: false,
 		responsive: true
@@ -35,7 +35,6 @@ export class InfoBoxComponent implements OnInit, OnChanges {
 
 	constructor(
 		private store: Store<fromRoot.State>
-
 	) { }
 
 	ngOnInit() { }
@@ -49,12 +48,14 @@ export class InfoBoxComponent implements OnInit, OnChanges {
 	sortHashtags(statistics) {
 		let sortable = [];
 		/* A check for both the data and the individual objects is necessary, also if the data is not empty*/
-		if((statistics && statistics.hashtags!==undefined) && Object.keys(statistics.hashtags).length!==0) {
-			for (let s in statistics.hashtags) {
-				sortable.push([s, statistics.hashtags[s]]);
+		if ((statistics && statistics.hashtags !== undefined) && Object.keys(statistics.hashtags).length !== 0) {
+			for (const s in statistics.hashtags) {
+				if (s) {
+					sortable.push([s, statistics.hashtags[s]]);
+				}
 			}
 			sortable.sort(function (a, b) {
-			return b[1] - a[1];
+				return b[1] - a[1];
 			});
 			sortable = (sortable.slice(0, 10));
 			this.topHashtags = sortable;
@@ -62,7 +63,7 @@ export class InfoBoxComponent implements OnInit, OnChanges {
 			return this.topHashtags;
 
 		}
-		else if(typeof statistics === undefined){
+		else if (typeof statistics === 'undefined') {
 			this.topHashtags = [];
 			this.areTopHashtagsAvailable = false;
 			return this.topHashtags;
@@ -70,9 +71,11 @@ export class InfoBoxComponent implements OnInit, OnChanges {
 	}
 	sortTwiterers(statistics) {
 		let sortable = [];
-		if ((statistics && statistics.screen_name)!==undefined && (Object.keys(statistics.screen_name).length)!==0) {
-			for (let s in statistics.screen_name) {
-				sortable.push([s, statistics.screen_name[s]]);
+		if ((statistics && statistics.screen_name) !== undefined && (Object.keys(statistics.screen_name).length) !== 0) {
+			for (const s in statistics.screen_name) {
+				if (s) {
+					sortable.push([s, statistics.screen_name[s]]);
+				}
 			}
 			sortable.sort(function (a, b) {
 				return b[1] - a[1];
@@ -82,7 +85,7 @@ export class InfoBoxComponent implements OnInit, OnChanges {
 			this.areTopTwitterersAvailable = true;
 			return this.topTwitterers;
 		}
-		else if (typeof statistics === undefined){
+		else if (typeof statistics === 'undefined') {
 			this.areTopTwitterersAvailable = false;
 			this.topTwitterers = [];
 			return this.topTwitterers;
@@ -91,9 +94,11 @@ export class InfoBoxComponent implements OnInit, OnChanges {
 	}
 	sortMentions(statistics) {
 		let sortable = [];
-		if ((statistics && statistics.mentions)!==undefined && (Object.keys(statistics.mentions).length!==0)) {
-			for (let s in statistics.mentions) {
-			sortable.push([s, statistics.mentions[s]]);
+		if ((statistics && statistics.mentions) !== undefined && (Object.keys(statistics.mentions).length !== 0)) {
+			for (const s in statistics.mentions) {
+				if (s) {
+					sortable.push([s, statistics.mentions[s]]);
+				}
 			}
 			sortable.sort(function (a, b) {
 				return b[1] - a[1];
@@ -103,7 +108,7 @@ export class InfoBoxComponent implements OnInit, OnChanges {
 			this.areTopMentionsAvailable = true;
 			return this.topMentions;
 		}
-		else{
+		else {
 			this.areTopMentionsAvailable = false;
 			this.topMentions = [];
 			return this.topMentions;
@@ -111,41 +116,39 @@ export class InfoBoxComponent implements OnInit, OnChanges {
 	}
 
 	private inviewtwitters(event) {
-		if (event.value == true) {
+		if (event.value === true) {
 			this.inviewporttwitters = event.value;
 		}
 	}
 
 	private inviewmentions(event) {
-		if (event.value == true) {
+		if (event.value === true) {
 			this.inviewportmentions = event.value;
 		}
 	}
 	getChartData(statistics) {
-		if ((statistics && statistics.created_at)!==undefined && (Object.keys(statistics.created_at).length!==0)) {
-		var data = [];
-		var labels = [];
-		var chosen_attr = statistics.created_at;
+		if ((statistics && statistics.created_at) !== undefined && (Object.keys(statistics.created_at).length !== 0)) {
+			const data = [];
+			const labels = [];
+			const chosen_attr = statistics.created_at;
 
 
-		for (var property in chosen_attr) {
-			if (chosen_attr.hasOwnProperty(property)) {
-				labels.push(property);
-				data.push(chosen_attr[property]);
+			for (const property in chosen_attr) {
+				if (chosen_attr.hasOwnProperty(property)) {
+					labels.push(property);
+					data.push(chosen_attr[property]);
+				}
 			}
-		}
 
-		this.barChartData[0].data = data;
-		this.barChartLabels = labels;
-		this.areFrequencyDataAvailable = true;
+			this.barChartData[0].data = data;
+			this.barChartLabels = labels;
+			this.areFrequencyDataAvailable = true;
 
-		return this.barChartData[0].data, this.barChartLabels;
+			return this.barChartData[0].data, this.barChartLabels;
 		}
 		else {
 			this.areFrequencyDataAvailable = false;
 		}
-
 	}
-
 }
 

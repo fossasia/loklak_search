@@ -12,7 +12,7 @@ export function getIndicesOf(text: string, str: string, caseSensitive = true): n
 
 	let startIndex = 0;
 	let index: number;
-	let indices: number[] = new Array<number>();
+	const indices: number[] = new Array<number>();
 
 	if (!caseSensitive) {
 		text = text.toLowerCase();

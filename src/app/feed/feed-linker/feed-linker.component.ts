@@ -37,17 +37,17 @@ export class FeedLinkerComponent implements OnInit {
 
 
 	private generateShards() {
-		let indexedChunks: StringIndexedChunks[] = [];
+		const indexedChunks: StringIndexedChunks[] = [];
 
 		this.hashtags.forEach(hashtag => {
-			let indices = getIndicesOf(this.text, `#${hashtag}`, false);
+			const indices = getIndicesOf(this.text, `#${hashtag}`, false);
 			indices.forEach(idx => {
 				indexedChunks.push({index: idx, str: `#${hashtag}`, type: ShardType.hashtag});
 			});
 		});
 
 		this.mentions.forEach(mention => {
-			let indices = getIndicesOf(this.text, `@${mention}`, false);
+			const indices = getIndicesOf(this.text, `@${mention}`, false);
 			indices.forEach(idx => {
 				indexedChunks.push({index: idx, str: `@${mention}`, type: ShardType.mention});
 			});
@@ -55,12 +55,12 @@ export class FeedLinkerComponent implements OnInit {
 
 		// Combining shortened and normal links.
 		let allLinks: string[] = [];
-		let unshortenKeys: string[] = Object.keys(this.unshorten);
-		let unshortenValues: string[] = [];
+		const unshortenKeys: string[] = Object.keys(this.unshorten);
+		const unshortenValues: string[] = [];
 
 		unshortenKeys.forEach(key => unshortenValues.push(this.unshorten[key]));
 
-		for (let link of this.links) {
+		for (const link of this.links) {
 			let insert = true;
 			for (let shortened of unshortenValues) {
 				shortened = shortened.substring(0, shortened.length - 3);
@@ -77,7 +77,7 @@ export class FeedLinkerComponent implements OnInit {
 		allLinks = [...unshortenKeys, ...allLinks];
 
 		allLinks.forEach(link => {
-			let indices = getIndicesOf(this.text, link, false);
+			const indices = getIndicesOf(this.text, link, false);
 			indices.forEach(idx => {
 				indexedChunks.push({index: idx, str: link, type: ShardType.link});
 			});
@@ -86,17 +86,17 @@ export class FeedLinkerComponent implements OnInit {
 		indexedChunks.sort((a, b) => { return (a.index > b.index) ? 1 : (a.index < b.index) ? -1 : 0; });
 
 		let startIndex = 0;
-		let endIndex = this.text.length;
+		const endIndex = this.text.length;
 
 		indexedChunks.forEach(element => {
 			if (startIndex !== element.index) {
-				let shard = new Shard(ShardType.plain, this.text.substring(startIndex, element.index));
+				const shard = new Shard(ShardType.plain, this.text.substring(startIndex, element.index));
 				this.shardArray.push(shard);
 				startIndex = element.index;
 			}
 			if (startIndex === element.index) {
-				let str = this.text.substring(startIndex, element.index + element.str.length);
-				let shard = new Shard(element.type, str);
+				const str = this.text.substring(startIndex, element.index + element.str.length);
+				const shard = new Shard(element.type, str);
 				switch (element.type) {
 					case ShardType.link: {
 						if (this.unshorten[element.str]) {
@@ -127,28 +127,28 @@ export class FeedLinkerComponent implements OnInit {
 		});
 
 		if (startIndex !== endIndex) {
-			let shard = new Shard(ShardType.plain, this.text.substring(startIndex));
+			const shard = new Shard(ShardType.plain, this.text.substring(startIndex));
 			this.shardArray.push(shard);
 		}
 	}
 
 	private generateAllShards() {
-		let splitTextArray = this.text.split(' ');
-		for (let shardText of splitTextArray) {
+		const splitTextArray = this.text.split(' ');
+		for (const shardText of splitTextArray) {
 			if (shardText[0] === '@' && shardText.length > 1) {
-				let mentionShard = new Shard(ShardType.mention, shardText);
+				const mentionShard = new Shard(ShardType.mention, shardText);
 				mentionShard.linkTo = ['/search'];
 				mentionShard.queryParams = { query : `from:${shardText.substring(1)}` };
 				this.shardArray.push(mentionShard);
 			}
 			else if (shardText[0] === '#' && shardText.length > 1) {
-				let hashtagShard = new Shard(ShardType.hashtag, shardText);
+				const hashtagShard = new Shard(ShardType.hashtag, shardText);
 				hashtagShard.linkTo = ['/search'];
 				hashtagShard.queryParams = { query : `#${shardText.substring(1)}` };
 				this.shardArray.push(hashtagShard);
 			}
 			else if (this.stringIsURL(shardText)) {
-				let linkShard = new Shard(ShardType.link, shardText);
+				const linkShard = new Shard(ShardType.link, shardText);
 				linkShard.linkTo = shardText;
 				linkShard.text = shardText;
 
@@ -165,9 +165,9 @@ export class FeedLinkerComponent implements OnInit {
 	}
 
 	private stringIsURL(str: String): Boolean {
-		let regexpPattern = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;
-		let regexp = new RegExp(regexpPattern, 'ig');
-		let searchRes = str.search(regexp);
+		const regexpPattern = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;
+		const regexp = new RegExp(regexpPattern, 'ig');
+		const searchRes = str.search(regexp);
 		return (searchRes === 0) ? true : false;
 	}
 }

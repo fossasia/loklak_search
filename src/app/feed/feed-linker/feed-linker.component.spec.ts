@@ -5,7 +5,7 @@ import { FeedLinkerComponent } from './feed-linker.component';
 
 describe('Component: FeedLinker', () => {
 	it('should create an instance', () => {
-		let component = new FeedLinkerComponent();
+		const component = new FeedLinkerComponent();
 		expect(component).toBeTruthy();
 	});
 });

@@ -22,7 +22,7 @@ describe('Component: ContactForm', () => {
 	});
 
 	it('should create an instance', async(() => {
-		let component = TestBed.createComponent(ContactFormComponent);
+		const component = TestBed.createComponent(ContactFormComponent);
 		expect(component).toBeTruthy();
 	}));
 });

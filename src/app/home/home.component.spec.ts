@@ -38,18 +38,18 @@ describe('Component: Home', () => {
 	});
 
 	it('should create an instance', async(() => {
-		let fixture = TestBed.createComponent(HomeComponent);
-		let component = fixture.debugElement.componentInstance;
+		const fixture = TestBed.createComponent(HomeComponent);
+		const component = fixture.debugElement.componentInstance;
 		expect(component).toBeTruthy();
 	}));
 
 	it('should have logo with correct alt text property', async(() => {
-		let fixture = TestBed.createComponent(HomeComponent);
+		const fixture = TestBed.createComponent(HomeComponent);
 		fixture.detectChanges();
-		let component = fixture.debugElement.componentInstance;
-		let compiled = fixture.debugElement.nativeElement;
+		const component = fixture.debugElement.componentInstance;
+		const compiled = fixture.debugElement.nativeElement;
 
-		let image: HTMLImageElement = compiled.querySelector('div.wrapper img');
+		const image: HTMLImageElement = compiled.querySelector('div.wrapper img');
 
 		expect(image).toBeTruthy();
 		expect(image.alt).toBe('loklak Search - Distributed Social Media Message Search Engine');
@@ -57,44 +57,44 @@ describe('Component: Home', () => {
 	}));
 
 	it('should have "_queryControl" property.', async(() => {
-		let fixture = TestBed.createComponent(HomeComponent);
+		const fixture = TestBed.createComponent(HomeComponent);
 		fixture.detectChanges();
-		let component = fixture.debugElement.componentInstance;
-		let compiled = fixture.debugElement.nativeElement;
+		const component = fixture.debugElement.componentInstance;
+		const compiled = fixture.debugElement.nativeElement;
 
 		expect(component._queryControl).toBeTruthy();
 	}));
 
 	it('should have an input element for search inputs', async(() => {
-		let fixture = TestBed.createComponent(HomeComponent);
+		const fixture = TestBed.createComponent(HomeComponent);
 		fixture.detectChanges();
-		let component = fixture.debugElement.componentInstance;
-		let compiled = fixture.debugElement.nativeElement;
+		const component = fixture.debugElement.componentInstance;
+		const compiled = fixture.debugElement.nativeElement;
 
 		expect(compiled.querySelector('div.wrapper div.search-form input#search')).toBeTruthy();
 	}));
 
 	it('should focus the input search element on initialization', async(() => {
-		let fixture = TestBed.createComponent(HomeComponent);
+		const fixture = TestBed.createComponent(HomeComponent);
 		fixture.detectChanges();
-		let component = fixture.debugElement.componentInstance;
-		let compiled = fixture.debugElement.nativeElement;
+		const component = fixture.debugElement.componentInstance;
+		const compiled = fixture.debugElement.nativeElement;
 
-		let inputElement: HTMLInputElement = compiled.querySelector('div.wrapper div.search-form input#search');
+		const inputElement: HTMLInputElement = compiled.querySelector('div.wrapper div.search-form input#search');
 		expect(document.activeElement).toBe(inputElement);
 	}));
 
 	it('should dispatch "SearchAction" when value of _queryControl changes', async(() => {
-		let fixture = TestBed.createComponent(HomeComponent);
+		const fixture = TestBed.createComponent(HomeComponent);
 		fixture.detectChanges();
-		let component = fixture.debugElement.componentInstance;
-		let compiled = fixture.debugElement.nativeElement;
+		const component = fixture.debugElement.componentInstance;
+		const compiled = fixture.debugElement.nativeElement;
 
-		let value = 'a';
+		const value = 'a';
 
-		let query$ = component.store.select(fromRoot.getSearchQuery);
+		const query$ = component.store.select(fromRoot.getSearchQuery);
 		let qs: string;
-		let subscription = query$.subscribe(query => qs = query.queryString);
+		const subscription = query$.subscribe(query => qs = query.queryString);
 
 		expect(qs).toBeFalsy();
 		component._queryControl.setValue(value);
@@ -104,10 +104,10 @@ describe('Component: Home', () => {
 	}));
 
 	it('should have _queryControl having the control of input field', async(() => {
-		let fixture = TestBed.createComponent(HomeComponent);
+		const fixture = TestBed.createComponent(HomeComponent);
 		fixture.detectChanges();
-		let component = fixture.debugElement.componentInstance;
-		let compiled = fixture.debugElement.nativeElement;
+		const component = fixture.debugElement.componentInstance;
+		const compiled = fixture.debugElement.nativeElement;
 
 		let inputElement: HTMLInputElement = compiled.querySelector('div.wrapper div.search-form input#search');
 
@@ -128,10 +128,10 @@ describe('Component: Home', () => {
 	}));
 
 	it('should have an app-footer element', async(() => {
-		let fixture = TestBed.createComponent(HomeComponent);
+		const fixture = TestBed.createComponent(HomeComponent);
 		fixture.detectChanges();
-		let component = fixture.debugElement.componentInstance;
-		let compiled = fixture.debugElement.nativeElement;
+		const component = fixture.debugElement.componentInstance;
+		const compiled = fixture.debugElement.nativeElement;
 
 		expect(compiled.querySelector('app-footer')).toBeTruthy();
 	}));

@@ -12,7 +12,7 @@ import 'rxjs/add/operator/debounceTime';
 	selector: '[in-viewport]'
 })
 
-export class InViewport implements OnInit, OnDestroy {
+export class InViewportDirective implements OnInit, OnDestroy {
 	private scroll: any;
 	private resize: any;
 
@@ -41,7 +41,7 @@ export class InViewport implements OnInit, OnDestroy {
 		this.resize.unsubscribe();
 	}
 
-	check(partial: boolean = true, direction: string = 'both') {
+	check(partial = true, direction = 'both') {
 		const el = this._el.nativeElement;
 
 		const elSize = (el.offsetWidth * el.offsetHeight);
@@ -62,7 +62,7 @@ export class InViewport implements OnInit, OnDestroy {
 		const vVisible = partial ? tViz || bViz : tViz && bViz;
 		const hVisible = partial ? lViz || rViz : lViz && rViz;
 
-		let event = {
+		const event = {
 			target: el,
 			value: false
 		};

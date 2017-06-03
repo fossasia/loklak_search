@@ -10,12 +10,12 @@ import { ApiResponse } from '../models/api-response';
 @Injectable()
 export class SearchService {
 	private static readonly apiUrl: URL = new URL('http://api.loklak.org/api/search.json');
-	private static maximum_records_fetch: number = 20;
-	private static minified_results: boolean = true;
-	private static source: string = 'all';
-	private static fields: string = 'created_at,screen_name,mentions,hashtags';
-	private static limit: number = 10;
-	private static timezoneOffset : string = new Date().getTimezoneOffset().toString();
+	private static maximum_records_fetch = 20;
+	private static minified_results = true;
+	private static source = 'all';
+	private static fields = 'created_at,screen_name,mentions,hashtags';
+	private static limit = 10;
+	private static timezoneOffset: string = new Date().getTimezoneOffset().toString();
 
 	constructor(
 		private jsonp: Jsonp
@@ -23,7 +23,7 @@ export class SearchService {
 
 	// TODO: make the searchParams as configureable model rather than this approach.
 	public fetchQuery(query: string, lastRecord = 0): Observable<ApiResponse> {
-		let searchParams = new URLSearchParams();
+		const searchParams = new URLSearchParams();
 		searchParams.set('q', query);
 		searchParams.set('callback', 'JSONP_CALLBACK');
 		searchParams.set('minified', SearchService.minified_results.toString());
@@ -33,9 +33,9 @@ export class SearchService {
 		searchParams.set('startRecord', (lastRecord + 1).toString());
 		searchParams.set('fields', SearchService.fields);
 		searchParams.set('limit', SearchService.limit.toString());
-		return this.jsonp.get(SearchService.apiUrl.toString(), {search : searchParams})
-								.map(this.extractData)
-								.catch(this.handleError);
+		return this.jsonp.get(SearchService.apiUrl.toString(), { search: searchParams })
+			.map(this.extractData)
+			.catch(this.handleError);
 
 	}
 
@@ -47,10 +47,10 @@ export class SearchService {
 		}
 	}
 
-	private handleError (error: any) {
+	private handleError(error: any) {
 		// In some advance version we can include a remote logging of errors
-		let errMsg = (error.message) ? error.message :
-									error.status ? `${error.status} - ${error.statusText}` : 'Server error';
+		const errMsg = (error.message) ? error.message :
+			error.status ? `${error.status} - ${error.statusText}` : 'Server error';
 		console.error(errMsg); // Right now we are logging to console itself
 		return Observable.throw(errMsg);
 	}

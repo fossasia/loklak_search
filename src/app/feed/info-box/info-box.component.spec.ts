@@ -22,7 +22,7 @@ describe('Component: InfoBox', () => {
 	});
 
 	it('should create an instance', async(() => {
-		let component = TestBed.createComponent(InfoBoxComponent);
+		const component = TestBed.createComponent(InfoBoxComponent);
 		expect(component).toBeTruthy();
 	}));
 });

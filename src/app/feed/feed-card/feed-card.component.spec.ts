@@ -32,7 +32,7 @@ describe('Component: FeedCard', () => {
 		});
 	});
 	it('should create an instance', () => {
-		let component = TestBed.createComponent(FeedCardComponent);
+		const component = TestBed.createComponent(FeedCardComponent);
 		expect(component).toBeTruthy();
 	});
 });

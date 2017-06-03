@@ -5,7 +5,7 @@ import { FeedFooterComponent } from './feed-footer.component';
 
 describe('Component: FeedFooter', () => {
 	it('should create an instance', () => {
-		let component = new FeedFooterComponent();
+		const component = new FeedFooterComponent();
 		expect(component).toBeTruthy();
 	});
 });

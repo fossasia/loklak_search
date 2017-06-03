@@ -10,7 +10,7 @@ import { UserApiResponse } from '../models/api-user-response';
 @Injectable()
 export class UserService {
 	private static readonly apiUrl: URL = new URL('http://api.loklak.org/api/user.json');
-	private static minified_results: boolean = true;
+	private static minified_results = true;
 
 	constructor(
 		private jsonp: Jsonp
@@ -18,8 +18,8 @@ export class UserService {
 
 	// TODO: make the searchParams as configureable model rather than this approach.
 	public fetchQuery(user: string, follow_count: number): Observable<UserApiResponse> {
-		let screen_name = user.charAt(0).toUpperCase() + user.slice(1);
-		let searchParams = new URLSearchParams();
+		const screen_name = user.charAt(0).toUpperCase() + user.slice(1);
+		const searchParams = new URLSearchParams();
 		searchParams.set('screen_name', screen_name);
 		searchParams.set('followers', follow_count.toString());
 		searchParams.set('following', follow_count.toString());
@@ -41,7 +41,7 @@ export class UserService {
 
 	private handleError (error: any) {
 		// In some advance version we can include a remote logging of errors
-		let errMsg = (error.message) ? error.message :
+		const errMsg = (error.message) ? error.message :
 									error.status ? `${error.status} - ${error.statusText}` : 'Server error';
 		console.error(errMsg); // Right now we are logging to console itself
 		return Observable.throw(errMsg);
