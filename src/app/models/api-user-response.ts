@@ -13,7 +13,7 @@ export interface UserApiResponse {
 	profile_background_image_url_https: string;
 	protected: false;
 	screen_name: string;
-	id_str: number;
+	id_str: string;
 	profile_link_color: string;
 	is_translation_enabled: boolean;
 	translator_type: string;
@@ -33,7 +33,7 @@ export interface UserApiResponse {
 	profile_background_tile: boolean;
 	profile_banner_url: string;
 	entities: Object;
-	statuses_count: number; false;
+	statuses_count: number;
 	follow_request_sent: boolean;
 	followers_count: number;
 	profile_use_background_image: boolean;
@@ -46,8 +46,8 @@ export interface UserApiResponse {
 	retrieval_date: string;
 	location_country: string;
 	location_country_code: string;
-	location_point: string[];
-	location_mark: string[];
+	location_point: number[];
+	location_mark: number[];
 }
 
 export interface UserTopology {
@@ -61,4 +61,9 @@ export interface UserTopology {
 	unfollowers: UserApiResponse[];
 	following: UserApiResponse[];
 	unfollowing: UserApiResponse[];
+}
+
+export interface UserResponse {
+	user: UserApiResponse;
+	topology: UserTopology;
 }

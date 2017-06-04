@@ -5,7 +5,7 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/throw';
 
-import { UserApiResponse } from '../models/api-user-response';
+import { UserResponse } from '../models/api-user-response';
 
 @Injectable()
 export class UserService {
@@ -17,7 +17,7 @@ export class UserService {
 	) { }
 
 	// TODO: make the searchParams as configureable model rather than this approach.
-	public fetchQuery(user: string, follow_count: number): Observable<UserApiResponse> {
+	public fetchQuery(user: string, follow_count: number): Observable<UserResponse> {
 		const screen_name = user.charAt(0).toUpperCase() + user.slice(1);
 		const searchParams = new URLSearchParams();
 		searchParams.set('screen_name', screen_name);
@@ -31,9 +31,9 @@ export class UserService {
 
 	}
 
-	private extractData(res: Response): UserApiResponse {
+	private extractData(res: Response): UserResponse {
 		try {
-			return <UserApiResponse>res.json();
+			return <UserResponse>res.json();
 		} catch (error) {
 			console.error(error);
 		}

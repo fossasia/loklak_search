@@ -33,7 +33,7 @@ export interface State {
  * @prop: aggregations: null
  * @prop: valid: true
  */
-const initialState: State = {
+export const initialState: State = {
 	pages: [],
 	entities: [],
 	hashtags: [],

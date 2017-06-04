@@ -17,7 +17,7 @@ export interface State {
 /**
  * There is always a need of initial state to be passed onto the store.
 */
-const initialState: State = {
+export const initialState: State = {
 	user: null,
 	followers: [],
 	following: [],
