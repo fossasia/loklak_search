@@ -1,4 +1,9 @@
-import { ApiResponseResult, ApiResponseUser } from '../../models/api-response';
+import { ApiResponseResult,
+		ApiResponseUser,
+		ApiResponse,
+		ApiResponseAggregations,
+		ApiResponseMetadata } from '../../models/api-response';
+import { Query, ReloactionAfterQuery } from '../../models/query';
 
 export const MockApiResponseResult: ApiResponseResult = {
 	audio: [],
@@ -58,3 +63,73 @@ export const MockApiResponseResult: ApiResponseResult = {
 	without_lu_len: 111,
 	without_luh_len: 7
 };
+
+export const MockApiResponseMetadata: ApiResponseMetadata = {
+	client: '162.158.46.60',
+	count: '1',
+	count_backend: 0,
+	count_cache: 0,
+	count_twitter_all: 0,
+	count_twitter_new: 1,
+	hits: 1,
+	index: 'messages_week',
+	itemsPerPage: 1,
+	period: 11818948,
+	query: 'fossasia',
+	scraperInfo: 'local',
+	servicereduction: 'false',
+	time: 1234
+};
+
+export const MockApiResponseAggregations: ApiResponseAggregations = {
+	hashtags : {
+		'susi': 2,
+		'asksusi': 1,
+		'developer': 1,
+		'fossasia': 1,
+		'gsoc': 1,
+		'materialui': 1,
+		'opensource': 1,
+		'react': 1,
+		'sphinx': 1
+		},
+		screen_name : {
+		'bossmandoggames': 22,
+		'fastfixmelb': 22,
+		'5ch00lb0y': 1,
+		'Lakshaykapoor8': 1,
+		'N1kk0777': 1,
+		'isuruAb': 1,
+		'nikhil_rayap': 1,
+		'rishirajloyola': 1,
+		'shubham_p98': 1,
+		'udayteja96': 1
+		},
+		mentions : {
+		'fossasia': 4,
+		'mariobehling': 4,
+		'asksusi': 2,
+		'0rb1t3r': 1,
+		'YouTube': 1,
+		'gsoc': 1,
+		'hpdang': 1
+		},
+		created_at : {
+		'2017-05-27': 3,
+		'2017-05-28': 8,
+		'2017-05-29': 7,
+		'2017-05-30': 10,
+		'2017-05-31': 6,
+		'2017-06-01': 6,
+		'2017-06-02': 9,
+		'2017-06-03': 3
+		}
+};
+
+export const MockApiResponse: ApiResponse = {
+	search_metadata: MockApiResponseMetadata,
+	statuses: [MockApiResponseResult],
+	aggregations: MockApiResponseAggregations
+};
+
+export const MockQuery: Query = { queryString: 'loklak', location: ReloactionAfterQuery.RELOCATE };

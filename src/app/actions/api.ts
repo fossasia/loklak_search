@@ -1,7 +1,7 @@
 import { Action } from '@ngrx/store';
 import { ApiResponse } from '../models/api-response';
 import { Query } from '../models/query';
-import { UserApiResponse } from '../models/api-user-response';
+import { UserApiResponse, UserResponse } from '../models/api-user-response';
 import { actionTypeCheck } from '../utils';
 
 /**
@@ -77,7 +77,7 @@ export class FetchUserAction implements Action {
 export class FetchUserSuccessAction implements Action {
 	type = ActionTypes.FETCH_USER_SUCCESS;
 
-	constructor(public payload: UserApiResponse) {}
+	constructor(public payload: UserResponse) {}
 }
 
 export class FetchUserFailAction implements Action {
