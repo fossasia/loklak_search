@@ -38,12 +38,6 @@ import { InViewportDirective } from '../shared//in-viewport.directive';
 		BrowserAnimationsModule,
 
 		/**
-		 * FormsModule declares all the important parts of the foem handling
-		 * important for "Template Driven Forms".
-		 */
-		FormsModule,
-
-		/**
 		 * `ReactiveFormsModule` declares all the important providers and directives
 		 * for the "Model Driven Forms" which are easier to setup and test.
 		 */
@@ -54,7 +48,6 @@ import { InViewportDirective } from '../shared//in-viewport.directive';
  		 */
 		MaterialModule,
 
-
 		/**
 		 * Defines the routes at `feed` level of application.
 		 */
@@ -64,6 +57,7 @@ import { InViewportDirective } from '../shared//in-viewport.directive';
 		 * Declares a UI based footer module which is completely interoperable.
 		 */
 		FooterModule,
+
 		/**
 		* For showing Tweet Frequency in the searches
 		**/
