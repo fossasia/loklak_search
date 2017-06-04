@@ -8,12 +8,13 @@ import { ImprintComponent } from './imprint.component';
 
 @NgModule({
 	imports: [
-		CommonModule,
-
 		/**
- 		 * The module for material design components
- 		 */
-		MaterialModule,
+		 * The `CommonModule` contributes many of the common directives that
+		 * applications need including `ngIf` and `ngFor`.
+		 * BrowserModule imports CommonModule and re-exports it.
+		 * The net effect is that an importer of `BrowserModule` gets `CommonModule` directives automatically.
+		 */
+		CommonModule,
 
 		LoklakImprintRoutingModule
 	],

@@ -1,10 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { HttpModule, JsonpModule } from '@angular/http';
-
-import { MaterialModule } from '@angular/material';
 
 import { LoklakContactRoutingModule } from './contact-routing.module';
 import { ContactComponent } from './contact.component';
@@ -15,14 +12,19 @@ import { ContactFormComponent } from './contact-form/contact-form.component';
 
 @NgModule({
 	imports: [
+		/**
+		 * The `CommonModule` contributes many of the common directives that
+		 * applications need including `ngIf` and `ngFor`.
+		 * BrowserModule imports CommonModule and re-exports it.
+		 * The net effect is that an importer of `BrowserModule` gets `CommonModule` directives automatically.
+		 */
 		CommonModule,
-		FormsModule,
-		ReactiveFormsModule,
 
 		/**
- 		 * The module for material design components
- 		 */
-		MaterialModule,
+		 * `ReactiveFormsModule` declares all the important providers and directives
+		 * for the "Model Driven Forms" which are easier to setup and test.
+		 */
+		ReactiveFormsModule,
 
 		LoklakContactRoutingModule,
 		NavbarModule,

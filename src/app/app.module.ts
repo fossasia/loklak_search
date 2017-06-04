@@ -1,7 +1,5 @@
 import { BrowserModule, Title } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpModule, JsonpModule } from '@angular/http';
 
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
@@ -41,30 +39,6 @@ import { PageNotFoundModule } from './pagenotfound/pagenotfound.module';
 		 * visible and usable in any of this modules component templates.
 		 */
 		BrowserModule,
-
-		/**
-		 * FormsModule declares all the important parts of the foem handling
-		 * important for "Template Driven Forms".
-		 */
-		FormsModule,
-
-		/**
-		 * `ReactiveFormsModule` declares all the important providers and directives
-		 * for the "Model Driven Forms" which are easier to setup and test.
-		 */
-		ReactiveFormsModule,
-
-		/**
-		 * The module that includes http's providers.
-		 * The `HttpModule` is necessary for making `HTTP calls`.
-		 */
-		HttpModule,
-
-		/**
-		 * The module that includes jsonp's providers.
-		 * The `JsonpModule` is necessary for making`JSONP calls`, (used in `SearchService`).
-		 */
-		JsonpModule,
 
 		/**
      * StoreModule.provideStore is imported once in the root module, accepting a reducer
