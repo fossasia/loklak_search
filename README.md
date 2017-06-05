@@ -45,18 +45,18 @@ After installing anular-cli we need to install our required node modules, so we 
 $ npm install
 ```
 ## How to deploy?
-##### Running on localhost:
+### Running on localhost:
 * **Step 1:** Fork loklak_search repository and clone it to your desktop
 * **Step 2:** Then cd into that cloned folder
 * **Step 3:** Deploy locally by running this :```$ ng serve```
 
-## How to use ngrx/StoreDevtools?
+#### How to use ngrx/StoreDevtools?
 * **Step 1:** Install the `Redux Devtools` [extension](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?hl=en-US).
 * **Step 2:** We don't enable the the ReduxDevtools by default due to performance considerations, To enable this un-comment the *StoreDevtools* `import` in `app.module.ts`.
 
 **Note:** Please make sure that you comment the *StoreDevtools* `import` again before making the PR.
 
-#### For deploying with [Github Pages](https://pages.github.com/):
+### For deploying with [Github Pages](https://pages.github.com/):
 With these very simple steps you can have loklak_search deployed:
 * **Step 1:** Fork loklak_search repository and clone it to your desktop
 * **Step 2:** Then checkout to your master branch `$ git checkout master`
