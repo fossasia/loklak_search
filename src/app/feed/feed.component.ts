@@ -32,25 +32,25 @@ export class FeedComponent implements OnInit, AfterViewInit, OnDestroy {
 	public query$: Observable<Query>;
 	public isSearching$: Observable<boolean>;
 	public areResultsAvailable$: Observable<boolean>;
-	private apiResponseResults$: Observable<ApiResponseResult[]>;
-	private apiResponseTags$: Observable<Tag[]>;
-	private apiResponseAggregations$: Observable<ApiResponseAggregations>;
-	private isNextPageLoading$: Observable<boolean>;
-	private areMorePagesAvailable$: Observable<boolean>;
-	private visibility = false;
-	private display = true;
-	private isLightboxSelected$: Observable<boolean>;
-	private LightboxgetSelectedItem$: Observable<ApiResponseResult>;
-	private apiResponseUser$: Observable<UserApiResponse>;
-	private apiResponseUserFollowers$: Observable<UserApiResponse[]>;
-	private apiResponseUserFollowing$: Observable<UserApiResponse[]>;
-	private isUserResponseLoading$: Observable<boolean>;
-	private showUserInfo$: Observable<boolean>;
-	private suggestServiceQuery$: Observable<Query>;
-	private isSuggestServiceLoading$: Observable<boolean>;
+	public apiResponseResults$: Observable<ApiResponseResult[]>;
+	public apiResponseTags$: Observable<Tag[]>;
+	public apiResponseAggregations$: Observable<ApiResponseAggregations>;
+	public isNextPageLoading$: Observable<boolean>;
+	public areMorePagesAvailable$: Observable<boolean>;
+	public visibility = false;
+	public display = true;
+	public isLightboxSelected$: Observable<boolean>;
+	public LightboxgetSelectedItem$: Observable<ApiResponseResult>;
+	public apiResponseUser$: Observable<UserApiResponse>;
+	public apiResponseUserFollowers$: Observable<UserApiResponse[]>;
+	public apiResponseUserFollowing$: Observable<UserApiResponse[]>;
+	public isUserResponseLoading$: Observable<boolean>;
+	public showUserInfo$: Observable<boolean>;
+	public suggestServiceQuery$: Observable<Query>;
+	public isSuggestServiceLoading$: Observable<boolean>;
 	public suggestResponse$: Observable<SuggestResults[]>;
 	public showUserFeed$: Observable<boolean>;
-	private index = 12;
+	public index = 12;
 
 	constructor(
 		private route: ActivatedRoute,

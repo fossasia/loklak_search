@@ -27,7 +27,7 @@
 					<feed-lightbox [feedItem]="(LightboxgetSelectedItem$ | async)" (hideLightBox)="hidelightbox($event)"></feed-lightbox>
 				</div>
 				<feed-pagination
-					(paginate)="loadMoreResults(event$)"
+					(paginate)="loadMoreResults($event)"
 					[isNextPageLoading]="(isNextPageLoading$ | async)"
 					[areMorePagesAvailable]="(areMorePagesAvailable$ | async)"></feed-pagination>
 

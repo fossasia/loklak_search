@@ -19,7 +19,7 @@ export interface State {
  *
  * @prop: page: 0
  */
-const initialState = {
+export const initialState = {
 	page: 0,
 	pageLoading: false,
 	pagesAvailable: true
