@@ -34,12 +34,24 @@ export const MockUserApiResponse: UserApiResponse = {
 		contributors_enabled: false,
 		profile_background_tile: true,
 		profile_banner_url: 'https://pbs.twimg.com/profile_banners/157702526/1415283831',
-		entities: {'urls': [{
-			display_url: 'fossasia.org',
-			indices: [57, 80],
-			expanded_url: 'http://fossasia.org',
-			url: 'https://t.co/aKhIo2s1Ck'
-			}]},
+		entities: {
+			description: {
+			urls: [{
+				expanded_url: 'http://loklak.org',
+				indices: [ 93, 115 ],
+				display_url : 'loklak.org',
+				url : 'http://t.co/D8XmZwuU2Y'
+			}]
+			},
+			url: {
+			urls: [{
+				display_url: 'fossasia.org',
+				indices: [57, 80],
+				expanded_url: 'http://fossasia.org',
+				url: 'https://t.co/aKhIo2s1Ck'
+			}]
+			}
+		},
 		statuses_count: 3305,
 		follow_request_sent: false,
 		followers_count: 2996,

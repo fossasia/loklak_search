@@ -15,7 +15,7 @@ export interface State {
  * @prop: entities: []
  * @prop: valid: true
  */
-const initialState: State = {
+export const initialState: State = {
 	metadata: null,
 	entities: [],
 	valid: true

@@ -32,7 +32,24 @@ export interface UserApiResponse {
 	contributors_enabled: boolean;
 	profile_background_tile: boolean;
 	profile_banner_url: string;
-	entities: Object;
+	entities: {
+		description: {
+			urls: {
+				expanded_url: string;
+				indices: number[];
+				display_url: string;
+				url: string;
+			}[]
+			},
+			url: {
+			urls: {
+				expanded_url: string;
+				indices: number[];
+				display_url: string;
+				url: string;
+			}[]
+			}
+	};
 	statuses_count: number;
 	follow_request_sent: boolean;
 	followers_count: number;

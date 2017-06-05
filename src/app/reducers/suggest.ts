@@ -20,7 +20,7 @@ export interface State {
  * @prop: query: ''
  * @prop: loading: false
  */
-const initialState: State = {
+export const initialState: State = {
 	query: { queryString: '', location: ReloactionAfterQuery.NONE },
 	loading: false
 };
