@@ -40,7 +40,7 @@ export class SuggestEffects {
 					.debounceTime(200)
 					.map((action: suggestAction.SuggestAction) => action.payload)
 					.switchMap(query => {
-						const nextSuggest$ = this.actions$.ofType(suggestAction.ActionTypes.SUGGEST);
+						const nextSuggest$ = this.actions$.ofType(suggestAction.ActionTypes.SUGGEST).skip(1);
 
 						return this.suggestService.fetchQuery(query.queryString)
 																				.takeUntil(nextSuggest$)
