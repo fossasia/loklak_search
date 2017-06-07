@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { Observable } from 'rxjs/Observable';
+
+
 
 @Component({
 	selector: 'app-contact',
@@ -9,9 +12,10 @@ import { Observable } from 'rxjs/Observable';
 export class ContactComponent implements OnInit {
 	public formcontrol = false;
 
-	constructor() { }
+	constructor( private titleService: Title) { }
 
 	ngOnInit() {
+		this.titleService.setTitle('Contact Loklak');
 	}
 
 	private contactform(event) {
