@@ -40,7 +40,7 @@ export class ApiUserSearchEffects {
 					.debounceTime(200)
 					.map((action: apiAction.FetchUserAction) => action.payload)
 					.switchMap(query => {
-						const nextSearch$ = this.actions$.ofType(apiAction.ActionTypes.SEARCH).skip(1);
+						const nextSearch$ = this.actions$.ofType(apiAction.ActionTypes.FETCH_USER).skip(1);
 
 						const re = new RegExp(/^(followers|from):\s*([a-zA-Z0-9_@]+)/, 'i');
 						const matches = re.exec(query.queryString);
