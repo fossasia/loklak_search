@@ -1,5 +1,5 @@
 codecov:
-  branch: gh-pages
+  branch: master
   bot: null
 
 coverage:
