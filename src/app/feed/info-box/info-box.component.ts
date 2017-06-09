@@ -14,15 +14,15 @@ import { Query, ReloactionAfterQuery } from '../../models';
 export class InfoBoxComponent implements OnInit, OnChanges {
 	@Input() private query: Query;
 	@Input() private apiResponseAggregations: ApiResponseAggregations;
-	private inviewporttwitters: Observable<boolean>;
-	private inviewportmentions: Observable<boolean>;
+	public inviewporttwitters: Observable<boolean>;
+	public inviewportmentions: Observable<boolean>;
 	public areTopHashtagsAvailable: boolean;
 	public areTopTwitterersAvailable: boolean;
 	public areTopMentionsAvailable: boolean;
 	public areFrequencyDataAvailable: boolean;
-	private topHashtags;
-	private topMentions;
-	private topTwitterers;
+	public topHashtags;
+	public topMentions;
+	public topTwitterers;
 
 	public barChartLabels: string[] = ['0'];
 	public barChartType = 'bar';

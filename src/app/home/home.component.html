@@ -24,6 +24,17 @@
 			<span class="highlight">from:user</span> shows messages of a user;&nbsp;
 			<span class="highlight">followers:user</span> find followers of a user.
 		</div>
+
+
+		<div class="top-hashtags">
+		<h4 class="heading">Top Hashtags:</h4>
+		<span class="waiting-text" *ngIf="(apiResponseHashtags$ | async).length === 0">Wait...</span>
+			<div *ngIf="(apiResponseHashtags$ | async).length !== 0">
+					<span *ngFor ="let item of (apiResponseHashtags$ | async)">
+							<a [routerLink]="['/search']" [queryParams]="{ query : '#' + item.tag }">#{{item.tag}}</a>&nbsp;
+					</span>
+			</div>
+		</div>
 	</div>
 </div>
 <app-footer></app-footer>
