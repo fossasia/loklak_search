@@ -2,6 +2,7 @@
 
 import { TestBed, async, inject } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+import { Title } from '@angular/platform-browser';
 import { Component } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -20,6 +21,7 @@ import { RouterStub } from '../../testing';
 class FooterStubComponent { }
 
 describe('Component: Home', () => {
+	let homeTitle: Title;
 	beforeEach(() => {
 		TestBed.configureTestingModule({
 			imports: [
@@ -32,7 +34,8 @@ describe('Component: Home', () => {
 				FooterStubComponent
 			],
 			providers: [
-				{ provide: Router, useClass: RouterStub }
+				{ provide: Router, useClass: RouterStub },
+				{ provide: Title, useClass: Title }
 			]
 		});
 	});
@@ -42,6 +45,15 @@ describe('Component: Home', () => {
 		const component = fixture.debugElement.componentInstance;
 		expect(component).toBeTruthy();
 	}));
+
+	it('should have a title Loklak Search', () => {
+		const fixture = TestBed.createComponent(HomeComponent);
+		fixture.detectChanges();
+		const component = fixture.debugElement.componentInstance;
+
+		homeTitle = TestBed.get(Title);
+		expect(homeTitle.getTitle()).toBe('Loklak Search');
+	});
 
 	it('should have logo with correct alt text property', async(() => {
 		const fixture = TestBed.createComponent(HomeComponent);

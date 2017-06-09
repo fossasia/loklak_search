@@ -4,6 +4,7 @@ import { Component,
 
 import { FormControl } from '@angular/forms';
 import { Location } from '@angular/common';
+import { Title }	from '@angular/platform-browser';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 
 import { Observable } from 'rxjs/Observable';
@@ -19,6 +20,7 @@ import { ApiResponse, ApiResponseMetadata, ApiResponseResult, ApiResponseAggrega
 import { SuggestMetadata, SuggestResults, SuggestResponse } from '../models/api-suggest';
 import { Query, ReloactionAfterQuery } from '../models/query';
 import { UserApiResponse } from '../models/api-user-response';
+
 
 @Component({
 	selector: 'app-feed',
@@ -56,7 +58,8 @@ export class FeedComponent implements OnInit, AfterViewInit, OnDestroy {
 		private route: ActivatedRoute,
 		private location: Location,
 		private store: Store<fromRoot.State>,
-		private elementRef: ElementRef
+		private elementRef: ElementRef,
+		private titleService: Title
 	) { }
 
 	ngOnInit() {
@@ -151,6 +154,7 @@ export class FeedComponent implements OnInit, AfterViewInit, OnDestroy {
 					}));
 					this.store.dispatch(new apiAction.ShowUserFeed(''));
 				}
+				this.titleService.setTitle(query + ' - Loklak Search');
 				this.store.dispatch(new paginationAction.RevertPaginationState(''));
 			}
 	}
