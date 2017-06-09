@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy, ChangeDetectionStrategy, ElementRef } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 import { Subscription } from 'rxjs/Subscription';
 
 import { Store } from '@ngrx/store';
@@ -25,10 +26,12 @@ export class HomeComponent implements OnInit, OnDestroy {
 	constructor(
 		private router: Router,
 		private elementRef: ElementRef,
-		private store: Store<fromRoot.State>
+		private store: Store<fromRoot.State>,
+		private titleService: Title
 	) { }
 
 	ngOnInit() {
+		this.titleService.setTitle('Loklak Search');
 		this.focusTextbox();
 		this.setupSearchField();
 	}
