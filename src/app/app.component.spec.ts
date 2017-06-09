@@ -29,4 +29,11 @@ describe('App: LoklakSearch', () => {
 		const app = fixture.debugElement.componentInstance;
 		expect(app).toBeTruthy();
 	}));
+
+	it('should have scroll position to be (0,0)', async(() => {
+		const fixture = TestBed.createComponent(AppComponent);
+		const app = fixture.debugElement.componentInstance;
+		expect(window.pageYOffset).toBe(0);
+		expect(window.pageXOffset).toBe(0);
+	}));
 });

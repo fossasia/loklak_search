@@ -29,7 +29,7 @@ export class ContactFormComponent implements OnInit {
 		this.contactForm = new FormGroup({
 			name: new FormControl('', [<any>Validators.required]),
 			email: new FormControl('', [<any>Validators.required]),
-			countrycode: new FormControl('213', [<any>Validators.required]),
+			countrycode: new FormControl('', [<any>Validators.required]),
 			telephone: new FormControl('', [<any>Validators.required]),
 			message: new FormControl('', [<any>Validators.required, <any>Validators.minLength(200)])
 			});
