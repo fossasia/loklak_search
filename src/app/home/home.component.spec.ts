@@ -96,10 +96,23 @@ describe('Component: Home', () => {
 		let qs: string;
 		const subscription = query$.subscribe(query => qs = query.queryString);
 
-		expect(qs).toBeFalsy();
 		component._queryControl.setValue(value);
 		expect(qs).toBe(value);
 
+		subscription.unsubscribe();
+	}));
+
+	it('should dispatch Search Action for getting top hashtags', async(() => {
+		const fixture = TestBed.createComponent(HomeComponent);
+		fixture.detectChanges();
+		const component = fixture.debugElement.componentInstance;
+		const compiled = fixture.debugElement.nativeElement;
+
+		const query$ = component.store.select(fromRoot.getSearchQuery);
+		let qs: string;
+		const subscription = query$.subscribe(query => qs = query.queryString);
+
+		expect(qs).toBe('since:day');
 		subscription.unsubscribe();
 	}));
 

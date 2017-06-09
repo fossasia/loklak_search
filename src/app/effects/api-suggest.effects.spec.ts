@@ -35,15 +35,15 @@ describe('SuggestEffects', () => {
 		]
 	}));
 
-	function setup(params?: {suggestapiReturnValue: any}) {
+	function setup(params?: {suggestApiReturnValue: any}) {
 		const suggestService = TestBed.get(SuggestService);
 		if (params) {
-			suggestService.fetchQuery.and.returnValue(params.suggestapiReturnValue);
+			suggestService.fetchQuery.and.returnValue(params.suggestApiReturnValue);
 		}
 
 		return {
 			runner: TestBed.get(EffectsRunner),
-			apisuggestEffects: TestBed.get(SuggestEffects)
+			apiSuggestEffects: TestBed.get(SuggestEffects)
 		};
 	}
 
@@ -52,34 +52,36 @@ describe('SuggestEffects', () => {
 			'with the response, on success, after the de-bounce', fakeAsync(() => {
 			const response = MockSuggestResponse;
 
-			const {runner, apisuggestEffects} = setup({suggestapiReturnValue: Observable.of(response)});
+			const {runner, apiSuggestEffects} = setup({suggestApiReturnValue: Observable.of(response)});
 
 			const expectedResult = new suggestAction.SuggestCompleteSuccessAction(response);
 
 			runner.queue(new suggestAction.SuggestAction(query));
 
 			let result = null;
-			apisuggestEffects.suggest$.subscribe(_result => result = _result);
+			const subscription = apiSuggestEffects.suggest$.subscribe(_result => result = _result);
 			tick(199); // test debounce
 			expect(result).toBe(null);
 			tick(200);
 			expect(result).toEqual(expectedResult);
+			subscription.unsubscribe();
 		}));
 
 		it('should return a new suggestAction.SuggestCompleteFailAction, ' +
 			'if the suggest service throws', fakeAsync(() => {
-			const {runner, apisuggestEffects} = setup({suggestapiReturnValue: Observable.throw(new Error())});
+			const {runner, apiSuggestEffects} = setup({suggestApiReturnValue: Observable.throw(new Error())});
 
 			const expectedResult = new suggestAction.SuggestCompleteFailAction('');
 			runner.queue(new suggestAction.SuggestAction(query));
 
 			let result = null;
 
-			apisuggestEffects.suggest$.subscribe(_result => result = _result);
+			const subscription = apiSuggestEffects.suggest$.subscribe(_result => result = _result);
 			tick(199); // test debounce
 			expect(result).toBe(null);
 			tick(200);
 			expect(result).toEqual(expectedResult);
+			subscription.unsubscribe();
 		}));
 	});
 });

@@ -37,15 +37,15 @@ describe('ApiSearchEffects', () => {
 		]
 	}));
 
-	function setup(params?: {searchapiReturnValue: any}) {
+	function setup(params?: {searchApiReturnValue: any}) {
 		const searchService = TestBed.get(SearchService);
 		if (params) {
-			searchService.fetchQuery.and.returnValue(params.searchapiReturnValue);
+			searchService.fetchQuery.and.returnValue(params.searchApiReturnValue);
 		}
 
 		return {
 			runner: TestBed.get(EffectsRunner),
-			apisearchEffects: TestBed.get(ApiSearchEffects)
+			apiSearchEffects: TestBed.get(ApiSearchEffects)
 		};
 	}
 
@@ -54,33 +54,35 @@ describe('ApiSearchEffects', () => {
 			'with the response, on success, after the de-bounce', fakeAsync(() => {
 			const response = MockApiResponse;
 
-			const {runner, apisearchEffects} = setup({searchapiReturnValue: Observable.of(response)});
+			const {runner, apiSearchEffects} = setup({searchApiReturnValue: Observable.of(response)});
 
 			const expectedResult = new apiAction.SearchCompleteSuccessAction(response);
 			runner.queue(new apiAction.SearchAction(query));
 
 			let result = null;
-			apisearchEffects.search$.subscribe(_result => result = _result);
+			const subscription = apiSearchEffects.search$.subscribe(_result => result = _result);
 			tick(199); // test debounce
 			expect(result).toBe(null);
 			tick(200);
 			expect(result).toEqual(expectedResult);
+			subscription.unsubscribe();
 		}));
 
 		it('should return a new apiAction.SearchCompleteFailAction, ' +
 			'if the search service throws', fakeAsync(() => {
-			const {runner, apisearchEffects} = setup({searchapiReturnValue: Observable.throw(new Error())});
+			const {runner, apiSearchEffects} = setup({searchApiReturnValue: Observable.throw(new Error())});
 
 			const expectedResult = new apiAction.SearchCompleteFailAction('');
 			runner.queue(new apiAction.SearchAction(query));
 
 			let result = null;
 
-			apisearchEffects.search$.subscribe(_result => result = _result);
+			const subscription = apiSearchEffects.search$.subscribe(_result => result = _result);
 			tick(199); // test debounce
 			expect(result).toBe(null);
 			tick(200);
 			expect(result).toEqual(expectedResult);
+			subscription.unsubscribe();
 		}));
 	});
 });

@@ -36,10 +36,10 @@ describe('PaginationEffects', () => {
 		]
 	}));
 
-	function setup(params?: {searchapiReturnValue: any}) {
+	function setup(params?: {searchApiReturnValue: any}) {
 		const searchService = TestBed.get(SearchService);
 		if (params) {
-			searchService.fetchQuery.and.returnValue(params.searchapiReturnValue);
+			searchService.fetchQuery.and.returnValue(params.searchApiReturnValue);
 		}
 
 		return {
@@ -53,28 +53,30 @@ describe('PaginationEffects', () => {
 			'with the response, on success', fakeAsync(() => {
 			const response = MockApiResponse;
 
-			const {runner, paginationEffects} = setup({searchapiReturnValue: Observable.of(response)});
+			const {runner, paginationEffects} = setup({searchApiReturnValue: Observable.of(response)});
 
 			const expectedResult = new paginationAction.PaginationCompleteSuccessAction(response);
 
 			runner.queue(new paginationAction.NextPageAction(query));
 
 			let result = null;
-			paginationEffects.pagination$.subscribe(_result => result = _result);
+			const subscription = paginationEffects.pagination$.subscribe(_result => result = _result);
 			expect(result).toEqual(expectedResult);
+			subscription.unsubscribe();
 		}));
 
 		it('should return a new paginationAction.PaginationCompleteFailAction, ' +
 			'if the search service throws', fakeAsync(() => {
-			const {runner, paginationEffects} = setup({searchapiReturnValue: Observable.throw(new Error())});
+			const {runner, paginationEffects} = setup({searchApiReturnValue: Observable.throw(new Error())});
 
 			const expectedResult = new paginationAction.PaginationCompleteFailAction('');
 			runner.queue(new paginationAction.NextPageAction(query));
 
 			let result = null;
 
-			paginationEffects.pagination$.subscribe(_result => result = _result);
+			const subscription = paginationEffects.pagination$.subscribe(_result => result = _result);
 			expect(result).toEqual(expectedResult);
+			subscription.unsubscribe();
 		}));
 	});
 });

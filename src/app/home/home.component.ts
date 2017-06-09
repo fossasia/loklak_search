@@ -1,6 +1,8 @@
 import { Component, OnInit, OnDestroy, ChangeDetectionStrategy, ElementRef } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
+
+import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 
 import { Store } from '@ngrx/store';
@@ -8,6 +10,7 @@ import * as fromRoot from '../reducers';
 import * as apiAction from '../actions/api';
 import * as suggestServiceAction from '../actions/suggest';
 
+import { ApiResponseAggregations } from '../models/api-response';
 import { Query, ReloactionAfterQuery } from '../models/query';
 
 @Component({
@@ -21,16 +24,22 @@ export class HomeComponent implements OnInit, OnDestroy {
 	public headerImageUrl = 'assets/images/cow_150x175.png';
 	public _queryControl: FormControl = new FormControl();
 	public inputFocused = false;
+	public apiResponseHashtags$: Observable<Array<{ tag: string, count: number }>>;
+	public aggregations: ApiResponseAggregations;
+	public areTopHashtagsAvailable: boolean;
+	public topHashtags;
 
 	constructor(
 		private router: Router,
 		private elementRef: ElementRef,
-		private store: Store<fromRoot.State>
+		private store: Store<fromRoot.State>,
 	) { }
 
 	ngOnInit() {
 		this.focusTextbox();
 		this.setupSearchField();
+		this.getTopHashtags();
+		this.getDataFromStore();
 	}
 
 	/**
@@ -83,6 +92,40 @@ export class HomeComponent implements OnInit, OnDestroy {
 			)
 		);
 	}
+
+	private getTopHashtags() {
+		this.store.dispatch(new apiAction.SearchAction({
+			queryString: 'since:day',
+			location: ReloactionAfterQuery.NONE
+		}));
+	}
+
+	private getDataFromStore() {
+		this.apiResponseHashtags$ = this.store.select(fromRoot.getApiResponseTags);
+	}
+
+	// private	sortHashtags(statistics) {
+	// 	let sortable = [];
+	// 	/* A check for both the data and the individual objects is necessary, also if the data is not empty*/
+	// 	if ((statistics && statistics.hashtags !== undefined) && Object.keys(statistics.hashtags).length !== 0) {
+	// 		for (const s in statistics.hashtags) {
+	// 			if (s) {
+	// 				sortable.push([s, statistics.hashtags[s]]);
+	// 			}
+	// 		}
+	// 		sortable = (sortable.slice(0, 10));
+	// 		this.topHashtags = sortable;
+	// 		this.areTopHashtagsAvailable = true;
+	// 		console.log(this.topHashtags);
+	// 		return this.topHashtags;
+
+	// 	}
+	// 	else if (typeof statistics === 'undefined') {
+	// 		this.topHashtags = [];
+	// 		this.areTopHashtagsAvailable = false;
+	// 		return this.topHashtags;
+	// 	}
+	// }
 
 	/**
 	 * Cleanup all the subscriptions when component is destroyed.
