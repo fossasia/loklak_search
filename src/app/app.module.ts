@@ -1,4 +1,5 @@
 import { BrowserModule, Title } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 
 import { StoreModule } from '@ngrx/store';
@@ -33,6 +34,13 @@ import { PageNotFoundModule } from './pagenotfound/pagenotfound.module';
 		AppComponent
 	],
 	imports: [
+		/**
+		 * `BrowserAnimationsModule` is responsible to perform animations
+		 * and more advanced transitions based on Web Animation API
+		 * in the application
+		 *  Checkout here - https://w3c.github.io/web-animations/
+		 */
+		BrowserAnimationsModule,
 		/**
 		 * `BrowserModule` registers critical application service providers.
 		 * It also includes common directives like `NgIf` and `NgFor` which become immediately

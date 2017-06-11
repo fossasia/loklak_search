@@ -1,6 +1,6 @@
 <nav class="navbar">
 	<div class="container">
-			<input type="checkbox" id="navbar-toggle-cbox">
+			<input type="checkbox" id="navbar-toggle-cbox" (click)="toggleMenu()">
 			<div class="navbar-header">
 				<label for="navbar-toggle-cbox" type="button" class="navbar-toggle">
 					<i class="material-icons material-icons.md-dark">menu</i>
@@ -9,7 +9,7 @@
 					loklak
 				</a>
 			</div>
-			<div class="navbar-collapse">
+			<div class="navbar-collapse" [@slideInOut]="menuState">
 				<ul>
 					<li><a routerLink="/">Home</a></li>
 					<li><a routerLink="/about">About</a></li>
