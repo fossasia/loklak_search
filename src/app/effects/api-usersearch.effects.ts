@@ -37,7 +37,7 @@ export class ApiUserSearchEffects {
 	search$: Observable<Action>
 		= this.actions$
 					.ofType(apiAction.ActionTypes.FETCH_USER)
-					.debounceTime(200)
+					.debounceTime(400)
 					.map((action: apiAction.FetchUserAction) => action.payload)
 					.switchMap(query => {
 						const nextSearch$ = this.actions$.ofType(apiAction.ActionTypes.FETCH_USER).skip(1);

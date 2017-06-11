@@ -9,7 +9,7 @@
 			<div class="input-group">
 				<label for="search">Search On Loklak.</label>
 
-				<input mdInput required autocomplete="off" type="text" id="search" name="search" placeholder="I'm feeling awesome!"
+				<input mdInput required search autocomplete="off" type="text" id="search" name="search" placeholder="I'm feeling awesome!"
 								[formControl]="searchInputControl" [mdAutocomplete]="searchSuggestBox"
 								(keyup.enter)="relocateEvent.emit(query)" [(ngModel)]="query"/>
 

@@ -54,7 +54,7 @@ export function reducer(state: State = initialState, action: api.Actions): State
 
 		case api.ActionTypes.FETCH_USER_SUCCESS: {
 			const userResponse = action.payload;
-			console.log(userResponse);
+
 			return Object.assign({}, state, {
 				user: userResponse.user,
 				followers: userResponse.topology.followers,

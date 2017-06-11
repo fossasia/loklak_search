@@ -26,3 +26,14 @@ export function getIndicesOf(text: string, str: string, caseSensitive = true): n
 
 	return indices;
 }
+
+
+/**
+ * Immutable Sort: Sorts the array without modifying the original one.
+ *
+ * @param: array: Array to be sorted
+ * @param: compareFunction: the function to be used for comparision of objects
+ */
+export function immutableSort(array: Array<any>, compareFunction?: (a: any, b: any) => number): Array<any> {
+	return [...array].sort(compareFunction);
+};

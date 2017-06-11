@@ -1,6 +1,6 @@
 <div class="outer-wrapper">
 	<feed-header
-				[query]="(query$ | async).queryString"
+				[query]="(query$ | async).displayString"
 				[suggestionList]="(suggestResponse$ | async)"
 				(searchEvent)="search($event)"
 				(relocateEvent)="relocateURL($event)"
@@ -31,20 +31,25 @@
 					[isNextPageLoading]="(isNextPageLoading$ | async)"
 					[areMorePagesAvailable]="(areMorePagesAvailable$ | async)"></feed-pagination>
 
-				<feed-footer [query] = "(query$ | async)" [apiResponseTags]="(apiResponseTags$ | async)"></feed-footer>
+				<feed-footer
+					[query] = "(query$ | async).displayString"
+					[apiResponseTags]="(apiResponseTags$ | async)"></feed-footer>
 			</div>
 			<div *ngIf="(areResultsAvailable$ | async)" class="wrapper feed-info-box">
-					<info-box *ngIf="!(showUserInfo$ | async)" [query] = "(query$ | async)" [apiResponseAggregations]="(apiResponseAggregations$ | async)"></info-box>
+					<info-box *ngIf="!(showUserInfo$ | async)"
+						[query] = "(query$ | async)"
+						[apiResponseAggregations]="(apiResponseAggregations$ | async)"></info-box>
 					<user-info-box
 						*ngIf="(showUserInfo$ | async)"
 						[apiResponseUser] = "(apiResponseUser$ | async)"
-						[apiResponseUserFollowing] = "sortUsers(apiResponseUserFollowing$ | async)"
-						[apiResponseUserFollowers] = "sortUsers(apiResponseUserFollowers$ | async)"
+						[apiResponseUserFollowing] = "apiResponseUserFollowing$ | async"
+						[apiResponseUserFollowers] = "apiResponseUserFollowers$ | async"
 						[isUserResponseLoading]= "(isUserResponseLoading$ | async)"></user-info-box>
 			</div>
 			<div class="results-not-found"
 						*ngIf="!(areResultsAvailable$ | async) &&
-									((query$ | async).queryString)" >
+									((query$ | async).displayString) &&
+									!(isSearching$ | async )" >
 				<feed-not-found [query]="(query$ | async)"></feed-not-found>
 			</div>
 		</div>

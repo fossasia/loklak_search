@@ -1,4 +1,4 @@
-import { UserApiResponse , UserTopology, UserResponse } from '../../models/api-user-response';
+import { UserApiResponse , UserTopology, UserResponse, Query, ReloactionAfterQuery } from '../../models';
 
 export const MockUserApiResponse: UserApiResponse = {
 		$P: 'I',
@@ -85,4 +85,22 @@ export const MockUserTopology: UserTopology = {
 export const MockUserResponse: UserResponse = {
 	user: MockUserApiResponse,
 	topology: MockUserTopology
+};
+
+
+export const MockUserQuery: Query = {
+	queryString: 'from:fossasia',
+	displayString: 'from:fossasia',
+	filter: {
+		audio: false,
+		video: false,
+		images: false
+	},
+	near: null,
+	timeBound: {
+		since: null,
+		until: null
+	},
+	from: false,
+	location: ReloactionAfterQuery.RELOCATE
 };

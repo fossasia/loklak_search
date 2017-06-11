@@ -8,18 +8,9 @@ import { SearchService } from '../services';
 import { Observable } from 'rxjs/Observable';
 import * as apiAction from '../actions/api';
 import { ApiResponse } from '../models/api-response';
-import { MockApiResponse } from '../shared/mocks/feedItem.mock';
-import { Query, ReloactionAfterQuery } from '../models';
+import { MockApiResponse, MockQuery } from '../shared/mocks/feedItem.mock';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Location } from '@angular/common';
-
-
-
-
-const query: Query = {
-	queryString: 'from:fossasia',
-	location: ReloactionAfterQuery.RELOCATE
-};
 
 describe('ApiSearchEffects', () => {
 	beforeEach(() => TestBed.configureTestingModule({
@@ -57,13 +48,13 @@ describe('ApiSearchEffects', () => {
 			const {runner, apisearchEffects} = setup({searchapiReturnValue: Observable.of(response)});
 
 			const expectedResult = new apiAction.SearchCompleteSuccessAction(response);
-			runner.queue(new apiAction.SearchAction(query));
+			runner.queue(new apiAction.SearchAction(MockQuery));
 
 			let result = null;
 			apisearchEffects.search$.subscribe(_result => result = _result);
-			tick(199); // test debounce
+			tick(399); // test debounce
 			expect(result).toBe(null);
-			tick(200);
+			tick(401);
 			expect(result).toEqual(expectedResult);
 		}));
 
@@ -72,14 +63,14 @@ describe('ApiSearchEffects', () => {
 			const {runner, apisearchEffects} = setup({searchapiReturnValue: Observable.throw(new Error())});
 
 			const expectedResult = new apiAction.SearchCompleteFailAction('');
-			runner.queue(new apiAction.SearchAction(query));
+			runner.queue(new apiAction.SearchAction(MockQuery));
 
 			let result = null;
 
 			apisearchEffects.search$.subscribe(_result => result = _result);
-			tick(199); // test debounce
+			tick(399); // test debounce
 			expect(result).toBe(null);
-			tick(200);
+			tick(401);
 			expect(result).toEqual(expectedResult);
 		}));
 	});

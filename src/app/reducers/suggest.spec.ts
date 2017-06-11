@@ -16,10 +16,12 @@ describe('SuggestReducer', () => {
 
 	describe('SUGGEST', () => {
 		it('should set loading to true and change the query property', () => {
-			const action = new suggestAction.SuggestAction(MockQuery);
+			const mockQuery = 'loklak';
+
+			const action = new suggestAction.SuggestAction(mockQuery);
 			const result = fromSuggestion.reducer(fromSuggestion.initialState, action);
 			expect(result.loading).toBe(true);
-			expect(result.query).toBe(MockQuery);
+			expect(result.query.queryString).toBe(mockQuery);
 		});
 	});
 

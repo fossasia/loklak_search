@@ -1,5 +1,4 @@
 import { Action } from '@ngrx/store';
-import { actionTypeCheck } from '../utils';
 import { ApiResponse } from '../models/api-response';
 
 /**
@@ -11,10 +10,10 @@ import { ApiResponse } from '../models/api-response';
  * action types in the application are unique.
  */
 export const ActionTypes = {
-	NEXT_PAGE: actionTypeCheck('[Pagination] Next Page'),
-	PAGINATION_COMPLETE_SUCCESS: actionTypeCheck('[Pagination] Pagination Complete Success'),
-	PAGINATION_COMPLETE_FAIL: actionTypeCheck('[Pagination] Pagination Complete Fail'),
-	REVERT_PAGINATION_STATE: actionTypeCheck('[Pagination] Revert Back Pagination State')
+	NEXT_PAGE: '[Pagination] Next Page',
+	PAGINATION_COMPLETE_SUCCESS: '[Pagination] Pagination Complete Success',
+	PAGINATION_COMPLETE_FAIL: '[Pagination] Pagination Complete Fail',
+	REVERT_PAGINATION_STATE: '[Pagination] Revert Back Pagination State'
 };
 
 

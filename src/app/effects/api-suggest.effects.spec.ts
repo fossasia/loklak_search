@@ -7,17 +7,12 @@ import { Observable } from 'rxjs/Observable';
 import * as suggestAction from '../actions/suggest';
 import { SuggestResponse } from '../models/api-suggest';
 import { MockSuggestResponse } from '../shared/mocks/suggestResponse.mock';
-import { Query, ReloactionAfterQuery } from '../models';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Location } from '@angular/common';
 
 import 'rxjs/add/observable/of';
 import 'rxjs/add/observable/throw';
 
-const query: Query = {
-	queryString: 'from:fossasia',
-	location: ReloactionAfterQuery.NONE
-};
 
 describe('SuggestEffects', () => {
 	beforeEach(() => TestBed.configureTestingModule({
@@ -37,6 +32,7 @@ describe('SuggestEffects', () => {
 
 	function setup(params?: {suggestapiReturnValue: any}) {
 		const suggestService = TestBed.get(SuggestService);
+
 		if (params) {
 			suggestService.fetchQuery.and.returnValue(params.suggestapiReturnValue);
 		}
@@ -56,13 +52,13 @@ describe('SuggestEffects', () => {
 
 			const expectedResult = new suggestAction.SuggestCompleteSuccessAction(response);
 
-			runner.queue(new suggestAction.SuggestAction(query));
+			runner.queue(new suggestAction.SuggestAction('from:fossasia'));
 
 			let result = null;
-			apisuggestEffects.suggest$.subscribe(_result => result = _result);
-			tick(199); // test debounce
+			apisuggestEffects.suggest$.subscribe(_result => result = _result );
+			tick(299); // test debounce
 			expect(result).toBe(null);
-			tick(200);
+			tick(301);
 			expect(result).toEqual(expectedResult);
 		}));
 
@@ -71,14 +67,14 @@ describe('SuggestEffects', () => {
 			const {runner, apisuggestEffects} = setup({suggestapiReturnValue: Observable.throw(new Error())});
 
 			const expectedResult = new suggestAction.SuggestCompleteFailAction('');
-			runner.queue(new suggestAction.SuggestAction(query));
+			runner.queue(new suggestAction.SuggestAction('from:fossasia'));
 
 			let result = null;
 
 			apisuggestEffects.suggest$.subscribe(_result => result = _result);
-			tick(199); // test debounce
+			tick(299); // test debounce
 			expect(result).toBe(null);
-			tick(200);
+			tick(301);
 			expect(result).toEqual(expectedResult);
 		}));
 	});

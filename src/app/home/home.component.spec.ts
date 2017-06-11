@@ -104,13 +104,13 @@ describe('Component: Home', () => {
 
 		const value = 'a';
 
-		const query$ = component.store.select(fromRoot.getSearchQuery);
-		let qs: string;
-		const subscription = query$.subscribe(query => qs = query.queryString);
+		const query$ = component.store.select(fromRoot.getQuery);
+		let displayString: string;
+		const subscription = query$.subscribe(query => displayString = query.displayString);
 
-		expect(qs).toBeFalsy();
+		expect(displayString).toBeFalsy();
 		component._queryControl.setValue(value);
-		expect(qs).toBe(value);
+		expect(displayString).toBe(value);
 
 		subscription.unsubscribe();
 	}));
