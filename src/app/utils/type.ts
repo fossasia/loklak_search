@@ -16,6 +16,5 @@ export function actionTypeCheck<T>(label: T | ''): T {
 	}
 
 	typeCache[<string>label] = true;
-
 	return <T>label;
 }
