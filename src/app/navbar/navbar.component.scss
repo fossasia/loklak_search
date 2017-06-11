@@ -38,7 +38,7 @@
 		}
 
 	.navbar-collapse {
-		display: none;
+		display: block;
 		border: 1px solid rgb(231,231,231);
 
 		li {
@@ -60,9 +60,6 @@
 		}
 	}
 
-		#navbar-toggle-cbox:checked ~ .navbar-collapse {
-		  display: block;
-		}
 
 @media only screen and (min-width: 768px) {
 	.navbar-header {
@@ -78,10 +75,12 @@
 		display: block;
 		height: 50px;
 		border: none;
+		float: right;
 
 		ul {
 			position: relative;
 			float: right;
+			right: -200px;
 
 			li {
 				float:left;

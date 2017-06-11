@@ -8,4 +8,11 @@ describe('Component: Navbar', () => {
 		const component = new NavbarComponent();
 		expect(component).toBeTruthy();
 	});
+
+	it('should have toggleMenu function which should change the state of transition', () => {
+		const component = new NavbarComponent();
+		expect(component.menuState).toEqual('in');
+		component.toggleMenu();
+		expect(component.menuState).toEqual('out');
+	});
 });
