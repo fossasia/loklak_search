@@ -1,6 +1,6 @@
 import { SuggestMetadata ,
-		SuggestResults ,
-		SuggestResponse } from '../../models/api-suggest';
+					SuggestResults ,
+					SuggestResponse } from '../../models/api-suggest';
 
 export const MockSuggestMetadata: SuggestMetadata = {
 	client: '162.158.46.30',

@@ -13,20 +13,18 @@ describe('SearchReducer', () => {
 	});
 
 	describe('SEARCH', () => {
-		it('should set loading to true and change the query property', () => {
+		it('should set loading to true', () => {
 			const action = new apiAction.SearchAction(MockQuery);
 			const result = fromSearch.reducer(fromSearch.initialState, action);
 			expect(result.loading).toBe(true);
-			expect(result.query).toBe(MockQuery);
 		});
 	});
 
 	describe('FETCH_USER', () => {
-		it('should set loading to true and change the query property', () => {
+		it('should set loading to true', () => {
 			const action = new apiAction.FetchUserAction(MockQuery);
 			const result = fromSearch.reducer(fromSearch.initialState, action);
 			expect(result.loading).toBe(true);
-			expect(result.query).toBe(MockQuery);
 		});
 	});
 

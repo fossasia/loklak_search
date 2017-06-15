@@ -53,7 +53,7 @@
 		<div class="followers gallery" *ngIf="apiResponseUserFollowers.length > 0">
 			<h3>Followers</h3>
 			<ul class="gallery-container">
-				<li class="gallery-item"  *ngFor="let item of (apiResponseUserFollowers.slice(0,12)); let i = index ">
+				<li class="gallery-item"  *ngFor="let item of (sortedApiResponseUserFollowers.slice(0,12)); let i = index ">
 					<a [routerLink]="['/search']" [queryParams]="{ query : 'from:' + item.screen_name }">
 						<div class="item-image">
 							<img src="{{ item.profile_image_url }}"/>
@@ -76,7 +76,7 @@
 		<div class="following gallery" *ngIf="apiResponseUserFollowing.length > 0">
 			<h3>Following</h3>
 			<ul class="gallery-container">
-				<li class="gallery-item"  *ngFor="let item of (apiResponseUserFollowing.slice(0,12)); let i = index ">
+				<li class="gallery-item"  *ngFor="let item of (sortedApiResponseUserFollowing.slice(0,12)); let i = index ">
 					<a [routerLink]="['/search']" [queryParams]="{ query : 'from:' + item.screen_name }">
 						<div class="item-image">
 							<img src="{{ item.profile_image_url }}"/>

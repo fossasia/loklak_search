@@ -23,8 +23,8 @@ export class FeedCardComponent implements OnInit {
 	ngOnInit() {
 		const timer = Observable.timer(0, 10000);
 		timer.subscribe(t => this.ttt());
-		this.imageURLs(this.feedItem.images);
-		this.sanitizeAndEmbedURLs(this.feedItem.videos);
+		// this.imageURLs(this.feedItem.images);
+		// this.sanitizeAndEmbedURLs(this.feedItem.videos);
 	}
 
 	onShowed(show: boolean) {
@@ -154,6 +154,8 @@ export class FeedCardComponent implements OnInit {
 				imgarr.push(link);
 			}
 		});
-		this.feedItem.images = imgarr;
+
+		// BUG: Mutating the state here: handle this case
+		// this.feedItem.images = imgarr;
 	}
 }

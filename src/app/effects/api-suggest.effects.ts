@@ -36,18 +36,18 @@ export class SuggestEffects {
 	@Effect()
 	suggest$: Observable<Action>
 		= this.actions$
-					.ofType(suggestAction.ActionTypes.SUGGEST)
-					.debounceTime(200)
+					.ofType(suggestAction.ActionTypes.SUGGEST_QUERY)
+					.debounceTime(300)
 					.map((action: suggestAction.SuggestAction) => action.payload)
 					.switchMap(query => {
-						const nextSuggest$ = this.actions$.ofType(suggestAction.ActionTypes.SUGGEST).skip(1);
+						const nextSuggest$ = this.actions$.ofType(suggestAction.ActionTypes.SUGGEST_QUERY).skip(1);
 
-						return this.suggestService.fetchQuery(query.queryString)
-																				.takeUntil(nextSuggest$)
-																				.map(response => {
-																					return new suggestAction.SuggestCompleteSuccessAction(response);
-																				})
-																				.catch(() => of(new suggestAction.SuggestCompleteFailAction('')));
+						return this.suggestService.fetchQuery(query)
+												.takeUntil(nextSuggest$)
+												.map(response => {
+													return new suggestAction.SuggestCompleteSuccessAction(response);
+												})
+												.catch(() => of(new suggestAction.SuggestCompleteFailAction('')));
 					});
 
 	constructor(

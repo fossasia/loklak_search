@@ -14,7 +14,7 @@ import 'rxjs/add/operator/takeUntil';
 
 import { SearchService } from '../services';
 import * as apiAction from '../actions/api';
-import { Query, ReloactionAfterQuery } from '../models';
+import { ReloactionAfterQuery } from '../models';
 import { ApiResponse } from '../models/api-response';
 
 /**
@@ -38,7 +38,7 @@ export class ApiSearchEffects {
 	search$: Observable<Action>
 		= this.actions$
 					.ofType(apiAction.ActionTypes.SEARCH)
-					.debounceTime(200)
+					.debounceTime(400)
 					.map((action: apiAction.SearchAction) => action.payload)
 					.switchMap(query => {
 
@@ -46,14 +46,14 @@ export class ApiSearchEffects {
 						const nextSearch$ = this.actions$.ofType(apiAction.ActionTypes.SEARCH).skip(1);
 
 						return this.apiSearchService.fetchQuery(query.queryString)
-							.takeUntil(nextSearch$)
-							.map((response) => {
-								if (query.location === ReloactionAfterQuery.RELOCATE) {
-									this.location.go(`/search?query=${URIquery}`);
-								}
-								return new apiAction.SearchCompleteSuccessAction(response);
-							})
-							.catch(() => of(new apiAction.SearchCompleteFailAction('')));
+												.takeUntil(nextSearch$)
+												.map(response => {
+													if (query.location === ReloactionAfterQuery.RELOCATE) {
+														this.location.go(`/search?query=${URIquery}`);
+													}
+													return new apiAction.SearchCompleteSuccessAction(response);
+												})
+												.catch(() => of(new apiAction.SearchCompleteFailAction('')));
 					});
 
 	constructor(

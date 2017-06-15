@@ -1,4 +1,4 @@
-<a class="post-link"  target="_blank">
+<a class="post-link" target="_blank">
 	<div class="card" (click)="showLightBox.emit({feedIndex : feedIndex , show : 'show'})" in-viewport (inViewport)="inview($event)">
 		<div class="card-image">
 			<a (click)="showHideLightbox(profileURL)">
@@ -31,7 +31,7 @@
 					(click)="showLightBox.emit({show : 'hide'})"></feed-linker>
 			</div>
 			<br>
-			<div class="singleimage" *ngIf="feedItem.images.length == 1">
+			<!--<div class="singleimage" *ngIf="feedItem.images.length == 1">
 			<img src="{{feedItem.images}}" class="card-image" />
 			</div>
 			<div class="gallery" *ngIf="feedItem.images.length > 1">
@@ -40,10 +40,10 @@
 						<img class="card-images" src="{{image}}"  />
 						</li>
 				</ul>
-			</div>	
+			</div>
 					<div  *ngFor="let video of feedItem.videos let i = index">
 					<iframe class="card-videos" [src]="feedItem.videos[i]" *ngIf="inviewport" allowfullscreen></iframe>
-					</div>
+					</div>-->
 			<div class="card-footer">
 				<div class="action reply">
 					<a target="_blank" href="https://twitter.com/intent/tweet?in_reply_to={{feedItem.id_str}}"><i class="material-icons md-20">reply</i></a>

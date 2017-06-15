@@ -43,7 +43,7 @@ export class PaginationEffects {
 					.ofType(paginationAction.ActionTypes.NEXT_PAGE)
 					.map((action: paginationAction.NextPageAction) => action.payload)
 					.withLatestFrom(this.store, (action, state) => {
-						this.query = state.search.query;
+						this.query = state.query.query;
 						this.page = state.pagination.page;
 						this.lastRecord = state.apiResponse.entities.length;
 					})

@@ -13,8 +13,9 @@ import { Subscription } from 'rxjs/Subscription';
 import { Store } from '@ngrx/store';
 import * as fromRoot from '../reducers';
 import * as apiAction from '../actions/api';
+import * as queryAction from '../actions/query';
 import * as paginationAction from '../actions/pagination';
-import * as suggestServiceAction from '../actions/suggest';
+import * as suggestAction from '../actions/suggest';
 
 import { ApiResponse, ApiResponseMetadata, ApiResponseResult, ApiResponseAggregations } from '../models/api-response';
 import { SuggestMetadata, SuggestResults, SuggestResponse } from '../models/api-suggest';
@@ -99,7 +100,7 @@ export class FeedComponent implements OnInit, AfterViewInit, OnDestroy {
 	 * Getting the data(Observables) from store into the component.
 	 */
 	private getDataFromStore(): void {
-		this.query$ = this.store.select(fromRoot.getSearchQuery);
+		this.query$ = this.store.select(fromRoot.getQuery);
 		this.isSearching$ = this.store.select(fromRoot.getSearchLoading);
 		this.areResultsAvailable$ = this.store.select(fromRoot.getAreResultsAvailable);
 		this.apiResponseResults$ = this.store.select(fromRoot.getApiResponseEntities);
@@ -114,8 +115,8 @@ export class FeedComponent implements OnInit, AfterViewInit, OnDestroy {
 		this.apiResponseUserFollowers$ = this.store.select(fromRoot.getApiUserFollowersResponse);
 		this.isUserResponseLoading$ = this.store.select(fromRoot.isUserResponseLoading);
 		this.showUserInfo$ = this.store.select(fromRoot.getShowUserInfo);
-		this.suggestServiceQuery$ = this.store.select(fromRoot.getSuggestServiceQuery);
-		this.isSuggestServiceLoading$ = this.store.select(fromRoot.getSuggestServiceLoading);
+		this.suggestServiceQuery$ = this.store.select(fromRoot.getSuggestQuery);
+		this.isSuggestServiceLoading$ = this.store.select(fromRoot.getSuggestLoading);
 		this.suggestResponse$ = this.store.select(fromRoot.getSuggestResponseEntities);
 		this.showUserFeed$ = this.store.select(fromRoot.getShowUserFeed);
 	}
@@ -127,36 +128,11 @@ export class FeedComponent implements OnInit, AfterViewInit, OnDestroy {
 	 */
 	public search(query: string) {
 		if (query) {
-				let re = new RegExp(/^followers:\s*([a-zA-Z0-9_@]+)/, 'i');
-				let matches = re.exec(query);
-				if (matches == null) {
-					this.store.dispatch(new suggestServiceAction.SuggestAction({
-						queryString: query,
-						location: ReloactionAfterQuery.NONE
-					}));
-					this.store.dispatch(new apiAction.SearchAction({
-						queryString: query,
-						location: ReloactionAfterQuery.RELOCATE
-					}));
-					re = new RegExp(/^from:\s*([a-zA-Z0-9_@]+)/, 'i');
-					matches = re.exec(query);
-					if (matches !== null) {
-						this.store.dispatch(new apiAction.FetchUserAction({
-							queryString: query,
-							location: ReloactionAfterQuery.NONE
-						}));
-					}
-					this.store.dispatch(new apiAction.ShowSearchResults(''));
-				} else {
-					this.store.dispatch(new apiAction.FetchUserAction({
-						queryString: query,
-						location: ReloactionAfterQuery.RELOCATE
-					}));
-					this.store.dispatch(new apiAction.ShowUserFeed(''));
-				}
-				this.titleService.setTitle(query + ' - Loklak Search');
-				this.store.dispatch(new paginationAction.RevertPaginationState(''));
-			}
+			this.store.dispatch(new queryAction.RelocationAttrChangeAction(''));
+			this.store.dispatch(new suggestAction.SuggestAction(query));
+			this.store.dispatch(new queryAction.InputValueChangeAction(query));
+			this.store.dispatch(new paginationAction.RevertPaginationState(''));
+		}
 	}
 
 	/**
@@ -227,16 +203,6 @@ export class FeedComponent implements OnInit, AfterViewInit, OnDestroy {
 	 */
 	ngOnDestroy() {
 		this.__subscriptions__.forEach(subscription => subscription.unsubscribe());
-	}
-
-	private sortUsers(users: Array<UserApiResponse>) {
-		users.sort(function (a, b) {
-			if (b.followers_count === a.followers_count) {
-				return b.statuses_count - a.statuses_count;
-			}
-			return b.followers_count - a.followers_count;
-		});
-		return users;
 	}
 }
 

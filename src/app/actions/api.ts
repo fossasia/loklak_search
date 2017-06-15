@@ -2,7 +2,6 @@ import { Action } from '@ngrx/store';
 import { ApiResponse } from '../models/api-response';
 import { Query } from '../models/query';
 import { UserApiResponse, UserResponse } from '../models/api-user-response';
-import { actionTypeCheck } from '../utils';
 
 /**
  * For each action type in an action group, make a simple
@@ -13,19 +12,19 @@ import { actionTypeCheck } from '../utils';
  * action types in the application are unique.
  */
 export const ActionTypes = {
-	SEARCH: actionTypeCheck('[Api] Search'),
-	SEARCH_COMPLETE_SUCCESS: actionTypeCheck('[Api] Search Complete Success'),
-	SEARCH_COMPLETE_FAIL: actionTypeCheck('[Api] Search Complete Fail'),
-	SELECT_RESULT: actionTypeCheck('[Api] Select Lightbox'),
-	UNSELECT_RESULT: actionTypeCheck('[Api Unselect Lightbox'),
-	FETCH_USER: actionTypeCheck('[Api] Fetch User'),
-	FETCH_USER_SUCCESS: actionTypeCheck('[Api] Fetch User Success'),
-	FETCH_USER_FAIL: actionTypeCheck('[Api] Fetch User Fail'),
-	SHOW_USER_FEED: actionTypeCheck('Show User Feed'),
-	SHOW_SEARCH_RESULTS: actionTypeCheck('Show Search Results'),
-	SHOW_ALL_FEEDS: actionTypeCheck('Show all tweets'),
-	SHOW_IMAGES_FEEDS: actionTypeCheck('Show tweets with images'),
-	SHOW_VIDEOS_FEEDS: actionTypeCheck('Show tweets with videos')
+	SEARCH: '[Api] Search',
+	SEARCH_COMPLETE_SUCCESS: '[Api] Search Complete Success',
+	SEARCH_COMPLETE_FAIL: '[Api] Search Complete Fail',
+	SELECT_RESULT: '[Api] Select Lightbox',
+	UNSELECT_RESULT: '[Api Unselect Lightbox',
+	FETCH_USER: '[Api] Fetch User',
+	FETCH_USER_SUCCESS: '[Api] Fetch User Success',
+	FETCH_USER_FAIL: '[Api] Fetch User Fail',
+	SHOW_USER_FEED: '[Api] Show User Feed',
+	SHOW_SEARCH_RESULTS: '[Api] Show Search Results',
+	SHOW_ALL_FEEDS: '[Api] Show all tweets',
+	SHOW_IMAGES_FEEDS: '[Api] Show tweets with images',
+	SHOW_VIDEOS_FEEDS: '[Api] Show tweets with videos'
 };
 
 /**

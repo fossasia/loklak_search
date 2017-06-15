@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect';
 import * as suggest from '../actions/suggest';
-import { Query, ReloactionAfterQuery } from '../models/query';
+import { SuggestQuery } from '../models';
 
 /**
  * Each reducer module must import the local `State` which it controls.
@@ -10,7 +10,7 @@ import { Query, ReloactionAfterQuery } from '../models/query';
  * @prop [loading: boolean] to check wheather the query is being currently loaded.
  */
 export interface State {
-	query: Query;
+	query: SuggestQuery;
 	loading: boolean;
 }
 
@@ -21,7 +21,9 @@ export interface State {
  * @prop: loading: false
  */
 export const initialState: State = {
-	query: { queryString: '', location: ReloactionAfterQuery.NONE },
+	query: {
+		queryString: ''
+	},
 	loading: false
 };
 
@@ -36,11 +38,13 @@ export const initialState: State = {
  */
 export function reducer(state: State = initialState, action: suggest.Actions): State {
 	switch (action.type) {
-		case suggest.ActionTypes.SUGGEST: {
+		case suggest.ActionTypes.SUGGEST_QUERY: {
 			const query = action.payload;
 
 			return Object.assign({}, state, {
-				query,
+				query: {
+					queryString: query
+				},
 				loading: true
 			});
 		}

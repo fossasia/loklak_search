@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output } from '@angular/core';
-import { Query } from '../../models';
+import { immutableSort } from '../../utils';
 
 @Component({
 	selector: 'feed-footer',
@@ -8,31 +8,26 @@ import { Query } from '../../models';
 })
 
 export class FeedFooterComponent implements OnInit {
-	@Input() query: Query;
+	@Input() query: string;
 	@Input() apiResponseTags: Array<Tag>;
+	public sortedApiResponseTags: Array<Tag>;
 
 	constructor() { }
 
 	ngOnInit() {
-		this.sortTags();
+		this.sortedApiResponseTags = immutableSort(this.apiResponseTags, this.compareTags);
 	}
 
-	private sortTags() {
-		this.apiResponseTags.sort((tag1, tag2) => {
-			if (tag1.count !== tag2.count) {
-				return tag1.count - tag2.count;
-			}
-			else if (tag1.tag > tag2.tag) {
-				return 1;
-			}
-			else if (tag1.tag < tag2.tag) {
-				return -1;
-			}
-			else {
-				return 0;
-			}
-
-		});
+	private compareTags(tag1: Tag, tag2: Tag): number {
+		if (tag1.count !== tag2.count) {
+			return tag1.count - tag2.count;
+		} else if (tag1.tag > tag2.tag) {
+			return 1;
+		} else if (tag1.tag < tag2.tag) {
+			return -1;
+		} else {
+			return 0;
+		}
 	}
 }
 

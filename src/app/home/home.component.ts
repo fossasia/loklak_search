@@ -6,8 +6,8 @@ import { Subscription } from 'rxjs/Subscription';
 
 import { Store } from '@ngrx/store';
 import * as fromRoot from '../reducers';
-import * as apiAction from '../actions/api';
-import * as suggestServiceAction from '../actions/suggest';
+import * as queryAction from '../actions/query';
+import * as suggestAction from '../actions/suggest';
 
 import { Query, ReloactionAfterQuery } from '../models/query';
 
@@ -52,35 +52,9 @@ export class HomeComponent implements OnInit, OnDestroy {
 		this.__subscriptions__.push(
 			this._queryControl.valueChanges
 				.subscribe((value) => {
-					let re = new RegExp(/^followers:\s*([a-zA-Z0-9_@]+)/, 'i');
-					let matches = re.exec(value);
-					this.store.dispatch(new suggestServiceAction.SuggestAction({
-						queryString: value,
-						location: ReloactionAfterQuery.NONE
-					}));
-					if (matches == null) {
-						this.store.dispatch(new apiAction.SearchAction({
-							queryString: value,
-							location: ReloactionAfterQuery.RELOCATE
-						}));
-						re = new RegExp(/^from:\s*([a-zA-Z0-9_@]+)/, 'i');
-						matches = re.exec(value);
-						if (matches !== null) {
-							const screenName: string = matches[1];
-							this.store.dispatch(new apiAction.FetchUserAction({
-								queryString: screenName,
-								location: ReloactionAfterQuery.NONE
-							}));
-						}
-						this.store.dispatch(new apiAction.ShowSearchResults(''));
-					} else {
-						const screenName: string = matches[1];
-						this.store.dispatch(new apiAction.FetchUserAction({
-							queryString: screenName,
-							location: ReloactionAfterQuery.NONE
-						}));
-						this.store.dispatch(new apiAction.ShowUserFeed(''));
-					}
+					this.store.dispatch(new queryAction.RelocationAttrChangeAction(''));
+					this.store.dispatch(new suggestAction.SuggestAction(value));
+					this.store.dispatch(new queryAction.InputValueChangeAction(value));
 					this.router.navigateByUrl(`/search`, { skipLocationChange: true });
 				}
 			)

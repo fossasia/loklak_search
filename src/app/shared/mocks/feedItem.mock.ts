@@ -1,8 +1,8 @@
 import { ApiResponseResult,
-		ApiResponseUser,
-		ApiResponse,
-		ApiResponseAggregations,
-		ApiResponseMetadata } from '../../models/api-response';
+					ApiResponseUser,
+					ApiResponse,
+					ApiResponseAggregations,
+					ApiResponseMetadata } from '../../models/api-response';
 import { Query, ReloactionAfterQuery } from '../../models/query';
 
 export const MockApiResponseResult: ApiResponseResult = {
@@ -132,4 +132,19 @@ export const MockApiResponse: ApiResponse = {
 	aggregations: MockApiResponseAggregations
 };
 
-export const MockQuery: Query = { queryString: 'loklak', location: ReloactionAfterQuery.RELOCATE };
+export const MockQuery: Query = {
+	queryString: 'loklak',
+	displayString: 'loklak',
+	filter: {
+		audio: false,
+		video: false,
+		images: false
+	},
+	near: null,
+	timeBound: {
+		since: null,
+		until: null
+	},
+	from: false,
+	location: ReloactionAfterQuery.RELOCATE
+};

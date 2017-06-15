@@ -19,7 +19,7 @@ import { compose } from '@ngrx/core';
  * exception will be thrown. This is useful during development mode to
  * ensure that none of the reducers accidentally mutates the state.
  */
-// import { storeFreeze } from 'ngrx-store-freeze/src';
+import { storeFreeze } from 'ngrx-store-freeze/src';
 
 /**
  * combineReducers is another useful metareducer that takes a map of reducer
@@ -38,11 +38,12 @@ import { combineReducers } from '@ngrx/store';
  * the state of the reducer plus any selector functions. The `* as`
  * notation packages up all of the exports into a single object.
  */
+import * as fromQuery from './query';
 import * as fromSearch from './search';
 import * as fromApiResponse from './api-response';
 import * as fromPagination from './pagination';
 import * as fromApiUserResponse from './api-user-response';
-import * as fromSuggestService from './suggest';
+import * as fromSuggest from './suggest';
 import * as fromSuggestResponse from './suggest-response';
 
 /**
@@ -50,11 +51,12 @@ import * as fromSuggestResponse from './suggest-response';
  * our top level state interface is just a map of keys to inner state types.
  */
 export interface State {
+	query: fromQuery.State;
 	search: fromSearch.State;
 	apiResponse: fromApiResponse.State;
 	pagination: fromPagination.State;
 	apiUserResponse: fromApiUserResponse.State;
-	suggestService: fromSuggestService.State;
+	suggestService: fromSuggest.State;
 	suggestResponse: fromSuggestResponse.State;
 }
 
@@ -66,25 +68,26 @@ export interface State {
  * the result from right to left.
  */
 const reducers = {
+	query: fromQuery.reducer,
 	search: fromSearch.reducer,
 	apiResponse: fromApiResponse.reducer,
 	pagination: fromPagination.reducer,
 	apiUserResponse: fromApiUserResponse.reducer,
-	suggestService: fromSuggestService.reducer,
+	suggestService: fromSuggest.reducer,
 	suggestResponse: fromSuggestResponse.reducer
 };
 
-// const developmentReducer: ActionReducer<State> = compose(storeFreeze, combineReducers)(reducers);
+const developmentReducer: ActionReducer<State> = compose(storeFreeze, combineReducers)(reducers);
 const productionReducer: ActionReducer<State> = combineReducers(reducers);
 
 export function reducer(state: any, action: any) {
-	return productionReducer(state, action);
-	// if (environment.production) {
-	// 	return productionReducer(state, action);
-	// }
-	// else {
-	// 	return developmentReducer(state, action);
-	// }
+	// return productionReducer(state, action);
+	if (environment.production) {
+		return productionReducer(state, action);
+	}
+	else {
+		return developmentReducer(state, action);
+	}
 }
 
 /**
@@ -132,9 +135,23 @@ export const getApiAggregations = createSelector(getApiResponseState, fromApiRes
  */
 export const getSearchState = (state: State) => state.search;
 
-export const getSearchQuery = createSelector(getSearchState, fromSearch.getQuery);
 export const getSearchLoading = createSelector(getSearchState, fromSearch.getLoading);
 export const getShowUserFeed = createSelector(getSearchState, fromSearch.showUserFeed);
+
+/**
+ * Selectior for Query
+ */
+export const getQueryState = (state: State) => state.query;
+
+export const getQuery = createSelector(getQueryState, fromQuery.getQuery);
+export const getQueryDisplayString = createSelector(getQueryState, fromQuery.getDisplayString);
+export const getQuerySearchString = createSelector(getQueryState, fromQuery.getQueryString);
+export const getQueryFilterList = createSelector(getQueryState, fromQuery.getFilterList);
+export const getQueryTimeBoundSet = createSelector(getQueryState, fromQuery.getTimeBoundSet);
+export const getQueryLocation = createSelector(getQueryState, fromQuery.getLocation);
+export const getIsFromQuery = createSelector(getQueryState, fromQuery.isFromQuery);
+export const getIsFollowerQuery = createSelector(getQueryState, fromQuery.isFollowerQuery);
+
 
 /**
  * Selectors For Pageination.
@@ -166,10 +183,10 @@ export const getLightboxgetSelectedItem = createSelector(getApiResponseState, fr
 /**
 *Selectors For Suggest Service
 */
-export const getSuggestServiceState = (state: State) => state.suggestService;
+export const getSuggestState = (state: State) => state.suggestService;
 
-export const getSuggestServiceQuery = createSelector(getSuggestServiceState, fromSuggestService.getQuery);
-export const getSuggestServiceLoading = createSelector(getSuggestServiceState, fromSuggestService.getLoading);
+export const getSuggestQuery = createSelector(getSuggestState, fromSuggest.getQuery);
+export const getSuggestLoading = createSelector(getSuggestState, fromSuggest.getLoading);
 
 /**
 *Selectors For Suggest Response

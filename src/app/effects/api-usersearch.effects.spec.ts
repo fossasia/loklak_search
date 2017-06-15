@@ -6,8 +6,7 @@ import { UserService } from '../services';
 import { Observable } from 'rxjs/Observable';
 import * as apiAction from '../actions/api';
 import { ApiResponse } from '../models/api-response';
-import { MockUserResponse } from '../shared/mocks/userResponse.mock';
-import { Query, ReloactionAfterQuery } from '../models';
+import { MockUserResponse, MockUserQuery } from '../shared/mocks/userResponse.mock';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Location } from '@angular/common';
 
@@ -15,10 +14,7 @@ import { Location } from '@angular/common';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/observable/throw';
 
-const query: Query = {
-	queryString: 'from:fossasia',
-	location: ReloactionAfterQuery.RELOCATE
-};
+
 
 describe('ApiUserSearchEffects', () => {
 	beforeEach(() => TestBed.configureTestingModule({
@@ -57,13 +53,13 @@ describe('ApiUserSearchEffects', () => {
 
 			const expectedResult = new apiAction.FetchUserSuccessAction(response);
 
-			runner.queue(new apiAction.FetchUserAction(query));
+			runner.queue(new apiAction.FetchUserAction(MockUserQuery));
 
 			let result = null;
 			apiusersearchEffects.search$.subscribe(_result => result = _result);
-			tick(199); // test debounce
+			tick(399); // test debounce
 			expect(result).toBe(null);
-			tick(200);
+			tick(401);
 			expect(result).toEqual(expectedResult);
 		}));
 
@@ -72,14 +68,14 @@ describe('ApiUserSearchEffects', () => {
 			const {runner, apiusersearchEffects} = setup({userapiReturnValue: Observable.throw(new Error())});
 
 			const expectedResult = new apiAction.FetchUserFailAction('');
-			runner.queue(new apiAction.FetchUserAction(query));
+			runner.queue(new apiAction.FetchUserAction(MockUserQuery));
 
 			let result = null;
 
 			apiusersearchEffects.search$.subscribe(_result => result = _result);
-			tick(199); // test debounce
+			tick(399); // test debounce
 			expect(result).toBe(null);
-			tick(200);
+			tick(401);
 			expect(result).toEqual(expectedResult);
 		}));
 	});

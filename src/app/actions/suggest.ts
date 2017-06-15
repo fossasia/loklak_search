@@ -1,7 +1,6 @@
 import { Action } from '@ngrx/store';
 import { SuggestResponse } from '../models/api-suggest';
-import { Query } from '../models/query';
-import { actionTypeCheck } from '../utils';
+import { SuggestQuery } from '../models';
 
 /**
  * For each action type in an action group, make a simple
@@ -12,9 +11,9 @@ import { actionTypeCheck } from '../utils';
  * action types in the application are unique.
  */
 export const ActionTypes = {
-	SUGGEST: actionTypeCheck('[Api] Suggest'),
-	SUGGEST_COMPLETE_SUCCESS: actionTypeCheck('[Api] Suggest Complete Success'),
-	SUGGEST_COMPLETE_FAIL: actionTypeCheck('[Api] Suggest Complete Fail')
+	SUGGEST_QUERY: '[Suggest] Suggest',
+	SUGGEST_COMPLETE_SUCCESS: '[Suggest] Suggest Complete Success',
+	SUGGEST_COMPLETE_FAIL: '[Suggest] Suggest Complete Fail'
 };
 
 /**
@@ -26,9 +25,9 @@ export const ActionTypes = {
  */
 
 export class SuggestAction implements Action {
-	type = ActionTypes.SUGGEST;
+	type = ActionTypes.SUGGEST_QUERY;
 
-	constructor(public payload: Query) { }
+	constructor(public payload: string) { }
 }
 
 export class SuggestCompleteSuccessAction implements Action {

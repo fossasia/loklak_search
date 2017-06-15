@@ -1,6 +1,7 @@
 import { createSelector } from 'reselect';
 import * as api from '../actions/api';
-import { Query, ReloactionAfterQuery } from '../models/query';
+import { Query, ReloactionAfterQuery, fromRegExp, followersRegExp,
+					FilterList, TimeBound  } from '../models';
 
 /**
  * Each reducer module must import the local `State` which it controls.
@@ -10,7 +11,6 @@ import { Query, ReloactionAfterQuery } from '../models/query';
  * @prop [loading: boolean] to check wheather the query is being currently loaded.
  */
 export interface State {
-	query: Query;
 	loading: boolean;
 	showUserFeed: boolean;
 }
@@ -18,11 +18,10 @@ export interface State {
 /**
  * There is always a need of initial state to be passed onto the store.
  *
- * @prop: query: ''
  * @prop: loading: false
+ * @prop: showUserFeed: false
  */
 export const initialState: State = {
-	query: { queryString: '', location: ReloactionAfterQuery.NONE },
 	loading: false,
 	showUserFeed: false
 };
@@ -39,19 +38,15 @@ export const initialState: State = {
 export function reducer(state: State = initialState, action: api.Actions): State {
 	switch (action.type) {
 		case api.ActionTypes.SEARCH: {
-			const query = action.payload;
 
 			return Object.assign({}, state, {
-				query,
 				loading: true
 			});
 		}
 
 		case api.ActionTypes.FETCH_USER: {
-			const query = action.payload;
 
 			return Object.assign({}, state, {
-				query,
 				loading: true
 			});
 		}
@@ -91,8 +86,6 @@ export function reducer(state: State = initialState, action: api.Actions): State
  * focused so they can be combined and composed to fit each particular
  * use-case.
  */
-
-export const getQuery = (state: State) => state.query;
 
 export const getLoading = (state: State) => state.loading;
 
