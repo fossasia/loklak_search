@@ -137,6 +137,12 @@
 				width:60px;
 			}
 	}
+
+	div.media-display {
+		position: absolute;
+		top:90px;
+		right: 20px;
+	}
 }
 
 @media all and (max-width: 1000px){
@@ -172,6 +178,10 @@
 	div.tabslist{
 		top: 100px !important;
 		left: 20px !important;
+	}
+
+	div.mediaDisplay{
+		top:100px !important;
 	}
 
 }

@@ -7,7 +7,7 @@ import { Observable } from 'rxjs/Observable';
 import * as apiAction from '../actions/api';
 import * as paginationAction from '../actions/pagination';
 import { ApiResponse } from '../models/api-response';
-import { MockApiResponse } from '../shared/mocks/feedItem.mock';
+import { MockApiResponse, MockQuery } from '../shared/mocks/feedItem.mock';
 import { Query, ReloactionAfterQuery } from '../models';
 import { StoreModule } from '@ngrx/store';
 import { reducer } from '../reducers';
@@ -16,10 +16,6 @@ import { reducer } from '../reducers';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/observable/throw';
 
-const query: Query = {
-	queryString: 'fossasia',
-	location: ReloactionAfterQuery.RELOCATE
-};
 
 describe('PaginationEffects', () => {
 	beforeEach(() => TestBed.configureTestingModule({
@@ -57,7 +53,7 @@ describe('PaginationEffects', () => {
 
 			const expectedResult = new paginationAction.PaginationCompleteSuccessAction(response);
 
-			runner.queue(new paginationAction.NextPageAction(query));
+			runner.queue(new paginationAction.NextPageAction(MockQuery));
 
 			let result = null;
 			paginationEffects.pagination$.subscribe(_result => result = _result);
@@ -69,7 +65,7 @@ describe('PaginationEffects', () => {
 			const {runner, paginationEffects} = setup({searchapiReturnValue: Observable.throw(new Error())});
 
 			const expectedResult = new paginationAction.PaginationCompleteFailAction('');
-			runner.queue(new paginationAction.NextPageAction(query));
+			runner.queue(new paginationAction.NextPageAction(MockQuery));
 
 			let result = null;
 

@@ -1,0 +1,10 @@
+<div class="container" [style.background-color]="(color$ | async).background">
+	<p class ="title" [style.color]= '(color$ | async).accent'>{{(query$ | async).queryString}}</p>
+	<media-wall-image
+		[color]="(color$ | async)"
+		[mediaElements]="(mediaElements$ | async)"></media-wall-image>
+</div>
+<media-wall-color
+	[color]="(color$ | async)"
+	(loadMediaWall)="displayMediaWall($event)"
+	*ngIf="!setupMediaWall"></media-wall-color>

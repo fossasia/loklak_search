@@ -12,6 +12,7 @@ import { StoreModule } from '@ngrx/store';
 import { reducer } from '../reducers';
 import { RouterStub } from '../../testing';
 import { FeedComponent } from './feed.component';
+import { ApiResponseResult } from '../models/api-response';
 
 
 @Component({
@@ -22,6 +23,8 @@ class FeedHeaderStubComponent {
 	@Input() query: string;
 	@Input() searchInputControl: FormControl;
 	@Input() suggestionList;
+	@Input() areResultsAvailable: ApiResponseResult[];
+	@Input() resultsLoading: boolean;
 }
 
 @Component({
