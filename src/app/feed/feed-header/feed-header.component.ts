@@ -10,6 +10,7 @@ import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 
 import { SuggestResults } from '../../models/api-suggest';
+import { ApiResponseResult } from '../../models/api-response';
 
 @Component({
 	selector: 'feed-header',
@@ -22,6 +23,8 @@ export class FeedHeaderComponent implements OnInit, OnDestroy {
 
 	@Input() query: string;
 	@Input() suggestionList: SuggestResults[];
+	@Input() areResultsAvailable: ApiResponseResult[];
+	@Input() resultsLoading: boolean;
 	@Output() searchEvent: EventEmitter<string> = new EventEmitter<string>();
 	@Output() relocateEvent: EventEmitter<string> = new EventEmitter<string>();
 	@Output() filterTabs: EventEmitter<string> = new EventEmitter<string>();

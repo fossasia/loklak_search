@@ -1,0 +1,97 @@
+.overlay {
+	visibility: visible;
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	padding-top: 80px;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	z-index: 1000;
+	background-color: rgba(0, 0, 0, 0.5);
+
+	.overlay-content{
+		max-width: 90%;
+		height: 60vh;
+		width: 600px;
+		background-color: beige;
+		margin: 0 auto;
+		border: solid gray 1px;
+		border-radius: 8px;
+		padding: 30px;
+		position: relative;
+
+		.swatch-container{
+  	margin:30px auto 0;
+		padding-top: 50px;
+
+
+			/* form starting stylings ------------------------------- */
+			.group{
+				position:relative;
+
+
+				.color-title {
+					position: relative;
+					bottom: 65px;
+					}
+
+				.swatch-box {
+					display:inline-block;
+					text-align:center;
+
+					.swatch-outer {
+						display:inline-block;
+						width:96px;
+						height:96px;
+						border:4px solid #fff;
+						padding:7px;
+						border-radius:50%;
+
+						.swatch-inner {
+							width:100%;
+							height:100%;
+							background-color:#f00;
+							border-radius:50%;
+							position: relative;
+							bottom: 67px;
+
+							.color{
+								position: relative;
+								top:100px;
+							}
+						}
+						#swatch1 .swatch-inner {
+							cursor:pointer;
+						}
+						#swatch2 .swatch-inner {
+							cursor:pointer;
+						}
+						#swatch3 .swatch-inner {
+							cursor:pointer;
+						}
+					}
+				}
+			}
+			a.forward {
+				position: absolute;
+				right: 20px;
+				bottom: 5%;
+				border: none;
+				color: white;
+				background-color: palevioletred;
+				padding: 7px 25px;
+				font-size: 16px;
+				border-radius: 5px;
+				text-decoration: none;
+				margin-top: 10px;
+				cursor: pointer;
+
+				.forward-icon {
+					position: relative;
+					top:5px;
+				}
+			}
+		}
+	}
+}

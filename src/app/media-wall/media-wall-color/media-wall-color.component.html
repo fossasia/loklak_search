@@ -1,0 +1,36 @@
+<div class="overlay">
+	<div class="overlay-content">
+		<h2>Choose the colors from the palette</h2>
+		<div class="swatch-container">
+			<div class="group">
+				<div id="swatch1" class="swatch-box">
+					<div class="swatch-outer">
+						<h4 class="color-title">Accent</h4>
+						<div class="swatch-inner" [style.background-color]= "color.accent">
+							<input type="color" class="color" value="{{color.accent}}" [formControl]="colorInputControl_accent">
+						</div>
+					</div>
+				</div>
+				<div id="swatch2"class="swatch-box">
+					<div class="swatch-outer">
+					<h4 class="color-title">Text</h4>
+						<div class="swatch-inner" [style.background-color]= "color.text">
+							<input type="color" class="color" value="{{color.text}}" [formControl]="colorInputControl_text">
+						</div>
+					</div>
+				</div>
+				<div id="swatch3" class="swatch-box">
+					<div class="swatch-outer">
+						<h4 class="color-title">Background</h4>
+						<div class="swatch-inner" [style.background-color]= "color.background">
+							<input type="color" class="color" value="{{color.background}}" [formControl]="colorInputControl_background">
+						</div>
+					</div>
+				</div>
+			</div>
+			<a class="forward"(click)="loadMediaWall.emit(true)">Show Media Wall
+					<i class="material-icons forward-icon" >keyboard_arrow_right</i>
+			</a>
+		</div>
+	</div>
+</div>
