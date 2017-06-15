@@ -1,0 +1,10 @@
+<div class="wrapper">
+	<div class="title">{{(query$ | async).queryString}}</div>
+	<div class="masonry">
+		<div class="masonry-panel" *ngFor="let item of (apiResponseResults$ | async)">
+			<div class="masonry-content">
+					<media-wall-card [feedItem]="item"></media-wall-card>
+			</div>
+		</div>
+	</div>
+</div>

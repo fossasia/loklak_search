@@ -1,0 +1,31 @@
+<div class="feed-item">
+	<p class="text">
+		<span class="img-span">
+			<img src="{{feedItem.user.profile_image_url_https}}">
+		</span>
+		<a id="profile-link" [routerLink]="['/wall']" [queryParams]="{ query : 'from:' + feedItem.user.screen_name }">
+			<span class="name">{{profileName}}</span>
+			<span class="screen-name">@{{feedItem.user.screen_name}}</span>
+		</a>
+		<span class="time">{{datetime}}</span>
+		<span class="status">
+			<media-wall-linker
+					[text]="itemText || ''"
+					[hashtags]="feedItem.hashtags || []"
+					[mentions]="feedItem.mentions || []"
+					[links]="feedItem.links || []"
+					[unshorten]="feedItem.unshorten || {}"></media-wall-linker>
+		</span>
+			<span class="singleimage" *ngIf="filteredImages.length == 1">
+			<img src="{{filteredImages[0]}}" class="card-image" />
+			</span>
+			<span class="gallery" *ngIf="filteredImages.length > 1">
+				 <ul>
+        			<li *ngFor="let image of filteredImages">
+						<img class="card-images" src="{{image}}"  />
+						</li>
+				</ul>
+			</span>
+	</p>
+	<span style="clear:both"></span>
+</div>

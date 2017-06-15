@@ -137,6 +137,15 @@
 				width:60px;
 			}
 	}
+
+	div.media-display {
+		position: absolute;
+		top:90px;
+		left: 750px;
+		color: rgb(119,119,119);
+		cursor: pointer;
+	}
+
 }
 
 @media all and (max-width: 1000px){
@@ -172,6 +181,14 @@
 	div.tabslist{
 		top: 100px !important;
 		left: 20px !important;
+	}
+
+	div.wrapper {
+
+		div.media-display{
+			top:100px;
+			left:90%;
+		}
 	}
 
 }

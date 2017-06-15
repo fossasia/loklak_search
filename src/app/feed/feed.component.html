@@ -2,6 +2,8 @@
 	<feed-header
 				[query]="(query$ | async).displayString"
 				[suggestionList]="(suggestResponse$ | async)"
+				[areResultsAvailable]="(apiResponseResults$ | async)"
+				[resultsLoading]="(isSearching$ | async)"
 				(searchEvent)="search($event)"
 				(relocateEvent)="relocateURL($event)"
 				(filterTabs)="filterResults($event)"></feed-header>
