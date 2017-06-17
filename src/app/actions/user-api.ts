@@ -1,7 +1,5 @@
 import { Action } from '@ngrx/store';
-import { ApiResponse } from '../models/api-response';
-import { Query } from '../models/query';
-import { UserApiResponse, UserResponse } from '../models/api-user-response';
+import { UserQuery, UserApiResponse, UserResponse } from '../models';
 
 /**
  * For each action type in an action group, make a simple
@@ -12,9 +10,9 @@ import { UserApiResponse, UserResponse } from '../models/api-user-response';
  * action types in the application are unique.
  */
 export const ActionTypes = {
-	SEARCH: '[Api] Search',
-	SEARCH_COMPLETE_SUCCESS: '[Api] Search Complete Success',
-	SEARCH_COMPLETE_FAIL: '[Api] Search Complete Fail',
+	USER_SEARCH: '[User Api] User Search',
+	USER_SEARCH_COMPLETE_SUCCESS: '[User Api] User Search Complete Success',
+	USER_SEARCH_COMPLETE_FAIL: '[User Api] User Search Complete Fail',
 };
 
 /**
@@ -25,20 +23,20 @@ export const ActionTypes = {
  * See Discriminated Unions: https://www.typescriptlang.org/docs/handbook/advanced-types.html#discriminated-unions
  */
 
-export class SearchAction implements Action {
-	type = ActionTypes.SEARCH;
+export class UserSearchAction implements Action {
+	type = ActionTypes.USER_SEARCH;
 
-	constructor(public payload: Query) {  }
+	constructor(public payload: UserQuery) {  }
 }
 
-export class SearchCompleteSuccessAction implements Action {
-	type = ActionTypes.SEARCH_COMPLETE_SUCCESS;
+export class UserSearchCompleteSuccessAction implements Action {
+	type = ActionTypes.USER_SEARCH_COMPLETE_SUCCESS;
 
-	constructor(public payload: ApiResponse) { }
+	constructor(public payload: UserResponse) { }
 }
 
-export class SearchCompleteFailAction implements Action {
-	type = ActionTypes.SEARCH_COMPLETE_FAIL;
+export class UserSearchCompleteFailAction implements Action {
+	type = ActionTypes.USER_SEARCH_COMPLETE_FAIL;
 
 	constructor(public payload: any) { }
 }
@@ -48,6 +46,6 @@ export class SearchCompleteFailAction implements Action {
  * so that reducers can easily compose action types
  */
 export type Actions
-	= SearchAction
-	| SearchCompleteSuccessAction
-	| SearchCompleteFailAction;
+	= UserSearchAction
+	| UserSearchCompleteSuccessAction
+	| UserSearchCompleteFailAction;

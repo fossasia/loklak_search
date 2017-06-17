@@ -20,14 +20,6 @@ describe('SearchReducer', () => {
 		});
 	});
 
-	describe('FETCH_USER', () => {
-		it('should set loading to true', () => {
-			const action = new apiAction.FetchUserAction(MockQuery);
-			const result = fromSearch.reducer(fromSearch.initialState, action);
-			expect(result.loading).toBe(true);
-		});
-	});
-
 	describe('SEARCH_COMPLETE_SUCCESS', () => {
 		it('should set loading to false', () => {
 			const action = new apiAction.SearchCompleteSuccessAction(MockApiResponse);
@@ -41,22 +33,6 @@ describe('SearchReducer', () => {
 			const action = new apiAction.SearchCompleteFailAction('');
 			const result = fromSearch.reducer(fromSearch.initialState, action);
 			expect(result.loading).toBe(false);
-		});
-	});
-
-	describe('SHOW_SEARCH_RESULTS', () => {
-		it('should set showUserFeed to false', () => {
-			const action = new apiAction.ShowSearchResults('');
-			const result = fromSearch.reducer(fromSearch.initialState, action);
-			expect(result.showUserFeed).toBe(false);
-		});
-	});
-
-	describe('SHOW_USER_FEED', () => {
-		it('should set showUserFeed to true', () => {
-			const action = new apiAction.ShowUserFeed('');
-			const result = fromSearch.reducer(fromSearch.initialState, action);
-			expect(result.showUserFeed).toBe(true);
 		});
 	});
 });

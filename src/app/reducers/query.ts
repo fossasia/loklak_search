@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect';
 
-import * as search from '../actions/query';
+import * as queryAction from '../actions/query';
 import { Query, ReloactionAfterQuery, fromRegExp, followersRegExp,
 					FilterList, TimeBound  } from '../models';
 
@@ -55,9 +55,9 @@ export const initialState: State = {
  * Here the reducer cotrols that part of the state which is shows the state of the application
  * wheather it is searching and what is it searching for.
  */
-export function reducer(state: State = initialState, action: search.Actions): State {
+export function reducer(state: State = initialState, action: queryAction.Actions): State {
 	switch (action.type) {
-		case search.ActionTypes.VALUE_CHANGE: {
+		case queryAction.ActionTypes.VALUE_CHANGE: {
 			const query: any = action.payload;
 			const isFromQuery: boolean = (fromRegExp.exec(query)) ? true : false;
 			const isFollowerQuery: boolean = (followersRegExp.exec(query)) ? true : false;
@@ -73,7 +73,7 @@ export function reducer(state: State = initialState, action: search.Actions): St
 
 		}
 
-		case search.ActionTypes.FILTER_CHANGE: {
+		case queryAction.ActionTypes.FILTER_CHANGE: {
 			const filterList: any = action.payload;
 
 			return Object.assign({}, state, {
@@ -84,7 +84,7 @@ export function reducer(state: State = initialState, action: search.Actions): St
 			});
 		}
 
-		case search.ActionTypes.TIME_BOUND_CHANGE: {
+		case queryAction.ActionTypes.TIME_BOUND_CHANGE: {
 			const timeBoundSet: any = action.payload;
 
 			return Object.assign({}, state, {
@@ -95,7 +95,7 @@ export function reducer(state: State = initialState, action: search.Actions): St
 			});
 		}
 
-		case search.ActionTypes.LOCATION_CHANGE: {
+		case queryAction.ActionTypes.LOCATION_CHANGE: {
 			const location: any = action.payload;
 
 			return Object.assign({}, state, {
@@ -106,7 +106,7 @@ export function reducer(state: State = initialState, action: search.Actions): St
 			});
 		}
 
-		case search.ActionTypes.QUERY_CHANGE: {
+		case queryAction.ActionTypes.QUERY_CHANGE: {
 
 			return Object.assign({}, state, {
 				query: {
@@ -116,7 +116,7 @@ export function reducer(state: State = initialState, action: search.Actions): St
 			});
 		}
 
-		case search.ActionTypes.RELOCATION_ATTR_CHANGE: {
+		case queryAction.ActionTypes.RELOCATION_ATTR_CHANGE: {
 
 			return Object.assign({}, state, {
 				query: {

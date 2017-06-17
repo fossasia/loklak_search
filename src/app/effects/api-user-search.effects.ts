@@ -13,7 +13,7 @@ import 'rxjs/add/operator/skip';
 import 'rxjs/add/operator/takeUntil';
 
 import { UserService } from '../services';
-import * as apiAction from '../actions/api';
+import * as userApiAction from '../actions/user-api';
 import { Query, ReloactionAfterQuery } from '../models/query';
 
 /**
@@ -36,31 +36,18 @@ export class ApiUserSearchEffects {
 	@Effect()
 	search$: Observable<Action>
 		= this.actions$
-					.ofType(apiAction.ActionTypes.FETCH_USER)
+					.ofType(userApiAction.ActionTypes.USER_SEARCH)
 					.debounceTime(400)
-					.map((action: apiAction.FetchUserAction) => action.payload)
+					.map((action: userApiAction.UserSearchAction) => action.payload)
 					.switchMap(query => {
-						const nextSearch$ = this.actions$.ofType(apiAction.ActionTypes.FETCH_USER).skip(1);
+						const nextSearch$ = this.actions$.ofType(userApiAction.ActionTypes.USER_SEARCH).skip(1);
 
-						const re = new RegExp(/^(followers|from):\s*([a-zA-Z0-9_@]+)/, 'i');
-						const matches = re.exec(query.queryString);
-						let follow_count;
-						if (matches[1] === 'from') {
-							follow_count = 10;
-						}
-						else if (matches[1] === 'followers') {
-							follow_count = 1000;
-						}
-						const screenName: string = matches[2];
-						return this.apiUserService.fetchQuery(screenName, follow_count)
-																				.takeUntil(nextSearch$)
-																				.map(response => {
-																					if (query.location === ReloactionAfterQuery.RELOCATE) {
-																						this.location.go(`/search?query=${query.queryString}`);
-																					}
-																					return new apiAction.FetchUserSuccessAction(response);
-																				})
-																				.catch(() => of(new apiAction.FetchUserFailAction('')));
+						const follow_count = 10;
+
+						return this.apiUserService.fetchQuery(query.screen_name, follow_count)
+												.takeUntil(nextSearch$)
+												.map(response => new userApiAction.UserSearchCompleteSuccessAction(response))
+												.catch(() => of(new userApiAction.UserSearchCompleteFailAction('')));
 					});
 
 	constructor(

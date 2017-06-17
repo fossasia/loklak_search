@@ -40,20 +40,16 @@ export class FeedComponent implements OnInit, AfterViewInit, OnDestroy {
 	public apiResponseAggregations$: Observable<ApiResponseAggregations>;
 	public isNextPageLoading$: Observable<boolean>;
 	public areMorePagesAvailable$: Observable<boolean>;
-	public visibility = false;
-	public display = true;
-	public isLightboxSelected$: Observable<boolean>;
-	public LightboxgetSelectedItem$: Observable<ApiResponseResult>;
+
+	public isUserInfoSearching$: Observable<boolean>;
+	public areUserResultsValid$: Observable<boolean>;
 	public apiResponseUser$: Observable<UserApiResponse>;
 	public apiResponseUserFollowers$: Observable<UserApiResponse[]>;
 	public apiResponseUserFollowing$: Observable<UserApiResponse[]>;
-	public isUserResponseLoading$: Observable<boolean>;
-	public showUserInfo$: Observable<boolean>;
-	public suggestServiceQuery$: Observable<Query>;
-	public isSuggestServiceLoading$: Observable<boolean>;
+
+	public suggestQuery$: Observable<Query>;
+	public isSuggestLoading$: Observable<boolean>;
 	public suggestResponse$: Observable<SuggestResults[]>;
-	public showUserFeed$: Observable<boolean>;
-	public index = 12;
 
 	constructor(
 		private route: ActivatedRoute,
@@ -108,17 +104,16 @@ export class FeedComponent implements OnInit, AfterViewInit, OnDestroy {
 		this.isNextPageLoading$ = this.store.select(fromRoot.getPageLoading);
 		this.areMorePagesAvailable$ = this.store.select(fromRoot.getPagesAvailable);
 		this.apiResponseAggregations$ = this.store.select(fromRoot.getApiAggregations);
-		this.isLightboxSelected$ = this.store.select(fromRoot.getLightboxIsSelected);
-		this.LightboxgetSelectedItem$ = this.store.select(fromRoot.getLightboxgetSelectedItem);
+
+		this.isUserInfoSearching$ = this.store.select(fromRoot.getUserSearchLoading);
+		this.areUserResultsValid$ = this.store.select(fromRoot.getAreApiUserResultsValid);
 		this.apiResponseUser$ = this.store.select(fromRoot.getApiUserResponse);
 		this.apiResponseUserFollowing$ = this.store.select(fromRoot.getApiUserFollowingResponse);
 		this.apiResponseUserFollowers$ = this.store.select(fromRoot.getApiUserFollowersResponse);
-		this.isUserResponseLoading$ = this.store.select(fromRoot.isUserResponseLoading);
-		this.showUserInfo$ = this.store.select(fromRoot.getShowUserInfo);
-		this.suggestServiceQuery$ = this.store.select(fromRoot.getSuggestQuery);
-		this.isSuggestServiceLoading$ = this.store.select(fromRoot.getSuggestLoading);
+
+		this.suggestQuery$ = this.store.select(fromRoot.getSuggestQuery);
+		this.isSuggestLoading$ = this.store.select(fromRoot.getSuggestLoading);
 		this.suggestResponse$ = this.store.select(fromRoot.getSuggestResponseEntities);
-		this.showUserFeed$ = this.store.select(fromRoot.getShowUserFeed);
 	}
 
 	/**
@@ -154,48 +149,10 @@ export class FeedComponent implements OnInit, AfterViewInit, OnDestroy {
 		this.store.dispatch(new paginationAction.NextPageAction(''));
 	}
 
-	/**
-	/* Lightbox handling :- showlightbox updates the lightbox with feed and hidelightbox removes the feed
-	*/
-	private showhidelightbox(event) {
-		if (event.show === 'hide') {
-			this.visibility = false;
-			this.store.dispatch(new apiAction.UnSelectLightbox(event));
-			this.display = false;
-		}
-		else if ((event.feedIndex + 1) && (event.show === 'show') && (this.display === false)) {
-			this.display = true;
-			this.visibility = false;
-
-		}
-		else if ((event.feedIndex + 1) && (event.show === 'show') && (this.display === true)) {
-			this.visibility = true;
-			this.store.dispatch(new apiAction.SelectLightbox(event.feedIndex));
-		}
-
-	}
-
-	public hidelightbox(event) {
-		this.visibility = false;
-		this.store.dispatch(new apiAction.UnSelectLightbox(event));
-	}
-
 	public filterResults(query: string) {
 		/**
 		 * Implementation removed, Re-implementation will be required.
 		 */
-	}
-
-	showMoreUsers() {
-		const subscriber = this.apiResponseUserFollowers$.subscribe(apiResponseUserFollowers => {
-			const length = apiResponseUserFollowers.length;
-			if (this.index < 24 && length > this.index) {
-				this.index += 12;
-			} else if (length > this.index) {
-				this.index += 24;
-			}
-		});
-		subscriber.unsubscribe();
 	}
 
 	/**
