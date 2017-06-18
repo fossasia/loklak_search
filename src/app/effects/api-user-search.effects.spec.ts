@@ -7,7 +7,6 @@ import * as userApiAction from '../actions/user-api';
 import { ApiResponse } from '../models/api-response';
 import { MockUserResponse, MockUserQuery } from '../shared/mocks/userResponse.mock';
 import { RouterTestingModule } from '@angular/router/testing';
-import { Location } from '@angular/common';
 
 import 'rxjs/add/observable/of';
 import 'rxjs/add/observable/throw';
@@ -24,8 +23,7 @@ describe('ApiUserSearchEffects', () => {
 			{
 				provide: UserService,
 				useValue: jasmine.createSpyObj('userService', ['fetchQuery'])
-			},
-			Location
+			}
 		]
 	}));
 

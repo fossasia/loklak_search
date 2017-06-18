@@ -19,7 +19,7 @@ import * as suggestAction from '../actions/suggest';
 
 import { ApiResponse, ApiResponseMetadata, ApiResponseResult, ApiResponseAggregations } from '../models/api-response';
 import { SuggestMetadata, SuggestResults, SuggestResponse } from '../models/api-suggest';
-import { Query, ReloactionAfterQuery } from '../models/query';
+import { Query } from '../models/query';
 import { UserApiResponse } from '../models/api-user-response';
 
 
@@ -123,7 +123,7 @@ export class FeedComponent implements OnInit, AfterViewInit, OnDestroy {
 	 */
 	public search(query: string) {
 		if (query) {
-			this.store.dispatch(new queryAction.RelocationAttrChangeAction(''));
+			this.store.dispatch(new queryAction.RelocationAfterQuerySetAction());
 			this.store.dispatch(new suggestAction.SuggestAction(query));
 			this.store.dispatch(new queryAction.InputValueChangeAction(query));
 			this.store.dispatch(new paginationAction.RevertPaginationState(''));

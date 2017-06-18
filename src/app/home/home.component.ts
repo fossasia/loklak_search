@@ -9,7 +9,7 @@ import * as fromRoot from '../reducers';
 import * as queryAction from '../actions/query';
 import * as suggestAction from '../actions/suggest';
 
-import { Query, ReloactionAfterQuery } from '../models/query';
+import { Query } from '../models/query';
 
 @Component({
 	selector: 'app-home',
@@ -52,7 +52,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 		this.__subscriptions__.push(
 			this._queryControl.valueChanges
 				.subscribe((value) => {
-					this.store.dispatch(new queryAction.RelocationAttrChangeAction(''));
+					this.store.dispatch(new queryAction.RelocationAfterQuerySetAction());
 					this.store.dispatch(new suggestAction.SuggestAction(value));
 					this.store.dispatch(new queryAction.InputValueChangeAction(value));
 					this.router.navigateByUrl(`/search`, { skipLocationChange: true });

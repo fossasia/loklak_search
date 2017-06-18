@@ -3,7 +3,7 @@ import { ApiResponseResult,
 					ApiResponse,
 					ApiResponseAggregations,
 					ApiResponseMetadata } from '../../models/api-response';
-import { Query, ReloactionAfterQuery } from '../../models/query';
+import { Query } from '../../models/query';
 
 export const MockApiResponseResult: ApiResponseResult = {
 	audio: [],
@@ -140,11 +140,10 @@ export const MockQuery: Query = {
 		video: false,
 		images: false
 	},
-	near: null,
+	location: null,
 	timeBound: {
 		since: null,
 		until: null
 	},
-	from: false,
-	location: ReloactionAfterQuery.RELOCATE
+	from: false
 };
