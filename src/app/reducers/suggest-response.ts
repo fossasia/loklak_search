@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect';
 import { SuggestMetadata, SuggestResults, SuggestResponse } from '../models/api-suggest';
-import * as suggest from '../actions/suggest';
+import * as suggestAction from '../actions/suggest';
 
 export interface State {
 	metadata: SuggestMetadata;
@@ -30,9 +30,9 @@ export const initialState: State = {
  * Here the reducer controls the part of state which is responsilble for storing the
  * results fetched from the API.
  */
-export function reducer(state: State = initialState, action: suggest.Actions): State {
+export function reducer(state: State = initialState, action: suggestAction.Actions): State {
 	switch (action.type) {
-		case suggest.ActionTypes.SUGGEST_COMPLETE_SUCCESS: {
+		case suggestAction.ActionTypes.SUGGEST_COMPLETE_SUCCESS: {
 			const suggestResponse = action.payload;
 
 			return {
@@ -42,7 +42,7 @@ export function reducer(state: State = initialState, action: suggest.Actions): S
 			};
 		}
 
-		case suggest.ActionTypes.SUGGEST_COMPLETE_FAIL: {
+		case suggestAction.ActionTypes.SUGGEST_COMPLETE_FAIL: {
 			return Object.assign({}, state, {
 				valid: false
 			});

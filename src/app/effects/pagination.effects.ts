@@ -12,7 +12,7 @@ import 'rxjs/add/operator/withLatestFrom';
 import 'rxjs/add/operator/distinctUntilChanged';
 
 import { SearchService } from '../services';
-import { Query } from '../models/query';
+import { Query } from '../models';
 import * as apiAction from '../actions/api';
 import * as paginationAction from '../actions/pagination';
 import * as fromRoot from '../reducers';
@@ -43,7 +43,7 @@ export class PaginationEffects {
 					.ofType(paginationAction.ActionTypes.NEXT_PAGE)
 					.map((action: paginationAction.NextPageAction) => action.payload)
 					.withLatestFrom(this.store, (action, state) => {
-						this.query = state.query.query;
+						this.query = state.query;
 						this.page = state.pagination.page;
 						this.lastRecord = state.apiResponse.entities.length;
 					})
@@ -51,11 +51,11 @@ export class PaginationEffects {
 						const nextSearch$ = this.actions$.ofType(apiAction.ActionTypes.SEARCH);
 
 						return this.apiSearchService.fetchQuery(this.query.queryString, this.lastRecord)
-																				.takeUntil(nextSearch$)
-																				.map(response => {
-																					return new paginationAction.PaginationCompleteSuccessAction(response);
-																				})
-																				.catch(() => of(new paginationAction.PaginationCompleteFailAction('')));
+												.takeUntil(nextSearch$)
+												.map(response => {
+													return new paginationAction.PaginationCompleteSuccessAction(response);
+												})
+												.catch(() => of(new paginationAction.PaginationCompleteFailAction('')));
 					});
 
 	constructor(

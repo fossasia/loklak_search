@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect';
 import { ApiResponse, ApiResponseResult, ApiResponseMetadata, ApiResponseUser, ApiResponseAggregations } from '../models/api-response';
-import * as api from '../actions/api';
-import * as pagination from '../actions/pagination';
+import * as apiAction from '../actions/api';
+import * as paginationAction from '../actions/pagination';
 
 /**
  * Each reducer module must import the local `State` which it controls.
@@ -20,8 +20,6 @@ export interface State {
 	hashtags: Array<{ tag: string, count: number }>;
 	aggregations: ApiResponseAggregations;
 	valid: boolean;
-	selected: number;
-	selectedavail: boolean;
 }
 
 /**
@@ -39,8 +37,6 @@ export const initialState: State = {
 	hashtags: [],
 	aggregations: null,
 	valid: true,
-	selected: null,
-	selectedavail: false,
 };
 
 
@@ -52,9 +48,9 @@ export const initialState: State = {
  * Here the reducer controls the part of state which is responsilble for storing the
  * results fetched from the API.
  */
-export function reducer(state: State = initialState, action: api.Actions | pagination.Actions): State {
+export function reducer(state: State = initialState, action: apiAction.Actions | paginationAction.Actions): State {
 	switch (action.type) {
-		case api.ActionTypes.SEARCH_COMPLETE_SUCCESS: {
+		case apiAction.ActionTypes.SEARCH_COMPLETE_SUCCESS: {
 			const apiResponse = action.payload;
 
 			const tagStrings = [].concat(...apiResponse.statuses.map(item => item.hashtags));
@@ -67,19 +63,17 @@ export function reducer(state: State = initialState, action: api.Actions | pagin
 				entities: apiResponse.statuses,
 				aggregations: apiResponse.aggregations,
 				hashtags,
-				valid: true,
-				selected: null,
-				selectedavail: false
+				valid: true
 			});
 		}
 
-		case api.ActionTypes.SEARCH_COMPLETE_FAIL: {
+		case apiAction.ActionTypes.SEARCH_COMPLETE_FAIL: {
 			return Object.assign({}, state, {
 				valid: false
 			});
 		}
 
-		case pagination.ActionTypes.PAGINATION_COMPLETE_SUCCESS: {
+		case paginationAction.ActionTypes.PAGINATION_COMPLETE_SUCCESS: {
 			const apiResponse = action.payload;
 
 			const oldTagStrings = state.hashtags.map(hashtag => hashtag.tag);
@@ -97,23 +91,8 @@ export function reducer(state: State = initialState, action: api.Actions | pagin
 			});
 		}
 
-		case pagination.ActionTypes.PAGINATION_COMPLETE_FAIL: {
+		case paginationAction.ActionTypes.PAGINATION_COMPLETE_FAIL: {
 			return state;
-		}
-
-		case api.ActionTypes.SELECT_RESULT: {
-			const present = (action.payload + 1) ? true : false;
-			return Object.assign({}, state, {
-				selectedavail: present,
-				selected: action.payload
-			});
-		}
-
-		case api.ActionTypes.UNSELECT_RESULT: {
-			return Object.assign({}, state, {
-				selectavail: false,
-				selected: null
-			});
 		}
 
 		default: {
@@ -142,8 +121,3 @@ export const isResultValid = (state: State) => state.valid;
 export const lastRecord = (state: State) => state.entities.length - 1;
 
 export const getAggregations = (state: State) => state.aggregations;
-
-export const isSelected = (state: State) => state.selectedavail;
-
-export const getSelectedItem = (state: State) => state.entities[state.selected];
-

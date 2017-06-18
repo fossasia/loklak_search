@@ -39,7 +39,9 @@ import { combineReducers } from '@ngrx/store';
  * notation packages up all of the exports into a single object.
  */
 import * as fromQuery from './query';
+import * as fromUserQuery from './user-query';
 import * as fromSearch from './search';
+import * as fromUserSearch from './user-search';
 import * as fromApiResponse from './api-response';
 import * as fromPagination from './pagination';
 import * as fromApiUserResponse from './api-user-response';
@@ -52,7 +54,9 @@ import * as fromSuggestResponse from './suggest-response';
  */
 export interface State {
 	query: fromQuery.State;
+	userQuery: fromUserQuery.State;
 	search: fromSearch.State;
+	userSearch: fromUserSearch.State;
 	apiResponse: fromApiResponse.State;
 	pagination: fromPagination.State;
 	apiUserResponse: fromApiUserResponse.State;
@@ -69,7 +73,9 @@ export interface State {
  */
 const reducers = {
 	query: fromQuery.reducer,
+	userQuery: fromUserQuery.reducer,
 	search: fromSearch.reducer,
+	userSearch: fromUserSearch.reducer,
 	apiResponse: fromApiResponse.reducer,
 	pagination: fromPagination.reducer,
 	apiUserResponse: fromApiUserResponse.reducer,
@@ -81,7 +87,6 @@ const developmentReducer: ActionReducer<State> = compose(storeFreeze, combineRed
 const productionReducer: ActionReducer<State> = combineReducers(reducers);
 
 export function reducer(state: any, action: any) {
-	// return productionReducer(state, action);
 	if (environment.production) {
 		return productionReducer(state, action);
 	}
@@ -136,10 +141,16 @@ export const getApiAggregations = createSelector(getApiResponseState, fromApiRes
 export const getSearchState = (state: State) => state.search;
 
 export const getSearchLoading = createSelector(getSearchState, fromSearch.getLoading);
-export const getShowUserFeed = createSelector(getSearchState, fromSearch.showUserFeed);
 
 /**
- * Selectior for Query
+ * Selector for User Search
+ */
+export const getUserSearchState = (state: State) => state.search;
+
+export const getUserSearchLoading = createSelector(getUserSearchState, fromUserSearch.getLoading);
+
+/**
+ * Selector for Query
  */
 export const getQueryState = (state: State) => state.query;
 
@@ -152,6 +163,13 @@ export const getQueryLocation = createSelector(getQueryState, fromQuery.getLocat
 export const getIsFromQuery = createSelector(getQueryState, fromQuery.isFromQuery);
 export const getIsFollowerQuery = createSelector(getQueryState, fromQuery.isFollowerQuery);
 
+/**
+ * Selector for User Query
+ */
+export const getUserQueryState = (state: State) => state.userQuery;
+
+export const getUserQuery = createSelector(getUserQueryState, fromUserQuery.getQuery);
+export const getUserQuerySceenName = createSelector(getUserQueryState, fromUserQuery.getQueryScreenName);
 
 /**
  * Selectors For Pageination.
@@ -171,17 +189,10 @@ export const getApiUserResponseState = (state: State) => state.apiUserResponse;
 export const getApiUserResponse = createSelector(getApiUserResponseState, fromApiUserResponse.getUserResponse);
 export const getApiUserFollowersResponse = createSelector(getApiUserResponseState, fromApiUserResponse.getUSerFollowers);
 export const getApiUserFollowingResponse = createSelector(getApiUserResponseState, fromApiUserResponse.getUserFollowing);
-export const isUserResponseLoading = createSelector(getApiUserResponseState, fromApiUserResponse.isUserResponseLoading);
-export const getShowUserInfo = createSelector(getApiUserResponseState, fromApiUserResponse.showUserInfo);
+export const getAreApiUserResultsValid = createSelector(getApiUserResponseState, fromApiUserResponse.isResultValid);
 
 /**
-*Selectors For LightBox.
-*/
-export const getLightboxIsSelected = createSelector(getApiResponseState, fromApiResponse.isSelected);
-export const getLightboxgetSelectedItem = createSelector(getApiResponseState, fromApiResponse.getSelectedItem);
-
-/**
-*Selectors For Suggest Service
+*Selectors For Suggest
 */
 export const getSuggestState = (state: State) => state.suggestService;
 
@@ -213,3 +224,8 @@ export const getAreResultsAvailable =
 
 export const getApiResponsePage = createSelector(getApiResponsePages, getPaginationPage, (pages, page) => pages[page]);
 export const getPageEntities = createSelector(getApiResponsePages, getPaginationPage, (pages, page) => pages[page].statuses);
+
+export const getIsUserSearchSuccess =
+	createSelector(getUserSearchLoading, getAreApiUserResultsValid, (userSearchLoading, userResultsValid) => {
+		return (!userSearchLoading && userResultsValid);
+	});

@@ -33,8 +33,6 @@ describe('ApiResponseReducer', () => {
 				aggregations: MockApiResponse.aggregations,
 				hashtags: hashtags,
 				valid: true,
-				selected: null,
-				selectedavail: false
 			};
 
 			const result = fromApiResponse.reducer(fromApiResponse.initialState, ResponseAction);
@@ -55,8 +53,6 @@ describe('ApiResponseReducer', () => {
 				aggregations: MockApiResponse.aggregations,
 				hashtags: initialhashtags,
 				valid: false,
-				selected: 2,
-				selectedavail: true
 			};
 			// should not replace existing Api Response
 			const ResponseAction = new action(MockApiResponse);
@@ -67,8 +63,6 @@ describe('ApiResponseReducer', () => {
 				aggregations: MockApiResponse.aggregations,
 				hashtags: hashtags,
 				valid: true,
-				selected: null,
-				selectedavail: false
 			};
 
 
@@ -142,24 +136,6 @@ describe('ApiResponseReducer', () => {
 			const action = new paginationAction.PaginationCompleteFailAction('');
 			const result = fromApiResponse.reducer(fromApiResponse.initialState, action);
 			expect(expectedResult).toBe(initialState);
-		});
-	});
-
-	describe('SELECT_RESULT', () => {
-		it('should set selectavail to true and make selected to be the payload', () => {
-			const action = new apiAction.SelectLightbox(1);
-			const result = fromApiResponse.reducer(fromApiResponse.initialState, action);
-			expect(result.selectedavail).toBe(true);
-			expect(result.selected).toBe(1);
-		});
-	});
-
-	describe('UNSELECT_RESULT', () => {
-		it('should set selectavail to false and make selected to be null', () => {
-			const action = new apiAction.UnSelectLightbox(null);
-			const result = fromApiResponse.reducer(fromApiResponse.initialState, action);
-			expect(result.selectedavail).toBe(false);
-			expect(result.selected).toBe(null);
 		});
 	});
 

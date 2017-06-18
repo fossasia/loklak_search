@@ -10,12 +10,13 @@ import { FilterList, TimeBound } from '../models';
  * action types in the application are unique.
  */
 export const ActionTypes = {
-	VALUE_CHANGE: '[Search] Value Change',
-	FILTER_CHANGE: '[Search] Filter Change',
-	LOCATION_CHANGE: '[Search] Locaion Change',
-	TIME_BOUND_CHANGE: '[Search] Time Bound Change',
-	QUERY_CHANGE: '[Search] Query Change',
-	RELOCATION_ATTR_CHANGE: '[Search] Relocation Attr Change'
+	VALUE_CHANGE: '[Query] Value Change',
+	FILTER_CHANGE: '[Query] Filter Change',
+	LOCATION_CHANGE: '[Query] Locaion Change',
+	TIME_BOUND_CHANGE: '[Query] Time Bound Change',
+	QUERY_CHANGE: '[Query] Query Change',
+	RELOCATE_AFTER_QUERY_SET: '[Query] Relocate After Query Set',
+	RELOCATE_AFTER_QUERY_RESET: '[Query] Relocate After Query Reset'
 };
 
 /**
@@ -53,17 +54,25 @@ export class TimeBoundChangeAction implements Action {
 export class QueryChangeAction implements Action {
 	type = ActionTypes.QUERY_CHANGE;
 
-	constructor(public payload: any) { }
+	constructor(public payload?: any) { }
 }
 
-export class RelocationAttrChangeAction implements Action {
-	type = ActionTypes.RELOCATION_ATTR_CHANGE;
+export class RelocationAfterQuerySetAction implements Action {
+	type = ActionTypes.RELOCATE_AFTER_QUERY_SET;
 
-	constructor(public payload: any) { }
+	constructor(public payload?: any) { }
+}
+
+export class RelocationAfterQueryResetAction implements Action {
+	type = ActionTypes.RELOCATE_AFTER_QUERY_RESET;
+
+	constructor(public payload?: any) { }
 }
 
 export type Actions
 	= InputValueChangeAction
 	| FilterChangeAction
 	| LocationChangeAction
-	| TimeBoundChangeAction;
+	| TimeBoundChangeAction
+	| RelocationAfterQuerySetAction
+	| RelocationAfterQueryResetAction;

@@ -1,24 +1,34 @@
 import { createSelector } from 'reselect';
-import * as apiAction from '../actions/api';
-import { Query, fromRegExp, FilterList, TimeBound  } from '../models';
+
+import * as userQueryAction from '../actions/user-query';
+import { UserQuery } from '../models';
 
 /**
  * Each reducer module must import the local `State` which it controls.
  *
  * Here the `State` contains two properties:
- * @prop [query: string] query to be searched.
+ * @prop [query: Query] Query object on which the search is based.
+ *
  */
 export interface State {
-	loading: boolean;
+	query: UserQuery;
 }
+
+/**
+ * Initial Query state which is passed onto the store.
+ */
+const queryInitialState: UserQuery =  {
+	screen_name: ''
+};
 
 /**
  * There is always a need of initial state to be passed onto the store.
  *
+ * @prop: query: ''
  * @prop: loading: false
  */
 export const initialState: State = {
-	loading: false,
+	query: queryInitialState,
 };
 
 
@@ -30,21 +40,18 @@ export const initialState: State = {
  * Here the reducer cotrols that part of the state which is shows the state of the application
  * wheather it is searching and what is it searching for.
  */
-export function reducer(state: State = initialState, action: apiAction.Actions): State {
+export function reducer(state: State = initialState, action: userQueryAction.Actions): State {
 	switch (action.type) {
-		case apiAction.ActionTypes.SEARCH: {
+		case userQueryAction.ActionTypes.VALUE_CHANGE: {
+			const screen_name: string = action.payload;
 
 			return Object.assign({}, state, {
-				loading: true
+				query: {
+					...state.query,
+					screen_name
+				}
 			});
-		}
 
-		case apiAction.ActionTypes.SEARCH_COMPLETE_SUCCESS:
-		case apiAction.ActionTypes.SEARCH_COMPLETE_FAIL: {
-
-			return Object.assign({}, state, {
-				loading: false
-			});
 		}
 
 		default: {
@@ -63,4 +70,6 @@ export function reducer(state: State = initialState, action: apiAction.Actions):
  * use-case.
  */
 
-export const getLoading = (state: State) => state.loading;
+export const getQuery = (state: State) => state.query;
+
+export const getQueryScreenName = (state: State) => state.query.screen_name;
