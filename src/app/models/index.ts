@@ -1,4 +1,5 @@
 export * from './query';
+export * from './user-query';
 export * from './suggest';
 export * from './api-response';
 export * from './api-suggest';

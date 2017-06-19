@@ -1,5 +1,6 @@
 import { createSelector } from 'reselect';
-import * as api from '../actions/api';
+
+import * as apiAction from '../actions/api';
 import { Query, ReloactionAfterQuery, fromRegExp, followersRegExp,
 					FilterList, TimeBound  } from '../models';
 
@@ -8,22 +9,18 @@ import { Query, ReloactionAfterQuery, fromRegExp, followersRegExp,
  *
  * Here the `State` contains two properties:
  * @prop [query: string] query to be searched.
- * @prop [loading: boolean] to check wheather the query is being currently loaded.
  */
 export interface State {
 	loading: boolean;
-	showUserFeed: boolean;
 }
 
 /**
  * There is always a need of initial state to be passed onto the store.
  *
  * @prop: loading: false
- * @prop: showUserFeed: false
  */
 export const initialState: State = {
 	loading: false,
-	showUserFeed: false
 };
 
 
@@ -35,39 +32,20 @@ export const initialState: State = {
  * Here the reducer cotrols that part of the state which is shows the state of the application
  * wheather it is searching and what is it searching for.
  */
-export function reducer(state: State = initialState, action: api.Actions): State {
+export function reducer(state: State = initialState, action: apiAction.Actions): State {
 	switch (action.type) {
-		case api.ActionTypes.SEARCH: {
+		case apiAction.ActionTypes.SEARCH: {
 
 			return Object.assign({}, state, {
 				loading: true
 			});
 		}
 
-		case api.ActionTypes.FETCH_USER: {
-
-			return Object.assign({}, state, {
-				loading: true
-			});
-		}
-
-		case api.ActionTypes.SEARCH_COMPLETE_SUCCESS:
-		case api.ActionTypes.SEARCH_COMPLETE_FAIL: {
+		case apiAction.ActionTypes.SEARCH_COMPLETE_SUCCESS:
+		case apiAction.ActionTypes.SEARCH_COMPLETE_FAIL: {
 
 			return Object.assign({}, state, {
 				loading: false
-			});
-		}
-
-		case api.ActionTypes.SHOW_SEARCH_RESULTS : {
-			return Object.assign({}, state, {
-				showUserFeed : false
-			});
-		}
-
-		case api.ActionTypes.SHOW_USER_FEED : {
-			return Object.assign({}, state, {
-				showUserFeed : true
 			});
 		}
 
@@ -88,5 +66,3 @@ export function reducer(state: State = initialState, action: api.Actions): State
  */
 
 export const getLoading = (state: State) => state.loading;
-
-export const showUserFeed = (state: State) => state.showUserFeed;

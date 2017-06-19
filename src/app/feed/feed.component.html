@@ -6,14 +6,12 @@
 				(relocateEvent)="relocateURL($event)"
 				(filterTabs)="filterResults($event)"></feed-header>
 
-	<div *ngIf="!(showUserFeed$ | async)">
-
 		<div *ngIf="(isSearching$ | async)">
 			<div class="searching">
 			<!-- Hook Up the Material Design Progress Bar. -->
 			</div>
 			<div class="searching-message">
-			Searching social media messages of the last 30 days.
+				Searching social media messages of the last 30 days.
 			</div>
 		</div>
 		<br>
@@ -21,10 +19,7 @@
 		<div *ngIf="!(isSearching$ | async)" class="feed-wrapper">
 			<div *ngIf="(areResultsAvailable$ | async)" class="wrapper feed-results">
 				<div *ngFor="let item of (apiResponseResults$ | async); let i = index ">
-					<feed-card [feedItem]="item" [feedIndex]="i" (showLightBox)="showhidelightbox($event);"></feed-card>
-				</div>
-				<div *ngIf="visibility">
-					<feed-lightbox [feedItem]="(LightboxgetSelectedItem$ | async)" (hideLightBox)="hidelightbox($event)"></feed-lightbox>
+					<feed-card [feedItem]="item" [feedIndex]="i"></feed-card>
 				</div>
 				<feed-pagination
 					(paginate)="loadMoreResults($event)"
@@ -36,15 +31,15 @@
 					[apiResponseTags]="(apiResponseTags$ | async)"></feed-footer>
 			</div>
 			<div *ngIf="(areResultsAvailable$ | async)" class="wrapper feed-info-box">
-					<info-box *ngIf="!(showUserInfo$ | async)"
+					<info-box *ngIf="!(areUserResultsValid$ | async)"
 						[query] = "(query$ | async)"
 						[apiResponseAggregations]="(apiResponseAggregations$ | async)"></info-box>
 					<user-info-box
-						*ngIf="(showUserInfo$ | async)"
+						*ngIf="(areUserResultsValid$ | async)"
 						[apiResponseUser] = "(apiResponseUser$ | async)"
 						[apiResponseUserFollowing] = "apiResponseUserFollowing$ | async"
 						[apiResponseUserFollowers] = "apiResponseUserFollowers$ | async"
-						[isUserResponseLoading]= "(isUserResponseLoading$ | async)"></user-info-box>
+						[isUserResponseLoading]= "(isUserInfoSearching$ | async)"></user-info-box>
 			</div>
 			<div class="results-not-found"
 						*ngIf="!(areResultsAvailable$ | async) &&
@@ -53,30 +48,6 @@
 				<feed-not-found [query]="(query$ | async)"></feed-not-found>
 			</div>
 		</div>
-
-	</div>
-
-	<div *ngIf="(showUserFeed$ | async)">
-
-		<div *ngIf="(isUserResponseLoading$ | async)" class="searching">
-		</div>
-		<br/>
-
-		<div class="feed-wrapper" *ngIf="!(isUserResponseLoading$ | async )">
-			<div class="wrapper user-feed-results" id="user-feed-wrapper" *ngIf="((apiResponseUserFollowers$ | async).length > 0)">
-					<div *ngFor="let item of sortUsers(apiResponseUserFollowers$ | async).slice(0,index); let i = index " class="card-wrapper">
-						<feed-user-card [feedItem] = "item" [feedIndex]="i"></feed-user-card>
-					</div>
-					<div class="pagination">
-						<button *ngIf="index < (apiResponseUserFollowers$ | async).length" (click)="showMoreUsers()">Show more</button>
-					</div>
-			</div>
-			<div class="results-not-found"
-						*ngIf="((apiResponseUserFollowers$ | async).length == 0)">
-				<feed-not-found [query]="(query$ | async)"></feed-not-found>
-			</div>
-		</div>
-	</div>
 </div>
 
 <!-- Peek the footer when Results are not found -->

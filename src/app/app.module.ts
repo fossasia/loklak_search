@@ -8,9 +8,10 @@ import { EffectsModule } from '@ngrx/effects';
 import { reducer } from './reducers';
 import { ApiSearchEffects } from './effects/api-search.effects';
 import { PaginationEffects } from './effects/pagination.effects';
-import { ApiUserSearchEffects } from './effects/api-usersearch.effects';
+import { ApiUserSearchEffects } from './effects/api-user-search.effects';
 import { SuggestEffects } from './effects/api-suggest.effects';
 import { QueryEffects } from './effects/query.effects';
+import { UserQueryEffects } from './effects/user-query.effects';
 
 
 import { LoklakAppRoutingModule } from './app-routing.module';
@@ -73,6 +74,7 @@ import { PageNotFoundModule } from './pagenotfound/pagenotfound.module';
      * See: https://github.com/ngrx/effects/blob/master/docs/api.md#run
      */
 		EffectsModule.run(QueryEffects),
+		EffectsModule.run(UserQueryEffects),
 		EffectsModule.run(ApiSearchEffects),
 		EffectsModule.run(PaginationEffects),
 		EffectsModule.run(SuggestEffects),

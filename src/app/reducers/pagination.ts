@@ -1,5 +1,5 @@
 import { createSelector } from 'reselect';
-import * as pagination from '../actions/pagination';
+import * as paginationAction from '../actions/pagination';
 
 /**
  * Each reducer module must import the local `State` which it controls.
@@ -34,23 +34,23 @@ export const initialState = {
  * Here the reducer cotrols that part of the state which is shows the state of the application
  * wheather it is searching and what is it searching for.
  */
-export function reducer(state: State = initialState, action: pagination.Actions): State {
+export function reducer(state: State = initialState, action: paginationAction.Actions): State {
 	switch (action.type) {
-		case pagination.ActionTypes.NEXT_PAGE: {
+		case paginationAction.ActionTypes.NEXT_PAGE: {
 			return Object.assign({}, state, {
 				page: state.page + 1,
 				pageLoading: true
 			});
 		}
 
-		case pagination.ActionTypes.PAGINATION_COMPLETE_SUCCESS: {
+		case paginationAction.ActionTypes.PAGINATION_COMPLETE_SUCCESS: {
 			return Object.assign({}, state, {
 				pageLoading: false,
 				pagesAvailable: (action.payload.statuses.length < 20 ? false : true),
 			});
 		}
 
-		case pagination.ActionTypes.PAGINATION_COMPLETE_FAIL: {
+		case paginationAction.ActionTypes.PAGINATION_COMPLETE_FAIL: {
 			return Object.assign({}, state, {
 				page: state.page - 1,
 				pageLoading: false,
@@ -58,7 +58,7 @@ export function reducer(state: State = initialState, action: pagination.Actions)
 			});
 		}
 
-		case pagination.ActionTypes.REVERT_PAGINATION_STATE: {
+		case paginationAction.ActionTypes.REVERT_PAGINATION_STATE: {
 			return Object.assign({}, state, {
 				pageLoading: false,
 				pagesAvailable: true
