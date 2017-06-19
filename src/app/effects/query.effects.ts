@@ -8,6 +8,8 @@ import 'rxjs/add/operator/withLatestFrom';
 import * as fromRoot from '../reducers';
 import * as apiAction from '../actions/api';
 import * as queryAction from '../actions/query';
+import * as userQueryAction from '../actions/user-query';
+import { fromRegExp } from '../models';
 
 /**
  * Effects offer a way to isolate and easily test side-effects within your
@@ -56,10 +58,19 @@ export class QueryEffects {
 					.withLatestFrom(this.store$)
 					.mergeMap(([action, state]) => {
 
-						return (state.query.query.from) ?
-										[ new apiAction.SearchAction(state.query.query),
-											new apiAction.FetchUserAction(state.query.query) ] :
-										[ new apiAction.SearchAction(state.query.query) ];
+						if (state.query.query.from) {
+							const userQuery: string = fromRegExp.exec(state.query.query.queryString)[1];
+
+							return [
+								new apiAction.SearchAction(state.query.query),
+								new userQueryAction.ValueChangeAction(userQuery)
+							];
+						}
+						else {
+							return [
+								new apiAction.SearchAction(state.query.query)
+							];
+						}
 					});
 
 	constructor(

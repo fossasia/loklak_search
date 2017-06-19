@@ -51,11 +51,11 @@ export class PaginationEffects {
 						const nextSearch$ = this.actions$.ofType(apiAction.ActionTypes.SEARCH);
 
 						return this.apiSearchService.fetchQuery(this.query.queryString, this.lastRecord)
-																				.takeUntil(nextSearch$)
-																				.map(response => {
-																					return new paginationAction.PaginationCompleteSuccessAction(response);
-																				})
-																				.catch(() => of(new paginationAction.PaginationCompleteFailAction('')));
+												.takeUntil(nextSearch$)
+												.map(response => {
+													return new paginationAction.PaginationCompleteSuccessAction(response);
+												})
+												.catch(() => of(new paginationAction.PaginationCompleteFailAction('')));
 					});
 
 	constructor(

@@ -10,12 +10,12 @@ import { FilterList, TimeBound } from '../models';
  * action types in the application are unique.
  */
 export const ActionTypes = {
-	VALUE_CHANGE: '[Search] Value Change',
-	FILTER_CHANGE: '[Search] Filter Change',
-	LOCATION_CHANGE: '[Search] Locaion Change',
-	TIME_BOUND_CHANGE: '[Search] Time Bound Change',
-	QUERY_CHANGE: '[Search] Query Change',
-	RELOCATION_ATTR_CHANGE: '[Search] Relocation Attr Change'
+	VALUE_CHANGE: '[Query] Value Change',
+	FILTER_CHANGE: '[Query] Filter Change',
+	LOCATION_CHANGE: '[Query] Locaion Change',
+	TIME_BOUND_CHANGE: '[Query] Time Bound Change',
+	QUERY_CHANGE: '[Query] Query Change',
+	RELOCATION_ATTR_CHANGE: '[Query] Relocation Attr Change'
 };
 
 /**
