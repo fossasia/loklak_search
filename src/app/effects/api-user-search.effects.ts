@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Location } from '@angular/common';
 import { Effect, Actions } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
@@ -14,7 +13,7 @@ import 'rxjs/add/operator/takeUntil';
 
 import { UserService } from '../services';
 import * as userApiAction from '../actions/user-api';
-import { Query, ReloactionAfterQuery } from '../models/query';
+import { Query } from '../models';
 
 /**
  * Effects offer a way to isolate and easily test side-effects within your
@@ -52,8 +51,7 @@ export class ApiUserSearchEffects {
 
 	constructor(
 		private actions$: Actions,
-		private apiUserService: UserService,
-		private location: Location
+		private apiUserService: UserService
 	) { }
 
 }

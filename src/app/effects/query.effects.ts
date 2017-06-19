@@ -58,17 +58,17 @@ export class QueryEffects {
 					.withLatestFrom(this.store$)
 					.mergeMap(([action, state]) => {
 
-						if (state.query.query.from) {
-							const userQuery: string = fromRegExp.exec(state.query.query.queryString)[1];
+						if (state.query.from) {
+							const userQuery: string = fromRegExp.exec(state.query.queryString)[1];
 
 							return [
-								new apiAction.SearchAction(state.query.query),
+								new apiAction.SearchAction(state.query),
 								new userQueryAction.ValueChangeAction(userQuery)
 							];
 						}
 						else {
 							return [
-								new apiAction.SearchAction(state.query.query)
+								new apiAction.SearchAction(state.query)
 							];
 						}
 					});

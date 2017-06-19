@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Location } from '@angular/common';
 import { Effect, Actions } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
@@ -14,7 +13,7 @@ import 'rxjs/add/operator/takeUntil';
 
 import { SuggestService } from '../services';
 import * as suggestAction from '../actions/suggest';
-import { Query, ReloactionAfterQuery } from '../models/query';
+import { Query } from '../models';
 
 /**
  * Effects offer a way to isolate and easily test side-effects within your
@@ -53,7 +52,6 @@ export class SuggestEffects {
 	constructor(
 		private actions$: Actions,
 		private suggestService: SuggestService,
-		private location: Location
 	) { }
 
 }

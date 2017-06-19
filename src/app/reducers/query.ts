@@ -1,49 +1,45 @@
 import { createSelector } from 'reselect';
 
 import * as queryAction from '../actions/query';
-import { Query, ReloactionAfterQuery, fromRegExp, followersRegExp,
-					FilterList, TimeBound  } from '../models';
+import { Query, fromRegExp, FilterList, TimeBound } from '../models';
 
 /**
  * Each reducer module must import the local `State` which it controls.
  *
  * Here the `State` contains two properties:
- * @prop [query: Query] Query object on which the search is based.
+ * @extends Query Model
  *
+ * @prop [displayString: string]: String which is used to display the meaningful parts of a query in text
+ * @prop [queryString: string]: String which is used to query the API
+ * @prop [filter: FilterList]: Set of filters which apply on the search
+ * @prop [location: string]: The GeoLocation to display results on the basis of places
+ * @prop [timeBound: TimeBound]: The time restricted set for the query.
+ * @prop [from: boolean]: True if the query is of form "from:<query-term>"
+ * @prop [relocateAfter: boolean]: If true the url will change after the query fetching is successful
  */
-export interface State {
-	query: Query;
+export interface State extends Query {
+	relocateAfter: boolean;
 }
 
 /**
- * Initial Query state which is passed onto the store.
+ * There is always a need of initial state to be passed onto the store.
  */
-const queryInitialState: Query =  {
+export const initialState: State = {
 	displayString: '',
 	queryString: '',
-	location: ReloactionAfterQuery.NONE,
 	filter: {
 		audio: false,
 		video: false,
 		images: false
 	},
-	near: null,
+	location: null,
 	timeBound: {
 		since: null,
 		until: null
 	},
 	from: false,
-	followers: false
-};
-
-/**
- * There is always a need of initial state to be passed onto the store.
- *
- * @prop: query: ''
- * @prop: loading: false
- */
-export const initialState: State = {
-	query: queryInitialState,
+	followers: false,
+	relocateAfter: false
 };
 
 
@@ -60,15 +56,10 @@ export function reducer(state: State = initialState, action: queryAction.Actions
 		case queryAction.ActionTypes.VALUE_CHANGE: {
 			const query: any = action.payload;
 			const isFromQuery: boolean = (fromRegExp.exec(query)) ? true : false;
-			const isFollowerQuery: boolean = (followersRegExp.exec(query)) ? true : false;
 
 			return Object.assign({}, state, {
-				query: {
-					...state.query,
-					displayString: query,
-					from: isFromQuery,
-					follower: isFollowerQuery
-				}
+				displayString: query,
+				from: isFromQuery,
 			});
 
 		}
@@ -77,21 +68,15 @@ export function reducer(state: State = initialState, action: queryAction.Actions
 			const filterList: any = action.payload;
 
 			return Object.assign({}, state, {
-				query: {
-					...state.query,
-					filter: filterList
-				}
+				filter: filterList
 			});
 		}
 
 		case queryAction.ActionTypes.TIME_BOUND_CHANGE: {
-			const timeBoundSet: any = action.payload;
+			const timeBound: any = action.payload;
 
 			return Object.assign({}, state, {
-				query: {
-					...state.query,
-					timeBound: timeBoundSet
-				}
+				timeBound
 			});
 		}
 
@@ -99,30 +84,28 @@ export function reducer(state: State = initialState, action: queryAction.Actions
 			const location: any = action.payload;
 
 			return Object.assign({}, state, {
-				query: {
-					...state.query,
-					near: location
-				}
+				location
 			});
 		}
 
 		case queryAction.ActionTypes.QUERY_CHANGE: {
 
 			return Object.assign({}, state, {
-				query: {
-					...state.query,
-					queryString: state.query.displayString
-				}
+				queryString: state.displayString
 			});
 		}
 
-		case queryAction.ActionTypes.RELOCATION_ATTR_CHANGE: {
+		case queryAction.ActionTypes.RELOCATE_AFTER_QUERY_SET: {
 
 			return Object.assign({}, state, {
-				query: {
-					...state.query,
-					location: ReloactionAfterQuery.RELOCATE
-				}
+				relocateAfter: true
+			});
+		}
+
+		case queryAction.ActionTypes.RELOCATE_AFTER_QUERY_RESET: {
+
+			return Object.assign({}, state, {
+				relocateAfter: false
 			});
 		}
 
@@ -142,18 +125,18 @@ export function reducer(state: State = initialState, action: queryAction.Actions
  * use-case.
  */
 
-export const getQuery = (state: State) => state.query;
+export const getQuery = (state: State) => state;
 
-export const getQueryString = (state: State) => state.query.queryString;
+export const getQueryString = (state: State) => state.queryString;
 
-export const getDisplayString = (state: State) => state.query.displayString;
+export const getDisplayString = (state: State) => state.displayString;
 
-export const getFilterList = (state: State) => state.query.filter;
+export const getFilterList = (state: State) => state.filter;
 
-export const getTimeBoundSet = (state: State) => state.query.timeBound;
+export const getTimeBoundSet = (state: State) => state.timeBound;
 
-export const getLocation = (state: State) => state.query.near;
+export const getLocation = (state: State) => state.location;
 
-export const isFromQuery = (state: State) => state.query.from;
+export const isFromQuery = (state: State) => state.from;
 
-export const isFollowerQuery = (state: State) => state.query.followers;
+export const isFollowerQuery = (state: State) => state.followers;
