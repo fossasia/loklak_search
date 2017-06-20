@@ -1,4 +1,6 @@
 import { Component, OnInit, AfterViewInit, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
+import { Router, ActivatedRoute, Params } from '@angular/router';
+import { Location } from '@angular/common';
 
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
@@ -29,21 +31,34 @@ export class MediaWallComponent implements OnInit, AfterViewInit, OnDestroy {
 	public setupMediaWall = false;
 
 	constructor(
+		private route: ActivatedRoute,
+		private location: Location,
 		private store: Store<fromRoot.State>
 	) { }
 
 	ngOnInit() {
+		this.queryFromURL();
 		this.getDataFromStore();
 	}
 
 	ngAfterViewInit() {
 	}
 
+	private queryFromURL(): void {
+		this.__subscriptions__.push(
+			this.route.queryParams
+					.subscribe((params: Params) => {
+						const queryParam = params['query'] || '';
+						this.store.dispatch(new mediaWallAction.WallInputValueChangeAction(queryParam));
+					})
+		);
+	}
+
 	/**
 	 * Getting the data(Observables) from store into the component.
 	 */
 	private getDataFromStore(): void {
-		this.query$ = this.store.select(fromRoot.getQuery);
+		this.query$ = this.store.select(fromRoot.getMediaWallQuery);
 		this.apiResponseResults$ = this.store.select(fromRoot.getApiResponseEntities);
 		this.color$ = this.store.select(fromRoot.getMediaWallColor);
 		this.mediaElements$ = this.store.select(fromRoot.getMediaElements);

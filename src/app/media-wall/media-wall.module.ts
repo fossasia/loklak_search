@@ -9,6 +9,7 @@ import { MediaWallColorComponent } from './media-wall-color/media-wall-color.com
 import { LoklakMediaWallRoutingModule } from './media-wall-routing.module';
 import { MediaWallImageComponent } from './media-wall-image/media-wall-image.component';
 import { MediaWallCardComponent } from './media-wall-card/media-wall-card.component';
+import { MediaWallLinkerComponent } from './media-wall-linker/media-wall-linker.component';
 
 @NgModule({
 	imports: [
@@ -23,7 +24,8 @@ import { MediaWallCardComponent } from './media-wall-card/media-wall-card.compon
 		MediaWallComponent,
 		MediaWallColorComponent,
 		MediaWallImageComponent,
-		MediaWallCardComponent
+		MediaWallCardComponent,
+		MediaWallLinkerComponent
 	]
 })
 export class MediaWallModule { }

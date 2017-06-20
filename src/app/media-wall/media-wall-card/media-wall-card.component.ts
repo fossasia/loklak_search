@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, ChangeDetectionStrategy, ChangeDetectorRef, Output, EventEmitter } from '@angular/core';
 import { ApiResponseResult } from '../../models/api-response';
+import { MediaWallsColor } from '../../models/media-wall';
 import { Observable } from 'rxjs/Rx';
 import { BrowserModule, DomSanitizer } from '@angular/platform-browser';
 
@@ -10,10 +11,8 @@ import { BrowserModule, DomSanitizer } from '@angular/platform-browser';
 })
 export class MediaWallCardComponent implements OnInit {
 	public datetime: string = null;
-	public inviewport: Observable<boolean>;
 	@Input() feedItem: ApiResponseResult;
-	@Input() feedIndex: number;
-	@Output() showLightBox: EventEmitter<any> = new EventEmitter();
+	@Input() color: MediaWallsColor;
 
 	constructor(private ref: ChangeDetectorRef,
 		private sanitizer: DomSanitizer) {
