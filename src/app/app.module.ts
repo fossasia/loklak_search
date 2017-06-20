@@ -7,11 +7,13 @@ import { EffectsModule } from '@ngrx/effects';
 
 import { reducer } from './reducers';
 import { ApiSearchEffects } from './effects/api-search.effects';
+import { MediaWallQueryEffects } from './effects/media-wall-search.effects';
 import { PaginationEffects } from './effects/pagination.effects';
 import { ApiUserSearchEffects } from './effects/api-user-search.effects';
 import { SuggestEffects } from './effects/api-suggest.effects';
 import { QueryEffects } from './effects/query.effects';
 import { UserQueryEffects } from './effects/user-query.effects';
+
 
 
 import { LoklakAppRoutingModule } from './app-routing.module';
@@ -23,6 +25,7 @@ import { FeedModule } from './feed/feed.module';
 import { AboutModule } from './about/about.module';
 import { ContactModule } from './contact/contact.module';
 import { TermsModule } from './terms/terms.module';
+import { MediaWallModule } from './media-wall/media-wall.module';
 import { SearchService, UserService, SuggestService } from './services';
 import { PageNotFoundModule } from './pagenotfound/pagenotfound.module';
 
@@ -79,6 +82,7 @@ import { PageNotFoundModule } from './pagenotfound/pagenotfound.module';
 		EffectsModule.run(PaginationEffects),
 		EffectsModule.run(SuggestEffects),
 		EffectsModule.run(ApiUserSearchEffects),
+		EffectsModule.run(MediaWallQueryEffects),
 
 		/**
 		 * Defines the routes at `root` level of the application.
@@ -111,6 +115,10 @@ import { PageNotFoundModule } from './pagenotfound/pagenotfound.module';
 		 */
 		TermsModule,
 
+		/**
+		 * Module defines the `Media Wall Page` for the Loklak Project.
+		 */
+		MediaWallModule,
 		/**
 		/* Module defines the '404 Not found Page' for the Loklak Project.
 		*/
