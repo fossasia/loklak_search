@@ -3,6 +3,16 @@
 	<media-wall-image
 		[color]="(color$ | async)"
 		[mediaElements]="(mediaElements$ | async)"></media-wall-image>
+		<div class="widget">
+			<div class="widget-panel">
+				<div class="widget-content">
+					<div class="gap"></div>
+					<div class="scroller" *ngFor="let item of (apiResponseResults$ | async); let i = index ">
+						<media-wall-card [feedItem]="item" [feedIndex]="i"></media-wall-card>
+					</div>
+				</div>
+			</div>
+		</div>
 </div>
 <media-wall-color
 	[color]="(color$ | async)"

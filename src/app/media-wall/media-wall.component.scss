@@ -1,8 +1,8 @@
-.container{
+div.container{
 	min-height: 100%;
 	min-width: 100%;
 
-	.title {
+	p.title {
 		position:absolute;
 		top:1.5vh;
 		left:5%;
@@ -10,9 +10,52 @@
 		height:4vh;
 		text-align:center;
 		display:block;
-		font-family: 'Montserrat', sans-serif !important;
+  	font-family: 'Montserrat', sans-serif !important;
   	font-weight: 700;
   	font-size: 2vw;
   	padding-top: 1vw;
+	}
+
+	div.widget {
+		display: inline-block;
+		position: absolute;
+		left: 0px;
+		top: 16% ! important;
+		width: 100% ! important;
+		height: 50% ! important;
+		padding: 0px;
+		margin: 0px;
+		z-index: 3;
+
+		div.widget-panel {
+			position:absolute;
+			top:0;
+			left:0;
+			right:0;
+			bottom:0;
+			background-color:#fff;
+			overflow:hidden;
+
+			div.widget-content {
+				position:relative;
+				width:100%;
+				height:100% !important;
+				overflow:hidden;
+
+				div.gap{
+					position:absolute;
+					width:100%;
+					height:20%;
+					bottom:0;
+					box-shadow:inset 0 -30px 30px #fff !important;
+					z-index:200
+				}
+
+				div.scroller{
+					margin-top:5vh;
+					height:auto;
+				}
+			}
+		}
 	}
 }
