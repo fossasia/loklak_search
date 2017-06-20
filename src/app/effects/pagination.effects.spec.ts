@@ -8,7 +8,7 @@ import * as apiAction from '../actions/api';
 import * as paginationAction from '../actions/pagination';
 import { ApiResponse } from '../models/api-response';
 import { MockApiResponse, MockQuery } from '../shared/mocks/feedItem.mock';
-import { Query, ReloactionAfterQuery } from '../models';
+import { Query } from '../models';
 import { StoreModule } from '@ngrx/store';
 import { reducer } from '../reducers';
 

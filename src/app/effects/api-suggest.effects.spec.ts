@@ -8,7 +8,6 @@ import * as suggestAction from '../actions/suggest';
 import { SuggestResponse } from '../models/api-suggest';
 import { MockSuggestResponse } from '../shared/mocks/suggestResponse.mock';
 import { RouterTestingModule } from '@angular/router/testing';
-import { Location } from '@angular/common';
 
 import 'rxjs/add/observable/of';
 import 'rxjs/add/observable/throw';
@@ -25,8 +24,7 @@ describe('SuggestEffects', () => {
 			{
 				provide: SuggestService,
 				useValue: jasmine.createSpyObj('suggestService', ['fetchQuery']),
-			},
-			Location
+			}
 		]
 	}));
 
