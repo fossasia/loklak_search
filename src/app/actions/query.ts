@@ -15,7 +15,8 @@ export const ActionTypes = {
 	LOCATION_CHANGE: '[Query] Locaion Change',
 	TIME_BOUND_CHANGE: '[Query] Time Bound Change',
 	QUERY_CHANGE: '[Query] Query Change',
-	RELOCATION_ATTR_CHANGE: '[Query] Relocation Attr Change'
+	RELOCATE_AFTER_QUERY_SET: '[Query] Relocate After Query Set',
+	RELOCATE_AFTER_QUERY_RESET: '[Query] Relocate After Query Reset'
 };
 
 /**
@@ -53,17 +54,25 @@ export class TimeBoundChangeAction implements Action {
 export class QueryChangeAction implements Action {
 	type = ActionTypes.QUERY_CHANGE;
 
-	constructor(public payload: any) { }
+	constructor(public payload?: any) { }
 }
 
-export class RelocationAttrChangeAction implements Action {
-	type = ActionTypes.RELOCATION_ATTR_CHANGE;
+export class RelocationAfterQuerySetAction implements Action {
+	type = ActionTypes.RELOCATE_AFTER_QUERY_SET;
 
-	constructor(public payload: any) { }
+	constructor(public payload?: any) { }
+}
+
+export class RelocationAfterQueryResetAction implements Action {
+	type = ActionTypes.RELOCATE_AFTER_QUERY_RESET;
+
+	constructor(public payload?: any) { }
 }
 
 export type Actions
 	= InputValueChangeAction
 	| FilterChangeAction
 	| LocationChangeAction
-	| TimeBoundChangeAction;
+	| TimeBoundChangeAction
+	| RelocationAfterQuerySetAction
+	| RelocationAfterQueryResetAction;

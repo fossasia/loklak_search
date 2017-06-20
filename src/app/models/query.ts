@@ -1,16 +1,10 @@
 import { FilterList, TimeBound } from '.';
 
-export enum ReloactionAfterQuery {
-	NONE,
-	RELOCATE,
-};
-
 export interface Query {
 	displayString: string;
 	queryString: string;
-	location: ReloactionAfterQuery;
 	filter: FilterList;
-	near: string;
+	location: string;
 	timeBound: TimeBound;
 	from: boolean;
 	followers?: boolean;

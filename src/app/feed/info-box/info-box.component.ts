@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Rx';
 import * as fromRoot from '../../reducers';
 import * as apiAction from '../../actions/api';
 import { ApiResponseAggregations } from '../../models/api-response';
-import { Query, ReloactionAfterQuery } from '../../models';
+import { Query } from '../../models';
 
 @Component({
 	selector: 'info-box',
