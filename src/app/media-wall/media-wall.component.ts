@@ -9,7 +9,7 @@ import { Store } from '@ngrx/store';
 import * as fromRoot from '../reducers';
 import * as mediaWallAction from '../actions/media-wall';
 
-import { Query, ReloactionAfterQuery } from '../models/query';
+import { Query } from '../models/query';
 import { ApiResponse, ApiResponseResult } from '../models/api-response';
 import { MediaWallsColor } from '../models/media-wall';
 
