@@ -1,5 +1,5 @@
 import { createSelector } from 'reselect';
-import { Query, ReloactionAfterQuery } from '../models/query';
+import { Query } from '../models/query';
 
 import * as apiAction from '../actions/api';
 import * as mediaWallAction from '../actions/media-wall';
@@ -22,13 +22,12 @@ export const initialState: State = {
 	query: {
 		displayString: '',
 		queryString: '',
-		location: ReloactionAfterQuery.NONE,
 		filter: {
 			audio: false,
 			video: false,
 			images: false
 		},
-		near: null,
+		location: null,
 		timeBound: {
 			since: null,
 			until: null
