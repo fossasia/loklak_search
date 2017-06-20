@@ -35,4 +35,7 @@
 				</ul>
 			<hr [style.left]="getCoordinates()">
 		</div>
+		<div class="media-display" *ngIf="(areResultsAvailable)&& (!resultsLoading)">
+		<a [routerLink]="['/wall']" [queryParams]="{ query : query }">Display as media wall</a>
+		</div>
 </div>

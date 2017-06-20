@@ -1,0 +1,20 @@
+<div class="feed-item">
+	<p class="text" [style.color]="color.text">
+		<span class="img-span" [style.border-color]="color.accent">
+			<img src="{{feedItem.user.profile_image_url_https}}">
+		</span>
+		<span class="name" [style.color]="color.accent">{{profileName}}</span>
+		<span class="screen-name" [style.color]="color.accent" >@{{feedItem.user.screen_name}}</span>
+		<span class="time" [style.color]="color.accent">{{datetime}}</span>
+		<span class="status">
+			<media-wall-linker
+					[text]="itemText || ''"
+					[hashtags]="feedItem.hashtags || []"
+					[mentions]="feedItem.mentions || []"
+					[links]="feedItem.links || []"
+					[unshorten]="feedItem.unshorten || {}"
+					[color]="color"></media-wall-linker>
+		</span>
+	</p>
+	<span style="clear:both"></span>
+</div>

@@ -1,0 +1,18 @@
+<div class="widget">
+	<!-- Content panel -->
+	<div class="widget-panel">
+		<!-- Actual content -->
+		<div class="widget-content"
+			[style.border-top-color]='color.accent'
+			[style.border-bottom-color]='color.accent'>
+			<div class="image-clip">
+				<ul class="image-list">
+					<li class="image-slot" *ngFor="let image of mediaElements">
+						<div class="image" [ngStyle]="{ 'background-image': 'url(' + image + ')'}">
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>

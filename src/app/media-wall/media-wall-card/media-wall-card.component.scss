@@ -1,0 +1,68 @@
+div.feed-item {
+	clear: both;
+	position: relative;
+	width: 100%;
+	height: auto;
+	max-height: 10vw;
+	opacity: 1;
+
+	p.text {
+		position: relative;
+		display: block;
+		max-width: 100%;
+		height: auto;
+		text-align: left;
+		overflow: hidden;
+
+		span.img-span {
+			float: left;
+			position: relative;
+			width: 5.5vw;
+			height: 5.5vw;
+			border-width: 2px;
+			border-style: solid;
+			border-radius: 50%;
+			margin: 0 2.5vw 1vw 0;
+			overflow: hidden !important;
+
+			img {
+				float: left;
+				display: block;
+				width: 5.5vw !important;
+				height: 5.5vw !important;
+			}
+		}
+
+		span.name {
+			font-weight: 400;
+			font-size: 1.1vw;
+			line-height: 1.8vw;
+			display: block;
+			padding: 0.25vw 0 0 0;
+		}
+
+		span.screen-name {
+			font-size: 1.2vw;
+			line-height: 1.8vw;
+			font-weight: 300;
+			padding: 0.25vw 0 0 0;
+		}
+
+		span.time {
+			font-weight: 300;
+			font-size: 1.1vw;
+			line-height: 1.8vw;
+			position: absolute;
+			top: 0.6vw;
+			right: 1.5vw;
+		}
+
+		span.status {
+			font-weight: 400;
+			font-size: 1.1vw;
+			line-height: 1.8vw;
+			display: block;
+			padding: 0.25vw 0 0 0;
+		}
+	}
+}
