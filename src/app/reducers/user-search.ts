@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect';
-import * as apiAction from '../actions/api';
-import { Query, fromRegExp, FilterList, TimeBound  } from '../models';
+
+import * as userApiAction from '../actions/user-api';
 
 /**
  * Each reducer module must import the local `State` which it controls.
@@ -30,17 +30,17 @@ export const initialState: State = {
  * Here the reducer cotrols that part of the state which is shows the state of the application
  * wheather it is searching and what is it searching for.
  */
-export function reducer(state: State = initialState, action: apiAction.Actions): State {
+export function reducer(state: State = initialState, action: userApiAction.Actions): State {
 	switch (action.type) {
-		case apiAction.ActionTypes.SEARCH: {
+		case userApiAction.ActionTypes.USER_SEARCH: {
 
 			return Object.assign({}, state, {
 				loading: true
 			});
 		}
 
-		case apiAction.ActionTypes.SEARCH_COMPLETE_SUCCESS:
-		case apiAction.ActionTypes.SEARCH_COMPLETE_FAIL: {
+		case userApiAction.ActionTypes.USER_SEARCH_COMPLETE_SUCCESS:
+		case userApiAction.ActionTypes.USER_SEARCH_COMPLETE_FAIL: {
 
 			return Object.assign({}, state, {
 				loading: false

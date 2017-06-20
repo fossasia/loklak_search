@@ -1,5 +1,5 @@
 import { createSelector } from 'reselect';
-import * as api from '../actions/api';
+import * as userApiAction from '../actions/user-api';
 import { UserApiResponse } from '../models/api-user-response';
 
 /**
@@ -10,8 +10,7 @@ export interface State {
 	user: UserApiResponse;
 	followers: UserApiResponse[];
 	following: UserApiResponse[];
-	showUserInfo: boolean;
-	loading: boolean;
+	valid: boolean;
 }
 
 /**
@@ -21,8 +20,7 @@ export const initialState: State = {
 	user: null,
 	followers: [],
 	following: [],
-	showUserInfo: false,
-	loading: false
+	valid: false
 };
 
 
@@ -34,39 +32,23 @@ export const initialState: State = {
  * Here the reducer cotrols that part of the state which is shows the state of the application
  * wheather the userDetails are being retrieved and the userDetails.
  */
-export function reducer(state: State = initialState, action: api.Actions): State {
+export function reducer(state: State = initialState, action: userApiAction.Actions): State {
 	switch (action.type) {
-		case api.ActionTypes.SEARCH: {
-			return Object.assign({}, state, {
-				user: null,
-				showUserInfo: false,
-				loading: true
-			});
-		}
 
-		case api.ActionTypes.FETCH_USER: {
-
-			return Object.assign({}, state, {
-				showUserInfo: true,
-				loading: true
-			});
-		}
-
-		case api.ActionTypes.FETCH_USER_SUCCESS: {
+		case userApiAction.ActionTypes.USER_SEARCH_COMPLETE_SUCCESS: {
 			const userResponse = action.payload;
 
 			return Object.assign({}, state, {
 				user: userResponse.user,
 				followers: userResponse.topology.followers,
 				following: userResponse.topology.following,
-				loading: false
+				valid: true
 			});
 		}
-		case api.ActionTypes.FETCH_USER_FAIL: {
+		case userApiAction.ActionTypes.USER_SEARCH_COMPLETE_FAIL: {
 
 			return Object.assign({}, state, {
-				loading: false,
-				showUserInfo: false
+				valid: false
 			});
 		}
 
@@ -92,6 +74,4 @@ export const getUSerFollowers = (state: State) => state.followers;
 
 export const getUserFollowing = (state: State) => state.following;
 
-export const isUserResponseLoading = (state: State) => state.loading;
-
-export const showUserInfo = (state: State) => state.showUserInfo;
+export const isResultValid = (state: State) => state.valid;

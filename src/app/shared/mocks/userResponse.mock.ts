@@ -1,4 +1,4 @@
-import { UserApiResponse , UserTopology, UserResponse, Query, ReloactionAfterQuery } from '../../models';
+import { UserApiResponse , UserTopology, UserResponse, UserQuery } from '../../models';
 
 export const MockUserApiResponse: UserApiResponse = {
 		$P: 'I',
@@ -88,19 +88,6 @@ export const MockUserResponse: UserResponse = {
 };
 
 
-export const MockUserQuery: Query = {
-	queryString: 'from:fossasia',
-	displayString: 'from:fossasia',
-	filter: {
-		audio: false,
-		video: false,
-		images: false
-	},
-	near: null,
-	timeBound: {
-		since: null,
-		until: null
-	},
-	from: false,
-	location: ReloactionAfterQuery.RELOCATE
+export const MockUserQuery: UserQuery = {
+	screen_name: 'fossasia'
 };

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Location } from '@angular/common';
+import { Store, Action } from '@ngrx/store';
 import { Effect, Actions } from '@ngrx/effects';
-import { Action } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 import { empty } from 'rxjs/observable/empty';
 import { of } from 'rxjs/observable/of';
@@ -11,11 +11,13 @@ import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/skip';
 import 'rxjs/add/operator/takeUntil';
+import 'rxjs/add/operator/withLatestFrom';
 
 import { SearchService } from '../services';
+import * as fromRoot from '../reducers';
 import * as apiAction from '../actions/api';
-import { ReloactionAfterQuery } from '../models';
-import { ApiResponse } from '../models/api-response';
+import * as queryAction from '../actions/query';
+import { ApiResponse } from '../models';
 
 /**
  * Effects offer a way to isolate and easily test side-effects within your
@@ -48,15 +50,33 @@ export class ApiSearchEffects {
 						return this.apiSearchService.fetchQuery(query.queryString)
 												.takeUntil(nextSearch$)
 												.map(response => {
-													if (query.location === ReloactionAfterQuery.RELOCATE) {
-														this.location.go(`/search?query=${URIquery}`);
-													}
 													return new apiAction.SearchCompleteSuccessAction(response);
 												})
 												.catch(() => of(new apiAction.SearchCompleteFailAction('')));
 					});
 
+	@Effect()
+	searchCompleteSuccess$: Observable<Action>
+		= this.actions$
+					.ofType(apiAction.ActionTypes.SEARCH_COMPLETE_SUCCESS)
+					.withLatestFrom(this.store$)
+					.map(([action, state]) => {
+						return {
+							doRelocate: state.query.relocateAfter,
+							queryString: state.query.queryString
+						};
+					})
+					.map(relocateObject => {
+						if (relocateObject.doRelocate) {
+							const URIquery = encodeURIComponent(relocateObject.queryString);
+							this.location.go(`/search?query=${URIquery}`);
+						}
+						return new queryAction.RelocationAfterQueryResetAction();
+					});
+
+
 	constructor(
+		private store$: Store<fromRoot.State>,
 		private actions$: Actions,
 		private apiSearchService: SearchService,
 		private location: Location

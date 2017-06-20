@@ -3,6 +3,7 @@ import 'rxjs/add/observable/throw';
 
 import { EffectsTestingModule, EffectsRunner } from '@ngrx/effects/testing';
 import { TestBed, fakeAsync, tick } from '@angular/core/testing';
+import { StoreModule } from '@ngrx/store';
 import { ApiSearchEffects } from './api-search.effects';
 import { SearchService } from '../services';
 import { Observable } from 'rxjs/Observable';
@@ -16,7 +17,8 @@ describe('ApiSearchEffects', () => {
 	beforeEach(() => TestBed.configureTestingModule({
 		imports: [
 			EffectsTestingModule,
-			RouterTestingModule
+			RouterTestingModule,
+			StoreModule.provideStore({})
 		],
 		providers: [
 			ApiSearchEffects,

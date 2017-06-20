@@ -1,5 +1,5 @@
 import { createSelector } from 'reselect';
-import * as suggest from '../actions/suggest';
+import * as suggestAction from '../actions/suggest';
 import { SuggestQuery } from '../models';
 
 /**
@@ -36,9 +36,9 @@ export const initialState: State = {
  * Here the reducer cotrols that part of the state which is shows the state of the application
  * wheather it is searching and what is it searching for.
  */
-export function reducer(state: State = initialState, action: suggest.Actions): State {
+export function reducer(state: State = initialState, action: suggestAction.Actions): State {
 	switch (action.type) {
-		case suggest.ActionTypes.SUGGEST_QUERY: {
+		case suggestAction.ActionTypes.SUGGEST_QUERY: {
 			const query = action.payload;
 
 			return Object.assign({}, state, {
@@ -49,8 +49,8 @@ export function reducer(state: State = initialState, action: suggest.Actions): S
 			});
 		}
 
-		case suggest.ActionTypes.SUGGEST_COMPLETE_SUCCESS:
-		case suggest.ActionTypes.SUGGEST_COMPLETE_FAIL: {
+		case suggestAction.ActionTypes.SUGGEST_COMPLETE_SUCCESS:
+		case suggestAction.ActionTypes.SUGGEST_COMPLETE_FAIL: {
 
 			return Object.assign({}, state, {
 				loading: false
