@@ -15,7 +15,6 @@ import { QueryEffects } from './effects/query.effects';
 import { UserQueryEffects } from './effects/user-query.effects';
 
 
-
 import { LoklakAppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
