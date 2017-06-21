@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, ChangeDetectionStrategy, ChangeDetectorRef, Output, EventEmitter } from '@angular/core';
 import { ApiResponseResult } from '../../models/api-response';
 import { Observable } from 'rxjs/Rx';
-import { BrowserModule, DomSanitizer } from '@angular/platform-browser';
+import { BrowserModule, DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
 	selector: 'feed-card',
@@ -16,15 +16,19 @@ export class FeedCardComponent implements OnInit {
 	@Input() feedIndex: number;
 	@Output() showLightBox: EventEmitter<any> = new EventEmitter();
 
-	constructor(private ref: ChangeDetectorRef,
+	public filteredImages: string[] = new Array<string>();
+	public sanitizedVideos: SafeResourceUrl[] = new Array<SafeResourceUrl>();
+
+	constructor(
+		private ref: ChangeDetectorRef,
 		private sanitizer: DomSanitizer) {
 	}
 
 	ngOnInit() {
 		const timer = Observable.timer(0, 10000);
 		timer.subscribe(t => this.ttt());
-		// this.imageURLs(this.feedItem.images);
-		// this.sanitizeAndEmbedURLs(this.feedItem.videos);
+		this.filterValidImageURLS();
+		this.sanitizeVideoURLs();
 	}
 
 	onShowed(show: boolean) {
@@ -131,31 +135,32 @@ export class FeedCardComponent implements OnInit {
 		}
 	}
 
-	private sanitizeAndEmbedURLs(links) {
-		links.forEach((link, i) => {
-			const videoid = links[i].match(/(?:https?:\/{2})?(?:w{3}\.)?youtu(?:be)?\.(?:com|be)(?:\/watch\?v=|\/)([^\s&]+)/);
+	private sanitizeVideoURLs() {
+		this.feedItem.videos.forEach((video) => {
+			const videoid = video.match(/(?:https?:\/{2})?(?:w{3}\.)?youtu(?:be)?\.(?:com|be)(?:\/watch\?v=|\/)([^\s&]+)/);
+
 			if (videoid !== null) {
-				links[i] = 'http://www.youtube.com/embed/' + videoid[1];
+				video = 'http://www.youtube.com/embed/' + videoid[1];
 			}
-			links[i] = this.sanitizer.bypassSecurityTrustResourceUrl(links[i]);
+			this.sanitizedVideos.push(this.sanitizer.bypassSecurityTrustResourceUrl(video));
 		});
 	}
 
-	private imageURLs(links) {
-		const img1 = new RegExp('https:\\/\\/abs\\.twimg\\.com\\/');
-		const img2 = new RegExp('https:\\/\\/pic\\.twitter\\.com\\/');
-		const img3 = new RegExp('https:\\/\\/www\\.instagram\\.com\\/');
-		const imgarr = [];
-		links.forEach((link, i) => {
-			const res1 = img1.exec(link);
-			const res2 = img2.exec(link);
-			const res3 = img3.exec(link);
-			if (res1 === null && res2 === null && res3 === null) {
-				imgarr.push(link);
+	private filterValidImageURLS() {
+		// These types of image URLs creep up due to scraping errors
+		// We neglect these URLs all together and display rest of the images
+
+		const imageType1 = new RegExp('https:\\/\\/abs\\.twimg\\.com\\/');
+		const imageType2 = new RegExp('https:\\/\\/pic\\.twitter\\.com\\/');
+		const imageType3 = new RegExp('https:\\/\\/www\\.instagram\\.com\\/');
+
+		this.feedItem.images.forEach((image, i) => {
+			const match1 = imageType1.exec(image);
+			const match2 = imageType2.exec(image);
+			const match3 = imageType3.exec(image);
+			if (!match1 && !match2 && !match3) {
+				this.filteredImages.push(image);
 			}
 		});
-
-		// BUG: Mutating the state here: handle this case
-		// this.feedItem.images = imgarr;
 	}
 }
