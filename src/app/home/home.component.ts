@@ -3,6 +3,7 @@ import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { Subscription } from 'rxjs/Subscription';
+import { Observable } from 'rxjs/Observable';
 
 import { Store } from '@ngrx/store';
 import * as fromRoot from '../reducers';
@@ -22,6 +23,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 	public headerImageUrl = 'assets/images/cow_150x175.png';
 	public _queryControl: FormControl = new FormControl();
 	public inputFocused = false;
+	public apiResponseHashtags$: Observable<Array<{ tag: string, count: number }>>;
 
 	constructor(
 		private router: Router,
@@ -34,6 +36,8 @@ export class HomeComponent implements OnInit, OnDestroy {
 		this.titleService.setTitle('Loklak Search');
 		this.focusTextbox();
 		this.setupSearchField();
+		this.getTopHashtags();
+		this.getDataFromStore();
 	}
 
 	/**
@@ -59,6 +63,15 @@ export class HomeComponent implements OnInit, OnDestroy {
 				}
 			)
 		);
+	}
+
+	private getTopHashtags() {
+		this.store.dispatch(new queryAction.RelocationAfterQueryResetAction());
+		this.store.dispatch(new queryAction.InputValueChangeAction('since:day'));
+	}
+
+	private getDataFromStore() {
+		this.apiResponseHashtags$ = this.store.select(fromRoot.getApiResponseTags);
 	}
 
 	/**

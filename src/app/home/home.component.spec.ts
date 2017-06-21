@@ -86,6 +86,20 @@ describe('Component: Home', () => {
 		expect(compiled.querySelector('div.wrapper div.search-form input#search')).toBeTruthy();
 	}));
 
+	it('should dispatch Input Value Action for getting top hashtags', async(() => {
+		const fixture = TestBed.createComponent(HomeComponent);
+		fixture.detectChanges();
+		const component = fixture.debugElement.componentInstance;
+		const compiled = fixture.debugElement.nativeElement;
+
+		const query$ = component.store.select(fromRoot.getQuery);
+		let displayString: string;
+		const subscription = query$.subscribe(query => displayString = query.displayString);
+
+		expect(displayString).toBe('since:day');
+		subscription.unsubscribe();
+	}));
+
 	it('should focus the input search element on initialization', async(() => {
 		const fixture = TestBed.createComponent(HomeComponent);
 		fixture.detectChanges();
@@ -108,7 +122,6 @@ describe('Component: Home', () => {
 		let displayString: string;
 		const subscription = query$.subscribe(query => displayString = query.displayString);
 
-		expect(displayString).toBeFalsy();
 		component._queryControl.setValue(value);
 		expect(displayString).toBe(value);
 
