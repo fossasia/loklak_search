@@ -35,4 +35,10 @@
 				</ul>
 			<hr [style.left]="getCoordinates()">
 		</div>
+		<div class="media-display" *ngIf="(areResultsAvailable)&& (!resultsLoading)">
+		<span  md-icon-button [mdMenuTriggerFor]="viewMenu" >Views</span>
+			<md-menu #viewMenu="mdMenu" [overlapTrigger]="false" xPosition="after" yPosition="below">
+  		<button md-menu-item [routerLink]="['/wall']" [queryParams]="{ query : query }"> Display as Media Wall </button>
+		</md-menu>
+		</div>
 </div>

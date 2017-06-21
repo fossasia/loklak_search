@@ -47,6 +47,7 @@ import * as fromPagination from './pagination';
 import * as fromApiUserResponse from './api-user-response';
 import * as fromSuggest from './suggest';
 import * as fromSuggestResponse from './suggest-response';
+import * as fromMediaWall from './media-wall';
 
 /**
  * As mentioned, we treat each reducer like a table in a database. This means
@@ -62,6 +63,7 @@ export interface State {
 	apiUserResponse: fromApiUserResponse.State;
 	suggestService: fromSuggest.State;
 	suggestResponse: fromSuggestResponse.State;
+	mediaWallResponse: fromMediaWall.State;
 }
 
 /**
@@ -80,7 +82,8 @@ const reducers = {
 	pagination: fromPagination.reducer,
 	apiUserResponse: fromApiUserResponse.reducer,
 	suggestService: fromSuggest.reducer,
-	suggestResponse: fromSuggestResponse.reducer
+	suggestResponse: fromSuggestResponse.reducer,
+	mediaWallResponse: fromMediaWall.reducer
 };
 
 const developmentReducer: ActionReducer<State> = compose(storeFreeze, combineReducers)(reducers);
@@ -208,6 +211,12 @@ export const getSuggestResponseEntities = createSelector(getSuggestResponseState
 export const isSuggestResponseValid = createSelector(getSuggestResponseState, fromSuggestResponse.isResultValid);
 export const getSuggestServiceLastResponse = createSelector(getSuggestResponseState, fromSuggestResponse.lastRecord);
 
+/**
+ * Selectors for Media wall colors
+ */
+export const getMediaWallState = (state: State) => state.mediaWallResponse;
+
+export const getMediaWallQuery = createSelector(getMediaWallState, fromMediaWall.getMediaWallQuery);
 
 /**
  * Some selector functions create joins across parts of state. This selector
