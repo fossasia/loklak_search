@@ -23,7 +23,7 @@
 					<label class="form-label" for="telephone">*Mobile Number </label>
 					<span class="telephonegroup">
         <select formControlName="countrycode" id="telephone" name="countrycode" placeholder="Country Code" [(ngModel)]="selectedValue" >
-        <option *ngFor="let c of countries" [value]="c.code">{{c.name}}</option>
+        <option *ngFor="let c of countries" [value]="c.code">{{c.name}} (+{{c.code}})</option>
 </select> -
         <input type="tel" formControlName="telephone" id="telephone" placeholder="Mobile Number" name="telephone">
         </span>

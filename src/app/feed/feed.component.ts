@@ -149,12 +149,6 @@ export class FeedComponent implements OnInit, AfterViewInit, OnDestroy {
 		this.store.dispatch(new paginationAction.NextPageAction(''));
 	}
 
-	public filterResults(query: string) {
-		/**
-		 * Implementation removed, Re-implementation will be required.
-		 */
-	}
-
 	/**
 	 * Clearup all the subscription when component is destroyed.
 	 */

@@ -29,16 +29,68 @@
 		</div>
 		<div class="tabslist">
 				<ul>
-					<li><a class="tabs" (click)="filterResults(0)" [style.color]="getColor(0)">All</a></li>
-					<li><a class="tabs" (click)="filterResults(1)" [style.color]="getColor(1)">Images</a></li>
-					<li><a class="tabs" (click)="filterResults(2)" [style.color]="getColor(2)">Videos</a></li>
+					<li [class.active_view]="show('all')" class="tabs" (click)="getAllResults()">All</li>
+					<li [class.active_view]="show('images')" class="tabs" (click)="getImageResults()">Images</li>
+					<li [class.active_view]="show('video')" class="tabs" (click)="getVideoResults()">Videos</li>
+					<li [class.active_view]="show('audio')" class="tabs" (click)="getAudioResults()">Audios</li>
+					<li class="tools tabs">
+						<ul class="tool-bar">
+							<li class="settings"(click)="showTools = (!showTools)">Settings</li>
+							<li class="media-display"><span  md-icon-button [mdMenuTriggerFor]="viewMenu" >Views</span></li>
+							</ul></li>
 				</ul>
-			<hr [style.left]="getCoordinates()">
-		</div>
-		<div class="media-display" *ngIf="(areResultsAvailable)&& (!resultsLoading)">
-		<span  md-icon-button [mdMenuTriggerFor]="viewMenu" >Views</span>
-			<md-menu #viewMenu="mdMenu" [overlapTrigger]="false" xPosition="after" yPosition="below">
+				</div>
+				<md-menu #viewMenu="mdMenu" [overlapTrigger]="false" xPosition="after" yPosition="below">
   		<button md-menu-item [routerLink]="['/wall']" [queryParams]="{ query : query }"> Display as Media Wall </button>
 		</md-menu>
+</div>
+<div class="advanced-search" *ngIf="showTools">
+	<ul>
+		<li md-icon-button [mdMenuTriggerFor]="locationMenu">Location <i class="material-icons">arrow_drop_down</i></li>
+		<li md-icon-button [mdMenuTriggerFor]="timeMenu">Time <i class="material-icons">arrow_drop_down</i></li>
+	</ul>
+	<md-menu #locationMenu="mdMenu" [overlapTrigger]="false" xPosition="after" yPosition="below">
+  		<button md-menu-item (click)="getAnyLocation()"> Any location </button>
+			<button md-menu-item (click)="showLocationBox = (!showLocationBox)"> Specific Country </button>
+	</md-menu>
+	<md-menu #timeMenu="mdMenu" [overlapTrigger]="false" xPosition="after" yPosition="below">
+  		<button md-menu-item (click)="getAnyTime()"> Any time </button>
+			<button md-menu-item (click)="showTimeBox = (!showTimeBox)"> Customized Date </button>
+	</md-menu>
+</div>
+<div class="location-box" *ngIf="showLocationBox">
+	<div class="overlay">
+		<div class="overlay-content">
+			<button class="form-close" (click)="showLocationBox = (!showLocationBox);">x</button>
+			<div class="form-box">
+				<fieldset>
+					<legend>Customized Location</legend>
+					<label class="form-label" for="location">Location</label>
+        <md-select [formControl]="locationControl" id="location" name="country" placeholder="Country" [(ngModel)]="location">
+        <md-option *ngFor="let c of countries" [value]="c.name">{{c.name}}</md-option>
+				</md-select>
+					<button type="submit" value="submit" (click)="getLocationResults()">Go</button>
+				</fieldset>
+			</div>
 		</div>
+	</div>
+</div>
+<div class="time-box" *ngIf="showTimeBox">
+	<div class="overlay">
+		<div class="overlay-content">
+			<button class="form-close" (click)="showTimeBox = (!showTimeBox)">x</button>
+				<div class="form-box">
+				<fieldset>
+					<legend>Customized Date Range</legend>
+					<label class="form-label" for="fromDate">From</label>
+					<input mdInput date type="date" [formControl]="fromDateControl" [(ngModel)]="timeBound.since" id="name" name="fromDate" placeholder="yyyy-mm-dd">
+					<label class="form-label" for="toDate">To</label>
+					<input mdInput date type="date" [formControl]="toDateControl" [(ngModel)]="timeBound.until" id="name" name="toDate" placeholder="yyyy-mm-dd">
+				<div class="form-group">
+						<button type="submit" value="submit" (click)="getTimeBoundResults()">Go</button>
+				</div>
+				</fieldset>
+			</div>
+		</div>
+	</div>
 </div>
