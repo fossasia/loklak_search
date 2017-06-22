@@ -141,8 +141,8 @@ export class FeedCardComponent implements OnInit {
 
 			if (videoid !== null) {
 				video = 'http://www.youtube.com/embed/' + videoid[1];
-			}
 			this.sanitizedVideos.push(this.sanitizer.bypassSecurityTrustResourceUrl(video));
+			}
 		});
 	}
 

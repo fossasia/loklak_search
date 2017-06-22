@@ -4,12 +4,11 @@ import { TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { StoreModule } from '@ngrx/store';
 import { MaterialModule } from '@angular/material';
-import { FeedHeaderComponent } from './feed-header.component';
-import { FeedAdvancedSearchComponent } from '../feed-advanced-search/feed-advanced-search.component';
+import { FeedAdvancedSearchComponent } from './feed-advanced-search.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { reducer } from '../../reducers';
 
-describe('Component: FeedHeader', () => {
+describe('Component: FeedAdvancedSearchComponent', () => {
 	beforeEach(() => {
 		TestBed.configureTestingModule({
 			imports: [
@@ -20,14 +19,13 @@ describe('Component: FeedHeader', () => {
 				StoreModule.provideStore(reducer)
 			],
 			declarations: [
-				FeedHeaderComponent,
 				FeedAdvancedSearchComponent
 			]
 		});
 	});
 
 	it('should create an instance', async(() => {
-		const component = TestBed.createComponent(FeedHeaderComponent);
+		const component = TestBed.createComponent(FeedAdvancedSearchComponent);
 		expect(component).toBeTruthy();
 	}));
 });
