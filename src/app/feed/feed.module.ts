@@ -20,6 +20,9 @@ import { UserInfoBoxComponent } from './user-info-box/user-info-box.component';
 import { FeedLightboxComponent } from './feed-lightbox/feed-lightbox.component';
 import { FeedUserCardComponent } from './feed-user-card/feed-user-card.component';
 import { InViewportDirective } from '../shared//in-viewport.directive';
+import { FeedLocationCustomizationComponent } from './feed-location-customization/feed-location-customization.component';
+import { FeedTimeCustomizationComponent } from './feed-time-customization/feed-time-customization.component';
+import { FeedAdvancedSearchComponent } from './feed-advanced-search/feed-advanced-search.component';
 
 
 @NgModule({
@@ -43,6 +46,10 @@ import { InViewportDirective } from '../shared//in-viewport.directive';
 		 */
 		ReactiveFormsModule,
 
+		/**
+		 * The ng module for Forms
+		 */
+		FormsModule,
 		/**
  		 * The module for material design components
  		 */
@@ -76,7 +83,10 @@ import { InViewportDirective } from '../shared//in-viewport.directive';
 		InViewportDirective,
 		UserInfoBoxComponent,
 		FeedLightboxComponent,
-		FeedUserCardComponent
+		FeedUserCardComponent,
+		FeedLocationCustomizationComponent,
+		FeedTimeCustomizationComponent,
+		FeedAdvancedSearchComponent
 	]
 })
 export class FeedModule { }

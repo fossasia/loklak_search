@@ -1,0 +1,100 @@
+div.overlay {
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	padding-top: 180px;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	z-index: 1000;
+	background-color: rgba(0, 0, 0, 0.5);
+
+	div.overlay-content{
+		width: 500px;
+		height: 200px;
+		background-color: white;
+		margin: 0 auto;
+		border: solid gray 1px;
+		border-radius: 8px;
+		padding: 30px;
+		position: relative;
+
+		.form-close{
+			border: none;
+			width: 40px;
+			height: 40px;
+			font-size: 30px;
+			position: absolute;
+			right: 30px;
+			top: 15px;
+			background: white;
+			color: gray;
+			cursor: pointer;
+		}
+
+		div.form-box {
+			text-align: left;
+
+			input {
+				padding: 0.5em 0.6em;
+				display: inline-block;
+				border: 1px solid #ccc;
+				box-shadow: inset 0 1px 3px #ddd;
+				border-radius: 4px;
+				vertical-align: middle;
+				box-sizing: border-box;
+				*display: inline;
+				*zoom: 1;
+				width: 62.5%;
+			}
+
+			fieldset {
+				border:none;
+			}
+
+ 			legend {
+				display: block;
+				width: 100%;
+				padding: 0.3em 0;
+				margin-bottom: 1.3em;
+				color: #333;
+				border-bottom: 1px solid #e5e5e5;
+			}
+
+
+ 			label.form-label {
+				text-align: left;
+				display: inline-block;
+				vertical-align: middle;
+				width: 9.5em;
+				margin: 0 1em 0 0;
+			}
+
+			select {
+				padding:0.1em 0.6em 0px 2px;
+				font-size: 12px;
+				height:2.6em;
+				width: 30%;
+			}
+
+			button {
+				width:100%;
+				margin-top: 1.3em;
+			}
+		}
+	}
+}
+
+@media screen and (max-width:600px) {
+  .overlay-content{
+		overflow: scroll;
+		width:100%;
+		padding:15px;
+		position: relative;
+
+    .lightbox-close{
+			position:absolute;
+			left:90%;
+    }
+  }
+}

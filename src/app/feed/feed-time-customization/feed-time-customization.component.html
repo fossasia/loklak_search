@@ -1,0 +1,19 @@
+<div class="time-box">
+	<div class="overlay">
+		<div class="overlay-content">
+			<button class="form-close" (click)="hideTimeBox.emit(false)">x</button>
+				<div class="form-box">
+				<fieldset>
+					<legend>Customized Date Range</legend>
+					<label class="form-label" for="fromDate">From</label>
+					<input mdInput date type="date" [(ngModel)]="since" id="name" name="fromDate" placeholder="yyyy-mm-dd_HH:mm">
+					<label class="form-label" for="toDate">To</label>
+					<input mdInput date type="date" [(ngModel)]="until" id="name" name="toDate" placeholder="yyyy-mm-dd_HH:mm">
+				<div class="form-group">
+						<button type="submit" value="submit" (click)="getTimeBoundResults(); hideTimeBox.emit(false)">Go</button>
+				</div>
+				</fieldset>
+			</div>
+		</div>
+	</div>
+</div>

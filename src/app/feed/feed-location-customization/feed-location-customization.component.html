@@ -1,0 +1,17 @@
+<div class="location-box">
+	<div class="overlay">
+		<div class="overlay-content">
+			<button class="form-close" (click)="hideLocationBox.emit(false)">x</button>
+			<div class="form-box">
+				<fieldset>
+					<legend>Customized Location</legend>
+					<label class="form-label" for="location">Location</label>
+        <md-select id="location" name="country" placeholder="Country" [(ngModel)]="location">
+        <md-option *ngFor="let c of countries" [value]="c.name">{{c.name}}</md-option>
+				</md-select>
+					<button type="submit" value="submit" (click)="getLocationResults(); hideLocationBox.emit(false)">Go</button>
+				</fieldset>
+			</div>
+		</div>
+	</div>
+</div>
