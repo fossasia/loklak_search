@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect';
 
 import * as queryAction from '../actions/query';
-import { Query, fromRegExp, FilterList, TimeBound } from '../models';
+import { Query, fromRegExp, FilterList, TimeBound, parseQueryToString } from '../models';
 
 /**
  * Each reducer module must import the local `State` which it controls.
@@ -91,7 +91,7 @@ export function reducer(state: State = initialState, action: queryAction.Actions
 		case queryAction.ActionTypes.QUERY_CHANGE: {
 
 			return Object.assign({}, state, {
-				queryString: state.displayString
+				queryString: parseQueryToString(state)
 			});
 		}
 
