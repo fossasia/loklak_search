@@ -34,14 +34,14 @@ div.feed-item {
 
 		span.name {
 			font-weight: 400;
-			font-size: 1.1vw;
+			font-size: 1.2vw;
 			line-height: 1.8vw;
 			display: block;
 			padding: 0.25vw 0 0 0;
 		}
 
 		span.screen-name {
-			font-size: 1.2vw;
+			font-size: 1.1vw;
 			line-height: 1.8vw;
 			font-weight: 300;
 			padding: 0.25vw 0 0 0;
@@ -83,6 +83,8 @@ div.feed-item {
     		flex-flow: row wrap;
     		list-style: none;
     		margin: 32px 0;
+				width: 100%;
+				height: 100%;
 			}
 
 			li {
@@ -92,8 +94,140 @@ div.feed-item {
 
 			img {
    			 width: 100%;
-    		height: 100%;
+					border-radius: 0;
    			}
+		}
+	}
+
+	span.action-box {
+		display: flex;
+		justify-content: space-between;
+		max-width: 100%;
+		margin-top: 12px;
+
+		i.md-20{
+			font-size: 1.5vw;
+		}
+
+		span.action {
+			font-size: 1.3vw;
+			color: #aab8c2;
+			display: flex;
+
+			span.counter{
+				margin-left: 5px;
+			}
+		}
+
+		i.reply:hover {
+			color: #89C9FA;
+      cursor: pointer;
+		}
+
+		i.retweet:hover {
+			color: #19cf86;
+      cursor: pointer;
+		}
+
+		i.like:hover {
+			color: #e81c4f;
+      cursor: pointer;
+		}
+	}
+}
+
+@media only screen and (max-width: 600px) {
+  div.feed-item {
+
+		p.text {
+
+			span.img-span {
+				width: 47px;
+				height: 47px;
+
+				img {
+					width: 44px;
+					height: 44px;
+				}
+			}
+
+			span.name {
+				font-size: 17px;
+				line-height: 13px;
+			}
+
+			span.screen-name {
+				font-size: 13px;
+			}
+
+			span.time {
+				font-size: 14px;
+				line-height: 16px;
+			}
+
+			span.status {
+				padding: 0px;
+				font-size: 16px;
+				line-height: 26px;
+				margin-top: 12px;
+			}
+		}
+
+		span.action-box {
+			span.action {
+				font-size: 12px;
+			}
+
+			i.md-20 {
+				font-size: 17px;
+			}
+		}
+	}
+}
+
+@media only screen and (min-width: 600px) and (max-width: 900px) {
+  div.feed-item {
+
+		p.text {
+
+			span.img-span {
+				width: 46px;
+				height: 46px;
+
+				img {
+					width: 42px;
+					height: 42px;
+				}
+			}
+
+			span.name {
+				line-height: 13px;
+				font-size: 12px;
+			}
+
+			span.screen-name {
+				font-size: 10px;
+			}
+
+			span.time {
+				font-size: 10px;
+			}
+
+			span.status {
+				padding: 0.25vw 0 0 0vw;
+				line-height: 3.5vw;
+				font-size: 12px;
+			}
+		}
+
+		span.action-box {
+			span.action {
+				font-size: 12px;
+			}
+
+			i.md-20 {
+				font-size: 14px;
+			}
 		}
 	}
 }
