@@ -23,7 +23,7 @@ export class FeedHeaderComponent implements OnInit, OnDestroy {
 
 	@Input() query: string;
 	@Input() suggestionList: SuggestResults[];
-	@Input() areResultsAvailable: ApiResponseResult[];
+	@Input() areResultsAvailable: boolean;
 	@Input() resultsLoading: boolean;
 	@Output() searchEvent: EventEmitter<string> = new EventEmitter<string>();
 	@Output() relocateEvent: EventEmitter<string> = new EventEmitter<string>();

@@ -28,4 +28,28 @@
 			</span>
 	</p>
 	<span style="clear:both"></span>
+	<span class="action-box">
+		<span class="action">
+			<a target="_blank" href="https://twitter.com/intent/tweet?in_reply_to={{feedItem.id_str}}">
+				<i class="material-icons md-20 reply">reply</i>
+			</a>
+		</span>
+		<span class="action">
+			<a target="_blank" href="https://twitter.com/intent/retweet?tweet_id={{feedItem.id_str}}">
+				<i class="material-icons md-20 retweet">repeat</i>
+			</a>
+			<span class="counter retweet-count">
+						{{retweetCount}}
+			</span>
+		</span>
+		<span class="action ">
+			<a target="_blank" href="https://twitter.com/intent/like?tweet_id={{feedItem.id_str}}">
+				<i class="material-icons md-20 like">favorite_border</i>
+			</a>
+			<span class="counter like-count">
+						{{favoriteCount}}
+			</span>
+		</span>
+	</span>
+	<span style="clear:both"></span>
 </div>

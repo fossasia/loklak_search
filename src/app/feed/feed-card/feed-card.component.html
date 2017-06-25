@@ -45,17 +45,23 @@
 				<iframe class="card-videos" [src]="video" *ngIf="inviewport" allowfullscreen></iframe>
 			</div>
 			<div class="card-footer">
-				<div class="action reply">
-					<a target="_blank" href="https://twitter.com/intent/tweet?in_reply_to={{feedItem.id_str}}"><i class="material-icons md-20">reply</i></a>
+				<div class="action">
+					<a target="_blank" href="https://twitter.com/intent/tweet?in_reply_to={{feedItem.id_str}}">
+						<i class="material-icons md-20 reply">reply</i>
+					</a>
 				</div>
-				<div class="action retweet">
-					<a target="_blank" href="https://twitter.com/intent/retweet?tweet_id={{feedItem.id_str}}"><i class="material-icons md-20">repeat</i></a>
+				<div class="action">
+					<a target="_blank" href="https://twitter.com/intent/retweet?tweet_id={{feedItem.id_str}}">
+						<i class="material-icons md-20 retweet">repeat</i>
+					</a>
 					<div class="counter retweet-count">
 						{{retweetCount}}
 					</div>
 				</div>
-				<div class="action like">
-					<a target="_blank" href="https://twitter.com/intent/like?tweet_id={{feedItem.id_str}}"><i class="material-icons md-20">favorite_border</i></a>
+				<div class="action">
+					<a target="_blank" href="https://twitter.com/intent/like?tweet_id={{feedItem.id_str}}">
+						<i class="material-icons md-20 like">favorite_border</i>
+					</a>
 					<div class="counter like-count">
 						{{favoriteCount}}
 					</div>

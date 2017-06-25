@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, AfterViewInit, OnDestroy, ElementRef, ChangeDetectionStrategy } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Location } from '@angular/common';
 
@@ -25,11 +25,13 @@ export class MediaWallComponent implements OnInit, AfterViewInit, OnDestroy {
 
 	public query$: Observable<Query>;
 	public apiResponseResults$: Observable<ApiResponseResult[]>;
+	public isSearching$: Observable<boolean>;
 
 
 	constructor(
 		private route: ActivatedRoute,
 		private location: Location,
+		private elementRef: ElementRef,
 		private store: Store<fromRoot.State>
 	) { }
 
@@ -39,6 +41,14 @@ export class MediaWallComponent implements OnInit, AfterViewInit, OnDestroy {
 	}
 
 	ngAfterViewInit() {
+		this.focusTextbox();
+	}
+
+	/**
+	 * Focus the search box on the `Loading` of the Feedpage.
+	 */
+	private focusTextbox(): void {
+		this.elementRef.nativeElement.querySelector('media-wall-header .header-wrapper .header .title').focus();
 	}
 
 	private queryFromURL(): void {
@@ -57,6 +67,7 @@ export class MediaWallComponent implements OnInit, AfterViewInit, OnDestroy {
 	private getDataFromStore(): void {
 		this.query$ = this.store.select(fromRoot.getMediaWallQuery);
 		this.apiResponseResults$ = this.store.select(fromRoot.getApiResponseEntities);
+		this.isSearching$ = this.store.select(fromRoot.getSearchLoading);
 	}
 
 
