@@ -31,10 +31,7 @@
 					(click)="showLightBox.emit({show : 'hide'})"></feed-linker>
 			</div>
 			<br>
-			<div class="singleimage" *ngIf="filteredImages.length == 1">
-				<img src="{{filteredImages[0]}}" class="card-image" />
-			</div>
-			<div class="gallery" *ngIf="filteredImages.length > 1">
+			<div class="gallery" *ngIf="filteredImages.length > 0">
 				<ul>
         		<li *ngFor="let image of filteredImages">
 							<img class="card-images" src="{{image}}"/>

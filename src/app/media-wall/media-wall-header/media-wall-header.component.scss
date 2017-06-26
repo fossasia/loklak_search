@@ -3,6 +3,7 @@
 	border-bottom: 1px solid #ddd;
 	display: flex;
 	justify-content: space-between;
+	background-color: rgb(255, 255, 255);
 
 	div.header {
 		display: flex;
@@ -21,7 +22,7 @@
 			height: 50px;
 			font-family: "Courier New";
 			padding:15px 15px;
-			font-size:38px;
+			font-size:2.5rem;
 			color: #e91e63;
 			line-height: 20px;
 
@@ -40,7 +41,7 @@
 			display: block;
 			font-family: 'Montserrat', sans-serif !important;
 			font-weight: 700;
-			font-size: 35px;
+			font-size: 2.3rem;
 			padding-top: 1vw;
 			color: #337ab7;
 
