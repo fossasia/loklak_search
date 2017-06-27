@@ -164,7 +164,6 @@ export const getQueryFilterList = createSelector(getQueryState, fromQuery.getFil
 export const getQueryTimeBoundSet = createSelector(getQueryState, fromQuery.getTimeBoundSet);
 export const getQueryLocation = createSelector(getQueryState, fromQuery.getLocation);
 export const getIsFromQuery = createSelector(getQueryState, fromQuery.isFromQuery);
-export const getIsFollowerQuery = createSelector(getQueryState, fromQuery.isFollowerQuery);
 
 /**
  * Selector for User Query

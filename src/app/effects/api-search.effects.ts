@@ -13,7 +13,7 @@ import 'rxjs/add/operator/skip';
 import 'rxjs/add/operator/takeUntil';
 import 'rxjs/add/operator/withLatestFrom';
 
-import { SearchService } from '../services';
+import { SearchService, SearchServiceConfig } from '../services';
 import * as fromRoot from '../reducers';
 import * as apiAction from '../actions/api';
 import * as queryAction from '../actions/query';
@@ -35,6 +35,7 @@ import { ApiResponse } from '../models';
 
 @Injectable()
 export class ApiSearchEffects {
+	private searchServiceConfig: SearchServiceConfig = new SearchServiceConfig();
 
 	@Effect()
 	search$: Observable<Action>
@@ -43,11 +44,21 @@ export class ApiSearchEffects {
 					.debounceTime(400)
 					.map((action: apiAction.SearchAction) => action.payload)
 					.switchMap(query => {
-
-						const URIquery = encodeURIComponent(query.queryString);
 						const nextSearch$ = this.actions$.ofType(apiAction.ActionTypes.SEARCH).skip(1);
 
-						return this.apiSearchService.fetchQuery(query.queryString)
+						this.searchServiceConfig.addAggregationFields(['created_at', 'screen_name', 'mentions', 'hashtags']);
+						if (query.filter.image) {
+							this.searchServiceConfig.addFilters(['image']);
+						} else {
+							this.searchServiceConfig.removeFilters(['image']);
+						}
+						if (query.filter.video) {
+							this.searchServiceConfig.addFilters(['video']);
+						} else {
+							this.searchServiceConfig.removeFilters(['video']);
+						}
+
+						return this.apiSearchService.fetchQuery(query.queryString, this.searchServiceConfig)
 												.takeUntil(nextSearch$)
 												.map(response => {
 													return new apiAction.SearchCompleteSuccessAction(response);

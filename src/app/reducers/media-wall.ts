@@ -17,15 +17,14 @@ export const initialState: State = {
 		filter: {
 			audio: false,
 			video: false,
-			images: false
+			image: false
 		},
 		location: null,
 		timeBound: {
 			since: null,
 			until: null
 		},
-		from: false,
-		followers: false
+		from: false
 	}
 };
 

@@ -8,7 +8,6 @@ export interface Query {
 	location: string;
 	timeBound: TimeBound;
 	from: boolean;
-	followers?: boolean;
 }
 
 /**
@@ -42,7 +41,8 @@ export const fromRegExp: RegExp = /^from:\s*([a-zA-Z0-9_]+)/;
 
 
 /**
- * @function parseQueryToString: Takes the query object as an argument and returns the corresponding query string.
+ * @function parseQueryToString
+ * Takes the query object as an argument and returns the corresponding query string.
  *
  * @argument query: Query
  * @return string
