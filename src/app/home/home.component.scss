@@ -90,11 +90,26 @@ div.outer-wrapper {
 				font-size: 12px;
 				line-height: 1.4;
 				width: 100%;
+				margin-bottom: 20px;
 
 				.highlight{
 					background-color: #eeeeee;
 					padding: 1px 3px;
 				}
+		}
+
+		div.top-hashtags{
+			display: inline-block;
+			font-size: small;
+			height: 12px;
+
+			h4.heading{
+				text-align: center;
+			}
+
+			span.waiting-text{
+				padding-left:30px;
+			}
 		}
 	}
 }
