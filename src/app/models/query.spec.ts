@@ -7,7 +7,7 @@ function getBaseQuery(): Query {
 		filter: {
 			video: null,
 			audio: null,
-			images: null
+			image: null
 		},
 		location: null,
 		timeBound: {

@@ -3,7 +3,7 @@
 import { TestBed, async, inject, fakeAsync, tick } from '@angular/core/testing';
 import { Jsonp, BaseRequestOptions, RequestMethod, Response, ResponseOptions } from '@angular/http';
 import { MockBackend, MockConnection } from '@angular/http/testing';
-import { SearchService } from './search.service';
+import { SearchService, SearchServiceConfig } from '.';
 import { MockApiResponseResult } from '../shared/mocks/feedItem.mock';
 
 const mockJsonpProvider = {
@@ -34,11 +34,10 @@ describe('Service: Search', () => {
 	}));
 
 	const query = 'fossasia';
-	const lastRecord = 1;
-	const timezoneOffset: string = new Date().getTimezoneOffset().toString();
+	const searchServiceConfig: SearchServiceConfig = new SearchServiceConfig();
+	searchServiceConfig.addAggregationFields(['created_at', 'screen_name', 'mentions', 'hashtags']);
 
 	const result = MockApiResponseResult;
-
 
 	it('should create an instance of search service',
 		inject([SearchService, MockBackend], () => {
@@ -57,13 +56,13 @@ describe('Service: Search', () => {
 									`?q=${query}` +
 									`&callback=JSONP_CALLBACK` +
 									`&minified=true&source=all` +
-									`&maximumRecords=20&timezoneOffset=${timezoneOffset}` +
-									`&startRecord=${lastRecord + 1}` +
+									`&maximumRecords=20&timezoneOffset=${searchServiceConfig.getTimezoneOffset()}` +
+									`&startRecord=${searchServiceConfig.startRecord}` +
 									`&fields=created_at,screen_name,mentions,hashtags&limit=10`);
 		});
 
 		service
-			.fetchQuery(query, lastRecord)
+			.fetchQuery(query, searchServiceConfig)
 			.subscribe((res) => {
 				expect(res).toEqual(result);
 				done();

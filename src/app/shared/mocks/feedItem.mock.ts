@@ -138,7 +138,7 @@ export const MockQuery: Query = {
 	filter: {
 		audio: false,
 		video: false,
-		images: false
+		image: false
 	},
 	location: null,
 	timeBound: {

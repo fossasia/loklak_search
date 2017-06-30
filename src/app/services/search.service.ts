@@ -5,38 +5,39 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/throw';
 
+import { SearchServiceConfig } from '.';
 import { ApiResponse } from '../models/api-response';
 
 @Injectable()
 export class SearchService {
 	private static readonly apiUrl: URL = new URL('http://api.loklak.org/api/search.json');
-	private static maximum_records_fetch = 20;
-	private static minified_results = true;
-	private static source = 'all';
-	private static fields = 'created_at,screen_name,mentions,hashtags';
-	private static limit = 10;
-	private static timezoneOffset: string = new Date().getTimezoneOffset().toString();
 
 	constructor(
 		private jsonp: Jsonp
 	) { }
 
-	// TODO: make the searchParams as configureable model rather than this approach.
-	public fetchQuery(query: string, lastRecord = 0): Observable<ApiResponse> {
+	public fetchQuery(query: string, config: SearchServiceConfig): Observable<ApiResponse> {
 		const searchParams = new URLSearchParams();
 		searchParams.set('q', query);
 		searchParams.set('callback', 'JSONP_CALLBACK');
-		searchParams.set('minified', SearchService.minified_results.toString());
-		searchParams.set('source', SearchService.source);
-		searchParams.set('maximumRecords', SearchService.maximum_records_fetch.toString());
-		searchParams.set('timezoneOffset', SearchService.timezoneOffset);
-		searchParams.set('startRecord', (lastRecord + 1).toString());
-		searchParams.set('fields', SearchService.fields);
-		searchParams.set('limit', SearchService.limit.toString());
+		searchParams.set('minified', 'true');
+		searchParams.set('source', config.source);
+		searchParams.set('maximumRecords', config.maximumRecords.toString());
+		searchParams.set('timezoneOffset', config.getTimezoneOffset());
+		searchParams.set('startRecord', config.startRecord.toString());
+
+		if (config.getAggregationFieldString()) {
+			searchParams.set('fields', config.getAggregationFieldString());
+			searchParams.set('limit', config.aggregationLimit.toString());
+		}
+
+		if (config.getFilterString()) {
+			searchParams.set('filter', config.getFilterString());
+		}
+
 		return this.jsonp.get(SearchService.apiUrl.toString(), { search: searchParams })
 			.map(this.extractData)
 			.catch(this.handleError);
-
 	}
 
 	private extractData(res: Response): ApiResponse {

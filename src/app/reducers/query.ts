@@ -30,7 +30,7 @@ export const initialState: State = {
 	filter: {
 		audio: false,
 		video: false,
-		images: false
+		image: false
 	},
 	location: null,
 	timeBound: {
@@ -38,7 +38,6 @@ export const initialState: State = {
 		until: null
 	},
 	from: false,
-	followers: false,
 	relocateAfter: false
 };
 
@@ -138,5 +137,3 @@ export const getTimeBoundSet = (state: State) => state.timeBound;
 export const getLocation = (state: State) => state.location;
 
 export const isFromQuery = (state: State) => state.from;
-
-export const isFollowerQuery = (state: State) => state.followers;
