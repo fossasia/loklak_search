@@ -1,5 +1,4 @@
 .header-wrapper{
-	background: #fafafa;
 	border-bottom: 1px solid #ddd;
 	display: flex;
 	justify-content: space-between;
@@ -12,55 +11,102 @@
 		width: 100%;
 		height: 85px;
 
-		@media(max-width: 900px) {
+		@media(max-width: 600px) {
 
 			justify-content: center;
 		}
 
 		div.logo {
-			display: block;
-			height: 50px;
-			font-family: "Courier New";
-			padding:15px 15px;
-			font-size:2.5rem;
-			color: #e91e63;
-			line-height: 20px;
+			flex: 1;
+			a {
+				display: block;
+				height: 50px;
+				font-family: "Courier New";
+				padding:15px 15px;
+				font-size:2.5rem;
+				color: #e91e63;
+				line-height: 20px;
+				width: 170px;
 
-			@media(max-width: 900px) {
-				font-size: 34px;
+				@media(max-width: 600px) {
+					font-size: 34px;
+				}
+			}
+
+			a:hover {
+				text-decoration: none;
 			}
 		}
 
-		a:hover {
-			text-decoration: none;
-		}
 
 		div.title {
-			position: absolute;
-			text-align: center;
-			display: block;
 			font-family: 'Montserrat', sans-serif !important;
 			font-weight: 700;
-			font-size: 2.3rem;
-			padding-top: 1vw;
+			font-size: 1.7rem;
 			color: #337ab7;
 
-			@media(min-width: 900px) {
-			left: 45%;
-			}
-			@media(max-width: 900px) {
-			top: 60px;
+
+			@media(max-width: 600px) {
+			position: absolute;
+			top: 65px;
 			font-size: 24px;
 			}
 		}
+
+		div.menu {
+			opacity: 0;
+			cursor: pointer;
+			flex: 1;
+			display: flex;
+			justify-content: flex-end;
+			transition: opacity .25s ease-in-out;
+			margin-right: 5px;
+
+			div.option {
+				display: flex;
+				flex-direction: column;
+				justify-content: space-between;
+				font-size: 0.8rem;
+				margin-right: 8px;
+
+				button.btn {
+					background: rgb(255, 255, 255);
+					border: none;
+					color: #7f7f7f;
+					cursor: pointer;
+
+					i.md-12 {
+						position: relative;
+						left:40px;
+						bottom: 8px;
+					}
+
+					span.info {
+						position: relative;
+						top: 3px;
+					}
+				}
+			}
+
+			@media(max-width: 900px) {
+				opacity: 1;
+			}
+		}
+
+		div.mouse-moving {
+			opacity: 1;
+			pointer-events: auto;
+		}
 	}
-	@media(max-width: 900px) {
+
+
+	@media(max-width: 600px) {
 			min-height: 110px;
 
 	}
-
-	@media (max-width: 500px) {
-		min-height: 100px;
-	}
 }
 
+div.header-wrapper:hover div.header div.menu {
+		opacity:1;
+		pointer-events: auto;
+	}
