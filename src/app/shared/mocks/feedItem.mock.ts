@@ -135,8 +135,8 @@ export const MockApiResponse: ApiResponse = {
 export const MockQuery: Query = {
 	queryString: 'loklak',
 	displayString: 'loklak',
+	routerString: 'loklak',
 	filter: {
-		audio: false,
 		video: false,
 		image: false
 	},
