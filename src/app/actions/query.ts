@@ -12,7 +12,7 @@ import { FilterList, TimeBound } from '../models';
 export const ActionTypes = {
 	VALUE_CHANGE: '[Query] Value Change',
 	FILTER_CHANGE: '[Query] Filter Change',
-	LOCATION_CHANGE: '[Query] Locaion Change',
+	LOCATION_CHANGE: '[Query] Location Change',
 	TIME_BOUND_CHANGE: '[Query] Time Bound Change',
 	QUERY_CHANGE: '[Query] Query Change',
 	RELOCATE_AFTER_QUERY_SET: '[Query] Relocate After Query Set',

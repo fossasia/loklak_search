@@ -1,0 +1,38 @@
+	<div class="tabslist">
+		<ul>
+			<li [class.active_view]="show('all')" class="tabs" (click)="getAllResults()">All</li>
+			<li [class.active_view]="show('image')" class="tabs" (click)="getImageResults()">Images</li>
+			<li [class.active_view]="show('video')" class="tabs" (click)="getVideoResults()">Videos</li>
+			<div class="gap"></div>
+			<li class="tabs" (click)="showTools = (!showTools)">Settings</li>
+			<li class="tabs"><span  md-icon-button [mdMenuTriggerFor]="viewMenu" >Views</span></li>
+		</ul>
+	</div>
+	<md-menu #viewMenu="mdMenu" [overlapTrigger]="false" xPosition="after" yPosition="below">
+  	<button md-menu-item [routerLink]="['/wall']" [queryParams]="{ query : query }"> Display as Media Wall </button>
+	</md-menu>
+<div class="options-tray">
+	<div class="result-count" *ngIf="!showTools && (resultCount != 0)">
+		Showing {{resultCount}} results
+	</div>
+	<div class="advanced-search" *ngIf="showTools">
+		<ul>
+			<li md-icon-button [mdMenuTriggerFor]="locationMenu">Location <i class="material-icons">arrow_drop_down</i></li>
+			<li md-icon-button [mdMenuTriggerFor]="timeMenu">Time <i class="material-icons">arrow_drop_down</i></li>
+		</ul>
+		<md-menu #locationMenu="mdMenu" [overlapTrigger]="false" xPosition="after" yPosition="below">
+				<button md-menu-item (click)="getAnyLocation();"> Any location </button>
+				<button md-menu-item (click)="showLocationBox = (!showLocationBox)"> Specific Country </button>
+		</md-menu>
+		<md-menu #timeMenu="mdMenu" [overlapTrigger]="false" xPosition="after" yPosition="below">
+				<button md-menu-item (click)="getAnyTime();"> Any time </button>
+				<button md-menu-item (click)="showTimeBox = (!showTimeBox)"> Customized Date </button>
+		</md-menu>
+	</div>
+</div>
+<feed-location-customization
+	*ngIf="showLocationBox"
+	(hideLocationBox)="hideLocationBox($event)"></feed-location-customization>
+<feed-time-customization
+	*ngIf="showTimeBox"
+	(hideTimeBox)="hideTimeBox($event)"></feed-time-customization>
