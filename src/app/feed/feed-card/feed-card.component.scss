@@ -50,26 +50,21 @@ a.post-link {
 				}
 			}
 
-			img.card-image {
-  				border-radius: 0;
-				width:100%;
-			}
-
 			.gallery ul {
-   			 display: flex;
+   			display: flex;
      		justify-content: center;
     		flex-flow: row wrap;
     		list-style: none;
-    		margin: 32px 0;
 			}
 
 			.gallery li {
    			margin: 1px 1px;
+				flex-grow: 1;
     		flex-basis: calc(50% - 20px);
 			}
 
 			.gallery img {
-   			 width: 100%;
+   			width: 100%;
     		height: 100%;
    			}
 
