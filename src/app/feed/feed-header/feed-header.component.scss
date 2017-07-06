@@ -1,3 +1,5 @@
+@import '~styles/main';
+
 .wrapper{
 	min-height: 119px;
 	background: #fafafa;
@@ -22,7 +24,7 @@
 			font-family: "Courier New";
 			padding:15px 15px;
 			font-size:35px;
-			color: #e91e63;
+			color: var(--accent-color, $accent-color);
 			line-height: 20px;
 		}
 
@@ -84,7 +86,7 @@
 				}
 
 				span.input-group-btn button {
-					background: #e91e63;
+					background: var(--accent-color, $accent-color);
 					cursor: pointer;
 					color: white;
 				}
@@ -161,7 +163,7 @@
 		min-height: 129px;
 	}
 	span.input-group-btn button{
-		background: #e91e63;
+		background: var(--accent-color, $accent-color);
 		color: white;
 	}
 	div.search-form {
