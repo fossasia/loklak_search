@@ -14,8 +14,8 @@ export const initialState: State = {
 	query: {
 		displayString: '',
 		queryString: '',
+		routerString: '',
 		filter: {
-			audio: false,
 			video: false,
 			image: false
 		},

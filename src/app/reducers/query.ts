@@ -1,7 +1,8 @@
 import { createSelector } from 'reselect';
 
 import * as queryAction from '../actions/query';
-import { Query, fromRegExp, FilterList, TimeBound, parseQueryToString } from '../models';
+import { Query, FilterList, TimeBound, parseQueryToQueryString, parseQueryToRouterString } from '../models';
+import { fromRegExp } from '../utils';
 
 /**
  * Each reducer module must import the local `State` which it controls.
@@ -27,8 +28,8 @@ export interface State extends Query {
 export const initialState: State = {
 	displayString: '',
 	queryString: '',
+	routerString: '',
 	filter: {
-		audio: false,
 		video: false,
 		image: false
 	},
@@ -88,10 +89,16 @@ export function reducer(state: State = initialState, action: queryAction.Actions
 		}
 
 		case queryAction.ActionTypes.QUERY_CHANGE: {
+			const query = action.payload;
 
-			return Object.assign({}, state, {
-				queryString: parseQueryToString(state)
-			});
+			if (query) {
+				return Object.assign({}, query);
+			} else {
+				return Object.assign({}, state, {
+					queryString: parseQueryToQueryString(state),
+					routerString: parseQueryToRouterString(state)
+				});
+			}
 		}
 
 		case queryAction.ActionTypes.RELOCATE_AFTER_QUERY_SET: {
