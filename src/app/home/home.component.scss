@@ -1,3 +1,5 @@
+@import '~styles/main';
+
 :host{
 	width: 100%;
 	min-height: 100vh;
@@ -6,17 +8,13 @@
 
 div.outer-wrapper {
 	min-height: 100vh;
-	display: flex;
-	justify-content: space-around;
-	align-items: center;
 	position:  relative;
+	@include --center-flex();
 
 	div.wrapper {
-		display: flex;
-		flex-direction: column;
-		justify-content: space-around;
-		align-items: center;
 		position: relative;
+		@include --center-flex-vertical();
+
 		width: 584px;
 		margin: 15px;
 		top: -9.5vh;
@@ -35,7 +33,7 @@ div.outer-wrapper {
 				font-family: 'Roboto', sans-serif;
 				.loklak{
 					background:#f9f2f4;
-					color:#d10042;
+					color: var(--accent-color, $accent-color);
 					font-family: Courier New;
 				}
 		}
@@ -46,19 +44,17 @@ div.outer-wrapper {
 
 		div.search-form {
 			width: 100%;
-			display: flex;
-			justify-content: space-around;
+			@include --center-flex();
 
 			div.search-input {
 				width: 100%;
 				padding: 0px;
-				margin: 20px  0px 10px 0px;
+				margin: 20px 0px 10px 0px;
 				border-radius: 2px;
 				will-change: box-shadow;
 				box-shadow: 0 2px 2px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08);
 				transition: box-shadow .2s cubic-bezier(.4,0,.2,1);
-				display: flex;
-				justify-content: space-around;
+				@include --center-flex();
 
 				&.focused,
 				&:hover {
@@ -108,7 +104,7 @@ div.outer-wrapper {
 			}
 
 			span.waiting-text{
-				padding-left:30px;
+				padding-left: 30px;
 			}
 		}
 	}
