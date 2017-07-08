@@ -25,14 +25,15 @@
 			<span class="highlight">followers:user</span> find followers of a user.
 		</div>
 
-		<div class="top-hashtags">
-			<div *ngIf="(apiResponseHashtags$ | async).length !== 0">
-				<span *ngFor ="let item of ((apiResponseHashtags$ | async).slice(0,5));">
-					<a [routerLink]="['/search']"
-						[queryParams]="{ query : '#' + item.tag }">#{{item.tag}}</a>&nbsp;&nbsp;
-				</span>
+			<div class="top-hashtags-wrapper">
+				<div class="top-hashtags" *ngIf="trendingHashtagList.length">
+					<i class="material-icons trending" mdTooltip="Trending Hashtags">trending_up</i>
+					<span *ngFor ="let hashtag of (trendingHashtagList.slice(0,5))">
+						<a [routerLink]="['/search']"
+							[queryParams]="{ query : '#' + hashtag }">#{{hashtag}}</a>&nbsp;&nbsp;
+					</span>
+				</div>
 			</div>
-		</div>
 	</div>
 </div>
 <app-footer></app-footer>

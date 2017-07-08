@@ -73,3 +73,12 @@ export interface ApiResponse {
 	statuses: ApiResponseResult[];
 	aggregations: ApiResponseAggregations;
 }
+
+
+export interface ApiResponseTrendingHashtags {
+	search_metadata: ApiResponseMetadata;
+	statuses: ApiResponseResult[];
+	aggregations: {
+		hashtags: Object
+	};
+}

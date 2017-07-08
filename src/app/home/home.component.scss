@@ -94,17 +94,20 @@ div.outer-wrapper {
 				}
 		}
 
-		div.top-hashtags{
-			display: inline-block;
-			font-size: small;
-			height: 12px;
+		div.top-hashtags-wrapper{
+			display: inline-flex;
+			align-items: center;
+			height: 24px;
 
-			h4.heading{
-				text-align: center;
-			}
+			div.top-hashtags {
+				display: flex;
+				align-items: center;
+				font-size: small;
 
-			span.waiting-text{
-				padding-left: 30px;
+				.trending {
+					margin-right: 10px;
+					color: grey;
+				}
 			}
 		}
 	}
