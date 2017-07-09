@@ -5,7 +5,7 @@ div.feed-item {
 	height: auto;
 	opacity: 1;
 
-	p.text {
+	span.text {
 		position: relative;
 		display: block;
 		max-width: 100%;
@@ -16,66 +16,57 @@ div.feed-item {
 		span.img-span {
 			float: left;
 			position: relative;
-			width: 5.5vw;
-			height: 5.5vw;
+			width: 3rem;
+			height: 3rem;
 			border-width: 2px;
 			border-style: solid;
 			border-radius: 50%;
-			margin: 0 2.5vw 1vw 0;
+			margin: 0 8px 1px 0;
 			overflow: hidden;
 
 			img {
 				float: left;
 				display: block;
-				width: 5.5vw;
-				height: 5.5vw;
+				width: 3rem;
+				height: 3rem;
 			}
 		}
+		a.profile-link {
+			color: #333333;
 
-		span.name {
-			font-weight: 400;
-			font-size: 1.1vw;
-			line-height: 1.8vw;
-			display: block;
-			padding: 0.25vw 0 0 0;
+			span.name {
+				font-weight: 600;
+				font-size: 0.9rem;
+				line-height: 1rem;
+				padding: 8px 0 0 0;
+				display: block;
+				white-space: nowrap;
+			}
+
+			span.screen-name {
+				font-size: 0.8rem;
+				line-height: 1rem;
+				font-weight: 500;
+				padding: 8px 0 0 0;
+			}
 		}
-
-		span.screen-name {
-			font-size: 1.2vw;
-			line-height: 1.8vw;
-			font-weight: 300;
-			padding: 0.25vw 0 0 0;
-		}
-
 		span.time {
 			font-weight: 300;
-			font-size: 1.1vw;
-			line-height: 1.8vw;
-			position: absolute;
-			top: 0.6vw;
-			right: 1.5vw;
+			font-size: 0.8rem;
+			line-height: 2rem;
+			float: right;
 		}
 
 		span.status {
 			font-weight: 400;
-			font-size: 1.1vw;
-			line-height: 1.8vw;
+			font-size: 1rem;
+			line-height: 1.7rem;
+			padding: 8px 0 0 0;
 			display: block;
-			padding: 0.25vw 0 0 0;
-		}
-
-		span.singleimage {
-			margin-top: 5px;
-
-			img.card-image {
-  				border-radius: 0;
-					width:100%;
-			}
-
+			margin: 10px auto;
 		}
 
 		span.gallery {
-			margin-top: 5px;
 
 			ul {
    			display: flex;
@@ -83,17 +74,83 @@ div.feed-item {
     		flex-flow: row wrap;
     		list-style: none;
     		margin: 32px 0;
+				width: 100%;
+				height: 100%;
 			}
 
 			li {
    			margin: 1px 1px;
+				flex-grow: 1;
     		flex-basis: calc(50% - 20px);
 			}
 
 			img {
    			 width: 100%;
-    		height: 100%;
+				 border-radius: 0;
    			}
+		}
+	}
+
+	span.action-box {
+		display: flex;
+		justify-content: space-between;
+		max-width: 100%;
+		margin-top: 12px;
+
+		i.md-20{
+			font-size: 1rem;
+			color: #aab8c2;;
+		}
+
+		span.action {
+			display: flex;
+
+			a {
+				text-decoration: none;
+				font-size: 1rem;
+				color: #aab8c2;
+
+				span.counter {
+					position: relative;
+					bottom: 3px;
+				}
+			}
+		}
+
+		span.reply-action:hover {
+			cursor: pointer;
+
+			a {
+				color: #89C9FA;
+			}
+
+			i.reply {
+				color: #89C9FA;
+			}
+		}
+
+		span.retweet-action:hover {
+			cursor: pointer;
+
+			a {
+				color: #19cf86;
+			}
+
+			i.retweet {
+				color: #19cf86;
+			}
+		}
+
+		span.favourite-action:hover {
+			cursor: pointer;
+
+			a {
+				color: #e81c4f;
+			}
+
+			i.like {
+				color: #e81c4f;
+			}
 		}
 	}
 }

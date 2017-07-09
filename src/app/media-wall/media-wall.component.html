@@ -1,9 +1,16 @@
 <div class="wrapper">
-	<div class="title">{{(query$ | async).queryString}}</div>
-	<div class="masonry">
-		<div class="masonry-panel" *ngFor="let item of (apiResponseResults$ | async)">
-			<div class="masonry-content">
-					<media-wall-card [feedItem]="item"></media-wall-card>
+	<media-wall-header [query]="(query$ | async).queryString"></media-wall-header>
+	<div *ngIf="(isSearching$ | async)">
+		<div class="searching">
+			<!-- Hook Up the Material Design Progress Bar. -->
+		</div>
+	</div>
+	<div class="wall-wrapper" *ngIf="!(isSearching$ | async)">
+		<div class="masonry">
+			<div class="masonry-panel" *ngFor="let item of (apiResponseResults$ | async)">
+				<div class="masonry-content">
+						<media-wall-card [feedItem]="item"></media-wall-card>
+				</div>
 			</div>
 		</div>
 	</div>

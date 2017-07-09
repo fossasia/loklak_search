@@ -37,6 +37,14 @@ class MediaWallLinkerStubComponent {
 	@Output() onShowed;
 }
 
+@Component({
+	selector: 'media-wall-header',
+	template: ''
+})
+class MediaWallHeadeStubComponent {
+	@Input() query;
+}
+
 
 
 describe('Component: Feed', () => {
@@ -50,7 +58,8 @@ describe('Component: Feed', () => {
 			declarations: [
 				MediaWallComponent,
 				MediaWallCardStubComponent,
-				MediaWallLinkerStubComponent
+				MediaWallLinkerStubComponent,
+				MediaWallHeadeStubComponent
 			]
 		});
 	});

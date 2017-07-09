@@ -9,7 +9,7 @@ import * as fromRoot from '../reducers';
 import * as apiAction from '../actions/api';
 import * as queryAction from '../actions/query';
 import * as userQueryAction from '../actions/user-query';
-import { fromRegExp } from '../models';
+import { fromRegExp } from '../utils';
 
 /**
  * Effects offer a way to isolate and easily test side-effects within your

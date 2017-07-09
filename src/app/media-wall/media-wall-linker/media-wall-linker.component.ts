@@ -27,15 +27,6 @@ export class MediaWallLinkerComponent implements OnInit {
 		}
 	}
 
-	showHideLightbox(shard: Shard) {
-		if (shard.type === 1) {
-			window.open(shard.linkTo, '_blank');
-		}
-		this.onShowed.emit(true);
-	}
-
-
-
 	private generateShards() {
 		const indexedChunks: StringIndexedChunks[] = [];
 

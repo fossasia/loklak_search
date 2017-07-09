@@ -1,6 +1,5 @@
 import { createSelector } from 'reselect';
 import * as apiAction from '../actions/api';
-import { Query, fromRegExp, FilterList, TimeBound  } from '../models';
 
 /**
  * Each reducer module must import the local `State` which it controls.

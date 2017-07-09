@@ -1,0 +1,21 @@
+/* FlexBox Mixins */
+
+@mixin --flex {
+		display: flex;
+}
+
+@mixin --center-flex {
+	@include --flex();
+
+	flex-direction: row;
+	justify-content: space-around;
+	align-items: center;
+}
+
+@mixin --center-flex-vertical {
+	@include --flex();
+
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+}

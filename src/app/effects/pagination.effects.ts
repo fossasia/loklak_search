@@ -9,9 +9,8 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/takeUntil';
 import 'rxjs/add/operator/withLatestFrom';
-import 'rxjs/add/operator/distinctUntilChanged';
 
-import { SearchService } from '../services';
+import { SearchService, SearchServiceConfig } from '../services';
 import { Query } from '../models';
 import * as apiAction from '../actions/api';
 import * as paginationAction from '../actions/pagination';
@@ -33,24 +32,37 @@ import * as fromRoot from '../reducers';
 
 @Injectable()
 export class PaginationEffects {
-	private query: Query;
-	private page: number;
-	private lastRecord: number;
+	private searchServiceConfig: SearchServiceConfig = new SearchServiceConfig();
 
 	@Effect()
 	pagination$: Observable<Action>
 		= this.actions$
 					.ofType(paginationAction.ActionTypes.NEXT_PAGE)
 					.map((action: paginationAction.NextPageAction) => action.payload)
-					.withLatestFrom(this.store, (action, state) => {
-						this.query = state.query;
-						this.page = state.pagination.page;
-						this.lastRecord = state.apiResponse.entities.length;
+					.withLatestFrom(this.store$)
+					.map(([action, state]) => {
+						return {
+							query: state.query,
+							lastRecord: state.apiResponse.entities.length,
+						};
 					})
-					.switchMap(() => {
+					.switchMap(queryObject => {
 						const nextSearch$ = this.actions$.ofType(apiAction.ActionTypes.SEARCH);
 
-						return this.apiSearchService.fetchQuery(this.query.queryString, this.lastRecord)
+						this.searchServiceConfig.startRecord = queryObject.lastRecord + 1;
+						this.searchServiceConfig.addAggregationFields(['created_at', 'screen_name', 'mentions', 'hashtags']);
+						if (queryObject.query.filter.image) {
+							this.searchServiceConfig.addFilters(['image']);
+						} else {
+							this.searchServiceConfig.removeFilters(['image']);
+						}
+						if (queryObject.query.filter.video) {
+							this.searchServiceConfig.addFilters(['video']);
+						} else {
+							this.searchServiceConfig.removeFilters(['video']);
+						}
+
+						return this.apiSearchService.fetchQuery(queryObject.query.queryString, this.searchServiceConfig)
 												.takeUntil(nextSearch$)
 												.map(response => {
 													return new paginationAction.PaginationCompleteSuccessAction(response);
@@ -61,6 +73,6 @@ export class PaginationEffects {
 	constructor(
 		private actions$: Actions,
 		private apiSearchService: SearchService,
-		private store: Store<fromRoot.State>
+		private store$: Store<fromRoot.State>
 	) { }
 }

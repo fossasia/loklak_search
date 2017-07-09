@@ -1,7 +1,8 @@
 import { createSelector } from 'reselect';
 
 import * as queryAction from '../actions/query';
-import { Query, fromRegExp, FilterList, TimeBound } from '../models';
+import { Query, FilterList, TimeBound, parseQueryToQueryString, parseQueryToRouterString } from '../models';
+import { fromRegExp } from '../utils';
 
 /**
  * Each reducer module must import the local `State` which it controls.
@@ -27,10 +28,10 @@ export interface State extends Query {
 export const initialState: State = {
 	displayString: '',
 	queryString: '',
+	routerString: '',
 	filter: {
-		audio: false,
 		video: false,
-		images: false
+		image: false
 	},
 	location: null,
 	timeBound: {
@@ -38,7 +39,6 @@ export const initialState: State = {
 		until: null
 	},
 	from: false,
-	followers: false,
 	relocateAfter: false
 };
 
@@ -89,10 +89,16 @@ export function reducer(state: State = initialState, action: queryAction.Actions
 		}
 
 		case queryAction.ActionTypes.QUERY_CHANGE: {
+			const query = action.payload;
 
-			return Object.assign({}, state, {
-				queryString: state.displayString
-			});
+			if (query) {
+				return Object.assign({}, query);
+			} else {
+				return Object.assign({}, state, {
+					queryString: parseQueryToQueryString(state),
+					routerString: parseQueryToRouterString(state)
+				});
+			}
 		}
 
 		case queryAction.ActionTypes.RELOCATE_AFTER_QUERY_SET: {
@@ -138,5 +144,3 @@ export const getTimeBoundSet = (state: State) => state.timeBound;
 export const getLocation = (state: State) => state.location;
 
 export const isFromQuery = (state: State) => state.from;
-
-export const isFollowerQuery = (state: State) => state.followers;
