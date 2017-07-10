@@ -1,0 +1,11 @@
+	<div class="tabslist">
+		<ul>
+			<li [class.active_view]="selectedTab === 'all'" class="tabs" (click)="getAllResults()">All</li>
+			<li [class.active_view]="selectedTab === 'image'" class="tabs" (click)="getImageResults()">Images</li>
+			<li [class.active_view]="selectedTab === 'video'" class="tabs left-align" (click)="getVideoResults()">Videos</li>
+			<li class="tabs right-align"><span  md-icon-button [mdMenuTriggerFor]="viewMenu" >Views</span></li>
+		</ul>
+	</div>
+	<md-menu #viewMenu="mdMenu" [overlapTrigger]="false" xPosition="after" yPosition="below">
+  	<a type="button" md-menu-item [routerLink]="['/wall']" [queryParams]="{ query : query }" target="_blank"> Media Wall </a>
+	</md-menu>

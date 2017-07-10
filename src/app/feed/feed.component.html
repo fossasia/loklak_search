@@ -2,11 +2,9 @@
 	<feed-header
 				[query]="(query$ | async).displayString"
 				[suggestionList]="(suggestResponse$ | async)"
-				[areResultsAvailable]="(apiResponseResults$ | async)"
-				[resultsLoading]="(isSearching$ | async)"
+				[resultCount]="(apiResponseResults$ | async).length"
 				(searchEvent)="search($event)"
-				(relocateEvent)="relocateURL($event)"
-				(filterTabs)="filterResults($event)"></feed-header>
+				(relocateEvent)="relocateURL($event)"></feed-header>
 
 		<div *ngIf="(isSearching$ | async)">
 			<div class="searching">

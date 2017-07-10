@@ -98,99 +98,32 @@
 			box-shadow: 0 2px 2px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08);
 		}
 	}
-
-	div.tabs{
-		position: absolute;
-		top: 70px;
-		left: 156px;
-	}
-
-	div.tabslist {
-		position: absolute;
-		top: 90px;
-		left: 156px;
-
-
-		li {
-			position: relative;
-			display: inline-block;
-
-			a {
-				color: rgb(119,119,119);
-				padding: 28px 16px 12px;
-				line-height: 20px;
-			}
-
-			a:hover {
-				color: rgb(51,51,51);
-				text-decoration: none;
-			}
-
-			a:active {
-				color:#4285F4;
-			}
-
-		}
-		hr {
-				position: relative;
-				top:-15px;
-				background-color:#4285F4;
-				height: 5px;
-				width:60px;
-			}
-	}
-
-	div.media-display {
-		position: absolute;
-		top:90px;
-		left: 750px;
-		color: rgb(119,119,119);
-		cursor: pointer;
-	}
-
 }
 
 @media all and (max-width: 1000px){
-	.logo-and-form{
-		padding: 0 20px 0 10px;
-		display: block !important;
-
-		a {
-			text-align: center;
-		}
-	}
 	.wrapper{
-		min-height: 129px;
-	}
-	span.input-group-btn button{
-		background: var(--accent-color, $accent-color);
-		color: white;
-	}
-	div.search-form {
-			margin: auto !important;
+		min-height: 150px;
 
-				input{
-				min-width : 230px !important;
+		.logo-and-form{
+			padding: 0 20px 0 10px;
+			display: block;
+
+			a {
+				text-align: center;
 			}
+		}
 
-	}
-	div.suggesstion-box{
-		width: calc(100% - 50px) !important;
-		max-height: 90px !important;
-		left: 20px !important;
-		top: 90px !important;
-	}
-	div.tabslist{
-		top: 100px !important;
-		left: 20px !important;
-	}
+		span.input-group-btn button{
+			background: var(--accent-color, $accent-color);
+			color: white;
+		}
+		div.search-form {
+			margin: auto;
 
-	div.wrapper {
-
-		div.media-display{
-			top:100px;
-			left:90%;
+			input{
+				min-width : 90%;
+			}
 		}
 	}
-
 }
+

@@ -25,6 +25,7 @@ class FeedHeaderStubComponent {
 	@Input() suggestionList;
 	@Input() areResultsAvailable: ApiResponseResult[];
 	@Input() resultsLoading: boolean;
+	@Input() resultCount: number;
 }
 
 @Component({

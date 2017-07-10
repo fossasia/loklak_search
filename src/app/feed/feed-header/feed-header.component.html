@@ -25,20 +25,6 @@
 				</span>
 			</div>
 		</div>
-
-		</div>
-		<div class="tabslist">
-				<ul>
-					<li><a class="tabs" (click)="filterResults(0)" [style.color]="getColor(0)">All</a></li>
-					<li><a class="tabs" (click)="filterResults(1)" [style.color]="getColor(1)">Images</a></li>
-					<li><a class="tabs" (click)="filterResults(2)" [style.color]="getColor(2)">Videos</a></li>
-				</ul>
-			<hr [style.left]="getCoordinates()">
-		</div>
-		<div class="media-display" *ngIf="(areResultsAvailable)&& (!resultsLoading)">
-		<span  md-icon-button [mdMenuTriggerFor]="viewMenu" >Views</span>
-			<md-menu #viewMenu="mdMenu" [overlapTrigger]="false" xPosition="after" yPosition="below">
-  		<button md-menu-item [routerLink]="['/wall']" [queryParams]="{ query : query }"> Display as Media Wall </button>
-		</md-menu>
-		</div>
+	</div>
+	<feed-advanced-search [query]="query" [resultCount]="resultCount"></feed-advanced-search>
 </div>
