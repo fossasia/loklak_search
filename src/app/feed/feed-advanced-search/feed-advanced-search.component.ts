@@ -19,7 +19,6 @@ import { countrycodearray } from '../../shared/countrycode/countrycode';
 })
 export class FeedAdvancedSearchComponent implements OnInit {
 	@Input() query: string;
-	@Input() resultCount: number;
 	public selectedTab = 'all';
 	private filterList: FilterList = {
 			image: false,

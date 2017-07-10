@@ -1,4 +1,4 @@
-import { Component, Input, Output,
+import { Component, Input, Output, ViewChild,
 					OnInit, OnDestroy,
 					EventEmitter,
 					ChangeDetectionStrategy } from '@angular/core';
@@ -14,6 +14,8 @@ import * as queryAction from '../../actions/query';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 
+import { MdAutocompleteTrigger } from '@angular/material';
+
 import { SuggestResults } from '../../models/api-suggest';
 
 
@@ -27,10 +29,12 @@ export class FeedHeaderComponent implements OnInit, OnDestroy {
 	private __subscriptions__: Subscription[] = new Array<Subscription>();
 	@Input() query: string;
 	@Input() suggestionList: SuggestResults[];
-	@Input() resultCount: number;
+	@Input() doCloseSuggestBox$: Observable<boolean>;
 	@Output() searchEvent: EventEmitter<string> = new EventEmitter<string>();
 	@Output() relocateEvent: EventEmitter<string> = new EventEmitter<string>();
+	@ViewChild(MdAutocompleteTrigger) autoCompleteTrigger: MdAutocompleteTrigger;
 	public searchInputControl = new FormControl();
+
 
 	constructor(
 		private store: Store<fromRoot.State>
@@ -38,6 +42,7 @@ export class FeedHeaderComponent implements OnInit, OnDestroy {
 
 	ngOnInit() {
 		this.setupSearchField();
+		this.setupSuggestBoxClosing();
 	}
 
 	private setupSearchField(): void {
@@ -49,6 +54,18 @@ export class FeedHeaderComponent implements OnInit, OnDestroy {
 					})
 		);
 	}
+
+	private setupSuggestBoxClosing() {
+		this.__subscriptions__.push(
+			this.doCloseSuggestBox$
+					.subscribe(value => {
+						if (value) {
+							this.autoCompleteTrigger.closePanel();
+						}
+					})
+		);
+	}
+
 		ngOnDestroy() {
 			this.__subscriptions__.forEach(subscription => subscription.unsubscribe());
 		}

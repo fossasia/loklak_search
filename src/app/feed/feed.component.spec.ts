@@ -9,6 +9,8 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { MaterialModule } from '@angular/material';
 import { StoreModule } from '@ngrx/store';
 
+import { Observable } from 'rxjs/Observable';
+
 import { reducer } from '../reducers';
 import { RouterStub } from '../../testing';
 import { FeedComponent } from './feed.component';
@@ -25,7 +27,7 @@ class FeedHeaderStubComponent {
 	@Input() suggestionList;
 	@Input() areResultsAvailable: ApiResponseResult[];
 	@Input() resultsLoading: boolean;
-	@Input() resultCount: number;
+	@Input() doCloseSuggestBox$: Observable<boolean>;
 }
 
 @Component({
