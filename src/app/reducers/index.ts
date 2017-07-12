@@ -42,7 +42,9 @@ import * as fromQuery from './query';
 import * as fromUserQuery from './user-query';
 import * as fromSearch from './search';
 import * as fromUserSearch from './user-search';
+import * as fromTrends from './trends';
 import * as fromApiResponse from './api-response';
+import * as fromApiTrendsResponse from './api-trends-response';
 import * as fromPagination from './pagination';
 import * as fromApiUserResponse from './api-user-response';
 import * as fromSuggest from './suggest';
@@ -55,10 +57,12 @@ import * as fromMediaWall from './media-wall';
  */
 export interface State {
 	query: fromQuery.State;
+	trends: fromTrends.State;
 	userQuery: fromUserQuery.State;
 	search: fromSearch.State;
 	userSearch: fromUserSearch.State;
 	apiResponse: fromApiResponse.State;
+	apiTrendsResponse: fromApiTrendsResponse.State;
 	pagination: fromPagination.State;
 	apiUserResponse: fromApiUserResponse.State;
 	suggestService: fromSuggest.State;
@@ -78,7 +82,9 @@ const reducers = {
 	userQuery: fromUserQuery.reducer,
 	search: fromSearch.reducer,
 	userSearch: fromUserSearch.reducer,
+	trends: fromTrends.reducer,
 	apiResponse: fromApiResponse.reducer,
+	apiTrendsResponse: fromApiTrendsResponse.reducer,
 	pagination: fromPagination.reducer,
 	apiUserResponse: fromApiUserResponse.reducer,
 	suggestService: fromSuggest.reducer,
@@ -194,21 +200,35 @@ export const getApiUserFollowingResponse = createSelector(getApiUserResponseStat
 export const getAreApiUserResultsValid = createSelector(getApiUserResponseState, fromApiUserResponse.isResultValid);
 
 /**
-*Selectors For Suggest
-*/
+ * Selectors For Suggest
+ */
 export const getSuggestState = (state: State) => state.suggestService;
 
 export const getSuggestQuery = createSelector(getSuggestState, fromSuggest.getQuery);
 export const getSuggestLoading = createSelector(getSuggestState, fromSuggest.getLoading);
 
 /**
-*Selectors For Suggest Response
-*/
+ * Selectors For Suggest Response
+ */
 export const getSuggestResponseState = (state: State) => state.suggestResponse;
 
 export const getSuggestResponseEntities = createSelector(getSuggestResponseState, fromSuggestResponse.getEntities);
 export const isSuggestResponseValid = createSelector(getSuggestResponseState, fromSuggestResponse.isResultValid);
 export const getSuggestServiceLastResponse = createSelector(getSuggestResponseState, fromSuggestResponse.lastRecord);
+
+/**
+ * Selectors For Trends
+ */
+export const getTrendsState = (state: State) => state.trends;
+
+export const getAreTrendsLoading = createSelector(getTrendsState, fromTrends.getLoading);
+
+/**
+ * Selectors For ApiTrendsResponse
+ */
+export const getApiTrendsResponseState = (state: State) => state.apiTrendsResponse;
+
+export const getApiHashtagTrends = createSelector(getApiTrendsResponseState, fromApiTrendsResponse.getHashtags);
 
 /**
  * Selectors for Media wall colors

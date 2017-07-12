@@ -17,7 +17,9 @@ import { SearchService, SearchServiceConfig } from '../services';
 import * as fromRoot from '../reducers';
 import * as apiAction from '../actions/api';
 import * as queryAction from '../actions/query';
+import * as trendsAction from '../actions/trends';
 import { ApiResponse } from '../models';
+import { parseDateToApiAcceptedFormat } from '../utils';
 
 /**
  * Effects offer a way to isolate and easily test side-effects within your
@@ -35,7 +37,6 @@ import { ApiResponse } from '../models';
 
 @Injectable()
 export class ApiSearchEffects {
-	private searchServiceConfig: SearchServiceConfig = new SearchServiceConfig();
 
 	@Effect()
 	search$: Observable<Action>
@@ -44,26 +45,49 @@ export class ApiSearchEffects {
 					.debounceTime(400)
 					.map((action: apiAction.SearchAction) => action.payload)
 					.switchMap(query => {
+						const searchServiceConfig: SearchServiceConfig = new SearchServiceConfig();
 						const nextSearch$ = this.actions$.ofType(apiAction.ActionTypes.SEARCH).skip(1);
 
-						this.searchServiceConfig.addAggregationFields(['created_at', 'screen_name', 'mentions', 'hashtags']);
+						searchServiceConfig.addAggregationFields(['created_at', 'screen_name', 'mentions', 'hashtags']);
 						if (query.filter.image) {
-							this.searchServiceConfig.addFilters(['image']);
+							searchServiceConfig.addFilters(['image']);
 						} else {
-							this.searchServiceConfig.removeFilters(['image']);
+							searchServiceConfig.removeFilters(['image']);
 						}
 						if (query.filter.video) {
-							this.searchServiceConfig.addFilters(['video']);
+							searchServiceConfig.addFilters(['video']);
 						} else {
-							this.searchServiceConfig.removeFilters(['video']);
+							searchServiceConfig.removeFilters(['video']);
 						}
 
-						return this.apiSearchService.fetchQuery(query.queryString, this.searchServiceConfig)
+						return this.apiSearchService.fetchQuery(query.queryString, searchServiceConfig)
 												.takeUntil(nextSearch$)
-												.map(response => {
-													return new apiAction.SearchCompleteSuccessAction(response);
-												})
+												.map(response => new apiAction.SearchCompleteSuccessAction(response))
 												.catch(() => of(new apiAction.SearchCompleteFailAction('')));
+					});
+
+	@Effect()
+	trendingHashtagsSearch$: Observable<Action>
+		= this.actions$
+					.ofType(trendsAction.ActionTypes.SEARCH_TRENDING_HASHTAGS)
+					.debounceTime(400)
+					.map((action: trendsAction.SearchTrendingHashtagsAction) => action.payload)
+					.switchMap(_ => {
+						const searchServiceConfig: SearchServiceConfig = new SearchServiceConfig();
+						const nextRequest$ = this.actions$.ofType(trendsAction.ActionTypes.SEARCH_TRENDING_HASHTAGS).skip(1);
+
+						searchServiceConfig.addAggregationFields(['hashtags']);
+						searchServiceConfig.count = 0;
+						searchServiceConfig.maximumRecords = 0;
+						searchServiceConfig.source = 'cache';
+
+						const todayDate = new Date().toDateString();
+						const query = `since:${parseDateToApiAcceptedFormat(new Date(todayDate))}`;
+
+						return this.apiSearchService.fetchQuery(query, searchServiceConfig)
+												.takeUntil(nextRequest$)
+												.map(response => new apiAction.SearchTrendingHashtagsSuccessAction(response))
+												.catch(() => of(new apiAction.SearchTrendingHashtagsFailAction()));
 					});
 
 	@Effect()

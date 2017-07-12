@@ -1,7 +1,5 @@
 import { Action } from '@ngrx/store';
-import { ApiResponse } from '../models/api-response';
-import { Query } from '../models/query';
-import { UserApiResponse, UserResponse } from '../models/api-user-response';
+import { Query, ApiResponse, ApiResponseTrendingHashtags } from '../models';
 
 /**
  * For each action type in an action group, make a simple
@@ -15,6 +13,8 @@ export const ActionTypes = {
 	SEARCH: '[Api] Search',
 	SEARCH_COMPLETE_SUCCESS: '[Api] Search Complete Success',
 	SEARCH_COMPLETE_FAIL: '[Api] Search Complete Fail',
+	SEARCH_TRENDING_HASHTAGS_SUCCESS: '[Api] Search Trending Hashtags Success Action',
+	SEARCH_TRENDING_HASHTAGS_FAIL: '[Api] Search Trending Hashtags Fail Action',
 };
 
 /**
@@ -41,6 +41,18 @@ export class SearchCompleteFailAction implements Action {
 	type = ActionTypes.SEARCH_COMPLETE_FAIL;
 
 	constructor(public payload: any) { }
+}
+
+export class SearchTrendingHashtagsSuccessAction implements Action {
+	type = ActionTypes.SEARCH_TRENDING_HASHTAGS_SUCCESS;
+
+	constructor(public payload?: ApiResponseTrendingHashtags) { }
+}
+
+export class SearchTrendingHashtagsFailAction implements Action {
+	type = ActionTypes.SEARCH_TRENDING_HASHTAGS_FAIL;
+
+	constructor(public payload?: any) { }
 }
 
 /**

@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ChangeDetectionStrategy, ElementRef } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectionStrategy, ElementRef, ChangeDetectorRef } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
@@ -8,9 +8,10 @@ import { Observable } from 'rxjs/Observable';
 import { Store } from '@ngrx/store';
 import * as fromRoot from '../reducers';
 import * as queryAction from '../actions/query';
+import * as trendsAction from '../actions/trends';
 import * as suggestAction from '../actions/suggest';
 
-import { Query } from '../models/query';
+import { Query, ApiResponseTrendingHashtags } from '../models';
 
 @Component({
 	selector: 'app-home',
@@ -22,12 +23,13 @@ export class HomeComponent implements OnInit, OnDestroy {
 	private __subscriptions__: Subscription[] = new Array<Subscription>();
 	public headerImageUrl = 'assets/images/cow_150x175.png';
 	public _queryControl: FormControl = new FormControl();
+	public trendingHashtagList: Array<string> = new Array<string>();
 	public inputFocused = false;
-	public apiResponseHashtags$: Observable<Array<{ tag: string, count: number }>>;
 
 	constructor(
 		private router: Router,
 		private elementRef: ElementRef,
+		private changeDetectorRef: ChangeDetectorRef,
 		private store: Store<fromRoot.State>,
 		private titleService: Title
 	) { }
@@ -36,8 +38,8 @@ export class HomeComponent implements OnInit, OnDestroy {
 		this.titleService.setTitle('Loklak Search');
 		this.focusTextbox();
 		this.setupSearchField();
-		this.getTopHashtags();
 		this.getDataFromStore();
+		this.getTopHashtags();
 	}
 
 	/**
@@ -66,12 +68,23 @@ export class HomeComponent implements OnInit, OnDestroy {
 	}
 
 	private getTopHashtags() {
-		this.store.dispatch(new queryAction.RelocationAfterQueryResetAction());
-		this.store.dispatch(new queryAction.InputValueChangeAction('since:day'));
+		this.store.dispatch(new trendsAction.SearchTrendingHashtagsAction());
 	}
 
 	private getDataFromStore() {
-		this.apiResponseHashtags$ = this.store.select(fromRoot.getApiResponseTags);
+		this.__subscriptions__.push(
+			this.store.select(fromRoot.getApiHashtagTrends)
+								.subscribe(trends => {
+									if (!trends) {
+										return;
+									}
+									Object.keys(trends.aggregations.hashtags).forEach(hashtag => {
+										this.trendingHashtagList.push(hashtag);
+									});
+									this.changeDetectorRef.detectChanges();
+								})
+		);
+
 	}
 
 	/**
