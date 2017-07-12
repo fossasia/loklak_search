@@ -50,6 +50,7 @@ import * as fromApiUserResponse from './api-user-response';
 import * as fromSuggest from './suggest';
 import * as fromSuggestResponse from './suggest-response';
 import * as fromMediaWall from './media-wall';
+import * as fromMediaWallCustom from './media-wall-custom';
 
 /**
  * As mentioned, we treat each reducer like a table in a database. This means
@@ -68,6 +69,7 @@ export interface State {
 	suggestService: fromSuggest.State;
 	suggestResponse: fromSuggestResponse.State;
 	mediaWallResponse: fromMediaWall.State;
+	mediaWallCustom: fromMediaWallCustom.State;
 }
 
 /**
@@ -89,7 +91,8 @@ const reducers = {
 	apiUserResponse: fromApiUserResponse.reducer,
 	suggestService: fromSuggest.reducer,
 	suggestResponse: fromSuggestResponse.reducer,
-	mediaWallResponse: fromMediaWall.reducer
+	mediaWallResponse: fromMediaWall.reducer,
+	mediaWallCustom: fromMediaWallCustom.reducer
 };
 
 const developmentReducer: ActionReducer<State> = compose(storeFreeze, combineReducers)(reducers);
@@ -231,11 +234,21 @@ export const getApiTrendsResponseState = (state: State) => state.apiTrendsRespon
 export const getApiHashtagTrends = createSelector(getApiTrendsResponseState, fromApiTrendsResponse.getHashtags);
 
 /**
- * Selectors for Media wall colors
+ * Selectors for Media wall Query
  */
 export const getMediaWallState = (state: State) => state.mediaWallResponse;
 
 export const getMediaWallQuery = createSelector(getMediaWallState, fromMediaWall.getMediaWallQuery);
+
+/**
+ * Selector for Media Wall customization
+ */
+
+export const getMediaWallCustomState = (state: State) => state.mediaWallCustom;
+
+export const getMediaWallCustomHeader = createSelector(getMediaWallCustomState, fromMediaWallCustom.getCustomWallHeader);
+export const getMediaWallCustomBackground = createSelector(getMediaWallCustomState, fromMediaWallCustom.getCustomWallBackground);
+export const getMediaWallCustomCard = createSelector(getMediaWallCustomState, fromMediaWallCustom.getCustomWallCard);
 
 /**
  * Some selector functions create joins across parts of state. This selector
