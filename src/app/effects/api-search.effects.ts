@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Location } from '@angular/common';
+import { Title } from '@angular/platform-browser';
 import { Store, Action } from '@ngrx/store';
 import { Effect, Actions } from '@ngrx/effects';
 import { Observable } from 'rxjs/Observable';
@@ -91,7 +92,7 @@ export class ApiSearchEffects {
 					});
 
 	@Effect()
-	searchCompleteSuccess$: Observable<Action>
+	relocateAfterSearchSuccess$: Observable<Action>
 		= this.actions$
 					.ofType(apiAction.ActionTypes.SEARCH_COMPLETE_SUCCESS)
 					.withLatestFrom(this.store$)
@@ -104,17 +105,35 @@ export class ApiSearchEffects {
 					.map(relocateObject => {
 						if (relocateObject.doRelocate) {
 							const URIquery = encodeURIComponent(relocateObject.queryString);
-							this.location.go(`/search?query=${URIquery}`);
+
+							if (!this.location.isCurrentPathEqualTo(`/search?query=${URIquery}`)) {
+								this.location.go(`/search?query=${URIquery}`);
+							}
 						}
 						return new queryAction.RelocationAfterQueryResetAction();
 					});
 
+	@Effect({ dispatch: false })
+	resetTitleAfterSearchSuccess$: Observable<void>
+		= this.actions$
+					.ofType(apiAction.ActionTypes.SEARCH_COMPLETE_SUCCESS,
+									apiAction.ActionTypes.SEARCH_COMPLETE_FAIL)
+					.withLatestFrom(this.store$)
+					.map(([action, state]) => {
+						const displayString = state.query.displayString;
+						let title = `${displayString} - Loklak Search`;
+						if (action.type === apiAction.ActionTypes.SEARCH_COMPLETE_FAIL) {
+							title += ' - No Results';
+						}
+						this.titleService.setTitle(title);
+					});
 
 	constructor(
 		private store$: Store<fromRoot.State>,
 		private actions$: Actions,
 		private apiSearchService: SearchService,
-		private location: Location
+		private location: Location,
+		private titleService: Title
 	) { }
 
 }
