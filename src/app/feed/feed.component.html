@@ -2,7 +2,7 @@
 	<feed-header
 				[query]="(query$ | async).displayString"
 				[suggestionList]="(suggestResponse$ | async)"
-				[resultCount]="(apiResponseResults$ | async).length"
+				[doCloseSuggestBox$]="doCloseSuggestBox$()"
 				(searchEvent)="search($event)"
 				(relocateEvent)="relocateURL($event)"></feed-header>
 

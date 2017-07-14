@@ -22,6 +22,7 @@ import { SuggestMetadata, SuggestResults, SuggestResponse } from '../models/api-
 import { Query } from '../models/query';
 import { UserApiResponse } from '../models/api-user-response';
 
+import 'rxjs/add/observable/forkJoin';
 
 @Component({
 	selector: 'app-feed',
@@ -128,6 +129,23 @@ export class FeedComponent implements OnInit, AfterViewInit, OnDestroy {
 			this.store.dispatch(new queryAction.InputValueChangeAction(query));
 			this.store.dispatch(new paginationAction.RevertPaginationState(''));
 		}
+	}
+
+	/**
+	 * Joins the observable streams which are responsible for opening and closing of
+	 * suggestion box.
+	 */
+	public doCloseSuggestBox$(): Observable<boolean> {
+		const doCloseSuggestBox =
+			this.isSearching$
+					.combineLatest(this.areResultsAvailable$, (isSearching, areResultsAvailable) => {
+						if (isSearching || !areResultsAvailable) {
+							return false;
+						} else {
+							return true;
+						}
+					});
+		return doCloseSuggestBox;
 	}
 
 	/**
