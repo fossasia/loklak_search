@@ -1,16 +1,22 @@
 <div class="textWrapper">
 	<span *ngFor="let shard of shardArray">
-		<span *ngIf="shard.type === 0"> <!-- Plain -->
+		<span *ngIf="shard.type === 0"
+		[style.color]="wallCustomText.fontColor"> <!-- Plain -->
 			{{shard.text}}
 		</span>
-		<span *ngIf="shard.type === 1"  > <!-- URL Links -->
+		<span *ngIf="shard.type === 1"
+		[style.color]="wallCustomText.accentColor"> <!-- URL Links -->
 			<a>{{shard.text}}</a>
 		</span>
 		<span *ngIf="shard.type === 2" > <!-- Hashtag -->
-			<a [routerLink]="shard.linkTo" [queryParams]="shard.queryParams">{{shard.text}}</a>
+			<a [routerLink]="shard.linkTo"
+			[queryParams]="shard.queryParams"
+			[style.color]="wallCustomText.accentColor">{{shard.text}}</a>
 		</span>
 		<span *ngIf="shard.type === 3"> <!-- Mention -->
-			<a [routerLink]="shard.linkTo" [queryParams]="shard.queryParams">{{shard.text}}</a>
+			<a [routerLink]="shard.linkTo"
+			[queryParams]="shard.queryParams"
+			[style.color]="wallCustomText.accentColor">{{shard.text}}</a>
 		</span>
 	</span>
 </div>

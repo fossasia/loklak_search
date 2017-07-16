@@ -1,9 +1,7 @@
 .header-wrapper{
-	background: #fafafa;
 	border-bottom: 1px solid #ddd;
 	display: flex;
 	justify-content: space-between;
-	background-color: rgb(255, 255, 255);
 
 	div.header {
 		display: flex;
@@ -43,7 +41,6 @@
 			font-weight: 700;
 			font-size: 2.3rem;
 			padding-top: 1vw;
-			color: #337ab7;
 
 			@media(min-width: 900px) {
 			left: 45%;

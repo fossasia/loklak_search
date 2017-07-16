@@ -1,12 +1,12 @@
-div.feed-item {
-	clear: both;
-	position: relative;
+div.masonry-content {
+	display: inline-block;
+	padding: 1em;
 	width: 100%;
-	height: auto;
-	opacity: 1;
+	border: 1px solid #e6e6e6;
+	transition: transform 0.3s;
+	border-radius: 3px;
 
 	span.text {
-		position: relative;
 		display: block;
 		max-width: 100%;
 		height: auto;
@@ -15,7 +15,6 @@ div.feed-item {
 
 		span.img-span {
 			float: left;
-			position: relative;
 			width: 3rem;
 			height: 3rem;
 			border-width: 2px;
@@ -153,4 +152,8 @@ div.feed-item {
 			}
 		}
 	}
+}
+
+div.masonry-content:hover {
+	box-shadow: 0 0 13px rgba(33,33,33,0.30);
 }

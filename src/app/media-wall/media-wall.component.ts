@@ -11,6 +11,7 @@ import * as mediaWallAction from '../actions/media-wall';
 
 import { Query } from '../models/query';
 import { ApiResponse, ApiResponseResult } from '../models/api-response';
+import { WallHeader, WallBackground, WallCard } from '../models';
 
 
 
@@ -26,6 +27,9 @@ export class MediaWallComponent implements OnInit, AfterViewInit, OnDestroy {
 	public query$: Observable<Query>;
 	public apiResponseResults$: Observable<ApiResponseResult[]>;
 	public isSearching$: Observable<boolean>;
+	public wallCustomHeader$: Observable<WallHeader>;
+	public wallCustomCard$: Observable<WallCard>;
+	public wallCustomBackground$: Observable<WallBackground>;
 
 
 	constructor(
@@ -68,6 +72,9 @@ export class MediaWallComponent implements OnInit, AfterViewInit, OnDestroy {
 		this.query$ = this.store.select(fromRoot.getMediaWallQuery);
 		this.apiResponseResults$ = this.store.select(fromRoot.getApiResponseEntities);
 		this.isSearching$ = this.store.select(fromRoot.getSearchLoading);
+		this.wallCustomHeader$ = this.store.select(fromRoot.getMediaWallCustomHeader);
+		this.wallCustomCard$ = this.store.select(fromRoot.getMediaWallCustomCard);
+		this.wallCustomBackground$ = this.store.select(fromRoot.getMediaWallCustomBackground);
 	}
 
 

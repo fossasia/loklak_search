@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { getIndicesOf } from '../../utils';
+import { WallCard } from '../../models';
 
 @Component({
 	selector: 'media-wall-linker',
@@ -13,6 +14,7 @@ export class MediaWallLinkerComponent implements OnInit {
 	@Input() links: string[] = new Array<string>();
 	@Input() unshorten: Object = {};
 	@Input() useAll: Boolean = false;
+	@Input() wallCustomText: WallCard;
 	@Output() onShowed = new EventEmitter<boolean>();
 	public shardArray: Array<Shard> = new Array<Shard>();
 
