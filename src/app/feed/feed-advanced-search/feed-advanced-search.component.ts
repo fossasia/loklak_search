@@ -1,14 +1,21 @@
-import { Component, Input, Output, OnInit,
-					EventEmitter,
-					ChangeDetectionStrategy } from '@angular/core';
+import {
+	Component,
+	Input,
+	Output,
+	ViewChild,
+	OnInit,
+	EventEmitter,
+	ChangeDetectionStrategy,
+	ElementRef
+} from '@angular/core';
+import { MdButtonToggle } from '@angular/material';
+import { Observable } from 'rxjs/Observable';
 
 import { Store } from '@ngrx/store';
 import * as fromRoot from '../../reducers';
-
 import * as queryAction from '../../actions/query';
 
-import { Query } from '../../models';
-import { FilterList, TimeBound } from '../../models';
+import { Query, FilterList, TimeBound } from '../../models';
 import { countrycodearray } from '../../shared/countrycode/countrycode';
 
 @Component({
@@ -18,44 +25,143 @@ import { countrycodearray } from '../../shared/countrycode/countrycode';
 	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FeedAdvancedSearchComponent implements OnInit {
-	@Input() query: string;
+	public isSearching$: Observable<boolean>;
+	public areResultsAvailable$: Observable<boolean>;
+	public showTools = false;
+	private toolList;
 	public selectedTab = 'all';
+	public timeBoundButtonChecked = false;
+	public timeBoundValue = 'Any time';
+	public locationButtonChecked = false;
+	public locationValue = 'All Countries';
+
 	private filterList: FilterList = {
-			image: false,
-			video: false
+		image: false,
+		video: false
 	};
 
+	private timeBound: TimeBound = {
+		since: null,
+		until: null
+	};
+
+	private location = null;
+
 	constructor(
-		private store: Store<fromRoot.State>
+		private store: Store<fromRoot.State>,
+		private elementRef: ElementRef
 	) { }
 
 	ngOnInit() {
+		this.toolList = this.elementRef.nativeElement.querySelector('.wrapper .tools .tool-list');
+		this.toolList.inert = true;
+		this.getDataFromStore();
 	}
 
-	public getAllResults() {
-		this.filterList = {
-			image: false,
-			video: false
-		};
-		this.selectedTab = 'all';
+	private getDataFromStore() {
+		this.isSearching$ = this.store.select(fromRoot.getSearchLoading);
+		this.areResultsAvailable$ = this.store.select(fromRoot.getAreResultsAvailable);
+	}
+
+	public toggleSearchTools() {
+		this.showTools = !this.showTools;
+		this.toolList.inert = !this.toolList.inert;
+	}
+
+	public getFilterResults(value: string) {
+		if (value === 'all') {
+			this.selectedTab = 'all';
+			this.filterList = {
+				image: false,
+				video: false
+			};
+		}
+		else if (value === 'image') {
+			this.selectedTab = 'image';
+			this.filterList = {
+				image: true,
+				video: false
+			};
+		}
+		else if (value === 'video') {
+			this.selectedTab = 'video';
+			this.filterList = {
+				image: false,
+				video: true
+			};
+		}
+		else {
+			this.selectedTab = 'all';
+			this.filterList = {
+				image: false,
+				video: false
+			};
+		}
+
 		this.store.dispatch(new queryAction.FilterChangeAction(this.filterList));
 	}
 
-	public getImageResults() {
-		this.filterList = {
-			image: true,
-			video: false
-		};
-		this.selectedTab = 'image';
-		this.store.dispatch(new queryAction.FilterChangeAction(this.filterList));
+	public getTimeBoundResults(value: string) {
+		if (value === 'any')  {
+			this.timeBoundValue = 'Any time';
+			this.timeBound = {
+				since: null,
+				until: null
+			};
+		}
+		else if (value === 'lastDay') {
+			this.timeBoundValue = 'Past 24 hours';
+			const date24HoursBefore = new Date(new Date().getTime() - (24 * 60 * 60 * 1000));
+			this.timeBound = {
+				since: date24HoursBefore,
+				until: null
+			};
+		}
+		else if (value === 'lastWeek') {
+			this.timeBoundValue = 'Past week';
+			const date1WeekBefore = new Date(new Date().getTime() - (7 * 24 * 60 * 60 * 1000));
+			this.timeBound = {
+				since: date1WeekBefore,
+				until: null
+			};
+		}
+		else {
+			this.timeBoundValue = 'Any time';
+			this.timeBound = {
+				since: null,
+				until: null
+			};
+		}
+
+		this.store.dispatch(new queryAction.TimeBoundChangeAction(this.timeBound));
 	}
 
-	public getVideoResults() {
-		this.filterList = {
-			image: false,
-			video: true
-		};
-		this.selectedTab = 'video';
-		this.store.dispatch(new queryAction.FilterChangeAction(this.filterList));
+	public getLocationBasedResults(value: string) {
+		if (value === 'all') {
+			this.locationValue = 'All Countries';
+			this.location = null;
+		}
+		else if (value === 'India') {
+			this.locationValue = 'Country: India';
+			this.location = 'India';
+		}
+		else if (value === 'China') {
+			this.locationValue = 'Country: China';
+			this.location = 'China';
+		}
+		else if (value === 'US') {
+			this.locationValue = 'Country: US';
+			this.location = 'US';
+		}
+		else if (value === 'UK') {
+			this.locationValue = 'Country: UK';
+			this.location = 'UK';
+		}
+		else {
+			this.locationValue = 'All Countries';
+			this.location = null;
+		}
+
+		this.store.dispatch(new queryAction.LocationChangeAction(this.location));
 	}
 }

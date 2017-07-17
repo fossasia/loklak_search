@@ -1,11 +1,86 @@
-	<div class="tabslist">
-		<ul>
-			<li [class.active_view]="selectedTab === 'all'" class="tabs" (click)="getAllResults()">All</li>
-			<li [class.active_view]="selectedTab === 'image'" class="tabs" (click)="getImageResults()">Images</li>
-			<li [class.active_view]="selectedTab === 'video'" class="tabs left-align" (click)="getVideoResults()">Videos</li>
-			<li class="tabs right-align"><span  md-icon-button [mdMenuTriggerFor]="viewMenu" >Views</span></li>
-		</ul>
+<div class="wrapper">
+	<div class="tab-list">
+		<button [class.selected]="selectedTab === 'all'" class="tab" value="all"
+			(click)="getFilterResults($event.currentTarget.value)">
+			All
+		</button>
+		<button [class.selected]="selectedTab === 'image'" class="tab" value="image"
+			(click)="getFilterResults($event.currentTarget.value)">
+			Images
+		</button>
+		<button [class.selected]="selectedTab === 'video'" class="tab" value="video"
+			(click)="getFilterResults($event.currentTarget.value)">
+			Videos
+		</button>
 	</div>
-	<md-menu #viewMenu="mdMenu" [overlapTrigger]="false" xPosition="after" yPosition="below">
-  	<a type="button" md-menu-item [routerLink]="['/wall']" [queryParams]="{ query : query }" target="_blank"> Media Wall </a>
-	</md-menu>
+
+	<div class="tools">
+		<md-button-toggle (change)="toggleSearchTools()">
+			Tools
+		</md-button-toggle>
+
+		<div class="tool-list" [class.show]="showTools">
+			<div class="search-tools">
+				<div class="time-bound-search">
+					<button md-button class="toggleButton"
+						(click)="timeBoundButtonChecked = true"
+						[class.pressed]="timeBoundButtonChecked"
+						[mdMenuTriggerFor]="timeBoundMenu">
+						{{timeBoundValue}}
+						<md-icon>arrow_drop_down</md-icon>
+					</button>
+					<md-menu #timeBoundMenu="mdMenu" [overlapTrigger]="false" (close)="timeBoundButtonChecked = false">
+						<button md-menu-item value="any"
+							(click)="getTimeBoundResults($event.currentTarget.value)">
+							Any time
+						</button>
+						<button md-menu-item value="lastDay"
+							(click)="getTimeBoundResults($event.currentTarget.value)">
+							Past 24 hours
+						</button>
+						<button md-menu-item value="lastWeek"
+							(click)="getTimeBoundResults($event.currentTarget.value)">
+							Past week
+						</button>
+					</md-menu>
+				</div>
+
+				<div class="location-based-search">
+					<button md-button class="toggleButton"
+						(click)="locationButtonChecked = true"
+						[class.pressed]="locationButtonChecked"
+						[mdMenuTriggerFor]="locationMenu">
+						{{locationValue}}
+						<md-icon>arrow_drop_down</md-icon>
+					</button>
+					<md-menu #locationMenu="mdMenu" [overlapTrigger]="false" (close)="locationButtonChecked = false">
+						<button md-menu-item value="all"
+							(click)="getLocationBasedResults($event.currentTarget.value)">
+							All Countries
+						</button>
+						<button md-menu-item value="India"
+							(click)="getLocationBasedResults($event.currentTarget.value)">
+							Country: India
+						</button>
+						<button md-menu-item value="China"
+							(click)="getLocationBasedResults($event.currentTarget.value)">
+							Country: China
+						</button>
+						<button md-menu-item value="US"
+							(click)="getLocationBasedResults($event.currentTarget.value)">
+							Country: US
+						</button>
+						<button md-menu-item value="UK"
+							(click)="getLocationBasedResults($event.currentTarget.value)">
+							Country: UK
+						</button>
+					</md-menu>
+				</div>
+			</div>
+			<div class="message"
+				*ngIf="!(isSearching$ | async) && (areResultsAvailable$ | async)">
+				Loklak scrapes social media messages
+			</div>
+		</div>
+	</div>
+</div>

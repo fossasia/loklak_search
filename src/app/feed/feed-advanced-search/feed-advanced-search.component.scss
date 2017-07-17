@@ -1,58 +1,100 @@
-	div.tabslist {
-		position: absolute;
-		top: 90px;
-		left: 145px;
-		width: 100%;
+div.wrapper{
+	position: relative;
+	display: flex;
+	justify-content: space-between;
+	max-width: 767px;
 
-		ul {
-			display: flex;
-			flex-direction: row;
-			align-items: baseline;
-			align-content: center;
-			width: 661px;
+	div.tab-list {
+		margin-left: 150px;
+		flex: 1;
+		display: flex;
+		flex-direction: row;
+		align-items: baseline;
 
-			li.tabs {
-				margin-left: 2%;
-				margin-right: 2%;
-				cursor: pointer;
-				padding-left: 6px;
-				padding-right: 6px;
-				color: #777;
-				font-weight: 500;
+		button.tab {
+			cursor: pointer;
+			min-width: 50px;
+			background:  transparent;
+			border: none;
+			padding: 10px;
+			margin-right: 15px;
+			color: #777;
+			text-align: center;
+			font-size: 0.9em;
+			font-weight: 500;
+		}
+
+		button.tab.selected {
+			color: #4285f4;
+			border-bottom: 3px solid #4285f4;
+			outline: none;
+		}
+	}
+
+	div.tools {
+		md-button-toggle {
+			padding: 8px;
+			color: #777;
+			border: 1px solid transparent;
+			border-radius: 2px;
+		}
+
+		.tool-list {
+			position: absolute;
+			left: 150px;
+			top: 42px;
+			padding: 10px 5px;
+			margin: 0px 10px;
+
+			.search-tools, .message {
+				transform: translate(0, -100%);
+				transition: transform 0.1s ease-in-out, opacity 0.05s ease-in-out;
 			}
 
-			// Assign property `margin-left`:auto and `margin-right:auto` to seperate the elements
+			.search-tools {
+				display: flex;
+				opacity: 0;
 
-			li.left-align {
-				margin-right: auto;
+				button.toggleButton {
+					color: #777;
+
+					&.pressed {
+						background-color: #e0e0e0;
+					}
+				}
 			}
 
-			li.right-align {
-				margin-left: auto;
+			.message {
+				opacity: 1;
+			}
+		}
+
+		.tool-list.show {
+			.search-tools, .message {
+				transform: translate(0, 0);
 			}
 
-			li.active_view {
-				color: #4285f4 !important;
-				font-weight: 900 !important;
-				padding-bottom: 7px;
-				border-bottom: 3px solid #4285f4;
+			.search-tools {
+				opacity: 1;
+			}
+
+			.message {
+				opacity: 0;
+			}
 		}
 	}
 }
+@media (max-width: 768px) {
+	div.wrapper {
+		div.tab-list {
+			margin-left: 0px;
+			justify-content: space-around;
+		}
 
-a:hover {
-	color: #666;
-	text-decoration: none;
-}
-
-@media all and (max-width: 1000px){
-	div.tabslist{
-		top: 120px;
-		left: 20px;
-		width: calc(100% - 40px);
-
-		ul {
-			width: 100%;
+		div.tools {
+			.tool-list {
+				left: 0;
+			}
 		}
 	}
 }
