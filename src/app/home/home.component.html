@@ -28,7 +28,7 @@
 			<div class="top-hashtags-wrapper">
 				<div class="top-hashtags" *ngIf="trendingHashtagList.length">
 					<i class="material-icons trending" mdTooltip="Trending Hashtags">trending_up</i>
-					<span *ngFor ="let hashtag of (trendingHashtagList.slice(0,5))">
+					<span *ngFor ="let hashtag of (trendingHashtagList.slice(0,9))">
 						<a [routerLink]="['/search']"
 							[queryParams]="{ query : '#' + hashtag }">#{{hashtag}}</a>&nbsp;&nbsp;
 					</span>
