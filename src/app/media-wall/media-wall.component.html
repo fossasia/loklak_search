@@ -1,9 +1,10 @@
 <div class="wrapper"
 [style.background-color]="(wallCustomBackground$ | async).backgroundColor">
 	<media-wall-header
+	[showHideMenu]="showToolBar"
 	[query]="(query$ | async).queryString"
 	[wallCustomHeader]="(wallCustomHeader$ | async)"></media-wall-header>
-	<div class="wall-wrapper">
+	<div class="wall-wrapper" (mousemove)="displayToolBar($event)">
 		<div *ngIf="(isSearching$ | async)">
 			<div class="searching">
 				<!-- Hook Up the Material Design Progress Bar. -->

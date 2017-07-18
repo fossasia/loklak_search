@@ -157,7 +157,10 @@ export class FeedComponent implements OnInit, AfterViewInit, OnDestroy {
 	 */
 	public relocateURL(query: string) {
 		const URIquery = encodeURIComponent(query);
-		this.location.go('/search', `query=${URIquery}`);
+
+		if (!this.location.isCurrentPathEqualTo(`/search?query=${URIquery}`)) {
+			this.location.go(`/search?query=${URIquery}`);
+		}
 	}
 
 	/**

@@ -1,4 +1,6 @@
-import { Component, OnInit, AfterViewInit, OnDestroy, ElementRef, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit,
+		AfterViewInit, OnDestroy,
+		ElementRef, ChangeDetectionStrategy, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Location } from '@angular/common';
 
@@ -31,12 +33,15 @@ export class MediaWallComponent implements OnInit, AfterViewInit, OnDestroy {
 	public wallCustomCard$: Observable<WallCard>;
 	public wallCustomBackground$: Observable<WallBackground>;
 
+	public showToolBar = false;
+	public timer: Observable<any>;
 
 	constructor(
 		private route: ActivatedRoute,
 		private location: Location,
 		private elementRef: ElementRef,
-		private store: Store<fromRoot.State>
+		private store: Store<fromRoot.State>,
+		private ref: ChangeDetectorRef
 	) { }
 
 	ngOnInit() {
@@ -77,7 +82,19 @@ export class MediaWallComponent implements OnInit, AfterViewInit, OnDestroy {
 		this.wallCustomBackground$ = this.store.select(fromRoot.getMediaWallCustomBackground);
 	}
 
-
+	public displayToolBar(event) {
+	if (!this.showToolBar) {
+		this.showToolBar = true;
+		this.ref.markForCheck();
+			this.timer = Observable.timer(3000);
+			this.__subscriptions__.push(
+				this.timer.subscribe(() => {
+					this.showToolBar = false;
+					this.ref.markForCheck();
+			})
+			);
+		}
+	}
 
 	/**
 	 * Clearup all the subscription when component is destroyed.
