@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 
 @Component({
 	selector: 'app-pagenotfound',
@@ -8,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 export class PageNotFoundComponent implements OnInit {
 	public headerImageUrl = 'assets/images/cow_150x175.png';
 
-	constructor() { }
+	constructor(
+		private titleService: Title
+	) { }
 
 	ngOnInit() {
+		this.titleService.setTitle('404 Lokalak Search - Page Not Found');
 	}
 
 }
