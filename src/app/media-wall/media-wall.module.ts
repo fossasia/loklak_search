@@ -9,6 +9,7 @@ import { LoklakMediaWallRoutingModule } from './media-wall-routing.module';
 import { MediaWallCardComponent } from './media-wall-card/media-wall-card.component';
 import { MediaWallLinkerComponent } from './media-wall-linker/media-wall-linker.component';
 import { MediaWallHeaderComponent } from './media-wall-header/media-wall-header.component';
+import { ToggleFullscreenDirective } from '../shared';
 
 @NgModule({
 	imports: [
@@ -23,7 +24,9 @@ import { MediaWallHeaderComponent } from './media-wall-header/media-wall-header.
 		MediaWallComponent,
 		MediaWallCardComponent,
 		MediaWallLinkerComponent,
-		MediaWallHeaderComponent
+		MediaWallHeaderComponent,
+		ToggleFullscreenDirective,
 	]
+
 })
 export class MediaWallModule { }

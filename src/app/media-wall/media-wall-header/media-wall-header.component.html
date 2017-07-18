@@ -1,10 +1,22 @@
 <div class="header-wrapper">
 	<div class="header">
-		<a routerLink="/">
 			<div class="logo">
-				loklak
+				<a routerLink="/">
+					loklak
+				</a>
 			</div>
-		</a>
-		<div class="title">{{query}}</div>
+		<div class="title">
+			<span class="query">{{query}}
+			</span>
+			</div>
+		<div class="menu" [class.mouse-moving]="showHideMenu">
+			<div class="option" toggleFullscreen>
+				<button class="btn" role="button" type="button" tabindex="-1"
+									aria-roledescription="Enter/Exit Full Screen">
+				<i  class="material-icons md-12">fullscreen</i>
+				<span class="info">Full Screen</span>
+				</button>
+			</div>
+		</div>
 	</div>
 </div>
