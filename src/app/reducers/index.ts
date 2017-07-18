@@ -49,8 +49,11 @@ import * as fromPagination from './pagination';
 import * as fromApiUserResponse from './api-user-response';
 import * as fromSuggest from './suggest';
 import * as fromSuggestResponse from './suggest-response';
-import * as fromMediaWall from './media-wall';
+import * as fromMediaWallQuery from './media-wall-query';
+import * as fromMediaWallSearch from './media-wall-search';
+import * as fromMediaWallResponse from './api-media-wall-response';
 import * as fromMediaWallCustom from './media-wall-custom';
+import * as fromMediaWallPagination from './media-wall-pagination';
 
 /**
  * As mentioned, we treat each reducer like a table in a database. This means
@@ -68,8 +71,11 @@ export interface State {
 	apiUserResponse: fromApiUserResponse.State;
 	suggestService: fromSuggest.State;
 	suggestResponse: fromSuggestResponse.State;
-	mediaWallResponse: fromMediaWall.State;
+	mediaWallQuery: fromMediaWallQuery.State;
+	mediaWallResponse: fromMediaWallResponse.State;
+	mediaWallSearch: fromMediaWallSearch.State;
 	mediaWallCustom: fromMediaWallCustom.State;
+	mediaWallPagination: fromMediaWallPagination.State;
 }
 
 /**
@@ -91,8 +97,11 @@ const reducers = {
 	apiUserResponse: fromApiUserResponse.reducer,
 	suggestService: fromSuggest.reducer,
 	suggestResponse: fromSuggestResponse.reducer,
-	mediaWallResponse: fromMediaWall.reducer,
-	mediaWallCustom: fromMediaWallCustom.reducer
+	mediaWallQuery: fromMediaWallQuery.reducer,
+	mediaWallResponse: fromMediaWallResponse.reducer,
+	mediaWallSearch: fromMediaWallSearch.reducer,
+	mediaWallCustom: fromMediaWallCustom.reducer,
+	mediaWallPagination: fromMediaWallPagination.reducer
 };
 
 const developmentReducer: ActionReducer<State> = compose(storeFreeze, combineReducers)(reducers);
@@ -234,14 +243,30 @@ export const getApiTrendsResponseState = (state: State) => state.apiTrendsRespon
 export const getApiHashtagTrends = createSelector(getApiTrendsResponseState, fromApiTrendsResponse.getHashtags);
 
 /**
- * Selectors for Media wall Query
+ * Selectors for Media Wall Query
  */
-export const getMediaWallState = (state: State) => state.mediaWallResponse;
+export const getMediaWallState = (state: State) => state.mediaWallQuery;
 
-export const getMediaWallQuery = createSelector(getMediaWallState, fromMediaWall.getMediaWallQuery);
+export const getMediaWallQuery = createSelector(getMediaWallState, fromMediaWallQuery.getMediaWallQuery);
 
 /**
- * Selector for Media Wall customization
+ * Selectors for Media Wall Search
+ */
+
+export const getMediaWallSearchState = (state: State) => state.mediaWallSearch;
+
+export const getMediaWallLoading = createSelector(getMediaWallSearchState, fromMediaWallSearch.getLoading);
+
+/**
+ * Selector for Media Wall Pagination
+ */
+
+export const getMediaWallPaginationState = (state: State) => state.mediaWallPagination;
+
+export const isWallPaginating = createSelector(getMediaWallPaginationState, fromMediaWallPagination.isWallPaginating);
+
+/**
+ * Selector for Media Wall Customization
  */
 
 export const getMediaWallCustomState = (state: State) => state.mediaWallCustom;
@@ -249,6 +274,18 @@ export const getMediaWallCustomState = (state: State) => state.mediaWallCustom;
 export const getMediaWallCustomHeader = createSelector(getMediaWallCustomState, fromMediaWallCustom.getCustomWallHeader);
 export const getMediaWallCustomBackground = createSelector(getMediaWallCustomState, fromMediaWallCustom.getCustomWallBackground);
 export const getMediaWallCustomCard = createSelector(getMediaWallCustomState, fromMediaWallCustom.getCustomWallCard);
+
+/**
+ * Selectors for Media Wall Response
+ */
+
+export const getMediaWallResponseState = (state: State) => state.mediaWallResponse;
+
+export const getMediaWallResponseEntities = createSelector(getMediaWallResponseState, fromMediaWallResponse.getEntities);
+export const getMediaWallLastResponseLength = createSelector(getMediaWallResponseState, fromMediaWallResponse.getLastResponseLength);
+
+export const getAreWallResultsAvailable =
+	createSelector(getMediaWallResponseEntities , entities => (entities.length) ? true : false );
 
 /**
  * Some selector functions create joins across parts of state. This selector

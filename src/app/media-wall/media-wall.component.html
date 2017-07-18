@@ -5,14 +5,16 @@
 	[query]="(query$ | async).queryString"
 	[wallCustomHeader]="(wallCustomHeader$ | async)"></media-wall-header>
 	<div class="wall-wrapper" (mousemove)="displayToolBar($event)">
-		<div *ngIf="(isSearching$ | async)">
+		<div *ngIf="(isWallSearching$ | async)">
 			<div class="searching">
 				<!-- Hook Up the Material Design Progress Bar. -->
 			</div>
 		</div>
-		<div class="masonry"
-		*ngIf="!(isSearching$ | async)">
-			<div class="masonry-panel" *ngFor="let item of (apiResponseResults$ | async)">
+		<div class="masonry" id="masonry"
+		*ngIf="!(isWallSearching$ | async)">
+			<div class="masonry-panel"
+			*ngFor="let item of (apiWallResponseResults$ | async);"
+			[class.paginate]="showResults && !(isWallPaginating$ | async)">
 				<media-wall-card
 				[feedItem]="item"
 				[wallCustomCard$]="wallCustomCard$"></media-wall-card>

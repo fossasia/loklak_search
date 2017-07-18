@@ -26,7 +26,7 @@ export const ActionTypes = {
 export class WallHeaderPropertiesChangeAction implements Action {
 	type = ActionTypes.WALL_HEADER_PROPERTIES_CHANGE;
 
-	constructor(public payload: WallHeader) {  }
+	constructor(public payload: WallHeader) { }
 }
 
 export class WallBackgroundPropertiesChangeAction implements Action {

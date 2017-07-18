@@ -6,8 +6,8 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/withLatestFrom';
 
 import * as fromRoot from '../reducers';
-import * as apiAction from '../actions/api';
-import * as mediaWallAction from '../actions/media-wall';
+import * as wallAction from '../actions/media-wall';
+import * as mediaWallAction from '../actions/media-wall-query';
 
 /**
  * Effects offer a way to isolate and easily test side-effects within your
@@ -31,8 +31,7 @@ export class MediaWallQueryEffects {
 					.ofType(mediaWallAction.ActionTypes.WALL_INPUT_VALUE_CHANGE)
 					.withLatestFrom(this.store$)
 					.map(([action, state]) => {
-
-							return new apiAction.SearchAction(state.mediaWallResponse.query);
+							return new wallAction.WallSearchAction(state.mediaWallQuery.query);
 					});
 
 	constructor(

@@ -19,6 +19,8 @@ import * as fromRoot from '../reducers';
 import * as apiAction from '../actions/api';
 import * as queryAction from '../actions/query';
 import * as trendsAction from '../actions/trends';
+import * as wallAction from '../actions/media-wall';
+import * as wallPaginationAction from '../actions/media-wall-pagination';
 import { ApiResponse } from '../models';
 import { parseDateToApiAcceptedFormat } from '../utils';
 
@@ -127,6 +129,53 @@ export class ApiSearchEffects {
 						}
 						this.titleService.setTitle(title);
 					});
+
+	@Effect()
+	wallSearchAction$: Observable<Action>
+		= this.actions$
+					.ofType(wallAction.ActionTypes.WALL_SEARCH)
+					.debounceTime(400)
+					.map((action: wallAction.WallSearchAction) => action.payload)
+					.switchMap(query => {
+						const nextSearch$ = this.actions$.ofType(wallAction.ActionTypes.WALL_SEARCH).skip(1);
+						const searchServiceConfig: SearchServiceConfig = new SearchServiceConfig();
+
+						if (query.filter.image) {
+							searchServiceConfig.addFilters(['image']);
+						} else {
+							searchServiceConfig.removeFilters(['image']);
+						}
+						if (query.filter.video) {
+							searchServiceConfig.addFilters(['video']);
+						} else {
+							searchServiceConfig.removeFilters(['video']);
+						}
+
+							return this.apiSearchService.fetchQuery(query.queryString, searchServiceConfig)
+												.takeUntil(nextSearch$)
+												.map(response => {
+													const URIquery = encodeURIComponent(query.queryString);
+													this.location.go(`/wall?query=${URIquery}`);
+													return new apiAction.WallSearchCompleteSuccessAction(response);
+												})
+												.catch(() => of(new apiAction.WallSearchCompleteFailAction('')));
+					});
+
+	@Effect()
+	nextWallSearchAction$
+		= this.actions$
+					.ofType(apiAction.ActionTypes.WALL_SEARCH_COMPLETE_SUCCESS)
+					.debounceTime(5000)
+					.withLatestFrom(this.store$)
+					.map(([action, state]) => {
+								if (state.mediaWallResponse.lastResponseLength > 0) {
+									return new wallPaginationAction.WallNextPageAction('');
+								}
+								else {
+									return new wallPaginationAction.StopWallPaginationAction('');
+								}
+					});
+
 
 	constructor(
 		private store$: Store<fromRoot.State>,

@@ -13,6 +13,7 @@ import { ApiUserSearchEffects } from './effects/api-user-search.effects';
 import { SuggestEffects } from './effects/api-suggest.effects';
 import { QueryEffects } from './effects/query.effects';
 import { UserQueryEffects } from './effects/user-query.effects';
+import { WallPaginationEffects } from './effects/media-wall-pagination.effects';
 
 import { LoklakAppRoutingModule } from './app-routing.module';
 
@@ -81,6 +82,7 @@ import { PageNotFoundModule } from './pagenotfound/pagenotfound.module';
 		EffectsModule.run(SuggestEffects),
 		EffectsModule.run(ApiUserSearchEffects),
 		EffectsModule.run(MediaWallQueryEffects),
+		EffectsModule.run(WallPaginationEffects),
 
 		/**
 		 * Defines the routes at `root` level of the application.

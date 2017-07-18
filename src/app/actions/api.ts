@@ -15,6 +15,8 @@ export const ActionTypes = {
 	SEARCH_COMPLETE_FAIL: '[Api] Search Complete Fail',
 	SEARCH_TRENDING_HASHTAGS_SUCCESS: '[Api] Search Trending Hashtags Success Action',
 	SEARCH_TRENDING_HASHTAGS_FAIL: '[Api] Search Trending Hashtags Fail Action',
+	WALL_SEARCH_COMPLETE_SUCCESS: '[Api] Media Wall Search Complete Success Action',
+	WALL_SEARCH_COMPLETE_FAIL: '[Api] Media Wall Search Complete Fail Action'
 };
 
 /**
@@ -55,6 +57,18 @@ export class SearchTrendingHashtagsFailAction implements Action {
 	constructor(public payload?: any) { }
 }
 
+export class WallSearchCompleteSuccessAction implements Action {
+	type = ActionTypes.WALL_SEARCH_COMPLETE_SUCCESS;
+
+	constructor(public payload: ApiResponse) { }
+}
+
+export class WallSearchCompleteFailAction implements Action {
+	type = ActionTypes.WALL_SEARCH_COMPLETE_FAIL;
+
+	constructor(public payload: any) { }
+}
+
 /**
  * Export a type alias of all actions in this action group
  * so that reducers can easily compose action types
@@ -62,4 +76,8 @@ export class SearchTrendingHashtagsFailAction implements Action {
 export type Actions
 	= SearchAction
 	| SearchCompleteSuccessAction
-	| SearchCompleteFailAction;
+	| SearchCompleteFailAction
+	| SearchTrendingHashtagsSuccessAction
+	| SearchTrendingHashtagsFailAction
+	| WallSearchCompleteSuccessAction
+	| WallSearchCompleteFailAction;
