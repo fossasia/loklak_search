@@ -1,11 +1,11 @@
-<div class="header-wrapper">
+<div class="header-wrapper" [style.background-color]="wallCustomHeader.backgroundColor">
 	<div class="header">
 			<div class="logo">
 				<a routerLink="/">
 					loklak
 				</a>
 			</div>
-		<div class="title">
+		<div class="title" [style.color]="wallCustomHeader.fontColor">
 			<span class="query">{{query}}
 			</span>
 			</div>

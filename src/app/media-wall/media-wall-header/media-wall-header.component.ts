@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { WallHeader } from '../../models';
 
 @Component({
 	selector: 'media-wall-header',
@@ -6,8 +7,9 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 	styleUrls: ['./media-wall-header.component.scss']
 })
 export class MediaWallHeaderComponent implements OnInit {
-	@Input() showHideMenu: boolean;
 	@Input() query: string;
+	@Input() wallCustomHeader: WallHeader;
+	@Input() showHideMenu: boolean;
 
 	constructor() { }
 

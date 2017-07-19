@@ -1,18 +1,21 @@
-<div class="wrapper">
+<div class="wrapper"
+[style.background-color]="(wallCustomBackground$ | async).backgroundColor">
 	<media-wall-header
-		[showHideMenu]="showToolBar"
-		[query]="(query$ | async).queryString"></media-wall-header>
-	<div *ngIf="(isSearching$ | async)">
-		<div class="searching">
-			<!-- Hook Up the Material Design Progress Bar. -->
+	[showHideMenu]="showToolBar"
+	[query]="(query$ | async).queryString"
+	[wallCustomHeader]="(wallCustomHeader$ | async)"></media-wall-header>
+	<div class="wall-wrapper" (mousemove)="displayToolBar($event)">
+		<div *ngIf="(isSearching$ | async)">
+			<div class="searching">
+				<!-- Hook Up the Material Design Progress Bar. -->
+			</div>
 		</div>
-	</div>
-	<div class="wall-wrapper" *ngIf="!(isSearching$ | async)" (mousemove)="displayToolBar($event)">
-		<div class="masonry">
+		<div class="masonry"
+		*ngIf="!(isSearching$ | async)">
 			<div class="masonry-panel" *ngFor="let item of (apiResponseResults$ | async)">
-				<div class="masonry-content">
-						<media-wall-card [feedItem]="item"></media-wall-card>
-				</div>
+				<media-wall-card
+				[feedItem]="item"
+				[wallCustomCard$]="wallCustomCard$"></media-wall-card>
 			</div>
 		</div>
 	</div>

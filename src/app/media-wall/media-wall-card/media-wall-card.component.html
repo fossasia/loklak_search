@@ -1,4 +1,4 @@
-<div class="feed-item">
+<div class="masonry-content" [style.background-color]="(wallCustomCard$ | async).backgroundColor">
 	<span class="text">
 		<span class="gallery" *ngIf="filteredImages.length > 0">
 			<ul>
@@ -21,11 +21,10 @@
 					[hashtags]="feedItem.hashtags || []"
 					[mentions]="feedItem.mentions || []"
 					[links]="feedItem.links || []"
-					[unshorten]="feedItem.unshorten || {}"></media-wall-linker>
+					[unshorten]="feedItem.unshorten || {}"
+					[wallCustomText]="(wallCustomCard$ | async)"></media-wall-linker>
 		</span>
-
 	</span>
-	<span style="clear:both"></span>
 	<span class="action-box">
 		<span class="action reply-action">
 			<a target="_blank" href="https://twitter.com/intent/tweet?in_reply_to={{feedItem.id_str}}">

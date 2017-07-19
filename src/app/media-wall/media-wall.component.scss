@@ -21,7 +21,6 @@ body {
 
 .wall-wrapper {
 	min-height: 100vh;
-	background-color: #FAFAFA;
 }
 
 .masonry {
@@ -30,22 +29,7 @@ body {
 	padding: 10px;
 }
 .masonry-panel {
-  break-inside: avoid;
   padding: 4px;
-}
-
-.masonry-content {
-	display: inline-block;
-	background: #fff;
-	padding: 1em;
-	width: 100%;
-	border: 1px solid #e6e6e6;
-	transition: transform 0.3s;
-	border-radius: 3px;
-}
-
-.masonry-content:hover {
-	box-shadow: 0 0 13px rgba(33,33,33,0.30);
 }
 
 @media only screen and (max-width: 600px) {

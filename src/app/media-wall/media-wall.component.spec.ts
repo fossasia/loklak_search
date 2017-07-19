@@ -22,6 +22,7 @@ import { MediaWallComponent } from './media-wall.component';
 })
 class MediaWallCardStubComponent {
 	@Input() feedItem;
+	@Input() wallCustomCard$;
 }
 
 
@@ -36,6 +37,7 @@ class MediaWallLinkerStubComponent {
 	@Input() links;
 	@Input() unshorten;
 	@Input() useAll;
+	@Input() wallCustomText;
 	@Output() onShowed;
 }
 
@@ -46,6 +48,7 @@ class MediaWallLinkerStubComponent {
 class MediaWallHeaderStubComponent {
 	@Input() showHideMenu;
 	@Input() query;
+	@Input() wallCustomHeader;
 }
 
 

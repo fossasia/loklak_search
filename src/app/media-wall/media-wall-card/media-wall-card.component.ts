@@ -2,6 +2,7 @@ import { Component, OnInit, Input, ChangeDetectionStrategy, ChangeDetectorRef, O
 import { ApiResponseResult } from '../../models/api-response';
 import { Observable } from 'rxjs/Rx';
 import { BrowserModule, DomSanitizer } from '@angular/platform-browser';
+import { WallCard } from '../../models';
 
 @Component({
 	selector: 'media-wall-card',
@@ -12,6 +13,7 @@ export class MediaWallCardComponent implements OnInit {
 	public filteredImages: string[] = new Array<string>();
 	public datetime: string = null;
 	@Input() feedItem: ApiResponseResult;
+	@Input() wallCustomCard$: Observable<WallCard>;
 
 	constructor(private ref: ChangeDetectorRef,
 		private sanitizer: DomSanitizer) {
