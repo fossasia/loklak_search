@@ -18,7 +18,9 @@
       "styles": [
         "styles/main.scss"
       ],
-      "scripts": [],
+      "scripts": [
+				"../node_modules/wicg-inert/dist/inert.min.js"
+			],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",

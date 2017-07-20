@@ -7,7 +7,7 @@
 
 		<div class="search-form">
 
-			<div class="search-input" [ngClass]="{'focused': inputFocused }">
+			<div class="search-input" [class.focused]="inputFocused">
 					<input type="text" id="search" name="search" [formControl]="_queryControl"
 									(focus)="inputFocused=true" (focusout)="inputFocused=false"/>
 					<i id="search-suffix-icon" class="material-icons material-icons.md-dark">search</i>

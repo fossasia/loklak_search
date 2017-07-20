@@ -34,7 +34,7 @@ export class FeedHeaderComponent implements OnInit, OnDestroy {
 	@Output() relocateEvent: EventEmitter<string> = new EventEmitter<string>();
 	@ViewChild(MdAutocompleteTrigger) autoCompleteTrigger: MdAutocompleteTrigger;
 	public searchInputControl = new FormControl();
-
+	public inputFocused = false;
 
 	constructor(
 		private store: Store<fromRoot.State>
