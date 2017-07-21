@@ -1,8 +1,8 @@
 /* tslint:disable:no-unused-variable */
 
 import { Component } from '@angular/core';
-import { TestBed, async } from '@angular/core/testing';
 import { Title } from '@angular/platform-browser';
+import { TestBed, async } from '@angular/core/testing';
 import { PageNotFoundComponent } from './pagenotfound.component';
 
 describe('Component: PageNotFound', () => {
@@ -15,6 +15,7 @@ describe('Component: PageNotFound', () => {
 			providers: [{ provide: Title, useClass: Title }]
 		});
 	});
+
 	it('should create an instance', () => {
 		const fixture = TestBed.createComponent(PageNotFoundComponent);
 		const component = fixture.debugElement.componentInstance;

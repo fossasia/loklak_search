@@ -1,10 +1,16 @@
-import { Component,
-					OnInit, AfterViewInit, OnDestroy,
-					ChangeDetectionStrategy, ElementRef, HostListener } from '@angular/core';
+import {
+	Component,
+	OnInit,
+	AfterViewInit,
+	OnDestroy,
+	ChangeDetectionStrategy,
+	ElementRef,
+	HostListener
+} from '@angular/core';
 
 import { FormControl } from '@angular/forms';
 import { Location } from '@angular/common';
-import { Title }	from '@angular/platform-browser';
+import { Title } from '@angular/platform-browser';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 
 import { Observable } from 'rxjs/Observable';
@@ -17,9 +23,13 @@ import * as queryAction from '../actions/query';
 import * as paginationAction from '../actions/pagination';
 import * as suggestAction from '../actions/suggest';
 
-import { ApiResponse, ApiResponseMetadata, ApiResponseResult, ApiResponseAggregations } from '../models/api-response';
+import {
+	ApiResponse,
+	ApiResponseMetadata,
+	ApiResponseResult,
+	ApiResponseAggregations } from '../models/api-response';
 import { SuggestMetadata, SuggestResults, SuggestResponse } from '../models/api-suggest';
-import { Query } from '../models/query';
+import { Query, parseStringToQuery } from '../models/query';
 import { UserApiResponse } from '../models/api-user-response';
 
 import 'rxjs/add/observable/forkJoin';
@@ -86,10 +96,14 @@ export class FeedComponent implements OnInit, AfterViewInit, OnDestroy {
 	private queryFromURL(): void {
 		this.__subscriptions__.push(
 			this.route.queryParams
-					.subscribe((params: Params) => {
-						const queryParam = params['query'] || '';
-						this.search(queryParam);
-					})
+				.subscribe((params: Params) => {
+					const queryParam = params['query'] || '';
+					const query: Query = parseStringToQuery(queryParam);
+					this.store.dispatch(new queryAction.RelocationAfterQuerySetAction());
+					this.store.dispatch(new queryAction.QueryChangeAction(query));
+					this.store.dispatch(new suggestAction.SuggestAction(query.displayString));
+					this.store.dispatch(new paginationAction.RevertPaginationState(''));
+				})
 		);
 	}
 

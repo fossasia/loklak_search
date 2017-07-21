@@ -31,25 +31,25 @@ export class QueryEffects {
 	inputChange$: Observable<Action>
 		= this.actions$
 					.ofType(queryAction.ActionTypes.VALUE_CHANGE)
-					.map(_ => new queryAction.QueryChangeAction(''));
+					.map(_ => new queryAction.QueryChangeAction());
 
 	@Effect()
 	filterChange$: Observable<Action>
 		= this.actions$
 					.ofType(queryAction.ActionTypes.FILTER_CHANGE)
-					.map(_ => new queryAction.QueryChangeAction(''));
+					.map(_ => new queryAction.QueryChangeAction());
 
 	@Effect()
 	timeBoundChange$: Observable<Action>
 		= this.actions$
 					.ofType(queryAction.ActionTypes.TIME_BOUND_CHANGE)
-					.map(_ => new queryAction.QueryChangeAction(''));
+					.map(_ => new queryAction.QueryChangeAction());
 
 	@Effect()
 	locationChange$: Observable<Action>
 		= this.actions$
 					.ofType(queryAction.ActionTypes.LOCATION_CHANGE)
-					.map(_ => new queryAction.QueryChangeAction(''));
+					.map(_ => new queryAction.QueryChangeAction());
 
 	@Effect()
 	queryChange$: Observable<Action>
