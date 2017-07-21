@@ -1,9 +1,22 @@
 /* tslint:disable:no-unused-variable */
 
-import { Component, Input, Output } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { FeedCardComponent } from './feed-card.component';
+
+@Component({
+	selector: 'app-lazy-img',
+	template: ''
+})
+class LazyImgStubComponent {
+	@Input() src: string;
+	@Input() width: number;
+	@Input() height: number;
+	@Input() alt: string;
+	@Input() showError = true;
+	@Output() load: EventEmitter<boolean> = new EventEmitter<boolean>();
+}
 
 @Component({
 	selector: 'feed-linker',
@@ -27,7 +40,8 @@ describe('Component: FeedCard', () => {
 			],
 			declarations: [
 				FeedCardComponent,
-				FeedLinkerStubComponent
+				FeedLinkerStubComponent,
+				LazyImgStubComponent
 			]
 		});
 	});

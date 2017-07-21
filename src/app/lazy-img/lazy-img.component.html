@@ -1,0 +1,6 @@
+<div class="container" [style.width]="getWidth()" [style.height]="getHeight()">
+	<img [class.loaded]="loaded && !isLoading" alt="{{alt}}" [attr.width]="getWidth()" [attr.height]="getHeight()"/>
+	<div class="error" [class.show]="loadError && !isLoading" *ngIf="showError === true" [style.height]="getHeight()">
+		{{loadErrorMessage}}
+	</div>
+</div>

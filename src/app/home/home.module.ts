@@ -8,6 +8,7 @@ import { LoklakHomeRoutingModule } from './home-routing.module';
 
 import { HomeComponent } from './home.component';
 import { FooterModule } from '../footer/footer.module';
+import { LazyImgModule } from '../lazy-img/lazy-img.module';
 
 @NgModule({
 	imports: [
@@ -38,7 +39,12 @@ import { FooterModule } from '../footer/footer.module';
 		/**
 		 * Declares a UI based footer module which is completely interoperable.
 		 */
-		FooterModule
+		FooterModule,
+
+		/**
+		 * Module for lazy image loading.
+		 */
+		LazyImgModule
 	],
 	declarations: [
 		/**

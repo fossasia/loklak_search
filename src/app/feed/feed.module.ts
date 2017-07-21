@@ -7,6 +7,8 @@ import { MaterialModule } from '@angular/material';
 
 import { LoklakFeedRoutingModule } from './feed-routing.module';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
+import { LazyImgModule } from '../lazy-img/lazy-img.module';
+
 import { FeedComponent } from './feed.component';
 import { FeedHeaderComponent } from './feed-header/feed-header.component';
 import { FeedFooterComponent } from './feed-footer/feed-footer.component';
@@ -67,7 +69,12 @@ import { FeedAdvancedSearchComponent } from './feed-advanced-search/feed-advance
 		/**
 		* For showing Tweet Frequency in the searches
 		**/
-		ChartsModule
+		ChartsModule,
+
+		/**
+		 * Module for lazy image loading.
+		 */
+		LazyImgModule
 	],
 	declarations: [
 		FeedComponent,
