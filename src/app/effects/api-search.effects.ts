@@ -94,17 +94,18 @@ export class ApiSearchEffects {
 	@Effect()
 	relocateAfterSearchSuccess$: Observable<Action>
 		= this.actions$
-					.ofType(apiAction.ActionTypes.SEARCH_COMPLETE_SUCCESS)
+					.ofType(apiAction.ActionTypes.SEARCH_COMPLETE_SUCCESS,
+									apiAction.ActionTypes.SEARCH_COMPLETE_FAIL)
 					.withLatestFrom(this.store$)
 					.map(([action, state]) => {
 						return {
 							doRelocate: state.query.relocateAfter,
-							queryString: state.query.queryString
+							relocateTo: state.query.routerString
 						};
 					})
 					.map(relocateObject => {
 						if (relocateObject.doRelocate) {
-							const URIquery = encodeURIComponent(relocateObject.queryString);
+							const URIquery = encodeURIComponent(relocateObject.relocateTo);
 
 							if (!this.location.isCurrentPathEqualTo(`/search?query=${URIquery}`)) {
 								this.location.go(`/search?query=${URIquery}`);

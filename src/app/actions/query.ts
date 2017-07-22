@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import { FilterList, TimeBound } from '../models';
+import { Query, FilterList, TimeBound } from '../models';
 
 /**
  * For each action type in an action group, make a simple
@@ -54,7 +54,7 @@ export class TimeBoundChangeAction implements Action {
 export class QueryChangeAction implements Action {
 	type = ActionTypes.QUERY_CHANGE;
 
-	constructor(public payload?: any) { }
+	constructor(public payload?: Query) { }
 }
 
 export class RelocationAfterQuerySetAction implements Action {
