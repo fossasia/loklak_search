@@ -6,7 +6,7 @@
 	div.header {
 		display: flex;
 		flex-wrap: wrap;
-		align-items: center;
+		align-items: baseline;
 		width: 100%;
 		height: 85px;
 
@@ -48,8 +48,12 @@
 			@media(max-width: 600px) {
 			position: absolute;
 			top: 65px;
-			font-size: 24px;
+			font-size: 23px;
 			}
+		}
+
+		label.menu-toggle {
+			display: none;
 		}
 
 		div.menu {
@@ -58,30 +62,35 @@
 			display: flex;
 			justify-content: flex-end;
 			transition: opacity .25s ease-in-out;
-			margin-right: 5px;
 
 			div.option {
 				display: flex;
 				flex-direction: column;
 				justify-content: space-between;
-				font-size: 0.8rem;
-				margin-right: 8px;
+				margin-right: 5px;
 
 				button.btn {
-					background: rgb(255, 255, 255);
+					background-color: inherit;
 					border: none;
 					color: #7f7f7f;
 					cursor: pointer;
+					font-size: 0.6rem;
 
 					i.md-12 {
 						position: relative;
 						left:40px;
 						bottom: 8px;
+
+						@media (max-width: 423px) {
+							left: 0px;
+							bottom: 0px;
+						}
 					}
 
 					span.info {
 						position: relative;
 						top: 3px;
+						white-space: nowrap;
 					}
 				}
 			}
@@ -107,4 +116,19 @@
 div.header-wrapper:hover div.header div.menu {
 		opacity:1;
 		pointer-events: auto;
+}
+
+@media (max-width: 350px) {
+	div.header-wrapper div.header div.logo {
+		flex: none;
+		width: 46%;
+
+		a {
+			font-size: 30px;
+		}
 	}
+	div.header-wrapper div.header div.menu {
+		flex: none;
+		width: 54%;
+	}
+}

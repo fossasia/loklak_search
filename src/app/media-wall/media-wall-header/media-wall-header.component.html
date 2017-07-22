@@ -10,13 +10,19 @@
 			</span>
 			</div>
 		<div class="menu" [class.mouse-moving]="showHideMenu">
-			<div class="option" toggleFullscreen>
+			<div class="option" id="customization">
 				<button class="btn" role="button" type="button" tabindex="-1"
-									aria-roledescription="Enter/Exit Full Screen">
+									aria-roledescription="Customization" (click)="showHideCustomization.emit(true)">
+				<i  class="material-icons md-12">settings</i>
+				<span class="info">Customize</span>
+				</button>
+			</div>
+			<div class="option" id="fullscreen">
+				<button class="btn" role="button" type="button" tabindex="-1"
+									aria-roledescription="Enter/Exit Full Screen" toggleFullscreen>
 				<i  class="material-icons md-12">fullscreen</i>
 				<span class="info">Full Screen</span>
 				</button>
-			</div>
 		</div>
 	</div>
 </div>

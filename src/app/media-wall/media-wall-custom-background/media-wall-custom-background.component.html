@@ -1,0 +1,33 @@
+<div class="tab">
+<h4>Background</h4>
+<div class="full-width">
+	<div class="slider">
+	<md-slide-toggle
+		labelPosition="before"
+		ariaLabel="Transparent Backgorund"
+		(change)="transparentBackground($event)"
+		[checked]="customBackground.backgroundColor == '#fff'">
+		Transparent Background
+	</md-slide-toggle>
+	</div>
+	<div class="color">
+		<label for="color">Background Color</label>
+			<input name="color"
+				[cpOutputFormat]="'hex'"
+				[(colorPicker)]="mediaWallBackground.backgroundColor"
+				[style.background]="customBackground.backgroundColor"
+				[cpPosition]="'bottom'"
+				[cpWidth]="'200px'"
+				[cpHeight]="'264px'"
+				[value]="customBackground.backgroundColor"
+				(colorPickerChange)="changeBackgroundColor($event)" />
+	</div>
+</div>
+<div class="full-width">
+<span class="apply-button">
+	<button (click)="changeMediaWallBackground.emit(customBackground)">
+		<i class="material-icons md-18">done</i>
+		Apply</button>
+</span>
+</div>
+</div>

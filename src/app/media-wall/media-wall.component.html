@@ -3,7 +3,8 @@
 	<media-wall-header
 	[showHideMenu]="showToolBar"
 	[query]="(query$ | async).queryString"
-	[wallCustomHeader]="(wallCustomHeader$ | async)"></media-wall-header>
+	[wallCustomHeader]="(wallCustomHeader$ | async)"
+	(showHideCustomization)="openDialog()"></media-wall-header>
 	<div class="wall-wrapper" (mousemove)="displayToolBar($event)">
 		<div *ngIf="(isWallSearching$ | async)">
 			<div class="searching">

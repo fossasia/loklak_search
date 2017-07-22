@@ -5,9 +5,11 @@ import { ActivatedRoute } from '@angular/router';
 import { TestBed, async } from '@angular/core/testing';
 import { Route } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MaterialModule } from '@angular/material';
+import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
+import { MdDialogModule, MdDialog, MaterialModule } from '@angular/material';
 import { RouterTestingModule } from '@angular/router/testing';
 import { StoreModule } from '@ngrx/store';
+import { MediaWallCustomizationComponent } from './media-wall-customization/media-wall-customization.component';
 
 import { reducer } from '../reducers';
 import { RouterStub } from '../../testing';
@@ -51,6 +53,29 @@ class MediaWallHeaderStubComponent {
 	@Input() wallCustomHeader;
 }
 
+@Component({
+	selector: 'media-wall-custom-header',
+	template: ''
+})
+class MediaWallCustomHeaderStubComponent {
+	@Input() mediaWallHeader;
+}
+
+@Component({
+	selector: 'media-wall-custom-background',
+	template: ''
+})
+class MediaWallCustomBackgroundStubComponent {
+	@Input() mediaWallBackground;
+}
+
+@Component({
+	selector: 'media-wall-custom-card',
+	template: ''
+})
+class MediaWallCustomCardStubComponent {
+	@Input() mediaWallCard;
+}
 
 describe('Component: MediaWall', () => {
 	beforeEach(() => {
@@ -59,6 +84,7 @@ describe('Component: MediaWall', () => {
 				RouterTestingModule,
 				ReactiveFormsModule,
 				FormsModule,
+				MdDialogModule.forRoot(),
 				MaterialModule,
 				StoreModule.provideStore(reducer)
 			],
@@ -66,9 +92,18 @@ describe('Component: MediaWall', () => {
 				MediaWallComponent,
 				MediaWallCardStubComponent,
 				MediaWallLinkerStubComponent,
-				MediaWallHeaderStubComponent
+				MediaWallHeaderStubComponent,
+				MediaWallCustomizationComponent,
+				MediaWallCustomHeaderStubComponent,
+				MediaWallCustomCardStubComponent,
+				MediaWallCustomBackgroundStubComponent
 			]
 		});
+		TestBed.overrideModule(BrowserDynamicTestingModule, {
+		set: {
+			entryComponents: [ MediaWallCustomizationComponent ]
+		}
+});
 	});
 
 	it('should create an instance', async(() => {
