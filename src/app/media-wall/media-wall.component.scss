@@ -27,10 +27,19 @@ body {
   column-count: 5;
   column-gap: 0;
 	padding: 10px;
+	overflow: scroll;
 }
+
 .masonry-panel {
-  padding: 4px;
+	padding: 4px;
+	opacity: 0;
+	transition: opacity 0.6s ease-in-out;
 }
+
+.paginate {
+	opacity: 1;
+}
+
 
 @media only screen and (max-width: 600px) {
 	:root {

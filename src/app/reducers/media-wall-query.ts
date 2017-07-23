@@ -1,8 +1,6 @@
 import { createSelector } from 'reselect';
 import { Query } from '../models/query';
-
-import * as apiAction from '../actions/api';
-import * as mediaWallAction from '../actions/media-wall';
+import * as mediaWallAction from '../actions/media-wall-query';
 import { ApiResponse } from '../models/api-response';
 
 
@@ -28,7 +26,7 @@ export const initialState: State = {
 	}
 };
 
-export function reducer(state: State = initialState, action: mediaWallAction.Actions | apiAction.Actions): State {
+export function reducer(state: State = initialState, action: mediaWallAction.Actions): State {
 	switch (action.type) {
 
 		case mediaWallAction.ActionTypes.WALL_INPUT_VALUE_CHANGE: {
