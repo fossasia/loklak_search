@@ -18,7 +18,7 @@ a.post-link {
 			margin-top: 2px;
 			width: 60px;
 
-			img {
+			/deep/ img {
 				border-radius: 5px;
 			}
 		}
@@ -63,10 +63,13 @@ a.post-link {
     		flex-basis: calc(50% - 20px);
 			}
 
-			.gallery img {
-   			width: 100%;
-    		height: 100%;
-   			}
+			.gallery /deep/ img {
+				width: 100%;
+				object-fit: cover;
+				object-position: center;
+				border: 1px solid transparent;
+				border-radius: 8px;
+   		}
 
 
 			iframe.card-videos {

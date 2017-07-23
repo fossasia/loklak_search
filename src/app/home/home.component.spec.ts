@@ -3,7 +3,7 @@
 import { TestBed, async, inject } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Title } from '@angular/platform-browser';
-import { Component } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { StoreModule } from '@ngrx/store';
@@ -20,6 +20,19 @@ import { RouterStub } from '../../testing';
 })
 class FooterStubComponent { }
 
+@Component({
+	selector: 'app-lazy-img',
+	template: ''
+})
+class LazyImgStubComponent {
+	@Input() src: string;
+	@Input() width: number;
+	@Input() height: number;
+	@Input() alt: string;
+	@Input() showError = true;
+	@Output() load: EventEmitter<boolean> = new EventEmitter<boolean>();
+}
+
 describe('Component: Home', () => {
 	let homeTitle: Title;
 	beforeEach(() => {
@@ -31,7 +44,8 @@ describe('Component: Home', () => {
 			],
 			declarations: [
 				HomeComponent,
-				FooterStubComponent
+				FooterStubComponent,
+				LazyImgStubComponent
 			],
 			providers: [
 				{ provide: Router, useClass: RouterStub },
@@ -61,11 +75,10 @@ describe('Component: Home', () => {
 		const component = fixture.debugElement.componentInstance;
 		const compiled = fixture.debugElement.nativeElement;
 
-		const image: HTMLImageElement = compiled.querySelector('div.wrapper img');
+		const image = compiled.querySelector('app-lazy-img');
 
 		expect(image).toBeTruthy();
-		expect(image.alt).toBe('loklak Search - Distributed Social Media Message Search Engine');
-		expect(image.title).toBe('loklak Search - Distributed Social Media Message Search Engine');
+		expect(image.getAttribute('alt')).toBe('loklak Search - Distributed Social Media Message Search Engine');
 	}));
 
 	it('should have "_queryControl" property.', async(() => {

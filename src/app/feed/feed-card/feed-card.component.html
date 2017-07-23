@@ -2,7 +2,8 @@
 	<div class="card" (click)="showLightBox.emit({feedIndex : feedIndex , show : 'show'})" in-viewport (inViewport)="inview($event)">
 		<div class="card-image">
 			<a (click)="showHideLightbox(profileURL)">
-				<img src="{{feedItem.user.profile_image_url_https}}" alt="Profile Image" width="50" height="50"  *ngIf="inviewport" />
+				<app-lazy-img src="{{feedItem.user.profile_image_url_https}}" alt="Profile Image" width="50" height="50">
+				</app-lazy-img>
 			</a>
 		</div>
 		<div class="card-content">
@@ -34,7 +35,7 @@
 			<div class="gallery" *ngIf="filteredImages.length > 0">
 				<ul>
         		<li *ngFor="let image of filteredImages">
-							<img class="card-images" src="{{image}}"/>
+							<app-lazy-img class="card-images" src="{{image}}" height="300"></app-lazy-img>
 						</li>
 				</ul>
 			</div>

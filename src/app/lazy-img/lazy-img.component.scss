@@ -1,0 +1,37 @@
+div.container {
+	position: relative;
+}
+
+img {
+	opacity: 0;
+	position: absolute;
+	top: 0;
+	left: 0;
+	transition: opacity 0.15s ease-in;
+
+	&.loaded {
+		opacity: 1;
+	}
+}
+
+div.error {
+	background-color: #fbfbfb;
+	color: #777;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	text-align: center;
+	opacity: 0;
+	transition: opacity 0.15s ease-in;
+	pointer-events: none;
+
+	&.show {
+		opacity: 1;
+		pointer-events: auto;
+	}
+}
