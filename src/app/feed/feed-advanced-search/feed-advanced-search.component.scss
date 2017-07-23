@@ -45,6 +45,7 @@ div.wrapper{
 			top: 42px;
 			padding: 10px 5px;
 			margin: 0px 10px;
+			pointer-events: none;
 
 			.search-tools, .message {
 				transform: translate(0, -100%);
@@ -70,6 +71,8 @@ div.wrapper{
 		}
 
 		.tool-list.show {
+			pointer-events: auto;
+
 			.search-tools, .message {
 				transform: translate(0, 0);
 			}
