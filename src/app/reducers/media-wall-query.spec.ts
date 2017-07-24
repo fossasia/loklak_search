@@ -15,10 +15,10 @@ describe('MediaWallReducer', () => {
 		});
 	});
 
-	describe('WALL_INPUT_VALUE_CHANGE', () => {
+	describe('WALL_QUERY_CHANGE', () => {
 		it('should set change the querString', () => {
 			const queryString = 'fossasia';
-			const action = new mediaWallAction.WallInputValueChangeAction(queryString);
+			const action = new mediaWallAction.WallQueryChangeAction(queryString);
 			const result = fromMediaWall.reducer(fromMediaWall.initialState, action);
 			expect(result.query.queryString).toBe(queryString);
 		});

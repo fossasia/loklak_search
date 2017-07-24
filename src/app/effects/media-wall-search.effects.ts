@@ -28,7 +28,7 @@ export class MediaWallQueryEffects {
 	@Effect()
 	mediaWallQueryChange$: Observable<Action>
 		= this.actions$
-					.ofType(mediaWallAction.ActionTypes.WALL_INPUT_VALUE_CHANGE)
+					.ofType(mediaWallAction.ActionTypes.WALL_QUERY_CHANGE)
 					.withLatestFrom(this.store$)
 					.map(([action, state]) => {
 							return new wallAction.WallSearchAction(state.mediaWallQuery.query);
