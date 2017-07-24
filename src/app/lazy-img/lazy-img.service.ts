@@ -15,7 +15,7 @@ export class LazyImgService {
 
 	private __setBindings() {
 		this.processStatus = this.processStatus.bind(this);
-		this.handleResponse = this.handleResponse.bind(this);
+		this.getBufferResponse = this.getBufferResponse.bind(this);
 	}
 
 	private observerCallback(entries: IntersectionObserverEntry[], observer: IntersectionObserver) {
@@ -53,29 +53,28 @@ export class LazyImgService {
 		}
 	}
 
-	private handleResponse(response: Response): Promise<string> {
-		return response.arrayBuffer().then(buffer => this.arrayBufferToBase64(buffer));
+	private getBufferResponse(response: Response): Promise<ArrayBuffer> {
+		return response.arrayBuffer();
 	}
 
-	private arrayBufferToBase64(buffer: ArrayBuffer): string {
+	private arrayBufferToBase64(buffer: ArrayBuffer): Promise<string> {
 		let binary = '';
 		const bytes = [].slice.call(new Uint8Array(buffer));
 
 		bytes.forEach((b) => binary += String.fromCharCode(b));
 
-		return window.btoa(binary);
+		return Promise.resolve(window.btoa(binary));
 	}
 
 	public fetch(resource: string): Observable<string> {
 		return new Observable<string>(subscriber => {
 			fetch(resource)
 				.then(this.processStatus)
-				.then(response => {
-					this.handleResponse(response)
-						.then(img => {
-							subscriber.next(img);
-							subscriber.complete();
-						});
+				.then(this.getBufferResponse)
+				.then(this.arrayBufferToBase64)
+				.then(strBuffer => {
+					subscriber.next(strBuffer);
+					subscriber.complete();
 				})
 				.catch((error) => {
 					subscriber.error(error);
