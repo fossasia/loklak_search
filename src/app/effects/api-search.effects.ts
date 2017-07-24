@@ -177,6 +177,21 @@ export class ApiSearchEffects {
 								}
 					});
 
+	@Effect({ dispatch: false })
+	resetTitleAfterWallSearchSuccess$: Observable<void>
+		= this.actions$
+					.ofType(apiAction.ActionTypes.WALL_SEARCH_COMPLETE_SUCCESS,
+									apiAction.ActionTypes.WALL_SEARCH_COMPLETE_FAIL)
+					.withLatestFrom(this.store$)
+					.map(([action, state]) => {
+						const displayString = state.mediaWallQuery.query.displayString;
+						let title = `${displayString} - Loklak Media Wall`;
+						if (action.type === apiAction.ActionTypes.WALL_SEARCH_COMPLETE_FAIL) {
+							title += ' - No Results';
+						}
+						this.titleService.setTitle(title);
+					});
+
 
 	constructor(
 		private store$: Store<fromRoot.State>,

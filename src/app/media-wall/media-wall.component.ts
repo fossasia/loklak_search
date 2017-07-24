@@ -3,6 +3,7 @@ import { Component, OnInit,
 		ElementRef, ChangeDetectionStrategy, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Location } from '@angular/common';
+import { Title } from '@angular/platform-browser';
 
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
@@ -44,7 +45,8 @@ export class MediaWallComponent implements OnInit, AfterViewInit, OnDestroy {
 		private location: Location,
 		private elementRef: ElementRef,
 		private store: Store<fromRoot.State>,
-		private ref: ChangeDetectorRef
+		private ref: ChangeDetectorRef,
+		private titleService: Title
 	) { }
 
 	ngOnInit() {
@@ -76,7 +78,7 @@ export class MediaWallComponent implements OnInit, AfterViewInit, OnDestroy {
 
 	public search(query: string) {
 		if (query) {
-			this.store.dispatch(new mediaWallAction.WallInputValueChangeAction(query));
+			this.store.dispatch(new mediaWallAction.WallQueryChangeAction(query));
 		}
 	}
 
