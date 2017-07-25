@@ -96,11 +96,10 @@ div.outer-wrapper {
 		}
 
 		div.top-hashtags-wrapper{
-			display: inline-flex;
-			align-items: center;
 			height: 24px;
 
 			div.top-hashtags {
+				max-width: 584px;
 				display: flex;
 				align-items: center;
 				font-size: small;
@@ -108,6 +107,26 @@ div.outer-wrapper {
 				.trending {
 					margin-right: 10px;
 					color: grey;
+				}
+
+				.hashtag-list {
+					display: flex;
+					align-items: center;
+					flex-wrap: wrap;
+
+					.hashtag {
+						display: flex;
+						align-items: center;
+
+						pre {
+							margin: 0px 0px;
+							font-family: 'Roboto', sans-serif;
+							max-width: 100px;
+							white-space: nowrap;
+							overflow-x: hidden;
+							text-overflow: ellipsis;
+						}
+					}
 				}
 			}
 		}
