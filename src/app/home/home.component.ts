@@ -61,7 +61,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 					this.store.dispatch(new queryAction.RelocationAfterQuerySetAction());
 					this.store.dispatch(new suggestAction.SuggestAction(value));
 					this.store.dispatch(new queryAction.InputValueChangeAction(value));
-					this.router.navigateByUrl(`/search`, { skipLocationChange: true });
+					this.router.navigate([`/search`], { queryParams: { query: value }, skipLocationChange: true } );
 				}
 			)
 		);
