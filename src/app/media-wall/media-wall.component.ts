@@ -5,6 +5,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Location } from '@angular/common';
 import {MdDialog, MdDialogRef} from '@angular/material';
 import { MediaWallCustomizationComponent } from './media-wall-customization/media-wall-customization.component';
+import { Title } from '@angular/platform-browser';
 
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
@@ -47,7 +48,8 @@ export class MediaWallComponent implements OnInit, AfterViewInit, OnDestroy {
 		private elementRef: ElementRef,
 		private store: Store<fromRoot.State>,
 		private ref: ChangeDetectorRef,
-		private dialog: MdDialog
+		private dialog: MdDialog,
+		private titleService: Title
 	) { }
 
 	ngOnInit() {
@@ -79,7 +81,7 @@ export class MediaWallComponent implements OnInit, AfterViewInit, OnDestroy {
 
 	public search(query: string) {
 		if (query) {
-			this.store.dispatch(new mediaWallAction.WallInputValueChangeAction(query));
+			this.store.dispatch(new mediaWallAction.WallQueryChangeAction(query));
 		}
 	}
 
