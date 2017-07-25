@@ -24,6 +24,7 @@ export class LazyImgComponent implements OnInit, OnDestroy {
 	@Input() width: number;
 	@Input() height: number;
 	@Input() alt: string;
+	@Input() title: string;
 	@Input() showError = true;
 	@Output() load: EventEmitter<boolean> = new EventEmitter<boolean>();
 	private imageType: string = null;
