@@ -58,6 +58,7 @@
     "karma-jasmine-html-reporter": "^0.2.2",
     "karma-remap-istanbul": "^0.2.2",
     "ngrx-store-freeze": "^0.1.6",
+    "ngx-color-picker": "^4.1.0",
     "protractor": "~5.1.0",
     "sass-lint": "1.10.2",
     "ts-node": "~2.0.0",

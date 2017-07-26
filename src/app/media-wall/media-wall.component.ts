@@ -3,6 +3,8 @@ import { Component, OnInit,
 		ElementRef, ChangeDetectionStrategy, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Location } from '@angular/common';
+import {MdDialog, MdDialogRef} from '@angular/material';
+import { MediaWallCustomizationComponent } from './media-wall-customization/media-wall-customization.component';
 import { Title } from '@angular/platform-browser';
 
 import { Observable } from 'rxjs/Observable';
@@ -46,6 +48,7 @@ export class MediaWallComponent implements OnInit, AfterViewInit, OnDestroy {
 		private elementRef: ElementRef,
 		private store: Store<fromRoot.State>,
 		private ref: ChangeDetectorRef,
+		private dialog: MdDialog,
 		private titleService: Title
 	) { }
 
@@ -94,6 +97,10 @@ export class MediaWallComponent implements OnInit, AfterViewInit, OnDestroy {
 		this.wallCustomHeader$ = this.store.select(fromRoot.getMediaWallCustomHeader);
 		this.wallCustomCard$ = this.store.select(fromRoot.getMediaWallCustomCard);
 		this.wallCustomBackground$ = this.store.select(fromRoot.getMediaWallCustomBackground);
+	}
+
+	public openDialog() {
+		this.dialog.open(MediaWallCustomizationComponent);
 	}
 
 	public displayToolBar(event) {

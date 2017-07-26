@@ -1,0 +1,46 @@
+div.tab {
+	margin: 5px 10px 0 0;
+	height: 363px;
+	display: flex;
+	flex-direction: column;
+}
+
+div.full-width {
+	display: flex;
+	flex-direction: row;
+	margin-top: 10px;
+
+	div.slider {
+		flex: 1;
+	}
+
+	div.color {
+		flex:1;
+
+		input {
+			cursor: pointer;
+		}
+	}
+}
+
+span.apply-button {
+	margin: 104px auto 0 auto;
+
+	button {
+		border: none;
+		color: white;
+		background-color: #ff4081;
+		padding: 10px 25px;
+		font-size: 16px;
+		border-radius: 5px;
+		text-decoration: none;
+		margin-top: 10px;
+		cursor: pointer;
+
+		.material-icons {
+			position: relative;
+			top: 4px;
+			right: 5px;
+		}
+	}
+}

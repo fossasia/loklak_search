@@ -1,0 +1,33 @@
+<h1 md-dialog-title>Customization Menu</h1>
+<button class="form-close" md-dialog-close>x</button>
+<div md-dialog-content>
+	<md-tab-group color="accent">
+  	<md-tab>
+    	<ng-template md-tab-label>
+				<md-icon>border_color</md-icon>
+				Header
+			</ng-template>
+			<media-wall-custom-header
+			[mediaWallHeader]="(wallCustomHeader$ | async)"
+			(changeMediaWallHeader)="customizeHeader($event)"></media-wall-custom-header>
+  	</md-tab>
+		<md-tab>
+    	<ng-template md-tab-label>
+				<md-icon>panorama</md-icon>
+				Background
+    	</ng-template>
+			<media-wall-custom-background
+			[mediaWallBackground]="(wallCustomBackground$ | async)"
+			(changeMediaWallBackground)="customizeBackground($event)"></media-wall-custom-background>
+		</md-tab>
+		<md-tab>
+  		<ng-template md-tab-label>
+				<md-icon>portrait</md-icon>
+				Cards
+			</ng-template>
+			<media-wall-custom-card
+			[mediaWallCard]="(wallCustomCard$ | async)"
+			(changeMediaWallCard)="customizeCard($event)"></media-wall-custom-card>
+  	</md-tab>
+	</md-tab-group>
+</div>

@@ -1,0 +1,47 @@
+<div class="tab">
+<h4>Header Background</h4>
+<div class="full-width">
+	<div class="slider">
+	<md-slide-toggle
+		labelPosition="before"
+		ariaLabel="Transparent Backgorund"
+		(change)="transparentBackground($event)"
+		[checked]="customHeader.backgroundColor == '#fff'">
+		Transparent Background
+	</md-slide-toggle>
+	</div>
+	<div class="color">
+		<label for="color">Background Color</label>
+			<input name="color"
+				[cpOutputFormat]="'hex'"
+				[(colorPicker)]="mediaWallHeader.backgroundColor"
+				[style.background]="customHeader.backgroundColor"
+				[cpPosition]="'bottom'"
+				[cpWidth]="'200px'"
+				[cpHeight]="'264px'"
+				[value]="customHeader.backgroundColor"
+				(colorPickerChange)="changeBackgroundColor($event)" />
+	</div>
+</div>
+<h4>Header Font</h4>
+<div class="full-width">
+	<div class="color">
+		<label for="color">Font Color</label>
+			<input name="color"
+				[cpOutputFormat]="'hex'"
+				[(colorPicker)]="mediaWallHeader.fontColor"
+				[style.background]="customHeader.fontColor"
+				[cpWidth]="'200px'"
+				[cpHeight]="'264px'"
+				[value]="customHeader.fontColor"
+				(colorPickerChange)="changeFontColor($event)" />
+	</div>
+</div>
+<div class="full-width">
+<span class="apply-button">
+	<button (click)="changeMediaWallHeader.emit(customHeader)">
+		<i class="material-icons md-18">done</i>
+		Apply</button>
+</span>
+</div>
+</div>

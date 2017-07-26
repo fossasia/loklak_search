@@ -1,0 +1,30 @@
+md-icon {
+	position: relative;
+	top:7px;
+	right: 7px;
+}
+
+/deep/ .mat-tab-label:focus {
+	background-color: rgba(232, 181, 221, 0.28);
+}
+/deep/ .mat-ink-bar{
+	background-color: #ff4081;
+}
+
+.form-close{
+	border: none;
+	width: 40px;
+	height: 40px;
+	font-size: 30px;
+	position: absolute;
+	right: 25px;
+	top: 10px;
+	background: white;
+	color: gray;
+	cursor: pointer;
+	}
+
+
+button::-moz-focus-inner {
+  border: 0;
+}

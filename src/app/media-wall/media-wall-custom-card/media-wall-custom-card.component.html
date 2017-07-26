@@ -1,0 +1,61 @@
+<div class="tab">
+<h4>Card Background</h4>
+<div class="full-width">
+	<div class="slider">
+	<md-slide-toggle
+		labelPosition="before"
+		ariaLabel="Transparent Backgorund"
+		(change)="transparentBackground($event)"
+		[checked]="customCard.backgroundColor == '#fff'">
+		Transparent Background
+	</md-slide-toggle>
+	</div>
+	<div class="color">
+		<label for="color">Background Color</label>
+			<input name="color"
+				[cpOutputFormat]="'hex'"
+				[(colorPicker)]="mediaWallCard.backgroundColor"
+				[style.background]="customCard.backgroundColor"
+				[cpPosition]="'bottom'"
+				[cpWidth]="'200px'"
+				[cpHeight]="'264px'"
+				[value]="customCard.backgroundColor"
+				(colorPickerChange)="changeBackgroundColor($event)" />
+	</div>
+</div>
+<h4>Card Font</h4>
+<div class="full-width">
+	<div class="color">
+		<label for="color">Font Color</label>
+			<input name="color"
+				[cpOutputFormat]="'hex'"
+				[(colorPicker)]="mediaWallCard.fontColor"
+				[style.background]="customCard.fontColor"
+				[cpWidth]="'200px'"
+				[cpHeight]="'264px'"
+				[value]="customCard.fontColor"
+				(colorPickerChange)="changeFontColor($event)" />
+	</div>
+</div>
+<h4>Card Accent</h4>
+<div class="full-width">
+	<div class="color">
+		<label for="color">Accent Color</label>
+			<input name="color"
+				[cpOutputFormat]="'hex'"
+				[(colorPicker)]="mediaWallCard.accentColor"
+				[style.background]="customCard.accentColor"
+				[cpWidth]="'200px'"
+				[cpHeight]="'264px'"
+				[value]="customCard.accentColor"
+				(colorPickerChange)="changeAccentColor($event)" />
+	</div>
+</div>
+<div class="full-width">
+<span class="apply-button">
+	<button (click)="changeMediaWallCard.emit(customCard)">
+		<i class="material-icons md-18">done</i>
+		Apply</button>
+</span>
+</div>
+</div>
