@@ -27,9 +27,11 @@ import { countrycodearray } from '../../shared/countrycode/countrycode';
 export class FeedAdvancedSearchComponent implements OnInit {
 	public isSearching$: Observable<boolean>;
 	public areResultsAvailable$: Observable<boolean>;
+	public query$: Observable<Query>;
 	public showTools = false;
 	private toolList;
 	public selectedTab = 'all';
+	public viewButtonChecked = false;
 	public timeBoundButtonChecked = false;
 	public timeBoundValue = 'Any time';
 	public locationButtonChecked = false;
@@ -61,6 +63,7 @@ export class FeedAdvancedSearchComponent implements OnInit {
 	private getDataFromStore() {
 		this.isSearching$ = this.store.select(fromRoot.getSearchLoading);
 		this.areResultsAvailable$ = this.store.select(fromRoot.getAreResultsAvailable);
+		this.query$  = this.store.select(fromRoot.getQuery);
 	}
 
 	public toggleSearchTools() {

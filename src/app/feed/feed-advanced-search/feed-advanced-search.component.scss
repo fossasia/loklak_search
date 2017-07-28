@@ -9,7 +9,6 @@ div.wrapper{
 		flex: 1;
 		display: flex;
 		flex-direction: row;
-		align-items: baseline;
 
 		button.tab {
 			cursor: pointer;
@@ -32,6 +31,10 @@ div.wrapper{
 	}
 
 	div.tools {
+		display: flex;
+		flex-direction: row;
+		align-items: baseline;
+
 		md-button-toggle {
 			padding: 8px;
 			color: #777;
@@ -39,10 +42,18 @@ div.wrapper{
 			border-radius: 2px;
 		}
 
+		button.toggleButton {
+			color: #777;
+
+			&.pressed {
+				background-color: #e0e0e0;
+			}
+		}
+
 		.tool-list {
 			position: absolute;
 			left: 150px;
-			top: 42px;
+			top: 55px;
 			padding: 10px 5px;
 			margin: 0px 10px;
 			pointer-events: none;
@@ -95,9 +106,16 @@ div.wrapper{
 		}
 
 		div.tools {
+			margin-left: 0px;
+			justify-content: space-around;
 			.tool-list {
 				left: 0;
 			}
 		}
 	}
+}
+
+.media-wall-route {
+	text-decoration: none;
+	color: rgba(0,0,0,.87);
 }
