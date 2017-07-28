@@ -112,19 +112,26 @@ div.outer-wrapper {
 				.hashtag-list {
 					display: flex;
 					align-items: center;
-					flex-wrap: wrap;
+					flex-direction: column;
 
-					.hashtag {
+					.top-list,
+					.bottom-list {
 						display: flex;
 						align-items: center;
+						flex-wrap: wrap;
 
-						pre {
-							margin: 0px 0px;
-							font-family: 'Roboto', sans-serif;
-							max-width: 100px;
-							white-space: nowrap;
-							overflow-x: hidden;
-							text-overflow: ellipsis;
+						.hashtag {
+							display: flex;
+							align-items: center;
+
+							pre {
+								margin: 0px 0px;
+								font-family: 'Roboto', sans-serif;
+								max-width: 100px;
+								white-space: nowrap;
+								overflow-x: hidden;
+								text-overflow: ellipsis;
+							}
 						}
 					}
 				}
