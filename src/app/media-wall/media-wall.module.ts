@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from '@angular/material';
+import { LazyImgModule } from '../lazy-img/lazy-img.module';
 
 import { ColorPickerModule } from 'ngx-color-picker';
 
@@ -25,7 +26,8 @@ import { MediaWallCustomCardComponent } from './media-wall-custom-card/media-wal
 		BrowserAnimationsModule,
 		MaterialModule,
 		LoklakMediaWallRoutingModule,
-		ColorPickerModule
+		ColorPickerModule,
+		LazyImgModule
 	],
 	declarations: [
 		MediaWallComponent,
