@@ -18,6 +18,10 @@
 		<md-button-toggle (change)="toggleSearchTools()">
 			Tools
 		</md-button-toggle>
+		<md-button-toggle
+		[mdMenuTriggerFor]="viewMenu"
+		(change)="viewButtonChecked = !viewButtonChecked"
+		[checked]="viewButtonChecked">Views</md-button-toggle>
 
 		<div class="tool-list" [class.show]="showTools">
 			<div class="search-tools">
@@ -81,6 +85,13 @@
 				*ngIf="!(isSearching$ | async) && (areResultsAvailable$ | async)">
 				Loklak scrapes social media messages
 			</div>
+			<md-menu #viewMenu="mdMenu" [overlapTrigger]="false" (close)="viewButtonChecked = false">
+					<a md-menu-item class="media-wall-route"
+					type="button"
+					[routerLink]="['/wall']"
+					[queryParams]="{ query : (query$ | async).queryString }"
+					target="_blank"> Display as Media Wall </a>
+			</md-menu>
 		</div>
 	</div>
 </div>
