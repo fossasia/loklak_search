@@ -16,6 +16,7 @@ import { MediaWallCustomizationComponent } from './media-wall-customization/medi
 import { MediaWallCustomHeaderComponent } from './media-wall-custom-header/media-wall-custom-header.component';
 import { MediaWallCustomBackgroundComponent } from './media-wall-custom-background/media-wall-custom-background.component';
 import { MediaWallCustomCardComponent } from './media-wall-custom-card/media-wall-custom-card.component';
+import { MediaWallNotFoundComponent } from './media-wall-not-found/media-wall-not-found.component';
 
 @NgModule({
 	imports: [
@@ -37,6 +38,7 @@ import { MediaWallCustomCardComponent } from './media-wall-custom-card/media-wal
 		MediaWallCustomHeaderComponent,
 		MediaWallCustomBackgroundComponent,
 		MediaWallCustomCardComponent,
+		MediaWallNotFoundComponent,
 	],
 	entryComponents: [
 		MediaWallCustomizationComponent
