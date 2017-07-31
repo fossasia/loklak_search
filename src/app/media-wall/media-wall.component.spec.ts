@@ -77,6 +77,13 @@ class MediaWallCustomCardStubComponent {
 	@Input() mediaWallCard;
 }
 
+@Component({
+	selector: 'media-wall-not-found',
+	template: ''
+})
+class MediaWallNotFoundStubComponent {
+}
+
 describe('Component: MediaWall', () => {
 	beforeEach(() => {
 		TestBed.configureTestingModule({
@@ -96,7 +103,8 @@ describe('Component: MediaWall', () => {
 				MediaWallCustomizationComponent,
 				MediaWallCustomHeaderStubComponent,
 				MediaWallCustomCardStubComponent,
-				MediaWallCustomBackgroundStubComponent
+				MediaWallCustomBackgroundStubComponent,
+				MediaWallNotFoundStubComponent
 			]
 		});
 		TestBed.overrideModule(BrowserDynamicTestingModule, {
