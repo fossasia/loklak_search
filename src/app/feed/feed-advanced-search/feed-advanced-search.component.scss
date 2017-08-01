@@ -36,7 +36,7 @@ div.wrapper{
 		align-items: baseline;
 
 		md-button-toggle {
-			padding: 8px;
+			margin: 0px 3px;
 			color: #777;
 			border: 1px solid transparent;
 			border-radius: 2px;
@@ -53,7 +53,7 @@ div.wrapper{
 		.tool-list {
 			position: absolute;
 			left: 150px;
-			top: 55px;
+			top: 35px;
 			padding: 10px 5px;
 			margin: 0px 10px;
 			pointer-events: none;
