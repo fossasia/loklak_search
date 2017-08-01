@@ -3,12 +3,13 @@
 		<span class="gallery" *ngIf="filteredImages.length > 0">
 			<ul>
       	<li *ngFor="let image of filteredImages">
-					<img class="card-images" src="{{image}}"  />
+					<app-lazy-img class="card-images" src="{{image}}" height="200"></app-lazy-img>
 				</li>
 			</ul>
 		</span>
 		<span class="img-span">
-			<img src="{{feedItem.user.profile_image_url_https}}">
+			<app-lazy-img src="{{feedItem.user.profile_image_url_https}}" alt="Profile Image" width="50" height="50">
+			</app-lazy-img>
 		</span>
 		<span class="time">{{datetime}}</span>
 		<a class="profile-link" [routerLink]="['/wall']" [queryParams]="{ query : 'from:' + feedItem.user.screen_name }">
