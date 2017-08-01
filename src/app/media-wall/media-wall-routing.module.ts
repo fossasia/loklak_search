@@ -5,7 +5,7 @@ import { MediaWallComponent } from './media-wall.component';
 
 const routes: Routes = [
 	{
-		path: 'wall',
+		path: '',
 		component: MediaWallComponent
 	}
 ];

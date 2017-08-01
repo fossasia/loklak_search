@@ -5,7 +5,6 @@ import { LoklakTermsRoutingModule } from './terms-routing.module';
 import { TermsComponent } from './terms.component';
 import { NavbarModule } from '../navbar/navbar.module';
 import { FooterModule } from '../footer/footer.module';
-import { RouterModule } from '@angular/router';
 
 @NgModule({
 	imports: [
@@ -16,11 +15,6 @@ import { RouterModule } from '@angular/router';
 		 * The net effect is that an importer of `BrowserModule` gets `CommonModule` directives automatically.
 		 */
 		CommonModule,
-
-		/**
-		 * Module used by Angular-Router to provide `routerLink` directive.
-		 */
-		RouterModule,
 
 		LoklakTermsRoutingModule,
 		NavbarModule,

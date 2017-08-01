@@ -3,7 +3,13 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { MaterialModule } from '@angular/material';
+import {
+	MdAutocompleteModule,
+	MdMenuModule,
+	MdIconModule,
+	MdButtonModule,
+	MdButtonToggleModule
+} from '@angular/material';
 
 import { LoklakFeedRoutingModule } from './feed-routing.module';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
@@ -36,11 +42,6 @@ import { FeedAdvancedSearchComponent } from './feed-advanced-search/feed-advance
 		CommonModule,
 
 		/**
-		 * The module required for the animations to work.
-		 */
-		BrowserAnimationsModule,
-
-		/**
 		 * `ReactiveFormsModule` declares all the important providers and directives
 		 * for the "Model Driven Forms" which are easier to setup and test.
 		 */
@@ -52,9 +53,13 @@ import { FeedAdvancedSearchComponent } from './feed-advanced-search/feed-advance
 		FormsModule,
 
 		/**
- 		 * The module for material design components
+ 		 * The modules for material design components
  		 */
-		MaterialModule,
+		MdAutocompleteModule,
+		MdMenuModule,
+		MdIconModule,
+		MdButtonModule,
+		MdButtonToggleModule,
 
 		/**
 		 * Defines the routes at `feed` level of application.

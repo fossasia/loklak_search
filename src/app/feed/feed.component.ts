@@ -32,8 +32,6 @@ import { SuggestMetadata, SuggestResults, SuggestResponse } from '../models/api-
 import { Query, parseStringToQuery } from '../models/query';
 import { UserApiResponse } from '../models/api-user-response';
 
-import 'rxjs/add/observable/forkJoin';
-
 @Component({
 	selector: 'app-feed',
 	templateUrl: './feed.component.html',

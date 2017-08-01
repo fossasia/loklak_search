@@ -1,6 +1,7 @@
 /* tslint:disable:no-unused-variable */
 
 import { Component } from '@angular/core';
+import { RouterTestingModule } from '@angular/router/testing';
 import { TestBed, async } from '@angular/core/testing';
 import { Title } from '@angular/platform-browser';
 import { AboutComponent } from './about.component';
@@ -22,6 +23,9 @@ describe('Component: About', () => {
 	let aboutTitle: Title;
 	beforeEach(() => {
 		TestBed.configureTestingModule({
+			imports: [
+				RouterTestingModule
+			],
 			declarations: [
 				AboutComponent,
 				AppNavbarStubComponent,

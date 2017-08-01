@@ -5,8 +5,7 @@ import { TermsComponent } from './terms.component';
 
 const routes: Routes = [
 	{
-		path: 'terms',
-		pathMatch: 'full',
+		path: '',
 		component: TermsComponent
 	}
 ];
