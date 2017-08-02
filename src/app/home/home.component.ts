@@ -35,7 +35,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 	) { }
 
 	ngOnInit() {
-		this.titleService.setTitle('Loklak Search');
+		this.titleService.setTitle('Peer to Peer Social Media Message Search Engine');
 		this.focusTextbox();
 		this.setupSearchField();
 		this.getDataFromStore();
