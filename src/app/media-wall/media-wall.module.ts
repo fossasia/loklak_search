@@ -6,6 +6,7 @@ import { MaterialModule } from '@angular/material';
 import { LazyImgModule } from '../lazy-img/lazy-img.module';
 
 import { ColorPickerModule } from 'ngx-color-picker';
+import { MasonryModule } from 'angular2-masonry';
 
 import { MediaWallComponent } from './media-wall.component';
 import { LoklakMediaWallRoutingModule } from './media-wall-routing.module';
@@ -28,6 +29,7 @@ import { MediaWallNotFoundComponent } from './media-wall-not-found/media-wall-no
 		MaterialModule,
 		LoklakMediaWallRoutingModule,
 		ColorPickerModule,
+		MasonryModule,
 		LazyImgModule
 	],
 	declarations: [

@@ -1,8 +1,9 @@
 import { createSelector } from 'reselect';
 import { Query } from '../models/query';
 import * as mediaWallAction from '../actions/media-wall-query';
+import * as wallPaginationAction from '../actions/media-wall-pagination';
 import { ApiResponse } from '../models/api-response';
-import { fromRegExp } from '../utils';
+import { parseDateToApiAcceptedFormat, fromRegExp } from '../utils';
 
 
 export interface State {
@@ -27,7 +28,7 @@ export const initialState: State = {
 	}
 };
 
-export function reducer(state: State = initialState, action: mediaWallAction.Actions): State {
+export function reducer(state: State = initialState, action: mediaWallAction.Actions | wallPaginationAction.Actions): State {
 	switch (action.type) {
 
 		case mediaWallAction.ActionTypes.WALL_QUERY_CHANGE: {
@@ -38,13 +39,33 @@ export function reducer(state: State = initialState, action: mediaWallAction.Act
 			if (isFromQuery) {
 				displayQuery = '@' + fromCheck[1];
 			}
+			const todayDate = new Date();
 
 			return Object.assign({}, state, {
 			query: {
 				...state.query,
 				queryString: query,
-				displayString: displayQuery
+				displayString: displayQuery,
+				timeBound: {
+					...state.query.timeBound,
+					since: todayDate
+				}
 			}
+			});
+		}
+
+		case wallPaginationAction.ActionTypes.WALL_NEXT_PAGE: {
+
+			const newSinceDay = new Date (state.query.timeBound.since.setDate(state.query.timeBound.since.getDate() - 1));
+			const newUntilDay = new Date (state.query.timeBound.since.setDate(state.query.timeBound.since.getDate() + 1));
+			return Object.assign({}, state, {
+				query: {
+					...state.query,
+					timeBound: {
+						since: newSinceDay,
+						until: newUntilDay
+					}
+				}
 			});
 		}
 
