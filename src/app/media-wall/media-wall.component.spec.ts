@@ -91,7 +91,7 @@ describe('Component: MediaWall', () => {
 				RouterTestingModule,
 				ReactiveFormsModule,
 				FormsModule,
-				MdDialogModule.forRoot(),
+				MdDialogModule,
 				MaterialModule,
 				StoreModule.provideStore(reducer)
 			],

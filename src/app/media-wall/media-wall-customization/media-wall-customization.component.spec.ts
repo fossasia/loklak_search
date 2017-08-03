@@ -43,7 +43,7 @@ describe('MediaWallCustomizationComponent', () => {
 			imports: [
 				RouterTestingModule,
 				BrowserAnimationsModule,
-				MdDialogModule.forRoot(),
+				MdDialogModule,
 				MaterialModule,
 				StoreModule.provideStore(fromRoot.reducer),
 				FormsModule,

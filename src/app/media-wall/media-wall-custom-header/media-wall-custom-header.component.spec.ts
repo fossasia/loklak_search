@@ -9,7 +9,7 @@ describe('MediaWallCustomHeaderComponent', () => {
 	beforeEach(() => {
 		TestBed.configureTestingModule({
 			imports: [
-				MdSlideToggleModule.forRoot(),
+				MdSlideToggleModule,
 				MaterialModule
 			],
 			declarations: [
