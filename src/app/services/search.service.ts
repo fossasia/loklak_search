@@ -10,7 +10,7 @@ import { ApiResponse } from '../models/api-response';
 
 @Injectable()
 export class SearchService {
-	private static readonly apiUrl: URL = new URL('http://api.loklak.org/api/search.json');
+	private static readonly apiUrl: URL = new URL('http://35.193.155.174/api/search.json');
 
 	constructor(
 		private jsonp: Jsonp

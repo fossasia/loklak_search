@@ -15,6 +15,7 @@ import { Query } from '../models';
 import * as wallAction from '../actions/media-wall';
 import * as wallPaginationAction from '../actions/media-wall-pagination';
 import * as fromRoot from '../reducers';
+import { parseDateToApiAcceptedFormat } from '../utils';
 
 /**
  * Effects offer a way to isolate and easily test side-effects within your
@@ -49,7 +50,6 @@ export class WallPaginationEffects {
 					.switchMap(queryObject => {
 						const nextSearch$ = this.actions$.ofType(wallAction.ActionTypes.WALL_SEARCH);
 
-						this.searchServiceConfig.startRecord = queryObject.lastRecord + 1;
 						if (queryObject.query.filter.image) {
 							this.searchServiceConfig.addFilters(['image']);
 						} else {
@@ -61,7 +61,13 @@ export class WallPaginationEffects {
 							this.searchServiceConfig.removeFilters(['video']);
 						}
 
-						return this.apiSearchService.fetchQuery(queryObject.query.queryString, this.searchServiceConfig)
+						const sinceDay = queryObject.query.timeBound.since.toDateString();
+						const untilDay = queryObject.query.timeBound.until.toDateString();
+						const searchQuery = queryObject.query.queryString +
+						` since:${parseDateToApiAcceptedFormat(new Date(sinceDay))}` +
+						` until:${parseDateToApiAcceptedFormat(new Date(untilDay))}`;
+
+						return this.apiSearchService.fetchQuery(searchQuery, this.searchServiceConfig)
 												.takeUntil(nextSearch$)
 												.map(response => {
 													return new wallPaginationAction.WallPaginationCompleteSuccessAction(response);
