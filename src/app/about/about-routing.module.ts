@@ -5,8 +5,7 @@ import { AboutComponent } from './about.component';
 
 const routes: Routes = [
 	{
-		path: 'about',
-		pathMatch: 'full',
+		path: '',
 		component: AboutComponent
 	}
 ];

@@ -9,7 +9,7 @@ describe('MediaWallCustomCardComponent', () => {
 	beforeEach(() => {
 		TestBed.configureTestingModule({
 			imports: [,
-				MdSlideToggleModule.forRoot(),
+				MdSlideToggleModule,
 				MaterialModule
 			],
 			declarations: [
