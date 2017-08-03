@@ -66,7 +66,7 @@ With these very simple steps you can have loklak_search deployed:
 * **Step 6:** Reload and you will have a function loklak search page deployed with github pages.
 
 ### Loklak Server
-See here to run your own https://github.com/loklak/loklak_server (recommended), and change `apiUrl` in config accordingly. Last resource, or for production is `http://api.loklak.org
+See here to run your own https://github.com/loklak/loklak_server (recommended), and change `apiUrl` in config accordingly. Last resource, or for production is `http://api.loklak.org`
 
 ## Contributions, Bug Reports, Feature Requests
 
