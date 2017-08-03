@@ -8,7 +8,6 @@ import {
 	ChangeDetectionStrategy,
 	ElementRef
 } from '@angular/core';
-import { MdButtonToggle } from '@angular/material';
 import { Observable } from 'rxjs/Observable';
 
 import { Store } from '@ngrx/store';

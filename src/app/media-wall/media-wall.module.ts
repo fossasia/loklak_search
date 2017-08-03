@@ -1,10 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MaterialModule } from '@angular/material';
-import { LazyImgModule } from '../lazy-img/lazy-img.module';
+import {
+	MdTabsModule,
+	MdIconModule,
+	MdSlideToggleModule
+} from '@angular/material';
 
+import { LazyImgModule } from '../lazy-img/lazy-img.module';
 import { ColorPickerModule } from 'ngx-color-picker';
 
 import { MediaWallComponent } from './media-wall.component';
@@ -24,8 +27,9 @@ import { MediaWallNotFoundComponent } from './media-wall-not-found/media-wall-no
 		CommonModule,
 		FormsModule,
 		ReactiveFormsModule,
-		BrowserAnimationsModule,
-		MaterialModule,
+		MdTabsModule,
+		MdIconModule,
+		MdSlideToggleModule,
 		LoklakMediaWallRoutingModule,
 		ColorPickerModule,
 		LazyImgModule

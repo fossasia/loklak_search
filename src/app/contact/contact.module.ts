@@ -1,13 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpModule, JsonpModule } from '@angular/http';
 
 import { LoklakContactRoutingModule } from './contact-routing.module';
-import { ContactComponent } from './contact.component';
 import { FooterModule } from '../footer/footer.module';
 import { NavbarModule } from '../navbar/navbar.module';
-import { RouterModule } from '@angular/router';
+import { ContactComponent } from './contact.component';
 import { ContactFormComponent } from './contact-form/contact-form.component';
 
 @NgModule({
@@ -28,10 +26,7 @@ import { ContactFormComponent } from './contact-form/contact-form.component';
 
 		LoklakContactRoutingModule,
 		NavbarModule,
-		FooterModule,
-		RouterModule,
-		HttpModule,
-		JsonpModule
+		FooterModule
 	],
 	declarations: [
 		ContactComponent,

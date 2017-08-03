@@ -1,32 +1,35 @@
 import { BrowserModule, Title } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 
+import { JsonpModule } from '@angular/http';
+
 import { reducer } from './reducers';
-import { ApiSearchEffects } from './effects/api-search.effects';
-import { MediaWallQueryEffects } from './effects/media-wall-search.effects';
-import { PaginationEffects } from './effects/pagination.effects';
-import { ApiUserSearchEffects } from './effects/api-user-search.effects';
-import { SuggestEffects } from './effects/api-suggest.effects';
-import { QueryEffects } from './effects/query.effects';
-import { UserQueryEffects } from './effects/user-query.effects';
-import { WallPaginationEffects } from './effects/media-wall-pagination.effects';
+import {
+	ApiSearchEffects,
+	MediaWallQueryEffects,
+	PaginationEffects,
+	ApiUserSearchEffects,
+	SuggestEffects,
+	QueryEffects,
+	UserQueryEffects,
+	WallPaginationEffects
+} from './effects';
 
 import { LoklakAppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
-
-import { HomeModule } from './home/home.module';
-import { FeedModule } from './feed/feed.module';
-import { AboutModule } from './about/about.module';
-import { ContactModule } from './contact/contact.module';
-import { TermsModule } from './terms/terms.module';
-import { MediaWallModule } from './media-wall/media-wall.module';
-import { SearchService, UserService, SuggestService } from './services';
 import { PageNotFoundModule } from './pagenotfound/pagenotfound.module';
+
+import {
+	SearchService,
+	UserService,
+	SuggestService
+} from './services';
 
 @NgModule({
 	declarations: [
@@ -43,6 +46,16 @@ import { PageNotFoundModule } from './pagenotfound/pagenotfound.module';
 		 * visible and usable in any of this modules component templates.
 		 */
 		BrowserModule,
+
+		/**
+		 * Module for browser animation API.
+		 */
+		BrowserAnimationsModule,
+
+		/**
+		 * Module to register the providers for making Jsonp requests.
+		 */
+		JsonpModule,
 
 		/**
      * StoreModule.provideStore is imported once in the root module, accepting a reducer
@@ -90,39 +103,8 @@ import { PageNotFoundModule } from './pagenotfound/pagenotfound.module';
 		LoklakAppRoutingModule,
 
 		/**
-		 * Module responsible for `Home Page` of the Application.
-		 */
-		HomeModule,
-
-		/**
-		 * Module responsible for `Feed Page` of the Application.
-		 * Comprises of `SearchHeader` and `FeedSearchResults`.
-		 */
-		FeedModule,
-
-		/**
-		 * Module defines the `About Page` of the Loklak Project.
-		 */
-		AboutModule,
-
-		/**
-		 * Module defines the `ContactUs Page` of the FossAsia Team.
-		 */
-		ContactModule,
-
-		/**
-		 * Module defines the `TermsAndServices Page` for the Loklak Project.
-		 */
-		TermsModule,
-
-		/**
-		 * Module defines the `Media Wall Page` for the Loklak Project.
-		 */
-		MediaWallModule,
-		/**
 		/* Module defines the '404 Not found Page' for the Loklak Project.
 		*/
-
 		PageNotFoundModule
 	],
 	providers: [

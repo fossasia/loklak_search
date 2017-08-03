@@ -4,8 +4,6 @@ import { CommonModule } from '@angular/common';
 import { LoklakPageNotFoundRoutingModule } from './pagenotfound-routing.module';
 import { PageNotFoundComponent } from './pagenotfound.component';
 
-import { RouterModule } from '@angular/router';
-
 @NgModule({
 	imports: [
 		/**
@@ -15,11 +13,6 @@ import { RouterModule } from '@angular/router';
 		 * The net effect is that an importer of `BrowserModule` gets `CommonModule` directives automatically.
 		 */
 		CommonModule,
-
-		/**
-		 * Module used by Angular-Router to provide `routerLink` directive.
-		 */
-		RouterModule,
 
 		LoklakPageNotFoundRoutingModule,
 	],
