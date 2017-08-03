@@ -23,8 +23,8 @@ Our chat channel is on gitter here: https://gitter.im/loklak/loklak
 ## Technology Stack
 ##### Components
 * HTML - Structure of the web page generated.
-* CSS - Styling options and details ofthe web page.
-* Javascript(JSON) - Used to store information for deploying the application such as dependencies.
+* CSS - Styling options and details of the web page.
+* JavaScript(JSON) - Used to store information for deploying the application such as dependencies.
 * Angular2 - Structure for deployment of the web page.
 
 ## Services and Dependencies
