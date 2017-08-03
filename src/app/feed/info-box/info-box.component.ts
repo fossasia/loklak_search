@@ -12,17 +12,17 @@ import { Query } from '../../models';
 	styleUrls: ['./info-box.component.scss']
 })
 export class InfoBoxComponent implements OnInit, OnChanges {
-	@Input() private query: Query;
-	@Input() private apiResponseAggregations: ApiResponseAggregations;
-	private inviewporttwitters: Observable<boolean>;
-	private inviewportmentions: Observable<boolean>;
+	@Input() public query: Query;
+	@Input() public apiResponseAggregations: ApiResponseAggregations;
+	public inviewporttwitters: Observable<boolean>;
+	public inviewportmentions: Observable<boolean>;
 	public areTopHashtagsAvailable: boolean;
 	public areTopTwitterersAvailable: boolean;
 	public areTopMentionsAvailable: boolean;
 	public areFrequencyDataAvailable: boolean;
-	private topHashtags;
-	private topMentions;
-	private topTwitterers;
+	public topHashtags;
+	public topMentions;
+	public topTwitterers;
 
 	public barChartLabels: string[] = ['0'];
 	public barChartType = 'bar';
@@ -144,7 +144,7 @@ export class InfoBoxComponent implements OnInit, OnChanges {
 			this.barChartLabels = labels;
 			this.areFrequencyDataAvailable = true;
 
-			return this.barChartData[0].data, this.barChartLabels;
+			return;
 		}
 		else {
 			this.areFrequencyDataAvailable = false;
