@@ -52,7 +52,7 @@ $ npm install
 
 #### How to use ngrx/StoreDevtools?
 * **Step 1:** Install the `Redux Devtools` [extension](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?hl=en-US).
-* **Step 2:** We don't enable the the ReduxDevtools by default due to performance considerations, To enable this un-comment the *StoreDevtools* `import` in `app.module.ts`.
+* **Step 2:** We don't enable the ReduxDevtools by default due to performance considerations. To enable this, un-comment the *StoreDevtools* `import` in `app.module.ts`.
 
 **Note:** Please make sure that you comment the *StoreDevtools* `import` again before making the PR.
 
@@ -62,7 +62,7 @@ With these very simple steps you can have loklak_search deployed:
 * **Step 2:** Then checkout to your master branch `$ git checkout master`
 * **Step 3:** Deploy running this : ```$ npm run deploy```
 * **Step 4:** Visit `https://yourusername.github.io/loklak_search` and you should see the search running
-* **Step 5:** As you search you might see that that it cant find anything, to resolve this, on search you will see there is a red shield on search bar, click on it and allow to load scripts
+* **Step 5:** As you search you might see that it can't find anything, to resolve this, on search you will see there is a red shield on search bar, click on it and allow to load scripts
 * **Step 6:** Reload and you will have a function loklak search page deployed with github pages.
 
 ### Loklak Server
