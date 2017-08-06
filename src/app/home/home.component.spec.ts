@@ -66,7 +66,7 @@ describe('Component: Home', () => {
 		const component = fixture.debugElement.componentInstance;
 
 		homeTitle = TestBed.get(Title);
-		expect(homeTitle.getTitle()).toBe('Peer to Peer Social Media Message Search Engine');
+		expect(homeTitle.getTitle()).toBe('Loklak Search - Peer to Peer Social Media Message Search Engine');
 	});
 
 	it('should have logo with correct alt text property', async(() => {
