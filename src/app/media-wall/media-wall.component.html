@@ -11,16 +11,17 @@
 				<!-- Hook Up the Material Design Progress Bar. -->
 			</div>
 		</div>
-		<div class="masonry" id="masonry"
-		*ngIf="!(isWallSearching$ | async)">
-			<div class="masonry-panel"
-			*ngFor="let item of (apiWallResponseResults$ | async);"
-			[class.paginate]="showResults && !(isWallPaginating$ | async)">
+		<masonry
+		*ngIf="!(isWallSearching$ | async)"
+		[options]="masonryOptions">
+			<masonry-brick
+			class="brick"
+			*ngFor="let item of (apiWallResponseResults$ | async);">
 				<media-wall-card
 				[feedItem]="item"
 				[wallCustomCard$]="wallCustomCard$"></media-wall-card>
-			</div>
-		</div>
+			</masonry-brick>
+		</masonry>
 		<div class="results-not-found"
 						*ngIf="!(areWallResultsAvailable$ | async) &&
 									((query$ | async).queryString) &&

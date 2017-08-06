@@ -6,6 +6,7 @@ import { Location } from '@angular/common';
 import {MdDialog, MdDialogRef} from '@angular/material';
 import { MediaWallCustomizationComponent } from './media-wall-customization/media-wall-customization.component';
 import { Title } from '@angular/platform-browser';
+import { MasonryOptions } from '../app-masonry';
 
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
@@ -41,6 +42,9 @@ export class MediaWallComponent implements OnInit, AfterViewInit, OnDestroy {
 	public showToolBar = false;
 	public showResults = false;
 	public timer: Observable<any>;
+	public masonryOptions: MasonryOptions = {
+		transitionDuration: '0.8s'
+	}
 
 	constructor(
 		private route: ActivatedRoute,
@@ -55,7 +59,6 @@ export class MediaWallComponent implements OnInit, AfterViewInit, OnDestroy {
 	ngOnInit() {
 		this.queryFromURL();
 		this.getDataFromStore();
-		this.waitResultsTimings();
 	}
 
 	ngAfterViewInit() {
@@ -115,22 +118,6 @@ export class MediaWallComponent implements OnInit, AfterViewInit, OnDestroy {
 				})
 			);
 		}
-	}
-
-	public waitResultsTimings() {
-		this.__subscriptions__.push(
-			this.isWallSearching$.subscribe(value => {
-				if (value === false) {
-					setTimeout(() => {
-						this.showResults = true;
-					}, 50);
-				}
-				if (value === true) {
-					this.showResults = false;
-				}
-				this.ref.markForCheck();
-			})
-		);
 	}
 
 	/**
