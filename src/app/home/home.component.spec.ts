@@ -66,7 +66,8 @@ describe('Component: Home', () => {
 		const component = fixture.debugElement.componentInstance;
 
 		homeTitle = TestBed.get(Title);
-		expect(homeTitle.getTitle()).toBe('Loklak Search - Peer to Peer Social Media Message Search Engine');
+		expect(homeTitle.getTitle())
+		.toBe('Loklak Search - Distributed Open Source Search for Twitter and Social Media with Peer to Peer Technology');
 	});
 
 	it('should have logo with correct alt text property', async(() => {
@@ -78,7 +79,8 @@ describe('Component: Home', () => {
 		const image = compiled.querySelector('app-lazy-img');
 
 		expect(image).toBeTruthy();
-		expect(image.getAttribute('alt')).toBe('loklak Search - Distributed Social Media Message Search Engine');
+		expect(image.getAttribute('alt'))
+		.toBe('loklak Search - Distributed Open Source Search for Twitter and Social Media with Peer to Peer Technology');
 	}));
 
 	it('should have "_queryControl" property.', async(() => {
