@@ -15,6 +15,7 @@ import { Query } from '../models';
 import * as wallAction from '../actions/media-wall';
 import * as wallPaginationAction from '../actions/media-wall-pagination';
 import * as fromRoot from '../reducers';
+import { profanityFilter, accountExclusion } from '../utils';
 
 /**
  * Effects offer a way to isolate and easily test side-effects within your
@@ -43,7 +44,10 @@ export class WallPaginationEffects {
 					.map(([action, state]) => {
 						return {
 							query: state.mediaWallQuery.query,
-							lastRecord: state.mediaWallResponse.entities.length
+							lastRecord: state.mediaWallResponse.entities.length,
+							profanityCheck: state.mediaWallFilter.profanityFilter,
+							excludeAccount: state.mediaWallFilter.excludeUserAccount,
+							excludeUserName: state.mediaWallFilter.userAccountNames
 						};
 					})
 					.switchMap(queryObject => {
@@ -64,6 +68,12 @@ export class WallPaginationEffects {
 						return this.apiSearchService.fetchQuery(queryObject.query.queryString, this.searchServiceConfig)
 												.takeUntil(nextSearch$)
 												.map(response => {
+													if (queryObject.profanityCheck) {
+														response.statuses = profanityFilter(response.statuses);
+													}
+													else if (queryObject.excludeAccount) {
+														response.statuses = accountExclusion(response.statuses, queryObject.excludeUserName);
+													}
 													return new wallPaginationAction.WallPaginationCompleteSuccessAction(response);
 												})
 												.catch(() => of(new wallPaginationAction.WallPaginationCompleteFailAction('')));

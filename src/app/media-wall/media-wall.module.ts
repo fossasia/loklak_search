@@ -4,7 +4,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
 	MdTabsModule,
 	MdIconModule,
-	MdSlideToggleModule
+	MdSlideToggleModule,
+	MdDialogModule
 } from '@angular/material';
 
 import { LazyImgModule } from '../lazy-img/lazy-img.module';
@@ -29,6 +30,7 @@ import { MediaWallNotFoundComponent } from './media-wall-not-found/media-wall-no
 		ReactiveFormsModule,
 		MdTabsModule,
 		MdIconModule,
+		MdDialogModule,
 		MdSlideToggleModule,
 		LoklakMediaWallRoutingModule,
 		ColorPickerModule,

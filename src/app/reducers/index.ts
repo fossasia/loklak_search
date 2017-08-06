@@ -54,6 +54,7 @@ import * as fromMediaWallSearch from './media-wall-search';
 import * as fromMediaWallResponse from './api-media-wall-response';
 import * as fromMediaWallCustom from './media-wall-custom';
 import * as fromMediaWallPagination from './media-wall-pagination';
+import * as fromMediaWallFilter from './media-wall-filter';
 
 /**
  * As mentioned, we treat each reducer like a table in a database. This means
@@ -76,6 +77,7 @@ export interface State {
 	mediaWallSearch: fromMediaWallSearch.State;
 	mediaWallCustom: fromMediaWallCustom.State;
 	mediaWallPagination: fromMediaWallPagination.State;
+	mediaWallFilter: fromMediaWallFilter.State;
 }
 
 /**
@@ -101,7 +103,8 @@ const reducers = {
 	mediaWallResponse: fromMediaWallResponse.reducer,
 	mediaWallSearch: fromMediaWallSearch.reducer,
 	mediaWallCustom: fromMediaWallCustom.reducer,
-	mediaWallPagination: fromMediaWallPagination.reducer
+	mediaWallPagination: fromMediaWallPagination.reducer,
+	mediaWallFilter: fromMediaWallFilter.reducer
 };
 
 const developmentReducer: ActionReducer<State> = compose(storeFreeze, combineReducers)(reducers);
@@ -274,6 +277,17 @@ export const getMediaWallCustomState = (state: State) => state.mediaWallCustom;
 export const getMediaWallCustomHeader = createSelector(getMediaWallCustomState, fromMediaWallCustom.getCustomWallHeader);
 export const getMediaWallCustomBackground = createSelector(getMediaWallCustomState, fromMediaWallCustom.getCustomWallBackground);
 export const getMediaWallCustomCard = createSelector(getMediaWallCustomState, fromMediaWallCustom.getCustomWallCard);
+
+/**
+ * Selectors for Media Wall Filters
+ */
+
+export const getMediaWallFilterState = (state: State) => state.mediaWallFilter;
+
+export const isWallProfanityFilter = createSelector(getMediaWallFilterState, fromMediaWallFilter.isProfanityFilter);
+export const isWallExcludeUserAccount = createSelector(getMediaWallFilterState, fromMediaWallFilter.isExcludeUserAccount);
+export const getWallExcludeUserAccountNames = createSelector(getMediaWallFilterState, fromMediaWallFilter.excludeUserAccountNames);
+
 
 /**
  * Selectors for Media Wall Response

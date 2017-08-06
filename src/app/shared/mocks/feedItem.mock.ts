@@ -37,6 +37,7 @@ export const MockApiResponseResult: ApiResponseResult = {
 		'opntec'
 	],
 	mentions_count: 3,
+	classifier_profanity: 'swear',
 	place_context: 'ABOUT',
 	place_id: '',
 	place_name: '',
