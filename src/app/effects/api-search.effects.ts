@@ -22,7 +22,7 @@ import * as trendsAction from '../actions/trends';
 import * as wallAction from '../actions/media-wall';
 import * as wallPaginationAction from '../actions/media-wall-pagination';
 import { ApiResponse } from '../models';
-import { parseDateToApiAcceptedFormat } from '../utils';
+import { parseDateToApiAcceptedFormat, profanityFilter, accountExclusion } from '../utils';
 
 /**
  * Effects offer a way to isolate and easily test side-effects within your
@@ -136,27 +136,41 @@ export class ApiSearchEffects {
 		= this.actions$
 					.ofType(wallAction.ActionTypes.WALL_SEARCH)
 					.debounceTime(400)
-					.map((action: wallAction.WallSearchAction) => action.payload)
-					.switchMap(query => {
+					.withLatestFrom(this.store$)
+					.map(([action, state]) => {
+						return {
+							query: state.mediaWallQuery.query,
+							profanityCheck: state.mediaWallFilter.profanityFilter,
+							excludeAccount: state.mediaWallFilter.excludeUserAccount,
+							excludeUserName: state.mediaWallFilter.userAccountNames
+						};
+					})
+					.switchMap(queryObject => {
 						const nextSearch$ = this.actions$.ofType(wallAction.ActionTypes.WALL_SEARCH).skip(1);
 						const searchServiceConfig: SearchServiceConfig = new SearchServiceConfig();
 
-						if (query.filter.image) {
+						if (queryObject.query.filter.image) {
 							searchServiceConfig.addFilters(['image']);
 						} else {
 							searchServiceConfig.removeFilters(['image']);
 						}
-						if (query.filter.video) {
+						if (queryObject.query.filter.video) {
 							searchServiceConfig.addFilters(['video']);
 						} else {
 							searchServiceConfig.removeFilters(['video']);
 						}
 
-							return this.apiSearchService.fetchQuery(query.queryString, searchServiceConfig)
+							return this.apiSearchService.fetchQuery(queryObject.query.queryString, searchServiceConfig)
 												.takeUntil(nextSearch$)
 												.map(response => {
-													const URIquery = encodeURIComponent(query.queryString);
+													const URIquery = encodeURIComponent(queryObject.query.queryString);
 													this.location.go(`/wall?query=${URIquery}`);
+													if (queryObject.profanityCheck) {
+														response.statuses = profanityFilter(response.statuses);
+													}
+													else if (queryObject.excludeAccount) {
+														response.statuses = accountExclusion(response.statuses, queryObject.excludeUserName);
+													}
 													return new apiAction.WallSearchCompleteSuccessAction(response);
 												})
 												.catch(() => of(new apiAction.WallSearchCompleteFailAction('')));

@@ -30,6 +30,7 @@ import { MediaWallNotFoundComponent } from './media-wall-not-found/media-wall-no
 		ReactiveFormsModule,
 		MdTabsModule,
 		MdIconModule,
+		MdDialogModule,
 		MdSlideToggleModule,
 		LoklakMediaWallRoutingModule,
 		ColorPickerModule,
