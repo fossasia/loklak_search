@@ -7,18 +7,18 @@ loklak_search
 |codecov|
 |Dependency Status|
 
-The loklak_search creates a website using the loklak server as a data source. 
-The goal is to get a search site, that offers timeline search as well as 
+The loklak_search creates a website using the loklak server as a data source.
+The goal is to get a search site, that offers timeline search as well as
 custom media search, account and geolocation search.
 
-In order to run the service you can use the API of http://api.loklak.org or 
-install your own loklak server data storage engine. loklak_server_ is a server 
-application which collects messages from various social media tweet sources, 
-including twitter. The server contains a search index and a peer-to-peer 
+In order to run the service you can use the API of http://api.loklak.org or
+install your own loklak server data storage engine. loklak_server_ is a server
+application which collects messages from various social media tweet sources,
+including twitter. The server contains a search index and a peer-to-peer
 index sharing interface. All messages are stored in an elasticsearch index.
 
-The site of this repo is deployed on the GitHub gh-pages branch and automatically 
-deployed here: http://loklak.net
+The site of this repo is deployed on the GitHub gh-pages branch and automatically
+deployed here: http://loklak.org
 
 Communication
 -------------
@@ -59,7 +59,7 @@ How to deploy?
 --------------
 **Running on localhost:**
 
-- **Step 1:** Fork loklak_search repository and clone it to your desktop 
+- **Step 1:** Fork loklak_search repository and clone it to your desktop
 - **Step 2:** Then cd into that cloned folder
 - **Step 3:** Deploy locally by running this :``$ ng serve``
 
@@ -96,7 +96,7 @@ License
 This project is currently licensed under The MIT License (MIT). A copy of LICENSE.md should be present along with the source code. To obtain the software under a different license, please contact FOSSASIA.
 
 .. |Build Status| image:: https://travis-ci.org/fossasia/loklak_search.svg?branch=master
-   :target: https://travis-ci.org/fossasia/loklak_search   
+   :target: https://travis-ci.org/fossasia/loklak_search
 .. |Join the chat at https://gitter.im/loklak/loklak| image:: https://badges.gitter.im/Join%20Chat.svg
    :target: https://gitter.im/loklak/loklak
 .. |Code Climate| image:: https://codeclimate.com/github/fossasia/loklak_search/badges/gpa.svg
@@ -106,11 +106,11 @@ This project is currently licensed under The MIT License (MIT). A copy of LICENS
 
 .. |Dependency Status| image:: https://gemnasium.com/badges/github.com/fossasia/loklak_search.svg
    :target: https://gemnasium.com/github.com/fossasia/loklak_search
-   
+
 .. _loklak_server: https://github.com/loklak/loklak_server
 .. _Bower: https://bower.io
 .. _Angular-cli: https://github.com/angular/angular-cli#installation
-   
+
 .. toctree::
    :caption: Home
    :hidden:
