@@ -152,10 +152,12 @@ export class ApiSearchEffects {
 							searchServiceConfig.removeFilters(['video']);
 						}
 
+						searchServiceConfig.source = 'twitter';
+
 							return this.apiSearchService.fetchQuery(query.queryString, searchServiceConfig)
 												.takeUntil(nextSearch$)
 												.map(response => {
-													const URIquery = encodeURIComponent(query.queryString);
+													const URIquery = encodeURIComponent(query.displayString);
 													this.location.go(`/wall?query=${URIquery}`);
 													return new apiAction.WallSearchCompleteSuccessAction(response);
 												})
@@ -166,15 +168,10 @@ export class ApiSearchEffects {
 	nextWallSearchAction$
 		= this.actions$
 					.ofType(apiAction.ActionTypes.WALL_SEARCH_COMPLETE_SUCCESS)
-					.debounceTime(5000)
+					.debounceTime(10000)
 					.withLatestFrom(this.store$)
 					.map(([action, state]) => {
-								if (state.mediaWallResponse.lastResponseLength > 0) {
-									return new wallPaginationAction.WallNextPageAction('');
-								}
-								else {
-									return new wallPaginationAction.StopWallPaginationAction('');
-								}
+							return new wallPaginationAction.WallNextPageAction('');
 					});
 
 	@Effect({ dispatch: false })

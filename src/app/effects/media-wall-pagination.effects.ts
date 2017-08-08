@@ -15,6 +15,7 @@ import { Query } from '../models';
 import * as wallAction from '../actions/media-wall';
 import * as wallPaginationAction from '../actions/media-wall-pagination';
 import * as fromRoot from '../reducers';
+import { parseDateToApiAcceptedFormat } from '../utils';
 
 /**
  * Effects offer a way to isolate and easily test side-effects within your
@@ -49,7 +50,6 @@ export class WallPaginationEffects {
 					.switchMap(queryObject => {
 						const nextSearch$ = this.actions$.ofType(wallAction.ActionTypes.WALL_SEARCH);
 
-						this.searchServiceConfig.startRecord = queryObject.lastRecord + 1;
 						if (queryObject.query.filter.image) {
 							this.searchServiceConfig.addFilters(['image']);
 						} else {
@@ -60,6 +60,9 @@ export class WallPaginationEffects {
 						} else {
 							this.searchServiceConfig.removeFilters(['video']);
 						}
+						this.searchServiceConfig.source = 'twitter';
+						this.searchServiceConfig.count = 1;
+						this.searchServiceConfig.maximumRecords = 1;
 
 						return this.apiSearchService.fetchQuery(queryObject.query.queryString, this.searchServiceConfig)
 												.takeUntil(nextSearch$)
@@ -76,12 +79,7 @@ export class WallPaginationEffects {
 					.debounceTime(10000)
 					.withLatestFrom(this.store$)
 					.map(([action, state]) => {
-								if (state.mediaWallResponse.lastResponseLength > 0) {
-									return new wallPaginationAction.WallNextPageAction('');
-								}
-								else {
-									return new wallPaginationAction.StopWallPaginationAction('');
-								}
+						return new wallPaginationAction.WallNextPageAction('');
 					});
 
 	constructor(

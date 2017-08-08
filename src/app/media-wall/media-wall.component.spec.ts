@@ -14,6 +14,7 @@ import { MediaWallCustomizationComponent } from './media-wall-customization/medi
 import { reducer } from '../reducers';
 import { RouterStub } from '../../testing';
 import { MediaWallComponent } from './media-wall.component';
+import { MasonryModule } from '../app-masonry/app-masonry.module';
 
 
 
@@ -93,6 +94,7 @@ describe('Component: MediaWall', () => {
 				FormsModule,
 				MdDialogModule,
 				MaterialModule,
+				MasonryModule,
 				StoreModule.provideStore(reducer)
 			],
 			declarations: [

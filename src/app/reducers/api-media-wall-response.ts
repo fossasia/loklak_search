@@ -2,6 +2,7 @@ import { createSelector } from 'reselect';
 import { ApiResponse, ApiResponseResult } from '../models/api-response';
 import * as apiAction from '../actions/api';
 import * as wallPaginationAction from '../actions/media-wall-pagination';
+import { removeDuplicate } from '../utils'
 
 /**
  * Each reducer module must import the local `State` which it controls.
@@ -52,9 +53,10 @@ export function reducer(state: State = initialState, action: apiAction.Actions |
 
 		case wallPaginationAction.ActionTypes.WALL_PAGINATION_COMPLETE_SUCCESS: {
 			const apiResponse = action.payload;
+			const filteredResponse = removeDuplicate(state.entities, apiResponse.statuses);
 
 			return Object.assign({}, state, {
-				entities: [ ...apiResponse.statuses, ...state.entities ],
+				entities: [ ...filteredResponse, ...state.entities ],
 				lastResponseLength: apiResponse.statuses.length
 			});
 		}

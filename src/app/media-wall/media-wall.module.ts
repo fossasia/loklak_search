@@ -10,6 +10,7 @@ import {
 
 import { LazyImgModule } from '../lazy-img/lazy-img.module';
 import { ColorPickerModule } from 'ngx-color-picker';
+import { MasonryModule } from '../app-masonry';
 
 import { MediaWallComponent } from './media-wall.component';
 import { LoklakMediaWallRoutingModule } from './media-wall-routing.module';
@@ -33,6 +34,7 @@ import { MediaWallNotFoundComponent } from './media-wall-not-found/media-wall-no
 		MdSlideToggleModule,
 		LoklakMediaWallRoutingModule,
 		ColorPickerModule,
+		MasonryModule,
 		LazyImgModule,
 		MdDialogModule
 	],
