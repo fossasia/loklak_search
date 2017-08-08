@@ -11,19 +11,31 @@ md-icon {
 	background-color: #ff4081;
 }
 
-.form-close{
+div.header {
+	display: flex;
+	flex-wrap: row;
+	align-items: baseline;
+
+	.form-close {
+	margin-left: auto;
 	border: none;
 	width: 40px;
 	height: 40px;
 	font-size: 30px;
-	position: absolute;
-	right: 25px;
-	top: 10px;
 	background: white;
 	color: gray;
 	cursor: pointer;
 	}
 
+	h1 {
+		margin-right: auto;
+	}
+
+}
+
+/deep/ .mat-dialog-container {
+	overflow: hidden;
+}
 
 button::-moz-focus-inner {
   border: 0;
