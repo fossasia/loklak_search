@@ -17,15 +17,18 @@
 
 		div.logo {
 			flex: 1;
+			font-size:1.7rem;
+			display: inline-flex;
+			align-items: baseline;
+			justify-content: flex-end;
+			margin-right: 10px;
+
+			div.message {
+				white-space: nowrap;
+			}
 			a {
-				display: block;
-				height: 50px;
 				font-family: "Courier New";
-				padding:15px 15px;
-				font-size:2.5rem;
 				color: #e91e63;
-				line-height: 20px;
-				width: 170px;
 
 				@media(max-width: 600px) {
 					font-size: 34px;
@@ -39,10 +42,25 @@
 
 
 		div.title {
+			flex: 1;
+			padding:15px 15px;
 			font-family: 'Montserrat', sans-serif !important;
 			font-weight: 700;
-			font-size: 2.3rem;
-			padding-top: 1vw;
+			font-size: 2rem;
+		}
+
+		div.heading {
+			flex: 1;
+			font-family: 'Montserrat', sans-serif !important;
+			font-weight: 700;
+			font-size: 2rem;
+			display: flex;
+
+			span.heading-message {
+				margin-left: auto;
+				margin-right: auto;
+				white-space: nowrap;
+			}
 
 
 			@media(max-width: 600px) {
@@ -58,7 +76,6 @@
 
 		div.menu {
 			opacity: 0;
-			flex: 1;
 			display: flex;
 			justify-content: flex-end;
 			transition: opacity .25s ease-in-out;
@@ -72,7 +89,6 @@
 				button.btn {
 					background-color: inherit;
 					border: none;
-					color: #7f7f7f;
 					cursor: pointer;
 					font-size: 0.6rem;
 

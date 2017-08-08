@@ -1,7 +1,16 @@
+<div class="header">
 <h1 md-dialog-title>Customization Menu</h1>
 <button class="form-close" md-dialog-close>x</button>
+</div>
 <div md-dialog-content>
-	<md-tab-group color="accent">
+	<md-tab-group color="accent" dynamicHeight="false">
+		<md-tab>
+    	<ng-template md-tab-label>
+				<md-icon>color_lens</md-icon>
+				Themes
+			</ng-template>
+			<media-wall-custom-theme></media-wall-custom-theme>
+  	</md-tab>
   	<md-tab>
     	<ng-template md-tab-label>
 				<md-icon>border_color</md-icon>

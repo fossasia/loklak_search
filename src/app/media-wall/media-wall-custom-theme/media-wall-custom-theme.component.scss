@@ -1,0 +1,26 @@
+div.tab {
+	margin: 5px 10px 0 0;
+	height: 363px;
+	display: flex;
+	flex-direction: column;
+}
+
+.cards {
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+	margin-top: 15px;
+	padding: 1.5%;
+	box-sizing: border-box;
+}
+
+div.card {
+	display: block;
+}
+
+div.details {
+	display: block;
+	font-size: 2rem;
+	font-weight: 600;
+	white-space: nowrap;
+}

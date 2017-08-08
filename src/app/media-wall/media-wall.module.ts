@@ -23,6 +23,7 @@ import { MediaWallCustomHeaderComponent } from './media-wall-custom-header/media
 import { MediaWallCustomBackgroundComponent } from './media-wall-custom-background/media-wall-custom-background.component';
 import { MediaWallCustomCardComponent } from './media-wall-custom-card/media-wall-custom-card.component';
 import { MediaWallNotFoundComponent } from './media-wall-not-found/media-wall-not-found.component';
+import { MediaWallCustomThemeComponent } from './media-wall-custom-theme/media-wall-custom-theme.component';
 
 @NgModule({
 	imports: [
@@ -49,6 +50,7 @@ import { MediaWallNotFoundComponent } from './media-wall-not-found/media-wall-no
 		MediaWallCustomBackgroundComponent,
 		MediaWallCustomCardComponent,
 		MediaWallNotFoundComponent,
+		MediaWallCustomThemeComponent,
 	],
 	entryComponents: [
 		MediaWallCustomizationComponent

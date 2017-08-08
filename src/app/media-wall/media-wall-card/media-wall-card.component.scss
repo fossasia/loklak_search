@@ -90,69 +90,6 @@ div.masonry-content {
 			}
 		}
 	}
-
-	span.action-box {
-		display: flex;
-		justify-content: space-between;
-		max-width: 100%;
-		margin-top: 12px;
-
-		i.md-20{
-			font-size: 1rem;
-			color: #aab8c2;;
-		}
-
-		span.action {
-			display: flex;
-
-			a {
-				text-decoration: none;
-				font-size: 1rem;
-				color: #aab8c2;
-
-				span.counter {
-					position: relative;
-					bottom: 3px;
-				}
-			}
-		}
-
-		span.reply-action:hover {
-			cursor: pointer;
-
-			a {
-				color: #89C9FA;
-			}
-
-			i.reply {
-				color: #89C9FA;
-			}
-		}
-
-		span.retweet-action:hover {
-			cursor: pointer;
-
-			a {
-				color: #19cf86;
-			}
-
-			i.retweet {
-				color: #19cf86;
-			}
-		}
-
-		span.favourite-action:hover {
-			cursor: pointer;
-
-			a {
-				color: #e81c4f;
-			}
-
-			i.like {
-				color: #e81c4f;
-			}
-		}
-	}
 }
 
 div.masonry-content:hover {
