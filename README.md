@@ -10,7 +10,7 @@ The loklak_search creates a website using the loklak server as a data source. Th
 
 In order to run the service you can use the API of http://api.loklak.org or install your own loklak server data storage engine. [loklak_server](https://github.com/loklak/loklak_server) is a server application which collects messages from various social media tweet sources, including twitter. The server contains a search index and a peer-to-peer index sharing interface. All messages are stored in an elasticsearch index.
 
-The site of this repo is deployed on the GitHub gh-pages branch and automatically deployed here: http://loklak.net
+The site of this repo is deployed on the GitHub gh-pages branch and automatically deployed here: http://loklak.org
 
 ---
 
