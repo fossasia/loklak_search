@@ -26,6 +26,12 @@ import * as mediaWallAction from '../actions/media-wall-query';
 export class MediaWallQueryEffects {
 
 	@Effect()
+	inputChange$: Observable<Action>
+		= this.actions$
+					.ofType(mediaWallAction.ActionTypes.WALL_VALUE_CHANGE)
+					.map(_ => new mediaWallAction.WallQueryChangeAction());
+
+	@Effect()
 	mediaWallQueryChange$: Observable<Action>
 		= this.actions$
 					.ofType(mediaWallAction.ActionTypes.WALL_QUERY_CHANGE)

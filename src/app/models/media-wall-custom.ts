@@ -12,4 +12,3 @@ export interface WallCard {
 	backgroundColor: string;
 	accentColor: string;
 }
-

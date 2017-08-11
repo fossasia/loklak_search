@@ -3,7 +3,7 @@ declare var imagesLoaded: any;
 
 import { Component, OnInit, OnDestroy, Input, Output, ElementRef, EventEmitter } from '@angular/core';
 
-const masonry = require('masonry-layout');
+import * as masonry from 'masonry-layout';
 
 import { MasonryOptions } from './masonry-options';
 

@@ -1,0 +1,79 @@
+<div class="dialog-heading">
+	<h1 md-dialog-title>Feeds Moderation</h1>
+	<button class="form-close" md-dialog-close>x</button>
+</div>
+<div>
+	<h3>Filtering Options</h3>
+	<div class="full-width">
+		<div class="input-group">
+			<md-checkbox
+				class="check-box"
+				[(ngModel)]="profanityCheck"
+				[checked]="profanityCheck"
+				[indeterminate]="false"
+				[align]="'start'"
+				(change)="checkProfanity()">
+        Profanity Filter
+			</md-checkbox>
+			<md-checkbox
+				class="check-box"
+				[(ngModel)]="removeDuplicate"
+				[checked]="removeDuplicate"
+				[indeterminate]="false"
+				[align]="'start'"
+				(change)="checkDuplicate()">
+        Remove Duplicate
+      </md-checkbox>
+		</div>
+	</div>
+	<h3>Feeds Filtering</h3>
+	<div class="full-width">
+		<masonry
+		*ngIf="(areWallResultsAvailable$ | async)"
+		[options]="masonryOptions">
+			<masonry-brick
+			class="brick"
+			*ngFor="let feedItem of (apiWallResponseResults$ | async);">
+				<div class="masonry-content">
+					<span class="text">
+						<span class="img-span">
+							<app-lazy-img src="{{feedItem.user.profile_image_url_https}}" alt="Profile Image" width="50" height="50">
+							</app-lazy-img>
+						</span>
+						<a class="profile-link">
+							<span class="name">{{profileName(feedItem.user.name)}}</span>
+							<span class="screen-name">@{{feedItem.user.screen_name}}</span>
+						</a>
+						<span class="status">
+							<media-wall-linker
+								[text]="itemText(feedItem.text) || ''"
+								[hashtags]="feedItem.hashtags || []"
+								[mentions]="feedItem.mentions || []"
+								[links]="feedItem.links || []"
+								[unshorten]="feedItem.unshorten || {}"
+								[wallCustomText]="cardColor"></media-wall-linker>
+						</span>
+					</span>
+				 	<span class="action-box">
+						<button class="action-button"
+						[class.selected]="checkHidden(feedItem.id_str)" type="button" (click)="showRemoveFeed(feedItem.id_str)">
+							<i class="material-icons">cancel</i>
+							<span class="details">Hide Feed</span>
+						</button>
+						<button class="action-button"
+						[class.selected]="checkBlocked(feedItem.user.user_id)"type="button" (click)="blockUnblockUser(feedItem.user.user_id)">
+							<i class="material-icons">block</i>
+							<span class="details">Block User</span>
+						</button>
+					</span>
+				</div>
+			</masonry-brick>
+		</masonry>
+		<div class="results-not-found"
+		*ngIf="!(areWallResultsAvailable$ | async)">
+			<div class="wall-info">
+				No Feeds Available Right Now
+			</div>
+		</div>
+	</div>
+</div>

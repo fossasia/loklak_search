@@ -1,0 +1,167 @@
+.form-close{
+	border: none;
+	width: 40px;
+	height: 40px;
+	font-size: 30px;
+	background: white;
+	color: gray;
+	cursor: pointer;
+	margin-left: auto;
+}
+
+div.dialog-heading {
+	display: flex;
+	flex-flow: row wrap;
+	align-items: baseline;
+}
+
+button::-moz-focus-inner {
+  border: 0;
+}
+
+.brick {
+	width: 100%;
+	padding: 4px;
+}
+
+masonry {
+	width: 100%;
+}
+
+div.full-width {
+	display: flex;
+	flex-direction: row;
+	margin: 10px 10%;
+}
+
+span.apply-button {
+	margin-right: auto;
+	margin-left: auto;
+
+	button {
+		border: none;
+		color: white;
+		background-color: #ff4081;
+		padding: 10px 25px;
+		font-size: 16px;
+		border-radius: 5px;
+		text-decoration: none;
+		margin-top: 10px;
+		cursor: pointer;
+
+		.material-icons {
+			position: relative;
+			top: 4px;
+			right: 5px;
+		}
+	}
+}
+
+div.masonry-content {
+	display: inline-block;
+	width: 100%;
+	border: 1px solid #e6e6e6;
+	transition: transform 0.3s;
+	border-radius: 3px;
+
+	span.text {
+		display: block;
+		max-width: 100%;
+		height: auto;
+		text-align: left;
+		overflow: hidden;
+		padding: 1em;
+
+		span.img-span {
+			float: left;
+			width: 3rem;
+			height: 3rem;
+			border-width: 1px;
+			border-style: solid;
+			border-radius: 50%;
+			margin: 0 8px 1px 0;
+			overflow: hidden;
+
+			app-lazy-img /deep/ img {
+				display: block;
+				width: 3rem;
+				height: 3rem;
+			}
+		}
+		a.profile-link {
+			color: #333333;
+
+			span.name {
+				font-weight: 600;
+				font-size: 0.9rem;
+				line-height: 1rem;
+				padding: 8px 0 0 0;
+				display: block;
+				white-space: nowrap;
+			}
+
+			span.screen-name {
+				font-size: 0.8rem;
+				line-height: 1rem;
+				font-weight: 500;
+				padding: 8px 0 0 0;
+			}
+		}
+		span.time {
+			font-weight: 300;
+			font-size: 0.8rem;
+			line-height: 2rem;
+			float: right;
+		}
+
+		span.status {
+			font-weight: 400;
+			font-size: 1rem;
+			line-height: 1.7rem;
+			padding: 8px 0 0 0;
+			display: block;
+			margin: 10px auto;
+		}
+	}
+}
+.check-box {
+	flex: 1;
+	margin: 0 40px;
+}
+
+span.action-box {
+	display: flex;
+	flex-wrap: row wrap;
+	background: #f7f8f9;
+	border-top: 1px solid #e6e9ea;
+	font-size: 16px;
+}
+
+span.details {
+	position: relative;
+	bottom: 6px;
+}
+
+button.action-button {
+	flex:1;
+	border: 0;
+	font-weight: 600;
+	color: #6f797c;
+	padding: 15px 10px 5px;
+	font-size: 13px;
+	cursor: pointer;
+
+	&:hover, &.selected {
+		color: #00222d;
+	}
+}
+
+div.wall-info {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 17% auto;
+	font-size: 30px;
+	font-size: 2rem;
+}
+

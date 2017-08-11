@@ -44,7 +44,8 @@ export class WallPaginationEffects {
 					.map(([action, state]) => {
 						return {
 							query: state.mediaWallQuery.query,
-							lastRecord: state.mediaWallResponse.entities.length
+							lastRecord: state.mediaWallResponse.entities.length,
+							count: state.mediaWallDesign.count
 						};
 					})
 					.switchMap(queryObject => {
@@ -61,8 +62,8 @@ export class WallPaginationEffects {
 							this.searchServiceConfig.removeFilters(['video']);
 						}
 						this.searchServiceConfig.source = 'twitter';
-						this.searchServiceConfig.count = 1;
-						this.searchServiceConfig.maximumRecords = 1;
+						this.searchServiceConfig.count = queryObject.count;
+						this.searchServiceConfig.maximumRecords = queryObject.count;
 
 						return this.apiSearchService.fetchQuery(queryObject.query.queryString, this.searchServiceConfig)
 												.takeUntil(nextSearch$)
@@ -77,6 +78,16 @@ export class WallPaginationEffects {
 		= this.actions$
 					.ofType(wallPaginationAction.ActionTypes.WALL_PAGINATION_COMPLETE_SUCCESS)
 					.debounceTime(10000)
+					.withLatestFrom(this.store$)
+					.map(([action, state]) => {
+						return new wallPaginationAction.WallNextPageAction('');
+					});
+
+	@Effect()
+		nextWallSearchActionAfterFail$
+		= this.actions$
+					.ofType(wallPaginationAction.ActionTypes.WALL_PAGINATION_COMPLETE_FAIL)
+					.debounceTime(5000)
 					.withLatestFrom(this.store$)
 					.map(([action, state]) => {
 						return new wallPaginationAction.WallNextPageAction('');

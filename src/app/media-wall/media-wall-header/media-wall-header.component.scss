@@ -1,14 +1,14 @@
 .header-wrapper{
 	border-bottom: 1px solid #ddd;
-	display: flex;
-	justify-content: space-between;
+	position: fixed;
+	width: 100%;
+	z-index: 1000;
 
 	div.header {
 		display: flex;
 		flex-wrap: wrap;
 		align-items: baseline;
-		width: 100%;
-		height: 85px;
+		height: 65px;
 
 		@media(max-width: 600px) {
 
@@ -17,15 +17,16 @@
 
 		div.logo {
 			flex: 1;
+
 			a {
 				display: block;
 				height: 50px;
 				font-family: "Courier New";
-				padding:15px 15px;
+				padding:24px 24px;
 				font-size:2.5rem;
 				color: #e91e63;
 				line-height: 20px;
-				width: 170px;
+				width: 230px;
 
 				@media(max-width: 600px) {
 					font-size: 34px;
@@ -40,15 +41,15 @@
 
 		div.title {
 			font-family: 'Montserrat', sans-serif !important;
-			font-weight: 700;
-			font-size: 2.3rem;
-			padding-top: 1vw;
+			font-weight: 600;
+			font-size: 2rem;
+			margin-right:24px;
 
 
 			@media(max-width: 600px) {
-			position: absolute;
-			top: 65px;
-			font-size: 23px;
+				position: absolute;
+				top: 65px;
+				font-size: 23px;
 			}
 		}
 
@@ -105,7 +106,6 @@
 			pointer-events: auto;
 		}
 	}
-
 
 	@media(max-width: 600px) {
 			min-height: 110px;

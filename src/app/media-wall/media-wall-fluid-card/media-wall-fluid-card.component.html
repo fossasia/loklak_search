@@ -1,32 +1,28 @@
 <div class="masonry-content" [style.background-color]="(wallCustomCard$ | async).backgroundColor">
-	<span class="text">
 		<span class="gallery" *ngIf="filteredImages.length > 0">
-			<ul>
-      	<li *ngFor="let image of filteredImages">
-					<app-lazy-img class="card-images" src="{{image}}" height="200"></app-lazy-img>
-				</li>
-			</ul>
+			<app-lazy-img class="card-images" src="{{filteredImages}}" height="200"></app-lazy-img>
 		</span>
+		<span class="text">
 		<span class="img-span">
 			<app-lazy-img src="{{feedItem.user.profile_image_url_https}}" alt="Profile Image" width="50" height="50">
 			</app-lazy-img>
 		</span>
-		<span class="time">{{datetime}}</span>
+		<span class="time" [style.color]="(wallCustomCard$ | async).fontColor">{{datetime}}</span>
 		<a class="profile-link" [routerLink]="['/wall']" [queryParams]="{ query : 'from:' + feedItem.user.screen_name }">
-			<span class="name">{{profileName}}</span>
-			<span class="screen-name">@{{feedItem.user.screen_name}}</span>
+			<span class="name" [style.color]="(wallCustomCard$ | async).fontColor">{{profileName}}</span>
+			<span class="screen-name" [style.color]="(wallCustomCard$ | async).fontColor">@{{feedItem.user.screen_name}}</span>
 		</a>
 		<span class="status">
 			<media-wall-linker
-					[text]="itemText || ''"
-					[hashtags]="feedItem.hashtags || []"
-					[mentions]="feedItem.mentions || []"
-					[links]="feedItem.links || []"
-					[unshorten]="feedItem.unshorten || {}"
-					[wallCustomText]="(wallCustomCard$ | async)"></media-wall-linker>
+				[text]="itemText || ''"
+				[hashtags]="feedItem.hashtags || []"
+				[mentions]="feedItem.mentions || []"
+				[links]="feedItem.links || []"
+				[unshorten]="feedItem.unshorten || {}"
+				[wallCustomText]="(wallCustomCard$ | async)"></media-wall-linker>
 		</span>
 	</span>
-	<span class="action-box">
+	 <span class="action-box">
 		<span class="action reply-action">
 			<a target="_blank" href="https://twitter.com/intent/tweet?in_reply_to={{feedItem.id_str}}">
 				<i class="material-icons md-20 reply">reply</i>

@@ -1,8 +1,24 @@
 .wall-info {
-    display: flex;
-    justify-content: center;
-		align-items: center;
-		margin: 17% auto;
-    font-size: 30px;
-    font-size: 2rem;
+  font-size: 30px;
+	font-size: 2rem;
+	text-align: center;
+}
+.searching {
+	opacity: 0;
+	animation: flickerAnimation 2.5s infinite;
+}
+
+div.results-not-found {
+	position: absolute;
+	top: 40%;
+	display: inline-flex;
+	justify-content: center;
+	width: 100%;
+	flex-flow: column
+}
+
+@keyframes flickerAnimation {
+  0%   { opacity:0; }
+  50%  { opacity:1; }
+  100% { opacity:0; }
 }

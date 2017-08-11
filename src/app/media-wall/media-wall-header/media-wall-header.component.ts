@@ -9,8 +9,7 @@ import { WallHeader } from '../../models';
 export class MediaWallHeaderComponent implements OnInit {
 	@Input() query: string;
 	@Input() wallCustomHeader: WallHeader;
-	@Input() showHideMenu: boolean;
-	@Output() showHideCustomization: EventEmitter<boolean> = new EventEmitter<boolean>();
+	@Input() headerTitle: string;
 
 	constructor() { }
 

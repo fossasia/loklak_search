@@ -1,0 +1,48 @@
+<div class="dialog-heading">
+<h1 md-dialog-title>Search Query</h1>
+<button class="form-close" md-dialog-close>x</button>
+</div>
+<div>
+	<h3 class="heading">Query</h3>
+	<div class="full-width">
+		<div class="input-group">
+			<label class="form-label" for="query" >Search Term</label>
+				<input type="text"
+					name="query"
+					placeholder="Query"
+					[(ngModel)]="searchQuery">
+		</div>
+	</div>
+	<h3 class="heading">Place</h3>
+	<div class="full-width">
+		<div class="input-group">
+			<label class="form-label" for="location" >Location</label>
+				<input
+					type="text"
+					name="location"
+					placeholder="Near this place"
+					[(ngModel)]="place">
+		</div>
+	</div>
+	<h3 class="heading">Other Options</h3>
+	<div class="full-width">
+		<div class="input-group">
+			<md-checkbox
+				class="check-box"
+				[(ngModel)]="imageOnly"
+				[checked]="imageOnly"
+				[indeterminate]="false"
+				[align]="'start'">
+        Show Feeds Only with Images
+      </md-checkbox>
+		</div>
+	</div>
+
+	<div class="full-width">
+		<span class="apply-button">
+			<button (click)="search()">
+				<i class="material-icons md-18">done</i>
+				Apply</button>
+		</span>
+	</div>
+</div>

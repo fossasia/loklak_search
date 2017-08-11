@@ -174,6 +174,16 @@ export class ApiSearchEffects {
 							return new wallPaginationAction.WallNextPageAction('');
 					});
 
+	@Effect()
+	nextWallSearchActionAfterFail$
+		= this.actions$
+					.ofType(apiAction.ActionTypes.WALL_SEARCH_COMPLETE_FAIL)
+					.debounceTime(5000)
+					.withLatestFrom(this.store$)
+					.map(([action, state]) => {
+							return new wallPaginationAction.WallNextPageAction('');
+					});
+
 	@Effect({ dispatch: false })
 	resetTitleAfterWallSearchSuccess$: Observable<void>
 		= this.actions$

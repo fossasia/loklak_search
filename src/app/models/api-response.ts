@@ -48,6 +48,7 @@ export interface ApiResponseResult {
 	place_name: string;
 	provider_type: string;
 	retweet_count: number;
+	classifier_profanity: string;
 	screen_name: string;
 	source_type: string;
 	text: string;
