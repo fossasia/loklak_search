@@ -7,3 +7,4 @@ export * from './api-user-response';
 export * from './filters';
 export * from './time-bound';
 export * from './media-wall-custom';
+export * from './media-wall-filters';

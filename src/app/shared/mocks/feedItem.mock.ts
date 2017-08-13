@@ -43,6 +43,7 @@ export const MockApiResponseResult: ApiResponseResult = {
 	provider_type: 'SCRAPED',
 	retweet_count: 6,
 	screen_name: 'mariobehling',
+	classifier_profanity: 'swear',
 	source_type: 'TWITTER',
 	text: 'moz://a @elioqoshi about the new identity of @mozilla and the implementation' +
 				'process of #OpenSourceDesign at #OpenTechSummit #OTS17 @opntec https://pic.twitter.com/SxMbK2dire',

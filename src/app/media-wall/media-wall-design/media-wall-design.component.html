@@ -1,0 +1,74 @@
+<div class="dialog-heading">
+	<h1 md-dialog-title>Media Wall Design</h1>
+	<button class="form-close" md-dialog-close>x</button>
+</div>
+<div>
+	<h3 class="heading">Header</h3>
+	<div class="full-width">
+		<div class="input-group">
+			<div class="slider">
+				<md-slide-toggle
+					labelPosition="before"
+					ariaLabel="Show/Hide Header"
+					(change)="showHideHeader($event)"
+					[checked]="showHideHeaderValue === false">
+					Hide Header
+				</md-slide-toggle>
+			</div>
+		</div>
+		<div class="input-group">
+			<label class="form-label" for="title" >Header Title</label>
+			<input type="title"
+				name="title"
+				placeholder="Enter your title Here"
+				[(ngModel)]="headerTitle">
+		</div>
+	</div>
+	<h3>Wall</h3>
+		<div class="full-width">
+			<div class="input-group">
+				<label class="form-label" for="count" >Column Count</label>
+				<md-select name="count"
+					floatPlaceholder="never"
+					placeholder="{{selectedColumnCount}} Column"
+					[(ngModel)]="selectedColumnCount">
+					<md-option *ngFor="let number of ['Automatic','1','2','3','4','5','6','7']" [value]="number">
+      		{{number}} Column
+    			</md-option>
+				</md-select>
+			</div>
+			<div class="input-group">
+				<label class="form-label" for="count" >Count of new Feeds</label>
+			<md-select name="count"
+				floatPlaceholder="never"
+				placeholder="{{selectedFeedsCount}}"
+				[(ngModel)]="selectedFeedsCount">
+				<md-option *ngFor="let count of ['1','2','3','4','5']" [value]="count">
+     		{{count}}
+   			</md-option>
+			</md-select>
+		</div>
+	</div>
+	<h3>Cards Design</h3>
+	<div class="full-width">
+		<div class="input-group">
+			<label class="form-label" for="card-style" >Card Style</label>
+			<md-select name="card-style"
+				floatPlaceholder="never"
+				placeholder="{{selectedCardStyle}}"
+				[(ngModel)]="selectedCardStyle">
+				<md-option *ngFor="let style of ['Fluid','Candy']" [value]="style">
+ 	     {{style}}
+  		  </md-option>
+			</md-select>
+		</div>
+	</div>
+	<div class="full-width">
+		<span class="apply-button">
+			<button (click)="change()">
+				<i class="material-icons md-18">done</i>
+				Apply
+			</button>
+		</span>
+	</div>
+</div>

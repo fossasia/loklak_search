@@ -1,28 +1,12 @@
 <div class="header-wrapper" [style.background-color]="wallCustomHeader.backgroundColor">
 	<div class="header">
-			<div class="logo">
-				<a routerLink="/">
-					loklak
-				</a>
-			</div>
+		<div class="logo">
+			<a routerLink="/">
+				loklak
+			</a>
+		</div>
 		<div class="title" [style.color]="wallCustomHeader.fontColor">
-			<span class="query">{{query}}
-			</span>
-			</div>
-		<div class="menu" [class.mouse-moving]="showHideMenu">
-			<div class="option" id="customization">
-				<button class="btn" role="button" type="button" tabindex="-1"
-									aria-roledescription="Customization" (click)="showHideCustomization.emit(true)">
-				<i  class="material-icons md-12">settings</i>
-				<span class="info">Customize</span>
-				</button>
-			</div>
-			<div class="option" id="fullscreen">
-				<button class="btn" role="button" type="button" tabindex="-1"
-									aria-roledescription="Enter/Exit Full Screen" toggleFullscreen>
-				<i  class="material-icons md-12">fullscreen</i>
-				<span class="info">Full Screen</span>
-				</button>
+			<span class="query">{{headerTitle || query}}</span>
 		</div>
 	</div>
 </div>

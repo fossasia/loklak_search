@@ -10,20 +10,24 @@ import { MdDialogModule, MdDialog, MaterialModule } from '@angular/material';
 import { RouterTestingModule } from '@angular/router/testing';
 import { StoreModule } from '@ngrx/store';
 import { MediaWallCustomizationComponent } from './media-wall-customization/media-wall-customization.component';
+import { MediaWallQueryComponent } from './media-wall-query/media-wall-query.component';
+import { MediaWallModerationComponent } from './media-wall-moderation/media-wall-moderation.component';
+import { MediaWallDesignComponent } from './media-wall-design/media-wall-design.component';
 
 import { reducer } from '../reducers';
 import { RouterStub } from '../../testing';
 import { MediaWallComponent } from './media-wall.component';
 import { MasonryModule } from '../app-masonry/app-masonry.module';
+import { LazyImgModule } from '../lazy-img/lazy-img.module';
 
 
 
 
 @Component({
-	selector: 'media-wall-card',
+	selector: 'media-wall-fluid-card',
 	template: ''
 })
-class MediaWallCardStubComponent {
+class MediaWallFluidCardStubComponent {
 	@Input() feedItem;
 	@Input() wallCustomCard$;
 }
@@ -49,9 +53,9 @@ class MediaWallLinkerStubComponent {
 	template: ''
 })
 class MediaWallHeaderStubComponent {
-	@Input() showHideMenu;
 	@Input() query;
 	@Input() wallCustomHeader;
+	@Input() headerTitle
 }
 
 @Component({
@@ -83,6 +87,16 @@ class MediaWallCustomCardStubComponent {
 	template: ''
 })
 class MediaWallNotFoundStubComponent {
+	@Input() fontColor;
+}
+
+@Component({
+	selector: 'media-wall-menu',
+	template: ''
+})
+class MediaWallMenuStubComponent {
+	@Input() showHideMenu;
+	@Input() query;
 }
 
 describe('Component: MediaWall', () => {
@@ -95,23 +109,32 @@ describe('Component: MediaWall', () => {
 				MdDialogModule,
 				MaterialModule,
 				MasonryModule,
+				LazyImgModule,
 				StoreModule.provideStore(reducer)
 			],
 			declarations: [
 				MediaWallComponent,
-				MediaWallCardStubComponent,
+				MediaWallFluidCardStubComponent,
 				MediaWallLinkerStubComponent,
 				MediaWallHeaderStubComponent,
 				MediaWallCustomizationComponent,
 				MediaWallCustomHeaderStubComponent,
 				MediaWallCustomCardStubComponent,
 				MediaWallCustomBackgroundStubComponent,
-				MediaWallNotFoundStubComponent
+				MediaWallNotFoundStubComponent,
+				MediaWallDesignComponent,
+				MediaWallQueryComponent,
+				MediaWallModerationComponent,
+				MediaWallMenuStubComponent
 			]
 		});
 		TestBed.overrideModule(BrowserDynamicTestingModule, {
 		set: {
-			entryComponents: [ MediaWallCustomizationComponent ]
+			entryComponents: [
+				MediaWallCustomizationComponent,
+				MediaWallDesignComponent,
+				MediaWallQueryComponent,
+				MediaWallModerationComponent ]
 		}
 });
 	});

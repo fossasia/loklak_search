@@ -1,0 +1,90 @@
+.form-close{
+	border: none;
+	width: 40px;
+	height: 40px;
+	font-size: 30px;
+	background: white;
+	color: gray;
+	cursor: pointer;
+	margin-left: auto;
+}
+
+div.dialog-heading {
+	display: flex;
+	flex-flow: row wrap;
+	align-items: baseline;
+}
+
+h3.heading {
+	text-align: center;
+}
+
+.form-label {
+  text-align: left;
+  display: inline-block;
+  vertical-align: middle;
+  width: 9.5em;
+	margin: 0 1em 0 1em;
+	padding: 0.6em;
+}
+
+input {
+  padding: 0.5em 0.6em;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-shadow: inset 0 1px 3px #ddd;
+  border-radius: 4px;
+  vertical-align: middle;
+  box-sizing: border-box;
+  *display: inline;
+  *zoom: 1;
+	width: 67%;
+}
+
+button::-moz-focus-inner {
+  border: 0;
+}
+
+.check-box {
+	flex: 1;
+	margin: 0 30px;
+}
+
+div.full-width {
+	display: flex;
+	flex-direction: row;
+	margin: 10px 10%;
+
+	div.input-group {
+		flex:1;
+		display: flex;
+		flex-direction: row;
+
+		input {
+			cursor: pointer;
+		}
+	}
+}
+
+span.apply-button {
+	margin-right: auto;
+	margin-left: auto;
+
+	button {
+		border: none;
+		color: white;
+		background-color: #3f51b5;
+		padding: 10px 25px;
+		font-size: 16px;
+		border-radius: 5px;
+		text-decoration: none;
+		margin-top: 10px;
+		cursor: pointer;
+
+		.material-icons {
+			position: relative;
+			top: 4px;
+			right: 5px;
+		}
+	}
+}

@@ -54,6 +54,7 @@ import * as fromMediaWallSearch from './media-wall-search';
 import * as fromMediaWallResponse from './api-media-wall-response';
 import * as fromMediaWallCustom from './media-wall-custom';
 import * as fromMediaWallPagination from './media-wall-pagination';
+import * as fromMediaWallDesign from './media-wall-design';
 
 /**
  * As mentioned, we treat each reducer like a table in a database. This means
@@ -76,6 +77,7 @@ export interface State {
 	mediaWallSearch: fromMediaWallSearch.State;
 	mediaWallCustom: fromMediaWallCustom.State;
 	mediaWallPagination: fromMediaWallPagination.State;
+	mediaWallDesign: fromMediaWallDesign.State;
 }
 
 /**
@@ -101,7 +103,8 @@ const reducers = {
 	mediaWallResponse: fromMediaWallResponse.reducer,
 	mediaWallSearch: fromMediaWallSearch.reducer,
 	mediaWallCustom: fromMediaWallCustom.reducer,
-	mediaWallPagination: fromMediaWallPagination.reducer
+	mediaWallPagination: fromMediaWallPagination.reducer,
+	mediaWallDesign: fromMediaWallDesign.reducer
 };
 
 const developmentReducer: ActionReducer<State> = compose(storeFreeze, combineReducers)(reducers);
@@ -276,13 +279,29 @@ export const getMediaWallCustomBackground = createSelector(getMediaWallCustomSta
 export const getMediaWallCustomCard = createSelector(getMediaWallCustomState, fromMediaWallCustom.getCustomWallCard);
 
 /**
+ * Selector for Media Wall Design
+ */
+
+export const getMediaWallDesignState = (state: State) => state.mediaWallDesign;
+
+export const getWallDisplayHeader = createSelector(getMediaWallDesignState, fromMediaWallDesign.getWallDisplayHeader);
+export const getWallHeaderTitle = createSelector(getMediaWallDesignState, fromMediaWallDesign.getWallHeaderTitle);
+export const getWallColumnCount = createSelector(getMediaWallDesignState, fromMediaWallDesign.getWallColumnCount);
+export const getWallCount = createSelector(getMediaWallDesignState, fromMediaWallDesign.getWallCount);
+export const getWallCardStyle = createSelector(getMediaWallDesignState, fromMediaWallDesign.getWallCardStyle);
+
+/**
  * Selectors for Media Wall Response
  */
 
 export const getMediaWallResponseState = (state: State) => state.mediaWallResponse;
 
 export const getMediaWallResponseEntities = createSelector(getMediaWallResponseState, fromMediaWallResponse.getEntities);
-export const getMediaWallLastResponseLength = createSelector(getMediaWallResponseState, fromMediaWallResponse.getLastResponseLength);
+export const getMediaWallFilteredEntities = createSelector(getMediaWallResponseState, fromMediaWallResponse.getFilteredEntities);
+export const getMediaWallBlockedUser = createSelector(getMediaWallResponseState, fromMediaWallResponse.getBlockedUser);
+export const getMediaWallHiddenId = createSelector(getMediaWallResponseState, fromMediaWallResponse.getHiddenFeedId);
+export const getMediaWallProfanityCheck = createSelector(getMediaWallResponseState, fromMediaWallResponse.getProfanityCheck);
+export const getMediaWallDuplicateRemove = createSelector(getMediaWallResponseState, fromMediaWallResponse.getDuplicateRemove);
 
 export const getAreWallResultsAvailable =
 	createSelector(getMediaWallResponseEntities , entities => (entities.length) ? true : false );

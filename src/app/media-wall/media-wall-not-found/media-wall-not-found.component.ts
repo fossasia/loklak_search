@@ -7,6 +7,8 @@ import { Query } from '../../models';
 	styleUrls: ['./media-wall-not-found.component.scss']
 })
 export class MediaWallNotFoundComponent implements OnInit {
+	public headerImageUrl = 'assets/images/cow_150x175.png';
+	@Input() fontColor: string;
 
 	constructor() { }
 

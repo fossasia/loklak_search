@@ -1,10 +1,9 @@
 div.masonry-content {
 	display: inline-block;
-	padding: 1em;
 	width: 100%;
 	border: 1px solid #e6e6e6;
 	transition: transform 0.3s;
-	border-radius: 3px;
+	border-radius: 5px;
 
 	span.text {
 		display: block;
@@ -12,13 +11,12 @@ div.masonry-content {
 		height: auto;
 		text-align: left;
 		overflow: hidden;
+		padding: 1em;
 
 		span.img-span {
 			float: left;
 			width: 3rem;
 			height: 3rem;
-			border-width: 1px;
-			border-style: solid;
 			border-radius: 50%;
 			margin: 0 8px 1px 0;
 			overflow: hidden;
@@ -61,33 +59,18 @@ div.masonry-content {
 			line-height: 1.7rem;
 			padding: 8px 0 0 0;
 			display: block;
-			margin: 10px auto;
+			margin-top: 10px;
 		}
+	}
+	span.gallery {
+		display: block;
+		width: 100%;
+		height: auto;
 
-		span.gallery {
-
-			ul {
-   			display: flex;
-     		justify-content: center;
-    		flex-flow: row wrap;
-    		list-style: none;
-    		margin: 32px 0;
-			}
-
-			li {
-   			margin: 1px 1px;
-				flex-grow: 1;
-    		flex-basis: calc(50% - 20px);
-			}
-
-			/deep/ img {
-				width: 100%;
-				border-radius: 0;
-				object-fit: cover;
-				object-position: center;
-				border: 1px solid transparent;
-				border-radius: 8px;
-			}
+		/deep/ img {
+			width: 100%;
+			object-fit: cover;
+			object-position: center;
 		}
 	}
 
@@ -95,7 +78,7 @@ div.masonry-content {
 		display: flex;
 		justify-content: space-between;
 		max-width: 100%;
-		margin-top: 12px;
+		padding: 1em;
 
 		i.md-20{
 			font-size: 1rem;

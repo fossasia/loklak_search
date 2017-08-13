@@ -5,7 +5,12 @@ import {
 	MdTabsModule,
 	MdIconModule,
 	MdSlideToggleModule,
-	MdDialogModule
+	MdDialogModule,
+	MdCheckboxModule,
+	MdSelectModule,
+	MdMenuModule,
+	MdGridListModule,
+	MdTooltipModule
 } from '@angular/material';
 
 import { LazyImgModule } from '../lazy-img/lazy-img.module';
@@ -14,7 +19,7 @@ import { MasonryModule } from '../app-masonry';
 
 import { MediaWallComponent } from './media-wall.component';
 import { LoklakMediaWallRoutingModule } from './media-wall-routing.module';
-import { MediaWallCardComponent } from './media-wall-card/media-wall-card.component';
+import { MediaWallFluidCardComponent } from './media-wall-fluid-card/media-wall-fluid-card.component';
 import { MediaWallLinkerComponent } from './media-wall-linker/media-wall-linker.component';
 import { MediaWallHeaderComponent } from './media-wall-header/media-wall-header.component';
 import { ToggleFullscreenDirective } from '../shared';
@@ -23,6 +28,10 @@ import { MediaWallCustomHeaderComponent } from './media-wall-custom-header/media
 import { MediaWallCustomBackgroundComponent } from './media-wall-custom-background/media-wall-custom-background.component';
 import { MediaWallCustomCardComponent } from './media-wall-custom-card/media-wall-custom-card.component';
 import { MediaWallNotFoundComponent } from './media-wall-not-found/media-wall-not-found.component';
+import { MediaWallMenuComponent } from './media-wall-menu/media-wall-menu.component';
+import { MediaWallQueryComponent } from './media-wall-query/media-wall-query.component';
+import { MediaWallModerationComponent } from './media-wall-moderation/media-wall-moderation.component';
+import { MediaWallDesignComponent } from './media-wall-design/media-wall-design.component';
 
 @NgModule({
 	imports: [
@@ -36,11 +45,16 @@ import { MediaWallNotFoundComponent } from './media-wall-not-found/media-wall-no
 		ColorPickerModule,
 		MasonryModule,
 		LazyImgModule,
-		MdDialogModule
+		MdDialogModule,
+		MdCheckboxModule,
+		MdSelectModule,
+		MdMenuModule,
+		MdGridListModule,
+		MdTooltipModule
 	],
 	declarations: [
 		MediaWallComponent,
-		MediaWallCardComponent,
+		MediaWallFluidCardComponent,
 		MediaWallLinkerComponent,
 		MediaWallHeaderComponent,
 		ToggleFullscreenDirective,
@@ -49,9 +63,16 @@ import { MediaWallNotFoundComponent } from './media-wall-not-found/media-wall-no
 		MediaWallCustomBackgroundComponent,
 		MediaWallCustomCardComponent,
 		MediaWallNotFoundComponent,
+		MediaWallMenuComponent,
+		MediaWallQueryComponent,
+		MediaWallModerationComponent,
+		MediaWallDesignComponent
 	],
 	entryComponents: [
-		MediaWallCustomizationComponent
+		MediaWallCustomizationComponent,
+		MediaWallQueryComponent,
+		MediaWallModerationComponent,
+		MediaWallDesignComponent
 	]
 
 })

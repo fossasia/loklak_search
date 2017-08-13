@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { MediaWallCardComponent } from './media-wall-card.component';
+import { MediaWallFluidCardComponent } from './media-wall-fluid-card.component';
 
 @Component({
 	selector: 'app-lazy-img',
@@ -39,7 +39,7 @@ describe('MediaWallCardComponent', () => {
 				RouterTestingModule
 			],
 			declarations: [
-				MediaWallCardComponent,
+				MediaWallFluidCardComponent,
 				MediaWallLinkerStubComponent,
 				LazyImgStubComponent
 			]
@@ -47,7 +47,7 @@ describe('MediaWallCardComponent', () => {
 	});
 
 	it('should create an instance', () => {
-		const component = TestBed.createComponent(MediaWallCardComponent);
+		const component = TestBed.createComponent(MediaWallFluidCardComponent);
 		expect(component).toBeTruthy();
 	});
 });

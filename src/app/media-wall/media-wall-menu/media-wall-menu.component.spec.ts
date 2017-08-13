@@ -8,25 +8,30 @@ import { MdDialogModule, MdDialog, MaterialModule } from '@angular/material';
 import { StoreModule } from '@ngrx/store';
 import * as fromRoot from '../../reducers';
 
-import { MediaWallNotFoundComponent } from './media-wall-not-found.component';
-import { LazyImgModule } from '../../lazy-img/lazy-img.module';
+import { MediaWallMenuComponent } from './media-wall-menu.component';
 
-describe('MediaWallNotFoundComponent', () => {
-	let component: MediaWallNotFoundComponent;
-	let fixture: ComponentFixture<MediaWallNotFoundComponent>;
+describe('MediaWallMenuComponent', () => {
+	let component: MediaWallMenuComponent;
+	let fixture: ComponentFixture<MediaWallMenuComponent>;
 
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
 			imports: [
-				LazyImgModule
+				RouterTestingModule,
+				BrowserAnimationsModule,
+				MdDialogModule,
+				MaterialModule,
+				StoreModule.provideStore(fromRoot.reducer),
+				FormsModule,
+				ReactiveFormsModule
 			],
-			declarations: [  MediaWallNotFoundComponent ]
+			declarations: [ MediaWallMenuComponent ]
 		})
 		.compileComponents();
 	}));
 
 	beforeEach(() => {
-		fixture = TestBed.createComponent( MediaWallNotFoundComponent);
+		fixture = TestBed.createComponent(MediaWallMenuComponent);
 		component = fixture.componentInstance;
 		fixture.detectChanges();
 	});

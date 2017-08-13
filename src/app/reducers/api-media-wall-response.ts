@@ -1,8 +1,9 @@
 import { createSelector } from 'reselect';
 import { ApiResponse, ApiResponseResult } from '../models/api-response';
 import * as apiAction from '../actions/api';
+import * as wallModerationAction from '../actions/media-wall-moderation';
 import * as wallPaginationAction from '../actions/media-wall-pagination';
-import { removeDuplicate } from '../utils'
+import { removeDuplicateCheck, accountExclusion, hideFeed, showFeed, accountInclusion, removeId, profanityFilter } from '../models'
 
 /**
  * Each reducer module must import the local `State` which it controls.
@@ -13,7 +14,11 @@ import { removeDuplicate } from '../utils'
  */
 export interface State {
 	entities: ApiResponseResult[];
-	lastResponseLength: number;
+	filteredEntities: ApiResponseResult[];
+	hiddenFeedId: string[];
+	blockedUser: string[];
+	profanityCheck: boolean;
+	removeDuplicate: boolean;
 }
 
 /**
@@ -24,7 +29,11 @@ export interface State {
  */
 export const initialState: State = {
 	entities: [],
-	lastResponseLength: 0
+	filteredEntities: [],
+	hiddenFeedId: [],
+	blockedUser: [],
+	profanityCheck: false,
+	removeDuplicate: false
 };
 
 
@@ -36,14 +45,22 @@ export const initialState: State = {
  * Here the reducer controls the part of state which is responsilble for storing the
  * results fetched from the API.
  */
-export function reducer(state: State = initialState, action: apiAction.Actions | wallPaginationAction.Actions): State {
+export function reducer(state: State = initialState,
+	action: apiAction.Actions | wallPaginationAction.Actions | wallModerationAction.Actions): State {
 	switch (action.type) {
 		case apiAction.ActionTypes.WALL_SEARCH_COMPLETE_SUCCESS: {
 			const apiResponse = action.payload;
+			let newFeeds = accountExclusion(apiResponse.statuses, state.blockedUser);
+			if (state.profanityCheck) {
+				newFeeds = profanityFilter(newFeeds);
+			}
+			if (state.removeDuplicate) {
+				newFeeds = removeDuplicateCheck(newFeeds);
+			}
 
 			return Object.assign({}, state, {
 				entities: apiResponse.statuses,
-				lastResponseLength: apiResponse.statuses.length
+				filteredEntities: newFeeds
 			});
 		}
 
@@ -53,16 +70,80 @@ export function reducer(state: State = initialState, action: apiAction.Actions |
 
 		case wallPaginationAction.ActionTypes.WALL_PAGINATION_COMPLETE_SUCCESS: {
 			const apiResponse = action.payload;
-			const filteredResponse = removeDuplicate(state.entities, apiResponse.statuses);
+			let newFeeds = accountExclusion(apiResponse.statuses, state.blockedUser);
+			if (state.profanityCheck) {
+				newFeeds = profanityFilter(apiResponse.statuses);
+			}
+			let filteredEntities = [...newFeeds, ...state.filteredEntities];
+			if (state.removeDuplicate) {
+				filteredEntities = removeDuplicateCheck(filteredEntities);
+			}
 
 			return Object.assign({}, state, {
-				entities: [ ...filteredResponse, ...state.entities ],
-				lastResponseLength: apiResponse.statuses.length
+				entities: [ ...apiResponse.statuses, ...state.entities ],
+				filteredEntities
 			});
 		}
 
 		case wallPaginationAction.ActionTypes.WALL_PAGINATION_COMPLETE_FAIL: {
 			return state;
+		}
+
+		case wallModerationAction.ActionTypes.WALL_HIDE_FEED: {
+			const id = action.payload;
+			const newFeeds = hideFeed(state.filteredEntities, id);
+			return Object.assign({}, state, {
+				filteredEntities: newFeeds,
+				hiddenFeedId: [...state.hiddenFeedId, id]
+			});
+		}
+
+		case wallModerationAction.ActionTypes.WALL_SHOW_FEED: {
+			const id = action.payload;
+			const newEntities = showFeed(state.entities, state.filteredEntities, id);
+			const newHiddenFeedId = removeId(state.hiddenFeedId, id);
+			return Object.assign({}, state, {
+				filteredEntities: newEntities,
+				hiddenFeedId: newHiddenFeedId
+			});
+		}
+
+		case wallModerationAction.ActionTypes.WALL_BLOCK_USER: {
+			const user = action.payload;
+			const blockedUser = [...state.blockedUser, user];
+			const newFeeds = accountExclusion(state.filteredEntities, blockedUser);
+			return Object.assign({}, state, {
+				filteredEntities: newFeeds,
+				blockedUser
+			});
+		}
+
+		case wallModerationAction.ActionTypes.WALL_UNBLOCK_USER: {
+			const user = action.payload;
+			const newEntities = accountInclusion(state.entities, state.filteredEntities, user);
+			const newBlockedUser = removeId(state.hiddenFeedId, user);
+			return Object.assign({}, state, {
+				filteredEntities: newEntities,
+				blockedUser: newBlockedUser
+			});
+		}
+
+		case wallModerationAction.ActionTypes.WALL_PROFANITY_CHANGE_ACTION: {
+			const profanityCheck = action.payload;
+			const filteredEntities = profanityFilter(state.filteredEntities);
+			return Object.assign({}, state, {
+				filteredEntities,
+				profanityCheck
+			});
+		}
+
+		case wallModerationAction.ActionTypes.WALL_REMOVE_DUPLICATE_CHANGE_ACTION: {
+			const removeDuplicate = action.payload;
+			const filteredEntities = removeDuplicateCheck(state.filteredEntities);
+			return Object.assign({}, state, {
+				filteredEntities,
+				removeDuplicate
+			});
 		}
 
 		default: {
@@ -82,4 +163,12 @@ export function reducer(state: State = initialState, action: apiAction.Actions |
 
 export const getEntities = (state: State) => state.entities;
 
-export const getLastResponseLength = (state: State) => state.lastResponseLength;
+export const getFilteredEntities = (state: State) => state.filteredEntities;
+
+export const getHiddenFeedId = (state: State) => state.hiddenFeedId;
+
+export const getBlockedUser = (state: State) => state.blockedUser;
+
+export const getProfanityCheck = (state: State) => state.profanityCheck;
+
+export const getDuplicateRemove = (state: State) => state.removeDuplicate;

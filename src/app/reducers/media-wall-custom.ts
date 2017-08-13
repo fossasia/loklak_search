@@ -10,8 +10,8 @@ export interface State {
 
 export const initialState: State = {
 	wallHeader: {
-		backgroundColor: '#fff',
-		fontColor: '#337ab7'
+		backgroundColor: '#FFFFFF',
+		fontColor: '#262626'
 	},
 	wallBackground: {
 		backgroundColor: '#fafafa'
@@ -49,6 +49,30 @@ export function reducer(state: State = initialState, action: mediaWallCustomActi
 				wallCard
 			});
 		}
+
+		case mediaWallCustomAction.ActionTypes.WALL_DARK_THEME_CHANGE: {
+			state = {
+				wallHeader: {
+					backgroundColor: '#243447',
+					fontColor: '#FFFFFF'
+				},
+				wallBackground: {
+					backgroundColor: '#2C4158'
+				},
+				wallCard: {
+					fontColor: '#FFFFFF',
+					backgroundColor: '#1B2836',
+					accentColor: '#1c94e0'
+				}
+			}
+			return state;
+		}
+
+		case mediaWallCustomAction.ActionTypes.WALL_LIGHT_THEME_CHANGE: {
+			state = initialState;
+
+			return state;
+}
 
 		default: {
 			return state;

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { HttpModule } from '@angular/http';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { LoklakContactRoutingModule } from './contact-routing.module';
@@ -26,7 +27,8 @@ import { ContactFormComponent } from './contact-form/contact-form.component';
 
 		LoklakContactRoutingModule,
 		NavbarModule,
-		FooterModule
+		FooterModule,
+		HttpModule
 	],
 	declarations: [
 		ContactComponent,

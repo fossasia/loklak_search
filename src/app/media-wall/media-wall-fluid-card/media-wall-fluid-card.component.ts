@@ -5,11 +5,11 @@ import { BrowserModule, DomSanitizer } from '@angular/platform-browser';
 import { WallCard } from '../../models';
 
 @Component({
-	selector: 'media-wall-card',
-	templateUrl: './media-wall-card.component.html',
-	styleUrls: ['./media-wall-card.component.scss']
+	selector: 'media-wall-fluid-card',
+	templateUrl: './media-wall-fluid-card.component.html',
+	styleUrls: ['./media-wall-fluid-card.component.scss']
 })
-export class MediaWallCardComponent implements OnInit {
+export class MediaWallFluidCardComponent implements OnInit {
 	public filteredImages: string[] = new Array<string>();
 	public datetime: string = null;
 	@Input() feedItem: ApiResponseResult;

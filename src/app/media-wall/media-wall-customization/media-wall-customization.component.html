@@ -1,6 +1,8 @@
-<h1 md-dialog-title>Customization Menu</h1>
+<div class="dialog-heading">
+	<h1 md-dialog-title>Color Options</h1>
 <button class="form-close" md-dialog-close>x</button>
-<div md-dialog-content>
+</div>
+<div>
 	<md-tab-group color="accent">
   	<md-tab>
     	<ng-template md-tab-label>
@@ -8,8 +10,8 @@
 				Header
 			</ng-template>
 			<media-wall-custom-header
-			[mediaWallHeader]="(wallCustomHeader$ | async)"
-			(changeMediaWallHeader)="customizeHeader($event)"></media-wall-custom-header>
+				[mediaWallHeader]="(wallCustomHeader$ | async)"
+				(changeMediaWallHeader)="customizeHeader($event)"></media-wall-custom-header>
   	</md-tab>
 		<md-tab>
     	<ng-template md-tab-label>
@@ -17,8 +19,8 @@
 				Background
     	</ng-template>
 			<media-wall-custom-background
-			[mediaWallBackground]="(wallCustomBackground$ | async)"
-			(changeMediaWallBackground)="customizeBackground($event)"></media-wall-custom-background>
+				[mediaWallBackground]="(wallCustomBackground$ | async)"
+				(changeMediaWallBackground)="customizeBackground($event)"></media-wall-custom-background>
 		</md-tab>
 		<md-tab>
   		<ng-template md-tab-label>
@@ -26,8 +28,8 @@
 				Cards
 			</ng-template>
 			<media-wall-custom-card
-			[mediaWallCard]="(wallCustomCard$ | async)"
-			(changeMediaWallCard)="customizeCard($event)"></media-wall-custom-card>
+				[mediaWallCard]="(wallCustomCard$ | async)"
+				(changeMediaWallCard)="customizeCard($event)"></media-wall-custom-card>
   	</md-tab>
 	</md-tab-group>
 </div>

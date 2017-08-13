@@ -1,0 +1,155 @@
+.wall-toolbar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 5px;
+    font-size: 16px;
+    line-height: 1;
+    z-index: 1000;
+    background-color: rgba(34,34,34,.85);
+    opacity: 0;
+		transition: opacity .25s ease-in-out;
+		display: flex;
+}
+
+.wall-toolbar:hover {
+	opacity: 1;
+}
+
+.mouse-moving {
+	opacity: 1;
+}
+
+div.menu {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: space-between;
+	transition: opacity .25s ease-in-out;
+	width: 100%;
+
+	div.option {
+		margin-right: 5px;
+
+		&#search {
+			margin-left: auto;
+		}
+
+		&#search-bar {
+			margin: auto;
+			display: flex;
+			flex-wrap: row wrap;
+
+			i.md-12 {
+				color: #ffffff;
+				position: relative;
+				align-self: center;
+				right: 10%;
+			}
+		}
+
+		@media only screen and (max-width: 450px) {
+			&#search {
+				margin-left: 0;
+			}
+			&#search-bar {
+				flex: 1;
+			}
+		}
+
+		button.btn {
+			display: flex;
+			flex-flow: column wrap;
+			justify-content: center;
+			background-color: inherit;
+			border: none;
+			color: #ffffff;
+			cursor: pointer;
+			font-size: 0.6rem;
+
+			i.md-12 {
+				align-self: center;
+			}
+
+			span.info {
+				align-self: center;
+			}
+		}
+	}
+}
+input {
+  padding: 0.5em 0.6em;
+  display: inline-block;
+	border: 1px solid #ffffff;
+	background-color: rgba(34,34,34,.85);
+	color: white;
+  box-shadow: inset 0 1px 3px rgba(34,34,34,.85);
+  border-radius: 4px;
+  vertical-align: middle;
+  box-sizing: border-box;
+  *display: inline;
+	*zoom: 1;
+	max-width: 100%;
+}
+
+.form-label {
+  text-align: left;
+  display: inline-block;
+  vertical-align: middle;
+  max-width: 9.5em;
+	margin: 0 5px 0 5px;
+	padding: 0.6em;
+	color: white;
+}
+
+/deep/ .docs-theme-picker-menu {
+  .md-menu-content {
+    padding: 8px;
+  }
+
+  [md-menu-item] {
+    flex: 0 0 auto;
+    padding: 0;
+		overflow: hidden;
+		margin-right: 1px;
+		padding: 5px;
+  }
+
+  /deep/ .docs-theme-picker-swatch {
+    position: relative;
+    width: 36px;
+    height: 36px;
+    margin: 6px;
+    border-radius: 50%;
+    overflow: hidden;
+
+    /deep/ .docs-theme-chosen-icon {
+      color: gray;
+      position: absolute;
+      left: 50%; top: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      box-sizing: border-box;
+      border: 1px solid rgba(0,0,0,.2);
+      border-radius: 50%;
+    }
+  }
+
+  /deep/ .docs-theme-picker-primary {
+    width: 100%;
+		height: 100%;
+	}
+
+	/deep/ i.md-12 {
+		position: relative;
+		top: 5px;
+	}
+}

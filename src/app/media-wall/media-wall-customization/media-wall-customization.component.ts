@@ -1,5 +1,4 @@
-import { Component, OnInit, OnDestroy, Inject, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
-import { Location } from '@angular/common';
+import { Component, OnInit, OnDestroy, Inject, ChangeDetectionStrategy } from '@angular/core';
 import {MdDialog, MdDialogRef, MD_DIALOG_DATA} from '@angular/material';
 
 import { Observable } from 'rxjs/Observable';
@@ -25,9 +24,7 @@ export class MediaWallCustomizationComponent implements OnInit, OnDestroy {
 
 	constructor(
 		private dialogRef: MdDialogRef<MediaWallCustomizationComponent>,
-		private store: Store<fromRoot.State>,
-		private location: Location,
-		private ref: ChangeDetectorRef) { }
+		private store: Store<fromRoot.State>) { }
 
 	ngOnInit() {
 		this.dialogRef
@@ -56,7 +53,7 @@ export class MediaWallCustomizationComponent implements OnInit, OnDestroy {
 		this.dialogRef.close();
 	}
 
-		ngOnDestroy() {
-			this.__subscriptions__.forEach(subscription => subscription.unsubscribe());
-		}
+	ngOnDestroy() {
+		this.__subscriptions__.forEach(subscription => subscription.unsubscribe());
+	}
 }

@@ -1,32 +1,39 @@
 <div class="wrapper"
 [style.background-color]="(wallCustomBackground$ | async).backgroundColor">
 	<media-wall-header
-	[showHideMenu]="showToolBar"
-	[query]="(query$ | async).displayString"
-	[wallCustomHeader]="(wallCustomHeader$ | async)"
-	(showHideCustomization)="openDialog()"></media-wall-header>
+		*ngIf="(wallDisplayHeader$ | async)"
+		[query]="(query$ | async).displayString"
+		[headerTitle]="(wallHeaderTitle$ | async)"
+		[wallCustomHeader]="(wallCustomHeader$ | async)"></media-wall-header>
 	<div class="wall-wrapper" (mousemove)="displayToolBar($event)">
-		<div *ngIf="(isWallSearching$ | async)">
+		<div *ngIf="(isWallSearching$ | async)" class="align-searching">
 			<div class="searching">
-				<!-- Hook Up the Material Design Progress Bar. -->
+				<app-lazy-img src="{{headerImageUrl}}" width="100" height="120"></app-lazy-img>
 			</div>
 		</div>
 		<masonry
-		*ngIf="!(isWallSearching$ | async)"
-		[options]="masonryOptions">
+			[class.hidden-header]="!(wallDisplayHeader$ | async)"
+			[options]="masonryOptions"
+			*ngIf="!(isWallSearching$ | async)">
 			<masonry-brick
-			class="brick"
-			*ngFor="let item of (apiWallResponseResults$ | async);">
-				<media-wall-card
-				[feedItem]="item"
-				[wallCustomCard$]="wallCustomCard$"></media-wall-card>
+				class="brick"
+				[style.width]="columnCount"
+				*ngFor="let item of (apiWallResponseResults$ | async);">
+				<media-wall-fluid-card
+					[feedItem]="item"
+					[wallCustomCard$]="wallCustomCard$"></media-wall-fluid-card>
 			</masonry-brick>
 		</masonry>
 		<div class="results-not-found"
-						*ngIf="!(areWallResultsAvailable$ | async) &&
-									((query$ | async).queryString) &&
-									!(isWallSearching$ | async )" >
-				<media-wall-not-found></media-wall-not-found>
+			*ngIf="!(areWallResultsAvailable$ | async) &&
+			((query$ | async).queryString) &&
+			!(isWallSearching$ | async )" >
+			<media-wall-not-found
+				[fontColor]="(wallCustomCard$ | async).fontColor"></media-wall-not-found>
 		</div>
+		<media-wall-menu
+			[query]="(query$ | async).queryString"
+			[showHideMenu]="showToolBar"
+			(showHideCustomization)="openDialog($event)"></media-wall-menu>
 	</div>
 </div>

@@ -12,7 +12,9 @@ import { WallHeader, WallBackground, WallCard } from '../models';
 export const ActionTypes = {
 	WALL_HEADER_PROPERTIES_CHANGE: '[Media Wall] Media Wall Header Properties Change',
 	WALL_BACKGROUND_PROPERTIES_CHANGE: '[Media Wall] Media Wall Background Properties Change',
-	WALL_CARD_PROPERTIES_CHANGE: '[Media Wall] Media Wall Card Properties Change'
+	WALL_CARD_PROPERTIES_CHANGE: '[Media Wall] Media Wall Card Properties Change',
+	WALL_LIGHT_THEME_CHANGE: '[Media Wall] Media Wall Basic Theme',
+	WALL_DARK_THEME_CHANGE: '[Media Wall] Media Wall Dark Theme'
 };
 
 /**
@@ -41,6 +43,18 @@ export class WallCardPropertiesChangeAction implements Action {
 	constructor(public payload: WallCard) { }
 }
 
+export class WallLightThemeChangeAction implements Action {
+	type = ActionTypes.WALL_LIGHT_THEME_CHANGE;
+
+	constructor(public payload: '') { }
+}
+
+export class WallDarkThemeChangeAction implements Action {
+	type = ActionTypes.WALL_DARK_THEME_CHANGE;
+
+	constructor(public payload: '') { }
+}
+
 /**
  * Export a type alias of all actions in this action group
  * so that reducers can easily compose action types
@@ -48,4 +62,6 @@ export class WallCardPropertiesChangeAction implements Action {
 export type Actions
 	= WallBackgroundPropertiesChangeAction
 	| WallCardPropertiesChangeAction
-	| WallHeaderPropertiesChangeAction;
+	| WallHeaderPropertiesChangeAction
+	| WallDarkThemeChangeAction
+	| WallLightThemeChangeAction;

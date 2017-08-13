@@ -1,0 +1,75 @@
+<div class="wall-toolbar" [class.mouse-moving]="showHideMenu || menuActive">
+	<div class="menu">
+		<div class="option" id="direct-url">
+			<button class="btn" role="button" type="button" tabindex="-1"
+				mdTooltip="Direct URL" [mdTooltipPosition]="'above'"
+				aria-roledescription="Get Direct URL">
+				<i  class="material-icons md-12">link</i>
+			</button>
+		</div>
+		<div class="option" id="search-bar">
+			<label class="form-label" for="search" >Search Term</label>
+			<input mdInput required search autocomplete="off" type="text" id="search" name="search"
+				[formControl]="searchInputControl"
+				(keyup.enter)="relocateEvent(query)" [(ngModel)]="query"
+				name="query">
+			<i  class="material-icons md-12">search</i>
+		</div>
+		<div class="option" id="search">
+			<button class="btn" role="button" type="button" tabindex="-1"
+				mdTooltip="Advanced Search" [mdTooltipPosition]="'above'"
+				aria-roledescription="Search Options" (click)="showHideCustomization.emit('Search')">
+				<i  class="material-icons md-12">search</i>
+			</button>
+		</div>
+		<div class="option" id="feeds-moderation">
+			<button class="btn" role="button" type="button" tabindex="-1"
+				mdTooltip="Moderation" [mdTooltipPosition]="'above'"
+				aria-roledescription="Feeds Moderation" (click)="showHideCustomization.emit('Moderation')">
+				<i  class="material-icons md-12">person_outline</i>
+			</button>
+		</div>
+		<div class="option" id="wall-design">
+			<button class="btn" role="button" type="button" tabindex="-1"
+				mdTooltip="Wall Design" [mdTooltipPosition]="'above'"
+				aria-roledescription="Wall Design" (click)="showHideCustomization.emit('Design')">
+				<i  class="material-icons md-12">web</i>
+			</button>
+		</div>
+		<div class="option" id="color-theming">
+			<button class="btn" mdMenuTrigger
+				role="button" type="button" tabindex="-1"
+				mdTooltip="Color Themes" [mdTooltipPosition]="'above'"
+				[mdMenuTriggerFor]="themeMenu"
+				(onMenuOpen)="menuActive = true"
+				(onMenuClose)="menuActive = false"
+				aria-roledescription="Color Themes">
+				<i  class="material-icons md-12">format_color_fill</i>
+			</button>
+		</div>
+		<div class="option" id="fullscreen">
+			<button class="btn" role="button" type="button" tabindex="-1"
+				mdTooltip="Full Screen" [mdTooltipPosition]="'above'"
+				aria-roledescription="Enter/Exit Full Screen" toggleFullscreen>
+				<i  class="material-icons md-12">fullscreen</i>
+			</button>
+		</div>
+	</div>
+</div>
+<md-menu class="docs-theme-picker-menu" overlapTrigger="false" #themeMenu="mdMenu" yposition="above">
+		<md-grid-list cols="2">
+			<md-grid-tile *ngFor="let theme of themes">
+				<div md-menu-item (click)="currentTheme = theme; installTheme();">
+					<div class="docs-theme-picker-swatch">
+						<md-icon class="docs-theme-chosen-icon" *ngIf="currentTheme === theme">check_circle</md-icon>
+						<div class="docs-theme-picker-primary" [style.background]="theme"></div>
+					</div>
+				</div>
+			</md-grid-tile>
+		</md-grid-list>
+		<button md-menu-item role="button" type="button" tabindex="-1"
+			aria-roledescription="Color Options" (click)="showHideCustomization.emit('Color')">
+			<i class="material-icons md-12">color_lens</i>
+			<span class="info">Color Options</span>
+	</button>
+</md-menu>
