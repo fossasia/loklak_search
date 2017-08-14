@@ -1,0 +1,14 @@
+<div class="dialog-heading">
+<button class="form-close" md-dialog-close>x</button>
+</div>
+<h1 md-dialog-title>Share it with others</h1>
+<div class="text">
+	You can share the custom link with others to get others project it on their displays.
+	<h4 class="sub-text">
+			Your URL
+	</h4>
+	<input
+		readonly="readonly"
+		onClick="this.select();"
+		value="loklak.org/wall?{{(directUrl$ | async)}}">
+</div>
