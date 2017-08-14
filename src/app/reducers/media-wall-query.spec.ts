@@ -19,7 +19,7 @@ describe('MediaWallReducer', () => {
 			const queryString = 'fossasia';
 			const action = new mediaWallAction.WallInputValueChangeAction(queryString);
 			const result = fromMediaWall.reducer(fromMediaWall.initialState, action);
-			expect(result.query.queryString).toBe(queryString);
+			expect(result.query.displayString).toBe(queryString);
 		});
 	});
 });

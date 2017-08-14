@@ -7,6 +7,7 @@ import 'rxjs/add/operator/withLatestFrom';
 
 import * as fromRoot from '../reducers';
 import * as wallAction from '../actions/media-wall';
+import * as mediaWallDirectUrlAction from '../actions/media-wall-direct-url';
 import * as mediaWallAction from '../actions/media-wall-query';
 
 /**
@@ -36,8 +37,11 @@ export class MediaWallQueryEffects {
 		= this.actions$
 					.ofType(mediaWallAction.ActionTypes.WALL_QUERY_CHANGE)
 					.withLatestFrom(this.store$)
-					.map(([action, state]) => {
-							return new wallAction.WallSearchAction(state.mediaWallQuery.query);
+					.mergeMap(([action, state]) => {
+							return [
+								new mediaWallDirectUrlAction.WallGenerateDirectUrlAction(''),
+								new wallAction.WallSearchAction(state.mediaWallQuery.query)
+							]
 					});
 
 	constructor(

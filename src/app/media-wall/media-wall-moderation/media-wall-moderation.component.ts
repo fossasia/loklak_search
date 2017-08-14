@@ -8,6 +8,7 @@ import { Store } from '@ngrx/store';
 import * as fromRoot from '../../reducers';
 import * as mediaWallCustomAction from '../../actions/media-wall-custom';
 import * as mediaWallModerationAction from '../../actions/media-wall-moderation';
+import * as mediaWallDirectUrlAction from '../../actions/media-wall-direct-url';
 
 import { MasonryOptions } from '../../app-masonry';
 
@@ -93,15 +94,18 @@ export class MediaWallModerationComponent implements OnInit, OnDestroy {
 		}
 		else {
 			this.store.dispatch( new mediaWallModerationAction.WallHideFeedAction(id));
+			this.store.dispatch( new mediaWallDirectUrlAction.WallGenerateDirectUrlAction());
 		}
 	}
 
 	public blockUnblockUser(user_id) {
 		if (this.checkBlocked(user_id)) {
 			this.store.dispatch( new mediaWallModerationAction.WallUnBlockUserAction(user_id));
+			this.store.dispatch( new mediaWallDirectUrlAction.WallGenerateDirectUrlAction());
 		}
 		else {
 			this.store.dispatch( new mediaWallModerationAction.WallBlockUserAction(user_id));
+			this.store.dispatch( new mediaWallDirectUrlAction.WallGenerateDirectUrlAction());
 		}
 	}
 
@@ -144,10 +148,12 @@ export class MediaWallModerationComponent implements OnInit, OnDestroy {
 
 	public checkProfanity() {
 		this.store.dispatch(new mediaWallModerationAction.WallProfanityChangeAction(this.profanityCheck));
+		this.store.dispatch( new mediaWallDirectUrlAction.WallGenerateDirectUrlAction());
 	}
 
 	public checkDuplicate() {
 		this.store.dispatch(new mediaWallModerationAction.WallRemoveDuplicateChangeAction(this.removeDuplicate));
+		this.store.dispatch( new mediaWallDirectUrlAction.WallGenerateDirectUrlAction());
 	}
 
 	ngOnDestroy() {

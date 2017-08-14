@@ -2,19 +2,23 @@ import { createSelector } from 'reselect';
 import * as mediaWallDesignAction from '../actions/media-wall-design';
 
 export interface State {
-	displayHeader: boolean;
-	headerTitle: string;
-	columnCount: string;
-	count: number;
-	cardStyle: string;
+	design: {
+		displayHeader: boolean;
+		headerTitle: string;
+		columnCount: string;
+		count: number;
+		cardStyle: string;
+}
 }
 
 export const initialState: State = {
-	displayHeader: true,
-	headerTitle: '',
-	columnCount: '',
-	count: 1,
-	cardStyle: 'Fluid'
+	design: {
+		displayHeader: true,
+		headerTitle: '',
+		columnCount: '',
+		count: 1,
+		cardStyle: 'Fluid'
+	}
 };
 
 export function reducer(state: State = initialState, action: mediaWallDesignAction.Actions): State {
@@ -24,7 +28,10 @@ export function reducer(state: State = initialState, action: mediaWallDesignActi
 			const displayHeader = action.payload;
 
 			return Object.assign({}, state, {
-				displayHeader
+				design: {
+					...state.design,
+					displayHeader
+				}
 			});
 		}
 
@@ -32,15 +39,22 @@ export function reducer(state: State = initialState, action: mediaWallDesignActi
 			const headerTitle = action.payload;
 
 			return Object.assign({}, state, {
-				headerTitle
+				design: {
+					...state.design,
+					headerTitle
+				}
+
 			});
 		}
 
 		case mediaWallDesignAction.ActionTypes.WALL_COLUMN_COUNT_CHANGE_ACTION: {
-			const payload = action.payload;
+			const columnCount = action.payload;
 
 			return Object.assign({}, state, {
-				columnCount: payload
+				design: {
+					...state.design,
+					columnCount
+				}
 			});
 		}
 
@@ -52,7 +66,10 @@ export function reducer(state: State = initialState, action: mediaWallDesignActi
 			}
 
 			return Object.assign({}, state, {
-				count
+				design: {
+					...state.design,
+					count
+				}
 			});
 		}
 
@@ -60,7 +77,11 @@ export function reducer(state: State = initialState, action: mediaWallDesignActi
 			const cardStyle = action.payload;
 
 			return Object.assign({}, state, {
-				cardStyle
+				design: {
+					...state.design,
+					cardStyle
+				}
+
 			});
 		}
 
@@ -70,12 +91,12 @@ export function reducer(state: State = initialState, action: mediaWallDesignActi
 	}
 }
 
-export const getWallDisplayHeader = (state: State) => state.displayHeader;
+export const getWallDisplayHeader = (state: State) => state.design.displayHeader;
 
-export const getWallHeaderTitle = (state: State) => state.headerTitle;
+export const getWallHeaderTitle = (state: State) => state.design.headerTitle;
 
-export const getWallColumnCount = (state: State) => state.columnCount;
+export const getWallColumnCount = (state: State) => state.design.columnCount;
 
-export const getWallCount = (state: State) => state.count;
+export const getWallCount = (state: State) => state.design.count;
 
-export const getWallCardStyle = (state: State) => state.cardStyle;
+export const getWallCardStyle = (state: State) => state.design.cardStyle;
