@@ -40,9 +40,9 @@ export class FeedLinkerComponent implements OnInit {
 		const indexedChunks: StringIndexedChunks[] = [];
 
 		this.hashtags.forEach(hashtag => {
-			const indices = getIndicesOf(this.text, `#${hashtag}`, false);
+			const indices = getIndicesOf(this.text, `${hashtag}`, false);
 			indices.forEach(idx => {
-				indexedChunks.push({index: idx, str: `#${hashtag}`, type: ShardType.hashtag});
+				indexedChunks.push({index: idx, str: `${hashtag}`, type: ShardType.hashtag});
 			});
 		});
 
@@ -144,7 +144,7 @@ export class FeedLinkerComponent implements OnInit {
 			else if (shardText[0] === '#' && shardText.length > 1) {
 				const hashtagShard = new Shard(ShardType.hashtag, shardText);
 				hashtagShard.linkTo = ['/search'];
-				hashtagShard.queryParams = { query : `#${shardText.substring(1)}` };
+				hashtagShard.queryParams = { query : `${shardText.substring(1)}` };
 				this.shardArray.push(hashtagShard);
 			}
 			else if (this.stringIsURL(shardText)) {

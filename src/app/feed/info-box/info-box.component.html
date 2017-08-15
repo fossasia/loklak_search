@@ -1,6 +1,6 @@
-<div class="info-box" *ngIf="areTopMentionsAvailable || 
-							areTopTwitterersAvailable || 
-							areTopHashtagsAvailable || 
+<div class="info-box" *ngIf="areTopMentionsAvailable ||
+							areTopTwitterersAvailable ||
+							areTopHashtagsAvailable ||
 							areFrequencyDataAvailable">
 	<div class="row">
 		<div class="col-sm-12 col-xs-12 col-md-6" in-viewport (inViewport)="inviewtwitters($event)" *ngIf="areTopTwitterersAvailable">
@@ -28,7 +28,7 @@
 							<div  class="leaderboard-count">{{item[1]}}</div>
 						</td>
 						<td class="leaderboard-text">
-							<a [routerLink]="['/search']" [queryParams]="{ query : '#' + item[0] }">#{{item[0]}}</a>
+							<a [routerLink]="['/search']" [queryParams]="{ query : item[0] }">#{{item[0]}}</a>
 						</td>
 					</tr>
 				</tbody>
