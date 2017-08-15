@@ -5,12 +5,12 @@
 	<div class="hashtags">
 		<ul class="column">
 			<li class="hashtag" *ngFor="let tag of sortedApiResponseTags | slice:0:5">
-				<a [routerLink]="['/search']" [queryParams]="{ query : '#' + tag.tag }">#{{tag.tag}}</a>
+				<a [routerLink]="['/search']" [queryParams]="{ query : tag.tag }">{{tag.tag}}</a>
 			</li>
 		</ul>
 		<ul class="column">
 			<li class="hashtag" *ngFor="let tag of sortedApiResponseTags | slice:5:10">
-				<a [routerLink]="['/search']" [queryParams]="{ query : '#' + tag.tag }">#{{tag.tag}}</a>
+				<a [routerLink]="['/search']" [queryParams]="{ query : tag.tag }">{{tag.tag}}</a>
 			</li>
 		</ul>
 	</div>
