@@ -25,6 +25,7 @@
     "@angular/platform-browser": "^4.0.0",
     "@angular/platform-browser-dynamic": "^4.0.0",
     "@angular/router": "^4.0.0",
+    "@angular/service-worker": "^1.0.0-beta.16",
     "@ngrx/core": "^1.0.0",
     "@ngrx/effects": "^2.0.0",
     "@ngrx/router-store": "^1.1.0",
@@ -39,6 +40,8 @@
     "reselect": "^2.5.4",
     "rxjs": "^5.4.1",
     "screenfull": "^3.2.2",
+    "sw-precache": "^5.2.0",
+    "sw-toolbox": "^3.6.0",
     "ts-helpers": "^1.1.1",
     "wicg-inert": "^1.1.4",
     "zone.js": "^0.8.4"
