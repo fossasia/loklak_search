@@ -55,6 +55,7 @@ import * as fromMediaWallResponse from './api-media-wall-response';
 import * as fromMediaWallCustom from './media-wall-custom';
 import * as fromMediaWallPagination from './media-wall-pagination';
 import * as fromMediaWallDesign from './media-wall-design';
+import * as fromMediaWallDirectUrl from './media-wall-direct-url';
 
 /**
  * As mentioned, we treat each reducer like a table in a database. This means
@@ -78,6 +79,7 @@ export interface State {
 	mediaWallCustom: fromMediaWallCustom.State;
 	mediaWallPagination: fromMediaWallPagination.State;
 	mediaWallDesign: fromMediaWallDesign.State;
+	mediaWallDirectUrl: fromMediaWallDirectUrl.State;
 }
 
 /**
@@ -104,7 +106,8 @@ const reducers = {
 	mediaWallSearch: fromMediaWallSearch.reducer,
 	mediaWallCustom: fromMediaWallCustom.reducer,
 	mediaWallPagination: fromMediaWallPagination.reducer,
-	mediaWallDesign: fromMediaWallDesign.reducer
+	mediaWallDesign: fromMediaWallDesign.reducer,
+	mediaWallDirectUrl: fromMediaWallDirectUrl.reducer
 };
 
 const developmentReducer: ActionReducer<State> = compose(storeFreeze, combineReducers)(reducers);
@@ -290,6 +293,15 @@ export const getWallColumnCount = createSelector(getMediaWallDesignState, fromMe
 export const getWallCount = createSelector(getMediaWallDesignState, fromMediaWallDesign.getWallCount);
 export const getWallCardStyle = createSelector(getMediaWallDesignState, fromMediaWallDesign.getWallCardStyle);
 
+
+/**
+ * Selector for Media Wall Direct URL
+ */
+
+export const getMediaWallDirectUrlState = (state: State) => state.mediaWallDirectUrl;
+
+export const getMediaWallDirectUrl = createSelector(getMediaWallDirectUrlState, fromMediaWallDirectUrl.getMediaWallDirectUrl);
+export const getMediaWallShortenedUrl = createSelector(getMediaWallDirectUrlState, fromMediaWallDirectUrl.getMediaWallShortenedtUrl);
 /**
  * Selectors for Media Wall Response
  */
