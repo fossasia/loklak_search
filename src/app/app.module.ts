@@ -17,8 +17,7 @@ import {
 	SuggestEffects,
 	QueryEffects,
 	UserQueryEffects,
-	WallPaginationEffects,
-	MediaWallDirectUrlEffects
+	WallPaginationEffects
 } from './effects';
 
 import { LoklakAppRoutingModule } from './app-routing.module';
@@ -97,7 +96,6 @@ import {
 		EffectsModule.run(ApiUserSearchEffects),
 		EffectsModule.run(MediaWallQueryEffects),
 		EffectsModule.run(WallPaginationEffects),
-		EffectsModule.run(MediaWallDirectUrlEffects),
 
 		/**
 		 * Defines the routes at `root` level of the application.

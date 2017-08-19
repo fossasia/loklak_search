@@ -20,7 +20,6 @@ export class MediaWallMenuComponent implements OnInit, OnDestroy {
 	private __subscriptions__: Subscription[] = new Array<Subscription>();
 	public wallCustomCard$: Observable<WallCard>;
 	@Input() query: string;
-	public initialized = false;
 	public menuActive = false;
 	public searchInputControl = new FormControl();
 	@Input() showHideMenu: boolean;
@@ -50,11 +49,8 @@ export class MediaWallMenuComponent implements OnInit, OnDestroy {
 		this.__subscriptions__.push(
 			this.searchInputControl
 					.valueChanges
-					.subscribe(queryString => {
-						if (this.query !== queryString || this.initialized) {
-							this.relocateEvent(queryString);
-						}
-						this.initialized = true;
+					.subscribe(query => {
+						this.relocateEvent(query);
 					})
 		);
 	}
@@ -77,7 +73,7 @@ export class MediaWallMenuComponent implements OnInit, OnDestroy {
 	}
 
 	public relocateEvent(event) {
-		this.store.dispatch(new mediaWallAction.WallInputValueChangeAction(event));
+		this.store.dispatch(new mediaWallAction.WallInputValueChangeAction(this.query));
 	}
 
 	ngOnDestroy() {

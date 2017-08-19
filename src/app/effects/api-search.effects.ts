@@ -157,7 +157,7 @@ export class ApiSearchEffects {
 							return this.apiSearchService.fetchQuery(query.queryString, searchServiceConfig)
 												.takeUntil(nextSearch$)
 												.map(response => {
-													const URIquery = encodeURIComponent(query.routerString);
+													const URIquery = encodeURIComponent(query.displayString);
 													this.location.go(`/wall?query=${URIquery}`);
 													return new apiAction.WallSearchCompleteSuccessAction(response);
 												})

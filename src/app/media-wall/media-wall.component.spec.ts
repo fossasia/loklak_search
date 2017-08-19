@@ -13,7 +13,6 @@ import { MediaWallCustomizationComponent } from './media-wall-customization/medi
 import { MediaWallQueryComponent } from './media-wall-query/media-wall-query.component';
 import { MediaWallModerationComponent } from './media-wall-moderation/media-wall-moderation.component';
 import { MediaWallDesignComponent } from './media-wall-design/media-wall-design.component';
-import { MediaWallDirectUrlComponent } from './media-wall-direct-url/media-wall-direct-url.component';
 
 import { reducer } from '../reducers';
 import { RouterStub } from '../../testing';
@@ -126,8 +125,7 @@ describe('Component: MediaWall', () => {
 				MediaWallDesignComponent,
 				MediaWallQueryComponent,
 				MediaWallModerationComponent,
-				MediaWallMenuStubComponent,
-				MediaWallDirectUrlComponent
+				MediaWallMenuStubComponent
 			]
 		});
 		TestBed.overrideModule(BrowserDynamicTestingModule, {
@@ -136,8 +134,7 @@ describe('Component: MediaWall', () => {
 				MediaWallCustomizationComponent,
 				MediaWallDesignComponent,
 				MediaWallQueryComponent,
-				MediaWallModerationComponent,
-				MediaWallDirectUrlComponent ]
+				MediaWallModerationComponent ]
 		}
 });
 	});

@@ -32,7 +32,6 @@ import { MediaWallMenuComponent } from './media-wall-menu/media-wall-menu.compon
 import { MediaWallQueryComponent } from './media-wall-query/media-wall-query.component';
 import { MediaWallModerationComponent } from './media-wall-moderation/media-wall-moderation.component';
 import { MediaWallDesignComponent } from './media-wall-design/media-wall-design.component';
-import { MediaWallDirectUrlComponent } from './media-wall-direct-url/media-wall-direct-url.component';
 
 @NgModule({
 	imports: [
@@ -67,15 +66,13 @@ import { MediaWallDirectUrlComponent } from './media-wall-direct-url/media-wall-
 		MediaWallMenuComponent,
 		MediaWallQueryComponent,
 		MediaWallModerationComponent,
-		MediaWallDesignComponent,
-		MediaWallDirectUrlComponent
+		MediaWallDesignComponent
 	],
 	entryComponents: [
 		MediaWallCustomizationComponent,
 		MediaWallQueryComponent,
 		MediaWallModerationComponent,
-		MediaWallDesignComponent,
-		MediaWallDirectUrlComponent
+		MediaWallDesignComponent
 	]
 
 })
