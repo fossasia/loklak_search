@@ -32,10 +32,12 @@ export function reducer(state: State = initialState, action: mediaWallAction.Act
 
 		case mediaWallAction.ActionTypes.WALL_VALUE_CHANGE: {
 			const query: any = action.payload;
+
 			return Object.assign({}, state, {
 				query: {
 					...state.query,
-					displayString: query
+					displayString: query,
+					queryString: query
 				}
 			});
 
@@ -46,7 +48,8 @@ export function reducer(state: State = initialState, action: mediaWallAction.Act
 			if (queryPayload) {
 				const query = Object.assign({}, queryPayload, {
 					...queryPayload,
-					queryString: parseQueryToQueryString(queryPayload)
+					queryString: parseQueryToQueryString(queryPayload),
+					routerString: parseQueryToRouterString(queryPayload)
 				});
 				return Object.assign({}, state, {
 					query
@@ -56,7 +59,7 @@ export function reducer(state: State = initialState, action: mediaWallAction.Act
 				return Object.assign({}, state, {
 					query: {
 						...state.query,
-						queryString: parseQueryToQueryString(state.query),
+						queryString: state.query.displayString,
 						routerString: state.query.displayString
 					}
 				});

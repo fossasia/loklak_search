@@ -32,7 +32,7 @@
 				[fontColor]="(wallCustomCard$ | async).fontColor"></media-wall-not-found>
 		</div>
 		<media-wall-menu
-			[query]="(query$ | async).displayString"
+			[query]="(query$ | async).queryString"
 			[showHideMenu]="showToolBar"
 			(showHideCustomization)="openDialog($event)"></media-wall-menu>
 	</div>
