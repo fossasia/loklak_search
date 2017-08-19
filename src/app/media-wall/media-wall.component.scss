@@ -8,6 +8,10 @@ body {
 	font-size:20px;
 }
 
+.scroll-hide::-webkit-scrollbar {
+	display: none;
+}
+
 div.align-searching{
 	display: flex;
 	justify-content: center;
