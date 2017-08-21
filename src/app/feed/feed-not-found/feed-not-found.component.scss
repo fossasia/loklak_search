@@ -1,11 +1,10 @@
 .wrapper {
-	max-width: 700px;
+	max-width: 632px;
 	padding: 10px;
-	margin-top: 20px;
-	margin-left: 128px;
+	margin: 20px auto;
 
-	@media(max-width: 880px) {
-		margin: 0 auto;
+	@media (min-width: 900px) and (max-width: 1200px) {
+		margin-left: 130px;
 	}
 
 	h2 {

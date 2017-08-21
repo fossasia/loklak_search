@@ -1,6 +1,16 @@
-import { Component, OnInit, Input, ChangeDetectionStrategy, ChangeDetectorRef, Output, EventEmitter } from '@angular/core';
+import {
+	Component,
+	OnInit,
+	OnDestroy,
+	Input,
+	Output,
+	ChangeDetectionStrategy,
+	ChangeDetectorRef,
+	EventEmitter } from '@angular/core';
 import { ApiResponseResult } from '../../models/api-response';
-import { Observable } from 'rxjs/Rx';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/timer';
+import { Subscription } from 'rxjs/Subscription';
 import { BrowserModule, DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
@@ -9,8 +19,10 @@ import { BrowserModule, DomSanitizer, SafeResourceUrl } from '@angular/platform-
 	styleUrls: ['./feed-card.component.scss'],
 	changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class FeedCardComponent implements OnInit {
+export class FeedCardComponent implements OnInit, OnDestroy {
+	private __suscriptions__: Subscription[] = new Array<Subscription>();
 	public datetime: string = null;
+	private timer: Observable<number> = Observable.timer(0, 10000);
 	public inviewport: Observable<boolean>;
 	@Input() feedItem: ApiResponseResult;
 	@Input() feedIndex: number;
@@ -25,10 +37,16 @@ export class FeedCardComponent implements OnInit {
 	}
 
 	ngOnInit() {
-		const timer = Observable.timer(0, 10000);
-		timer.subscribe(t => this.ttt());
+		this.__suscriptions__.push(
+			this.timer.subscribe(t => this.ttt())
+		);
 		this.filterValidImageURLS();
 		this.sanitizeVideoURLs();
+	}
+
+	ngOnDestroy() {
+		this.__suscriptions__.forEach(subscription => subscription.unsubscribe());
+		this.ref.detach();
 	}
 
 	onShowed(show: boolean) {
@@ -86,7 +104,7 @@ export class FeedCardComponent implements OnInit {
 
 	public ttt(): any {
 		this.datetime = this.tdiff();
-		this.ref.markForCheck();
+		this.ref.detectChanges();
 	}
 
 

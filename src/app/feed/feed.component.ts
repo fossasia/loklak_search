@@ -15,6 +15,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
+import 'rxjs/add/operator/combineLatest';
 
 import { Store } from '@ngrx/store';
 import * as fromRoot from '../reducers';

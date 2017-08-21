@@ -1,0 +1,63 @@
+md-card.user-card {
+	margin-bottom: 10px;
+
+	.info {
+		display: flex;
+		align-items: center;
+		margin-bottom: 16px;
+
+		md-icon {
+			margin-right: 5px;
+			color: #777;
+		}
+
+		svg {
+			margin-right: 5px;
+			display: block;
+			height: 20px;
+			fill: #777;
+		}
+	}
+}
+
+md-card.info-card {
+	margin-bottom: 10px;
+
+	div#hashtags,
+	div#mentions,
+	div#tweeters {
+		h4 {
+			font-weight: 500;
+		}
+
+		.outer-wrapper {
+			display: flex;
+
+			.wrapper {
+				width: 100%;
+				height: 200px;
+				display: flex;
+				flex-direction: column;
+				flex-wrap: wrap;
+
+				.entry {
+					display: flex;
+					align-items: center;
+					margin: 3px 0px;
+					width: 50%;
+					overflow: hidden;
+					text-overflow: ellipsis;
+
+					a {
+						text-overflow: ellipsis;
+					}
+
+					md-chip-list {
+						margin-right: 15px;
+						width: 40px;
+					}
+				}
+			}
+		}
+	}
+}

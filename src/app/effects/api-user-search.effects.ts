@@ -13,6 +13,7 @@ import 'rxjs/add/operator/takeUntil';
 
 import { UserService } from '../services';
 import * as userApiAction from '../actions/user-api';
+import * as apiAction from '../actions/api';
 import { Query } from '../models';
 
 /**
@@ -39,12 +40,13 @@ export class ApiUserSearchEffects {
 					.debounceTime(400)
 					.map((action: userApiAction.UserSearchAction) => action.payload)
 					.switchMap(query => {
-						const nextSearch$ = this.actions$.ofType(userApiAction.ActionTypes.USER_SEARCH).skip(1);
+						const nextUserSearch$ = this.actions$.ofType(userApiAction.ActionTypes.USER_SEARCH).skip(1);
+						const nextSearch$ = this.actions$.ofType(apiAction.ActionTypes.SEARCH);
 
 						const follow_count = 10;
 
 						return this.apiUserService.fetchQuery(query.screen_name, follow_count)
-												.takeUntil(nextSearch$)
+												.takeUntil(nextSearch$ || nextUserSearch$)
 												.map(response => new userApiAction.UserSearchCompleteSuccessAction(response))
 												.catch(() => of(new userApiAction.UserSearchCompleteFailAction('')));
 					});

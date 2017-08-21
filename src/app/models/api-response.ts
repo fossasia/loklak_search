@@ -62,11 +62,12 @@ export interface ApiResponseResult {
 	without_lu_len: number;
 	without_luh_len: number;
 }
+
 export interface ApiResponseAggregations {
-	hashtags: Object;
-	screen_name: Object;
-	mentions: Object;
-	created_at: Object;
+	hashtags: { [key: string]: number };
+	screen_name: { [key: string]: number };
+	mentions: { [key: string]: number };
+	created_at: { [key: string]: number };
 }
 
 export interface ApiResponse {
@@ -80,6 +81,6 @@ export interface ApiResponseTrendingHashtags {
 	search_metadata: ApiResponseMetadata;
 	statuses: ApiResponseResult[];
 	aggregations: {
-		hashtags: Object
+		hashtags: { [key: string]: number }
 	};
 }

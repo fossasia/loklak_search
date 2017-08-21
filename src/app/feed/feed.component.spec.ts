@@ -82,23 +82,15 @@ class FeedLinkerStubComponent {
 }
 
 @Component({
-	selector: 'info-box',
+	selector: 'feed-info-box',
 	template: ''
 })
-class InfoBoxStubComponent {
-	@Input() private query;
-	@Input() private apiResponseAggregations;
-}
-
-@Component({
-	selector: 'user-info-box',
-	template: ''
-})
-class UserInfoBoxStubComponent {
-	@Input() private apiResponseUser;
-	@Input() private apiResponseUserFollowing;
-	@Input() private apiResponseUserFollowers;
-	@Input() private isUserResponseLoading;
+class FeedInfoBoxStubComponent {
+	@Input() public apiResponseAggregations;
+	@Input() public userCard;
+	@Input() public apiResponseUser;
+	@Input() public apiResponseUserFollowing;
+	@Input() public apiResponseUserFollowers;
 }
 
 @Component({
@@ -108,15 +100,6 @@ class UserInfoBoxStubComponent {
 class FeedUserCardStubComponent {
 	@Input() private feedItem;
 	@Input() private feedIndex;
-}
-
-@Component({
-	selector: 'feed-lightbox',
-	template: ''
-})
-class FeedLightboxStubComponent {
-	@Input() private feedItem;
-	@Output() private hideLightBox: EventEmitter<any>;
 }
 
 describe('Component: Feed', () => {
@@ -137,10 +120,8 @@ describe('Component: Feed', () => {
 				FeedNotFoundStubComponent,
 				FeedLinkerStubComponent,
 				FeedPaginationStubComponent,
-				InfoBoxStubComponent,
-				UserInfoBoxStubComponent,
 				FeedUserCardStubComponent,
-				FeedLightboxStubComponent
+				FeedInfoBoxStubComponent
 			]
 		});
 	});

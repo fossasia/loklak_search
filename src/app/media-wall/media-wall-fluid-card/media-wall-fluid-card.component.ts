@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, ChangeDetectionStrategy, ChangeDetectorRef, Output, EventEmitter } from '@angular/core';
 import { ApiResponseResult } from '../../models/api-response';
-import { Observable } from 'rxjs/Rx';
+import { Observable } from 'rxjs/Observable';
 import { BrowserModule, DomSanitizer } from '@angular/platform-browser';
 import { WallCard } from '../../models';
 

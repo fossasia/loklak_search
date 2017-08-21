@@ -5,65 +5,36 @@
 
 	.feed-wrapper {
 		padding-top: 30px;
-		flex-direction: row;
+		margin-top: 5px;
+		display: grid;
+		grid-template-columns: 150px 632px 455px 1fr;
+		grid-template-rows: auto;
+		grid-template-areas: ". feed-results feed-info-box .";
 
-		.wrapper {
-			margin-left: 150px;
-			float: none;
-
-			@media(min-width: 1000px ) {
-				float: left;
-			}
+		@media(max-width: 1200px) {
+			grid-template-columns: 1fr;
+			grid-template-areas:
+				"feed-info-box"
+				"feed-results";
 		}
 
-		feed-pagination {
-			margin-top: 10px;
-		}
+		.feed-results {
+			grid-area: feed-results;
 
-		@media(min-width: 1000px) {
-			.feed-results {
-				width: 632px;
-			}
-
-			.user-feed-results {
-				width: 1120px;
+			feed-pagination {
+				margin-top: 10px;
 			}
 		}
-
-		.user-feed-results {
-			display:flex;
-			flex-wrap: wrap;
-			justify-content: space-between;
-		}
-
-			.card-wrapper {
-
-				width: 100%;
-
-				@media(min-width: 600px) {
-					width: 49%;
-				}
-
-				@media(min-width: 1000px) {
-					width: 24%;
-				}
-
-				margin-bottom: 15px;
-				border: 1px solid #e1e8ed;
-			}
 
 		.feed-info-box {
+			grid-area: feed-info-box;
 
-			@media(min-width: 1180px) {
-				width: calc(100% - 812px);
-				max-width: 454px;
-				margin-left: 30px;
-			}
-		}
+			margin: 10px;
 
-		@media(max-width: 1000px) {
-			.wrapper{
-				margin: 0 auto;
+			md-card.links-card {
+				a {
+					margin: 0px 5px;
+				}
 			}
 		}
 	}
@@ -76,15 +47,6 @@
 		left: 0;
 		width: 100vw;
 	}
-}
-
-@media all and (max-width:1000px){
-		.feed-wrapper{
-			flex-direction: row-reverse;
-			-webkit-flex-flow: column wrap;
-		    flex-flow: column wrap;
-		}
-
 }
 
 .searching {
@@ -106,33 +68,11 @@
 	margin: 0 23%;
 }
 
-.pagination {
-	width: 100%;
-	padding: 20px;
-}
-
 @keyframes spin {
 	0% {
 		transform: rotate(0deg);
 	}
 	100% {
 		transform: rotate(360deg);
-	}
-}
-
-button {
-	display: block;
-	margin: 0 auto;
-	font-size: 1.1em;
-	padding: 5px;
-	color: #2865a1;
-	font-weight: 700;
-	background: transparent;
-	border: none;
-	cursor: pointer;
-
-	&:focus {
-		border: none;
-		outline: none;
 	}
 }

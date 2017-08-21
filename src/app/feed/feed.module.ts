@@ -8,7 +8,10 @@ import {
 	MdMenuModule,
 	MdIconModule,
 	MdButtonModule,
-	MdButtonToggleModule
+	MdButtonToggleModule,
+	MdCardModule,
+	MdListModule,
+	MdChipsModule
 } from '@angular/material';
 
 import { LoklakFeedRoutingModule } from './feed-routing.module';
@@ -23,12 +26,10 @@ import { FooterModule } from '../footer/footer.module';
 import { FeedNotFoundComponent } from './feed-not-found/feed-not-found.component';
 import { FeedLinkerComponent } from './feed-linker/feed-linker.component';
 import { FeedPaginationComponent } from './feed-pagination/feed-pagination.component';
-import { InfoBoxComponent } from './info-box/info-box.component';
-import { UserInfoBoxComponent } from './user-info-box/user-info-box.component';
-import { FeedLightboxComponent } from './feed-lightbox/feed-lightbox.component';
 import { FeedUserCardComponent } from './feed-user-card/feed-user-card.component';
 import { InViewportDirective } from '../shared/in-viewport.directive';
 import { FeedAdvancedSearchComponent } from './feed-advanced-search/feed-advanced-search.component';
+import { FeedInfoBoxComponent } from './feed-info-box/feed-info-box.component';
 
 
 @NgModule({
@@ -60,6 +61,9 @@ import { FeedAdvancedSearchComponent } from './feed-advanced-search/feed-advance
 		MdIconModule,
 		MdButtonModule,
 		MdButtonToggleModule,
+		MdCardModule,
+		MdListModule,
+		MdChipsModule,
 
 		/**
 		 * Defines the routes at `feed` level of application.
@@ -89,13 +93,10 @@ import { FeedAdvancedSearchComponent } from './feed-advanced-search/feed-advance
 		FeedNotFoundComponent,
 		FeedLinkerComponent,
 		FeedPaginationComponent,
-		InfoBoxComponent,
-		FeedLightboxComponent,
 		InViewportDirective,
-		UserInfoBoxComponent,
-		FeedLightboxComponent,
 		FeedUserCardComponent,
-		FeedAdvancedSearchComponent
+		FeedAdvancedSearchComponent,
+		FeedInfoBoxComponent
 	]
 })
 export class FeedModule { }

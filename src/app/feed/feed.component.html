@@ -5,8 +5,7 @@
 				[doCloseSuggestBox$]="doCloseSuggestBox$()"
 				(searchEvent)="search($event)"
 				(relocateEvent)="relocateURL($event)"></feed-header>
-
-		<div *ngIf="(isSearching$ | async)">
+		<div *ngIf="(isSearching$ | async) || (isUserInfoSearching$ | async)">
 			<div class="searching">
 			<!-- Hook Up the Material Design Progress Bar. -->
 			</div>
@@ -16,36 +15,44 @@
 		</div>
 		<br>
 
-		<div *ngIf="!(isSearching$ | async)" class="feed-wrapper">
-			<div *ngIf="(areResultsAvailable$ | async)" class="wrapper feed-results">
-				<div *ngFor="let item of (apiResponseResults$ | async); let i = index ">
-					<feed-card [feedItem]="item" [feedIndex]="i"></feed-card>
-				</div>
-				<feed-pagination
-					(paginate)="loadMoreResults($event)"
-					[isNextPageLoading]="(isNextPageLoading$ | async)"
-					[areMorePagesAvailable]="(areMorePagesAvailable$ | async)"></feed-pagination>
+		<div *ngIf="!(isSearching$ | async) && !(isUserInfoSearching$ | async)" class="feed-wrapper">
+			<div class="wrapper feed-results">
+				<div *ngIf="(areResultsAvailable$ | async)">
+					<div *ngFor="let item of (apiResponseResults$ | async); let i = index ">
+						<feed-card [feedItem]="item" [feedIndex]="i"></feed-card>
+					</div>
 
-				<feed-footer
-					[query] = "(query$ | async).displayString"
-					[apiResponseTags]="(apiResponseTags$ | async)"></feed-footer>
+					<feed-pagination
+						(paginate)="loadMoreResults($event)"
+						[isNextPageLoading]="(isNextPageLoading$ | async)"
+						[areMorePagesAvailable]="(areMorePagesAvailable$ | async)"></feed-pagination>
+
+					<feed-footer
+						[query] = "(query$ | async).displayString"
+						[apiResponseTags]="(apiResponseTags$ | async)"></feed-footer>
+				</div>
+
+				<div class="results-not-found"
+					*ngIf="!(areResultsAvailable$ | async) &&
+								((query$ | async).displayString) &&
+								!(isSearching$ | async )" >
+					<feed-not-found [query]="(query$ | async)"></feed-not-found>
+				</div>
 			</div>
 			<div *ngIf="(areResultsAvailable$ | async)" class="wrapper feed-info-box">
-					<info-box *ngIf="!(areUserResultsValid$ | async)"
-						[query] = "(query$ | async)"
-						[apiResponseAggregations]="(apiResponseAggregations$ | async)"></info-box>
-					<user-info-box
-						*ngIf="(areUserResultsValid$ | async)"
-						[apiResponseUser] = "(apiResponseUser$ | async)"
-						[apiResponseUserFollowing] = "apiResponseUserFollowing$ | async"
-						[apiResponseUserFollowers] = "apiResponseUserFollowers$ | async"
-						[isUserResponseLoading]= "(isUserInfoSearching$ | async)"></user-info-box>
-			</div>
-			<div class="results-not-found"
-						*ngIf="!(areResultsAvailable$ | async) &&
-									((query$ | async).displayString) &&
-									!(isSearching$ | async )" >
-				<feed-not-found [query]="(query$ | async)"></feed-not-found>
+				<feed-info-box
+					[apiResponseAggregations]="(apiResponseAggregations$ | async)"
+					[userCard]="(areUserResultsValid$ | async)"
+					[apiResponseUser] = "(apiResponseUser$ | async)"
+					[apiResponseUserFollowing] = "(apiResponseUserFollowing$ | async)"
+					[apiResponseUserFollowers] = "(apiResponseUserFollowers$ | async)"></feed-info-box>
+
+					<md-card class="links-card">
+						<a href="https://github.com/fossasia/loklak_search/issues/">Bug Report or Feature Request</a>
+						<a href="http://fossasia.org">Developed by FOSSASIA</a>
+						<a href="https://github.com/fossasia/loklak_search/graphs/contributors">Contributors</a>
+						<a href="http://apps.loklak.org">Apps</a>
+				</md-card>
 			</div>
 		</div>
 </div>

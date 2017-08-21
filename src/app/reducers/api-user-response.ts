@@ -1,5 +1,6 @@
 import { createSelector } from 'reselect';
 import * as userApiAction from '../actions/user-api';
+import * as apiAction from '../actions/api';
 import { UserApiResponse } from '../models/api-user-response';
 
 /**
@@ -32,7 +33,7 @@ export const initialState: State = {
  * Here the reducer cotrols that part of the state which is shows the state of the application
  * wheather the userDetails are being retrieved and the userDetails.
  */
-export function reducer(state: State = initialState, action: userApiAction.Actions): State {
+export function reducer(state: State = initialState, action: userApiAction.Actions | apiAction.Actions): State {
 	switch (action.type) {
 
 		case userApiAction.ActionTypes.USER_SEARCH_COMPLETE_SUCCESS: {
@@ -45,7 +46,8 @@ export function reducer(state: State = initialState, action: userApiAction.Actio
 				valid: true
 			});
 		}
-		case userApiAction.ActionTypes.USER_SEARCH_COMPLETE_FAIL: {
+		case userApiAction.ActionTypes.USER_SEARCH_COMPLETE_FAIL:
+		case apiAction.ActionTypes.SEARCH: {
 
 			return Object.assign({}, state, {
 				valid: false
@@ -70,7 +72,7 @@ export function reducer(state: State = initialState, action: userApiAction.Actio
 
 export const getUserResponse = (state: State) => state.user;
 
-export const getUSerFollowers = (state: State) => state.followers;
+export const getUserFollowers = (state: State) => state.followers;
 
 export const getUserFollowing = (state: State) => state.following;
 

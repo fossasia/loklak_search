@@ -53,6 +53,8 @@ export function reducer(state: State = initialState, action: apiAction.Actions |
 		case apiAction.ActionTypes.SEARCH_COMPLETE_SUCCESS: {
 			const apiResponse = action.payload;
 
+			console.log(apiResponse);
+
 			const tagStrings = [].concat(...apiResponse.statuses.map(item => item.hashtags));
 			const hashtags = Array.from(new Set(tagStrings)).map(tag => {
 					return { tag, count: tagStrings.filter(y => y === tag).length };
