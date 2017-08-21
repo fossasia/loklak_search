@@ -33,6 +33,13 @@ class LazyImgStubComponent {
 	@Output() load: EventEmitter<boolean> = new EventEmitter<boolean>();
 }
 
+@Component({
+	selector: 'service-box',
+	template: ''
+})
+class ServiceBoxStubComponent {
+}
+
 describe('Component: Home', () => {
 	let homeTitle: Title;
 	beforeEach(() => {
@@ -45,7 +52,8 @@ describe('Component: Home', () => {
 			declarations: [
 				HomeComponent,
 				FooterStubComponent,
-				LazyImgStubComponent
+				LazyImgStubComponent,
+				ServiceBoxStubComponent
 			],
 			providers: [
 				{ provide: Router, useClass: RouterStub },

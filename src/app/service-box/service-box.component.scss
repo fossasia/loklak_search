@@ -1,0 +1,87 @@
+:host {
+	position: relative;
+}
+
+.box {
+	border: 1px solid #ccc;
+	box-shadow: 0 2px 10px rgba(0,0,0,.2);
+	padding: 30px;
+	position: absolute;
+	right: 0;
+	top: 45px;
+	z-index: 1;
+	background: white;
+	visibility: hidden;
+
+	&.opened {
+		visibility: visible;
+	}
+
+	.tip {
+		position: absolute;
+		top: -10px;
+		right: 12px;
+
+		.border {
+			width: 0px;
+			height: 0px;
+			position: absolute;
+			right: 0px;
+			top: -1px;
+			border-left: 7px solid transparent;
+			border-right: 7px solid transparent;
+			border-bottom: 11px solid rgba(0,0,0,0.4);
+		}
+
+		.foreground {
+			width: 0px;
+			height: 0px;
+			position: absolute;
+			top: 0px;
+			right: 0px;
+			border-left: 7px solid transparent;
+			border-right: 7px solid transparent;
+			border-bottom: 10px solid white;
+		}
+	}
+
+	.services {
+		display: flex;
+		flex-direction: column;
+
+		.row  {
+			display: flex;
+
+			a {
+				text-decoration: none;
+				color: inherit;
+
+				.col {
+					width: 84px;
+					height: 84px;
+					margin: 8px 2px;
+					border: 1px solid transparent;
+					display: flex;
+					flex-direction: column;
+					align-items: center;
+					justify-content: space-around;
+
+					&:hover {
+						border: 1px solid #ddd;
+					}
+
+					.img {
+						flex: 1;
+						display: flex;
+						flex-direction: column;
+						justify-content: center;
+					}
+
+					span {
+						text-align: center;
+					}
+				}
+			}
+		}
+	}
+}

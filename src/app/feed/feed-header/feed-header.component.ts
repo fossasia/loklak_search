@@ -1,7 +1,13 @@
-import { Component, Input, Output, ViewChild,
-					OnInit, OnDestroy,
-					EventEmitter,
-					ChangeDetectionStrategy } from '@angular/core';
+import {
+	Component,
+	Input,
+	Output,
+	ViewChild,
+	OnInit,
+	OnDestroy,
+	EventEmitter,
+	ChangeDetectionStrategy
+} from '@angular/core';
 
 import { FormControl } from '@angular/forms';
 import { Location } from '@angular/common';
@@ -48,25 +54,25 @@ export class FeedHeaderComponent implements OnInit, OnDestroy {
 	private setupSearchField(): void {
 		this.__subscriptions__.push(
 			this.searchInputControl
-					.valueChanges
-					.subscribe(query => {
-						this.searchEvent.emit(query);
-					})
+				.valueChanges
+				.subscribe(query => {
+					this.searchEvent.emit(query);
+				})
 		);
 	}
 
 	private setupSuggestBoxClosing() {
 		this.__subscriptions__.push(
 			this.doCloseSuggestBox$
-					.subscribe(value => {
-						if (value) {
-							this.autoCompleteTrigger.closePanel();
-						}
-					})
+				.subscribe(value => {
+					if (value) {
+						this.autoCompleteTrigger.closePanel();
+					}
+				})
 		);
 	}
 
-		ngOnDestroy() {
-			this.__subscriptions__.forEach(subscription => subscription.unsubscribe());
-		}
+	ngOnDestroy() {
+		this.__subscriptions__.forEach(subscription => subscription.unsubscribe());
+	}
 }
