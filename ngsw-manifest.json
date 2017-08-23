@@ -3,7 +3,7 @@
     "urls": {
       "/0.0347cacd07846348dd40.chunk.js": "d3de21a3b2fa3fc6978066ae91a8e5df917d46d6",
       "/1.c4779a12ff8c9f52fd8a.chunk.js": "f7579d4108f72cc9a14bdcc0d6fe017f511c4310",
-      "/2.90589df144587bf9a060.chunk.js": "d6de7323bcfd16e63ab88766707789b1fa0a1989",
+      "/2.fadfe8bc2c36fe462231.chunk.js": "2f11e72bbe5fe6915210bc82bf6e71d900227c69",
       "/3.fac887ba239c6ad245f9.chunk.js": "224e13e3c2a561f9dd5f144d49e538254950ccba",
       "/4.3d106822ff56bf74f565.chunk.js": "1011b9a5f6bde94e0fa51586f7de157150ac0eab",
       "/5.92c89edbc45573b6b8ad.chunk.js": "8ec9af855b05df9ffd6c1b2d81be50267bd727f7",
@@ -13,7 +13,7 @@
       "/scripts.195ac60664225415aaf5.bundle.js": "6fd9ee47fccf633176eec25b6361b7d6c9308fc6",
       "/sw-register.8a2784a5afb20cfd2636.bundle.js": "e1dd0b83fc974705581a88dc27a1e48a70140b26",
       "/vendor.fa898189671afac58a90.bundle.js": "c8f09eb00152f89ed0bb3abf920f924e60d29694",
-      "/inline.e0eb78c8b4f7994036c5.bundle.js": "9b65c35279e4e019f86e7a32d6480d17a4b89d04",
+      "/inline.c0e87552c2f0a5fdb97d.bundle.js": "16966758333ac286f4806833112ed589fef14a07",
       "/styles.d82e11391c95d1c31cd8.bundle.css": "80d66071c109a0880d2e887e52421c5f9d1174ad",
       "/assets/.npmignore": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
       "/assets/images/banner.jpg": "3131cb3108e779453427d52002c499530064be21",
@@ -22,7 +22,7 @@
       "/assets/images/cow_400x466.png": "6a54c73ee46ab9a44eb782891b52fbd0ae11d713",
       "/assets/images/favicons/favicon.png": "673bc7cc92932d6896874274c3c17d9e6089801e",
       "/assets/images/logo.png": "adaeca27b26453abf49b60b4957eff52b7df72a7",
-      "/index.html": "836776cba59c29396bbcf7c40e4a145c867bc420"
+      "/index.html": "5084720762ee8782f1c3849beaee86c42bfd20db"
     },
     "_generatedFromWebpack": true
   }
