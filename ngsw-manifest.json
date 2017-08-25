@@ -1,19 +1,18 @@
 {
   "static": {
     "urls": {
-      "/0.0347cacd07846348dd40.chunk.js": "d3de21a3b2fa3fc6978066ae91a8e5df917d46d6",
-      "/1.c4779a12ff8c9f52fd8a.chunk.js": "f7579d4108f72cc9a14bdcc0d6fe017f511c4310",
-      "/2.fadfe8bc2c36fe462231.chunk.js": "2f11e72bbe5fe6915210bc82bf6e71d900227c69",
-      "/3.fac887ba239c6ad245f9.chunk.js": "224e13e3c2a561f9dd5f144d49e538254950ccba",
-      "/4.3d106822ff56bf74f565.chunk.js": "1011b9a5f6bde94e0fa51586f7de157150ac0eab",
-      "/5.92c89edbc45573b6b8ad.chunk.js": "8ec9af855b05df9ffd6c1b2d81be50267bd727f7",
-      "/6.c9e2d5a04a18dae6bd12.chunk.js": "414be6aa048039e69f3a80294eb9fda5c10a77aa",
-      "/polyfills.7a702f11d2efc0c630c1.bundle.js": "f39a8f0b89ef0a8c369e6f72cd72d602615e1d03",
-      "/main.bfdf9d70fabb20ce7e23.bundle.js": "7585c240463cc32b3aede8bfdbb75bbe7be32e3a",
-      "/scripts.195ac60664225415aaf5.bundle.js": "6fd9ee47fccf633176eec25b6361b7d6c9308fc6",
-      "/sw-register.8a2784a5afb20cfd2636.bundle.js": "e1dd0b83fc974705581a88dc27a1e48a70140b26",
-      "/vendor.fa898189671afac58a90.bundle.js": "c8f09eb00152f89ed0bb3abf920f924e60d29694",
-      "/inline.c0e87552c2f0a5fdb97d.bundle.js": "16966758333ac286f4806833112ed589fef14a07",
+      "/0.895d2c8512a58caff09b.chunk.js": "ce2d074afa10e14d8f15fbf3ca9061377f7663b3",
+      "/1.3b94767fc6e24a4e3cfc.chunk.js": "da26d5c5bf778ad95bade6d6d545f2a1fff78fef",
+      "/2.dc752d04a754665e612f.chunk.js": "000cefa96fdb1b517cb466eb21ca90ad19b25477",
+      "/3.02f0bb151b3b5f6d8ec1.chunk.js": "89f04b70c304a841f65832d3514d808088bb5ebe",
+      "/4.44e32cd5148fe1a09c62.chunk.js": "32fbf4162f1f7cbc81ffd4d6608eba03c5e9fd9d",
+      "/5.aec70c438c043e69dfc7.chunk.js": "c69b8a5924d94a5476a5ee61ce3ce8a712fb6907",
+      "/6.6592f11dc0010d3dcd60.chunk.js": "675fc78d9f0296b233f3028b3d6ccc86deb51861",
+      "/main.73abde4b73ada49f9d4b.bundle.js": "c4abcdb851f087be2d0e1b909cc005309389bb79",
+      "/polyfills.619c9c3c8233dfe4c27c.bundle.js": "46960f3c69319b5cd9bbaf50b25c29197e465b36",
+      "/scripts.57cefeccca396201547f.bundle.js": "f6880651933ec0b63f809167de3dbf8110e17461",
+      "/sw-register.bf2822caf8a5a0571f28.bundle.js": "8e18619991849a3be93e5eb313cb145c36b6090a",
+      "/inline.5c8ba495da3f44f5611b.bundle.js": "db1f411387eec9e9071a66897b27480ba8dcf2a0",
       "/styles.d82e11391c95d1c31cd8.bundle.css": "80d66071c109a0880d2e887e52421c5f9d1174ad",
       "/assets/.npmignore": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
       "/assets/images/banner.jpg": "3131cb3108e779453427d52002c499530064be21",
@@ -22,7 +21,7 @@
       "/assets/images/cow_400x466.png": "6a54c73ee46ab9a44eb782891b52fbd0ae11d713",
       "/assets/images/favicons/favicon.png": "673bc7cc92932d6896874274c3c17d9e6089801e",
       "/assets/images/logo.png": "adaeca27b26453abf49b60b4957eff52b7df72a7",
-      "/index.html": "5084720762ee8782f1c3849beaee86c42bfd20db"
+      "/index.html": "c04c21f66761a73b368f646a1b413b81aa57c361"
     },
     "_generatedFromWebpack": true
   }
