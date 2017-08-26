@@ -115,13 +115,13 @@ export class InfoBoxComponent implements OnInit, OnChanges {
 		}
 	}
 
-	private inviewtwitters(event) {
+	public inviewtwitters(event) {
 		if (event.value === true) {
 			this.inviewporttwitters = event.value;
 		}
 	}
 
-	private inviewmentions(event) {
+	public inviewmentions(event) {
 		if (event.value === true) {
 			this.inviewportmentions = event.value;
 		}

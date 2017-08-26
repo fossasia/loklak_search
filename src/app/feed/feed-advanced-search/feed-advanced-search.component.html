@@ -83,7 +83,7 @@
 			</div>
 			<div class="message"
 				*ngIf="!(isSearching$ | async) && (areResultsAvailable$ | async)">
-				Loklak scrapes social media messages
+				<!-- Hook up a message if needed like google does "About xxxxx results (y.yy seconds)" -->
 			</div>
 			<md-menu #viewMenu="mdMenu" [overlapTrigger]="false" (close)="viewButtonChecked = false">
 					<a md-menu-item class="media-wall-route"
