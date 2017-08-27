@@ -134,7 +134,8 @@ describe('Component: MediaWall', () => {
 				MediaWallCustomizationComponent,
 				MediaWallDesignComponent,
 				MediaWallQueryComponent,
-				MediaWallModerationComponent ]
+				MediaWallModerationComponent
+			]
 		}
 });
 	});

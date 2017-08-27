@@ -8,6 +8,7 @@ import { Store } from '@ngrx/store';
 import * as fromRoot from '../../reducers';
 import * as mediaWallCustomAction from '../../actions/media-wall-custom';
 import * as mediaWallAction from '../../actions/media-wall-query';
+import * as mediaWallDirectUrlAction from '../../actions/media-wall-direct-url';
 
 import { WallCard } from '../../models';
 
@@ -20,6 +21,7 @@ export class MediaWallMenuComponent implements OnInit, OnDestroy {
 	private __subscriptions__: Subscription[] = new Array<Subscription>();
 	public wallCustomCard$: Observable<WallCard>;
 	@Input() query: string;
+	public initialized = false;
 	public menuActive = false;
 	public searchInputControl = new FormControl();
 	@Input() showHideMenu: boolean;
@@ -39,9 +41,11 @@ export class MediaWallMenuComponent implements OnInit, OnDestroy {
 	public installTheme() {
 		if (this.currentTheme === this.themes[0]) {
 			this.store.dispatch( new mediaWallCustomAction.WallLightThemeChangeAction(''));
+			this.store.dispatch(new mediaWallDirectUrlAction.WallGenerateDirectUrlAction());
 		}
 		else if (this.currentTheme === this.themes[1]) {
 			this.store.dispatch( new mediaWallCustomAction.WallDarkThemeChangeAction(''));
+			this.store.dispatch(new mediaWallDirectUrlAction.WallGenerateDirectUrlAction());
 		}
 	}
 
@@ -49,8 +53,11 @@ export class MediaWallMenuComponent implements OnInit, OnDestroy {
 		this.__subscriptions__.push(
 			this.searchInputControl
 					.valueChanges
-					.subscribe(query => {
-						this.relocateEvent(query);
+					.subscribe(queryString => {
+						if (this.query !== queryString || this.initialized) {
+							this.relocateEvent(queryString);
+						}
+						this.initialized = true;
 					})
 		);
 	}
@@ -73,7 +80,7 @@ export class MediaWallMenuComponent implements OnInit, OnDestroy {
 	}
 
 	public relocateEvent(event) {
-		this.store.dispatch(new mediaWallAction.WallInputValueChangeAction(this.query));
+		this.store.dispatch(new mediaWallAction.WallInputValueChangeAction(event));
 	}
 
 	ngOnDestroy() {

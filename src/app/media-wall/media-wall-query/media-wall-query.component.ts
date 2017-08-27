@@ -59,7 +59,7 @@ export class MediaWallQueryComponent implements OnInit, OnDestroy {
 		const requestQuery: Query = {
 			displayString: this.searchQuery,
 			queryString: '',
-			routerString: '',
+			routerString: this.searchQuery,
 			filter: {
 				video: false,
 				image: this.imageOnly

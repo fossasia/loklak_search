@@ -1,7 +1,5 @@
 <div class="wrapper"
-	[style.background-color]="(wallCustomBackground$ | async).backgroundColor"
-	[class.scroll-hide] = "!showToolBar"
->
+	[style.background-color]="(wallCustomBackground$ | async).backgroundColor">
 	<media-wall-header
 		*ngIf="(wallDisplayHeader$ | async)"
 		[query]="(query$ | async).displayString"
@@ -34,7 +32,7 @@
 				[fontColor]="(wallCustomCard$ | async).fontColor"></media-wall-not-found>
 		</div>
 		<media-wall-menu
-			[query]="(query$ | async).queryString"
+			[query]="(query$ | async).displayString"
 			[showHideMenu]="showToolBar"
 			(showHideCustomization)="openDialog($event)"></media-wall-menu>
 	</div>

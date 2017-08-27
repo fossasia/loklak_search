@@ -13,12 +13,14 @@ import { removeDuplicateCheck, accountExclusion, hideFeed, showFeed, accountIncl
  * @prop [lastResponseLength: number] Keeps a check on the length of entities for media wall.
  */
 export interface State {
-	entities: ApiResponseResult[];
-	filteredEntities: ApiResponseResult[];
-	hiddenFeedId: string[];
-	blockedUser: string[];
-	profanityCheck: boolean;
-	removeDuplicate: boolean;
+	response: {
+		entities: ApiResponseResult[];
+		filteredEntities: ApiResponseResult[];
+		hiddenFeedId: string[];
+		blockedUser: string[];
+		profanityCheck: boolean;
+		removeDuplicate: boolean;
+	}
 }
 
 /**
@@ -28,12 +30,14 @@ export interface State {
  * @prop: lastResponeLength: 0
  */
 export const initialState: State = {
-	entities: [],
-	filteredEntities: [],
-	hiddenFeedId: [],
-	blockedUser: [],
-	profanityCheck: false,
-	removeDuplicate: false
+	response: {
+		entities: [],
+		filteredEntities: [],
+		hiddenFeedId: [],
+		blockedUser: [],
+		profanityCheck: false,
+		removeDuplicate: false
+	}
 };
 
 
@@ -50,17 +54,18 @@ export function reducer(state: State = initialState,
 	switch (action.type) {
 		case apiAction.ActionTypes.WALL_SEARCH_COMPLETE_SUCCESS: {
 			const apiResponse = action.payload;
-			let newFeeds = accountExclusion(apiResponse.statuses, state.blockedUser);
-			if (state.profanityCheck) {
+			let newFeeds = accountExclusion(apiResponse.statuses, state.response.blockedUser);
+			newFeeds = removeDuplicateCheck(newFeeds);
+			if (state.response.profanityCheck) {
 				newFeeds = profanityFilter(newFeeds);
-			}
-			if (state.removeDuplicate) {
-				newFeeds = removeDuplicateCheck(newFeeds);
 			}
 
 			return Object.assign({}, state, {
-				entities: apiResponse.statuses,
-				filteredEntities: newFeeds
+				response: {
+					...state.response,
+					entities: apiResponse.statuses,
+					filteredEntities: newFeeds
+				}
 			});
 		}
 
@@ -70,18 +75,19 @@ export function reducer(state: State = initialState,
 
 		case wallPaginationAction.ActionTypes.WALL_PAGINATION_COMPLETE_SUCCESS: {
 			const apiResponse = action.payload;
-			let newFeeds = accountExclusion(apiResponse.statuses, state.blockedUser);
-			if (state.profanityCheck) {
+			let newFeeds = accountExclusion(apiResponse.statuses, state.response.blockedUser);
+			if (state.response.profanityCheck) {
 				newFeeds = profanityFilter(apiResponse.statuses);
 			}
-			let filteredEntities = [...newFeeds, ...state.filteredEntities];
-			if (state.removeDuplicate) {
-				filteredEntities = removeDuplicateCheck(filteredEntities);
-			}
+			let filteredEntities = [...newFeeds, ...state.response.filteredEntities];
+			filteredEntities = removeDuplicateCheck(filteredEntities);
 
 			return Object.assign({}, state, {
-				entities: [ ...apiResponse.statuses, ...state.entities ],
-				filteredEntities
+				response: {
+					...state.response,
+					entities: [ ...apiResponse.statuses, ...state.response.entities ],
+					filteredEntities
+				}
 			});
 		}
 
@@ -91,58 +97,76 @@ export function reducer(state: State = initialState,
 
 		case wallModerationAction.ActionTypes.WALL_HIDE_FEED: {
 			const id = action.payload;
-			const newFeeds = hideFeed(state.filteredEntities, id);
+			const newFeeds = hideFeed(state.response.filteredEntities, id);
 			return Object.assign({}, state, {
-				filteredEntities: newFeeds,
-				hiddenFeedId: [...state.hiddenFeedId, id]
+				response: {
+					...state.response,
+					filteredEntities: newFeeds,
+					hiddenFeedId: [...state.response.hiddenFeedId, id]
+				}
 			});
 		}
 
 		case wallModerationAction.ActionTypes.WALL_SHOW_FEED: {
 			const id = action.payload;
-			const newEntities = showFeed(state.entities, state.filteredEntities, id);
-			const newHiddenFeedId = removeId(state.hiddenFeedId, id);
+			const newEntities = showFeed(state.response.entities, state.response.filteredEntities, id);
+			const newHiddenFeedId = removeId(state.response.hiddenFeedId, id);
 			return Object.assign({}, state, {
-				filteredEntities: newEntities,
-				hiddenFeedId: newHiddenFeedId
+				response: {
+					...state.response,
+					filteredEntities: newEntities,
+					hiddenFeedId: newHiddenFeedId
+				}
 			});
 		}
 
 		case wallModerationAction.ActionTypes.WALL_BLOCK_USER: {
 			const user = action.payload;
-			const blockedUser = [...state.blockedUser, user];
-			const newFeeds = accountExclusion(state.filteredEntities, blockedUser);
+			const blockedUser = [...state.response.blockedUser, user];
+			const newFeeds = accountExclusion(state.response.filteredEntities, blockedUser);
 			return Object.assign({}, state, {
-				filteredEntities: newFeeds,
-				blockedUser
+				response: {
+					...state.response,
+					filteredEntities: newFeeds,
+					blockedUser
+				}
 			});
 		}
 
 		case wallModerationAction.ActionTypes.WALL_UNBLOCK_USER: {
 			const user = action.payload;
-			const newEntities = accountInclusion(state.entities, state.filteredEntities, user);
-			const newBlockedUser = removeId(state.hiddenFeedId, user);
+			const newEntities = accountInclusion(state.response.entities, state.response.filteredEntities, user);
+			const newBlockedUser = removeId(state.response.hiddenFeedId, user);
 			return Object.assign({}, state, {
-				filteredEntities: newEntities,
-				blockedUser: newBlockedUser
+				response: {
+					...state.response,
+					filteredEntities: newEntities,
+					blockedUser: newBlockedUser
+				}
 			});
 		}
 
 		case wallModerationAction.ActionTypes.WALL_PROFANITY_CHANGE_ACTION: {
 			const profanityCheck = action.payload;
-			const filteredEntities = profanityFilter(state.filteredEntities);
+			const filteredEntities = profanityFilter(state.response.filteredEntities);
 			return Object.assign({}, state, {
-				filteredEntities,
-				profanityCheck
+				response: {
+					...state.response,
+					filteredEntities,
+					profanityCheck
+				}
 			});
 		}
 
 		case wallModerationAction.ActionTypes.WALL_REMOVE_DUPLICATE_CHANGE_ACTION: {
 			const removeDuplicate = action.payload;
-			const filteredEntities = removeDuplicateCheck(state.filteredEntities);
+			const filteredEntities = removeDuplicateCheck(state.response.filteredEntities);
 			return Object.assign({}, state, {
-				filteredEntities,
-				removeDuplicate
+				response: {
+					...state.response,
+					filteredEntities,
+					removeDuplicate
+				}
 			});
 		}
 
@@ -161,14 +185,14 @@ export function reducer(state: State = initialState,
  * use-case.
  */
 
-export const getEntities = (state: State) => state.entities;
+export const getEntities = (state: State) => state.response.entities;
 
-export const getFilteredEntities = (state: State) => state.filteredEntities;
+export const getFilteredEntities = (state: State) => state.response.filteredEntities;
 
-export const getHiddenFeedId = (state: State) => state.hiddenFeedId;
+export const getHiddenFeedId = (state: State) => state.response.hiddenFeedId;
 
-export const getBlockedUser = (state: State) => state.blockedUser;
+export const getBlockedUser = (state: State) => state.response.blockedUser;
 
-export const getProfanityCheck = (state: State) => state.profanityCheck;
+export const getProfanityCheck = (state: State) => state.response.profanityCheck;
 
-export const getDuplicateRemove = (state: State) => state.removeDuplicate;
+export const getDuplicateRemove = (state: State) => state.response.removeDuplicate;

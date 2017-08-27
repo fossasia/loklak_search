@@ -7,6 +7,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { Store } from '@ngrx/store';
 import * as fromRoot from '../../reducers';
 import * as mediaWallCustomAction from '../../actions/media-wall-custom';
+import * as mediaWallDirectUrlAction from '../../actions/media-wall-direct-url';
 
 import { WallHeader, WallBackground, WallCard } from '../../models';
 
@@ -40,16 +41,19 @@ export class MediaWallCustomizationComponent implements OnInit, OnDestroy {
 
 	public customizeHeader(event) {
 		this.store.dispatch(new mediaWallCustomAction.WallHeaderPropertiesChangeAction(event));
+		this.store.dispatch(new mediaWallDirectUrlAction.WallGenerateDirectUrlAction());
 		this.dialogRef.close();
 	}
 
 	public customizeBackground(event) {
 		this.store.dispatch(new mediaWallCustomAction.WallBackgroundPropertiesChangeAction(event));
+		this.store.dispatch(new mediaWallDirectUrlAction.WallGenerateDirectUrlAction());
 		this.dialogRef.close();
 	}
 
 	public customizeCard(event) {
 		this.store.dispatch(new mediaWallCustomAction.WallCardPropertiesChangeAction(event));
+		this.store.dispatch(new mediaWallDirectUrlAction.WallGenerateDirectUrlAction());
 		this.dialogRef.close();
 	}
 
