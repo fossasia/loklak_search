@@ -17,7 +17,9 @@ import { Subscription } from 'rxjs/Subscription';
 import { Store } from '@ngrx/store';
 import * as fromRoot from '../reducers';
 import * as mediaWallAction from '../actions/media-wall-query';
+import * as mediaWallModerationAction from '../actions/media-wall-moderation';
 import * as mediaWallDesignAction from '../actions/media-wall-design';
+import * as mediaWallCustomAction from '../actions/media-wall-custom';
 
 import { Query } from '../models/query';
 import { ApiResponse, ApiResponseResult } from '../models/api-response';
@@ -80,15 +82,114 @@ export class MediaWallComponent implements OnInit, OnDestroy {
 		this.__subscriptions__.push(
 			this.route.queryParams
 					.subscribe((params: Params) => {
-						const queryParam = params['query'] || '';
-						this.search(queryParam);
+							const config = {
+								query: params['query'] || '',
+								imageFilter: params['imageFilter'] || '',
+								location: params['location'] || '',
+								displayHeader: params['displayHeader'] || '',
+								columnCount: params['columnCount'] || '',
+								count: params['count'] || '',
+								cardStyle: params['cardStyle'] || '',
+								headerTitle: params['headerTitle'] || '',
+								hiddenFeedId: params['hiddenFeedId'] || '',
+								blockedUser: params['blockedUser'] || '',
+								profanityCheck: params['profanityCheck'] || '',
+								removeDuplicate: params['removeDuplicate'] || '',
+								wallHeaderBackgroundColor: params['wallHeaderBackgroundColor'] || '',
+								wallHeaderFontColor: params['wallHeaderFontColor'] || '',
+								wallCardFontColor: params['wallCardFontColor'] || '',
+								wallCardAccentColor: params['wallCardAccentColor'] || '',
+								wallCardBackgroundColor: params['wallCardBackgroundColor'] || '',
+								wallBackgroundColor: params['wallBackgroundColor'] || ''
+							}
+							this.setConfig(config);
 					})
 		);
 	}
 
-	public search(query: string) {
-		if (query) {
-			this.store.dispatch(new mediaWallAction.WallInputValueChangeAction(query));
+	public setConfig(configSet: any) {
+		if (configSet['displayHeader']) {
+			const isTrueSet = (configSet['displayHeader'] === 'true');
+			this.store.dispatch(new mediaWallDesignAction.WallDisplayHeaderAction(isTrueSet));
+		}
+		if (configSet['columnCount']) {
+			this.store.dispatch(new mediaWallDesignAction.WallColumnCountChangeAction(configSet['columnCount']));
+		}
+		if (configSet['count']) {
+			this.store.dispatch(new mediaWallDesignAction.WallCountChangeAction(configSet['count']));
+		}
+		if (configSet['cardStyle']) {
+			this.store.dispatch(new mediaWallDesignAction.WallCardStyleChangeAction(configSet['cardStyle']));
+		}
+		if (configSet['headerTitle']) {
+			this.store.dispatch(new mediaWallDesignAction.WallHeaderTitleChangeAction(configSet['headerTitle']));
+		}
+		if (configSet['hiddenFeedId']) {
+			const array = configSet['hiddenFeedId'].split(',');
+			if (array.length > 0) {
+				array.forEach(element => {
+					this.store.dispatch(new mediaWallModerationAction.WallHideFeedAction(element));
+				})
+			}
+		}
+		if (configSet['blockedUser']) {
+			const array = configSet['blockedUser'].split(',');
+			if (array.length >  0) {
+				array.forEach(element => {
+					this.store.dispatch(new mediaWallModerationAction.WallBlockUserAction(element));
+				})
+			}
+		}
+		if (configSet['profanityCheck']) {
+			const isTrueSet = (configSet['profanityCheck'] === 'true');
+			this.store.dispatch(new mediaWallModerationAction.WallProfanityChangeAction(isTrueSet));
+		}
+		if (configSet['removeDuplicate']) {
+			const isTrueSet = (configSet['removeDuplicate'] === 'true');
+			this.store.dispatch(new mediaWallModerationAction.WallRemoveDuplicateChangeAction(isTrueSet));
+		}
+		if (configSet['wallBackgroundColor']) {
+			const wallBackground = {
+				backgroundColor: configSet['wallBackgroundColor']
+			}
+			this.store.dispatch(new mediaWallCustomAction.WallBackgroundPropertiesChangeAction(wallBackground));
+		}
+		if (configSet['wallCardFontColor'] && configSet['wallCardAccentColor'] && configSet['wallCardBackgroundColor']) {
+			const wallCard = {
+				fontColor: configSet['wallCardFontColor'],
+				accentColor: configSet['wallCardAccentColor'],
+				backgroundColor: configSet['wallCardBackgroundColor']
+			}
+			this.store.dispatch(new mediaWallCustomAction.WallCardPropertiesChangeAction(wallCard));
+		}
+		if (configSet['wallHeaderBackgroundColor'] && configSet['wallHeaderFontColor']) {
+			const wallHeader = {
+				backgroundColor: configSet['wallHeaderBackgroundColor'],
+				fontColor: configSet['wallHeaderFontColor']
+			}
+			this.store.dispatch(new mediaWallCustomAction.WallHeaderPropertiesChangeAction(wallHeader));
+		}
+		if (configSet['query'] || configSet['imageFilter'] || configSet['location']) {
+			if (configSet['location'] === 'null') {
+				configSet['location'] = null;
+			}
+			const isTrueSet = (configSet['imageFilter'] === 'true');
+			const query = {
+				displayString: configSet['query'],
+				queryString: '',
+				routerString: configSet['query'],
+				filter: {
+					video: false,
+					image: isTrueSet || false
+				},
+				location: configSet['location'] || null,
+				timeBound: {
+					since: null,
+					until: null
+				},
+				from: false
+			}
+			this.store.dispatch(new mediaWallAction.WallQueryChangeAction(query));
 		}
 	}
 

@@ -47,7 +47,7 @@ git checkout $SOURCE_BRANCH
 
 # Actual building and setup of current push or PR.
 npm install
-ng build --prod --aot
+ng build --prod --aot --build-optimizer
 git checkout $TARGET_BRANCH
 mv dist/* .
 

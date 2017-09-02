@@ -7,6 +7,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { Store } from '@ngrx/store';
 import * as fromRoot from '../../reducers';
 import * as mediaWallDesignAction from '../../actions/media-wall-design';
+import * as mediaWallDirectUrlAction from '../../actions/media-wall-direct-url';
 
 import { WallHeader, WallBackground, WallCard } from '../../models';
 
@@ -86,6 +87,7 @@ constructor(
 		this.store.dispatch(new mediaWallDesignAction.WallCountChangeAction(this.selectedFeedsCount));
 		this.store.dispatch(new mediaWallDesignAction.WallColumnCountChangeAction(this.selectedColumnCount));
 		this.store.dispatch(new mediaWallDesignAction.WallHeaderTitleChangeAction(this.headerTitle));
+		this.store.dispatch(new mediaWallDirectUrlAction.WallGenerateDirectUrlAction());
 		this.dialogRef.close();
 	}
 

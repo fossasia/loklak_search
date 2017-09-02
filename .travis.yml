@@ -10,7 +10,7 @@ before_install:
   - sh -e /etc/init.d/xvfb start
 
 before_script:
-  - ng build --prod
+  - ng build --prod --aot --build-optimizer
 
 script:
   - ng test --single-run --code-coverage --reporters=coverage-istanbul

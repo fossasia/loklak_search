@@ -44,8 +44,7 @@ export class WallPaginationEffects {
 					.map(([action, state]) => {
 						return {
 							query: state.mediaWallQuery.query,
-							lastRecord: state.mediaWallResponse.entities.length,
-							count: state.mediaWallDesign.count
+							count: state.mediaWallDesign.design.count
 						};
 					})
 					.switchMap(queryObject => {

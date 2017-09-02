@@ -88,3 +88,7 @@ span.apply-button {
 		}
 	}
 }
+
+body::-webkit-scrollbar {
+	width: 0px;
+}

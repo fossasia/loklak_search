@@ -14,7 +14,8 @@
       "test": "test.ts",
 			"polyfills": "polyfills.ts",
       "tsconfig": "tsconfig.json",
-      "prefix": "app",
+			"prefix": "app",
+			"serviceWorker": true,
       "styles": [
         "styles/main.scss"
       ],

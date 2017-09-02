@@ -18,7 +18,7 @@ export class ContactComponent implements OnInit {
 		this.titleService.setTitle('Contact Loklak');
 	}
 
-	private contactform(event) {
+	public contactform(event) {
 		this.formcontrol = event;
 	}
 }

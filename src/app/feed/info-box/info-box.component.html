@@ -1,6 +1,6 @@
-<div class="info-box" *ngIf="areTopMentionsAvailable || 
-							areTopTwitterersAvailable || 
-							areTopHashtagsAvailable || 
+<div class="info-box" *ngIf="areTopMentionsAvailable ||
+							areTopTwitterersAvailable ||
+							areTopHashtagsAvailable ||
 							areFrequencyDataAvailable">
 	<div class="row">
 		<div class="col-sm-12 col-xs-12 col-md-6" in-viewport (inViewport)="inviewtwitters($event)" *ngIf="areTopTwitterersAvailable">
@@ -67,7 +67,10 @@
 	<span class="link-sidebar"><a href="https://github.com/fossasia/loklak_search/issues/">Bug Report or Feature Request</a></span>
 	<span class="link-sidebar"><a href="http://fossasia.org">Developed by FOSSASIA</a></span>
 	<span class="link-sidebar"><a href="https://github.com/fossasia/loklak_search/graphs/contributors">Contributors</a></span>
-	<span class="link-sidebar"><a href="http://apps.loklak.org">Apps</a></span>
+	<span class="link-sidebar"><a href="http://apps.loklak.org">Web Apps</a></span>
+	<span class="link-sidebar"><a href="https://play.google.com/store/apps/details?id=org.loklak.android.wok">loklak Android Wok</a></span>
+	<span class="link-sidebar"><a href="https://www.facebook.com/loklak.org/">Like on Facebook</a></span>
+	<span class="link-sidebar"><a href="https://twitter.com/loklak_">Follow on Twitter</a></span>
 </div>
 
 

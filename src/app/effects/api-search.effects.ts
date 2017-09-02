@@ -137,16 +137,23 @@ export class ApiSearchEffects {
 					.ofType(wallAction.ActionTypes.WALL_SEARCH)
 					.debounceTime(400)
 					.map((action: wallAction.WallSearchAction) => action.payload)
-					.switchMap(query => {
+					.withLatestFrom(this.store$)
+					.map(([action, state]) => {
+						return {
+							directUrl: state.mediaWallDirectUrl.directUrl,
+							query: state.mediaWallQuery.query
+						};
+					})
+					.switchMap(queryObject => {
 						const nextSearch$ = this.actions$.ofType(wallAction.ActionTypes.WALL_SEARCH).skip(1);
 						const searchServiceConfig: SearchServiceConfig = new SearchServiceConfig();
 
-						if (query.filter.image) {
+						if (queryObject.query.filter.image) {
 							searchServiceConfig.addFilters(['image']);
 						} else {
 							searchServiceConfig.removeFilters(['image']);
 						}
-						if (query.filter.video) {
+						if (queryObject.query.filter.video) {
 							searchServiceConfig.addFilters(['video']);
 						} else {
 							searchServiceConfig.removeFilters(['video']);
@@ -154,11 +161,11 @@ export class ApiSearchEffects {
 
 						searchServiceConfig.source = 'twitter';
 
-							return this.apiSearchService.fetchQuery(query.queryString, searchServiceConfig)
+							return this.apiSearchService.fetchQuery(queryObject.query.queryString, searchServiceConfig)
 												.takeUntil(nextSearch$)
 												.map(response => {
-													const URIquery = encodeURIComponent(query.displayString);
-													this.location.go(`/wall?query=${URIquery}`);
+													const URIquery = encodeURIComponent(queryObject.query.routerString);
+													this.location.go(`/wall?${queryObject.directUrl}`);
 													return new apiAction.WallSearchCompleteSuccessAction(response);
 												})
 												.catch(() => of(new apiAction.WallSearchCompleteFailAction('')));
