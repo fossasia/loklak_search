@@ -149,16 +149,18 @@ export class FeedCardComponent implements OnInit {
 	private filterValidImageURLS() {
 		// These types of image URLs creep up due to scraping errors
 		// We neglect these URLs all together and display rest of the images
-
-		const imageType1 = new RegExp('https:\\/\\/abs\\.twimg\\.com\\/');
-		const imageType2 = new RegExp('https:\\/\\/pic\\.twitter\\.com\\/');
-		const imageType3 = new RegExp('https:\\/\\/www\\.instagram\\.com\\/');
+		const invalidImageTypes = [
+			new RegExp('https:\\/\\/abs\\.twimg\\.com\\/'),
+			new RegExp('https:\\/\\/pic\\.twitter\\.com\\/'),
+			new RegExp('https:\\/\\/www\\.instagram\\.com\\/')
+		];
 
 		this.feedItem.images.forEach((image, i) => {
-			const match1 = imageType1.exec(image);
-			const match2 = imageType2.exec(image);
-			const match3 = imageType3.exec(image);
-			if (!match1 && !match2 && !match3) {
+			const isInvalid = invalidImageTypes.every(type => {
+				return type.exec(image) ? true : false;
+			});
+
+			if (!isInvalid) {
 				this.filteredImages.push(image);
 			}
 		});
