@@ -15,10 +15,16 @@
 	</div>
 
 	<div class="tools">
-		<md-button-toggle (change)="toggleSearchTools()">
-			Tools
-		</md-button-toggle>
 		<md-button-toggle
+		class="tools-button"
+		[class.pressed]="toolsButtonChecked"
+		(change)="toolsButtonChecked = !toolsButtonChecked"
+		(change)="toggleSearchTools()">
+			Tools
+	</md-button-toggle>
+		<md-button-toggle
+		class="dropdown-button"
+		[class.pressed]="viewButtonChecked"
 		[mdMenuTriggerFor]="viewMenu"
 		(change)="viewButtonChecked = !viewButtonChecked"
 		[checked]="viewButtonChecked">Views</md-button-toggle>
@@ -26,13 +32,13 @@
 		<div class="tool-list" [class.show]="showTools">
 			<div class="search-tools">
 				<div class="time-bound-search">
-					<button md-button class="toggleButton"
+					<md-button-toggle
 						(click)="timeBoundButtonChecked = true"
 						[class.pressed]="timeBoundButtonChecked"
 						[mdMenuTriggerFor]="timeBoundMenu">
 						{{timeBoundValue}}
 						<md-icon>arrow_drop_down</md-icon>
-					</button>
+				</md-button-toggle>
 					<md-menu #timeBoundMenu="mdMenu" [overlapTrigger]="false" (close)="timeBoundButtonChecked = false">
 						<button md-menu-item value="any"
 							(click)="getTimeBoundResults($event.currentTarget.value)">
@@ -50,13 +56,13 @@
 				</div>
 
 				<div class="location-based-search">
-					<button md-button class="toggleButton"
+					<md-button-toggle md-button
 						(click)="locationButtonChecked = true"
 						[class.pressed]="locationButtonChecked"
 						[mdMenuTriggerFor]="locationMenu">
 						{{locationValue}}
 						<md-icon>arrow_drop_down</md-icon>
-					</button>
+				</md-button-toggle>
 					<md-menu #locationMenu="mdMenu" [overlapTrigger]="false" (close)="locationButtonChecked = false">
 						<button md-menu-item value="all"
 							(click)="getLocationBasedResults($event.currentTarget.value)">
@@ -85,7 +91,10 @@
 				*ngIf="!(isSearching$ | async) && (areResultsAvailable$ | async)">
 				<!-- Hook up a message if needed like google does "About xxxxx results (y.yy seconds)" -->
 			</div>
-			<md-menu #viewMenu="mdMenu" [overlapTrigger]="false" (close)="viewButtonChecked = false">
+			<md-menu #viewMenu="mdMenu"
+				[xPosition]="'before'"
+				[overlapTrigger]="false"
+				(close)="viewButtonChecked = false">
 					<a md-menu-item class="media-wall-route"
 					type="button"
 					[routerLink]="['/wall']"

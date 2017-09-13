@@ -30,6 +30,7 @@ export class FeedAdvancedSearchComponent implements OnInit {
 	public showTools = false;
 	private toolList;
 	public selectedTab = 'all';
+	public toolsButtonChecked = false;
 	public viewButtonChecked = false;
 	public timeBoundButtonChecked = false;
 	public timeBoundValue = 'Any time';

@@ -9,6 +9,7 @@ div.wrapper{
 		flex: 1;
 		display: flex;
 		flex-direction: row;
+		align-items: baseline;
 
 		button.tab {
 			cursor: pointer;
@@ -20,13 +21,13 @@ div.wrapper{
 			color: #777;
 			text-align: center;
 			font-size: 0.9em;
-			font-weight: 500;
 		}
 
 		button.tab.selected {
 			color: #4285f4;
 			border-bottom: 3px solid #4285f4;
 			outline: none;
+			font-weight: 600;
 		}
 	}
 
@@ -34,6 +35,8 @@ div.wrapper{
 		display: flex;
 		flex-direction: row;
 		align-items: baseline;
+		font-size: 0.9em;
+
 
 		md-button-toggle {
 			margin: 0px 3px;
@@ -41,6 +44,30 @@ div.wrapper{
 			border: 1px solid transparent;
 			border-radius: 2px;
 			box-shadow: none;
+		}
+
+		md-button-toggle.tools-button {
+			font-size: 1em;
+			background-color: transparent;
+
+			&:hover {
+				background-color: #f8f8f8;
+				background-image: -moz-linear-gradient(top,#f8f8f8,#f1f1f1);
+				border: 1px solid #c6c6c6;
+				box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+				transition: all 0.0s;
+			}
+
+			&.pressed {
+				background: -moz-linear-gradient(top,#eee,#e0e0e0);
+				border: 1px solid #d7d7d7;
+				box-shadow: inset 0 1px 2px 0 rgba(0,0,0,0.1);
+			}
+		}
+
+		md-button-toggle.dropdown-button:hover,md-button-toggle.pressed {
+			color: #222;
+			background-color: transparent;
 		}
 
 		button.toggleButton {
@@ -53,11 +80,25 @@ div.wrapper{
 
 		.tool-list {
 			position: absolute;
-			left: 150px;
+			left: 130px;
 			top: 35px;
 			padding: 10px 5px;
 			margin: 0px 10px;
 			pointer-events: none;
+
+			md-button-toggle {
+				margin: 0px 3px;
+				color: #777;
+				border: 1px solid transparent;
+				border-radius: 2px;
+				box-shadow: none;
+				background-color: transparent;
+			}
+
+			md-button-toggle:hover,md-button-toggle.pressed {
+				color: #222;
+				background-color: transparent;
+			}
 
 			.search-tools, .message {
 				transform: translate(0, -100%);
@@ -67,9 +108,11 @@ div.wrapper{
 			.search-tools {
 				display: flex;
 				opacity: 0;
+				align-items: baseline;
 
 				button.toggleButton {
 					color: #777;
+					font-size: 1em;
 
 					&.pressed {
 						background-color: #e0e0e0;
@@ -119,4 +162,13 @@ div.wrapper{
 .media-wall-route {
 	text-decoration: none;
 	color: rgba(0,0,0,.87);
+}
+
+/deep/ .mat-menu-item {
+	font-size: 0.9em;
+}
+
+/deep/ .mat-menu-content {
+	padding-top: 0;
+	padding-bottom: 0;
 }
