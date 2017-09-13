@@ -8,7 +8,6 @@
 
 div.outer-wrapper {
 	min-height: 100vh;
-	position:  relative;
 	@include --center-flex();
 
 	div.wrapper {
@@ -70,6 +69,7 @@ div.outer-wrapper {
 					letter-spacing: 0.5pt;
 					box-shadow: none;
 					height: 44px;
+					background: transparent;
 
 					&:focus {
 						outline: none;
@@ -135,14 +135,5 @@ div.outer-wrapper {
 				}
 			}
 		}
-	}
-}
-
-@media (min-width: 768px) and (min-height: 500px) {
-	app-footer {
-		position: absolute;
-		bottom: 0px;
-		left: 0px;
-		width: 100vw;
 	}
 }
