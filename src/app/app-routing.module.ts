@@ -30,6 +30,10 @@ const routes: Routes = [
 		data: { preload: true }
 	},
 	{
+		path: 'privacy',
+		loadChildren: './privacy/privacy.module#PrivacyModule'
+	},
+	{
 		path: 'terms',
 		loadChildren: './terms/terms.module#TermsModule'
 	},
