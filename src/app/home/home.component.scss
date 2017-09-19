@@ -140,7 +140,7 @@ div.outer-wrapper {
 
 @media (min-width: 768px) and (min-height: 500px) {
 	app-footer {
-		position: absolute;
+		position: fixed;
 		bottom: 0px;
 		left: 0px;
 		width: 100vw;
