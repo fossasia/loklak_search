@@ -5,7 +5,11 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TestBed, async } from '@angular/core/testing';
-import { MdDialogModule, MdDialog, MaterialModule } from '@angular/material';
+import {
+	MdDialogModule,
+	MdDialog,
+	MdCheckboxModule
+} from '@angular/material';
 import { MediaWallQueryComponent } from './media-wall-query.component';
 import { StoreModule } from '@ngrx/store';
 import * as fromRoot from '../../reducers';
@@ -19,7 +23,7 @@ describe('MediaWallQueryComponent', () => {
 				RouterTestingModule,
 				BrowserAnimationsModule,
 				MdDialogModule,
-				MaterialModule,
+				MdCheckboxModule,
 				StoreModule.provideStore(fromRoot.reducer),
 				FormsModule,
 				ReactiveFormsModule

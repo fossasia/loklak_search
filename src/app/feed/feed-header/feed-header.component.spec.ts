@@ -2,8 +2,12 @@
 
 import { TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+import {
+	MdAutocompleteModule,
+	MdButtonToggleModule,
+	MdMenuModule
+} from '@angular/material';
 import { StoreModule } from '@ngrx/store';
-import { MaterialModule } from '@angular/material';
 import { FeedHeaderComponent } from './feed-header.component';
 import { FeedAdvancedSearchComponent } from '../feed-advanced-search/feed-advanced-search.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -14,8 +18,10 @@ describe('Component: FeedHeader', () => {
 		TestBed.configureTestingModule({
 			imports: [
 				RouterTestingModule,
-				MaterialModule,
 				ReactiveFormsModule,
+				MdButtonToggleModule,
+				MdMenuModule,
+				MdAutocompleteModule,
 				FormsModule,
 				StoreModule.provideStore(reducer)
 			],
