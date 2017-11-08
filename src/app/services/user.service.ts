@@ -9,7 +9,7 @@ import { UserResponse } from '../models/api-user-response';
 
 @Injectable()
 export class UserService {
-	private static readonly apiUrl: URL = new URL('http://api.loklak.org/api/user.json');
+	private static readonly apiUrl: URL = new URL('https://api.loklak.org/api/user.json');
 	private static minified_results = true;
 
 	constructor(
