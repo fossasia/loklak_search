@@ -5,7 +5,12 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TestBed, async } from '@angular/core/testing';
-import { MdDialogModule, MdDialog, MaterialModule } from '@angular/material';
+import {
+	MdDialogModule,
+	MdDialog,
+	MdSlideToggleModule,
+	MdSelectModule
+} from '@angular/material';
 import { MediaWallDesignComponent } from './media-wall-design.component';
 import { StoreModule } from '@ngrx/store';
 import * as fromRoot from '../../reducers';
@@ -19,7 +24,8 @@ describe('MediaWallModerationComponent', () => {
 				RouterTestingModule,
 				BrowserAnimationsModule,
 				MdDialogModule,
-				MaterialModule,
+				MdSlideToggleModule,
+				MdSelectModule,
 				StoreModule.provideStore(fromRoot.reducer),
 				FormsModule,
 				ReactiveFormsModule

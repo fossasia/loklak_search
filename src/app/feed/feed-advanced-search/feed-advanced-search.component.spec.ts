@@ -3,8 +3,12 @@
 import { TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { StoreModule } from '@ngrx/store';
-import { MaterialModule } from '@angular/material';
 import { FeedAdvancedSearchComponent } from './feed-advanced-search.component';
+import {
+	MdButtonToggleModule,
+	MdMenuModule,
+	MdIconModule
+} from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { reducer } from '../../reducers';
 
@@ -13,8 +17,10 @@ describe('Component: FeedAdvancedSearchComponent', () => {
 		TestBed.configureTestingModule({
 			imports: [
 				RouterTestingModule,
-				MaterialModule,
 				ReactiveFormsModule,
+				MdButtonToggleModule,
+				MdMenuModule,
+				MdIconModule,
 				FormsModule,
 				StoreModule.provideStore(reducer)
 			],

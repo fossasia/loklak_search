@@ -6,7 +6,13 @@ import { TestBed, async } from '@angular/core/testing';
 import { Route } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
-import { MdDialogModule, MdDialog, MaterialModule } from '@angular/material';
+import {
+	MdDialogModule,
+	MdDialog,
+	MdSlideToggleModule,
+	MdSelectModule,
+	MdCheckboxModule
+} from '@angular/material';
 import { RouterTestingModule } from '@angular/router/testing';
 import { StoreModule } from '@ngrx/store';
 import { MediaWallCustomizationComponent } from './media-wall-customization/media-wall-customization.component';
@@ -19,8 +25,6 @@ import { RouterStub } from '../../testing';
 import { MediaWallComponent } from './media-wall.component';
 import { MasonryModule } from '../app-masonry/app-masonry.module';
 import { LazyImgModule } from '../lazy-img/lazy-img.module';
-
-
 
 
 @Component({
@@ -107,7 +111,9 @@ describe('Component: MediaWall', () => {
 				ReactiveFormsModule,
 				FormsModule,
 				MdDialogModule,
-				MaterialModule,
+				MdSlideToggleModule,
+				MdSelectModule,
+				MdCheckboxModule,
 				MasonryModule,
 				LazyImgModule,
 				StoreModule.provideStore(reducer)

@@ -4,7 +4,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TestBed, async, ComponentFixture } from '@angular/core/testing';
-import { MdDialogModule, MdDialog, MaterialModule } from '@angular/material';
+import { MdDialogModule, MdDialog } from '@angular/material';
 import { StoreModule } from '@ngrx/store';
 import * as fromRoot from '../../reducers';
 

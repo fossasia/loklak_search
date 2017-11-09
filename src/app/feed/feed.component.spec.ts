@@ -6,7 +6,16 @@ import { TestBed, async } from '@angular/core/testing';
 import { Route } from '@angular/router';
 import { ReactiveFormsModule, FormControl } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
-import { MaterialModule } from '@angular/material';
+import {
+	MdAutocompleteModule,
+	MdMenuModule,
+	MdIconModule,
+	MdButtonModule,
+	MdButtonToggleModule,
+	MdCardModule,
+	MdListModule,
+	MdChipsModule
+} from '@angular/material';
 import { StoreModule } from '@ngrx/store';
 
 import { Observable } from 'rxjs/Observable';
@@ -125,7 +134,14 @@ describe('Component: Feed', () => {
 			imports: [
 				RouterTestingModule,
 				ReactiveFormsModule,
-				MaterialModule,
+				MdAutocompleteModule,
+				MdMenuModule,
+				MdIconModule,
+				MdButtonModule,
+				MdButtonToggleModule,
+				MdCardModule,
+				MdListModule,
+				MdChipsModule,
 				StoreModule.provideStore(reducer)
 			],
 			declarations: [
