@@ -48,7 +48,7 @@ describe('Service: Suggest', () => {
 			connection.mockRespond(new Response(options));
 			expect(connection.request.method).toEqual(RequestMethod.Get);
 			expect(connection.request.url).toEqual(
-				`http://api.loklak.org/api/suggest.json` +
+				`https://api.loklak.org/api/suggest.json` +
 									`?q=${query}` +
 									`&callback=JSONP_CALLBACK` +
 									`&minified=true` +

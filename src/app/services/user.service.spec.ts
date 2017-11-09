@@ -51,7 +51,7 @@ describe('Service: UserSearch', () => {
 			connection.mockRespond(new Response(options));
 			expect(connection.request.method).toEqual(RequestMethod.Get);
 			expect(connection.request.url).toEqual(
-				`http://api.loklak.org/api/user.json` +
+				`https://api.loklak.org/api/user.json` +
 									`?screen_name=${user}` +
 									`&followers=${follow_count}` +
 									`&following=${follow_count}` +
