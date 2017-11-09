@@ -52,7 +52,7 @@ describe('Service: Search', () => {
 			connection.mockRespond(new Response(options));
 			expect(connection.request.method).toEqual(RequestMethod.Get);
 			expect(connection.request.url).toEqual(
-				`http://api.loklak.org/api/search.json` +
+				`https://api.loklak.org/api/search.json` +
 									`?q=${query}` +
 									`&callback=JSONP_CALLBACK` +
 									`&minified=true&source=all` +
