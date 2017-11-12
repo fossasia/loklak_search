@@ -8,17 +8,17 @@
 			</a>
 			<div class="search-form">
 				<div class="search-input" [class.focused]="inputFocused">
-						<input mdInput required search autocomplete="off" type="text" id="search" name="search"
+						<input matInput required search autocomplete="off" type="text" id="search" name="search"
 							(focus)="inputFocused=true" (focusout)="inputFocused=false"
-							[formControl]="searchInputControl" [mdAutocomplete]="searchSuggestBox"
+							[formControl]="searchInputControl" [matAutocomplete]="searchSuggestBox"
 							(keyup.enter)="relocateEvent.emit(query)" [(ngModel)]="query"/>
 
-						<md-autocomplete #searchSuggestBox="mdAutocomplete">
-							<md-option *ngFor="let suggestion of suggestionList.slice(0, 4)"
+						<mat-autocomplete #searchSuggestBox="matAutocomplete">
+							<mat-option *ngFor="let suggestion of suggestionList.slice(0, 4)"
 								[value]="suggestion.query">
 									{{suggestion.query}}
-							</md-option>
-						</md-autocomplete>
+							</mat-option>
+						</mat-autocomplete>
 
 						<i id="search-suffix-icon" class="material-icons material-icons.md-dark">search</i>
 				</div>

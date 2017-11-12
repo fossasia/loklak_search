@@ -3,7 +3,7 @@ import { Component, OnInit,
 		ElementRef, ChangeDetectionStrategy, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Location } from '@angular/common';
-import {MdDialog, MdDialogRef} from '@angular/material';
+import {MatDialog, MatDialogRef} from '@angular/material';
 import { MediaWallCustomizationComponent } from './media-wall-customization/media-wall-customization.component';
 import { MediaWallQueryComponent } from './media-wall-query/media-wall-query.component';
 import { MediaWallModerationComponent } from './media-wall-moderation/media-wall-moderation.component';
@@ -67,7 +67,7 @@ export class MediaWallComponent implements OnInit, OnDestroy {
 		private elementRef: ElementRef,
 		private store: Store<fromRoot.State>,
 		private ref: ChangeDetectorRef,
-		private dialog: MdDialog,
+		private dialog: MatDialog,
 		private titleService: Title
 	) { }
 

@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 
-import { MdTooltipModule } from '@angular/material';
+import { MatTooltipModule } from '@angular/material';
 
 import { LoklakHomeRoutingModule } from './home-routing.module';
 
@@ -29,7 +29,7 @@ import { LazyImgModule } from '../lazy-img/lazy-img.module';
 		/**
 		 * Angular Material Modules
 		 */
-		MdTooltipModule,
+		MatTooltipModule,
 
 		/**
 		 * Defines the routes at `home` level of application.

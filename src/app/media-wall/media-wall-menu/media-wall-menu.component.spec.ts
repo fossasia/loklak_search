@@ -5,10 +5,10 @@ import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/t
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TestBed, async, ComponentFixture } from '@angular/core/testing';
 import {
-	MdDialogModule,
-	MdDialog,
-	MdTooltipModule,
-	MdMenuModule
+	MatDialogModule,
+	MatDialog,
+	MatTooltipModule,
+	MatMenuModule
 } from '@angular/material';
 import { StoreModule } from '@ngrx/store';
 import * as fromRoot from '../../reducers';
@@ -24,9 +24,9 @@ describe('MediaWallMenuComponent', () => {
 			imports: [
 				RouterTestingModule,
 				BrowserAnimationsModule,
-				MdDialogModule,
-				MdMenuModule,
-				MdTooltipModule,
+				MatDialogModule,
+				MatMenuModule,
+				MatTooltipModule,
 				StoreModule.provideStore(fromRoot.reducer),
 				FormsModule,
 				ReactiveFormsModule

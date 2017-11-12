@@ -102,11 +102,11 @@ input {
 }
 
 /deep/ .docs-theme-picker-menu {
-  .md-menu-content {
+  .mat-menu-content {
     padding: 8px;
   }
 
-  [md-menu-item] {
+  [mat-menu-item] {
     flex: 0 0 auto;
     padding: 0;
 		overflow: hidden;

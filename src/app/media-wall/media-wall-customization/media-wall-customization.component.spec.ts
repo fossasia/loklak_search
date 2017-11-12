@@ -5,7 +5,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TestBed, async } from '@angular/core/testing';
-import { MdDialogModule, MdDialog } from '@angular/material';
+import { MatDialogModule, MatDialog } from '@angular/material';
 import { MediaWallCustomizationComponent } from './media-wall-customization.component';
 import { StoreModule } from '@ngrx/store';
 import * as fromRoot from '../../reducers';
@@ -37,13 +37,13 @@ class MediaWallCustomCardStubComponent {
 
 describe('MediaWallCustomizationComponent', () => {
 	let component: MediaWallCustomizationComponent;
-	let dialog: MdDialog;
+	let dialog: MatDialog;
 	beforeEach(() => {
 		TestBed.configureTestingModule({
 			imports: [
 				RouterTestingModule,
 				BrowserAnimationsModule,
-				MdDialogModule,
+				MatDialogModule,
 				StoreModule.provideStore(fromRoot.reducer),
 				FormsModule,
 				ReactiveFormsModule
@@ -62,7 +62,7 @@ describe('MediaWallCustomizationComponent', () => {
 });
 	});
 	beforeEach(() => {
-			dialog = TestBed.get(MdDialog);
+			dialog = TestBed.get(MatDialog);
 			const dialogRef = dialog.open(MediaWallCustomizationComponent);
 
 			component = dialogRef.componentInstance;

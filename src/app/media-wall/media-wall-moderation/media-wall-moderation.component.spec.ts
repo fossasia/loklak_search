@@ -6,11 +6,11 @@ import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/t
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TestBed, async } from '@angular/core/testing';
 import {
-	MdDialogModule,
-	MdDialog,
-	MdSlideToggleModule,
-	MdSelectModule,
-	MdCheckboxModule
+	MatDialogModule,
+	MatDialog,
+	MatSlideToggleModule,
+	MatSelectModule,
+	MatCheckboxModule
 } from '@angular/material';
 import { MediaWallModerationComponent } from './media-wall-moderation.component';
 import { StoreModule } from '@ngrx/store';
@@ -35,16 +35,16 @@ class MediaWallLinkerStubComponent {
 
 describe('MediaWallModerationComponent', () => {
 	let component: MediaWallModerationComponent;
-	let dialog: MdDialog;
+	let dialog: MatDialog;
 	beforeEach(() => {
 		TestBed.configureTestingModule({
 			imports: [
 				RouterTestingModule,
 				BrowserAnimationsModule,
-				MdDialogModule,
-				MdSlideToggleModule,
-				MdCheckboxModule,
-				MdSelectModule,
+				MatDialogModule,
+				MatSlideToggleModule,
+				MatCheckboxModule,
+				MatSelectModule,
 				StoreModule.provideStore(fromRoot.reducer),
 				FormsModule,
 				ReactiveFormsModule,
@@ -63,7 +63,7 @@ describe('MediaWallModerationComponent', () => {
 });
 	});
 	beforeEach(() => {
-			dialog = TestBed.get(MdDialog);
+			dialog = TestBed.get(MatDialog);
 			const dialogRef = dialog.open(MediaWallModerationComponent);
 
 			component = dialogRef.componentInstance;
