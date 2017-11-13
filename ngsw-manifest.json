@@ -2,7 +2,7 @@
   "static": {
     "urls": {
       "/0.195a420d8aaa9632016e.chunk.js": "72076f9ec08b721c6933594b387932af439217bf",
-      "/1.d676f43b12d434d2d4a0.chunk.js": "7d3b74170ee01281ed5fc43332a1c5c2f1ac514b",
+      "/1.ae1f156c4d37dd317c55.chunk.js": "72bf6a4891dfb464555ac3d8563da06ce17ea23f",
       "/2.22694d92335d9f961d30.chunk.js": "53fc2d83e1199a5a13bf5de6d424c3f51aaf736e",
       "/3.56af0b375baa4d6e110c.chunk.js": "e97ddbfafba5d9d22dc95bda9647723eeb81285e",
       "/4.e194e2869984990d0591.chunk.js": "9051f5c6f3ae6324c2fff961e4ead3d30c8e1956",
@@ -12,7 +12,7 @@
       "/main.90feeb5c78fc9daef0d9.bundle.js": "6a3eaea976488c34dd1f92c61a5647d51b20e965",
       "/polyfills.8a99699c8a02b0e83d3a.bundle.js": "ccda5293e994313c098c28e1d58007f4d542914b",
       "/sw-register.c332c84f62bee8f8af1c.bundle.js": "ab207ba8b6f250653d3d15ef50d3a994c4374f87",
-      "/inline.02d8679dfae857b2afef.bundle.js": "b10a0ebe41d0701b6bc6c3135663a6eb81f06fad",
+      "/inline.8d9364088ada9ae977f2.bundle.js": "06261aa9690989482a4d647ee83e18670c7f8680",
       "/styles.e8ac5e9ebfed0b8d159c.bundle.css": "99d44c9025f548a40386a5b853084d270676d9fa",
       "/scripts.b9d131f4d2bdba51b569.bundle.js": "bd250fff1873215d69f666a8545d28e4834d3479",
       "/assets/.npmignore": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
@@ -22,7 +22,7 @@
       "/assets/images/cow_400x466.png": "6a54c73ee46ab9a44eb782891b52fbd0ae11d713",
       "/assets/images/favicons/favicon.png": "673bc7cc92932d6896874274c3c17d9e6089801e",
       "/assets/images/logo.png": "adaeca27b26453abf49b60b4957eff52b7df72a7",
-      "/index.html": "2c6545c16b304841525f9b371d9963fe78df4677"
+      "/index.html": "655d4155c18ac575b0e74a3e3c346aa8ee0d4c14"
     },
     "_generatedFromWebpack": true
   }
