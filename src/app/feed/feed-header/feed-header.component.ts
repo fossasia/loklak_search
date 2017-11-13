@@ -14,7 +14,7 @@ import * as queryAction from '../../actions/query';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 
-import { MdAutocompleteTrigger } from '@angular/material';
+import { MatAutocompleteTrigger } from '@angular/material';
 
 import { SuggestResults } from '../../models/api-suggest';
 
@@ -32,7 +32,7 @@ export class FeedHeaderComponent implements OnInit, OnDestroy {
 	@Input() doCloseSuggestBox$: Observable<boolean>;
 	@Output() searchEvent: EventEmitter<string> = new EventEmitter<string>();
 	@Output() relocateEvent: EventEmitter<string> = new EventEmitter<string>();
-	@ViewChild(MdAutocompleteTrigger) autoCompleteTrigger: MdAutocompleteTrigger;
+	@ViewChild(MatAutocompleteTrigger) autoCompleteTrigger: MatAutocompleteTrigger;
 	public searchInputControl = new FormControl();
 	public inputFocused = false;
 

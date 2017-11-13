@@ -2,15 +2,15 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
-	MdTabsModule,
-	MdIconModule,
-	MdSlideToggleModule,
-	MdDialogModule,
-	MdCheckboxModule,
-	MdSelectModule,
-	MdMenuModule,
-	MdGridListModule,
-	MdTooltipModule
+	MatTabsModule,
+	MatIconModule,
+	MatSlideToggleModule,
+	MatDialogModule,
+	MatCheckboxModule,
+	MatSelectModule,
+	MatMenuModule,
+	MatGridListModule,
+	MatTooltipModule
 } from '@angular/material';
 
 import { LazyImgModule } from '../lazy-img/lazy-img.module';
@@ -38,19 +38,19 @@ import { MediaWallDesignComponent } from './media-wall-design/media-wall-design.
 		CommonModule,
 		FormsModule,
 		ReactiveFormsModule,
-		MdTabsModule,
-		MdIconModule,
-		MdSlideToggleModule,
+		MatTabsModule,
+		MatIconModule,
+		MatSlideToggleModule,
 		LoklakMediaWallRoutingModule,
 		ColorPickerModule,
 		MasonryModule,
 		LazyImgModule,
-		MdDialogModule,
-		MdCheckboxModule,
-		MdSelectModule,
-		MdMenuModule,
-		MdGridListModule,
-		MdTooltipModule
+		MatDialogModule,
+		MatCheckboxModule,
+		MatSelectModule,
+		MatMenuModule,
+		MatGridListModule,
+		MatTooltipModule
 	],
 	declarations: [
 		MediaWallComponent,

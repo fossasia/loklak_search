@@ -15,83 +15,83 @@
 	</div>
 
 	<div class="tools">
-		<md-button-toggle (change)="toggleSearchTools()">
+		<mat-button-toggle (change)="toggleSearchTools()">
 			Tools
-		</md-button-toggle>
-		<md-button-toggle
-		[mdMenuTriggerFor]="viewMenu"
+		</mat-button-toggle>
+		<mat-button-toggle
+		[matMenuTriggerFor]="viewMenu"
 		(change)="viewButtonChecked = !viewButtonChecked"
-		[checked]="viewButtonChecked">Views</md-button-toggle>
+		[checked]="viewButtonChecked">Views</mat-button-toggle>
 
 		<div class="tool-list" [class.show]="showTools">
 			<div class="search-tools">
 				<div class="time-bound-search">
-					<button md-button class="toggleButton"
+					<button mat-button class="toggleButton"
 						(click)="timeBoundButtonChecked = true"
 						[class.pressed]="timeBoundButtonChecked"
-						[mdMenuTriggerFor]="timeBoundMenu">
+						[matMenuTriggerFor]="timeBoundMenu">
 						{{timeBoundValue}}
-						<md-icon>arrow_drop_down</md-icon>
+						<mat-icon>arrow_drop_down</mat-icon>
 					</button>
-					<md-menu #timeBoundMenu="mdMenu" [overlapTrigger]="false" (close)="timeBoundButtonChecked = false">
-						<button md-menu-item value="any"
+					<mat-menu #timeBoundMenu="matMenu" [overlapTrigger]="false" (close)="timeBoundButtonChecked = false">
+						<button mat-menu-item value="any"
 							(click)="getTimeBoundResults($event.currentTarget.value)">
 							Any time
 						</button>
-						<button md-menu-item value="lastDay"
+						<button mat-menu-item value="lastDay"
 							(click)="getTimeBoundResults($event.currentTarget.value)">
 							Past 24 hours
 						</button>
-						<button md-menu-item value="lastWeek"
+						<button mat-menu-item value="lastWeek"
 							(click)="getTimeBoundResults($event.currentTarget.value)">
 							Past week
 						</button>
-					</md-menu>
+					</mat-menu>
 				</div>
 
 				<div class="location-based-search">
-					<button md-button class="toggleButton"
+					<button mat-button class="toggleButton"
 						(click)="locationButtonChecked = true"
 						[class.pressed]="locationButtonChecked"
-						[mdMenuTriggerFor]="locationMenu">
+						[matMenuTriggerFor]="locationMenu">
 						{{locationValue}}
-						<md-icon>arrow_drop_down</md-icon>
+						<mat-icon>arrow_drop_down</mat-icon>
 					</button>
-					<md-menu #locationMenu="mdMenu" [overlapTrigger]="false" (close)="locationButtonChecked = false">
-						<button md-menu-item value="all"
+					<mat-menu #locationMenu="matMenu" [overlapTrigger]="false" (close)="locationButtonChecked = false">
+						<button mat-menu-item value="all"
 							(click)="getLocationBasedResults($event.currentTarget.value)">
 							All Countries
 						</button>
-						<button md-menu-item value="India"
+						<button mat-menu-item value="India"
 							(click)="getLocationBasedResults($event.currentTarget.value)">
 							Country: India
 						</button>
-						<button md-menu-item value="China"
+						<button mat-menu-item value="China"
 							(click)="getLocationBasedResults($event.currentTarget.value)">
 							Country: China
 						</button>
-						<button md-menu-item value="US"
+						<button mat-menu-item value="US"
 							(click)="getLocationBasedResults($event.currentTarget.value)">
 							Country: US
 						</button>
-						<button md-menu-item value="UK"
+						<button mat-menu-item value="UK"
 							(click)="getLocationBasedResults($event.currentTarget.value)">
 							Country: UK
 						</button>
-					</md-menu>
+					</mat-menu>
 				</div>
 			</div>
 			<div class="message"
 				*ngIf="!(isSearching$ | async) && (areResultsAvailable$ | async)">
 				<!-- Hook up a message if needed like google does "About xxxxx results (y.yy seconds)" -->
 			</div>
-			<md-menu #viewMenu="mdMenu" [overlapTrigger]="false" (close)="viewButtonChecked = false">
-					<a md-menu-item class="media-wall-route"
+			<mat-menu #viewMenu="matMenu" [overlapTrigger]="false" (close)="viewButtonChecked = false">
+					<a mat-menu-item class="media-wall-route"
 					type="button"
 					[routerLink]="['/wall']"
 					[queryParams]="{ query : (query$ | async).queryString }"
 					target="_blank"> Display as Media Wall </a>
-			</md-menu>
+			</mat-menu>
 		</div>
 	</div>
 </div>

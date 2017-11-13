@@ -4,11 +4,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import {
-	MdAutocompleteModule,
-	MdMenuModule,
-	MdIconModule,
-	MdButtonModule,
-	MdButtonToggleModule
+	MatAutocompleteModule,
+	MatMenuModule,
+	MatIconModule,
+	MatButtonModule,
+	MatButtonToggleModule
 } from '@angular/material';
 
 import { LoklakFeedRoutingModule } from './feed-routing.module';
@@ -55,11 +55,11 @@ import { FeedAdvancedSearchComponent } from './feed-advanced-search/feed-advance
 		/**
  		 * The modules for material design components
  		 */
-		MdAutocompleteModule,
-		MdMenuModule,
-		MdIconModule,
-		MdButtonModule,
-		MdButtonToggleModule,
+		MatAutocompleteModule,
+		MatMenuModule,
+		MatIconModule,
+		MatButtonModule,
+		MatButtonToggleModule,
 
 		/**
 		 * Defines the routes at `feed` level of application.
