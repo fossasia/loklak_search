@@ -25,7 +25,7 @@ Our chat channel is on gitter here: https://gitter.im/loklak/loklak
 * HTML - Structure of the web page generated.
 * CSS - Styling options and details of the web page.
 * JavaScript(JSON) - Used to store information for deploying the application such as dependencies.
-* Angular2 - Structure for deployment of the web page.
+* Angular 4 - Structure for deployment of the web page.
 
 ## Services and Dependencies
 * Bower - The goal is to use [Bower](http://bower.io) to manage front-end dependencies in future.
