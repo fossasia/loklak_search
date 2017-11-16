@@ -11,7 +11,7 @@
 						<input matInput required search autocomplete="off" type="text" id="search" name="search"
 							(focus)="inputFocused=true" (focusout)="inputFocused=false"
 							[formControl]="searchInputControl" [matAutocomplete]="searchSuggestBox"
-							(keyup.enter)="relocateEvent.emit(query)" [(ngModel)]="query"/>
+							(keyup.enter)="[relocateEvent.emit(query), closeSuggestBox()]" [(ngModel)]="query"/>
 
 						<mat-autocomplete #searchSuggestBox="matAutocomplete">
 							<mat-option *ngFor="let suggestion of suggestionList.slice(0, 4)"
