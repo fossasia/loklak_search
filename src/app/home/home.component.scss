@@ -11,6 +11,12 @@ div.outer-wrapper {
 	position:  relative;
 	@include --center-flex();
 
+service-box {
+		position: absolute;
+		top: 20px;
+		right: 30px;
+}
+
 	div.wrapper {
 		position: relative;
 		@include --center-flex-vertical();
