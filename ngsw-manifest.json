@@ -1,18 +1,18 @@
 {
   "static": {
     "urls": {
-      "/0.195a420d8aaa9632016e.chunk.js": "72076f9ec08b721c6933594b387932af439217bf",
-      "/1.d9f0fe0d5ca9bf1e2a0a.chunk.js": "0018387b12c519dc63f316cd729b174926032495",
-      "/2.22694d92335d9f961d30.chunk.js": "53fc2d83e1199a5a13bf5de6d424c3f51aaf736e",
+      "/0.01324b82585c995add61.chunk.js": "377c80fb9e1bc4425672496c4a6154dbffea1d68",
+      "/1.532206cdf89b8973a417.chunk.js": "a41cd5adc9dd71753ec3412c3b44576d77793c6b",
+      "/2.620b65e0a88cd9b43ac1.chunk.js": "53fc2d83e1199a5a13bf5de6d424c3f51aaf736e",
       "/3.56af0b375baa4d6e110c.chunk.js": "e97ddbfafba5d9d22dc95bda9647723eeb81285e",
       "/4.e194e2869984990d0591.chunk.js": "9051f5c6f3ae6324c2fff961e4ead3d30c8e1956",
-      "/5.ed00c5eed9f8e3cffe46.chunk.js": "93e10f71434e25ab2bbf2c4d2afa5a4922b19e06",
+      "/5.dfc9aa189fdd4406cf52.chunk.js": "2b7a520a1146a7a22fb9f6b31dbf647f07631fe0",
       "/6.87420373b094774f6415.chunk.js": "cace914f1b449b38843fafd01bd64e82a5cb0e94",
       "/7.7a77ae3f42a552d4924b.chunk.js": "8ec0a9ae033248d22f022dab13cb3569a336605c",
       "/main.90feeb5c78fc9daef0d9.bundle.js": "6a3eaea976488c34dd1f92c61a5647d51b20e965",
       "/polyfills.8a99699c8a02b0e83d3a.bundle.js": "ccda5293e994313c098c28e1d58007f4d542914b",
       "/sw-register.c332c84f62bee8f8af1c.bundle.js": "ab207ba8b6f250653d3d15ef50d3a994c4374f87",
-      "/inline.cc60173ec7abbcce287a.bundle.js": "486c988468f13f53d2fe79a8b89b5ad5f383479b",
+      "/inline.41dbb37e4fec3bc53202.bundle.js": "bc3b77ced84464bf4d8e0f3b795362bf0e9f8f34",
       "/styles.e8ac5e9ebfed0b8d159c.bundle.css": "99d44c9025f548a40386a5b853084d270676d9fa",
       "/scripts.b9d131f4d2bdba51b569.bundle.js": "bd250fff1873215d69f666a8545d28e4834d3479",
       "/assets/.npmignore": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
@@ -21,8 +21,15 @@
       "/assets/images/cow_39x45.png": "19ae60f428bd788cb7545b3444cc2720a0109a07",
       "/assets/images/cow_400x466.png": "6a54c73ee46ab9a44eb782891b52fbd0ae11d713",
       "/assets/images/favicons/favicon.png": "673bc7cc92932d6896874274c3c17d9e6089801e",
+      "/assets/images/fossasia_logo_55x22.png": "6e10b42827d2e0a59eb171f157f3dff3fd0f49d3",
+      "/assets/images/fossasia_logo.png": "49d8e0fac4c1f561ebc441965ede0df84ef3516b",
       "/assets/images/logo.png": "adaeca27b26453abf49b60b4957eff52b7df72a7",
-      "/index.html": "96f2de9b3ae01cd8765d7773080fbcd77a135e8a"
+      "/assets/images/open_event_64x64.png": "ab144f6d2bd164352e2d7c793fbb571b263613ce",
+      "/assets/images/phimpme_64x64.png": "e355f33f03ce02a670db13b1b802b6be3a33fc87",
+      "/assets/images/pslab_64x68.png": "5634ce4e041c9963f51235fa8b7769c7d2328455",
+      "/assets/images/susi_60x12.png": "e0a1b65b582f4cf784b2ca29297bccd538245ec9",
+      "/assets/images/susper_60x16.png": "af505cce81c129ce3c4f4e557627f30aa83db9cb",
+      "/index.html": "790defad8b64bcaa45ee4f478f3a457bbc286239"
     },
     "_generatedFromWebpack": true
   }
