@@ -1,0 +1,22 @@
+{
+
+  "name": "loklak_search",
+  "scripts": {
+
+  },
+  "env": {
+     "LANG": {
+      "required": true
+    }
+  },
+  "formation": {
+  },
+  "addons": [
+
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ]
+}
