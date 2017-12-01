@@ -148,7 +148,7 @@ fizzy-ui-utils@2.0.5
 MIT
 MIT
 
-ngx-color-picker@4.5.0
+ngx-color-picker@4.5.2
 MIT
 MIT License
 
@@ -204,7 +204,7 @@ get-size@2.0.2
 MIT
 MIT
 
-moment@2.19.2
+moment@2.19.3
 MIT
 Copyright (c) JS Foundation and other contributors
 
