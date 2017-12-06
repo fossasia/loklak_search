@@ -2,7 +2,7 @@
   "static": {
     "urls": {
       "/0.85279a0625138b1a13ab.chunk.js": "4b71b13cb48888a7163b7d681c1a13d0e7eb7be0",
-      "/1.14eee8249068dfe37229.chunk.js": "0d5689bb8ebb551a1806197b286e3bd9e45ed3f2",
+      "/1.fb544142d653d371d402.chunk.js": "2ea00c7254f5f9b99f5d913e0e6378e7a078f52b",
       "/2.8a20ce32f418f1d5e592.chunk.js": "401a8ff4c2ff0fa849310ed7e0533a76a5b2197a",
       "/3.d0d9232640259e681461.chunk.js": "e97ddbfafba5d9d22dc95bda9647723eeb81285e",
       "/4.8fe68d99949f523b1c58.chunk.js": "9051f5c6f3ae6324c2fff961e4ead3d30c8e1956",
@@ -12,12 +12,11 @@
       "/main.afea86390a1fa4483af7.bundle.js": "5dae777e25a3afe34d264427c8f1bb56c5995c13",
       "/polyfills.8a99699c8a02b0e83d3a.bundle.js": "b99d9718886d3d881aeffe0cfdc7d8f86e703c89",
       "/sw-register.c332c84f62bee8f8af1c.bundle.js": "ab207ba8b6f250653d3d15ef50d3a994c4374f87",
-      "/inline.46c8f812569128fcaf2a.bundle.js": "2757132d68f4e6d99a642513cb91c0ba6c15bcdd",
+      "/inline.498c0ddd48b1ec92e87a.bundle.js": "c7a52f9e6c0ee8404058a83ed8a7fc324f3769b3",
       "/styles.e8ac5e9ebfed0b8d159c.bundle.css": "99d44c9025f548a40386a5b853084d270676d9fa",
       "/scripts.b9d131f4d2bdba51b569.bundle.js": "bd250fff1873215d69f666a8545d28e4834d3479",
       "/assets/.npmignore": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
       "/assets/images/cow_150x175.png": "96bff0518b5f2285dccf720481e89aa4286a5441",
-      "/assets/images/banner.jpg": "3131cb3108e779453427d52002c499530064be21",
       "/assets/images/cow_39x45.png": "19ae60f428bd788cb7545b3444cc2720a0109a07",
       "/assets/images/cow_400x466.png": "6a54c73ee46ab9a44eb782891b52fbd0ae11d713",
       "/assets/images/favicons/favicon.png": "673bc7cc92932d6896874274c3c17d9e6089801e",
@@ -29,7 +28,8 @@
       "/assets/images/pslab_64x68.png": "5634ce4e041c9963f51235fa8b7769c7d2328455",
       "/assets/images/susi_60x12.png": "e0a1b65b582f4cf784b2ca29297bccd538245ec9",
       "/assets/images/susper_60x16.png": "af505cce81c129ce3c4f4e557627f30aa83db9cb",
-      "/index.html": "51f9114aa4469491e0d320b72602b0ff8d07aba4"
+      "/assets/images/banner.jpg": "3131cb3108e779453427d52002c499530064be21",
+      "/index.html": "76f624329c80a34d01b3bcd4ae99116612ffd141"
     },
     "_generatedFromWebpack": true
   }
