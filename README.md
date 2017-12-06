@@ -56,6 +56,12 @@ $ npm install
 
 **Note:** Please make sure that you comment the *StoreDevtools* `import` again before making the PR.
 
+### For deploying with [Surge](https://surge.sh/):
+
+Surge will automatically generate deployment link whenever a pull request passes Travis CI. 
+
+Suppose pull request number is 150 and it passes Travis CI. The deployment link can be found here: `https://pr-150-fossasia-LoklakSearch.surge.sh`
+
 ### For deploying with [Github Pages](https://pages.github.com/):
 With these very simple steps you can have loklak_search deployed:
 * **Step 1:** Fork loklak_search repository and clone it to your desktop
