@@ -36,15 +36,15 @@
 					<mat-menu #timeBoundMenu="matMenu" [overlapTrigger]="false" (close)="timeBoundButtonChecked = false">
 						<button mat-menu-item value="any"
 							(click)="getTimeBoundResults($event.currentTarget.value)">
-							Any time
+							<h5 class="display-media">Any time</h5>
 						</button>
 						<button mat-menu-item value="lastDay"
 							(click)="getTimeBoundResults($event.currentTarget.value)">
-							Past 24 hours
+							<h5 class="display-media">Past 24 hours</h5>
 						</button>
 						<button mat-menu-item value="lastWeek"
 							(click)="getTimeBoundResults($event.currentTarget.value)">
-							Past week
+							<h5 class="display-media">Past week</h5>
 						</button>
 					</mat-menu>
 				</div>
@@ -60,23 +60,23 @@
 					<mat-menu #locationMenu="matMenu" [overlapTrigger]="false" (close)="locationButtonChecked = false">
 						<button mat-menu-item value="all"
 							(click)="getLocationBasedResults($event.currentTarget.value)">
-							All Countries
+							<h5 class="display-media">All Countries</h5>
 						</button>
 						<button mat-menu-item value="India"
 							(click)="getLocationBasedResults($event.currentTarget.value)">
-							India
+							<h5 class="display-media">India</h5>
 						</button>
 						<button mat-menu-item value="China"
 							(click)="getLocationBasedResults($event.currentTarget.value)">
-							China
+							<h5 class="display-media">China</h5>
 						</button>
 						<button mat-menu-item value="US"
 							(click)="getLocationBasedResults($event.currentTarget.value)">
-							US
+							<h5 class="display-media">US</h5>
 						</button>
 						<button mat-menu-item value="UK"
 							(click)="getLocationBasedResults($event.currentTarget.value)">
-							UK
+							<h5 class="display-media">UK</h5>
 						</button>
 					</mat-menu>
 				</div>
@@ -90,7 +90,7 @@
 					type="button"
 					[routerLink]="['/wall']"
 					[queryParams]="{ query : (query$ | async).queryString }"
-					target="_blank"> Display as Media Wall </a>
+					target="_blank"><h5 class="display-media">Display as Media Wall</h5></a>
 			</mat-menu>
 		</div>
 	</div>
