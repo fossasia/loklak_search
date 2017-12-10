@@ -6,9 +6,9 @@ import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/t
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TestBed, async } from '@angular/core/testing';
 import {
-	MdDialogModule,
-	MdDialog,
-	MdCheckboxModule
+	MatDialogModule,
+	MatDialog,
+	MatCheckboxModule
 } from '@angular/material';
 import { MediaWallQueryComponent } from './media-wall-query.component';
 import { StoreModule } from '@ngrx/store';
@@ -16,14 +16,14 @@ import * as fromRoot from '../../reducers';
 
 describe('MediaWallQueryComponent', () => {
 	let component: MediaWallQueryComponent;
-	let dialog: MdDialog;
+	let dialog: MatDialog;
 	beforeEach(() => {
 		TestBed.configureTestingModule({
 			imports: [
 				RouterTestingModule,
 				BrowserAnimationsModule,
-				MdDialogModule,
-				MdCheckboxModule,
+				MatDialogModule,
+				MatCheckboxModule,
 				StoreModule.provideStore(fromRoot.reducer),
 				FormsModule,
 				ReactiveFormsModule
@@ -39,7 +39,7 @@ describe('MediaWallQueryComponent', () => {
 });
 	});
 	beforeEach(() => {
-			dialog = TestBed.get(MdDialog);
+			dialog = TestBed.get(MatDialog);
 			const dialogRef = dialog.open(MediaWallQueryComponent);
 
 			component = dialogRef.componentInstance;

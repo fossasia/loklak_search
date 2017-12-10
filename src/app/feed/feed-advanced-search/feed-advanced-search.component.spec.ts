@@ -5,9 +5,9 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { StoreModule } from '@ngrx/store';
 import { FeedAdvancedSearchComponent } from './feed-advanced-search.component';
 import {
-	MdButtonToggleModule,
-	MdMenuModule,
-	MdIconModule
+	MatButtonToggleModule,
+	MatMenuModule,
+	MatIconModule
 } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { reducer } from '../../reducers';
@@ -18,9 +18,9 @@ describe('Component: FeedAdvancedSearchComponent', () => {
 			imports: [
 				RouterTestingModule,
 				ReactiveFormsModule,
-				MdButtonToggleModule,
-				MdMenuModule,
-				MdIconModule,
+				MatButtonToggleModule,
+				MatMenuModule,
+				MatIconModule,
 				FormsModule,
 				StoreModule.provideStore(reducer)
 			],

@@ -7,14 +7,14 @@ import { Route } from '@angular/router';
 import { ReactiveFormsModule, FormControl } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import {
-	MdAutocompleteModule,
-	MdMenuModule,
-	MdIconModule,
-	MdButtonModule,
-	MdButtonToggleModule,
-	MdCardModule,
-	MdListModule,
-	MdChipsModule
+	MatAutocompleteModule,
+	MatMenuModule,
+	MatIconModule,
+	MatButtonModule,
+	MatButtonToggleModule,
+	MatCardModule,
+	MatListModule,
+	MatChipsModule
 } from '@angular/material';
 import { StoreModule } from '@ngrx/store';
 
@@ -134,14 +134,14 @@ describe('Component: Feed', () => {
 			imports: [
 				RouterTestingModule,
 				ReactiveFormsModule,
-				MdAutocompleteModule,
-				MdMenuModule,
-				MdIconModule,
-				MdButtonModule,
-				MdButtonToggleModule,
-				MdCardModule,
-				MdListModule,
-				MdChipsModule,
+				MatAutocompleteModule,
+				MatMenuModule,
+				MatIconModule,
+				MatButtonModule,
+				MatButtonToggleModule,
+				MatCardModule,
+				MatListModule,
+				MatChipsModule,
 				StoreModule.provideStore(reducer)
 			],
 			declarations: [

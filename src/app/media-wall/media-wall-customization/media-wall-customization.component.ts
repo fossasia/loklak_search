@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy, Inject, ChangeDetectionStrategy } from '@angular/core';
-import {MdDialog, MdDialogRef, MD_DIALOG_DATA} from '@angular/material';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
@@ -24,7 +24,7 @@ export class MediaWallCustomizationComponent implements OnInit, OnDestroy {
 	public wallCustomBackground$: Observable<WallBackground>;
 
 	constructor(
-		private dialogRef: MdDialogRef<MediaWallCustomizationComponent>,
+		private dialogRef: MatDialogRef<MediaWallCustomizationComponent>,
 		private store: Store<fromRoot.State>) { }
 
 	ngOnInit() {

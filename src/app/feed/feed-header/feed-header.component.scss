@@ -58,6 +58,7 @@
 						letter-spacing: 0.5pt;
 						box-shadow: none;
 						height: 44px;
+						background: #ffffff;
 
 						&:focus {
 							outline: none;
@@ -65,7 +66,6 @@
 					}
 
 					#search-suffix-icon {
-						position: absolute;
 						right: 0;
 						pointer-events: none;
 						padding: 10px 15px 10px 0px;
@@ -78,6 +78,12 @@
 					}
 				}
 			}
+		}
+
+		div.panel {
+			position: absolute;
+			top: 20px;
+			right: 20px;
 		}
 	}
 }

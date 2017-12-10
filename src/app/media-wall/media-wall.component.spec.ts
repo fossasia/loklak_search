@@ -7,11 +7,11 @@ import { Route } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
 import {
-	MdDialogModule,
-	MdDialog,
-	MdSlideToggleModule,
-	MdSelectModule,
-	MdCheckboxModule
+	MatDialogModule,
+	MatDialog,
+	MatSlideToggleModule,
+	MatSelectModule,
+	MatCheckboxModule
 } from '@angular/material';
 import { RouterTestingModule } from '@angular/router/testing';
 import { StoreModule } from '@ngrx/store';
@@ -110,10 +110,10 @@ describe('Component: MediaWall', () => {
 				RouterTestingModule,
 				ReactiveFormsModule,
 				FormsModule,
-				MdDialogModule,
-				MdSlideToggleModule,
-				MdSelectModule,
-				MdCheckboxModule,
+				MatDialogModule,
+				MatSlideToggleModule,
+				MatSelectModule,
+				MatCheckboxModule,
 				MasonryModule,
 				LazyImgModule,
 				StoreModule.provideStore(reducer)

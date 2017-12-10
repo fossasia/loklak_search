@@ -2,10 +2,10 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 
-import { MdTooltipModule } from '@angular/material';
+import { MatTooltipModule } from '@angular/material';
 
 import { LoklakHomeRoutingModule } from './home-routing.module';
-
+import { ServiceBoxModule } from '../service-box/service-box.module';
 import { HomeComponent } from './home.component';
 import { FooterModule } from '../footer/footer.module';
 import { LazyImgModule } from '../lazy-img/lazy-img.module';
@@ -29,7 +29,7 @@ import { LazyImgModule } from '../lazy-img/lazy-img.module';
 		/**
 		 * Angular Material Modules
 		 */
-		MdTooltipModule,
+		MatTooltipModule,
 
 		/**
 		 * Defines the routes at `home` level of application.
@@ -40,6 +40,12 @@ import { LazyImgModule } from '../lazy-img/lazy-img.module';
 		 * Declares a UI based footer module which is completely interoperable.
 		 */
 		FooterModule,
+
+		/**
+		* Declares a UI based service box module - box which contains the information of
+		 * other Fossasia services
+		 */
+		ServiceBoxModule,
 
 		/**
 		 * Module for lazy image loading.

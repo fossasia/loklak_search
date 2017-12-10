@@ -4,17 +4,17 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import {
-	MdAutocompleteModule,
-	MdMenuModule,
-	MdIconModule,
-	MdButtonModule,
-	MdButtonToggleModule
+	MatAutocompleteModule,
+	MatMenuModule,
+	MatIconModule,
+	MatButtonModule,
+	MatButtonToggleModule
 } from '@angular/material';
 
 import { LoklakFeedRoutingModule } from './feed-routing.module';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
 import { LazyImgModule } from '../lazy-img/lazy-img.module';
-
+import { ServiceBoxModule } from '../service-box/service-box.module';
 import { FeedComponent } from './feed.component';
 import { FeedHeaderComponent } from './feed-header/feed-header.component';
 import { FeedFooterComponent } from './feed-footer/feed-footer.component';
@@ -55,11 +55,11 @@ import { FeedAdvancedSearchComponent } from './feed-advanced-search/feed-advance
 		/**
  		 * The modules for material design components
  		 */
-		MdAutocompleteModule,
-		MdMenuModule,
-		MdIconModule,
-		MdButtonModule,
-		MdButtonToggleModule,
+		MatAutocompleteModule,
+		MatMenuModule,
+		MatIconModule,
+		MatButtonModule,
+		MatButtonToggleModule,
 
 		/**
 		 * Defines the routes at `feed` level of application.
@@ -77,6 +77,13 @@ import { FeedAdvancedSearchComponent } from './feed-advanced-search/feed-advance
 		ChartsModule,
 
 		/**
+		* Declares a UI based service box module - box which contains the information of
+			* Loklak services.
+			*/
+		ServiceBoxModule,
+
+		/**
+
 		 * Module for lazy image loading.
 		 */
 		LazyImgModule
