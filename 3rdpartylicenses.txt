@@ -204,7 +204,7 @@ get-size@2.0.2
 MIT
 MIT
 
-moment@2.19.3
+moment@2.19.4
 MIT
 Copyright (c) JS Foundation and other contributors
 
@@ -229,7 +229,7 @@ WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 OTHER DEALINGS IN THE SOFTWARE.
 
-core-js@2.5.1
+core-js@2.5.2
 MIT
 Copyright (c) 2014-2017 Denis Pushkarev
 
