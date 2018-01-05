@@ -5,6 +5,6 @@
 
 **Screenshots (if appropriate)** 
 
-**Link to live demo (if appropriate):** 
+**Link to live demo: <!-- http://pr-XXX-fossasia-loklaksearch.surge.sh Replace XXX with your PR no: -->** 
 
 **Closes #**
