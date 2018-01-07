@@ -140,7 +140,7 @@ export class FeedCardComponent implements OnInit {
 			const videoid = video.match(/(?:https?:\/{2})?(?:w{3}\.)?youtu(?:be)?\.(?:com|be)(?:\/watch\?v=|\/)([^\s&]+)/);
 
 			if (videoid !== null) {
-				video = 'http://www.youtube.com/embed/' + videoid[1];
+				video = 'https://www.youtube.com/embed/' + videoid[1];
 			this.sanitizedVideos.push(this.sanitizer.bypassSecurityTrustResourceUrl(video));
 			}
 		});
