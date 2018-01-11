@@ -1,4 +1,4 @@
-FROM node:boron
+FROM node:boron-alpine
 MAINTAINER Mario Behling <mb@mariobehling.de>
 
 RUN mkdir -p /usr/src/app
