@@ -66,6 +66,10 @@ export class FeedHeaderComponent implements OnInit, OnDestroy {
 		);
 	}
 
+	public closeSuggestBox(): void {
+		this.autoCompleteTrigger.closePanel();
+	}
+
 		ngOnDestroy() {
 			this.__subscriptions__.forEach(subscription => subscription.unsubscribe());
 		}

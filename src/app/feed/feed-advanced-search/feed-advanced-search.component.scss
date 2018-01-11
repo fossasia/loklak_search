@@ -17,10 +17,10 @@ div.wrapper{
 			border: none;
 			padding: 10px;
 			margin-right: 15px;
+			font-family: Arial, sans-serif;
 			color: #777;
 			text-align: center;
 			font-size: 0.9em;
-			font-weight: 500;
 		}
 
 		button.tab.selected {
@@ -30,12 +30,18 @@ div.wrapper{
 		}
 	}
 
+	h5.display-media {
+		font-family: Arial, sans-serif;
+		font-size: 14px;
+	}
+
 	div.tools {
 		display: flex;
 		flex-direction: row;
 		align-items: baseline;
 
 		mat-button-toggle {
+			font-family: Arial, sans-serif;
 			margin: 0px 3px;
 			color: #777;
 			border: 1px solid transparent;
@@ -53,9 +59,9 @@ div.wrapper{
 
 		.tool-list {
 			position: absolute;
-			left: 150px;
+			left: 140px;
 			top: 35px;
-			padding: 10px 5px;
+			padding: 10px 0px;
 			margin: 0px 10px;
 			pointer-events: none;
 
@@ -75,6 +81,7 @@ div.wrapper{
 						background-color: #e0e0e0;
 					}
 				}
+
 			}
 
 			.message {
