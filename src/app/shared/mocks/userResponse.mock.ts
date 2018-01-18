@@ -6,7 +6,7 @@ export const MockUserApiResponse: UserApiResponse = {
 		friends_count: 282,
 		profile_image_url_https: 'https://pbs.twimg.com/profile_images/1141238022/fossasia-cubelogo_normal.jpg',
 		listed_count: 185,
-		profile_background_image_url: 'http://pbs.twimg.com/profile_background_images/882420659/14d1d447527f8524c6aa0c568fb421d8.jpeg',
+		profile_background_image_url: 'https://pbs.twimg.com/profile_background_images/882420659/14d1d447527f8524c6aa0c568fb421d8.jpeg',
 		default_profile_image: false,
 		favourites_count: 1873,
 		description: '#FOSSASIA #OpenTechSummit 2017, March 17-19 in Singapore https://t.co/aKhIo2s1Ck',
@@ -28,26 +28,26 @@ export const MockUserApiResponse: UserApiResponse = {
 		profile_location: null,
 		profile_text_color: '333333',
 		verified: false,
-		profile_image_url: 'http://pbs.twimg.com/profile_images/1141238022/fossasia-cubelogo_normal.jpg',
+		profile_image_url: 'https://pbs.twimg.com/profile_images/1141238022/fossasia-cubelogo_normal.jpg',
 		time_zone: 'Pacific Time (US & Canada)',
-		url: 'http://t.co/eLxWZtqTHh',
+		url: 'https://t.co/eLxWZtqTHh',
 		contributors_enabled: false,
 		profile_background_tile: true,
 		profile_banner_url: 'https://pbs.twimg.com/profile_banners/157702526/1415283831',
 		entities: {
 			description: {
 			urls: [{
-				expanded_url: 'http://loklak.org',
+				expanded_url: 'https://loklak.org',
 				indices: [ 93, 115 ],
 				display_url : 'loklak.org',
-				url : 'http://t.co/D8XmZwuU2Y'
+				url : 'https://t.co/D8XmZwuU2Y'
 			}]
 			},
 			url: {
 			urls: [{
 				display_url: 'fossasia.org',
 				indices: [57, 80],
-				expanded_url: 'http://fossasia.org',
+				expanded_url: 'https://fossasia.org',
 				url: 'https://t.co/aKhIo2s1Ck'
 			}]
 			}

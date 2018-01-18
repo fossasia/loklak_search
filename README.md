@@ -8,9 +8,9 @@
 
 The loklak_search creates a website using the loklak server as a data source. The goal is to get a search site, that offers timeline search as well as custom media search, account and geolocation search.
 
-In order to run the service, you can use the API of http://api.loklak.org or install your own loklak server data storage engine. [loklak_server](https://github.com/loklak/loklak_server) is a server application which collects messages from various social media tweet sources, including Twitter. The server contains a search index and a peer-to-peer index sharing interface. All messages are stored in an elasticsearch index.
+In order to run the service, you can use the API of https://api.loklak.org or install your own loklak server data storage engine. [loklak_server](https://github.com/loklak/loklak_server) is a server application which collects messages from various social media tweet sources, including Twitter. The server contains a search index and a peer-to-peer index sharing interface. All messages are stored in an elasticsearch index.
 
-The site of this repo is deployed on the GitHub gh-pages branch and automatically deployed here: http://loklak.org
+The site of this repo is deployed on the GitHub gh-pages branch and automatically deployed here: https://loklak.org
 
 ---
 
@@ -28,7 +28,7 @@ Our chat channel is on gitter here: https://gitter.im/loklak/loklak
 * Angular 4 - Structure for deployment of the web page.
 
 ## Services and Dependencies
-* Bower - The goal is to use [Bower](http://bower.io) to manage front-end dependencies in future.
+* Bower - The goal is to use [Bower](https://bower.io) to manage front-end dependencies in future.
 
 ## Requirements
 * [Angular-cli](https://github.com/angular/angular-cli#installation)
@@ -77,7 +77,7 @@ With these very simple steps you can have loklak_search deployed:
 * **Step 6:** Reload and you will have a function loklak search page deployed with github pages.
 
 ### Loklak Server
-See here to run your own https://github.com/loklak/loklak_server (recommended), and change `apiUrl` in config accordingly. Last resource, or for production is http://api.loklak.org
+See here to run your own https://github.com/loklak/loklak_server (recommended), and change `apiUrl` in config accordingly. Last resource, or for production is https://api.loklak.org
 
 ## Contributions, Bug Reports, Feature Requests
 

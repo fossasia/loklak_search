@@ -58,7 +58,7 @@ export const MockApiResponseResult: ApiResponseResult = {
 		screen_name: 'mariobehling',
 		user_id: '14919253'
 	},
-	videos: ['http://youtu.be/LfErbeZpxPE?a)'],
+	videos: ['https://youtu.be/LfErbeZpxPE?a)'],
 	videos_count: 1,
 	without_l_len: 139,
 	without_lu_len: 111,
