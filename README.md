@@ -44,6 +44,11 @@ After installing angular-cli we need to install our required node modules, so we
 ```sh
 $ npm install
 ```
+After installing node modules we need to install `webpack`, so we will do that by using the following command:
+```sh
+$ npm install webpack
+```
+
 ## How to deploy?
 ### Running on localhost:
 * **Step 1:** Fork loklak_search repository and clone it to your desktop
