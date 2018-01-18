@@ -18,7 +18,7 @@ The site of this repo is deployed on the GitHub gh-pages branch and automaticall
 
 Please join our mailing list to discuss questions regarding the project: https://groups.google.com/forum/#!forum/opntec-dev
 
-Our chat channel is on gitter here: https://gitter.im/loklak/loklak
+  Our chat channel is on gitter here: https://gitter.im/loklak/loklak
 
 ## Technology Stack
 ##### Components
