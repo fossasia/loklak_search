@@ -15,6 +15,7 @@
       "/inline.f7d65efb81df78432517.bundle.js": "36a9e6f0fe30da7cffb50f33178bfc3aec105e82",
       "/scripts.1548ef9001acf0bc02b9.bundle.js": "d0ce003a161e67da5a1c62ccf2cd5df5cba46e4c",
       "/styles.e8f99e61574791c37395.bundle.css": "b6e64d15ff4f4fa3fb4ca4324805069b117160f1",
+      "/manifest.json": "999ae247efce372f6dca6bd97ce53dc571cdb048",
       "/assets/.npmignore": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
       "/assets/images/banner.jpg": "3131cb3108e779453427d52002c499530064be21",
       "/assets/images/cow_150x175.png": "96bff0518b5f2285dccf720481e89aa4286a5441",
@@ -29,7 +30,7 @@
       "/assets/images/pslab_64x68.png": "5634ce4e041c9963f51235fa8b7769c7d2328455",
       "/assets/images/susi_60x12.png": "e0a1b65b582f4cf784b2ca29297bccd538245ec9",
       "/assets/images/susper_60x16.png": "af505cce81c129ce3c4f4e557627f30aa83db9cb",
-      "/index.html": "fe70ad206df767d6c7d5763c8fb01d6bc7c87a33"
+      "/index.html": "5664b18baff0d37c9fdd58a9dc8d4a1275bc49ac"
     },
     "_generatedFromWebpack": true
   }

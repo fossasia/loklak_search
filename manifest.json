@@ -1,0 +1,40 @@
+{
+  "icons": [
+    {
+      "src": "./assets/images/logo.png",
+      "type": "image/png",
+      "sizes": "48x48"
+    },
+    {
+      "src": "./assets/images/logo.png",
+      "type": "image/png",
+      "sizes": "96x96"
+    },
+    {
+      "src": "./assets/images/logo.png",
+      "type": "image/png",
+      "sizes": "144x144"
+    },
+    {
+      "src": "./assets/images/logo.png",
+      "type": "image/png",
+      "sizes": "256x256"
+    },
+    {
+      "src": "./assets/images/logo.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": ".",
+  "scope": ".",
+  "name": "Loklak Search",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#fff",
+  "theme_color": "#d12b2b",
+  "description": "Distributed Open Source Search Engine for Twitter and Social Media with Peer to Peer Technology.",
+  "short_name": "Loklak Search",
+  "dir": "ltr",
+  "lang": "en-US"
+}
