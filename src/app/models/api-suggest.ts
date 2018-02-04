@@ -1,4 +1,3 @@
-
 export interface SuggestMetadata {
 	client: string;
 	count: string;

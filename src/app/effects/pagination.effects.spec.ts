@@ -1,16 +1,12 @@
-
-import { EffectsTestingModule, EffectsRunner } from '@ngrx/effects/testing';
-import { TestBed, fakeAsync, tick } from '@angular/core/testing';
-import { PaginationEffects } from './pagination.effects';
-import { SearchService } from '../services';
-import { Observable } from 'rxjs/Observable';
-import * as apiAction from '../actions/api';
+import {EffectsRunner, EffectsTestingModule} from '@ngrx/effects/testing';
+import {fakeAsync, TestBed} from '@angular/core/testing';
+import {PaginationEffects} from './pagination.effects';
+import {SearchService} from '../services';
+import {Observable} from 'rxjs/Observable';
 import * as paginationAction from '../actions/pagination';
-import { ApiResponse } from '../models/api-response';
-import { MockApiResponse, MockQuery } from '../shared/mocks/feedItem.mock';
-import { Query } from '../models';
-import { StoreModule } from '@ngrx/store';
-import { reducer } from '../reducers';
+import {MockApiResponse, MockQuery} from '../shared/mocks/feedItem.mock';
+import {StoreModule} from '@ngrx/store';
+import {reducer} from '../reducers';
 
 
 import 'rxjs/add/observable/of';

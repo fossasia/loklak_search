@@ -1,7 +1,7 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
-import { Http, Headers } from '@angular/http';
-import { countrycodearray } from '../../shared/countrycode/countrycode';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {Headers, Http} from '@angular/http';
+import {countrycodearray} from '../../shared/countrycode/countrycode';
 
 interface User {
 	name: string;

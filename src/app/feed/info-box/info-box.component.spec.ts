@@ -1,11 +1,11 @@
 /* tslint:disable:no-unused-variable */
 
-import { TestBed, async } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
-import { ChartsModule } from 'ng2-charts/ng2-charts';
-import { StoreModule } from '@ngrx/store';
-import { InfoBoxComponent } from './info-box.component';
-import { reducer } from '../../reducers';
+import {async, TestBed} from '@angular/core/testing';
+import {RouterTestingModule} from '@angular/router/testing';
+import {ChartsModule} from 'ng2-charts/ng2-charts';
+import {StoreModule} from '@ngrx/store';
+import {InfoBoxComponent} from './info-box.component';
+import {reducer} from '../../reducers';
 
 describe('Component: InfoBox', () => {
 	beforeEach(() => {

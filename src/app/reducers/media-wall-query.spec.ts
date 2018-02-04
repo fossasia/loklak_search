@@ -1,8 +1,5 @@
-import { createSelector } from 'reselect';
 import * as mediaWallAction from '../actions/media-wall-query';
-import { ApiResponse } from '../models/api-response';
 import * as fromMediaWall from './media-wall-query';
-import { MockApiResponse } from '../shared/mocks/feedItem.mock';
 
 describe('MediaWallReducer', () => {
 	describe('undefined action', () => {

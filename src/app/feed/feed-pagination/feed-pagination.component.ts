@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, Output, ChangeDetectionStrategy, EventEmitter } from '@angular/core';
+import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
 @Component({
 	selector: 'feed-pagination',

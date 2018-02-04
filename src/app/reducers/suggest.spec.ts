@@ -1,8 +1,7 @@
 import * as fromSuggestion from './suggest';
 import * as suggestAction from '../actions/suggest';
-import { Query } from '../models/query';
-import { MockQuery } from '../shared/mocks/feedItem.mock';
-import { MockSuggestResponse } from '../shared/mocks/suggestResponse.mock';
+import {MockQuery} from '../shared/mocks/feedItem.mock';
+import {MockSuggestResponse} from '../shared/mocks/suggestResponse.mock';
 
 describe('SuggestReducer', () => {
 	describe('undefined action', () => {

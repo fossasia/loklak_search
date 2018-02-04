@@ -1,34 +1,33 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import {
 	MatAutocompleteModule,
-	MatMenuModule,
-	MatIconModule,
 	MatButtonModule,
-	MatButtonToggleModule
+	MatButtonToggleModule,
+	MatIconModule,
+	MatMenuModule
 } from '@angular/material';
 
-import { LoklakFeedRoutingModule } from './feed-routing.module';
-import { ChartsModule } from 'ng2-charts/ng2-charts';
-import { LazyImgModule } from '../lazy-img/lazy-img.module';
-import { ServiceBoxModule } from '../service-box/service-box.module';
-import { FeedComponent } from './feed.component';
-import { FeedHeaderComponent } from './feed-header/feed-header.component';
-import { FeedFooterComponent } from './feed-footer/feed-footer.component';
-import { FeedCardComponent } from './feed-card/feed-card.component';
-import { FooterModule } from '../footer/footer.module';
-import { FeedNotFoundComponent } from './feed-not-found/feed-not-found.component';
-import { FeedLinkerComponent } from './feed-linker/feed-linker.component';
-import { FeedPaginationComponent } from './feed-pagination/feed-pagination.component';
-import { InfoBoxComponent } from './info-box/info-box.component';
-import { UserInfoBoxComponent } from './user-info-box/user-info-box.component';
-import { FeedLightboxComponent } from './feed-lightbox/feed-lightbox.component';
-import { FeedUserCardComponent } from './feed-user-card/feed-user-card.component';
-import { InViewportDirective } from '../shared/in-viewport.directive';
-import { FeedAdvancedSearchComponent } from './feed-advanced-search/feed-advanced-search.component';
+import {LoklakFeedRoutingModule} from './feed-routing.module';
+import {ChartsModule} from 'ng2-charts/ng2-charts';
+import {LazyImgModule} from '../lazy-img/lazy-img.module';
+import {ServiceBoxModule} from '../service-box/service-box.module';
+import {FeedComponent} from './feed.component';
+import {FeedHeaderComponent} from './feed-header/feed-header.component';
+import {FeedFooterComponent} from './feed-footer/feed-footer.component';
+import {FeedCardComponent} from './feed-card/feed-card.component';
+import {FooterModule} from '../footer/footer.module';
+import {FeedNotFoundComponent} from './feed-not-found/feed-not-found.component';
+import {FeedLinkerComponent} from './feed-linker/feed-linker.component';
+import {FeedPaginationComponent} from './feed-pagination/feed-pagination.component';
+import {InfoBoxComponent} from './info-box/info-box.component';
+import {UserInfoBoxComponent} from './user-info-box/user-info-box.component';
+import {FeedLightboxComponent} from './feed-lightbox/feed-lightbox.component';
+import {FeedUserCardComponent} from './feed-user-card/feed-user-card.component';
+import {InViewportDirective} from '../shared/in-viewport.directive';
+import {FeedAdvancedSearchComponent} from './feed-advanced-search/feed-advanced-search.component';
 
 
 @NgModule({

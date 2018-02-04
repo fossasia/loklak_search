@@ -1,6 +1,4 @@
-import { createSelector } from 'reselect';
 import * as mediaWallDirectUrlAction from '../actions/media-wall-direct-url';
-import { ApiResponse } from '../models/api-response';
 
 
 export interface State {

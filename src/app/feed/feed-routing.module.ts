@@ -1,7 +1,7 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
 
-import { FeedComponent } from './feed.component';
+import {FeedComponent} from './feed.component';
 
 const routes: Routes = [
 	{

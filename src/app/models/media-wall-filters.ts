@@ -1,4 +1,4 @@
-import { ApiResponseResult } from '../models/api-response';
+import {ApiResponseResult} from '../models/api-response';
 
 /**
  * @function profanityFilter

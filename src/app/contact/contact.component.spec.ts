@@ -1,17 +1,16 @@
 /* tslint:disable:no-unused-variable */
 
-import { TestBed, async, inject } from '@angular/core/testing';
-import { Output, EventEmitter } from '@angular/core';
-import { Title } from '@angular/platform-browser';
+import {async, TestBed} from '@angular/core/testing';
+import {Component, EventEmitter, Output} from '@angular/core';
+import {Title} from '@angular/platform-browser';
 
-import { RouterTestingModule } from '@angular/router/testing';
-import { ReactiveFormsModule } from '@angular/forms';
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import {RouterTestingModule} from '@angular/router/testing';
+import {ReactiveFormsModule} from '@angular/forms';
+import {Router} from '@angular/router';
 
-import { ContactComponent } from './contact.component';
+import {ContactComponent} from './contact.component';
 
-import { RouterStub } from '../../testing';
+import {RouterStub} from '../../testing';
 
 @Component({
 	selector: 'contact-form',

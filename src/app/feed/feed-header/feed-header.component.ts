@@ -1,22 +1,25 @@
-import { Component, Input, Output, ViewChild,
-					OnInit, OnDestroy,
-					EventEmitter,
-					ChangeDetectionStrategy } from '@angular/core';
+import {
+	ChangeDetectionStrategy,
+	Component,
+	EventEmitter,
+	Input,
+	OnDestroy,
+	OnInit,
+	Output,
+	ViewChild
+} from '@angular/core';
 
-import { FormControl } from '@angular/forms';
-import { Location } from '@angular/common';
+import {FormControl} from '@angular/forms';
 
-import { Store } from '@ngrx/store';
+import {Store} from '@ngrx/store';
 import * as fromRoot from '../../reducers';
 
-import * as queryAction from '../../actions/query';
+import {Observable} from 'rxjs/Observable';
+import {Subscription} from 'rxjs/Subscription';
 
-import { Observable } from 'rxjs/Observable';
-import { Subscription } from 'rxjs/Subscription';
+import {MatAutocompleteTrigger} from '@angular/material';
 
-import { MatAutocompleteTrigger } from '@angular/material';
-
-import { SuggestResults } from '../../models/api-suggest';
+import {SuggestResults} from '../../models/api-suggest';
 
 
 @Component({

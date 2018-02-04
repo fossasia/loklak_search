@@ -5,16 +5,9 @@ interface MutationWindow extends Window {
 
 declare var window: MutationWindow;
 
-import {
-		Directive,
-		Inject,
-		ElementRef,
-		forwardRef,
-		OnDestroy,
-		AfterViewInit
-} from '@angular/core';
+import {AfterViewInit, Directive, ElementRef, forwardRef, Inject, OnDestroy} from '@angular/core';
 
-import { AngularMasonryComponent } from './app-masonry.component';
+import {AngularMasonryComponent} from './app-masonry.component';
 
 @Directive({
 		selector: '[masonry-brick], masonry-brick'

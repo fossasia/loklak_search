@@ -1,8 +1,6 @@
-import { NgModule } from '@angular/core';
-import { Component, Input, Output } from '@angular/core';
-import { TestBed, async } from '@angular/core/testing';
-import { MatSlideToggleModule } from '@angular/material';
-import { MediaWallCustomBackgroundComponent } from './media-wall-custom-background.component';
+import {TestBed} from '@angular/core/testing';
+import {MatSlideToggleModule} from '@angular/material';
+import {MediaWallCustomBackgroundComponent} from './media-wall-custom-background.component';
 
 
 describe('MediaWallCustomCardComponent', () => {

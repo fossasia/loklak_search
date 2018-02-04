@@ -1,29 +1,26 @@
 /* tslint:disable:no-unused-variable */
 
-import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { TestBed, async } from '@angular/core/testing';
-import { Route } from '@angular/router';
-import { ReactiveFormsModule, FormControl } from '@angular/forms';
-import { RouterTestingModule } from '@angular/router/testing';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {async, TestBed} from '@angular/core/testing';
+import {FormControl, ReactiveFormsModule} from '@angular/forms';
+import {RouterTestingModule} from '@angular/router/testing';
 import {
 	MatAutocompleteModule,
-	MatMenuModule,
-	MatIconModule,
 	MatButtonModule,
 	MatButtonToggleModule,
 	MatCardModule,
+	MatChipsModule,
+	MatIconModule,
 	MatListModule,
-	MatChipsModule
+	MatMenuModule
 } from '@angular/material';
-import { StoreModule } from '@ngrx/store';
+import {StoreModule} from '@ngrx/store';
 
-import { Observable } from 'rxjs/Observable';
+import {Observable} from 'rxjs/Observable';
 
-import { reducer } from '../reducers';
-import { RouterStub } from '../../testing';
-import { FeedComponent } from './feed.component';
-import { ApiResponseResult } from '../models/api-response';
+import {reducer} from '../reducers';
+import {FeedComponent} from './feed.component';
+import {ApiResponseResult} from '../models/api-response';
 
 
 @Component({

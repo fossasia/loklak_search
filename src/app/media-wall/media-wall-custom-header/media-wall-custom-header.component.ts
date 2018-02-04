@@ -1,5 +1,5 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { WallHeader } from '../../models';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {WallHeader} from '../../models';
 
 @Component({
 	selector: 'media-wall-custom-header',

@@ -3,8 +3,8 @@
 *  a boolean output according to that.
 */
 
-import { Directive, OnInit, OnDestroy, ElementRef, Output, EventEmitter } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import {Directive, ElementRef, EventEmitter, OnDestroy, OnInit, Output} from '@angular/core';
+import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/fromEvent';
 import 'rxjs/add/operator/debounceTime';
 

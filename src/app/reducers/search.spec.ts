@@ -1,7 +1,6 @@
 import * as fromSearch from './search';
 import * as apiAction from '../actions/api';
-import { Query } from '../models/query';
-import { MockQuery, MockApiResponse } from '../shared/mocks/feedItem.mock';
+import {MockApiResponse, MockQuery} from '../shared/mocks/feedItem.mock';
 
 describe('SearchReducer', () => {
 	describe('undefined action', () => {

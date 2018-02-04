@@ -1,13 +1,13 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { HttpModule } from '@angular/http';
-import { ReactiveFormsModule } from '@angular/forms';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {HttpModule} from '@angular/http';
+import {ReactiveFormsModule} from '@angular/forms';
 
-import { LoklakContactRoutingModule } from './contact-routing.module';
-import { FooterModule } from '../footer/footer.module';
-import { NavbarModule } from '../navbar/navbar.module';
-import { ContactComponent } from './contact.component';
-import { ContactFormComponent } from './contact-form/contact-form.component';
+import {LoklakContactRoutingModule} from './contact-routing.module';
+import {FooterModule} from '../footer/footer.module';
+import {NavbarModule} from '../navbar/navbar.module';
+import {ContactComponent} from './contact.component';
+import {ContactFormComponent} from './contact-form/contact-form.component';
 
 @NgModule({
 	imports: [

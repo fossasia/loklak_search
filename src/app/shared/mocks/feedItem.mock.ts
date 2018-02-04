@@ -1,9 +1,5 @@
-import { ApiResponseResult,
-					ApiResponseUser,
-					ApiResponse,
-					ApiResponseAggregations,
-					ApiResponseMetadata } from '../../models/api-response';
-import { Query } from '../../models/query';
+import {ApiResponse, ApiResponseAggregations, ApiResponseMetadata, ApiResponseResult} from '../../models/api-response';
+import {Query} from '../../models/query';
 
 export const MockApiResponseResult: ApiResponseResult = {
 	audio: [],

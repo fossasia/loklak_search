@@ -1,9 +1,9 @@
 /* tslint:disable:no-unused-variable */
 
-import { Component } from '@angular/core';
-import { TestBed, async } from '@angular/core/testing';
-import { Title } from '@angular/platform-browser';
-import { PrivacyComponent } from './privacy.component';
+import {Component} from '@angular/core';
+import {async, TestBed} from '@angular/core/testing';
+import {Title} from '@angular/platform-browser';
+import {PrivacyComponent} from './privacy.component';
 
 @Component({
 	selector: 'app-navbar',

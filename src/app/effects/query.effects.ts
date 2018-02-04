@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
-import { Store, Action } from '@ngrx/store';
-import { Effect, Actions } from '@ngrx/effects';
-import { Observable } from 'rxjs/Observable';
+import {Injectable} from '@angular/core';
+import {Action, Store} from '@ngrx/store';
+import {Actions, Effect} from '@ngrx/effects';
+import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/withLatestFrom';
@@ -10,7 +10,7 @@ import * as fromRoot from '../reducers';
 import * as apiAction from '../actions/api';
 import * as queryAction from '../actions/query';
 import * as userQueryAction from '../actions/user-query';
-import { fromRegExp } from '../utils';
+import {fromRegExp} from '../utils';
 
 /**
  * Effects offer a way to isolate and easily test side-effects within your

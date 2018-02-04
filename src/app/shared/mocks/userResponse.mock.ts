@@ -1,4 +1,4 @@
-import { UserApiResponse , UserTopology, UserResponse, UserQuery } from '../../models';
+import {UserApiResponse, UserQuery, UserResponse, UserTopology} from '../../models';
 
 export const MockUserApiResponse: UserApiResponse = {
 		$P: 'I',

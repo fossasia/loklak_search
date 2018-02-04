@@ -1,11 +1,11 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 
-import { LoklakAboutRoutingModule } from './about-routing.module';
-import { AboutComponent } from './about.component';
+import {LoklakAboutRoutingModule} from './about-routing.module';
+import {AboutComponent} from './about.component';
 
-import { FooterModule } from '../footer/footer.module';
-import { NavbarModule } from '../navbar/navbar.module';
+import {FooterModule} from '../footer/footer.module';
+import {NavbarModule} from '../navbar/navbar.module';
 
 @NgModule({
 	imports: [

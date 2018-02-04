@@ -1,19 +1,12 @@
-import { NgModule, Component, Input, Output } from '@angular/core';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { RouterTestingModule } from '@angular/router/testing';
-import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { TestBed, async, ComponentFixture } from '@angular/core/testing';
-import {
-	MatDialogModule,
-	MatDialog,
-	MatTooltipModule,
-	MatMenuModule
-} from '@angular/material';
-import { StoreModule } from '@ngrx/store';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {RouterTestingModule} from '@angular/router/testing';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {MatDialogModule, MatMenuModule, MatTooltipModule} from '@angular/material';
+import {StoreModule} from '@ngrx/store';
 import * as fromRoot from '../../reducers';
 
-import { MediaWallMenuComponent } from './media-wall-menu.component';
+import {MediaWallMenuComponent} from './media-wall-menu.component';
 
 describe('MediaWallMenuComponent', () => {
 	let component: MediaWallMenuComponent;

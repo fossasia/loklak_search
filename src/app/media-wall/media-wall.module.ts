@@ -1,37 +1,37 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {
-	MatTabsModule,
-	MatIconModule,
-	MatSlideToggleModule,
-	MatDialogModule,
 	MatCheckboxModule,
-	MatSelectModule,
-	MatMenuModule,
+	MatDialogModule,
 	MatGridListModule,
+	MatIconModule,
+	MatMenuModule,
+	MatSelectModule,
+	MatSlideToggleModule,
+	MatTabsModule,
 	MatTooltipModule
 } from '@angular/material';
 
-import { LazyImgModule } from '../lazy-img/lazy-img.module';
-import { ColorPickerModule } from 'ngx-color-picker';
-import { MasonryModule } from '../app-masonry';
+import {LazyImgModule} from '../lazy-img/lazy-img.module';
+import {ColorPickerModule} from 'ngx-color-picker';
+import {MasonryModule} from '../app-masonry';
 
-import { MediaWallComponent } from './media-wall.component';
-import { LoklakMediaWallRoutingModule } from './media-wall-routing.module';
-import { MediaWallFluidCardComponent } from './media-wall-fluid-card/media-wall-fluid-card.component';
-import { MediaWallLinkerComponent } from './media-wall-linker/media-wall-linker.component';
-import { MediaWallHeaderComponent } from './media-wall-header/media-wall-header.component';
-import { ToggleFullscreenDirective } from '../shared';
-import { MediaWallCustomizationComponent } from './media-wall-customization/media-wall-customization.component';
-import { MediaWallCustomHeaderComponent } from './media-wall-custom-header/media-wall-custom-header.component';
-import { MediaWallCustomBackgroundComponent } from './media-wall-custom-background/media-wall-custom-background.component';
-import { MediaWallCustomCardComponent } from './media-wall-custom-card/media-wall-custom-card.component';
-import { MediaWallNotFoundComponent } from './media-wall-not-found/media-wall-not-found.component';
-import { MediaWallMenuComponent } from './media-wall-menu/media-wall-menu.component';
-import { MediaWallQueryComponent } from './media-wall-query/media-wall-query.component';
-import { MediaWallModerationComponent } from './media-wall-moderation/media-wall-moderation.component';
-import { MediaWallDesignComponent } from './media-wall-design/media-wall-design.component';
+import {MediaWallComponent} from './media-wall.component';
+import {LoklakMediaWallRoutingModule} from './media-wall-routing.module';
+import {MediaWallFluidCardComponent} from './media-wall-fluid-card/media-wall-fluid-card.component';
+import {MediaWallLinkerComponent} from './media-wall-linker/media-wall-linker.component';
+import {MediaWallHeaderComponent} from './media-wall-header/media-wall-header.component';
+import {ToggleFullscreenDirective} from '../shared';
+import {MediaWallCustomizationComponent} from './media-wall-customization/media-wall-customization.component';
+import {MediaWallCustomHeaderComponent} from './media-wall-custom-header/media-wall-custom-header.component';
+import {MediaWallCustomBackgroundComponent} from './media-wall-custom-background/media-wall-custom-background.component';
+import {MediaWallCustomCardComponent} from './media-wall-custom-card/media-wall-custom-card.component';
+import {MediaWallNotFoundComponent} from './media-wall-not-found/media-wall-not-found.component';
+import {MediaWallMenuComponent} from './media-wall-menu/media-wall-menu.component';
+import {MediaWallQueryComponent} from './media-wall-query/media-wall-query.component';
+import {MediaWallModerationComponent} from './media-wall-moderation/media-wall-moderation.component';
+import {MediaWallDesignComponent} from './media-wall-design/media-wall-design.component';
 
 @NgModule({
 	imports: [

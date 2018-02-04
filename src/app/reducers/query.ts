@@ -1,8 +1,6 @@
-import { createSelector } from 'reselect';
-
 import * as queryAction from '../actions/query';
-import { Query, FilterList, TimeBound, parseQueryToQueryString, parseQueryToRouterString } from '../models';
-import { fromRegExp } from '../utils';
+import {parseQueryToQueryString, parseQueryToRouterString, Query} from '../models';
+import {fromRegExp} from '../utils';
 
 /**
  * Each reducer module must import the local `State` which it controls.

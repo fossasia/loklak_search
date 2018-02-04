@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
-import { Store, Action } from '@ngrx/store';
-import { Effect, Actions } from '@ngrx/effects';
-import { Observable } from 'rxjs/Observable';
+import {Injectable} from '@angular/core';
+import {Action, Store} from '@ngrx/store';
+import {Actions, Effect} from '@ngrx/effects';
+import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/withLatestFrom';
 

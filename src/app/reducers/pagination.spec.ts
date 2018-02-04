@@ -1,11 +1,6 @@
 import * as fromPaginationResponse from './pagination';
 import * as paginationAction from '../actions/pagination';
-import { ApiResponse,
-				ApiResponseResult,
-				ApiResponseMetadata,
-				ApiResponseUser,
-				ApiResponseAggregations } from '../models/api-response';
-import { MockApiResponse } from '../shared/mocks/feedItem.mock';
+import {MockApiResponse} from '../shared/mocks/feedItem.mock';
 
 describe('PaginationReducer', () => {
 	describe('undefined action', () => {

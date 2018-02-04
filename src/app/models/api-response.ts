@@ -62,6 +62,7 @@ export interface ApiResponseResult {
 	without_lu_len: number;
 	without_luh_len: number;
 }
+
 export interface ApiResponseAggregations {
 	hashtags: Object;
 	screen_name: Object;

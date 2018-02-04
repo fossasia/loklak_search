@@ -1,6 +1,6 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { ApiResponseResult } from '../../models/api-response';
-import { Observable } from 'rxjs/Rx';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {ApiResponseResult} from '../../models/api-response';
+import {Observable} from 'rxjs/Rx';
 
 @Component({
 	selector: 'feed-lightbox',

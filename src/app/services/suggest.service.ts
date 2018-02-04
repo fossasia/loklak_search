@@ -1,11 +1,11 @@
-import { Injectable } from '@angular/core';
-import { Jsonp, Response, URLSearchParams } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
+import {Injectable} from '@angular/core';
+import {Jsonp, Response, URLSearchParams} from '@angular/http';
+import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/throw';
 
-import { SuggestResponse } from '../models/api-suggest';
+import {SuggestResponse} from '../models/api-suggest';
 
 @Injectable()
 export class SuggestService {
@@ -19,7 +19,7 @@ export class SuggestService {
 		private jsonp: Jsonp
 	) { }
 
-	// TODO: make the searchParams as configureable model rather than this approach.
+	// TODO: make the searchParams as configurable model rather than this approach.
 	public fetchQuery(query: string): Observable<SuggestResponse> {
 		const searchParams = new URLSearchParams();
 		searchParams.set('q', query);

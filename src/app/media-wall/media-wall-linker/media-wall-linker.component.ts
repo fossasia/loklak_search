@@ -1,6 +1,6 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { getIndicesOf } from '../../utils';
-import { WallCard } from '../../models';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {getIndicesOf} from '../../utils';
+import {WallCard} from '../../models';
 
 @Component({
 	selector: 'media-wall-linker',

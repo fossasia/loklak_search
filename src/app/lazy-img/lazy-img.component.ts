@@ -1,14 +1,5 @@
-import {
-	Component,
-	Input,
-	Output,
-	EventEmitter,
-	ElementRef,
-	ChangeDetectorRef,
-	OnInit,
-	OnDestroy
-} from '@angular/core';
-import { LazyImgService } from './lazy-img.service';
+import {ChangeDetectorRef, Component, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
+import {LazyImgService} from './lazy-img.service';
 
 
 @Component({

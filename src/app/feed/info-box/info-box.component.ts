@@ -1,10 +1,9 @@
-import { Component, OnInit, OnChanges, Input } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs/Rx';
+import {Component, Input, OnChanges, OnInit} from '@angular/core';
+import {Store} from '@ngrx/store';
+import {Observable} from 'rxjs/Rx';
 import * as fromRoot from '../../reducers';
-import * as apiAction from '../../actions/api';
-import { ApiResponseAggregations } from '../../models/api-response';
-import { Query } from '../../models';
+import {ApiResponseAggregations} from '../../models/api-response';
+import {Query} from '../../models';
 
 @Component({
 	selector: 'info-box',

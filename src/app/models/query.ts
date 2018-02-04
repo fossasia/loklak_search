@@ -1,5 +1,5 @@
-import { FilterList, TimeBound } from '.';
-import { parseDateToApiAcceptedFormat, cut } from '../utils';
+import {FilterList, TimeBound} from '.';
+import {cut, parseDateToApiAcceptedFormat} from '../utils';
 import * as regExp from '../utils/reg-exp';
 import * as validators from '../utils/string-validators';
 

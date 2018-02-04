@@ -1,4 +1,4 @@
-import { Action } from '@ngrx/store';
+import {Action} from '@ngrx/store';
 
 export const ActionTypes = {
 	WALL_GENERATE_DIRECT_URL: '[Media Wall] Wall Generate Direct URL',

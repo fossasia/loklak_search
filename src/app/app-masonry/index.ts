@@ -1,5 +1,5 @@
-import { AngularMasonryComponent } from './app-masonry.component';
-import { AngularMasonryBrickDirective } from './brick';
+import {AngularMasonryComponent} from './app-masonry.component';
+import {AngularMasonryBrickDirective} from './brick';
 
 export { MasonryModule } from './app-masonry.module';
 export { AngularMasonryComponent } from './app-masonry.component';

@@ -1,6 +1,5 @@
-import { Action } from '@ngrx/store';
-import { ApiResponse } from '../models/api-response';
-import { Query, FilterList, TimeBound } from '../models';
+import {Action} from '@ngrx/store';
+import {Query} from '../models';
 
 export const ActionTypes = {
 	WALL_VALUE_CHANGE: '[Media Wall Query] Wall Query Value Change',

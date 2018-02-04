@@ -1,11 +1,11 @@
-import { Injectable } from '@angular/core';
-import { Jsonp, Response, URLSearchParams } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
+import {Injectable} from '@angular/core';
+import {Jsonp, Response, URLSearchParams} from '@angular/http';
+import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/throw';
 
-import { UserResponse } from '../models/api-user-response';
+import {UserResponse} from '../models/api-user-response';
 
 @Injectable()
 export class UserService {

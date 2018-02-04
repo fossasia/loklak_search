@@ -1,7 +1,15 @@
-import { Component, OnInit, Input, ChangeDetectionStrategy, ChangeDetectorRef, Output, EventEmitter } from '@angular/core';
-import { ApiResponseResult } from '../../models/api-response';
-import { Observable } from 'rxjs/Rx';
-import { BrowserModule, DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import {
+	ChangeDetectionStrategy,
+	ChangeDetectorRef,
+	Component,
+	EventEmitter,
+	Input,
+	OnInit,
+	Output
+} from '@angular/core';
+import {ApiResponseResult} from '../../models/api-response';
+import {Observable} from 'rxjs/Rx';
+import {DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
 
 @Component({
 	selector: 'feed-card',

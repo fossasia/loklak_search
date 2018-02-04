@@ -1,11 +1,10 @@
-import { Injectable } from '@angular/core';
-import { Location } from '@angular/common';
-import { Title } from '@angular/platform-browser';
-import { Store, Action } from '@ngrx/store';
-import { Effect, Actions } from '@ngrx/effects';
-import { Observable } from 'rxjs/Observable';
-import { empty } from 'rxjs/observable/empty';
-import { of } from 'rxjs/observable/of';
+import {Injectable} from '@angular/core';
+import {Location} from '@angular/common';
+import {Title} from '@angular/platform-browser';
+import {Action, Store} from '@ngrx/store';
+import {Actions, Effect} from '@ngrx/effects';
+import {Observable} from 'rxjs/Observable';
+import {of} from 'rxjs/observable/of';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/switchMap';
@@ -14,15 +13,14 @@ import 'rxjs/add/operator/skip';
 import 'rxjs/add/operator/takeUntil';
 import 'rxjs/add/operator/withLatestFrom';
 
-import { SearchService, SearchServiceConfig } from '../services';
+import {SearchService, SearchServiceConfig} from '../services';
 import * as fromRoot from '../reducers';
 import * as apiAction from '../actions/api';
 import * as queryAction from '../actions/query';
 import * as trendsAction from '../actions/trends';
 import * as wallAction from '../actions/media-wall';
 import * as wallPaginationAction from '../actions/media-wall-pagination';
-import { ApiResponse } from '../models';
-import { parseDateToApiAcceptedFormat } from '../utils';
+import {parseDateToApiAcceptedFormat} from '../utils';
 
 /**
  * Effects offer a way to isolate and easily test side-effects within your
