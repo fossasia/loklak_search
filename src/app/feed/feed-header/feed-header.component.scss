@@ -1,88 +1,88 @@
 @import '~styles/main';
-@media (max-width: 490px) {
-  .logo-and-form {
+@media (max-width: 490px){
+  .logo-and-form{
     flex-direction: column;
   }
-  .search-input {
+  .search-input{
     width: 98vw;
     margin-left: 1vw;
   }
 }
 
 .outer-wrapper{
-	display: flex;
-	flex-direction: column;
-	background: #fafafa;
+	display:flex;
+	flex-direction:column;
+	background:#fafafa;
 	border-bottom: 1px solid #ebebeb;
 	
 	.wrapper{
 		padding: 18px 0px;
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
+		display:flex;
+		justify-content:space-between;
+		align-items:center;
 
-		div.logo-and-form {
-			margin-right: 82px;
-			width: 100%;
-			max-width: 767px;
-			display: flex;
+		div.logo-and-form{
+			margin-right:82px;
+			width:100%;
+			max-width:767px;
+			display:flex;
 
-			a {
-				&:hover {
-					text-decoration: none;
+			a{
+				&:hover{
+					text-decoration:none;
 				}
 
-				div.logo {
-					display: block;
+				div.logo{
+					display:block;
 					font-family: Courier New;
 					padding: 0px 15px;
-					font-size: 33px;
-					color: var(--accent-color,$accent-color);
+					font-size:33px;
+					color:var(--accent-color,$accent-color);
 				}
 			}
 
-			.search-form {
-				height: 100%;
-				flex: 1;
+			.search-form{
+				height:100%;
+				flex:1;
 
-				.search-input {
+				.search-input{
 					@include --center-flex();
-					position: relative;
-					background: #ffffff;
-					border-radius: 2px;
-					will-change: box-shadow;
+					position:relative;
+					background:#ffffff;
+					border-radius:2px;
+					will-change:box-shadow;
 					box-shadow: 0 2px 2px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08);
 					transition: box-shadow .2s cubic-bezier(.4,0,.2,1);
 
 					&.focused,
-					&:hover {
+					&:hover{
 						box-shadow: 0 3px 8px 0 rgba(0,0,0,0.2), 0 0 0 1px rgba(0,0,0,0.08);
 					}
 
-					input#search {
-						flex: 1;
-						border: none;
+					input#search{
+						flex:1;
+						border:none;
 						padding: 10px 15px;
-						font-size: 16px;
-						word-spacing: 1.5pt;
-						letter-spacing: 0.5pt;
-						box-shadow: none;
-						height: 44px;
-						background: #ffffff;
+						font-size:16px;
+						word-spacing:1.5pt;
+						letter-spacing:0.5pt;
+						box-shadow:none;
+						height:44px;
+						background:#ffffff;
 
-						&:focus {
-							outline: none;
+						&:focus{
+							outline:none;
 						}
 					}
 
-					#search-suffix-icon {
-						right: 0;
-						pointer-events: none;
+					#search-suffix-icon{
+						right:0;
+						pointer-events:none;
 						padding: 10px 15px 10px 0px;
 					}
 
-					&.focused {
-						#search-suffix-icon {
+					&.focused{
+						#search-suffix-icon{
 							color: var(--accent-color, $accent-color);
 						}
 					}
@@ -90,10 +90,10 @@
 			}
 		}
 
-		div.panel {
-			position: absolute;
-			top: 20px;
-			right: 20px;
+		div.panel{
+			position:absolute;
+			top:20px;
+			right:20px;
 		}
 	}
 }
