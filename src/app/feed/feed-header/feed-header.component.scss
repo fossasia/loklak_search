@@ -21,7 +21,7 @@
 		justify-content: space-between;
 		align-items: center;
 
-		div.logo-and-form{
+		div.logo-and-form {
 			margin-right: 82px;
 			width: 100%;
 			max-width: 767px;
@@ -32,12 +32,12 @@
 					text-decoration: none;
 				}
 
-				div.logo{
+				div.logo {
 					display: block;
 					font-family: Courier New;
 					padding: 0px 15px;
 					font-size: 33px;
-					color:var(--accent-color,$accent-color);
+					color: var(--accent-color,$accent-color);
 				}
 			}
 
@@ -55,11 +55,11 @@
 					transition: box-shadow .2s cubic-bezier(.4,0,.2,1);
 
 					&.focused,
-					&:hover{
+					&:hover {
 						box-shadow: 0 3px 8px 0 rgba(0,0,0,0.2), 0 0 0 1px rgba(0,0,0,0.08);
 					}
 
-					input#search{
+					input#search {
 						flex: 1;
 						border: none;
 						padding: 10px 15px;
@@ -82,7 +82,7 @@
 					}
 
 					&.focused {
-						#search-suffix-icon{
+						#search-suffix-icon {
 							color: var(--accent-color, $accent-color);
 						}
 					}
