@@ -32,8 +32,8 @@ Our chat channel is on gitter here: https://gitter.im/loklak/loklak
 
 ## Requirements
 * [Angular-cli](https://github.com/angular/angular-cli#installation)
-* node --version >= 6
-* npm --version >= 3
+* node v6.*
+* npm v3.*
 
 ## Installation
 First, we will need to install angular-cli by using the following command:
