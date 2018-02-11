@@ -1,14 +1,12 @@
-<button mat-icon-button (click)="opened = !opened">
-	<mat-icon>apps</mat-icon>
-</button>
-
-
-<div class="box" [class.opened]="opened">
-	<div class="tip">
-		<div class="border"></div>
-		<div class="foreground"></div>
-	</div>
-
+<div id="side-menu" (focusout)="opened=false">
+	<button mat-icon-button (click)="opened = !opened">
+		<mat-icon>apps</mat-icon>
+	</button>
+	<div class="box" [class.opened]="opened">
+		<div class="tip">
+			<div class="border"></div>
+			<div class="foreground"></div>
+		</div>
 	<div class="services">
 		<div class="row">
  			<a href="https://blog.fossasia.org">
@@ -38,58 +36,59 @@
 		</div>
 	</div>
 	<hr />
-	<div class="services">
-		<div class="row">
-			<a href="https://fossasia.org/">
-				<div class="col">
-					<div class="img">
-						<img src="assets/images/fossasia_logo_55x22.png" width="55" height="22" alt="Fossasia">
+		<div class="services">
+			<div class="row">
+				<a href="https://fossasia.org/">
+					<div class="col">
+						<div class="img">
+							<img src="assets/images/fossasia_logo_55x22.png" width="55" height="22" alt="Fossasia">
+						</div>
+						<span>FOSSASIA</span>
 					</div>
-					<span>FOSSASIA</span>
-				</div>
-			</a>
-			<a href="https://phimp.me">
-				<div class="col">
-					<div class="img">
-						<img src="assets/images/phimpme_64x64.png" width="50" height="50" alt="Phimpme">
+				</a>
+				<a href="https://phimp.me">
+					<div class="col">
+						<div class="img">
+							<img src="assets/images/phimpme_64x64.png" width="50" height="50" alt="Phimpme">
+						</div>
+						<span>Phimpme</span>
 					</div>
-					<span>Phimpme</span>
-				</div>
-			</a>
-			<a href="https://susper.com/">
-				<div class="col">
-					<div class="img">
-						<img src="assets/images/susper_60x16.png" width="60" height="16" alt="Susper">
+				</a>
+				<a href="https://susper.com/">
+					<div class="col">
+						<div class="img">
+							<img src="assets/images/susper_60x16.png" width="60" height="16" alt="Susper">
+						</div>
+						<span>Susper</span>
 					</div>
-					<span>Susper</span>
-				</div>
-			</a>
-		</div>
-		<div class="row">
-			<a href="https://chat.susi.ai/">
-				<div class="col">
-					<div class="img">
-						<img src="assets/images/susi_60x12.png" width="60" height="12" alt="Susi.AI">
+				</a>
+			</div>
+			<div class="row">
+				<a href="https://chat.susi.ai/">
+					<div class="col">
+						<div class="img">
+							<img src="assets/images/susi_60x12.png" width="60" height="12" alt="Susi.AI">
+						</div>
+						<span>Susi.AI</span>
 					</div>
-					<span>Susi.AI</span>
-				</div>
-			</a>
-			<a href="https://pslab.fossasia.org/">
-				<div class="col">
-					<div class="img">
-						<img src="assets/images/pslab_64x68.png" width="50" height="50" alt="PSLab">
+				</a>
+				<a href="https://pslab.fossasia.org/">
+					<div class="col">
+						<div class="img">
+							<img src="assets/images/pslab_64x68.png" width="50" height="50" alt="PSLab">
+						</div>
+						<span>PSLab</span>
 					</div>
-					<span>PSLab</span>
-				</div>
-			</a>
-			<a href="https://eventyay.com/">
-				<div class="col">
-					<div class="img">
-						<img src="assets/images/eventyay.png" width="60" height="18" alt="Eventyay">
+				</a>
+				<a href="https://eventyay.com/">
+					<div class="col">
+						<div class="img">
+							<img src="assets/images/eventyay.png" width="60" height="18" alt="Eventyay">
+						</div>
+						<span>Eventyay</span>
 					</div>
-					<span>Eventyay</span>
-				</div>
-			</a>
+				</a>
+			</div>
 		</div>
 	</div>
 </div>
