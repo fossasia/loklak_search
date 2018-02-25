@@ -37,8 +37,9 @@ export class HomeComponent implements OnInit, OnDestroy {
 	) { }
 
 	speechRecognition() {
-		this.speech.record('en_US').subscribe(voice => this.router.navigate([`/search`], { queryParams: { query: voice }, skipLocationChange: true } ));
-  	}
+		this.speech.record('en_US').subscribe(voice => this.router.navigate([`/search`],
+		{ queryParams: { query: voice }, skipLocationChange: true } ));
+	}
 
 	ngOnInit() {
 		this.titleService.setTitle('Loklak Search - Distributed Open Source Search for Twitter and Social Media with Peer to Peer Technology');
