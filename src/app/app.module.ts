@@ -7,6 +7,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 
 import { JsonpModule } from '@angular/http';
+import { SpeechService } from './speech.service';
 
 import { reducer } from './reducers';
 import {
@@ -122,7 +123,8 @@ import {
 		 */
 		SearchService,
 		UserService,
-		SuggestService
+		SuggestService,
+		SpeechService
 	],
 	bootstrap: [AppComponent]
 })
