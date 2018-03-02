@@ -13,6 +13,7 @@ import * as apiAction from '../actions/api';
 import { HomeComponent } from './home.component';
 
 import { RouterStub } from '../../testing';
+import { SpeechService } from '../speech.service';
 
 @Component({
 	selector: 'app-footer',
@@ -57,7 +58,8 @@ describe('Component: Home', () => {
 			],
 			providers: [
 				{ provide: Router, useClass: RouterStub },
-				{ provide: Title, useClass: Title }
+				{ provide: Title, useClass: Title },
+				{ provide: SpeechService, useClass: SpeechService }
 			]
 		});
 	});

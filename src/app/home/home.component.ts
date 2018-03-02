@@ -12,6 +12,7 @@ import * as trendsAction from '../actions/trends';
 import * as suggestAction from '../actions/suggest';
 
 import { Query, ApiResponseTrendingHashtags } from '../models';
+import { SpeechService } from '../speech.service';
 
 @Component({
 	selector: 'app-home',
@@ -31,8 +32,14 @@ export class HomeComponent implements OnInit, OnDestroy {
 		private elementRef: ElementRef,
 		private changeDetectorRef: ChangeDetectorRef,
 		private store: Store<fromRoot.State>,
-		private titleService: Title
+		private titleService: Title,
+		private speech: SpeechService
 	) { }
+
+	speechRecognition() {
+		this.speech.record('en_US').subscribe(voice => this.router.navigate([`/search`],
+		{ queryParams: { query: voice }, skipLocationChange: true } ));
+	}
 
 	ngOnInit() {
 		this.titleService.setTitle('Loklak Search - Distributed Open Source Search for Twitter and Social Media with Peer to Peer Technology');
