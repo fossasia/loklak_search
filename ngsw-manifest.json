@@ -1,20 +1,20 @@
 {
   "static": {
     "urls": {
-      "/0.bb3e0b40ea5643870eeb.chunk.js": "35668ddee49f680e3717fee9f9ad9fbdeba846a8",
-      "/1.c4e63bffe87560b83d5b.chunk.js": "608f54aa268fa195c6f3062b79f3acfc3ddbb56a",
-      "/2.5f9ed0fc8356848b9800.chunk.js": "173480d81b82e4b0897373545d512565284c021a",
-      "/3.67a4bec29436c56b2e1f.chunk.js": "551294b43080f91e20bf3b6e7b02eb677eb76561",
-      "/4.ac017968c8d48924d821.chunk.js": "c4cfb1ebce1a5179e31763ca3fa54d5a1ae274d3",
-      "/5.42b751cad504260e3b5c.chunk.js": "d90408d8cee6277e0881606bde23775bab046ef3",
-      "/6.e86385bc129b641246c4.chunk.js": "5ea9d54c4c411507ee358c346fb7465c95c7980c",
-      "/7.b3687023ac9206387c9d.chunk.js": "f9a5c8bdffec664be62b08c1ae0ce686e297ca04",
-      "/main.d0d0afe4bc1c0badef3b.bundle.js": "4f5fbd1d3b4374056acc4fa959ff34ef1f4f7d86",
-      "/polyfills.c0ccfeb81172c5566a03.bundle.js": "959f1fc81ead2cc61e61db6b275604cd2c50c09e",
-      "/sw-register.c332c84f62bee8f8af1c.bundle.js": "ab207ba8b6f250653d3d15ef50d3a994c4374f87",
-      "/inline.9711ae967ae00aa10297.bundle.js": "0c3e0432e44e60795d6fad22d4a02f24425332e9",
+      "/0.64f048de838404c7876c.chunk.js": "6aea9cf9c9e7d65a9757b122792f46d6efced2a5",
+      "/1.a6e04ffce986f05f58bc.chunk.js": "b69714b45001c76c476a66aaeab893eee0f3ab64",
+      "/2.51077f5c7e92e49fa993.chunk.js": "bb89061ec23e2b8587b5fda244780a64cdb2d148",
+      "/3.a16fa4240f0c00cb878e.chunk.js": "5922221e1f9e5642f47815c951e2810c649deaef",
+      "/4.bf43db4eea50a4a9cb7b.chunk.js": "b2105fe5f7c5fad024f94baf46c4a35c5e2fbdf4",
+      "/5.2c1e4d48b73d8354ac25.chunk.js": "ceb5790f3f948121275ae727562d529378b6bd92",
+      "/6.f5ce1f0890d960ef2dd9.chunk.js": "01fd8e78f4bdb11658ff23d3c470d5bdbaf2dfda",
+      "/7.0627f5838bc314f26c8e.chunk.js": "768b7a14a007e0a5b3c1c3a45654c300255f6eff",
+      "/main.77f8ac9f08c2f17fe5a2.bundle.js": "583c7d1cc08c7b944453854d28fcba8226d32c28",
+      "/polyfills.d7eb738d827cd80f0c4d.bundle.js": "27b2e32a6e501eda83769aa87354c0a4ce8691ec",
+      "/sw-register.ad01e97b49715521d5b0.bundle.js": "8477ae7e567a73364c442482041de6c413cb4aaa",
+      "/inline.8faccb404e5ba57a66dc.bundle.js": "b01a93b82eb88ef4c13ad87767837f1d8fb12652",
       "/scripts.1548ef9001acf0bc02b9.bundle.js": "d0ce003a161e67da5a1c62ccf2cd5df5cba46e4c",
-      "/styles.e8f99e61574791c37395.bundle.css": "b6e64d15ff4f4fa3fb4ca4324805069b117160f1",
+      "/styles.741fd7e7a36507b8e340.bundle.css": "b71c7d324b2b87d0cf22a0abcaeff8e61d1c5af7",
       "/manifest.json": "999ae247efce372f6dca6bd97ce53dc571cdb048",
       "/assets/.npmignore": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
       "/assets/images/banner.jpg": "3131cb3108e779453427d52002c499530064be21",
@@ -29,12 +29,13 @@
       "/assets/images/fossasia_logo.png": "49d8e0fac4c1f561ebc441965ede0df84ef3516b",
       "/assets/images/github.png": "3a2742622a80a60edec8516dbe5a32db7e3f4eaa",
       "/assets/images/logo.png": "adaeca27b26453abf49b60b4957eff52b7df72a7",
+      "/assets/images/microphone.png": "c0f1e88007368d123ab49c28397ed22d1913f5dc",
       "/assets/images/open_event_64x64.png": "ab144f6d2bd164352e2d7c793fbb571b263613ce",
       "/assets/images/phimpme_64x64.png": "e355f33f03ce02a670db13b1b802b6be3a33fc87",
       "/assets/images/pslab_64x68.png": "5634ce4e041c9963f51235fa8b7769c7d2328455",
       "/assets/images/susi_60x12.png": "e0a1b65b582f4cf784b2ca29297bccd538245ec9",
       "/assets/images/susper_60x16.png": "af505cce81c129ce3c4f4e557627f30aa83db9cb",
-      "/index.html": "4c00987366f8e5c4ac24d8be7f74b479728f6ada"
+      "/index.html": "3ac447a71220315a36516c79ff2288bae82ac1bd"
     },
     "_generatedFromWebpack": true
   }
