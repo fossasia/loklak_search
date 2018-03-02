@@ -27,9 +27,6 @@ Our chat channel is on gitter here: https://gitter.im/loklak/loklak
 * JavaScript(JSON) - Used to store information for deploying the application such as dependencies.
 * Angular 4 - Structure for deployment of the web page.
 
-## Services and Dependencies
-* Bower - The goal is to use [Bower](https://bower.io) to manage front-end dependencies in future.
-
 ## Requirements
 * [Angular-cli](https://github.com/angular/angular-cli#installation)
 * node v6.*
