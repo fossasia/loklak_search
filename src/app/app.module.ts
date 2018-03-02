@@ -1,36 +1,31 @@
-import { BrowserModule, Title } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgModule } from '@angular/core';
+import {BrowserModule, Title} from '@angular/platform-browser';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {NgModule} from '@angular/core';
 
-import { StoreModule } from '@ngrx/store';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { EffectsModule } from '@ngrx/effects';
+import {StoreModule} from '@ngrx/store';
+import {EffectsModule} from '@ngrx/effects';
 
-import { JsonpModule } from '@angular/http';
+import {JsonpModule} from '@angular/http';
 
-import { reducer } from './reducers';
+import {reducer} from './reducers';
 import {
 	ApiSearchEffects,
+	ApiUserSearchEffects,
+	MediaWallDirectUrlEffects,
 	MediaWallQueryEffects,
 	PaginationEffects,
-	ApiUserSearchEffects,
-	SuggestEffects,
 	QueryEffects,
+	SuggestEffects,
 	UserQueryEffects,
-	WallPaginationEffects,
-	MediaWallDirectUrlEffects
+	WallPaginationEffects
 } from './effects';
 
-import { LoklakAppRoutingModule } from './app-routing.module';
+import {LoklakAppRoutingModule} from './app-routing.module';
 
-import { AppComponent } from './app.component';
-import { PageNotFoundModule } from './pagenotfound/pagenotfound.module';
+import {AppComponent} from './app.component';
+import {PageNotFoundModule} from './pagenotfound/pagenotfound.module';
 
-import {
-	SearchService,
-	UserService,
-	SuggestService
-} from './services';
+import {SearchService, SuggestService, UserService} from './services';
 
 @NgModule({
 	declarations: [

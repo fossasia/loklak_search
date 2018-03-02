@@ -1,4 +1,4 @@
-import { Query, parseQueryToQueryString, parseQueryToRouterString, parseStringToQuery } from './query';
+import {parseQueryToQueryString, parseQueryToRouterString, parseStringToQuery, Query} from './query';
 
 function getBaseQuery(): Query {
 	return {

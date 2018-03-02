@@ -1,17 +1,16 @@
 import 'rxjs/add/observable/of';
 import 'rxjs/add/observable/throw';
 
-import { EffectsTestingModule, EffectsRunner } from '@ngrx/effects/testing';
-import { TestBed, fakeAsync, tick } from '@angular/core/testing';
-import { StoreModule } from '@ngrx/store';
-import { ApiSearchEffects } from './api-search.effects';
-import { SearchService } from '../services';
-import { Observable } from 'rxjs/Observable';
+import {EffectsRunner, EffectsTestingModule} from '@ngrx/effects/testing';
+import {fakeAsync, TestBed, tick} from '@angular/core/testing';
+import {StoreModule} from '@ngrx/store';
+import {ApiSearchEffects} from './api-search.effects';
+import {SearchService} from '../services';
+import {Observable} from 'rxjs/Observable';
 import * as apiAction from '../actions/api';
-import { ApiResponse } from '../models/api-response';
-import { MockApiResponse, MockQuery } from '../shared/mocks/feedItem.mock';
-import { RouterTestingModule } from '@angular/router/testing';
-import { Location } from '@angular/common';
+import {MockApiResponse, MockQuery} from '../shared/mocks/feedItem.mock';
+import {RouterTestingModule} from '@angular/router/testing';
+import {Location} from '@angular/common';
 
 describe('ApiSearchEffects', () => {
 	beforeEach(() => TestBed.configureTestingModule({

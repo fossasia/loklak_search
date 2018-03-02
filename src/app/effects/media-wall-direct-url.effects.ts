@@ -1,16 +1,15 @@
-import { Injectable } from '@angular/core';
-import { Location } from '@angular/common';
-import { Store, Action } from '@ngrx/store';
-import { Effect, Actions } from '@ngrx/effects';
-import { Observable } from 'rxjs/Observable';
-import { of } from 'rxjs/observable/of';
+import {Injectable} from '@angular/core';
+import {Location} from '@angular/common';
+import {Action, Store} from '@ngrx/store';
+import {Actions, Effect} from '@ngrx/effects';
+import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/withLatestFrom';
 
 import * as fromRoot from '../reducers';
 import * as mediaWallDirectUrlAction from '../actions/media-wall-direct-url';
 
-import { generateDirectUrl } from '../models';
+import {generateDirectUrl} from '../models';
 
 
 /**

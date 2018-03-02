@@ -1,11 +1,11 @@
 declare var require: any;
 declare var imagesLoaded: any;
 
-import { Component, OnInit, OnDestroy, Input, Output, ElementRef, EventEmitter } from '@angular/core';
+import {Component, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
 
 import * as masonry from 'masonry-layout';
 
-import { MasonryOptions } from './masonry-options';
+import {MasonryOptions} from './masonry-options';
 
 @Component({
 		selector: '[masonry], masonry',

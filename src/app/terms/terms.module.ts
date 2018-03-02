@@ -1,10 +1,10 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 
-import { LoklakTermsRoutingModule } from './terms-routing.module';
-import { TermsComponent } from './terms.component';
-import { NavbarModule } from '../navbar/navbar.module';
-import { FooterModule } from '../footer/footer.module';
+import {LoklakTermsRoutingModule} from './terms-routing.module';
+import {TermsComponent} from './terms.component';
+import {NavbarModule} from '../navbar/navbar.module';
+import {FooterModule} from '../footer/footer.module';
 
 @NgModule({
 	imports: [

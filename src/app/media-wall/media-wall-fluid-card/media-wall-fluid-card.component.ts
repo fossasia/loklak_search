@@ -1,8 +1,8 @@
-import { Component, OnInit, Input, ChangeDetectionStrategy, ChangeDetectorRef, Output, EventEmitter } from '@angular/core';
-import { ApiResponseResult } from '../../models/api-response';
-import { Observable } from 'rxjs/Rx';
-import { BrowserModule, DomSanitizer } from '@angular/platform-browser';
-import { WallCard } from '../../models';
+import {ChangeDetectorRef, Component, Input, OnInit} from '@angular/core';
+import {ApiResponseResult} from '../../models/api-response';
+import {Observable} from 'rxjs/Rx';
+import {DomSanitizer} from '@angular/platform-browser';
+import {WallCard} from '../../models';
 
 @Component({
 	selector: 'media-wall-fluid-card',

@@ -1,6 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { UserApiResponse } from '../../models/api-user-response';
-import { immutableSort } from '../../utils';
+import {Component, Input, OnInit} from '@angular/core';
+import {UserApiResponse} from '../../models/api-user-response';
+import {immutableSort} from '../../utils';
 
 @Component({
 	selector: 'user-info-box',

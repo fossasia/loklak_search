@@ -1,4 +1,3 @@
-import { createSelector } from 'reselect';
 import * as mediaWallDesignAction from '../actions/media-wall-design';
 
 export interface State {

@@ -1,5 +1,5 @@
-import { Component, OnInit, Input, Output } from '@angular/core';
-import { immutableSort } from '../../utils';
+import {Component, Input, OnInit} from '@angular/core';
+import {immutableSort} from '../../utils';
 
 @Component({
 	selector: 'feed-footer',

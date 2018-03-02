@@ -1,10 +1,10 @@
 /* tslint:disable:no-unused-variable */
 
-import { TestBed, async, inject, fakeAsync, tick } from '@angular/core/testing';
-import { Jsonp, BaseRequestOptions, RequestMethod, Response, ResponseOptions } from '@angular/http';
-import { MockBackend, MockConnection } from '@angular/http/testing';
-import { SearchService, SearchServiceConfig } from '.';
-import { MockApiResponseResult } from '../shared/mocks/feedItem.mock';
+import {inject, TestBed} from '@angular/core/testing';
+import {BaseRequestOptions, Jsonp, RequestMethod, Response, ResponseOptions} from '@angular/http';
+import {MockBackend, MockConnection} from '@angular/http/testing';
+import {SearchService, SearchServiceConfig} from '.';
+import {MockApiResponseResult} from '../shared/mocks/feedItem.mock';
 
 const mockJsonpProvider = {
 	provide: Jsonp,

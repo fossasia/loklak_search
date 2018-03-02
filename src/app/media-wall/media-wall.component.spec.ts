@@ -1,30 +1,21 @@
 /* tslint:disable:no-unused-variable */
 
-import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { TestBed, async } from '@angular/core/testing';
-import { Route } from '@angular/router';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
-import {
-	MatDialogModule,
-	MatDialog,
-	MatSlideToggleModule,
-	MatSelectModule,
-	MatCheckboxModule
-} from '@angular/material';
-import { RouterTestingModule } from '@angular/router/testing';
-import { StoreModule } from '@ngrx/store';
-import { MediaWallCustomizationComponent } from './media-wall-customization/media-wall-customization.component';
-import { MediaWallQueryComponent } from './media-wall-query/media-wall-query.component';
-import { MediaWallModerationComponent } from './media-wall-moderation/media-wall-moderation.component';
-import { MediaWallDesignComponent } from './media-wall-design/media-wall-design.component';
+import {Component, Input, Output} from '@angular/core';
+import {async, TestBed} from '@angular/core/testing';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {BrowserDynamicTestingModule} from '@angular/platform-browser-dynamic/testing';
+import {MatCheckboxModule, MatDialogModule, MatSelectModule, MatSlideToggleModule} from '@angular/material';
+import {RouterTestingModule} from '@angular/router/testing';
+import {StoreModule} from '@ngrx/store';
+import {MediaWallCustomizationComponent} from './media-wall-customization/media-wall-customization.component';
+import {MediaWallQueryComponent} from './media-wall-query/media-wall-query.component';
+import {MediaWallModerationComponent} from './media-wall-moderation/media-wall-moderation.component';
+import {MediaWallDesignComponent} from './media-wall-design/media-wall-design.component';
 
-import { reducer } from '../reducers';
-import { RouterStub } from '../../testing';
-import { MediaWallComponent } from './media-wall.component';
-import { MasonryModule } from '../app-masonry/app-masonry.module';
-import { LazyImgModule } from '../lazy-img/lazy-img.module';
+import {reducer} from '../reducers';
+import {MediaWallComponent} from './media-wall.component';
+import {MasonryModule} from '../app-masonry/app-masonry.module';
+import {LazyImgModule} from '../lazy-img/lazy-img.module';
 
 
 @Component({

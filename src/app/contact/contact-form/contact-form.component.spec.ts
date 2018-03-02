@@ -1,9 +1,9 @@
 /* tslint:disable:no-unused-variable */
 
-import { TestBed, async } from '@angular/core/testing';
-import { ContactFormComponent } from './contact-form.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import {async, TestBed} from '@angular/core/testing';
+import {ContactFormComponent} from './contact-form.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {HttpModule} from '@angular/http';
 
 const mockmessage = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' +
 	'Maecenas pellentesque lorem eu nulla interdum, vel ornare quam sagittis.' +

@@ -1,4 +1,3 @@
-import { createSelector } from 'reselect';
 import * as apiAction from '../actions/api';
 import * as wallAction from '../actions/media-wall';
 import * as wallPaginationAction from '../actions/media-wall-pagination';

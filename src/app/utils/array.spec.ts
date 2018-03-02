@@ -1,4 +1,4 @@
-import { getIndicesOf, cut } from './array';
+import {cut, getIndicesOf} from './array';
 
 describe('Function: getIndicesOf', () => {
 	const s1 = 'Lorem ipsum dolor Fossasia sit amet, consectetur adipiscing elit.' +

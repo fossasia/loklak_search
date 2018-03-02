@@ -1,7 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Title } from '@angular/platform-browser';
-import { Observable } from 'rxjs/Observable';
-
+import {Component, OnInit} from '@angular/core';
+import {Title} from '@angular/platform-browser';
 
 
 @Component({

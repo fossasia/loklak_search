@@ -1,7 +1,7 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { LazyImgComponent } from './lazy-img.component';
-import { LazyImgService } from './lazy-img.service';
+import {LazyImgComponent} from './lazy-img.component';
+import {LazyImgService} from './lazy-img.service';
 
 describe('LazyImgComponent', () => {
 	let component: LazyImgComponent;

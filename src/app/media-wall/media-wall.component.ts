@@ -1,30 +1,27 @@
-import { Component, OnInit,
-		OnDestroy,
-		ElementRef, ChangeDetectionStrategy, ViewChild, ChangeDetectorRef } from '@angular/core';
-import { Router, ActivatedRoute, Params } from '@angular/router';
-import { Location } from '@angular/common';
-import {MatDialog, MatDialogRef} from '@angular/material';
-import { MediaWallCustomizationComponent } from './media-wall-customization/media-wall-customization.component';
-import { MediaWallQueryComponent } from './media-wall-query/media-wall-query.component';
-import { MediaWallModerationComponent } from './media-wall-moderation/media-wall-moderation.component';
-import { MediaWallDesignComponent } from './media-wall-design/media-wall-design.component';
-import { Title } from '@angular/platform-browser';
-import { MasonryOptions } from '../app-masonry';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, OnDestroy, OnInit} from '@angular/core';
+import {ActivatedRoute, Params} from '@angular/router';
+import {Location} from '@angular/common';
+import {MatDialog} from '@angular/material';
+import {MediaWallCustomizationComponent} from './media-wall-customization/media-wall-customization.component';
+import {MediaWallQueryComponent} from './media-wall-query/media-wall-query.component';
+import {MediaWallModerationComponent} from './media-wall-moderation/media-wall-moderation.component';
+import {MediaWallDesignComponent} from './media-wall-design/media-wall-design.component';
+import {Title} from '@angular/platform-browser';
+import {MasonryOptions} from '../app-masonry';
 
-import { Observable } from 'rxjs/Observable';
-import { Subscription } from 'rxjs/Subscription';
+import {Observable} from 'rxjs/Observable';
+import {Subscription} from 'rxjs/Subscription';
 
-import { Store } from '@ngrx/store';
+import {Store} from '@ngrx/store';
 import * as fromRoot from '../reducers';
 import * as mediaWallAction from '../actions/media-wall-query';
 import * as mediaWallModerationAction from '../actions/media-wall-moderation';
 import * as mediaWallDesignAction from '../actions/media-wall-design';
 import * as mediaWallCustomAction from '../actions/media-wall-custom';
 
-import { Query } from '../models/query';
-import { ApiResponse, ApiResponseResult } from '../models/api-response';
-import { WallHeader, WallBackground, WallCard } from '../models';
-
+import {Query} from '../models/query';
+import {ApiResponseResult} from '../models/api-response';
+import {WallBackground, WallCard, WallHeader} from '../models';
 
 
 @Component({

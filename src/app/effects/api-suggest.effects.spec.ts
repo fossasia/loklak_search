@@ -1,13 +1,11 @@
-
-import { EffectsTestingModule, EffectsRunner } from '@ngrx/effects/testing';
-import { TestBed, fakeAsync, tick } from '@angular/core/testing';
-import { SuggestEffects } from './api-suggest.effects';
-import { SuggestService } from '../services';
-import { Observable } from 'rxjs/Observable';
+import {EffectsRunner, EffectsTestingModule} from '@ngrx/effects/testing';
+import {fakeAsync, TestBed, tick} from '@angular/core/testing';
+import {SuggestEffects} from './api-suggest.effects';
+import {SuggestService} from '../services';
+import {Observable} from 'rxjs/Observable';
 import * as suggestAction from '../actions/suggest';
-import { SuggestResponse } from '../models/api-suggest';
-import { MockSuggestResponse } from '../shared/mocks/suggestResponse.mock';
-import { RouterTestingModule } from '@angular/router/testing';
+import {MockSuggestResponse} from '../shared/mocks/suggestResponse.mock';
+import {RouterTestingModule} from '@angular/router/testing';
 
 import 'rxjs/add/observable/of';
 import 'rxjs/add/observable/throw';

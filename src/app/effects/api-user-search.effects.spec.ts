@@ -1,12 +1,11 @@
-import { EffectsTestingModule, EffectsRunner } from '@ngrx/effects/testing';
-import { TestBed, fakeAsync, tick } from '@angular/core/testing';
-import { ApiUserSearchEffects } from './api-user-search.effects';
-import { UserService } from '../services';
-import { Observable } from 'rxjs/Observable';
+import {EffectsRunner, EffectsTestingModule} from '@ngrx/effects/testing';
+import {fakeAsync, TestBed, tick} from '@angular/core/testing';
+import {ApiUserSearchEffects} from './api-user-search.effects';
+import {UserService} from '../services';
+import {Observable} from 'rxjs/Observable';
 import * as userApiAction from '../actions/user-api';
-import { ApiResponse } from '../models/api-response';
-import { MockUserResponse, MockUserQuery } from '../shared/mocks/userResponse.mock';
-import { RouterTestingModule } from '@angular/router/testing';
+import {MockUserQuery, MockUserResponse} from '../shared/mocks/userResponse.mock';
+import {RouterTestingModule} from '@angular/router/testing';
 
 import 'rxjs/add/observable/of';
 import 'rxjs/add/observable/throw';

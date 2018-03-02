@@ -1,8 +1,8 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 
-import { LoklakPageNotFoundRoutingModule } from './pagenotfound-routing.module';
-import { PageNotFoundComponent } from './pagenotfound.component';
+import {LoklakPageNotFoundRoutingModule} from './pagenotfound-routing.module';
+import {PageNotFoundComponent} from './pagenotfound.component';
 
 @NgModule({
 	imports: [

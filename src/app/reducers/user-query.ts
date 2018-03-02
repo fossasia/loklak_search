@@ -1,7 +1,5 @@
-import { createSelector } from 'reselect';
-
 import * as userQueryAction from '../actions/user-query';
-import { UserQuery } from '../models';
+import {UserQuery} from '../models';
 
 /**
  * Each reducer module must import the local `State` which it controls.

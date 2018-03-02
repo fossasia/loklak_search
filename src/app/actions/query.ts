@@ -1,5 +1,5 @@
-import { Action } from '@ngrx/store';
-import { Query, FilterList, TimeBound } from '../models';
+import {Action} from '@ngrx/store';
+import {FilterList, Query, TimeBound} from '../models';
 
 /**
  * For each action type in an action group, make a simple

@@ -1,19 +1,18 @@
-import { Component, OnInit, OnDestroy, Inject, ChangeDetectionStrategy } from '@angular/core';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import {ChangeDetectionStrategy, Component, OnDestroy, OnInit} from '@angular/core';
+import {MatDialogRef} from '@angular/material';
 
-import { Observable } from 'rxjs/Observable';
-import { Subscription } from 'rxjs/Subscription';
+import {Observable} from 'rxjs/Observable';
+import {Subscription} from 'rxjs/Subscription';
 
-import { Store } from '@ngrx/store';
+import {Store} from '@ngrx/store';
 import * as fromRoot from '../../reducers';
-import * as mediaWallCustomAction from '../../actions/media-wall-custom';
 import * as mediaWallModerationAction from '../../actions/media-wall-moderation';
 import * as mediaWallDirectUrlAction from '../../actions/media-wall-direct-url';
 
-import { MasonryOptions } from '../../app-masonry';
+import {MasonryOptions} from '../../app-masonry';
 
-import { WallHeader, WallBackground, WallCard } from '../../models';
-import { ApiResponse, ApiResponseResult } from '../../models/api-response';
+import {WallCard} from '../../models';
+import {ApiResponseResult} from '../../models/api-response';
 
 @Component({
 	selector: 'media-wall-moderation',

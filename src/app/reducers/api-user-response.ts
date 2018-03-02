@@ -1,6 +1,5 @@
-import { createSelector } from 'reselect';
 import * as userApiAction from '../actions/user-api';
-import { UserApiResponse } from '../models/api-user-response';
+import {UserApiResponse} from '../models/api-user-response';
 
 /**
  * Each reducer module must import the local `State` which it controls.

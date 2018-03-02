@@ -1,5 +1,5 @@
-import { containAlphabetsOnly, containNameCharactersOnly, isValidApiAcceptedDateString } from './string-validators';
-import { async } from '@angular/core/testing';
+import {containAlphabetsOnly, containNameCharactersOnly, isValidApiAcceptedDateString} from './string-validators';
+import {async} from '@angular/core/testing';
 
 describe('function: containAlphabetsOnly', () => {
 	it('should return true when input is (fossasia)', () => {

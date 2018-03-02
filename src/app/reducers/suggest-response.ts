@@ -1,5 +1,4 @@
-import { createSelector } from 'reselect';
-import { SuggestMetadata, SuggestResults, SuggestResponse } from '../models/api-suggest';
+import {SuggestMetadata, SuggestResults} from '../models/api-suggest';
 import * as suggestAction from '../actions/suggest';
 
 export interface State {

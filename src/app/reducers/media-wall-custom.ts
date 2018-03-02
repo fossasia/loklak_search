@@ -1,6 +1,5 @@
-import { createSelector } from 'reselect';
 import * as mediaWallCustomAction from '../actions/media-wall-custom';
-import { WallHeader, WallBackground, WallCard } from '../models';
+import {WallBackground, WallCard, WallHeader} from '../models';
 
 export interface State {
 	wallHeader: WallHeader;

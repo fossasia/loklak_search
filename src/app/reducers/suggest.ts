@@ -1,6 +1,5 @@
-import { createSelector } from 'reselect';
 import * as suggestAction from '../actions/suggest';
-import { SuggestQuery } from '../models';
+import {SuggestQuery} from '../models';
 
 /**
  * Each reducer module must import the local `State` which it controls.

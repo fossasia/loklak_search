@@ -1,21 +1,18 @@
-import { Injectable } from '@angular/core';
-import { Location } from '@angular/common';
-import { Effect, Actions } from '@ngrx/effects';
-import { Store, Action } from '@ngrx/store';
-import { Observable } from 'rxjs/Observable';
-import { of } from 'rxjs/observable/of';
+import {Injectable} from '@angular/core';
+import {Actions, Effect} from '@ngrx/effects';
+import {Action, Store} from '@ngrx/store';
+import {Observable} from 'rxjs/Observable';
+import {of} from 'rxjs/observable/of';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/takeUntil';
 import 'rxjs/add/operator/withLatestFrom';
 
-import { SearchService, SearchServiceConfig } from '../services';
-import { Query } from '../models';
+import {SearchService, SearchServiceConfig} from '../services';
 import * as wallAction from '../actions/media-wall';
 import * as wallPaginationAction from '../actions/media-wall-pagination';
 import * as fromRoot from '../reducers';
-import { parseDateToApiAcceptedFormat } from '../utils';
 
 /**
  * Effects offer a way to isolate and easily test side-effects within your

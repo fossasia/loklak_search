@@ -1,4 +1,4 @@
-import { parseDateToApiAcceptedFormat } from './date-time';
+import {parseDateToApiAcceptedFormat} from './date-time';
 
 describe('Function: parseDateToApiAcceptedFormat', () => {
 	it(`should return the Api Accepted Format of Date<yyyy-MM-dd_HH:mm>

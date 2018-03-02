@@ -1,8 +1,8 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Store } from '@ngrx/store';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Store} from '@ngrx/store';
 import * as fromRoot from './reducers';
-import { Subscription } from 'rxjs/Subscription';
-import { Router, NavigationEnd } from '@angular/router';
+import {Subscription} from 'rxjs/Subscription';
+import {NavigationEnd, Router} from '@angular/router';
 
 @Component({
 	selector: 'app-root',

@@ -1,6 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Observable } from 'rxjs/Rx';
-import { UserApiResponse } from '../../models/api-user-response';
+import {Component, Input, OnInit} from '@angular/core';
+import {UserApiResponse} from '../../models/api-user-response';
 
 @Component({
 	selector: 'feed-user-card',

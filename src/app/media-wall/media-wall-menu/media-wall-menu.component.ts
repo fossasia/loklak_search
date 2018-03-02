@@ -1,16 +1,16 @@
-import { Component, OnInit, OnDestroy, Input, Output, EventEmitter } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
+import {FormControl} from '@angular/forms';
 
-import { Observable } from 'rxjs/Observable';
-import { Subscription } from 'rxjs/Subscription';
+import {Observable} from 'rxjs/Observable';
+import {Subscription} from 'rxjs/Subscription';
 
-import { Store } from '@ngrx/store';
+import {Store} from '@ngrx/store';
 import * as fromRoot from '../../reducers';
 import * as mediaWallCustomAction from '../../actions/media-wall-custom';
 import * as mediaWallAction from '../../actions/media-wall-query';
 import * as mediaWallDirectUrlAction from '../../actions/media-wall-direct-url';
 
-import { WallCard } from '../../models';
+import {WallCard} from '../../models';
 
 @Component({
 	selector: 'media-wall-menu',

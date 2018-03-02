@@ -1,7 +1,6 @@
-import { createSelector } from 'reselect';
 import * as fromMediaWallCustom from './media-wall-custom';
 import * as mediaWallCustomAction from '../actions/media-wall-custom';
-import { WallHeader, WallBackground, WallCard } from '../models';
+import {WallBackground, WallCard, WallHeader} from '../models';
 
 describe('MediaWallCustomReducer', () => {
 	describe('undefined action', () => {

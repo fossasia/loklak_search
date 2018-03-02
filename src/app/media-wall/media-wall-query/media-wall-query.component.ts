@@ -1,15 +1,14 @@
-import { Component, OnInit, OnDestroy, Inject, ChangeDetectionStrategy } from '@angular/core';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import {ChangeDetectionStrategy, Component, OnDestroy, OnInit} from '@angular/core';
+import {MatDialogRef} from '@angular/material';
 
-import { Observable } from 'rxjs/Observable';
-import { Subscription } from 'rxjs/Subscription';
+import {Observable} from 'rxjs/Observable';
+import {Subscription} from 'rxjs/Subscription';
 
-import { Store } from '@ngrx/store';
+import {Store} from '@ngrx/store';
 import * as fromRoot from '../../reducers';
 import * as mediaWallQueryAction from '../../actions/media-wall-query';
 
-import { Query, FilterList, TimeBound } from '../../models';
-import { fromRegExp } from '../../utils';
+import {Query} from '../../models';
 
 @Component({
 	selector: 'media-wall-query',

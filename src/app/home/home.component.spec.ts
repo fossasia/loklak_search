@@ -1,18 +1,17 @@
 /* tslint:disable:no-unused-variable */
 
-import { TestBed, async, inject } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
-import { Title } from '@angular/platform-browser';
-import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
-import { StoreModule } from '@ngrx/store';
+import {async, TestBed} from '@angular/core/testing';
+import {RouterTestingModule} from '@angular/router/testing';
+import {Title} from '@angular/platform-browser';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {ReactiveFormsModule} from '@angular/forms';
+import {Router} from '@angular/router';
+import {StoreModule} from '@ngrx/store';
 
 import * as fromRoot from '../reducers';
-import * as apiAction from '../actions/api';
-import { HomeComponent } from './home.component';
+import {HomeComponent} from './home.component';
 
-import { RouterStub } from '../../testing';
+import {RouterStub} from '../../testing';
 
 @Component({
 	selector: 'app-footer',

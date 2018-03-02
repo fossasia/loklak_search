@@ -1,5 +1,5 @@
-import { Action } from '@ngrx/store';
-import { ApiResponse } from '../models/api-response';
+import {Action} from '@ngrx/store';
+import {ApiResponse} from '../models/api-response';
 
 /**
  * For each action type in an action group, make a simple
