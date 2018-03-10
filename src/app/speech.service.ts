@@ -7,9 +7,9 @@ interface IWindow extends Window {
 
 @Injectable()
 export class SpeechService {
-	
+
 	recognition: any;
-	
+
 	constructor(private zone: NgZone) { }
 
 	record(lang: string): Observable<string> {
@@ -31,7 +31,7 @@ export class SpeechService {
 		}
 	stoprecord() {
 		if (this.recognition) {
-		  this.recognition.stop();
+			this.recognition.stop();
 		}
 	}
 }
