@@ -35,7 +35,7 @@ Our chat channel is on gitter here: https://gitter.im/loklak/loklak
 ## Installation
 First, we will need to install angular-cli by using the following command:
 ```sh
-$ npm install -g @angular/cli
+$ sudo npm install -g @angular/cli
 ```
 After installing angular-cli we need to install our required node modules, so we will do that by using the following command:
 ```sh
