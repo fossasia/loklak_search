@@ -5,7 +5,7 @@ import { Subscriber } from 'rxjs/Subscriber';
 @Injectable()
 export class LazyImgService {
 	private intersectionObserver: IntersectionObserver
-		= new IntersectionObserver(this.observerCallback.bind(this), { rootMargin: '50% 50%' });
+		= new IntersectionObserver(this.observerCallback.bind(this), { rootMargin: '50% 50%', threshold: 1.0 });
 	private elementSubscriberMap: Map<Element, Subscriber<boolean>>
 		= new Map<Element, Subscriber<boolean>>();
 
@@ -19,9 +19,14 @@ export class LazyImgService {
 	}
 
 	private observerCallback(entries: IntersectionObserverEntry[], observer: IntersectionObserver) {
+
 		entries.forEach(entry => {
 			if (this.elementSubscriberMap.has(entry.target)) {
-				if (entry.intersectionRatio > 0) {
+				if (entry.target.getBoundingClientRect().bottom >= 0 &&
+					entry.target.getBoundingClientRect().right >= 0 &&
+					entry.target.getBoundingClientRect().left <= entry.rootBounds.right &&
+					entry.target.getBoundingClientRect().top <= entry.rootBounds.bottom
+				)	{
 					const subscriber = this.elementSubscriberMap.get(entry.target);
 					subscriber.next(true);
 					this.elementSubscriberMap.delete(entry.target);
@@ -34,6 +39,7 @@ export class LazyImgService {
 		const observable: Observable<boolean> = new Observable<boolean>(subscriber => {
 			this.elementSubscriberMap.set(element, subscriber);
 		});
+
 		this.intersectionObserver.observe(element);
 		return observable;
 	}
@@ -62,7 +68,6 @@ export class LazyImgService {
 		const bytes = [].slice.call(new Uint8Array(buffer));
 
 		bytes.forEach((b) => binary += String.fromCharCode(b));
-
 		return Promise.resolve(window.btoa(binary));
 	}
 
