@@ -99,5 +99,6 @@ export class HomeComponent implements OnInit, OnDestroy {
 	 */
 	ngOnDestroy() {
 		this.__subscriptions__.forEach(subscription => subscription.unsubscribe());
+		this.speech.stoprecord();
 	}
 }
