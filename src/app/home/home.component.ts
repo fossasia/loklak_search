@@ -82,7 +82,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 		this.__subscriptions__.push(
 			this.store.select(fromRoot.getApiHashtagTrends)
 								.subscribe(trends => {
-									if (!trends) {
+									if (!trends || !trends.aggregations.hashtags) {
 										return;
 									}
 									Object.keys(trends.aggregations.hashtags).forEach(hashtag => {
