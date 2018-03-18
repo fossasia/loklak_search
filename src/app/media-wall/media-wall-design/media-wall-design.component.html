@@ -1,5 +1,5 @@
 <div class="dialog-heading">
-	<h1 style="font-size: 30px;" mat-dialog-title>Media Wall Design</h1>
+	<h1 id="media_wd_heading" mat-dialog-title>Media Wall Design</h1>
 	<button class="form-close" mat-dialog-close>x</button>
 </div>
 <div>
@@ -31,7 +31,7 @@
 				<mat-select name="count"
 					floatPlaceholder="never"
 					placeholder="{{selectedColumnCount}} Column"
-					style="margin-top:10px; width: 50%"
+					id="selectedColumnId"
 					[(ngModel)]="selectedColumnCount">
 					<mat-option *ngFor="let number of ['Automatic','1','2','3','4','5','6','7']" [value]="number">
       		{{number}} Column
@@ -39,11 +39,11 @@
 				</mat-select>
 			</div>
 			<div class="input-group">
-				<label class="form-label" for="count" style="margin-right: 20px; width: 40%">Count of new Feeds</label>
+				<label class="form-label" for="count" id="count">Count of new Feeds</label>
 			<mat-select name="count"
 				floatPlaceholder="never"
 				placeholder="{{selectedFeedsCount}}"
-				style="margin-top:8px; margin-left:30px; width: 20%"
+				id="selectedFeedsId"
 				[(ngModel)]="selectedFeedsCount">
 				<mat-option *ngFor="let count of ['1','2','3','4','5']" [value]="count">
      		{{count}}
@@ -54,11 +54,11 @@
 	<h3>Cards Design</h3>
 	<div class="full-width">
 		<div class="input-group">
-			<label class="form-label" for="card-style" style="margin-top: 12px;">Card Style</label>
+			<label class="form-label" for="card-style" id="card_style">Card Style</label>
 			<mat-select name="card-style"
 				floatPlaceholder="never"
 				placeholder="{{selectedCardStyle}}"
-				style="margin-top:20px;"
+				id="selectedCardId"
 				[(ngModel)]="selectedCardStyle">
 				<mat-option *ngFor="let style of ['Fluid','Candy']" [value]="style">
  	     {{style}}
