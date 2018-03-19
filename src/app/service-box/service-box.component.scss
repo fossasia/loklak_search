@@ -1,7 +1,6 @@
 :host {
 	position: relative;
 }
-
 .box {
 	border: 1px solid #ccc;
 	box-shadow: 0 2px 10px rgba(0,0,0,.2);
@@ -23,10 +22,10 @@
 		right: 12px;
 
 		.border {
-			width: 0px;
-			height: 0px;
+			width: 0;
+			height: 0;
 			position: absolute;
-			right: 0px;
+			right: 0;
 			top: -1px;
 			border-left: 7px solid transparent;
 			border-right: 7px solid transparent;
@@ -34,11 +33,11 @@
 		}
 
 		.foreground {
-			width: 0px;
-			height: 0px;
+			width: 0;
+			height: 0;
 			position: absolute;
-			top: 0px;
-			right: 0px;
+			top: 0;
+			right: 0;
 			border-left: 7px solid transparent;
 			border-right: 7px solid transparent;
 			border-bottom: 10px solid white;

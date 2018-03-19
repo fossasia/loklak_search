@@ -1,4 +1,13 @@
 @import '~styles/main';
+@media (max-width: 560px) {
+  .logo-and-form {
+    flex-direction: column;
+  }
+  .search-input {
+    width: 98vw;
+    margin-left: 1vw;
+  }
+}
 
 .outer-wrapper{
 	display: flex;
@@ -13,6 +22,7 @@
 		align-items: center;
 
 		div.logo-and-form {
+			margin-right: 82px;
 			width: 100%;
 			max-width: 767px;
 			display: flex;
