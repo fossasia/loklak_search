@@ -2,7 +2,7 @@
 	<span>
 		<button class="sign-in" (click)="signInWithTwitter()" *ngIf="!(user | async)?.uid">Sign in</button>
 		<button class="sign-in" (click)="logout()" *ngIf="(user | async)?.uid">Sign Out</button>
-		<button mat-icon-button (click)="opened = !opened">
+		<button aria-label="button" mat-icon-button (click)="opened = !opened">
 			<mat-icon>apps</mat-icon>
 		</button>
 	<div class="box" [class.opened]="opened">
