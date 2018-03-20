@@ -1,11 +1,11 @@
-<button mat-icon-button (click)="opened = !opened">
-		<mat-icon>apps</mat-icon>
-	</button>
-	<div class="box" [class.opened]="opened">
-		<div class="tip">
-			<div class="border"></div>
-			<div class="foreground"></div>
-		</div>
+<button aria-label="button" mat-icon-button (click)="opened = !opened">
+	<mat-icon>apps</mat-icon>
+</button>
+<div class="box" [class.opened]="opened">
+	<div class="tip">
+		<div class="border"></div>
+		<div class="foreground"></div>
+	</div>
 	<div class="services">
 		<div class="row">
  			<a href="https://blog.fossasia.org">
