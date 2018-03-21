@@ -8,7 +8,6 @@
 			</a>
 			<div class="search-form">
 				<div class="search-input" [class.focused]="inputFocused">
-						<label for="search">Search</label>
 						<input matInput required search autocomplete="off" type="text" id="search" name="search"
 							(focus)="inputFocused=true" (focusout)="inputFocused=false"
 							[formControl]="searchInputControl" [matAutocomplete]="searchSuggestBox"
