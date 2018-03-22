@@ -42,12 +42,7 @@ export class SearchService {
 
 	private extractData(res: Response): ApiResponse {
 		try {
-			const resp = <ApiResponse>res.json();
-			if (resp.statuses[0].images_count > 1) {
-				// debugger;
-				resp.statuses[0].images = [resp.statuses[0].images[0]];
-			}
-			return resp;
+			return <ApiResponse>res.json();
 		} catch (error) {
 			console.error(error);
 		}
