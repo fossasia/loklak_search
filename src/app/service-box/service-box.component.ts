@@ -13,7 +13,7 @@ import { AuthService } from '../services/auth.service';
 })
 export class ServiceBoxComponent implements OnInit {
 	
-	private user: Observable<firebase.User>;
+	public user: Observable<firebase.User>;
 	public opened = false;
 
 	constructor(private _eref: ElementRef,
