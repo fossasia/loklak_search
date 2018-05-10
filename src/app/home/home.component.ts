@@ -12,7 +12,7 @@ import * as trendsAction from '../actions/trends';
 import * as suggestAction from '../actions/suggest';
 
 import { Query, ApiResponseTrendingHashtags } from '../models';
-import { SpeechService } from '../speech.service';
+import { SpeechService } from '../services/speech.service';
 
 @Component({
 	selector: 'app-home',

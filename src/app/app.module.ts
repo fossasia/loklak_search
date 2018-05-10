@@ -7,7 +7,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 
 import { JsonpModule } from '@angular/http';
-import { SpeechService } from './speech.service';
+import { SpeechService } from './services/speech.service';
 
 import { reducer } from './reducers';
 import {
