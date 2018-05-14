@@ -26,6 +26,7 @@ Our chat channel is on gitter here: https://gitter.im/loklak/loklak
 * CSS - Styling options and details of the web page.
 * JavaScript(JSON) - Used to store information for deploying the application such as dependencies.
 * Angular 4 - Structure for deployment of the web page.
+* Bootstrap 3.3.2 - Responsive Design
 
 ## Requirements
 * [Angular-cli](https://github.com/angular/angular-cli#installation)
