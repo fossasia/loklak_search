@@ -13,7 +13,7 @@ import * as apiAction from '../actions/api';
 import { HomeComponent } from './home.component';
 
 import { RouterStub } from '../../testing';
-import { SpeechService } from '../speech.service';
+import { SpeechService } from '../services/speech.service';
 
 @Component({
 	selector: 'app-footer',
