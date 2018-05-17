@@ -17,6 +17,8 @@ import { Subscription } from 'rxjs/Subscription';
 import { MatAutocompleteTrigger } from '@angular/material';
 
 import { SuggestResults } from '../../models/api-suggest';
+import * as speechactions from '../../actions/speech';
+import { SpeechService } from '../../services/speech.service';
 
 
 @Component({
@@ -35,10 +37,18 @@ export class FeedHeaderComponent implements OnInit, OnDestroy {
 	@ViewChild(MatAutocompleteTrigger) autoCompleteTrigger: MatAutocompleteTrigger;
 	public searchInputControl = new FormControl();
 	public inputFocused = false;
+	hidespeech: Observable<boolean>;
 
 	constructor(
-		private store: Store<fromRoot.State>
-	) { }
+		private store: Store<fromRoot.State>,
+		private speech: SpeechService
+	) {
+		this.hidespeech = store.select(fromRoot.getspeechStatus);
+	}
+
+	speechRecognition() {
+		this.store.dispatch(new speechactions.SearchAction(true));
+	}
 
 	ngOnInit() {
 		this.setupSearchField();

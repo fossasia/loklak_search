@@ -32,6 +32,7 @@ import {
 	UserService,
 	SuggestService
 } from './services';
+import { SpeechComponent } from './speech/speech.component';
 
 @NgModule({
 	declarations: [
@@ -39,7 +40,8 @@ import {
 		 * The `<app-root>` component of the application which gets Bootstrapped.
 		 * It is the top level component which `Angular` controls.
 		 */
-		AppComponent
+		AppComponent,
+		SpeechComponent
 	],
 	imports: [
 		/**

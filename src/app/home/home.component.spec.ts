@@ -14,6 +14,7 @@ import { HomeComponent } from './home.component';
 
 import { RouterStub } from '../../testing';
 import { SpeechService } from '../services/speech.service';
+import { SpeechComponent } from '../speech/speech.component';
 
 @Component({
 	selector: 'app-footer',
@@ -54,7 +55,8 @@ describe('Component: Home', () => {
 				HomeComponent,
 				FooterStubComponent,
 				LazyImgStubComponent,
-				ServiceBoxStubComponent
+				ServiceBoxStubComponent,
+				SpeechComponent
 			],
 			providers: [
 				{ provide: Router, useClass: RouterStub },

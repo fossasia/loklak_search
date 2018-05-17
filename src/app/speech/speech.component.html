@@ -1,0 +1,25 @@
+<div class="spch" id="spch" (click)="hidespeech()" [ngClass]="{'s2fp':!resultspage,'s2tb':resultspage}">
+  <div class="spchc" id="spchc" >
+    <div class="_o3">
+      <div class="_AM">
+        <span class="_CMb" id="spchl" [style.top]="shadowtop" [style.left]="shadowleft" [style.transform]="'scale(' + borderheight + ')'"></span>
+        <span class="button" id="spchb" [style.background-color]="buttoncolor">
+          <div class="_wPb">
+            <span class="_AUb" [style.background-color]="miccolor"></span>
+            <div class="_Fjd">
+              <span class="_oXb" [style.background-color]="miccolor"></span>
+              <span class="_dWb" [style.border]="'7px solid'+ miccolor"></span>
+            </div>
+          </div>
+        </span>
+      </div>
+      <div class="_gjb">
+        <span class="spcht" id="spchi" style="color:#777">
+          {{ message }}
+        </span>
+        <span class="spcht" id="spchf" style="color:#000"></span>
+      </div>
+    </div>
+  </div>
+  <div class="close-button">x</div>
+</div>

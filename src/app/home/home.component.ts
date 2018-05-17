@@ -10,6 +10,7 @@ import * as fromRoot from '../reducers';
 import * as queryAction from '../actions/query';
 import * as trendsAction from '../actions/trends';
 import * as suggestAction from '../actions/suggest';
+import * as speechactions from '../actions/speech';
 
 import { Query, ApiResponseTrendingHashtags } from '../models';
 import { SpeechService } from '../services/speech.service';
@@ -26,6 +27,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 	public _queryControl: FormControl = new FormControl();
 	public trendingHashtagList: Array<string> = new Array<string>();
 	public inputFocused = false;
+	hidespeech: Observable<boolean>;
 
 	constructor(
 		private router: Router,
@@ -34,11 +36,12 @@ export class HomeComponent implements OnInit, OnDestroy {
 		private store: Store<fromRoot.State>,
 		private titleService: Title,
 		private speech: SpeechService
-	) { }
+	) {
+		this.hidespeech = store.select(fromRoot.getspeechStatus);
+	}
 
 	speechRecognition() {
-		this.speech.record('en_US').subscribe(voice => this.router.navigate([`/search`],
-		{ queryParams: { query: voice }, skipLocationChange: true } ));
+		this.store.dispatch(new speechactions.SearchAction(true));
 	}
 
 	ngOnInit() {
@@ -99,6 +102,5 @@ export class HomeComponent implements OnInit, OnDestroy {
 	 */
 	ngOnDestroy() {
 		this.__subscriptions__.forEach(subscription => subscription.unsubscribe());
-		this.speech.stoprecord();
 	}
 }
