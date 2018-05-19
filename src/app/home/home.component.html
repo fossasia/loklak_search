@@ -47,6 +47,14 @@
 					</div>
 				</div>
 			</div>
+			<div class="top-hashtags">
+				<div *ngIf="(apiResponseHashtags$ | async).length !== 0">
+					<span *ngFor ="let item of ((apiResponseHashtags$ | async).slice(0,5));">
+						<a [routerLink]="['/search']"
+							[queryParams]="{ query : '#' + item.tag }">#{{item.tag}}</a>&nbsp;&nbsp;
+					</span>
+				</div>
+			</div>
 	</div>
 </div>
 <app-footer></app-footer>
