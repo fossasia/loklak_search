@@ -56,6 +56,7 @@ import * as fromMediaWallCustom from './media-wall-custom';
 import * as fromMediaWallPagination from './media-wall-pagination';
 import * as fromMediaWallDesign from './media-wall-design';
 import * as fromMediaWallDirectUrl from './media-wall-direct-url';
+import * as fromSpeech from './speech';
 
 /**
  * As mentioned, we treat each reducer like a table in a database. This means
@@ -80,6 +81,7 @@ export interface State {
 	mediaWallPagination: fromMediaWallPagination.State;
 	mediaWallDesign: fromMediaWallDesign.State;
 	mediaWallDirectUrl: fromMediaWallDirectUrl.State;
+	speech: fromSpeech.State;
 }
 
 /**
@@ -107,7 +109,8 @@ const reducers = {
 	mediaWallCustom: fromMediaWallCustom.reducer,
 	mediaWallPagination: fromMediaWallPagination.reducer,
 	mediaWallDesign: fromMediaWallDesign.reducer,
-	mediaWallDirectUrl: fromMediaWallDirectUrl.reducer
+	mediaWallDirectUrl: fromMediaWallDirectUrl.reducer,
+	speech: fromSpeech.reducer
 };
 
 const developmentReducer: ActionReducer<State> = compose(storeFreeze, combineReducers)(reducers);
@@ -338,3 +341,7 @@ export const getIsUserSearchSuccess =
 	createSelector(getUserSearchLoading, getAreApiUserResultsValid, (userSearchLoading, userResultsValid) => {
 		return (!userSearchLoading && userResultsValid);
 	});
+
+export const getSpeechState = (state: State) => state.speech;
+
+export const getspeechStatus = createSelector(getSpeechState, fromSpeech.getspeechStatus);

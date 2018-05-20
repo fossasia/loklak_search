@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SpeechService } from '../services/speech.service';
 
 import {
 	MatAutocompleteModule,
@@ -103,6 +104,9 @@ import { FeedAdvancedSearchComponent } from './feed-advanced-search/feed-advance
 		FeedLightboxComponent,
 		FeedUserCardComponent,
 		FeedAdvancedSearchComponent
+	],
+	providers: [
+		SpeechService
 	]
 })
 export class FeedModule { }

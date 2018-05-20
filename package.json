@@ -48,7 +48,7 @@
     "enhanced-resolve":"3.3.0"
   },
   "devDependencies": {
-    "@angular/cli": "^1.6.4",
+    "@angular/cli": "^1.1.0",
     "@angular/compiler-cli": "4.3.5",
     "@angular/language-service": "4.3.5",
     "@types/jasmine": "~2.5.53",
@@ -72,7 +72,7 @@
     "sass-lint": "1.10.2",
     "ts-node": "~3.2.0",
     "tslint": "~5.3.2",
-    "typescript": "~2.3.3",
+    "typescript": "~2.3.4",
     "webpack-bundle-analyzer": "^2.8.3"
   }
 }

@@ -12,6 +12,8 @@ import { FeedHeaderComponent } from './feed-header.component';
 import { FeedAdvancedSearchComponent } from '../feed-advanced-search/feed-advanced-search.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { reducer } from '../../reducers';
+import { SpeechService } from '../../services/speech.service';
+import { SpeechComponent } from '../../speech/speech.component';
 
 @Component({
 	selector: 'service-box',
@@ -35,8 +37,10 @@ describe('Component: FeedHeader', () => {
 			declarations: [
 				FeedHeaderComponent,
 				FeedAdvancedSearchComponent,
-				ServiceBoxStubComponent
-			]
+				ServiceBoxStubComponent,
+				SpeechComponent
+			],
+			providers: [ SpeechService ]
 		});
 	});
 

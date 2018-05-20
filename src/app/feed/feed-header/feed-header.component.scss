@@ -1,4 +1,36 @@
 @import '~styles/main';
+
+#speech-button {
+	border-radius: 0;
+	height: 38px;
+	background-color: white;
+	color: #0066ff;
+	box-shadow: none;
+	border: none;
+	position: initial;
+}
+
+@-moz-document url-prefix() {
+	.microphone {
+		display: none;
+	}
+}
+  
+#speech-button:focus {
+	outline: none;
+}
+
+.microphone {
+	height: 25px;
+	width: 25px;
+}
+  
+@-moz-document url-prefix() { 
+	.microphone {
+	  display: none;
+	}
+}
+
 @media (max-width: 560px) {
   .logo-and-form {
     flex-direction: column;

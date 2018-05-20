@@ -1,0 +1,251 @@
+.spch {
+  background: #fff;
+  height: 100%;
+  left: 0;
+  overflow: hidden;
+  position: fixed;
+  text-align: left;
+  top: 0;
+  visibility: hidden;
+  width: 100%;
+  z-index: 10000;
+  transition:visibility 0s linear 0.218s,opacity 0.218s,background-color 0.218s;
+}
+
+.s2fp.spch {
+  opacity: 1;
+  visibility: visible;
+  transition-delay: 0s;
+}
+
+.s2fp .spchc, .s2fp-h .spchc {
+  margin: auto;
+  margin-top: 312px;
+  max-width: 572px;
+  min-width: 534px;
+  padding: 0 223px;
+  position: relative;
+  top: 0;
+}
+
+.spchc {
+  display: block;
+  height: 42px;
+  position: absolute;
+  pointer-events: none;
+}
+
+.spch {
+  text-align: left;
+  visibility: hidden;
+}
+
+.close-button {
+  color: #777;
+  cursor: pointer;
+  font-size: 26px;
+  right: 0;
+  height: 11px;
+  line-height: 15px;
+  margin: 15px;
+  opacity: .6;
+  padding: 0;
+  position: absolute;
+  top: 0;
+  width: 15px;
+}
+
+._o3 {
+  height: 100%;
+  pointer-events: none;
+  width: 100%;
+  transition: opacity .318s ease-in;
+}
+
+._AM {
+  height: 165px;
+  right: -270px;
+  top: -70px;
+  width: 165px;
+  float: right;
+  pointer-events: none;
+  position: relative;
+  transition: transform 0.218s,opacity 0.218s ease-in;
+}
+
+.s2tb.spch {
+  background: rgba(255,255,255,0);
+  opacity: 1;
+  visibility: visible;
+  transition-delay: 0s;
+}
+
+.s2tb .spchc, .s2tb-h .spchc {
+  background: #fff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  margin: 0;
+  min-width: 100%;
+  overflow: hidden;
+  padding: 51px 0 85px 126px;
+  position: absolute;
+}
+
+.s2tb-h ._o3, .s2tb ._o3 {
+  height: 100%;
+  width: 572px;
+  transition: opacity .318s ease-in;
+}
+
+.s2tb-h ._AM, .s2tb ._AM {
+  height: 95px;
+  right: -31px;
+  top: -27px;
+  width: 95px;
+}
+
+.s2fp .button, .s2tb .button {
+  opacity: 1;
+  pointer-events: auto;
+  position: absolute;
+  transform: scale(1);
+  transition-delay: 0;
+}
+
+.s2tb-h ._wPb, .s2tb ._wPb {
+  left: 17px;
+  top: 7px;
+  transform: scale(.53);
+}
+
+._CMb {
+  background-color: #dbdbdb;
+  border-radius: 100%;
+  display: inline-block;
+  height: 301px;
+  left: -69px;
+  opacity: 1;
+  pointer-events: none;
+  position: absolute;
+  top: -69px;
+  width: 301px;
+  transform: scale(0.1);
+  transition: all .03s ease-in-out;
+}
+
+.s2fp-h .button {
+  pointer-events: none;
+  position: absolute;
+  transition-delay: 0;
+}
+
+.button {
+  background-color: #fff;
+  border: 1px solid #eee;
+  border-radius: 100%;
+  bottom: 0;
+  box-shadow: 0 2px 5px rgba(0,0,0,.1);
+  cursor: pointer;
+  display: inline-block;
+  left: 0;
+  pointer-events: none;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transition: background-color 0.218s,border 0.218s,box-shadow 0.218s;
+}
+
+._wPb {
+  height: 87px;
+  left: 43px;
+  pointer-events: none;
+  position: absolute;
+  top: 47px;
+  width: 42px;
+  transform: scale(1);
+}
+
+._AUb {
+  background-color: #999;
+  border-radius: 30px;
+  height: 46px;
+  left: 25px;
+  pointer-events: none;
+  position: absolute;
+  width: 24px;
+}
+
+._Fjd {
+  bottom: 0;
+  height: 53px;
+  left: 18px;
+  overflow: hidden;
+  pointer-events: none;
+  position: absolute;
+  width: 52px;
+}
+
+._oXb {
+  background-color: #999;
+  bottom: 14px;
+  height: 14px;
+  left: 16px;
+  pointer-events: none;
+  position: absolute;
+  width: 9px;
+  z-index: 1;
+}
+
+._dWb {
+  border: 7px solid #999;
+  border-radius: 28px;
+  bottom: 27px;
+  height: 57px;
+  pointer-events: none;
+  position: absolute;
+  width: 38px;
+  z-index: 0;
+}
+
+@-webkit-keyframes typing {from {width:0;}}
+.spcht {
+  font-weight: normal;
+  line-height: 1.2;
+  pointer-events: none;
+  position: absolute;
+  text-align: left;
+  -webkit-font-smoothing: antialiased;
+  transition: opacity .1s ease-in,margin-left .5s ease-in,top 0s linear 0.218s;
+  -webkit-animation: typing 2s steps(21,end), blink-caret .5s step-end infinite alternate;
+  overflow: hidden;
+  animation-delay: 3.5s;
+  animation-duration: 1s;
+}
+
+.s2fp-h .spcht, .s2fp .spcht {
+  font-size: 32px;
+  left: -44px;
+  top: -.2em;
+  width: 460px;
+}
+
+.s2tb-h .spcht, .s2tb .spcht {
+  font-size: 27px;
+  left: 7px;
+  top: .2em;
+  width: 490px;
+}
+
+.s2tb-h ._gjb, .s2tb ._gjb {
+  position: relative;
+}
+
+@media screen and (max-width: 425px) {
+  .spcht {
+    margin-left: 10%;
+    margin-top: -40%;
+  }
+
+  ._AM {
+    right: 44px;
+  }
+}

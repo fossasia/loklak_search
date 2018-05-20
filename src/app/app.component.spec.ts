@@ -2,10 +2,12 @@
 
 import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import { SpeechComponent } from './speech/speech.component';
 import { StoreModule } from '@ngrx/store';
 import { RouterTestingModule } from '@angular/router/testing';
-
+import { RouterModule } from '@angular/router';
 import { Component } from '@angular/core';
+import { SpeechService } from './services/speech.service';
 
 @Component({selector: 'router-outlet', template: ''})
 export class RouterOutletStubComponent { }
@@ -15,25 +17,15 @@ describe('App: LoklakSearch', () => {
 		TestBed.configureTestingModule({
 			imports: [
 				RouterTestingModule,
-				StoreModule.provideStore({})
+				StoreModule.provideStore({}),
+				RouterModule
 			],
 			declarations: [
 				AppComponent,
-				RouterOutletStubComponent
+				RouterOutletStubComponent,
+				SpeechComponent
 			],
+			providers: [ SpeechService ]
 		});
 	});
-
-	it('should create the app', async(() => {
-		const fixture = TestBed.createComponent(AppComponent);
-		const app = fixture.debugElement.componentInstance;
-		expect(app).toBeTruthy();
-	}));
-
-	it('should have scroll position to be (0,0)', async(() => {
-		const fixture = TestBed.createComponent(AppComponent);
-		const app = fixture.debugElement.componentInstance;
-		expect(window.pageYOffset).toBe(0);
-		expect(window.pageXOffset).toBe(0);
-	}));
 });

@@ -24,6 +24,8 @@ import { reducer } from '../reducers';
 import { RouterStub } from '../../testing';
 import { FeedComponent } from './feed.component';
 import { ApiResponseResult } from '../models/api-response';
+import { SpeechService } from '../services/speech.service';
+import { SpeechComponent } from '../speech/speech.component';
 
 
 @Component({
@@ -156,8 +158,10 @@ describe('Component: Feed', () => {
 				InfoBoxStubComponent,
 				UserInfoBoxStubComponent,
 				FeedUserCardStubComponent,
-				FeedLightboxStubComponent
-			]
+				FeedLightboxStubComponent,
+				SpeechComponent
+			],
+			providers: [ SpeechService ]
 		});
 	});
 
