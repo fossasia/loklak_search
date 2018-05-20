@@ -133,6 +133,20 @@ service-box {
 				}
 		}
 
+		div.top-hashtags{
+			display: inline-block;
+			font-size: small;
+			height: 12px;
+
+			h4.heading{
+				text-align: center;
+			}
+
+			span.waiting-text{
+				padding-left:30px;
+			}
+		}
+
 		div.top-hashtags-wrapper{
 			height: 24px;
 
