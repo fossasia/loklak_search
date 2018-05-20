@@ -9,6 +9,12 @@ import { EffectsModule } from '@ngrx/effects';
 import { JsonpModule } from '@angular/http';
 import { SpeechService } from './services/speech.service';
 
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+import { environment } from '../environments/environment';
+import { AuthService } from './services/auth.service';
+
 import { reducer } from './reducers';
 import {
 	ApiSearchEffects,
@@ -110,7 +116,10 @@ import { SpeechComponent } from './speech/speech.component';
 		/**
 		/* Module defines the '404 Not found Page' for the Loklak Project.
 		*/
-		PageNotFoundModule
+		PageNotFoundModule,
+		AngularFireModule.initializeApp(environment.firebase, 'loklak-search'),
+		AngularFireDatabaseModule,
+		AngularFireAuthModule
 	],
 	providers: [
 		/**
@@ -126,7 +135,8 @@ import { SpeechComponent } from './speech/speech.component';
 		SearchService,
 		UserService,
 		SuggestService,
-		SpeechService
+		SpeechService,
+		AuthService
 	],
 	bootstrap: [AppComponent]
 })
