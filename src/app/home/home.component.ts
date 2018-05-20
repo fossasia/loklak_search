@@ -28,6 +28,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 	public trendingHashtagList: Array<string> = new Array<string>();
 	public inputFocused = false;
 	hidespeech: Observable<boolean>;
+	public apiResponseHashtags$: Observable<Array<{ tag: string, count: number }>>;
 
 	constructor(
 		private router: Router,
@@ -38,6 +39,8 @@ export class HomeComponent implements OnInit, OnDestroy {
 		private speech: SpeechService
 	) {
 		this.hidespeech = store.select(fromRoot.getspeechStatus);
+		this.getHashTagsFromLastDay();
+		this.getDataOfTrendingHashTags();
 	}
 
 	speechRecognition() {
@@ -95,6 +98,15 @@ export class HomeComponent implements OnInit, OnDestroy {
 								})
 		);
 
+	}
+
+	private getDataOfTrendingHashTags() {
+		this.apiResponseHashtags$ = this.store.select(fromRoot.getApiResponseTags);
+	}
+
+	private getHashTagsFromLastDay() {
+		this.store.dispatch(new queryAction.RelocationAfterQueryResetAction());
+		this.store.dispatch(new queryAction.InputValueChangeAction('since:day'));
 	}
 
 	/**
