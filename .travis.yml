@@ -16,6 +16,9 @@ before_install:
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
 
+install:
+  - yarn install --ignore-engines
+
 before_script:
   - ng build --prod --aot --build-optimizer
 
