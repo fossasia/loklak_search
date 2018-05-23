@@ -1,4 +1,9 @@
+h3 {
+    font-size: 22px;
+}
+
 .form-close{
+	outline: none;
 	position: fixed;
 	top: 12% ;
 	right: 19% ;
@@ -77,7 +82,7 @@ span.apply-button {
 		font-size: 16px;
 		border-radius: 5px;
 		text-decoration: none;
-		margin-top: 10px;
+		margin-top: 6px;
 		cursor: pointer;
 
 		.material-icons {

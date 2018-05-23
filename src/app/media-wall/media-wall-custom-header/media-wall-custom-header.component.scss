@@ -5,6 +5,15 @@ div.tab {
 	flex-direction: column;
 }
 
+.tab {
+	overflow: none;
+}
+
+h4 {
+	margin-top: 55px;
+	font-size: 20px;
+}
+
 div.full-width {
 	display: flex;
 	flex-direction: row;
