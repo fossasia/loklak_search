@@ -1,17 +1,28 @@
 <div class="wrapper">
-	<div class="heading">
-		Hashtags related to <span class="query">{{query}}</span>
+	<div *ngIf="sortedApiResponseTags.length != 0">
+		<div class="heading">
+			Hashtags related to <span class="query">{{query}}</span>
+		</div>
+		<div class="hashtags">
+			<ul class="column">
+				<ng-container *ngFor="let tag of sortedApiResponseTags | slice:0:5">
+					<li class="hashtag" *ngIf="tag.tag!=null && tag.tag!=''">
+						<a [routerLink]="['/search']" [queryParams]="{ query : '#' + tag.tag }">#{{tag.tag}}</a>
+					</li>
+				</ng-container>
+			</ul>
+			<ul class="column">
+				<ng-container *ngFor="let tag of sortedApiResponseTags | slice:5:10">
+					<li class="hashtag" *ngIf="tag.tag!=null && tag.tag!=''">
+						<a [routerLink]="['/search']" [queryParams]="{ query : '#' + tag.tag }">#{{tag.tag}}</a>
+					</li>
+				</ng-container>
+			</ul>
+		</div>
 	</div>
-	<div class="hashtags">
-		<ul class="column">
-			<li class="hashtag" *ngFor="let tag of sortedApiResponseTags | slice:0:5">
-				<a [routerLink]="['/search']" [queryParams]="{ query : '#' + tag.tag }">#{{tag.tag}}</a>
-			</li>
-		</ul>
-		<ul class="column">
-			<li class="hashtag" *ngFor="let tag of sortedApiResponseTags | slice:5:10">
-				<a [routerLink]="['/search']" [queryParams]="{ query : '#' + tag.tag }">#{{tag.tag}}</a>
-			</li>
-		</ul>
+	<div *ngIf="sortedApiResponseTags.length == 0">
+		<div class="heading">
+			No Hashtags related to <span class="query">{{query}}</span>, please try again!
+		</div>
 	</div>
 </div>
