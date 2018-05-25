@@ -4,6 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/throw';
+import 'rxjs/add/operator/retry';
 
 import { SuggestResponse } from '../models/api-suggest';
 
@@ -30,6 +31,7 @@ export class SuggestService {
 
 		return this.jsonp.get(SuggestService.apiUrl.toString(), {search : searchParams})
 								.map(this.extractData)
+								.retry(2)
 								.catch(this.handleError);
 	}
 

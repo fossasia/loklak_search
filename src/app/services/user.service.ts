@@ -4,6 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/throw';
+import 'rxjs/add/operator/retry';
 
 import { UserResponse } from '../models/api-user-response';
 
@@ -27,6 +28,7 @@ export class UserService {
 		searchParams.set('minified', UserService.minified_results.toString());
 		return this.jsonp.get(UserService.apiUrl.toString(), {search : searchParams})
 								.map(this.extractData)
+								.retry(2)
 								.catch(this.handleError);
 
 	}
