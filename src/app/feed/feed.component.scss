@@ -136,3 +136,35 @@ button {
 		outline: none;
 	}
 }
+
+.top-hashtags {
+	font-size: 16px;
+}
+
+.inner-text {
+	padding-top: 10%;
+}
+
+.row:first-child {
+	display: flex;
+	justify-content: space-between;
+}
+
+.link-sidebar-container {
+	-webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.42), 0 0 0 1px rgba(0, 0, 0, 0.1);
+	box-shadow: 0 2px 2px 0 rgba(0,0,0,0.47), 0 0 0 1px rgba(0,0,0,0.08);
+	border-radius: 2px;
+	width: 85%;
+	display: flex;
+	flex-wrap: wrap;	
+	margin: 36px 15px;
+    padding: 36px 28px;
+    min-height: 130x;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.link-sidebar {
+	margin: 3px 7px;
+	padding: 0px 15px;
+}
