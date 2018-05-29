@@ -1,8 +1,7 @@
 import { Component, OnInit, OnDestroy, Inject, ChangeDetectionStrategy } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
-import { Observable } from 'rxjs/Observable';
-import { Subscription } from 'rxjs/Subscription';
+import { Observable, Subscription } from 'rxjs';
 
 import { Store } from '@ngrx/store';
 import * as fromRoot from '../../reducers';
@@ -37,12 +36,12 @@ export class MediaWallModerationComponent implements OnInit, OnDestroy {
 	public removeDuplicate: boolean;
 	public masonryOptions: MasonryOptions = {
 		transitionDuration: '0.8s'
-	}
+	};
 	public cardColor: WallCard = {
 		fontColor: '#333333',
 		backgroundColor: '#333333',
 		accentColor: '#333333'
-	}
+	};
 
 	constructor(
 		private dialogRef: MatDialogRef<MediaWallModerationComponent>,
@@ -91,8 +90,7 @@ export class MediaWallModerationComponent implements OnInit, OnDestroy {
 	public showRemoveFeed(id) {
 		if (this.checkHidden(id)) {
 			this.store.dispatch( new mediaWallModerationAction.WallShowFeedAction(id));
-		}
-		else {
+		} else {
 			this.store.dispatch( new mediaWallModerationAction.WallHideFeedAction(id));
 			this.store.dispatch( new mediaWallDirectUrlAction.WallGenerateDirectUrlAction());
 		}
@@ -102,8 +100,7 @@ export class MediaWallModerationComponent implements OnInit, OnDestroy {
 		if (this.checkBlocked(user_id)) {
 			this.store.dispatch( new mediaWallModerationAction.WallUnBlockUserAction(user_id));
 			this.store.dispatch( new mediaWallDirectUrlAction.WallGenerateDirectUrlAction());
-		}
-		else {
+		} else {
 			this.store.dispatch( new mediaWallModerationAction.WallBlockUserAction(user_id));
 			this.store.dispatch( new mediaWallDirectUrlAction.WallGenerateDirectUrlAction());
 		}
@@ -123,7 +120,7 @@ export class MediaWallModerationComponent implements OnInit, OnDestroy {
 			this.getWallRemoveDuplicate$.subscribe((value) => {
 				this.removeDuplicate = value;
 			})
-		)
+		);
 	}
 
 	public checkHidden(id) {
@@ -132,7 +129,7 @@ export class MediaWallModerationComponent implements OnInit, OnDestroy {
 			if (value === id) {
 				flag = true;
 			}
-		})
+		});
 		return flag;
 	}
 
@@ -142,7 +139,7 @@ export class MediaWallModerationComponent implements OnInit, OnDestroy {
 			if (value === id) {
 				flag = true;
 			}
-		})
+		});
 		return flag;
 	}
 

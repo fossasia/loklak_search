@@ -9,4 +9,4 @@ export { MasonryOptions } from './masonry-options';
 export const MASONRY_DIRECTIVES = [
 	AngularMasonryComponent,
 	AngularMasonryBrickDirective
-]
+];

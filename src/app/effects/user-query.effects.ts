@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Store, Action } from '@ngrx/store';
-import { Effect, Actions } from '@ngrx/effects';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/withLatestFrom';
+import { Effect, Actions, ofType } from '@ngrx/effects';
+import { Observable } from 'rxjs';
+import { map, withLatestFrom } from 'rxjs/operators';
 
 import * as userQueryAction from '../actions/user-query';
 import * as userApiAction from '../actions/user-api';
@@ -26,13 +25,14 @@ import * as fromRoot from '../reducers';
 export class UserQueryEffects {
 
 	@Effect()
-	inputChange$: Observable<Action>
-		= this.actions$
-					.ofType(userQueryAction.ActionTypes.VALUE_CHANGE)
-					.withLatestFrom(this.store$)
-					.map(([action, state]) => {
-						return new userApiAction.UserSearchAction(state.userQuery.query);
-					});
+	inputChange$: Observable<Action> = this.actions$
+		.pipe(
+			ofType(userQueryAction.ActionTypes.VALUE_CHANGE),
+			withLatestFrom(this.store$),
+			map(([action, state]) => {
+				return new userApiAction.UserSearchAction(state.userQuery.query);
+			})
+		);
 
 	constructor(
 		private actions$: Actions,

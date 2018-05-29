@@ -8,7 +8,7 @@ export interface State {
 		columnCount: string;
 		count: number;
 		cardStyle: string;
-}
+};
 }
 
 export const initialState: State = {

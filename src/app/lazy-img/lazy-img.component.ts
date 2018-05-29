@@ -58,8 +58,7 @@ export class LazyImgComponent implements OnInit, OnDestroy {
 
 		if (LazyImgComponent.SUPPORTED_IMAGE_FORMATS.indexOf(imageExtension) === -1) {
 			this.imageType = null;
-		}
-		else {
+		} else {
 			this.imageType = imageExtension;
 		}
 	}
@@ -82,8 +81,7 @@ export class LazyImgComponent implements OnInit, OnDestroy {
 						.fetch(this.src)
 						.subscribe(this.handleResponse.bind(this), this.handleError.bind(this));
 			}
-		}
-		else {
+		} else {
 			const error: Error = new Error(`Image type not supported: Only supports jpeg, jpg, png, gif, ico, bmp, svg`);
 			this.handleError({ error: error, status: '400'});
 			this.load.emit(false);

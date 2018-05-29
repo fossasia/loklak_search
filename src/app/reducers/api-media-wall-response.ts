@@ -3,7 +3,7 @@ import { ApiResponse, ApiResponseResult } from '../models/api-response';
 import * as apiAction from '../actions/api';
 import * as wallModerationAction from '../actions/media-wall-moderation';
 import * as wallPaginationAction from '../actions/media-wall-pagination';
-import { removeDuplicateCheck, accountExclusion, hideFeed, showFeed, accountInclusion, removeId, profanityFilter } from '../models'
+import { removeDuplicateCheck, accountExclusion, hideFeed, showFeed, accountInclusion, removeId, profanityFilter } from '../models';
 
 /**
  * Each reducer module must import the local `State` which it controls.
@@ -20,7 +20,7 @@ export interface State {
 		blockedUser: string[];
 		profanityCheck: boolean;
 		removeDuplicate: boolean;
-	}
+	};
 }
 
 /**

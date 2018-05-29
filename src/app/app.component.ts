@@ -1,11 +1,10 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
 import * as fromRoot from './reducers';
-import { Subscription } from 'rxjs/Subscription';
+import { Observable, Subscription } from 'rxjs';
 import { Router, NavigationEnd } from '@angular/router';
 import { FormControl } from '@angular/forms';
 import { SpeechService } from './services/speech.service';
-import { Observable } from 'rxjs/Observable';
 
 @Component({
 	selector: 'app-root',

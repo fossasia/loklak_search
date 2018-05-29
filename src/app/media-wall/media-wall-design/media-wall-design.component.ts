@@ -1,8 +1,7 @@
 import { Component, OnInit, OnDestroy, Inject, ChangeDetectionStrategy } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
-import { Observable } from 'rxjs/Observable';
-import { Subscription } from 'rxjs/Subscription';
+import { Observable, Subscription } from 'rxjs';
 
 import { Store } from '@ngrx/store';
 import * as fromRoot from '../../reducers';
@@ -64,8 +63,7 @@ constructor(
 			this.wallColumnCount$.subscribe((value) => {
 				if (value === '') {
 					this.selectedColumnCount = 'Automatic';
-				}
-				else {
+				} else {
 					this.selectedColumnCount = value;
 				}
 			}),

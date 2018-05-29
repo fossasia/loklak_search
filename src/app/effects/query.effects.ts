@@ -1,10 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Store, Action } from '@ngrx/store';
-import { Effect, Actions } from '@ngrx/effects';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/mergeMap';
-import 'rxjs/add/operator/withLatestFrom';
+import { Effect, Actions, ofType } from '@ngrx/effects';
+import { Observable } from 'rxjs';
+import { map, mergeMap, withLatestFrom  } from 'rxjs/operators';
 
 import * as fromRoot from '../reducers';
 import * as apiAction from '../actions/api';
@@ -29,50 +27,52 @@ import { fromRegExp } from '../utils';
 export class QueryEffects {
 
 	@Effect()
-	inputChange$: Observable<Action>
-		= this.actions$
-					.ofType(queryAction.ActionTypes.VALUE_CHANGE)
-					.map(_ => new queryAction.QueryChangeAction());
+	inputChange$: Observable<Action> = this.actions$
+		.pipe(
+			ofType(queryAction.ActionTypes.VALUE_CHANGE),
+			map(_ => new queryAction.QueryChangeAction())
+		);
 
 	@Effect()
-	filterChange$: Observable<Action>
-		= this.actions$
-					.ofType(queryAction.ActionTypes.FILTER_CHANGE)
-					.map(_ => new queryAction.QueryChangeAction());
+	filterChange$: Observable<Action> = this.actions$
+		.pipe(
+			ofType(queryAction.ActionTypes.FILTER_CHANGE),
+			map(_ => new queryAction.QueryChangeAction())
+		);
 
 	@Effect()
-	timeBoundChange$: Observable<Action>
-		= this.actions$
-					.ofType(queryAction.ActionTypes.TIME_BOUND_CHANGE)
-					.map(_ => new queryAction.QueryChangeAction());
+	timeBoundChange$: Observable<Action> = this.actions$
+		.pipe(
+			ofType(queryAction.ActionTypes.TIME_BOUND_CHANGE),
+			map(_ => new queryAction.QueryChangeAction())
+		);
 
 	@Effect()
-	locationChange$: Observable<Action>
-		= this.actions$
-					.ofType(queryAction.ActionTypes.LOCATION_CHANGE)
-					.map(_ => new queryAction.QueryChangeAction());
+	locationChange$: Observable<Action> = this.actions$
+		.pipe(
+			ofType(queryAction.ActionTypes.LOCATION_CHANGE),
+			map(_ => new queryAction.QueryChangeAction())
+		);
 
 	@Effect()
-	queryChange$: Observable<Action>
-		= this.actions$
-					.ofType(queryAction.ActionTypes.QUERY_CHANGE)
-					.withLatestFrom(this.store$)
-					.mergeMap(([action, state]) => {
-
-						if (state.query.from) {
-							const userQuery: string = fromRegExp.exec(state.query.queryString)[1];
-
-							return [
-								new apiAction.SearchAction(state.query),
-								new userQueryAction.ValueChangeAction(userQuery)
-							];
-						}
-						else {
-							return [
-								new apiAction.SearchAction(state.query)
-							];
-						}
-					});
+	queryChange$: Observable<Action> = this.actions$
+		.pipe(
+			ofType(queryAction.ActionTypes.QUERY_CHANGE),
+			withLatestFrom(this.store$),
+			mergeMap(([action, state]) => {
+				if (state.query.from) {
+					const userQuery: string = fromRegExp.exec(state.query.queryString)[1];
+					return [
+						new apiAction.SearchAction(state.query),
+						new userQueryAction.ValueChangeAction(userQuery)
+					];
+				} else {
+					return [
+						new apiAction.SearchAction(state.query)
+					];
+				}
+			})
+		);
 
 	constructor(
 		private actions$: Actions,

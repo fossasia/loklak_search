@@ -15,7 +15,7 @@ export class AngularMasonryComponent implements OnInit, OnDestroy {
 
 	public _msnry: any;
 	@Input() public options: MasonryOptions;
-	@Input() public useImagesLoaded: Boolean = false;
+	@Input() public useImagesLoaded = false;
 	@Output() layoutComplete: EventEmitter<any[]> = new EventEmitter<any[]>();
 	@Output() removeComplete: EventEmitter<any[]> = new EventEmitter<any[]>();
 
@@ -24,20 +24,20 @@ export class AngularMasonryComponent implements OnInit, OnDestroy {
 	) { }
 
 	ngOnInit() {
-	// Set default itemSelector
+		// Set default itemSelector
 		if (!this.options.itemSelector) {
 			this.options.itemSelector = '[masonry-brick], masonry-brick';
 		}
 
-  // Set element display to block
+		// Set element display to block
 		if (this._element.nativeElement.tagName === 'MASONRY') {
 			this._element.nativeElement.style.display = 'block';
 		}
 
-   // Initialize Masonry
+		// Initialize Masonry
 		this._msnry = new masonry(this._element.nativeElement, this.options);
 
-  // Bind to events
+		// Bind to events
 		this._msnry.on('layoutComplete', (items: any) => {
 				this.layoutComplete.emit(items);
 		});
@@ -61,7 +61,7 @@ export class AngularMasonryComponent implements OnInit, OnDestroy {
 	public add(element: HTMLElement) {
 		let isFirstItem = false;
 
-    // Check if first item
+		// Check if first item
 		if (this._msnry.items.length === 0) {
 			isFirstItem = true;
 		}
@@ -70,21 +70,20 @@ export class AngularMasonryComponent implements OnInit, OnDestroy {
 			imagesLoaded(element, (instance: any) => {
 				this._element.nativeElement.prependChild(element);
 
-      	// Tell Masonry that a child element has been added
+				// Tell Masonry that a child element has been added
 				this._msnry.prepended(element);
 
-      	// layout if first item
+				// layout if first item
 				if (isFirstItem) {
 					this.layout();
 				}
 			});
 
 			this._element.nativeElement.removeChild(element);
-		}
-		else {
+		} else {
 		// Tell Masonry that a child element has been added
 		this._msnry.prepended(element);
-            // layout if first item
+			// layout if first item
 			if (isFirstItem) {
 				this.layout();
 			}
@@ -92,10 +91,10 @@ export class AngularMasonryComponent implements OnInit, OnDestroy {
 	}
 
 	public remove(element: HTMLElement) {
-    // Tell Masonry that a child element has been removed
+		// Tell Masonry that a child element has been removed
 		this._msnry.remove(element);
 
-    // Layout items
+		// Layout items
 		this.layout();
 	}
 }

@@ -1,15 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Effect, Actions } from '@ngrx/effects';
+import { Effect, Actions, ofType } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
-import { Observable } from 'rxjs/Observable';
-import { empty } from 'rxjs/observable/empty';
-import { of } from 'rxjs/observable/of';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/switchMap';
-import 'rxjs/add/operator/debounceTime';
-import 'rxjs/add/operator/skip';
-import 'rxjs/add/operator/takeUntil';
+import { Observable, of, empty } from 'rxjs';
+import { catchError, map, switchMap, takeUntil, debounceTime, skip } from 'rxjs/operators';
 
 import { SuggestService } from '../services';
 import * as suggestAction from '../actions/suggest';
@@ -33,21 +26,28 @@ import { Query } from '../models';
 export class SuggestEffects {
 
 	@Effect()
-	suggest$: Observable<Action>
-		= this.actions$
-					.ofType(suggestAction.ActionTypes.SUGGEST_QUERY)
-					.debounceTime(300)
-					.map((action: suggestAction.SuggestAction) => action.payload)
-					.switchMap(query => {
-						const nextSuggest$ = this.actions$.ofType(suggestAction.ActionTypes.SUGGEST_QUERY).skip(1);
+	suggest$: Observable<Action> = this.actions$
+		.pipe(
+			ofType(suggestAction.ActionTypes.SUGGEST_QUERY),
+			debounceTime(300),
+			map((action: suggestAction.SuggestAction) => action.payload),
+			switchMap(query => {
+				const nextSuggest$ = this.actions$
+					.pipe(
+						ofType(suggestAction.ActionTypes.SUGGEST_QUERY),
+						skip(1)
+					);
 
-						return this.suggestService.fetchQuery(query)
-												.takeUntil(nextSuggest$)
-												.map(response => {
-													return new suggestAction.SuggestCompleteSuccessAction(response);
-												})
-												.catch(() => of(new suggestAction.SuggestCompleteFailAction('')));
-					});
+				return this.suggestService.fetchQuery(query)
+					.pipe(
+						takeUntil(nextSuggest$),
+						map(response => {
+							return new suggestAction.SuggestCompleteSuccessAction(response);
+						}),
+						catchError(() => of(new suggestAction.SuggestCompleteFailAction('')))
+					);
+			})
+		);
 
 	constructor(
 		private actions$: Actions,

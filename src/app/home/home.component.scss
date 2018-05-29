@@ -1,4 +1,4 @@
-@import '~styles/main';
+@import '~src/styles/main';
 
 #speech-button {
   border-radius: 0;
@@ -25,7 +25,7 @@
   width: 25px;
 }
 
-@-moz-document url-prefix() { 
+@-moz-document url-prefix() {
   .microphone {
     display: none;
   }
@@ -180,7 +180,7 @@ service-box {
 								margin: 0px 0px;
 								font-family: 'Roboto', sans-serif;
 								white-space: nowrap;
-								
+
 							}
 						}
 					}

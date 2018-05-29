@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs/Subscription';
 import { FormControl } from '@angular/forms';
 import * as queryAction from '../actions/query';
 import * as suggestAction from '../actions/suggest';
@@ -7,7 +6,7 @@ import { SpeechService } from '../services/speech.service';
 import * as speechactions from '../actions/speech';
 import { Store } from '@ngrx/store';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs/Observable';
+import { Observable, Subscription, timer } from 'rxjs';
 import * as fromRoot from '../reducers';
 
 @Component({
@@ -71,7 +70,7 @@ export class SpeechComponent implements OnInit {
 
 	resettimer(recheck: boolean = false) {
 		this.subscription.unsubscribe();
-		this.timer = Observable.timer(0, 100);
+		this.timer = timer(0, 100);
 		this.subscription = this.timer.subscribe(t => {
 		this.ticks = t;
 			if (t % 10 === 0 && t <= 20) {
@@ -100,7 +99,7 @@ export class SpeechComponent implements OnInit {
 	}
 
 	ngOnInit() {
-		this.timer = Observable.timer(1500, 2000);
+		this.timer = timer(1500, 2000);
 		this.subscription = this.timer.subscribe(t => {
 			this.ticks = t;
 

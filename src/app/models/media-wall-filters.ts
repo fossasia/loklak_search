@@ -13,8 +13,7 @@ export function profanityFilter(feeds: ApiResponseResult[]): ApiResponseResult[]
 			if (feed.classifier_profanity !== 'sex' && feed.classifier_profanity !== 'swear') {
 				filteredFeeds.push(feed);
 			}
-		}
-		else {
+		} else {
 			filteredFeeds.push(feed);
 		}
 	});

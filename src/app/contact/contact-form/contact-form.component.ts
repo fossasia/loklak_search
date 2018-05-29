@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
-import { Http, Headers } from '@angular/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { countrycodearray } from '../../shared/countrycode/countrycode';
 
 interface User {
@@ -23,7 +23,7 @@ export class ContactFormComponent implements OnInit {
 	public countries = countrycodearray;
 	@Output() hideContactForm: EventEmitter<any> = new EventEmitter();
 
-	constructor( private http: Http ) { }
+	constructor( private http: HttpClient ) { }
 
 	ngOnInit() {
 		this.contactForm = new FormGroup({
@@ -35,25 +35,21 @@ export class ContactFormComponent implements OnInit {
 			});
 	}
 
-	public sendtosuperuser(User) {
-		const headers = new Headers();
-		const formObj = User.getRawValue();
+	public sendtosuperuser(user) {
+		const headers = new HttpHeaders();
+		const formObj = user.getRawValue();
 		const data = JSON.stringify(formObj);
 
 
 		headers.append('Content-Type', 'application/X-www-form-urlencoded');
 		headers.append('Accept', 'application/json');
 
-		this.http.post('https://formspree.io/office@fossasia.org', data, {headers: headers})
+		this.http.post('https://formspree.io/office@fossasia.org', data, { headers: headers })
 			.subscribe((response) => {
-				if (response.json().success) {
-					this.http.post('https://formspree.io/office@fossasia.org', data, {headers: headers})
-						.subscribe((responsesent) => {
-							if (responsesent.json().success) {
-								console.log('Sent successfully');
-							}
-						});
-				}
+				this.http.post('https://formspree.io/office@fossasia.org', data, { headers: headers })
+					.subscribe((responsesent) => {
+						console.log('Sent successfully');
+					});
 			});
 		}
 

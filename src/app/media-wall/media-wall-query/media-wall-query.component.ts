@@ -1,8 +1,7 @@
 import { Component, OnInit, OnDestroy, Inject, ChangeDetectionStrategy } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
-import { Observable } from 'rxjs/Observable';
-import { Subscription } from 'rxjs/Subscription';
+import { Observable, Subscription } from 'rxjs';
 
 import { Store } from '@ngrx/store';
 import * as fromRoot from '../../reducers';
@@ -70,7 +69,7 @@ export class MediaWallQueryComponent implements OnInit, OnDestroy {
 				until: null
 			},
 			from: false
-		}
+		};
 			this.store.dispatch(new mediaWallQueryAction.WallQueryChangeAction(requestQuery));
 			this.dialogRef.close();
 	}
@@ -82,7 +81,7 @@ export class MediaWallQueryComponent implements OnInit, OnDestroy {
 				this.place = value.location;
 				this.imageOnly = value.filter.image;
 			})
-		)
+		);
 	}
 
 	ngOnDestroy() {

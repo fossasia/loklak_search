@@ -4,6 +4,7 @@ import { TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import {
 	MatAutocompleteModule,
+	MatIconModule,
 	MatButtonToggleModule,
 	MatMenuModule
 } from '@angular/material';
@@ -11,7 +12,7 @@ import { StoreModule } from '@ngrx/store';
 import { FeedHeaderComponent } from './feed-header.component';
 import { FeedAdvancedSearchComponent } from '../feed-advanced-search/feed-advanced-search.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { reducer } from '../../reducers';
+import { reducers } from '../../reducers';
 import { SpeechService } from '../../services/speech.service';
 import { SpeechComponent } from '../../speech/speech.component';
 
@@ -29,10 +30,11 @@ describe('Component: FeedHeader', () => {
 				RouterTestingModule,
 				ReactiveFormsModule,
 				MatButtonToggleModule,
+				MatIconModule,
 				MatMenuModule,
 				MatAutocompleteModule,
 				FormsModule,
-				StoreModule.provideStore(reducer)
+				StoreModule.forRoot(reducers)
 			],
 			declarations: [
 				FeedHeaderComponent,

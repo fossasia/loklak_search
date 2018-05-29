@@ -9,8 +9,8 @@ import * as paginationAction from '../actions/pagination';
  */
 export interface State {
 	page: number;
-	pageLoading: Boolean;
-	pagesAvailable: Boolean;
+	pageLoading: boolean;
+	pagesAvailable: boolean;
 }
 
 
