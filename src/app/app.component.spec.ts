@@ -9,7 +9,10 @@ import { RouterModule } from '@angular/router';
 import { Component } from '@angular/core';
 import { SpeechService } from './services/speech.service';
 
-@Component({selector: 'router-outlet', template: ''})
+@Component({
+	selector: 'router-outlet',
+	template: ''
+})
 export class RouterOutletStubComponent { }
 
 describe('App: LoklakSearch', () => {
@@ -17,7 +20,7 @@ describe('App: LoklakSearch', () => {
 		TestBed.configureTestingModule({
 			imports: [
 				RouterTestingModule,
-				StoreModule.provideStore({}),
+				StoreModule.forRoot({}),
 				RouterModule
 			],
 			declarations: [

@@ -35,19 +35,19 @@ export class AngularMasonryBrickDirective implements OnDestroy, AfterViewInit {
 	this._parent.remove(this._element.nativeElement);
 	}
 
-    /** When HTML in brick changes dinamically, observe that and change layout */
+	// When HTML in brick changes dinamically, observe that and change layout
 	private watchForHtmlChanges(): void {
 		MutationObserver = window.MutationObserver || window.WebKitMutationObserver;
 
 		if (MutationObserver) {
-            /** Watch for any changes to subtree */
+			// Watch for any changes to subtree
 			const self = this;
 			const observer = new MutationObserver(function(mutations, observerFromElement) {
 			self._parent.layout();
 			});
 
-            // define what element should be observed by the observer
-            // and what types of mutations trigger the callback
+			// define what element should be observed by the observer
+			// and what types of mutations trigger the callback
 			observer.observe(this._element.nativeElement, {
 				subtree: true,
 				childList: true

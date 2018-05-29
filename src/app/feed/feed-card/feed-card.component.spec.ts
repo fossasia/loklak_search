@@ -29,7 +29,7 @@ class FeedLinkerStubComponent {
 	@Input() links;
 	@Input() unshorten;
 	@Input() useAll;
-	@Output() onShowed;
+	@Output() showed;
 }
 
 describe('Component: FeedCard', () => {

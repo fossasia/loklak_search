@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Store, Action } from '@ngrx/store';
-import { Effect, Actions } from '@ngrx/effects';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/withLatestFrom';
+import { Effect, Actions, ofType } from '@ngrx/effects';
+import { Observable } from 'rxjs';
+import { map, mergeMap, withLatestFrom } from 'rxjs/operators';
 
 import * as fromRoot from '../reducers';
 import * as wallAction from '../actions/media-wall';
@@ -27,22 +26,24 @@ import * as mediaWallAction from '../actions/media-wall-query';
 export class MediaWallQueryEffects {
 
 	@Effect()
-	inputChange$: Observable<Action>
-		= this.actions$
-					.ofType(mediaWallAction.ActionTypes.WALL_VALUE_CHANGE)
-					.map(_ => new mediaWallAction.WallQueryChangeAction());
+	inputChange$: Observable<Action> = this.actions$
+		.pipe(
+			ofType(mediaWallAction.ActionTypes.WALL_VALUE_CHANGE),
+			map(_ => new mediaWallAction.WallQueryChangeAction())
+		);
 
 	@Effect()
-	mediaWallQueryChange$: Observable<Action>
-		= this.actions$
-					.ofType(mediaWallAction.ActionTypes.WALL_QUERY_CHANGE)
-					.withLatestFrom(this.store$)
-					.mergeMap(([action, state]) => {
-							return [
-								new mediaWallDirectUrlAction.WallGenerateDirectUrlAction(''),
-								new wallAction.WallSearchAction(state.mediaWallQuery.query)
-							]
-					});
+	mediaWallQueryChange$: Observable<Action> = this.actions$
+		.pipe(
+			ofType(mediaWallAction.ActionTypes.WALL_QUERY_CHANGE),
+			withLatestFrom(this.store$),
+			mergeMap(([action, state]) => {
+					return [
+						new mediaWallDirectUrlAction.WallGenerateDirectUrlAction(''),
+						new wallAction.WallSearchAction(state.mediaWallQuery.query)
+					];
+			})
+		);
 
 	constructor(
 		private actions$: Actions,

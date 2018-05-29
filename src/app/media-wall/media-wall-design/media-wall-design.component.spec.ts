@@ -26,7 +26,7 @@ describe('MediaWallModerationComponent', () => {
 				MatDialogModule,
 				MatSlideToggleModule,
 				MatSelectModule,
-				StoreModule.provideStore(fromRoot.reducer),
+				StoreModule.forRoot(fromRoot.reducers),
 				FormsModule,
 				ReactiveFormsModule
 			],

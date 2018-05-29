@@ -4,9 +4,7 @@
 */
 
 import { Directive, OnInit, OnDestroy, ElementRef, Output, EventEmitter } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/fromEvent';
-import 'rxjs/add/operator/debounceTime';
+import { Observable, fromEvent } from 'rxjs';
 
 @Directive({
 	selector: '[in-viewport]'
@@ -25,13 +23,11 @@ export class InViewportDirective implements OnInit, OnDestroy {
 	ngOnInit() {
 		this.check();
 
-		this.scroll = Observable
-			.fromEvent(window, 'scroll').subscribe((event) => {
+		this.scroll = fromEvent(window, 'scroll').subscribe((event) => {
 				this.check();
 			});
 
-		this.resize = Observable
-			.fromEvent(window, 'resize').subscribe((event) => {
+		this.resize = fromEvent(window, 'resize').subscribe((event) => {
 				this.check();
 			});
 	}
@@ -69,11 +65,9 @@ export class InViewportDirective implements OnInit, OnDestroy {
 
 		if (direction === 'both') {
 			event['value'] = (elSize && vVisible && hVisible) ? true : false;
-		}
-		else if (direction === 'vertical') {
+		} else if (direction === 'vertical') {
 			event['value'] = (elSize && vVisible) ? true : false;
-		}
-		else if (direction === 'horizontal') {
+		} else if (direction === 'horizontal') {
 			event['value'] = (elSize && hVisible) ? true : false;
 		}
 

@@ -4,7 +4,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 
 import { SpeechComponent } from './speech.component';
 import { SpeechService } from '../services/speech.service';
-import { reducer } from '../reducers';
+import { reducers } from '../reducers';
 
 describe('SpeechComponent', () => {
 	let component: SpeechComponent;
@@ -14,7 +14,7 @@ describe('SpeechComponent', () => {
 		TestBed.configureTestingModule({
 			imports: [
 				RouterTestingModule,
-				StoreModule.provideStore(reducer)
+				StoreModule.forRoot(reducers)
 			],
 			declarations: [ SpeechComponent ],
 			providers: [ SpeechService ]

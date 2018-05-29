@@ -11,7 +11,7 @@
 				[(ngModel)]="profanityCheck"
 				[checked]="profanityCheck"
 				[indeterminate]="false"
-				[align]="'start'"
+				labelPosition="before"
 				(change)="checkProfanity()">
         Profanity Filter
 			</mat-checkbox>
@@ -20,7 +20,7 @@
 				[(ngModel)]="removeDuplicate"
 				[checked]="removeDuplicate"
 				[indeterminate]="false"
-				[align]="'start'"
+				labelPosition="before"
 				(change)="checkDuplicate()">
         Remove Duplicate
       </mat-checkbox>

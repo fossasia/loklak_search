@@ -143,4 +143,4 @@ export const getTimeBoundSet = (state: State) => state.timeBound;
 
 export const getLocation = (state: State) => state.location;
 
-export const isFromQuery = (state: State) => state.from;
+export const getIsFromQuery = (state: State) => state.from;

@@ -1,4 +1,4 @@
-@import '~styles/main';
+@import '~src/styles/main';
 
 #speech-button {
 	border-radius: 0;
@@ -15,7 +15,7 @@
 		display: none;
 	}
 }
-  
+
 #speech-button:focus {
 	outline: none;
 }
@@ -24,8 +24,8 @@
 	height: 25px;
 	width: 25px;
 }
-  
-@-moz-document url-prefix() { 
+
+@-moz-document url-prefix() {
 	.microphone {
 	  display: none;
 	}

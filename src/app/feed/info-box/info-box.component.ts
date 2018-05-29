@@ -1,6 +1,6 @@
 import { Component, OnInit, OnChanges, Input } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs/Rx';
+import { Observable } from 'rxjs';
 import * as fromRoot from '../../reducers';
 import * as apiAction from '../../actions/api';
 import { ApiResponseAggregations } from '../../models/api-response';
@@ -62,8 +62,7 @@ export class InfoBoxComponent implements OnInit, OnChanges {
 			this.areTopHashtagsAvailable = true;
 			return this.topHashtags;
 
-		}
-		else if (typeof statistics === 'undefined') {
+		} else if (typeof statistics === 'undefined') {
 			this.topHashtags = [];
 			this.areTopHashtagsAvailable = false;
 			return this.topHashtags;
@@ -84,8 +83,7 @@ export class InfoBoxComponent implements OnInit, OnChanges {
 			this.topTwitterers = sortable;
 			this.areTopTwitterersAvailable = true;
 			return this.topTwitterers;
-		}
-		else if (typeof statistics === 'undefined') {
+		} else if (typeof statistics === 'undefined') {
 			this.areTopTwitterersAvailable = false;
 			this.topTwitterers = [];
 			return this.topTwitterers;
@@ -107,8 +105,7 @@ export class InfoBoxComponent implements OnInit, OnChanges {
 			this.topMentions = sortable;
 			this.areTopMentionsAvailable = true;
 			return this.topMentions;
-		}
-		else {
+		} else {
 			this.areTopMentionsAvailable = false;
 			this.topMentions = [];
 			return this.topMentions;
@@ -145,8 +142,7 @@ export class InfoBoxComponent implements OnInit, OnChanges {
 			this.areFrequencyDataAvailable = true;
 
 			return;
-		}
-		else {
+		} else {
 			this.areFrequencyDataAvailable = false;
 		}
 	}
