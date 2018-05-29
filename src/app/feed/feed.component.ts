@@ -61,6 +61,8 @@ export class FeedComponent implements OnInit, AfterViewInit, OnDestroy {
 	public isSuggestLoading$: Observable<boolean>;
 	public suggestResponse$: Observable<SuggestResults[]>;
 
+	public apiResponseHashtags$: Observable<Array<{ tag: string, count: number }>>;
+
 	constructor(
 		private route: ActivatedRoute,
 		private location: Location,
@@ -68,7 +70,10 @@ export class FeedComponent implements OnInit, AfterViewInit, OnDestroy {
 		private elementRef: ElementRef,
 		private titleService: Title,
 		@Inject(DOCUMENT) private document: Document
-	) { }
+	) {
+		this.getTopHashtags();
+		this.getHashtagDataFromStore();
+	}
 
 	ngOnInit() {
 		this.queryFromURL();
@@ -77,6 +82,15 @@ export class FeedComponent implements OnInit, AfterViewInit, OnDestroy {
 
 	ngAfterViewInit() {
 		this.focusTextbox();
+	}
+
+	getTopHashtags() {
+		this.store.dispatch(new queryAction.RelocationAfterQueryResetAction());
+		this.store.dispatch(new queryAction.InputValueChangeAction('since:day'));
+	}
+
+	getHashtagDataFromStore() {
+		this.apiResponseHashtags$ = this.store.select(fromRoot.getApiResponseTags);
 	}
 
 	/**

@@ -190,6 +190,12 @@ service-box {
 	}
 }
 
+.bot {
+	position: fixed;
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+
 @media (min-width: 768px) and (min-height: 500px) {
 	app-footer {
 		position: fixed;
