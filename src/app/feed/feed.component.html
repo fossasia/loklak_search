@@ -63,3 +63,10 @@
 
 <!-- Peek the footer when Results are not found -->
 <app-footer [class.peeking]="!(isSearching$ | async) && !(areResultsAvailable$ | async)"></app-footer>
+
+<!--Scroll to top-->
+<div class="scroll-to-top" [ngClass]="{'show-scroll': navIsFixed}">
+	<button (click)="scrollToTop()">
+		^
+	</button>
+</div>

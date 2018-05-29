@@ -5,12 +5,13 @@ import {
 	OnDestroy,
 	ChangeDetectionStrategy,
 	ElementRef,
-	HostListener
+	HostListener,
+	Inject
 } from '@angular/core';
 
 import { FormControl } from '@angular/forms';
 import { Location } from '@angular/common';
-import { Title } from '@angular/platform-browser';
+import { Title, DOCUMENT } from '@angular/platform-browser';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 
 import { Observable } from 'rxjs/Observable';
@@ -40,7 +41,7 @@ import { UserApiResponse } from '../models/api-user-response';
 })
 export class FeedComponent implements OnInit, AfterViewInit, OnDestroy {
 	private __subscriptions__: Subscription[] = new Array<Subscription>();
-
+	navIsFixed: boolean;
 	public query$: Observable<Query>;
 	public isSearching$: Observable<boolean>;
 	public areResultsAvailable$: Observable<boolean>;
@@ -67,7 +68,8 @@ export class FeedComponent implements OnInit, AfterViewInit, OnDestroy {
 		private location: Location,
 		private store: Store<fromRoot.State>,
 		private elementRef: ElementRef,
-		private titleService: Title
+		private titleService: Title,
+		@Inject(DOCUMENT) private document: Document
 	) {
 		this.getTopHashtags();
 		this.getHashtagDataFromStore();
@@ -96,6 +98,20 @@ export class FeedComponent implements OnInit, AfterViewInit, OnDestroy {
 	 */
 	private focusTextbox(): void {
 		this.elementRef.nativeElement.querySelector('feed-header input#search').focus();
+	}
+
+	@HostListener('window:scroll', [])
+	onWindowScroll() {
+		if (window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop > 100) {
+			this.navIsFixed = true;
+		} else if (this.navIsFixed && window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop < 10) {
+			this.navIsFixed = false; } } scrollToTop() { (function smoothscroll() {
+				const currentScroll = document.documentElement.scrollTop || document.body.scrollTop;
+				if (currentScroll > 0) {
+				window.requestAnimationFrame(smoothscroll);
+				window.scrollTo(0, currentScroll - (currentScroll / 5));
+			}
+		})();
 	}
 
 	/**
