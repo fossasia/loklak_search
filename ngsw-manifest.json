@@ -17,6 +17,7 @@
       "/styles.741fd7e7a36507b8e340.bundle.css": "b71c7d324b2b87d0cf22a0abcaeff8e61d1c5af7",
       "/manifest.json": "0880ccba3fd5bceef0549eb7577ef33cf8251d34",
       "/assets/.npmignore": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "/assets/images/banner.jpg": "3131cb3108e779453427d52002c499530064be21",
       "/assets/images/blog.png": "b6fac88d2120ae2240046a3c0a2931e1353c852e",
       "/assets/images/bug.png": "b1bb93eb4bde533ca084050a626dda4c760fc0a8",
       "/assets/images/cow_150x175.png": "96bff0518b5f2285dccf720481e89aa4286a5441",
@@ -34,7 +35,6 @@
       "/assets/images/pslab_64x68.png": "5634ce4e041c9963f51235fa8b7769c7d2328455",
       "/assets/images/susi_60x12.png": "e0a1b65b582f4cf784b2ca29297bccd538245ec9",
       "/assets/images/susper_60x16.png": "af505cce81c129ce3c4f4e557627f30aa83db9cb",
-      "/assets/images/banner.jpg": "3131cb3108e779453427d52002c499530064be21",
       "/index.html": "cfe5b51e8d6e549dd4dd1d0f9e03b15161eea868"
     },
     "_generatedFromWebpack": true
