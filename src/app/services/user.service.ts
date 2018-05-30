@@ -12,25 +12,26 @@ import { UserResponse } from '../models/api-user-response';
 export class UserService {
 	private static readonly apiUrl: URL = new URL('https://api.loklak.org/api/user.json');
 	private static minified_results = true;
+	private static followers = '4';
+	private static following = '4';
 
 	constructor(
 		private jsonp: Jsonp
 	) { }
 
 	// TODO: make the searchParams as configureable model rather than this approach.
-	public fetchQuery(user: string, follow_count: number): Observable<UserResponse> {
+	public fetchQuery(user: string): Observable<UserResponse> {
 		const screen_name = user.charAt(0).toUpperCase() + user.slice(1);
 		const searchParams = new URLSearchParams();
 		searchParams.set('screen_name', screen_name);
-		searchParams.set('followers', follow_count.toString());
-		searchParams.set('following', follow_count.toString());
+		searchParams.set('followers', UserService.followers);
+		searchParams.set('following', UserService.following);
 		searchParams.set('callback', 'JSONP_CALLBACK');
 		searchParams.set('minified', UserService.minified_results.toString());
 		return this.jsonp.get(UserService.apiUrl.toString(), {search : searchParams})
 								.map(this.extractData)
 								.retry(2)
 								.catch(this.handleError);
-
 	}
 
 	private extractData(res: Response): UserResponse {

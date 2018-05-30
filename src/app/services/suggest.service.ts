@@ -14,7 +14,7 @@ export class SuggestService {
 	private static minified_results = true;
 	private static order = 'desc';
 	private static orderby = 'query_count';
-
+	private static count = '4';
 
 	constructor(
 		private jsonp: Jsonp
@@ -24,6 +24,7 @@ export class SuggestService {
 	public fetchQuery(query: string): Observable<SuggestResponse> {
 		const searchParams = new URLSearchParams();
 		searchParams.set('q', query);
+		searchParams.set('count', SuggestService.count);
 		searchParams.set('callback', 'JSONP_CALLBACK');
 		searchParams.set('minified', SuggestService.minified_results.toString());
 		searchParams.set('order', SuggestService.order);

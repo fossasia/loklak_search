@@ -35,7 +35,7 @@ describe('Service: UserSearch', () => {
 
 	const result = MockApiResponseResult;
 	const user = 'Fossasia';
-	const follow_count = 10;
+	const follow_count = 4;
 
 
 	it('should create an instance of user search service',
@@ -60,7 +60,7 @@ describe('Service: UserSearch', () => {
 		});
 
 		service
-			.fetchQuery(user, follow_count)
+			.fetchQuery(user)
 			.subscribe((res) => {
 				expect(res).toEqual(result);
 				done();
