@@ -60,14 +60,11 @@ describe('Service: Search', () => {
 									`&startRecord=${searchServiceConfig.startRecord}` +
 									`&fields=created_at,screen_name,mentions,hashtags&limit=10`);
 		});
-
 		service
 			.fetchQuery(query, searchServiceConfig)
 			.subscribe((res) => {
 				expect(res).toEqual(result);
 				done();
-			});
+		});
 	});
-
 });
-

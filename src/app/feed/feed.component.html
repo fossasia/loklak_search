@@ -5,7 +5,6 @@
 				[doCloseSuggestBox$]="doCloseSuggestBox$()"
 				(searchEvent)="search($event)"
 				(relocateEvent)="relocateURL($event)"></feed-header>
-
 		<div *ngIf="(isSearching$ | async)">
 			<div class="searching">
 			<!-- Hook Up the Material Design Progress Bar. -->
@@ -15,7 +14,6 @@
 			</div>
 		</div>
 		<br>
-
 		<div *ngIf="!(isSearching$ | async)" class="feed-wrapper">
 			<div *ngIf="(areResultsAvailable$ | async)" class="wrapper feed-results">
 				<div *ngFor="let item of (apiResponseResults$ | async); let i = index ">

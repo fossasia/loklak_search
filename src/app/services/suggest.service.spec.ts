@@ -50,6 +50,7 @@ describe('Service: Suggest', () => {
 			expect(connection.request.url).toEqual(
 				`https://api.loklak.org/api/suggest.json` +
 									`?q=${query}` +
+									'&count=4' +
 									`&callback=JSONP_CALLBACK` +
 									`&minified=true` +
 									`&order=desc` +

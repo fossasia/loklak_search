@@ -14,7 +14,6 @@ import 'rxjs/add/operator/takeUntil';
 import { UserService } from '../services';
 import * as userApiAction from '../actions/user-api';
 import { Query } from '../models';
-
 /**
  * Effects offer a way to isolate and easily test side-effects within your
  * application. StateUpdates is an observable of the latest state and
@@ -28,7 +27,6 @@ import { Query } from '../models';
  * At the end, what’s really happening is `ngrx/effects` is an `action generator` that dispatches
  * a `new action` as a result of a different action.
  */
-
 @Injectable()
 export class ApiUserSearchEffects {
 
@@ -40,10 +38,7 @@ export class ApiUserSearchEffects {
 					.map((action: userApiAction.UserSearchAction) => action.payload)
 					.switchMap(query => {
 						const nextSearch$ = this.actions$.ofType(userApiAction.ActionTypes.USER_SEARCH).skip(1);
-
-						const follow_count = 10;
-
-						return this.apiUserService.fetchQuery(query.screen_name, follow_count)
+						return this.apiUserService.fetchQuery(query.screen_name)
 												.takeUntil(nextSearch$)
 												.map(response => new userApiAction.UserSearchCompleteSuccessAction(response))
 												.catch(() => of(new userApiAction.UserSearchCompleteFailAction('')));
@@ -53,5 +48,4 @@ export class ApiUserSearchEffects {
 		private actions$: Actions,
 		private apiUserService: UserService
 	) { }
-
 }
