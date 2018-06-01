@@ -1,15 +1,15 @@
 import { BrowserModule, Title } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
+import { HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
 
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 
-import { JsonpModule } from '@angular/http';
 import { SpeechService } from './services/speech.service';
 
-import { reducer } from './reducers';
+import { reducers, metaReducers } from './reducers';
 import {
 	ApiSearchEffects,
 	MediaWallQueryEffects,
@@ -59,7 +59,8 @@ import { SpeechComponent } from './speech/speech.component';
 		/**
 		 * Module to register the providers for making Jsonp requests.
 		 */
-		JsonpModule,
+		HttpClientModule,
+		HttpClientJsonpModule,
 
 		/**
      * StoreModule.provideStore is imported once in the root module, accepting a reducer
@@ -68,9 +69,9 @@ import { SpeechComponent } from './speech/speech.component';
      * meta-reducer. This returns all providers for an @ngrx/store
      * based application.
      */
-		StoreModule.provideStore(reducer),
+		StoreModule.forRoot(reducers, { metaReducers }),
 
-    /**
+		/**
      * Store devtools instrument the store retaining past versions of state
      * and recalculating new states. This enables powerful time-travel
      * debugging.
@@ -86,21 +87,24 @@ import { SpeechComponent } from './speech/speech.component';
 		// StoreDevtoolsModule.instrumentOnlyWithExtension(),
 
 		/**
-     * EffectsModule.run() sets up the effects class to be initialized
+     * EffectsModule.forRoot([ ...Effects ]) sets up the effects class to be initialized
      * immediately when the application starts.
 		 * Must be called multiple times for each effect class you want to run.
 		 *
      * See: https://github.com/ngrx/effects/blob/master/docs/api.md#run
      */
-		EffectsModule.run(QueryEffects),
-		EffectsModule.run(UserQueryEffects),
-		EffectsModule.run(ApiSearchEffects),
-		EffectsModule.run(PaginationEffects),
-		EffectsModule.run(SuggestEffects),
-		EffectsModule.run(ApiUserSearchEffects),
-		EffectsModule.run(MediaWallQueryEffects),
-		EffectsModule.run(WallPaginationEffects),
-		EffectsModule.run(MediaWallDirectUrlEffects),
+		EffectsModule.forRoot([
+			QueryEffects,
+			UserQueryEffects,
+			ApiSearchEffects,
+			PaginationEffects,
+			SuggestEffects,
+			SuggestEffects,
+			ApiUserSearchEffects,
+			MediaWallQueryEffects,
+			WallPaginationEffects,
+			MediaWallDirectUrlEffects
+		]),
 
 		/**
 		 * Defines the routes at `root` level of the application.

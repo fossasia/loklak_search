@@ -1,10 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Jsonp, Response, URLSearchParams } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/observable/throw';
-import 'rxjs/add/operator/retry';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
+import { catchError, map, retry } from 'rxjs/operators';
 
 import { SearchServiceConfig } from '.';
 import { ApiResponse } from '../models/api-response';
@@ -14,11 +11,11 @@ export class SearchService {
 	private static readonly apiUrl: URL = new URL('https://api.loklak.org/api/search.json');
 
 	constructor(
-		private jsonp: Jsonp
+		private http: HttpClient
 	) { }
 
 	public fetchQuery(query: string, config: SearchServiceConfig): Observable<ApiResponse> {
-		const searchParams = new URLSearchParams();
+		const searchParams = new HttpParams();
 		searchParams.set('q', query);
 		searchParams.set('callback', 'JSONP_CALLBACK');
 		searchParams.set('minified', 'true');
@@ -36,18 +33,14 @@ export class SearchService {
 			searchParams.set('filter', config.getFilterString());
 		}
 
-		return this.jsonp.get(SearchService.apiUrl.toString(), { search: searchParams })
-			.map(this.extractData)
-			.retry(2)
-			.catch(this.handleError);
-	}
+		const jsonpUrl = SearchService.apiUrl.toString() + `?${searchParams.toString()}`;
 
-	private extractData(res: Response): ApiResponse {
-		try {
-			return <ApiResponse>res.json();
-		} catch (error) {
-			console.error(error);
-		}
+		return this.http
+			.jsonp<ApiResponse>(jsonpUrl, 'callback')
+			.pipe(
+				retry(2),
+				catchError(this.handleError)
+			);
 	}
 
 	private handleError(error: any) {
@@ -55,6 +48,6 @@ export class SearchService {
 		const errMsg = (error.message) ? error.message :
 			error.status ? `${error.status} - ${error.statusText}` : 'Server error';
 		console.error(errMsg); // Right now we are logging to console itself
-		return Observable.throw(errMsg);
+		return throwError(errMsg);
 	}
 }

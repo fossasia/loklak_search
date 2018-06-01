@@ -1,8 +1,7 @@
 import { Component, OnInit, OnDestroy, Input, Output, EventEmitter } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
-import { Observable } from 'rxjs/Observable';
-import { Subscription } from 'rxjs/Subscription';
+import { Observable, Subscription } from 'rxjs';
 
 import { Store } from '@ngrx/store';
 import * as fromRoot from '../../reducers';
@@ -42,8 +41,7 @@ export class MediaWallMenuComponent implements OnInit, OnDestroy {
 		if (this.currentTheme === this.themes[0]) {
 			this.store.dispatch( new mediaWallCustomAction.WallLightThemeChangeAction(''));
 			this.store.dispatch(new mediaWallDirectUrlAction.WallGenerateDirectUrlAction());
-		}
-		else if (this.currentTheme === this.themes[1]) {
+		} else if (this.currentTheme === this.themes[1]) {
 			this.store.dispatch( new mediaWallCustomAction.WallDarkThemeChangeAction(''));
 			this.store.dispatch(new mediaWallDirectUrlAction.WallGenerateDirectUrlAction());
 		}
@@ -71,12 +69,11 @@ export class MediaWallMenuComponent implements OnInit, OnDestroy {
 			this.wallCustomCard$.subscribe((value) => {
 				if (value.fontColor === '#333') {
 					this.currentTheme = this.themes[0];
-				}
-				else if (value.fontColor === '#FFFFFF') {
+				} else if (value.fontColor === '#FFFFFF') {
 					this.currentTheme = this.themes[1];
 				}
 			})
-		)
+		);
 	}
 
 	public relocateEvent(event) {

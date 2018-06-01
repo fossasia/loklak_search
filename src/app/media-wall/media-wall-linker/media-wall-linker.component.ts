@@ -2,6 +2,51 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { getIndicesOf } from '../../utils';
 import { WallCard } from '../../models';
 
+/**
+ * @interface StringIndexedChunks
+ *
+ * The object with three properties, and is used for indexing the locations of linking points
+ * in the main text.
+ *
+ * @property index : The starting index of that substring in the main text.
+ * @property str : The actual substring to be searched for.
+ * @property type : Type of the chunk, (hashtag, mention or link)
+ */
+interface StringIndexedChunks {
+	index: number;
+	str: string;
+	type: ShardType;
+}
+
+/**
+ * @enum ShardTypes : plain, link, hashtag, mention
+ */
+const enum ShardType {
+	plain,		// 0
+	link,			// 1
+	hashtag,	// 2
+	mention		// 3
+}
+
+/**
+ * Each Shard contains following properties:
+ *
+ * @property type					: ShardType It specifies the the type of shard (plain,link,hashtag or mention)
+ * @property text					: Text which is to be displayed.
+ * @property linkType			: The type of link wheather internal or external.
+ * @property linkTo				: The location where the route will eventually link.
+ * @property queryParams	: The queryParams to use when redirecting (used incase of internal links).
+ *
+ */
+class Shard {
+	constructor (
+		public type: ShardType = ShardType.plain,
+		public text: String = '',
+		public linkTo: any = null,
+		public queryParams: any = null
+	) { }
+}
+
 @Component({
 	selector: 'media-wall-linker',
 	templateUrl: './media-wall-linker.component.html',
@@ -13,9 +58,9 @@ export class MediaWallLinkerComponent implements OnInit {
 	@Input() mentions: string[] = new Array<string>();
 	@Input() links: string[] = new Array<string>();
 	@Input() unshorten: Object = {};
-	@Input() useAll: Boolean = false;
+	@Input() useAll = false;
 	@Input() wallCustomText: WallCard;
-	@Output() onShowed = new EventEmitter<boolean>();
+	@Output() showed = new EventEmitter<boolean>();
 	public shardArray: Array<Shard> = new Array<Shard>();
 
 	constructor() { }
@@ -23,8 +68,7 @@ export class MediaWallLinkerComponent implements OnInit {
 	ngOnInit() {
 		if (this.useAll) {
 			this.generateAllShards();
-		}
-		else {
+		} else {
 			this.generateShards();
 		}
 	}
@@ -76,7 +120,7 @@ export class MediaWallLinkerComponent implements OnInit {
 			});
 		});
 
-		indexedChunks.sort((a, b) => { return (a.index > b.index) ? 1 : (a.index < b.index) ? -1 : 0; });
+		indexedChunks.sort((a, b) => (a.index > b.index) ? 1 : (a.index < b.index) ? -1 : 0);
 
 		let startIndex = 0;
 		const endIndex = this.text.length;
@@ -95,8 +139,7 @@ export class MediaWallLinkerComponent implements OnInit {
 						if (this.unshorten[element.str]) {
 							shard.linkTo = str;
 							shard.text = this.unshorten[element.str];
-						}
-						else {
+						} else {
 							shard.linkTo = str;
 						}
 						break;
@@ -133,14 +176,12 @@ export class MediaWallLinkerComponent implements OnInit {
 				mentionShard.linkTo = ['/wall'];
 				mentionShard.queryParams = { query : `from:${shardText.substring(1)}` };
 				this.shardArray.push(mentionShard);
-			}
-			else if (shardText[0] === '#' && shardText.length > 1) {
+			} else if (shardText[0] === '#' && shardText.length > 1) {
 				const hashtagShard = new Shard(ShardType.hashtag, shardText);
 				hashtagShard.linkTo = ['/wall'];
 				hashtagShard.queryParams = { query : `#${shardText.substring(1)}` };
 				this.shardArray.push(hashtagShard);
-			}
-			else if (this.stringIsURL(shardText)) {
+			} else if (this.stringIsURL(shardText)) {
 				const linkShard = new Shard(ShardType.link, shardText);
 				linkShard.linkTo = shardText;
 				linkShard.text = shardText;
@@ -150,63 +191,16 @@ export class MediaWallLinkerComponent implements OnInit {
 				}
 
 				this.shardArray.push(linkShard);
-			}
-			else {
+			} else {
 				this.shardArray.push(new Shard(ShardType.plain, shardText));
 			}
 		}
 	}
 
-	private stringIsURL(str: String): Boolean {
+	private stringIsURL(str: String): boolean {
 		const regexpPattern = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;
 		const regexp = new RegExp(regexpPattern, 'ig');
 		const searchRes = str.search(regexp);
 		return (searchRes === 0) ? true : false;
 	}
-}
-
-
-/**
- * @interface StringIndexedChunks
- *
- * The object with three properties, and is used for indexing the locations of linking points
- * in the main text.
- *
- * @property index : The starting index of that substring in the main text.
- * @property str : The actual substring to be searched for.
- * @property type : Type of the chunk, (hashtag, mention or link)
- */
-interface StringIndexedChunks {
-	index: number;
-	str: string;
-	type: ShardType;
-}
-
-/**
- * @enum ShardTypes : plain, link, hashtag, mention
- */
-const enum ShardType {
-	plain,		// 0
-	link,			// 1
-	hashtag,	// 2
-	mention		// 3
-}
-
-/**
- * Each Shard contains following properties:
- *
- * @property type					: ShardType It specifies the the type of shard (plain,link,hashtag or mention)
- * @property text					: Text which is to be displayed.
- * @property linkType			: The type of link wheather internal or external.
- * @property linkTo				: The location where the route will eventually link.
- * @property queryParams	: The queryParams to use when redirecting (used incase of internal links).
- *
- */
-class Shard {
-	constructor (
-		public type: ShardType = ShardType.plain,
-		public text: String = '',
-		public linkTo: any = null,
-		public queryParams: any = null
-	) { }
 }

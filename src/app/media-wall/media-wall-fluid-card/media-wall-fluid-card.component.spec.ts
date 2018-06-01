@@ -28,7 +28,7 @@ class MediaWallLinkerStubComponent {
 	@Input() unshorten;
 	@Input() useAll;
 	@Input() wallCustomText;
-	@Output() onShowed;
+	@Output() showed;
 }
 
 

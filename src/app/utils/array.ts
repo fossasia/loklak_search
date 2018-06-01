@@ -4,7 +4,7 @@
  *
  * @arg text : The Main string.
  * @arg str : The string to be searched.
- * @arg caseSensitive : Boolean to check wheather consider the case or not
+ * @arg caseSensitive : boolean to check wheather consider the case or not
  */
 export function getIndicesOf(text: string, str: string, caseSensitive = true): number[] {
 	if (!str.length) {
@@ -38,7 +38,7 @@ export function getIndicesOf(text: string, str: string, caseSensitive = true): n
  */
 export function immutableSort(array: Array<any>, compareFunction?: (a: any, b: any) => number): Array<any> {
 	return [...array].sort(compareFunction);
-};
+}
 
 /**
  * @function cut

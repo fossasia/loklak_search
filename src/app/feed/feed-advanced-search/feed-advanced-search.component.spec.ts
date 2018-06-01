@@ -10,7 +10,7 @@ import {
 	MatIconModule
 } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { reducer } from '../../reducers';
+import { reducers } from '../../reducers';
 
 describe('Component: FeedAdvancedSearchComponent', () => {
 	beforeEach(() => {
@@ -22,7 +22,7 @@ describe('Component: FeedAdvancedSearchComponent', () => {
 				MatMenuModule,
 				MatIconModule,
 				FormsModule,
-				StoreModule.provideStore(reducer)
+				StoreModule.forRoot(reducers)
 			],
 			declarations: [
 				FeedAdvancedSearchComponent

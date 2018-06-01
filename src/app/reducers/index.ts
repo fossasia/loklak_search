@@ -1,5 +1,5 @@
 import { createSelector } from 'reselect';
-import { ActionReducer } from '@ngrx/store';
+import { ActionReducerMap, MetaReducer } from '@ngrx/store';
 import { environment } from '../../environments/environment';
 import { ApiResponse } from '../models/api-response';
 
@@ -12,7 +12,7 @@ import { ApiResponse } from '../models/api-response';
  *
  * More: https://drboolean.gitbooks.io/mostly-adequate-guide/content/ch5.html
  */
-import { compose } from '@ngrx/core';
+import { compose } from '@ngrx/store';
 
 /**
  * storeFreeze prevents state from being mutated. When mutation occurs, an
@@ -91,7 +91,7 @@ export interface State {
  * wrapping that in storeLogger. Remember that compose applies
  * the result from right to left.
  */
-const reducers = {
+export const reducers: ActionReducerMap<State> = {
 	query: fromQuery.reducer,
 	userQuery: fromUserQuery.reducer,
 	search: fromSearch.reducer,
@@ -113,17 +113,8 @@ const reducers = {
 	speech: fromSpeech.reducer
 };
 
-const developmentReducer: ActionReducer<State> = compose(storeFreeze, combineReducers)(reducers);
-const productionReducer: ActionReducer<State> = combineReducers(reducers);
-
-export function reducer(state: any, action: any) {
-	if (environment.production) {
-		return productionReducer(state, action);
-	}
-	else {
-		return developmentReducer(state, action);
-	}
-}
+export const metaReducers: MetaReducer<State>[] =
+	!environment.production ? [storeFreeze] : [];
 
 /**
  * A selector function is a map function factory. We pass it parameters and it
@@ -190,7 +181,7 @@ export const getQuerySearchString = createSelector(getQueryState, fromQuery.getQ
 export const getQueryFilterList = createSelector(getQueryState, fromQuery.getFilterList);
 export const getQueryTimeBoundSet = createSelector(getQueryState, fromQuery.getTimeBoundSet);
 export const getQueryLocation = createSelector(getQueryState, fromQuery.getLocation);
-export const getIsFromQuery = createSelector(getQueryState, fromQuery.isFromQuery);
+export const getIsFromQuery = createSelector(getQueryState, fromQuery.getIsFromQuery);
 
 /**
  * Selector for User Query

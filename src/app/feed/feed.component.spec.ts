@@ -18,9 +18,9 @@ import {
 } from '@angular/material';
 import { StoreModule } from '@ngrx/store';
 
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 
-import { reducer } from '../reducers';
+import { reducers } from '../reducers';
 import { RouterStub } from '../../testing';
 import { FeedComponent } from './feed.component';
 import { ApiResponseResult } from '../models/api-response';
@@ -144,7 +144,7 @@ describe('Component: Feed', () => {
 				MatCardModule,
 				MatListModule,
 				MatChipsModule,
-				StoreModule.provideStore(reducer)
+				StoreModule.forRoot({})
 			],
 			declarations: [
 				FeedComponent,

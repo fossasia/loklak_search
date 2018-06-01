@@ -1,10 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Jsonp, Response, URLSearchParams } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/observable/throw';
-import 'rxjs/add/operator/retry';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
+import { catchError, map, retry } from 'rxjs/operators';
+
 
 import { SuggestResponse } from '../models/api-suggest';
 
@@ -17,12 +15,12 @@ export class SuggestService {
 	private static count = '4';
 
 	constructor(
-		private jsonp: Jsonp
+		private http: HttpClient
 	) { }
 
 	// TODO: make the searchParams as configureable model rather than this approach.
 	public fetchQuery(query: string): Observable<SuggestResponse> {
-		const searchParams = new URLSearchParams();
+		const searchParams = new HttpParams();
 		searchParams.set('q', query);
 		searchParams.set('count', SuggestService.count);
 		searchParams.set('callback', 'JSONP_CALLBACK');
@@ -30,18 +28,14 @@ export class SuggestService {
 		searchParams.set('order', SuggestService.order);
 		searchParams.set('orderby', SuggestService.orderby);
 
-		return this.jsonp.get(SuggestService.apiUrl.toString(), {search : searchParams})
-								.map(this.extractData)
-								.retry(2)
-								.catch(this.handleError);
-	}
+		const jsonpUrl = SuggestService.apiUrl.toString() + `?${searchParams.toString()}`;
 
-	private extractData(res: Response): SuggestResponse {
-		try {
-			return <SuggestResponse>res.json();
-		} catch (error) {
-			console.error(error);
-		}
+		return this.http
+			.jsonp<SuggestResponse>(jsonpUrl, 'callback')
+			.pipe(
+				retry(2),
+				catchError(this.handleError)
+			);
 	}
 
 	private handleError (error: any) {
@@ -49,6 +43,6 @@ export class SuggestService {
 		const errMsg = (error.message) ? error.message :
 									error.status ? `${error.status} - ${error.statusText}` : 'Server error';
 		console.error(errMsg); // Right now we are logging to console itself
-		return Observable.throw(errMsg);
+		return throwError(errMsg);
 	}
 }
