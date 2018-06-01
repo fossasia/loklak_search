@@ -14,8 +14,8 @@ import { Location } from '@angular/common';
 import { Title, DOCUMENT } from '@angular/platform-browser';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 
-import { Observable } from 'rxjs/Observable';
-import { Subscription } from 'rxjs/Subscription';
+import { Observable, Subscription, combineLatest } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import { Store } from '@ngrx/store';
 import * as fromRoot from '../reducers';
@@ -28,9 +28,11 @@ import {
 	ApiResponse,
 	ApiResponseMetadata,
 	ApiResponseResult,
-	ApiResponseAggregations } from '../models/api-response';
+	ApiResponseAggregations
+} from '../models/api-response';
 import { SuggestMetadata, SuggestResults, SuggestResponse } from '../models/api-suggest';
 import { Query, parseStringToQuery } from '../models/query';
+import { SuggestQuery } from '../models/suggest';
 import { UserApiResponse } from '../models/api-user-response';
 
 @Component({
@@ -57,7 +59,7 @@ export class FeedComponent implements OnInit, AfterViewInit, OnDestroy {
 	public apiResponseUserFollowers$: Observable<UserApiResponse[]>;
 	public apiResponseUserFollowing$: Observable<UserApiResponse[]>;
 
-	public suggestQuery$: Observable<Query>;
+	public suggestQuery$: Observable<SuggestQuery>;
 	public isSuggestLoading$: Observable<boolean>;
 	public suggestResponse$: Observable<SuggestResults[]>;
 
@@ -179,14 +181,19 @@ export class FeedComponent implements OnInit, AfterViewInit, OnDestroy {
 	 */
 	public doCloseSuggestBox$(): Observable<boolean> {
 		const doCloseSuggestBox =
-			this.isSearching$
-					.combineLatest(this.areResultsAvailable$, (isSearching, areResultsAvailable) => {
-						if (isSearching || !areResultsAvailable) {
-							return false;
-						} else {
-							return true;
-						}
-					});
+			combineLatest(
+				this.isSearching$,
+				this.areResultsAvailable$
+			)
+			.pipe(
+				map((isSearching, areResultsAvailable) => {
+					if (isSearching || !areResultsAvailable) {
+						return false;
+					} else {
+						return true;
+					}
+				})
+			);
 		return doCloseSuggestBox;
 	}
 

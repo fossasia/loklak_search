@@ -24,7 +24,7 @@ describe('MediaWallQueryComponent', () => {
 				BrowserAnimationsModule,
 				MatDialogModule,
 				MatCheckboxModule,
-				StoreModule.provideStore(fromRoot.reducer),
+				StoreModule.forRoot(fromRoot.reducers),
 				FormsModule,
 				ReactiveFormsModule
 			],

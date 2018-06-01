@@ -49,7 +49,7 @@ describe('Component: Home', () => {
 			imports: [
 				RouterTestingModule,
 				ReactiveFormsModule,
-				StoreModule.provideStore(fromRoot.reducer)
+				StoreModule.forRoot(fromRoot.reducers)
 			],
 			declarations: [
 				HomeComponent,

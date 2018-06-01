@@ -51,8 +51,7 @@ export function reducer(state: State = initialState, action: mediaWallAction.Act
 				return Object.assign({}, state, {
 					query
 				});
-			}
-			else {
+			} else {
 				return Object.assign({}, state, {
 					query: {
 						...state.query,

@@ -64,7 +64,7 @@ export function reducer(state: State = initialState, action: mediaWallCustomActi
 					backgroundColor: '#1B2836',
 					accentColor: '#1c94e0'
 				}
-			}
+			};
 			return state;
 		}
 

@@ -7,8 +7,7 @@ export function generateDirectUrl(customization: any): string {
 		if (customization[config] !== undefined && customization[config] !== null) {
 			if (config !== 'blockedUser' && config !== 'hiddenFeedId') {
 				qs += `${config}=${encodeURIComponent(customization[config])}&`;
-			}
-			else {
+			} else {
 				if (customization[config].length > 0) {
 					qs += `${config}= ${encodeURIComponent(customization[config].join(','))}&`;
 				}

@@ -30,7 +30,7 @@ class MediaWallLinkerStubComponent {
 	@Input() unshorten;
 	@Input() useAll;
 	@Input() wallCustomText;
-	@Output() onShowed;
+	@Output() showed;
 }
 
 describe('MediaWallModerationComponent', () => {
@@ -45,7 +45,7 @@ describe('MediaWallModerationComponent', () => {
 				MatSlideToggleModule,
 				MatCheckboxModule,
 				MatSelectModule,
-				StoreModule.provideStore(fromRoot.reducer),
+				StoreModule.forRoot(fromRoot.reducers),
 				FormsModule,
 				ReactiveFormsModule,
 				MasonryModule,

@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, ChangeDetectionStrategy, ChangeDetectorRef, Output, EventEmitter } from '@angular/core';
 import { ApiResponseResult } from '../../models/api-response';
-import { Observable } from 'rxjs/Rx';
+import { Observable, timer } from 'rxjs';
 import { BrowserModule, DomSanitizer } from '@angular/platform-browser';
 import { WallCard } from '../../models';
 
@@ -20,8 +20,8 @@ export class MediaWallFluidCardComponent implements OnInit {
 	}
 
 	ngOnInit() {
-		const timer = Observable.timer(0, 10000);
-		timer.subscribe(t => this.ttt());
+		const tr = timer(0, 10000);
+		tr.subscribe(t => this.ttt());
 		this.filterValidImageURLS();
 	}
 
@@ -89,22 +89,17 @@ export class MediaWallFluidCardComponent implements OnInit {
 			const sinceSec = Math.round((todaytime - tweettime) / 1000);
 			if (sinceSec <= 24) {
 				since = 'now';
-			}
-			else {
+			} else {
 				since = sinceSec + 's';
 			}
-		}
-		else if (sinceMin >= 1 && sinceMin < 60) {
+		} else if (sinceMin >= 1 && sinceMin < 60) {
 			since = sinceMin + 'm';
-		}
-		else if (sinceMin < 1440) {
+		} else if (sinceMin < 1440) {
 			const sinceHr = Math.round(sinceMin / 60);
 			since = sinceHr + 'h ago';
-		}
-		else if (date2.getFullYear() === now) {
+		} else if (date2.getFullYear() === now) {
 			since = months[date2.getMonth()] + ' ' + date2.getDate();
-		}
-		else {
+		} else {
 			since = date2.getDate() + ' ' + months[date2.getMonth()] + ' ' + date2.getFullYear();
 		}
 

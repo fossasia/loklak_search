@@ -2,8 +2,8 @@ import { Component, OnInit, OnDestroy, ChangeDetectionStrategy, ElementRef, Chan
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
-import { Subscription } from 'rxjs/Subscription';
-import { Observable } from 'rxjs/Observable';
+
+import { Observable, Subscription } from 'rxjs';
 
 import { Store } from '@ngrx/store';
 import * as fromRoot from '../reducers';
@@ -86,16 +86,17 @@ export class HomeComponent implements OnInit, OnDestroy {
 
 	private getDataFromStore() {
 		this.__subscriptions__.push(
-			this.store.select(fromRoot.getApiHashtagTrends)
-								.subscribe(trends => {
-									if (!trends || !trends.aggregations.hashtags) {
-										return;
-									}
-									Object.keys(trends.aggregations.hashtags).forEach(hashtag => {
-										this.trendingHashtagList.push(hashtag);
-									});
-									this.changeDetectorRef.detectChanges();
-								})
+			this.store
+				.select(fromRoot.getApiHashtagTrends)
+				.subscribe(trends => {
+					if (!trends || !trends.aggregations.hashtags) {
+						return;
+					}
+					Object.keys(trends.aggregations.hashtags).forEach(hashtag => {
+						this.trendingHashtagList.push(hashtag);
+					});
+					this.changeDetectorRef.detectChanges();
+				})
 		);
 
 	}

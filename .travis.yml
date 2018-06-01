@@ -4,7 +4,7 @@ dist: trusty
 language: node_js
 
 node_js:
-  - 6
+  - 8.11
 
 cache:
   directories:
@@ -27,11 +27,10 @@ matrix:
       - ng build --prod --aot --build-optimizer
 
   - script:
-      - ng test --single-run --code-coverage --reporters=coverage-istanbul
+      - ng test --watch=false --code-coverage
 
   - script:
-      - ng lint --format=stylish
-      - docker build -t loklak_server .
+      - ng lint loklak-search --format=stylish
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)

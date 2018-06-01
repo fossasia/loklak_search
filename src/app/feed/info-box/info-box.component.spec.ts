@@ -5,7 +5,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
 import { StoreModule } from '@ngrx/store';
 import { InfoBoxComponent } from './info-box.component';
-import { reducer } from '../../reducers';
+import { reducers } from '../../reducers';
 
 describe('Component: InfoBox', () => {
 	beforeEach(() => {
@@ -13,7 +13,7 @@ describe('Component: InfoBox', () => {
 			imports: [
 				RouterTestingModule,
 				ChartsModule,
-				StoreModule.provideStore(reducer)
+				StoreModule.forRoot(reducers)
 			],
 			declarations: [
 				InfoBoxComponent
