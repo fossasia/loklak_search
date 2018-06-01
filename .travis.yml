@@ -40,4 +40,4 @@ after_success:
 # safelist
 branches:
   only:
-  - master
+  - development
