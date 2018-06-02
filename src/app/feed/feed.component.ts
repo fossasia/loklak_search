@@ -10,8 +10,8 @@ import {
 } from '@angular/core';
 
 import { FormControl } from '@angular/forms';
-import { Location } from '@angular/common';
-import { Title, DOCUMENT } from '@angular/platform-browser';
+import { Location, DOCUMENT } from '@angular/common';
+import { Title } from '@angular/platform-browser';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 
 import { Observable, Subscription, combineLatest } from 'rxjs';
