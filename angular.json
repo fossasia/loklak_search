@@ -27,7 +27,7 @@
 							"src/manifest.json"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles/main.scss"
             ],
             "scripts": [
 							"./node_modules/wicg-inert/dist/inert.min.js"
