@@ -37,6 +37,12 @@ after_success:
   - bash ./pr_deploy.sh
   - bash ./deploy.sh
 
+deploy:
+  provider: surge
+  project: ./dist
+  domain: https://development-test-LoklakSearch.surge.sh
+  on: development
+
 # safelist
 branches:
   only:
