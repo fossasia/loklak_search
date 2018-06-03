@@ -8,15 +8,14 @@ import { Component, OnInit, ElementRef, HostListener } from '@angular/core';
 export class ServiceBoxComponent implements OnInit {
 	public opened = false;
 
-	@HostListener('document:click') onClick(event) {
+@HostListener('document: click', ['$event'])
+boxClose(event: Event) {
 		if (!this._eref.nativeElement.contains(event.target)) {
 			this.opened = false;
+			}
 		}
 
-	}
+constructor(private _eref: ElementRef) { }
 
-	constructor(private _eref: ElementRef) { }
-
-	ngOnInit() {
-	}
+ngOnInit() {}
 }
