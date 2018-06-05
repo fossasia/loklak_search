@@ -32,6 +32,7 @@ import {
 import { SuggestMetadata, SuggestResults, SuggestResponse } from '../models/api-suggest';
 import { Query, parseStringToQuery } from '../models/query';
 import { UserApiResponse } from '../models/api-user-response';
+import { ShareNewsStatusService } from '../services/share-news-status.service';
 
 @Component({
 	selector: 'app-feed',
@@ -69,6 +70,7 @@ export class FeedComponent implements OnInit, AfterViewInit, OnDestroy {
 		private store: Store<fromRoot.State>,
 		private elementRef: ElementRef,
 		private titleService: Title,
+		public shareNewsStatus: ShareNewsStatusService,
 		@Inject(DOCUMENT) private document: Document
 	) {
 		this.getTopHashtags();

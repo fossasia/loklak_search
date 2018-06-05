@@ -9,13 +9,14 @@ import {
 	ElementRef
 } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import * as fromRoot from '../../reducers';
 import * as queryAction from '../../actions/query';
 
 import { Query, FilterList, TimeBound } from '../../models';
 import { countrycodearray } from '../../shared/countrycode/countrycode';
+import { ShareNewsStatusService } from '../../services/share-news-status.service';
 
 @Component({
 	selector: 'feed-advanced-search',
@@ -49,8 +50,10 @@ export class FeedAdvancedSearchComponent implements OnInit {
 	private location = null;
 
 	constructor(
+		private router: Router,
 		private store: Store<fromRoot.State>,
-		private elementRef: ElementRef
+		private elementRef: ElementRef,
+		private sharedNewsStatus: ShareNewsStatusService
 	) { }
 
 	ngOnInit() {
@@ -72,6 +75,7 @@ export class FeedAdvancedSearchComponent implements OnInit {
 
 	public getFilterResults(value: string) {
 		if (value === 'all') {
+			this.sharedNewsStatus.changeStatus(false);
 			this.selectedTab = 'all';
 			this.filterList = {
 				image: false,
@@ -79,6 +83,7 @@ export class FeedAdvancedSearchComponent implements OnInit {
 			};
 		}
 		else if (value === 'image') {
+			this.sharedNewsStatus.changeStatus(false);
 			this.selectedTab = 'image';
 			this.filterList = {
 				image: true,
@@ -86,13 +91,19 @@ export class FeedAdvancedSearchComponent implements OnInit {
 			};
 		}
 		else if (value === 'video') {
+			this.sharedNewsStatus.changeStatus(false);
 			this.selectedTab = 'video';
 			this.filterList = {
 				image: false,
 				video: true
 			};
 		}
+		else if (value === 'news') {
+			this.selectedTab = 'news';
+			this.sharedNewsStatus.changeStatus(true);
+		}
 		else {
+			this.sharedNewsStatus.changeStatus(false);
 			this.selectedTab = 'all';
 			this.filterList = {
 				image: false,

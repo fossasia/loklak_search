@@ -1,0 +1,20 @@
+@import "../feed.component.scss";
+
+.searching {
+	border-radius: 50%;
+	margin: 13% 72.5% auto;
+	width: 100px;
+	height: 100px;
+	border: 5px solid var(--accent-color, $accent-color);
+	border-top-color: rgba(216,97,96,0.2);
+	animation: spin 1s infinite linear;
+	margin-bottom: 20px;
+}
+
+.searching-message {
+	word-break: break-word;
+	font-size: 1.5em;
+	text-align: center;
+	padding: 10px;
+	margin: 6% -25.5% 23% 38%;
+}
