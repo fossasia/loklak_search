@@ -5,10 +5,10 @@
 	<div *ngIf="(!isUserResponseLoading)" class="wrapper">
 		<div class="image-gallery">
 			<div class="profile-banner-image">
-				<img class="banner" src="{{ apiResponseUser.profile_banner_url }}"/>
+				<img class="banner" src="{{ apiResponseUser.profile_banner_url }}" onError="this.src='./assets/images/default600x200.jpg';"/>
 			</div>
 			<div class="profile-image">
-				<img src="{{ apiResponseUser.profile_image_url }}"/>
+				<img src="{{ apiResponseUser.profile_image_url }}" onError="this.src='./assets/images/def65.jpg';"/>
 			</div>
 		</div>
 		<div>
@@ -56,7 +56,7 @@
 				<li class="gallery-item"  *ngFor="let item of (sortedApiResponseUserFollowers.slice(0,3)); let i = index ">
 					<a [routerLink]="['/search']" [queryParams]="{ query : 'from:' + item.screen_name }">
 						<div class="item-image">
-							<img src="{{ item.profile_image_url }}"/>
+							<img src="{{ item.profile_image_url }}" onError="this.src='./assets/images/def94.jpg';"/>
 						</div>
 						<div class="item-desc">
 							<div class="item-name">
@@ -79,7 +79,7 @@
 				<li class="gallery-item"  *ngFor="let item of (sortedApiResponseUserFollowing.slice(0,3)); let i = index ">
 					<a [routerLink]="['/search']" [queryParams]="{ query : 'from:' + item.screen_name }">
 						<div class="item-image">
-							<img src="{{ item.profile_image_url }}"/>
+							<img src="{{ item.profile_image_url }}" onError="this.src='./assets/images/def94.jpg';"/>
 						</div>
 						<div class="item-desc">
 							<div class="item-name">
