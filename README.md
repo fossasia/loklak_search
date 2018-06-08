@@ -93,4 +93,4 @@ We have the following branches:
 
 ## License
 
-This project is currently licensed under The MIT License (MIT). A copy of LICENSE.md should be present along with the source code. To obtain the software under a different license, please contact FOSSASIA.
+This project is currently licensed under [GNU Lesser General Public License v3.0](./LICENSE). To obtain the software under a different license, please contact FOSSASIA.
