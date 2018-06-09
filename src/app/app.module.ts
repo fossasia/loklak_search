@@ -8,6 +8,7 @@ import { EffectsModule } from '@ngrx/effects';
 
 import { JsonpModule } from '@angular/http';
 import { SpeechService } from './services/speech.service';
+import { ShareNewsStatusService } from './services/share-news-status.service';
 
 import { reducer } from './reducers';
 import {
@@ -126,7 +127,8 @@ import { SpeechComponent } from './speech/speech.component';
 		SearchService,
 		UserService,
 		SuggestService,
-		SpeechService
+		SpeechService,
+		ShareNewsStatusService
 	],
 	bootstrap: [AppComponent]
 })

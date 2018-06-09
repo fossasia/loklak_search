@@ -11,6 +11,7 @@ import {
 } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { reducer } from '../../reducers';
+import { ShareNewsStatusService } from '../../services/share-news-status.service';
 
 describe('Component: FeedAdvancedSearchComponent', () => {
 	beforeEach(() => {
@@ -26,6 +27,9 @@ describe('Component: FeedAdvancedSearchComponent', () => {
 			],
 			declarations: [
 				FeedAdvancedSearchComponent
+			],
+			providers: [
+				ShareNewsStatusService
 			]
 		});
 	});

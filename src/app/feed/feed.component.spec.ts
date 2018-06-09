@@ -26,7 +26,8 @@ import { FeedComponent } from './feed.component';
 import { ApiResponseResult } from '../models/api-response';
 import { SpeechService } from '../services/speech.service';
 import { SpeechComponent } from '../speech/speech.component';
-
+import { FeedNewsComponent } from './feed-news/feed-news.component';
+import { ShareNewsStatusService } from '../services/share-news-status.service';
 
 @Component({
 	selector: 'feed-header',
@@ -159,9 +160,13 @@ describe('Component: Feed', () => {
 				UserInfoBoxStubComponent,
 				FeedUserCardStubComponent,
 				FeedLightboxStubComponent,
-				SpeechComponent
+				SpeechComponent,
+				FeedNewsComponent
 			],
-			providers: [ SpeechService ]
+			providers: [
+				SpeechService,
+				ShareNewsStatusService
+			]
 		});
 	});
 

@@ -4,6 +4,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { FeedCardComponent } from './feed-card.component';
+import { ShareNewsStatusService } from '../../services/share-news-status.service';
 
 @Component({
 	selector: 'app-lazy-img',
@@ -42,6 +43,9 @@ describe('Component: FeedCard', () => {
 				FeedCardComponent,
 				FeedLinkerStubComponent,
 				LazyImgStubComponent
+			],
+			providers: [
+				ShareNewsStatusService
 			]
 		});
 	});

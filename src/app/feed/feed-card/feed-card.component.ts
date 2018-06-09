@@ -25,6 +25,7 @@ export class FeedCardComponent implements OnInit {
 	}
 
 	ngOnInit() {
+		console.log(this.feedItem["screen_name"]);
 		const timer = Observable.timer(0, 10000);
 		timer.subscribe(t => this.ttt());
 		this.filterValidImageURLS();

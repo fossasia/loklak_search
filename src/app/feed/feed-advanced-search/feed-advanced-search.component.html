@@ -12,6 +12,10 @@
 			(click)="getFilterResults($event.currentTarget.value)">
 			Videos
 		</button>
+		<button [class.selected]="selectedTab === 'news'" class="tab" value="news"
+			(click)="getFilterResults($event.currentTarget.value)">
+			News
+		</button>
 	</div>
 
 	<div class="tools">

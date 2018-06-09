@@ -14,6 +14,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { reducer } from '../../reducers';
 import { SpeechService } from '../../services/speech.service';
 import { SpeechComponent } from '../../speech/speech.component';
+import { ShareNewsStatusService } from '../../services/share-news-status.service';
 
 @Component({
 	selector: 'service-box',
@@ -40,7 +41,10 @@ describe('Component: FeedHeader', () => {
 				ServiceBoxStubComponent,
 				SpeechComponent
 			],
-			providers: [ SpeechService ]
+			providers: [
+				SpeechService,
+				ShareNewsStatusService
+			]
 		});
 	});
 
