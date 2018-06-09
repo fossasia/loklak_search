@@ -1,3 +1,4 @@
+import { HttpModule } from '@angular/http';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -89,7 +90,8 @@ import { FeedNewsComponent } from './feed-news/feed-news.component';
 
 		 * Module for lazy image loading.
 		 */
-		LazyImgModule
+		LazyImgModule,
+		HttpModule
 	],
 	declarations: [
 		FeedComponent,

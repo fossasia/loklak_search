@@ -8,8 +8,8 @@
 </div>
 <div class="feed-wrapper" *ngIf="!(isSearching$ | async)">
 	<div class="wrapper feed-results">
-	  <div *ngFor="let item of (apiResponseResults$ | async); let i = index ">
-		<feed-card [feedItem]="item" [feedIndex]="i"></feed-card>
+			<div *ngFor="let item of (apiResponseResults$ | async); let i = index ">
+				<feed-card [feedItem]="item" [feedIndex]="i"></feed-card>
 	  </div>
 	</div>
 </div>

@@ -1,10 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import * as fromRoot from '../../reducers';
-import { Query } from '../../models/query';
+import * as queryAction from '../../actions/query';
 import * as searchAction from '../../actions/api';
 import { ApiResponseResult } from '../../models/api-response';
+
+export interface newsQuery {
+	displayString: string;
+	queryString: string;
+	routerString: string;
+	filter: { video: boolean, image: boolean };
+	location: null;
+	timeBound: { since: Date, until: Date };
+	from: boolean;
+}
 
 @Component({
 	selector: 'app-feed-news',
@@ -15,30 +26,45 @@ export class FeedNewsComponent implements OnInit {
 
 	public isSearching$: Observable<boolean>;
 	public apiResponseResults$: Observable<ApiResponseResult[]>;
-	searchQuery: Query = {
-		displayString: 'from:CNN',
-		queryString: 'from:CNN',
-		routerString: 'from:CNN',
-		filter: { video: false, image: false },
-		location: null,
-		timeBound: { since: null, until: null },
-		from: true
-	}
+	public apiresponse: Array<ApiResponseResult[]> = [];
+	public newsObservables: any[] = [];
 	constructor(
-		private store: Store<fromRoot.State>
+		private store: Store<fromRoot.State>,
+		private http: Http
 	) { }
 
 	ngOnInit() {
-		this.queryFromURL();
-		this.getDataFromStore();
+		this.store.dispatch(new queryAction.RelocationAfterQueryResetAction());
+		this.newsOrgFromJson();
 	}
 
-	private queryFromURL(): void {
-		this.store.dispatch(new searchAction.SearchAction(this.searchQuery));
+	newsOrgFromJson() {
+		this.http.get('assets/NewsOrg.json').map((res: Response) => res.json())
+			.subscribe(res => {
+				for(let i = 0; i < res["Org"].length; i++) {
+					let extracted = 'from:' + res["Org"][i];
+					let searchQuery: newsQuery = {
+						displayString: '' + extracted,
+						queryString: '' + extracted,
+						routerString: '' + extracted,
+						filter: { video: false, image: false },
+						location: null,
+						timeBound: { since: null, until: null },
+						from: true
+					}
+					this.queryFromURL(searchQuery);
+					this.getDataFromStore().subscribe(value => this.apiresponse.push(value));	
+				}
+		});
 	}
 
-	private getDataFromStore(): void {
+	private queryFromURL(searchQuery: newsQuery): void {
+		this.store.dispatch(new searchAction.SearchAction(searchQuery));
+	}
+
+	private getDataFromStore(): Observable<ApiResponseResult[]> {
 		this.isSearching$ = this.store.select(fromRoot.getSearchLoading);
 		this.apiResponseResults$ = this.store.select(fromRoot.getApiResponseEntities);
+		return this.apiResponseResults$;
 	}
 }
