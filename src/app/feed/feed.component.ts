@@ -9,27 +9,24 @@ import {
 	Inject
 } from '@angular/core';
 
-import { FormControl } from '@angular/forms';
 import { Location } from '@angular/common';
-import { Title, DOCUMENT } from '@angular/platform-browser';
-import { Router, ActivatedRoute, Params } from '@angular/router';
+import { DOCUMENT } from '@angular/platform-browser';
+import { ActivatedRoute, Params } from '@angular/router';
 
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 
 import { Store } from '@ngrx/store';
 import * as fromRoot from '../reducers';
-import * as apiAction from '../actions/api';
+import * as titleAction from '../actions/title';
 import * as queryAction from '../actions/query';
 import * as paginationAction from '../actions/pagination';
 import * as suggestAction from '../actions/suggest';
 
 import {
-	ApiResponse,
-	ApiResponseMetadata,
 	ApiResponseResult,
 	ApiResponseAggregations } from '../models/api-response';
-import { SuggestMetadata, SuggestResults, SuggestResponse } from '../models/api-suggest';
+import { SuggestResults } from '../models/api-suggest';
 import { Query, parseStringToQuery } from '../models/query';
 import { UserApiResponse } from '../models/api-user-response';
 
@@ -68,7 +65,6 @@ export class FeedComponent implements OnInit, AfterViewInit, OnDestroy {
 		private location: Location,
 		private store: Store<fromRoot.State>,
 		private elementRef: ElementRef,
-		private titleService: Title,
 		@Inject(DOCUMENT) private document: Document
 	) {
 		this.getTopHashtags();
@@ -129,6 +125,7 @@ export class FeedComponent implements OnInit, AfterViewInit, OnDestroy {
 					const query: Query = parseStringToQuery(queryParam);
 					this.store.dispatch(new queryAction.RelocationAfterQuerySetAction());
 					this.store.dispatch(new queryAction.QueryChangeAction(query));
+					this.store.dispatch(new titleAction.SetTitleAction(query.displayString));
 					this.store.dispatch(new suggestAction.SuggestAction(query.displayString));
 					this.store.dispatch(new paginationAction.RevertPaginationState(''));
 				})

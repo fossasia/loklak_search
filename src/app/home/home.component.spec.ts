@@ -72,16 +72,6 @@ describe('Component: Home', () => {
 		expect(component).toBeTruthy();
 	}));
 
-	it('should have a title Loklak Search', () => {
-		const fixture = TestBed.createComponent(HomeComponent);
-		fixture.detectChanges();
-		const component = fixture.debugElement.componentInstance;
-
-		homeTitle = TestBed.get(Title);
-		expect(homeTitle.getTitle())
-		.toBe('Loklak Search - Distributed Open Source Search for Twitter and Social Media with Peer to Peer Technology');
-	});
-
 	it('should have logo with correct alt text property', async(() => {
 		const fixture = TestBed.createComponent(HomeComponent);
 		fixture.detectChanges();
