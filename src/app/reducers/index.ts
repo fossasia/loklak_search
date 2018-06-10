@@ -43,6 +43,7 @@ import * as fromUserQuery from './user-query';
 import * as fromSearch from './search';
 import * as fromUserSearch from './user-search';
 import * as fromTrends from './trends';
+import * as fromTitle from './title';
 import * as fromApiResponse from './api-response';
 import * as fromApiTrendsResponse from './api-trends-response';
 import * as fromPagination from './pagination';
@@ -82,6 +83,7 @@ export interface State {
 	mediaWallDesign: fromMediaWallDesign.State;
 	mediaWallDirectUrl: fromMediaWallDirectUrl.State;
 	speech: fromSpeech.State;
+	title: fromTitle.State;
 }
 
 /**
@@ -97,6 +99,7 @@ const reducers = {
 	search: fromSearch.reducer,
 	userSearch: fromUserSearch.reducer,
 	trends: fromTrends.reducer,
+	title: fromTitle.reducer,
 	apiResponse: fromApiResponse.reducer,
 	apiTrendsResponse: fromApiTrendsResponse.reducer,
 	pagination: fromPagination.reducer,
@@ -243,6 +246,13 @@ export const getSuggestServiceLastResponse = createSelector(getSuggestResponseSt
 export const getTrendsState = (state: State) => state.trends;
 
 export const getAreTrendsLoading = createSelector(getTrendsState, fromTrends.getLoading);
+
+/**
+ * Selectors For Title
+ */
+export const getTitleState = (state: State) => state.title;
+
+export const getTitle = createSelector(getTitleState, fromTitle.getTitle);
 
 /**
  * Selectors For ApiTrendsResponse
