@@ -135,24 +135,6 @@ export class ApiSearchEffects {
 				})
 			);
 
-	@Effect({ dispatch: false })
-	resetTitleAfterSearchSuccess$: Observable<void> = this.actions$
-		.pipe(
-			ofType(
-				apiAction.ActionTypes.SEARCH_COMPLETE_SUCCESS,
-				apiAction.ActionTypes.SEARCH_COMPLETE_FAIL
-			),
-			withLatestFrom(this.store$),
-			map(([action, state]) => {
-				const displayString = state.query.displayString;
-				let title = `${displayString} - Loklak Search`;
-				if (action.type === apiAction.ActionTypes.SEARCH_COMPLETE_FAIL) {
-					title += ' - No Results';
-				}
-				this.titleService.setTitle(title);
-			})
-		);
-
 	@Effect()
 	wallSearchAction$: Observable<Action> = this.actions$
 		.pipe(

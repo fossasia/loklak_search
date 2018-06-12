@@ -1,7 +1,6 @@
-import { Component, OnInit, OnDestroy, ChangeDetectionStrategy, ElementRef, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectionStrategy, ElementRef, ChangeDetectorRef, AfterContentChecked } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Title } from '@angular/platform-browser';
 
 import { Observable, Subscription } from 'rxjs';
 
@@ -12,8 +11,7 @@ import * as trendsAction from '../actions/trends';
 import * as suggestAction from '../actions/suggest';
 import * as speechactions from '../actions/speech';
 
-import { Query, ApiResponseTrendingHashtags } from '../models';
-import { SpeechService } from '../services/speech.service';
+import * as titleAction from '../actions/title';
 
 @Component({
 	selector: 'app-home',
@@ -21,7 +19,7 @@ import { SpeechService } from '../services/speech.service';
 	styleUrls: ['./home.component.scss'],
 	changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class HomeComponent implements OnInit, OnDestroy {
+export class HomeComponent implements OnInit, OnDestroy, AfterContentChecked {
 	private __subscriptions__: Subscription[] = new Array<Subscription>();
 	public headerImageUrl = 'assets/images/cow_150x175.png';
 	public _queryControl: FormControl = new FormControl();
@@ -34,9 +32,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 		private router: Router,
 		private elementRef: ElementRef,
 		private changeDetectorRef: ChangeDetectorRef,
-		private store: Store<fromRoot.State>,
-		private titleService: Title,
-		private speech: SpeechService
+		private store: Store<fromRoot.State>
 	) {
 		this.hidespeech = store.select(fromRoot.getspeechStatus);
 		this.getHashTagsFromLastDay();
@@ -48,7 +44,8 @@ export class HomeComponent implements OnInit, OnDestroy {
 	}
 
 	ngOnInit() {
-		this.titleService.setTitle('Loklak Search - Distributed Open Source Search for Twitter and Social Media with Peer to Peer Technology');
+		this.store.dispatch(new titleAction.SetTitleAction('Loklak Search - ' +
+			'Distributed Open Source Search for Twitter and Social Media with Peer to Peer Technology'));
 		this.focusTextbox();
 		this.setupSearchField();
 		this.getDataFromStore();
@@ -75,6 +72,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 					this.store.dispatch(new suggestAction.SuggestAction(value));
 					this.store.dispatch(new queryAction.InputValueChangeAction(value));
 					this.router.navigate([`/search`], { queryParams: { query: value }, skipLocationChange: true } );
+					this.store.dispatch(new titleAction.SetTitleAction(value + ' - Loklak Search'));
 				}
 			)
 		);
@@ -82,6 +80,11 @@ export class HomeComponent implements OnInit, OnDestroy {
 
 	private getTopHashtags() {
 		this.store.dispatch(new trendsAction.SearchTrendingHashtagsAction());
+	}
+
+	ngAfterContentChecked() {
+		this.store.dispatch(new titleAction.SetTitleAction('Loklak Search - ' +
+			'Distributed Open Source Search for Twitter and Social Media with Peer to Peer Technology'));
 	}
 
 	private getDataFromStore() {

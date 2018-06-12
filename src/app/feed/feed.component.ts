@@ -10,7 +10,6 @@ import {
 } from '@angular/core';
 
 import { Location, DOCUMENT } from '@angular/common';
-import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Params } from '@angular/router';
 
 import { Observable, Subscription, combineLatest } from 'rxjs';
@@ -18,6 +17,7 @@ import { map } from 'rxjs/operators';
 
 import { Store } from '@ngrx/store';
 import * as fromRoot from '../reducers';
+import * as titleAction from '../actions/title';
 import * as queryAction from '../actions/query';
 import * as paginationAction from '../actions/pagination';
 import * as suggestAction from '../actions/suggest';
@@ -66,7 +66,6 @@ export class FeedComponent implements OnInit, AfterViewInit, OnDestroy {
 		private location: Location,
 		private store: Store<fromRoot.State>,
 		private elementRef: ElementRef,
-		private titleService: Title,
 		@Inject(DOCUMENT) private document: Document
 	) {
 		this.getTopHashtags();
@@ -155,6 +154,9 @@ export class FeedComponent implements OnInit, AfterViewInit, OnDestroy {
 		this.suggestQuery$ = this.store.select(fromRoot.getSuggestQuery);
 		this.isSuggestLoading$ = this.store.select(fromRoot.getSuggestLoading);
 		this.suggestResponse$ = this.store.select(fromRoot.getSuggestResponseEntities);
+		this.query$.subscribe(displayString =>
+			this.store.dispatch(new titleAction.SetTitleAction(displayString.displayString + ' - Loklak Search'
+		)));
 	}
 
 	/**
