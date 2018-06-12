@@ -39,9 +39,11 @@ after_success:
 
 deploy:
   provider: surge
-  project: ./dist
-  domain: https://development-test-LoklakSearch.surge.sh
-  on: development
+  skip_cleanup: true
+  local_dir: dist
+  domain: http://loklak.surge.sh
+  on:
+    branch: development
 
 # safelist
 branches:
