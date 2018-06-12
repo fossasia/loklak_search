@@ -42,6 +42,7 @@ import * as fromQuery from './query';
 import * as fromUserQuery from './user-query';
 import * as fromSearch from './search';
 import * as fromUserSearch from './user-search';
+import * as fromTitle from './title';
 import * as fromTrends from './trends';
 import * as fromApiResponse from './api-response';
 import * as fromApiTrendsResponse from './api-trends-response';
@@ -82,6 +83,7 @@ export interface State {
 	mediaWallDesign: fromMediaWallDesign.State;
 	mediaWallDirectUrl: fromMediaWallDirectUrl.State;
 	speech: fromSpeech.State;
+	title: fromTitle.State;
 }
 
 /**
@@ -97,6 +99,7 @@ export const reducers: ActionReducerMap<State> = {
 	search: fromSearch.reducer,
 	userSearch: fromUserSearch.reducer,
 	trends: fromTrends.reducer,
+	title: fromTitle.reducer,
 	apiResponse: fromApiResponse.reducer,
 	apiTrendsResponse: fromApiTrendsResponse.reducer,
 	pagination: fromPagination.reducer,
@@ -241,6 +244,13 @@ export const getAreTrendsLoading = createSelector(getTrendsState, fromTrends.get
 export const getApiTrendsResponseState = (state: State) => state.apiTrendsResponse;
 
 export const getApiHashtagTrends = createSelector(getApiTrendsResponseState, fromApiTrendsResponse.getHashtags);
+
+/**
+ * Selectors For Title
+ */
+export const getTitleState = (state: State) => state.title;
+
+export const getTitle = createSelector(getTitleState, fromTitle.getTitle);
 
 /**
  * Selectors for Media Wall Query
