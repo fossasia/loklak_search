@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { catchError, map, retry } from 'rxjs/operators';
+import { catchError, retry } from 'rxjs/operators';
 
 import { UserResponse } from '../models/api-user-response';
 
 @Injectable()
 export class UserService {
-	private static readonly apiUrl: URL = new URL('https://api.loklak.org/api/user.json');
+
 	private static minified_results = true;
 	private static followers = '4';
 	private static following = '4';
@@ -19,14 +19,12 @@ export class UserService {
 	// TODO: make the searchParams as configureable model rather than this approach.
 	public fetchQuery(user: string): Observable<UserResponse> {
 		const screen_name = user.charAt(0).toUpperCase() + user.slice(1);
-		const searchParams = new HttpParams();
-		searchParams.set('screen_name', screen_name);
-		searchParams.set('followers', UserService.followers);
-		searchParams.set('following', UserService.following);
-		searchParams.set('callback', 'JSONP_CALLBACK');
-		searchParams.set('minified', UserService.minified_results.toString());
 
-		const jsonpUrl = UserService.apiUrl.toString() + `?${searchParams.toString()}`;
+		const jsonpUrl = 'https://api.loklak.org/api/user.json' +
+							'?screen_name=' + screen_name +
+							'&followers=' + UserService.followers +
+							'&following=' + UserService.following +
+							'&minified=' + UserService.minified_results.toString();
 
 		return this.http
 			.jsonp<UserResponse>(jsonpUrl, 'callback')

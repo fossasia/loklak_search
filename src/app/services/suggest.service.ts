@@ -1,14 +1,13 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { catchError, map, retry } from 'rxjs/operators';
+import { catchError, retry } from 'rxjs/operators';
 
 
 import { SuggestResponse } from '../models/api-suggest';
 
 @Injectable()
 export class SuggestService {
-	private static apiUrl: URL = new URL('https://api.loklak.org/api/suggest.json');
 	private static minified_results = true;
 	private static order = 'desc';
 	private static orderby = 'query_count';
@@ -20,15 +19,13 @@ export class SuggestService {
 
 	// TODO: make the searchParams as configureable model rather than this approach.
 	public fetchQuery(query: string): Observable<SuggestResponse> {
-		const searchParams = new HttpParams();
-		searchParams.set('q', query);
-		searchParams.set('count', SuggestService.count);
-		searchParams.set('callback', 'JSONP_CALLBACK');
-		searchParams.set('minified', SuggestService.minified_results.toString());
-		searchParams.set('order', SuggestService.order);
-		searchParams.set('orderby', SuggestService.orderby);
 
-		const jsonpUrl = SuggestService.apiUrl.toString() + `?${searchParams.toString()}`;
+		const jsonpUrl = 'https://api.loklak.org/api/suggest.json' +
+							'?q=' + query +
+							'&count=' + SuggestService.count +
+							'&minified=' + SuggestService.minified_results.toString() +
+							'&order=' + SuggestService.order +
+							'&orderby=' + SuggestService.orderby;
 
 		return this.http
 			.jsonp<SuggestResponse>(jsonpUrl, 'callback')

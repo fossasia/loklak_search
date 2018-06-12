@@ -3,7 +3,7 @@ import { Location } from '@angular/common';
 import { Title } from '@angular/platform-browser';
 import { Store, Action } from '@ngrx/store';
 import { Effect, Actions, ofType } from '@ngrx/effects';
-import { Observable, of, empty } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import {
 	catchError,
 	map,
@@ -21,7 +21,6 @@ import * as queryAction from '../actions/query';
 import * as trendsAction from '../actions/trends';
 import * as wallAction from '../actions/media-wall';
 import * as wallPaginationAction from '../actions/media-wall-pagination';
-import { ApiResponse } from '../models';
 import { parseDateToApiAcceptedFormat } from '../utils';
 
 /**

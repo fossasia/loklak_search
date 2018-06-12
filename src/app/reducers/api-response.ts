@@ -1,5 +1,4 @@
-import { createSelector } from 'reselect';
-import { ApiResponse, ApiResponseResult, ApiResponseMetadata, ApiResponseUser, ApiResponseAggregations } from '../models/api-response';
+import { ApiResponse, ApiResponseResult, ApiResponseAggregations } from '../models/api-response';
 import * as apiAction from '../actions/api';
 import * as paginationAction from '../actions/pagination';
 

@@ -9,28 +9,24 @@ import {
 	Inject
 } from '@angular/core';
 
-import { FormControl } from '@angular/forms';
 import { Location, DOCUMENT } from '@angular/common';
 import { Title } from '@angular/platform-browser';
-import { Router, ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params } from '@angular/router';
 
 import { Observable, Subscription, combineLatest } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { Store } from '@ngrx/store';
 import * as fromRoot from '../reducers';
-import * as apiAction from '../actions/api';
 import * as queryAction from '../actions/query';
 import * as paginationAction from '../actions/pagination';
 import * as suggestAction from '../actions/suggest';
 
 import {
-	ApiResponse,
-	ApiResponseMetadata,
 	ApiResponseResult,
 	ApiResponseAggregations
 } from '../models/api-response';
-import { SuggestMetadata, SuggestResults, SuggestResponse } from '../models/api-suggest';
+import { SuggestResults } from '../models/api-suggest';
 import { Query, parseStringToQuery } from '../models/query';
 import { SuggestQuery } from '../models/suggest';
 import { UserApiResponse } from '../models/api-user-response';
