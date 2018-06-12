@@ -3,7 +3,7 @@ import { Location } from '@angular/common';
 import { Title } from '@angular/platform-browser';
 import { Store, Action } from '@ngrx/store';
 import { Effect, Actions, ofType } from '@ngrx/effects';
-import { Observable, of, empty } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import {
 	catchError,
 	map,
@@ -21,7 +21,6 @@ import * as queryAction from '../actions/query';
 import * as trendsAction from '../actions/trends';
 import * as wallAction from '../actions/media-wall';
 import * as wallPaginationAction from '../actions/media-wall-pagination';
-import { ApiResponse } from '../models';
 import { parseDateToApiAcceptedFormat } from '../utils';
 
 /**
@@ -135,24 +134,6 @@ export class ApiSearchEffects {
 					return new queryAction.RelocationAfterQueryResetAction();
 				})
 			);
-
-	@Effect({ dispatch: false })
-	resetTitleAfterSearchSuccess$: Observable<void> = this.actions$
-		.pipe(
-			ofType(
-				apiAction.ActionTypes.SEARCH_COMPLETE_SUCCESS,
-				apiAction.ActionTypes.SEARCH_COMPLETE_FAIL
-			),
-			withLatestFrom(this.store$),
-			map(([action, state]) => {
-				const displayString = state.query.displayString;
-				let title = `${displayString} - Loklak Search`;
-				if (action.type === apiAction.ActionTypes.SEARCH_COMPLETE_FAIL) {
-					title += ' - No Results';
-				}
-				this.titleService.setTitle(title);
-			})
-		);
 
 	@Effect()
 	wallSearchAction$: Observable<Action> = this.actions$
