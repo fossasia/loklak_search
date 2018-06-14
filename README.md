@@ -1,10 +1,14 @@
 # loklak_search
 
-[![Build Status](https://travis-ci.org/fossasia/loklak_search.svg?branch=master)](https://travis-ci.org/fossasia/loklak_search)
 [![Join the chat at https://gitter.im/loklak/loklak](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/loklak/loklak)
 [![Code Climate](https://codeclimate.com/github/fossasia/loklak_search/badges/gpa.svg)](https://codeclimate.com/github/fossasia/loklak_search)
 [![codecov](https://codecov.io/gh/fossasia/loklak_search/branch/master/graph/badge.svg)](https://codecov.io/gh/fossasia/loklak_search)
-[![Dependency Status](https://gemnasium.com/badges/github.com/fossasia/loklak_search.svg)](https://gemnasium.com/github.com/fossasia/loklak_search)
+[![Percentage of issues still open](http://isitmaintained.com/badge/open/fossasia/loklak_search.svg)](http://isitmaintained.com/project/fossasia/loklak_search "Percentage of issues still open")
+[![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/fossasia/loklak_search.svg)](http://isitmaintained.com/project/fossasia/loklak_search "Average time to resolve an issue")
+
+Development: [![Build Status](https://travis-ci.org/fossasia/loklak_search.svg?branch=development)](https://travis-ci.org/fossasia/loklak_search)
+Master: [![Build Status](https://travis-ci.org/fossasia/loklak_search.svg?branch=master)](https://travis-ci.org/fossasia/loklak_search)
+Dependency: [![Gemnasium](https://img.shields.io/gemnasium/mathiasbynens/he.svg)](https://gemnasium.com/github.com/fossasia/loklak_search)
 
 The loklak_search creates a website using the loklak server as a data source. The goal is to get a search site, that offers timeline search as well as custom media search, account and geolocation search.
 
@@ -25,7 +29,7 @@ Our chat channel is on gitter here: https://gitter.im/loklak/loklak
 * HTML - Structure of the web page generated.
 * CSS - Styling options and details of the web page.
 * JavaScript(JSON) - Used to store information for deploying the application such as dependencies.
-* Angular 4 - Structure for deployment of the web page.
+* Angular 6 - Structure for deployment of the web page.
 * Bootstrap 3.3.2 - Responsive Design
 
 ## Requirements
