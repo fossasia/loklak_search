@@ -59,18 +59,13 @@ export class FeedComponent implements OnInit, AfterViewInit, OnDestroy {
 	public isSuggestLoading$: Observable<boolean>;
 	public suggestResponse$: Observable<SuggestResults[]>;
 
-	public apiResponseHashtags$: Observable<Array<{ tag: string, count: number }>>;
-
 	constructor(
 		private route: ActivatedRoute,
 		private location: Location,
 		private store: Store<fromRoot.State>,
 		private elementRef: ElementRef,
 		@Inject(DOCUMENT) private document: Document
-	) {
-		this.getTopHashtags();
-		this.getHashtagDataFromStore();
-	}
+	) { }
 
 	ngOnInit() {
 		this.queryFromURL();
@@ -79,15 +74,6 @@ export class FeedComponent implements OnInit, AfterViewInit, OnDestroy {
 
 	ngAfterViewInit() {
 		this.focusTextbox();
-	}
-
-	getTopHashtags() {
-		this.store.dispatch(new queryAction.RelocationAfterQueryResetAction());
-		this.store.dispatch(new queryAction.InputValueChangeAction('since:day'));
-	}
-
-	getHashtagDataFromStore() {
-		this.apiResponseHashtags$ = this.store.select(fromRoot.getApiResponseTags);
 	}
 
 	/**
@@ -144,7 +130,6 @@ export class FeedComponent implements OnInit, AfterViewInit, OnDestroy {
 		this.isNextPageLoading$ = this.store.select(fromRoot.getPageLoading);
 		this.areMorePagesAvailable$ = this.store.select(fromRoot.getPagesAvailable);
 		this.apiResponseAggregations$ = this.store.select(fromRoot.getApiAggregations);
-
 		this.isUserInfoSearching$ = this.store.select(fromRoot.getUserSearchLoading);
 		this.areUserResultsValid$ = this.store.select(fromRoot.getAreApiUserResultsValid);
 		this.apiResponseUser$ = this.store.select(fromRoot.getApiUserResponse);

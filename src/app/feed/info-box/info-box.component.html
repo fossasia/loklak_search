@@ -10,10 +10,10 @@
 					<tr class="leaderboard-item" *ngFor="let item of topTwitterers">
 						<td>
 							<img src="https://twitter.com/{{item[0]}}/profile_image?size=normal" alt="{{item[0]}}" *ngIf="inviewporttwitters">
-							<span class="label leaderboard-label">{{item[1]}}</span>
+							<span class="label leaderboard-label">{{item[1].length}}</span>
 						</td>
 						<td class="leaderboard-text">
-							<a [routerLink]="['/search']" [queryParams]="{ query : 'from:' + item[0] }">@{{item[0]}}</a>
+							<a [routerLink]="['/search']" [queryParams]="{ query : 'from:' + item[0] }">@{{item[1]}}</a>
 						</td>
 					</tr>
 				</tbody>
@@ -25,10 +25,10 @@
 				<tbody>
 					<tr class="leaderboard-item"  *ngFor ="let item of topHashtags">
 						<td>
-							<div  class="leaderboard-count">{{item[1]}}</div>
+							<div  class="leaderboard-count">{{item[1][0].length}}</div>
 						</td>
 						<td class="leaderboard-text">
-							<a [routerLink]="['/search']" [queryParams]="{ query : '#' + item[0] }">#{{item[0]}}</a>
+							<a [routerLink]="['/search']" [queryParams]="{ query : '#' + item[0] }">#{{item[1][0]}}</a>
 						</td>
 					</tr>
 				</tbody>
@@ -43,10 +43,10 @@
 					<tr class="leaderboard-item" *ngFor="let item of topMentions">
 						<td>
 							<img src="https://twitter.com/{{item[0]}}/profile_image?size=normal" alt="" *ngIf="inviewportmentions">
-							<span class="label leaderboard-label">{{item[1]}}</span>
+							<span class="label leaderboard-label">{{item[1][0].length}}</span>
 						</td>
 						<td class="leaderboard-text">
-							<a [routerLink]="['/search']" [queryParams]="{ query : 'from:' + item[0] }">@{{item[0]}}</a>
+							<a [routerLink]="['/search']" [queryParams]="{ query : 'from:' + item[0] }">@{{item[1][0]}}</a>
 						</td>
 					</tr>
 				</tbody>
