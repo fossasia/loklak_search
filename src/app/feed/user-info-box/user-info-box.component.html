@@ -16,7 +16,7 @@
 				<h2>{{ apiResponseUser.name }}</h2>
 				<span>@{{ apiResponseUser.screen_name }}</span>
 			</div>
-			<div class="desc" *ngIf="apiResponseUser.description">
+			<div class="desc" *ngIf="apiResponseUser">
 				<feed-linker
 					[text]="apiResponseUser.description"
 					[useAll]="true"></feed-linker>
