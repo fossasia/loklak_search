@@ -1,9 +1,8 @@
+import { ApiResponseResult } from './../../models/api-response';
 import { Component, OnInit, OnChanges, Input } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import * as fromRoot from '../../reducers';
-import * as apiAction from '../../actions/api';
-import { ApiResponseAggregations } from '../../models/api-response';
 import { Query } from '../../models';
 
 @Component({
@@ -13,7 +12,7 @@ import { Query } from '../../models';
 })
 export class InfoBoxComponent implements OnInit, OnChanges {
 	@Input() public query: Query;
-	@Input() public apiResponseAggregations: ApiResponseAggregations;
+	@Input() public ApiResponseResult: ApiResponseResult[];
 	public inviewporttwitters: Observable<boolean>;
 	public inviewportmentions: Observable<boolean>;
 	public areTopHashtagsAvailable: boolean;
@@ -40,18 +39,15 @@ export class InfoBoxComponent implements OnInit, OnChanges {
 	ngOnInit() { }
 
 	ngOnChanges() {
-		this.sortHashtags(this.apiResponseAggregations);
-		this.sortTwiterers(this.apiResponseAggregations);
-		this.sortMentions(this.apiResponseAggregations);
-		this.getChartData(this.apiResponseAggregations);
+		this.parseApiResponseData();
 	}
 	sortHashtags(statistics) {
 		let sortable = [];
 		/* A check for both the data and the individual objects is necessary, also if the data is not empty*/
-		if ((statistics && statistics.hashtags !== undefined) && Object.keys(statistics.hashtags).length !== 0) {
-			for (const s in statistics.hashtags) {
+		if (statistics !== undefined && statistics.length !== 0) {
+			for (const s in statistics) {
 				if (s) {
-					sortable.push([s, statistics.hashtags[s]]);
+					sortable.push([s, statistics[s]]);
 				}
 			}
 			sortable.sort(function (a, b) {
@@ -70,10 +66,10 @@ export class InfoBoxComponent implements OnInit, OnChanges {
 	}
 	sortTwiterers(statistics) {
 		let sortable = [];
-		if ((statistics && statistics.screen_name) !== undefined && (Object.keys(statistics.screen_name).length) !== 0) {
-			for (const s in statistics.screen_name) {
+		if (statistics !== undefined && statistics.length !== 0) {
+			for (const s in statistics) {
 				if (s) {
-					sortable.push([s, statistics.screen_name[s]]);
+					sortable.push([s, statistics[s]]);
 				}
 			}
 			sortable.sort(function (a, b) {
@@ -92,10 +88,10 @@ export class InfoBoxComponent implements OnInit, OnChanges {
 	}
 	sortMentions(statistics) {
 		let sortable = [];
-		if ((statistics && statistics.mentions) !== undefined && (Object.keys(statistics.mentions).length !== 0)) {
-			for (const s in statistics.mentions) {
+		if (statistics !== undefined && statistics.length !== 0) {
+			for (const s in statistics) {
 				if (s) {
-					sortable.push([s, statistics.mentions[s]]);
+					sortable.push([s, statistics[s]]);
 				}
 			}
 			sortable.sort(function (a, b) {
@@ -123,17 +119,46 @@ export class InfoBoxComponent implements OnInit, OnChanges {
 			this.inviewportmentions = event.value;
 		}
 	}
+
+	parseApiResponseData() {
+		const tagStrings = [];
+		const screenStrings = [];
+		const mentionStrings = [];
+		const createdStrings = [];
+		for ( let i = 0; i < this.ApiResponseResult.length; i++) {
+			if (this.ApiResponseResult[i]['hashtags'].length !== 0) {
+				tagStrings.push(this.ApiResponseResult[i]['hashtags']);
+			}
+			if (this.ApiResponseResult[i]['screen_name'].length !== 0) {
+				screenStrings.push(this.ApiResponseResult[i]['screen_name']);
+			}
+			if (this.ApiResponseResult[i]['mentions'].length !== 0) {
+				mentionStrings.push(this.ApiResponseResult[i]['mentions']);
+			}
+			if (this.ApiResponseResult[i]['created_at'].length !== 0) {
+				createdStrings.push(this.ApiResponseResult[i]['created_at']);
+			}
+		}
+		this.sortHashtags(tagStrings);
+		this.sortTwiterers(screenStrings);
+		this.sortMentions(mentionStrings);
+		this.getChartData(createdStrings);
+	}
+
 	getChartData(statistics) {
-		if ((statistics && statistics.created_at) !== undefined && (Object.keys(statistics.created_at).length !== 0)) {
+
+		for (let i = 0; i < statistics.length; i++) {
+			statistics[i] = JSON.stringify(statistics[i]).substring(15, statistics.length);
+		}
+		const count = {};
+		statistics.forEach(function(i) { count[i] = (count[i] || 0) + 1; });
+		if (statistics !== undefined && statistics.length !== 0) {
 			const data = [];
 			const labels = [];
-			const chosen_attr = statistics.created_at;
-
-
-			for (const property in chosen_attr) {
-				if (chosen_attr.hasOwnProperty(property)) {
-					labels.push(property);
-					data.push(chosen_attr[property]);
+			for (const key in count) {
+				if (count.hasOwnProperty(key)) {
+					data.push(count[key]);
+					labels.push(key);
 				}
 			}
 

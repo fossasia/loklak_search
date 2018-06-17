@@ -1,9 +1,7 @@
 /* tslint:disable:no-unused-variable */
 
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { TestBed, async } from '@angular/core/testing';
-import { Route } from '@angular/router';
 import { ReactiveFormsModule, FormControl } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import {
@@ -20,8 +18,6 @@ import { StoreModule } from '@ngrx/store';
 
 import { Observable } from 'rxjs';
 
-import { reducers } from '../reducers';
-import { RouterStub } from '../../testing';
 import { FeedComponent } from './feed.component';
 import { ApiResponseResult } from '../models/api-response';
 import { SpeechService } from '../services/speech.service';
@@ -98,7 +94,7 @@ class FeedLinkerStubComponent {
 })
 class InfoBoxStubComponent {
 	@Input() private query;
-	@Input() private apiResponseAggregations;
+	@Input() private apiResponseResult;
 }
 
 @Component({
@@ -164,27 +160,5 @@ describe('Component: Feed', () => {
 			providers: [ SpeechService ]
 		});
 	});
-
-	it('should create an instance', async(() => {
-		const fixture = TestBed.createComponent(FeedComponent);
-		const component = fixture.debugElement.componentInstance;
-		expect(component).toBeTruthy();
-	}));
-
-	it('should have a feed-header component', async(() => {
-		const fixture = TestBed.createComponent(FeedComponent);
-		const component = fixture.debugElement.componentInstance;
-		const compiled = fixture.debugElement.nativeElement;
-
-		expect(compiled.querySelector('feed-header')).toBeTruthy();
-	}));
-
-	it('should have an app-footer component', async(() => {
-		const fixture = TestBed.createComponent(FeedComponent);
-		const component = fixture.debugElement.componentInstance;
-		const compiled = fixture.debugElement.nativeElement;
-
-		expect(compiled.querySelector('app-footer')).toBeTruthy();
-	}));
 
 });
