@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Location } from '@angular/common';
-import { Title } from '@angular/platform-browser';
 import { Store, Action } from '@ngrx/store';
 import { Effect, Actions, ofType } from '@ngrx/effects';
 import { Observable, of } from 'rxjs';
@@ -205,30 +204,11 @@ export class ApiSearchEffects {
 				})
 		);
 
-	@Effect({ dispatch: false })
-	resetTitleAfterWallSearchSuccess$: Observable<void> = this.actions$
-		.pipe(
-			ofType(
-				apiAction.ActionTypes.WALL_SEARCH_COMPLETE_SUCCESS,
-				apiAction.ActionTypes.WALL_SEARCH_COMPLETE_FAIL
-			),
-			withLatestFrom(this.store$),
-			map(([action, state]) => {
-				const displayString = state.mediaWallQuery.query.displayString;
-				let title = `${displayString} - Loklak Media Wall`;
-				if (action.type === apiAction.ActionTypes.WALL_SEARCH_COMPLETE_FAIL) {
-					title += ' - No Results';
-				}
-				this.titleService.setTitle(title);
-			})
-		);
-
 	constructor(
 		private store$: Store<fromRoot.State>,
 		private actions$: Actions,
 		private apiSearchService: SearchService,
-		private location: Location,
-		private titleService: Title
+		private location: Location
 	) { }
 
 }

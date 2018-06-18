@@ -2,19 +2,15 @@ import {
 	Component,
 	OnInit,
 	OnDestroy,
-	ElementRef,
 	ChangeDetectionStrategy,
-	ViewChild,
 	ChangeDetectorRef
 } from '@angular/core';
-import { Router, ActivatedRoute, Params } from '@angular/router';
-import { Location } from '@angular/common';
-import { MatDialog, MatDialogRef } from '@angular/material';
+import { ActivatedRoute, Params } from '@angular/router';
+import { MatDialog } from '@angular/material';
 import { MediaWallCustomizationComponent } from './media-wall-customization/media-wall-customization.component';
 import { MediaWallQueryComponent } from './media-wall-query/media-wall-query.component';
 import { MediaWallModerationComponent } from './media-wall-moderation/media-wall-moderation.component';
 import { MediaWallDesignComponent } from './media-wall-design/media-wall-design.component';
-import { Title } from '@angular/platform-browser';
 import { MasonryOptions } from '../app-masonry';
 
 import { Observable, Subscription, timer } from 'rxjs';
@@ -25,9 +21,9 @@ import * as mediaWallAction from '../actions/media-wall-query';
 import * as mediaWallModerationAction from '../actions/media-wall-moderation';
 import * as mediaWallDesignAction from '../actions/media-wall-design';
 import * as mediaWallCustomAction from '../actions/media-wall-custom';
-
+import * as titleAction from '../actions/title';
 import { Query } from '../models/query';
-import { ApiResponse, ApiResponseResult } from '../models/api-response';
+import { ApiResponseResult } from '../models/api-response';
 import { WallHeader, WallBackground, WallCard } from '../models';
 
 
@@ -68,12 +64,9 @@ export class MediaWallComponent implements OnInit, OnDestroy {
 
 	constructor(
 		private route: ActivatedRoute,
-		private location: Location,
-		private elementRef: ElementRef,
 		private store: Store<fromRoot.State>,
 		private ref: ChangeDetectorRef,
-		private dialog: MatDialog,
-		private titleService: Title
+		private dialog: MatDialog
 	) { }
 
 	ngOnInit() {
@@ -214,6 +207,9 @@ export class MediaWallComponent implements OnInit, OnDestroy {
 		this.wallColumnCount$ = this.store.select(fromRoot.getWallColumnCount);
 		this.wallDisplayHeader$ = this.store.select(fromRoot.getWallDisplayHeader);
 		this.wallHeaderTitle$ = this.store.select(fromRoot.getWallHeaderTitle);
+		this.query$.subscribe(displayString =>
+			this.store.dispatch(new titleAction.SetTitleAction(displayString.displayString + ' - Loklak Search'
+		)));
 	}
 
 	public openDialog(event) {
