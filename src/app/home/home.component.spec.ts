@@ -132,7 +132,7 @@ describe('Component: Home', () => {
 		const component = fixture.debugElement.componentInstance;
 		const compiled = fixture.debugElement.nativeElement;
 
-		const value = 'a';
+		const value = 'since:day';
 
 		const query$ = component.store.select(fromRoot.getQuery);
 		let displayString: string;
