@@ -47,8 +47,6 @@ export class HomeComponent implements OnInit, OnDestroy, AfterContentChecked {
 		this.store.dispatch(new titleAction.SetTitleAction('Loklak Search - ' +
 			'Distributed Open Source Search for Twitter and Social Media with Peer to Peer Technology'));
 		this.focusTextbox();
-		this.setupSearchField();
-		this.getDataFromStore();
 		this.getTopHashtags();
 	}
 
@@ -61,21 +59,22 @@ export class HomeComponent implements OnInit, OnDestroy, AfterContentChecked {
 
 	/**
 	 * Setup for the `FormControl` of the search field.
-	 * Subscribes to the valueChange Observable, and dispatches `SearchAction`
-	 * when value changes along with redirecting to the `FeedPage`.
+	 * gets the input value when user clicks Enter(13) and dispatches `SearchAction`
+	 * when the query is not empty or containing spaces.
+	 * If query is non empty and user clicks enter, then user is redirected to the `FeedPage`.
 	 */
-	private setupSearchField() {
-		this.__subscriptions__.push(
-			this._queryControl.valueChanges
-				.subscribe((value) => {
-					this.store.dispatch(new queryAction.RelocationAfterQuerySetAction());
-					this.store.dispatch(new suggestAction.SuggestAction(value));
-					this.store.dispatch(new queryAction.InputValueChangeAction(value));
-					this.router.navigate([`/search`], { queryParams: { query: value }, skipLocationChange: true } );
-					this.store.dispatch(new titleAction.SetTitleAction(value + ' - Loklak Search'));
-				}
-			)
-		);
+
+	onEnter(event: any) {
+		if (event.which === 13) {
+			if (this._queryControl.value.trim() !== '') {
+				this.store.dispatch(new queryAction.RelocationAfterQuerySetAction());
+				this.store.dispatch(new suggestAction.SuggestAction(this._queryControl.value.trim()));
+				this.store.dispatch(new queryAction.InputValueChangeAction(this._queryControl.value.trim()));
+				this.router.navigate([`/search`], { queryParams: { query: this._queryControl.value.trim() }, skipLocationChange: true } );
+				this.store.dispatch(new titleAction.SetTitleAction(this._queryControl.value.trim() + ' - Loklak Search'));
+				this.getDataFromStore();
+			}
+		}
 	}
 
 	private getTopHashtags() {
