@@ -13,7 +13,7 @@
 							<span class="label leaderboard-label">{{item[1].length}}</span>
 						</td>
 						<td class="leaderboard-text">
-							<a [routerLink]="['/search']" [queryParams]="{ query : 'from:' + item[0] }">@{{item[1]}}</a>
+							<a [routerLink]="['/search']" [queryParams]="{ query : 'from:' + item[1] }">@{{item[1]}}</a>
 						</td>
 					</tr>
 				</tbody>
@@ -28,7 +28,7 @@
 							<div  class="leaderboard-count">{{item[1][0].length}}</div>
 						</td>
 						<td class="leaderboard-text">
-							<a [routerLink]="['/search']" [queryParams]="{ query : '#' + item[0] }">#{{item[1][0]}}</a>
+							<a [routerLink]="['/search']" [queryParams]="{ query : '#' + item[1][0] }">#{{item[1][0]}}</a>
 						</td>
 					</tr>
 				</tbody>
@@ -46,7 +46,7 @@
 							<span class="label leaderboard-label">{{item[1][0].length}}</span>
 						</td>
 						<td class="leaderboard-text">
-							<a [routerLink]="['/search']" [queryParams]="{ query : 'from:' + item[0] }">@{{item[1][0]}}</a>
+							<a [routerLink]="['/search']" [queryParams]="{ query : 'from:' + item[1][0] }">@{{item[1][0]}}</a>
 						</td>
 					</tr>
 				</tbody>

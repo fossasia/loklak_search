@@ -66,6 +66,7 @@ export class InfoBoxComponent implements OnInit, OnChanges {
 	}
 	sortTwiterers(statistics) {
 		let sortable = [];
+		statistics = statistics.filter((el, i, a) => i === a.indexOf(el));
 		if (statistics !== undefined && statistics.length !== 0) {
 			for (const s in statistics) {
 				if (s) {
@@ -88,6 +89,7 @@ export class InfoBoxComponent implements OnInit, OnChanges {
 	}
 	sortMentions(statistics) {
 		let sortable = [];
+		statistics = statistics.filter(([el], i, a) => i === a.indexOf(el));
 		if (statistics !== undefined && statistics.length !== 0) {
 			for (const s in statistics) {
 				if (s) {
