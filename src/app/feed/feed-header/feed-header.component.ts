@@ -10,12 +10,9 @@ import {
 } from '@angular/core';
 
 import { FormControl } from '@angular/forms';
-import { Location } from '@angular/common';
 
 import { Store } from '@ngrx/store';
 import * as fromRoot from '../../reducers';
-
-import * as queryAction from '../../actions/query';
 
 import { Observable, Subscription } from 'rxjs';
 
@@ -23,7 +20,6 @@ import { MatAutocompleteTrigger } from '@angular/material';
 
 import { SuggestResults } from '../../models/api-suggest';
 import * as speechactions from '../../actions/speech';
-import { SpeechService } from '../../services/speech.service';
 
 
 @Component({
@@ -45,8 +41,7 @@ export class FeedHeaderComponent implements OnInit, OnDestroy {
 	hidespeech: Observable<boolean>;
 
 	constructor(
-		private store: Store<fromRoot.State>,
-		private speech: SpeechService
+		private store: Store<fromRoot.State>
 	) {
 		this.hidespeech = store.select(fromRoot.getspeechStatus);
 	}
@@ -55,20 +50,7 @@ export class FeedHeaderComponent implements OnInit, OnDestroy {
 		this.store.dispatch(new speechactions.SearchAction(true));
 	}
 
-	ngOnInit() {
-		this.setupSearchField();
-		this.setupSuggestBoxClosing();
-	}
-
-	private setupSearchField(): void {
-		this.__subscriptions__.push(
-			this.searchInputControl
-					.valueChanges
-					.subscribe(query => {
-						this.searchEvent.emit(query);
-					})
-		);
-	}
+	ngOnInit() { }
 
 	private setupSuggestBoxClosing() {
 		this.__subscriptions__.push(
@@ -81,11 +63,20 @@ export class FeedHeaderComponent implements OnInit, OnDestroy {
 		);
 	}
 
+	onEnter(event: any) {
+		if (event.which === 13) {
+			if (this.searchInputControl.value.trim() !== '') {
+				this.searchEvent.emit(this.searchInputControl.value.trim());
+				this.setupSuggestBoxClosing();
+			}
+		}
+	}
+
 	public closeSuggestBox(): void {
 		this.autoCompleteTrigger.closePanel();
 	}
 
-		ngOnDestroy() {
-			this.__subscriptions__.forEach(subscription => subscription.unsubscribe());
-		}
+	ngOnDestroy() {
+		this.__subscriptions__.forEach(subscription => subscription.unsubscribe());
+	}
 }

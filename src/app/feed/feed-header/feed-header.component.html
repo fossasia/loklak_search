@@ -9,7 +9,7 @@
 			<div class="search-form">
 				<div class="search-input" [class.focused]="inputFocused">
 						<input matInput required search autocomplete="off" type="text" id="search" name="search"
-							(focus)="inputFocused=true" (focusout)="inputFocused=false"
+							(focus)="inputFocused=true" (focusout)="inputFocused=false" (keypress)="onEnter($event)"
 							[formControl]="searchInputControl" [matAutocomplete]="searchSuggestBox"
 							(keyup.enter)="[relocateEvent.emit(query), closeSuggestBox()]" [(ngModel)]="query"/>
 
