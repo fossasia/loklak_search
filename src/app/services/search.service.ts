@@ -14,13 +14,23 @@ export class SearchService {
 	) { }
 
 	public fetchQuery(query: string, config: SearchServiceConfig): Observable<ApiResponse> {
-		const jsonpUrl = 'https://api.loklak.org/api/search.json' +
+		let jsonpUrl = 'https://api.loklak.org/api/search.json' +
 							'?q=' + query +
 							'&minified=' + 'true' +
 							'&source=' + config.source +
 							'&maximumRecords=' + config.maximumRecords.toString() +
 							'&timezoneOffset=' + config.getTimezoneOffset() +
 							'&startRecord=' + config.startRecord.toString();
+
+		if (config.getAggregationFieldString()) {
+			jsonpUrl += '&fields=' + config.getAggregationFieldString() +
+						'&limit=' + config.aggregationLimit.toString();
+		}
+
+		if (config.getFilterString()) {
+			jsonpUrl += '&filter=' + config.getFilterString();
+		}
+
 		return this.http
 			.jsonp<ApiResponse>(jsonpUrl, 'callback')
 			.pipe(

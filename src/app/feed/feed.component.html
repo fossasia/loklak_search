@@ -29,26 +29,15 @@
 					[apiResponseTags]="(apiResponseTags$ | async)"></feed-footer>
 			</div>
 			<div *ngIf="(areResultsAvailable$ | async)" class="wrapper feed-info-box">
-					<info-box *ngIf="!(areUserResultsValid$ | async)"
+					<info-box 
 						[query] = "(query$ | async)"
-						[apiResponseAggregations]="(apiResponseAggregations$ | async)"></info-box>
+						[ApiResponseResult]="(apiResponseResults$ | async)"></info-box>
 					<user-info-box
 						*ngIf="(areUserResultsValid$ | async)"
 						[apiResponseUser] = "(apiResponseUser$ | async)"
 						[apiResponseUserFollowing] = "apiResponseUserFollowing$ | async"
 						[apiResponseUserFollowers] = "apiResponseUserFollowers$ | async"
 						[isUserResponseLoading]= "(isUserInfoSearching$ | async)"></user-info-box>
-			</div>
-			<div class="top-hashtags wrapper" *ngIf="(apiResponseHashtags$ | async).length !== 0">
-				<div class="row link-sidebar-container">
-					<B>Trends for you</B>
-					<div class="inner-text">
-						<span *ngFor ="let item of ((apiResponseHashtags$ | async).slice(0,10));">
-							<a [routerLink]="['/search']"
-								[queryParams]="{ query : '#' + item.tag }">#{{item.tag}}</a><br>
-						</span>
-					</div>
-				</div>
 			</div>
 			<div class="results-not-found"
 						*ngIf="!(areResultsAvailable$ | async) &&
