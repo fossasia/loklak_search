@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import * as queryAction from '../actions/query';
-import * as suggestAction from '../actions/suggest';
 import { SpeechService } from '../services/speech.service';
 import * as speechactions from '../actions/speech';
 import { Store } from '@ngrx/store';
 import { Router } from '@angular/router';
-import { Observable, Subscription, timer } from 'rxjs';
+import { Subscription, timer } from 'rxjs';
 import * as fromRoot from '../reducers';
 
 @Component({
@@ -16,7 +14,6 @@ import * as fromRoot from '../reducers';
 })
 export class SpeechComponent implements OnInit {
 
-	private __subscriptions__: Subscription[] = new Array<Subscription>();
 	public _queryControl: FormControl = new FormControl();
 	message: any = 'Speak now';
 	ticks: any = 0;

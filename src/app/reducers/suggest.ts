@@ -1,4 +1,3 @@
-import { createSelector } from 'reselect';
 import * as suggestAction from '../actions/suggest';
 import { SuggestQuery } from '../models';
 

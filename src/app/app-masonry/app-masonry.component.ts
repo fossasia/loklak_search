@@ -1,4 +1,3 @@
-declare var require: any;
 declare var imagesLoaded: any;
 
 import { Component, OnInit, OnDestroy, Input, Output, ElementRef, EventEmitter } from '@angular/core';

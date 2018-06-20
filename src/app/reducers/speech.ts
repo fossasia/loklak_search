@@ -1,4 +1,3 @@
-import { Action } from '@ngrx/store';
 import * as speech from '../actions/speech';
 
 export const MODE_CHANGE = 'MODE_CHANGE';

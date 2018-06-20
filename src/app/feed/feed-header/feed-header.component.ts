@@ -8,19 +8,14 @@ import {
 	EventEmitter,
 	ChangeDetectionStrategy
 } from '@angular/core';
-
 import { FormControl } from '@angular/forms';
-
 import { Store } from '@ngrx/store';
 import * as fromRoot from '../../reducers';
-
 import { Observable, Subscription } from 'rxjs';
-
 import { MatAutocompleteTrigger } from '@angular/material';
 
 import { SuggestResults } from '../../models/api-suggest';
 import * as speechactions from '../../actions/speech';
-
 
 @Component({
 	selector: 'feed-header',

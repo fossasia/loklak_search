@@ -1,12 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Location } from '@angular/common';
 import { Effect, Actions, ofType } from '@ngrx/effects';
 import { Store, Action } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
 import { map, switchMap, takeUntil, withLatestFrom, catchError } from 'rxjs/operators';
 
 import { SearchService, SearchServiceConfig } from '../services';
-import { Query } from '../models';
 import * as apiAction from '../actions/api';
 import * as paginationAction from '../actions/pagination';
 import * as fromRoot from '../reducers';

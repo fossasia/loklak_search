@@ -1,9 +1,6 @@
-import { createSelector } from 'reselect';
-import { Query, parseQueryToQueryString, parseQueryToRouterString, FilterList } from '../models';
+import { Query, parseQueryToQueryString } from '../models';
 import * as mediaWallAction from '../actions/media-wall-query';
 import * as wallPaginationAction from '../actions/media-wall-pagination';
-import { ApiResponse } from '../models/api-response';
-
 
 export interface State {
 	query: Query;

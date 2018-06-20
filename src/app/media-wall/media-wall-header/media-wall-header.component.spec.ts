@@ -1,4 +1,3 @@
-import { TestBed, async } from '@angular/core/testing';
 import { MediaWallHeaderComponent } from './media-wall-header.component';
 
 describe('Component: MediaWallHeaderComponent', () => {

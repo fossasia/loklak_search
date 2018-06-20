@@ -1,7 +1,7 @@
-import { Component, OnInit, Input, ChangeDetectionStrategy, ChangeDetectorRef, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectorRef } from '@angular/core';
 import { ApiResponseResult } from '../../models/api-response';
 import { Observable, timer } from 'rxjs';
-import { BrowserModule, DomSanitizer } from '@angular/platform-browser';
+import { DomSanitizer } from '@angular/platform-browser';
 import { WallCard } from '../../models';
 
 @Component({
@@ -15,9 +15,7 @@ export class MediaWallFluidCardComponent implements OnInit {
 	@Input() feedItem: ApiResponseResult;
 	@Input() wallCustomCard$: Observable<WallCard>;
 
-	constructor(private ref: ChangeDetectorRef,
-		private sanitizer: DomSanitizer) {
-	}
+	constructor( private ref: ChangeDetectorRef ) { }
 
 	ngOnInit() {
 		const tr = timer(0, 10000);

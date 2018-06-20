@@ -1,5 +1,4 @@
-import { createSelector } from 'reselect';
-import { ApiResponse, ApiResponseResult } from '../models/api-response';
+import { ApiResponseResult } from '../models/api-response';
 import * as apiAction from '../actions/api';
 import * as wallModerationAction from '../actions/media-wall-moderation';
 import * as wallPaginationAction from '../actions/media-wall-pagination';

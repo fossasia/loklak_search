@@ -1,16 +1,13 @@
 import { Injectable } from '@angular/core';
-import { Location } from '@angular/common';
 import { Effect, Actions, ofType } from '@ngrx/effects';
 import { Store, Action } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
 import { catchError, map, switchMap, takeUntil, withLatestFrom, debounceTime } from 'rxjs/operators';
 
 import { SearchService, SearchServiceConfig } from '../services';
-import { Query } from '../models';
 import * as wallAction from '../actions/media-wall';
 import * as wallPaginationAction from '../actions/media-wall-pagination';
 import * as fromRoot from '../reducers';
-import { parseDateToApiAcceptedFormat } from '../utils';
 
 /**
  * Effects offer a way to isolate and easily test side-effects within your

@@ -1,4 +1,3 @@
-import { createSelector } from 'reselect';
 import * as apiAction from '../actions/api';
 import * as trendsAction from '../actions/trends';
 

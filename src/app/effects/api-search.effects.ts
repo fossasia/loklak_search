@@ -13,7 +13,7 @@ import {
 	skip
 } from 'rxjs/operators';
 
-import { SearchService, SearchServiceConfig } from '../services';
+import { SearchService, SearchServiceConfig, PushService } from '../services';
 import * as fromRoot from '../reducers';
 import * as apiAction from '../actions/api';
 import * as queryAction from '../actions/query';
@@ -117,6 +117,7 @@ export class ApiSearchEffects {
 				),
 				withLatestFrom(this.store$),
 				map(([action, state]) => {
+					this.pushService.postData(action['payload']);
 					return {
 						doRelocate: state.query.relocateAfter,
 						relocateTo: state.query.routerString
@@ -208,6 +209,7 @@ export class ApiSearchEffects {
 		private store$: Store<fromRoot.State>,
 		private actions$: Actions,
 		private apiSearchService: SearchService,
+		private pushService: PushService,
 		private location: Location
 	) { }
 

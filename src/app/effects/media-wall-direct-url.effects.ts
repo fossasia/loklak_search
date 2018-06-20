@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Location } from '@angular/common';
 import { Store, Action } from '@ngrx/store';
 import { Effect, Actions, ofType } from '@ngrx/effects';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { map, withLatestFrom } from 'rxjs/operators';
 
 import * as fromRoot from '../reducers';
