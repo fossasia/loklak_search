@@ -1,4 +1,3 @@
-import { createSelector } from 'reselect';
 import * as paginationAction from '../actions/pagination';
 
 /**

@@ -1,7 +1,4 @@
-import { createSelector } from 'reselect';
 import * as mediaWallDirectUrlAction from '../actions/media-wall-direct-url';
-import { ApiResponse } from '../models/api-response';
-
 
 export interface State {
 	directUrl: string;
@@ -39,7 +36,6 @@ export function reducer(state: State = initialState, action: mediaWallDirectUrlA
 		}
 	}
 }
-
 
 export const getMediaWallDirectUrl = (state: State) => state.directUrl;
 

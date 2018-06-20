@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import { UserQuery, UserApiResponse, UserResponse } from '../models';
+import { UserQuery, UserResponse } from '../models';
 
 /**
  * For each action type in an action group, make a simple

@@ -1,6 +1,5 @@
 /* tslint:disable:no-unused-variable */
-
-import { TestBed, async, inject } from '@angular/core/testing';
+import { TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Title } from '@angular/platform-browser';
 import { Component, Input, Output, EventEmitter } from '@angular/core';
@@ -9,7 +8,6 @@ import { Router } from '@angular/router';
 import { StoreModule } from '@ngrx/store';
 
 import * as fromRoot from '../reducers';
-import * as apiAction from '../actions/api';
 import { HomeComponent } from './home.component';
 
 import { RouterStub } from '../../testing';

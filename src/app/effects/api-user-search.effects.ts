@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Effect, Actions, ofType } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
-import { Observable, of, empty } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { map, switchMap, debounceTime, takeUntil, skip, catchError } from 'rxjs/operators';
 
 import { UserService } from '../services';
 import * as userApiAction from '../actions/user-api';
-import { Query } from '../models';
 /**
  * Effects offer a way to isolate and easily test side-effects within your
  * application. StateUpdates is an observable of the latest state and

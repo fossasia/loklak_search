@@ -1,10 +1,6 @@
 import {
 	Component,
-	Input,
-	Output,
-	ViewChild,
 	OnInit,
-	EventEmitter,
 	ChangeDetectionStrategy,
 	ElementRef
 } from '@angular/core';
@@ -13,9 +9,7 @@ import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import * as fromRoot from '../../reducers';
 import * as queryAction from '../../actions/query';
-
 import { Query, FilterList, TimeBound } from '../../models';
-import { countrycodearray } from '../../shared/countrycode/countrycode';
 
 @Component({
 	selector: 'feed-advanced-search',

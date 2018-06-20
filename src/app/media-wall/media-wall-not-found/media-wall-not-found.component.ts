@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Query } from '../../models';
 
 @Component({
 	selector: 'media-wall-not-found',

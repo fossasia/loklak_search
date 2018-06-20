@@ -1,8 +1,6 @@
 import * as fromUserApiResponse from './api-user-response';
 import * as userApiAction from '../actions/user-api';
-import { UserApiResponse } from '../models/api-user-response';
 import { MockUserResponse } from '../shared/mocks/userResponse.mock';
-import { MockUserQuery } from '../shared/mocks/userResponse.mock';
 
 describe('ApiUserResponseReducer', () => {
 	describe('undefined action', () => {

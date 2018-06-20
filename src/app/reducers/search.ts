@@ -1,4 +1,3 @@
-import { createSelector } from 'reselect';
 import * as apiAction from '../actions/api';
 
 /**
@@ -51,7 +50,6 @@ export function reducer(state: State = initialState, action: apiAction.Actions):
 		}
 	}
 }
-
 
 /**
  * Because the data structure is defined within the reducer it is optimal to

@@ -1,5 +1,3 @@
-import { createSelector } from 'reselect';
-
 import * as userApiAction from '../actions/user-api';
 
 /**

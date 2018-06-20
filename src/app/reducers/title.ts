@@ -36,7 +36,6 @@ export function reducer(state: State = initialState, action: titleAction.Actions
 	}
 }
 
-
 /**
  * Because the data structure is defined within the reducer it is optimal to
  * locate our selector functions at this level. If store is to be thought of

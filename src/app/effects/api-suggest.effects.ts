@@ -6,7 +6,6 @@ import { catchError, map, switchMap, takeUntil, debounceTime, skip } from 'rxjs/
 
 import { SuggestService } from '../services';
 import * as suggestAction from '../actions/suggest';
-import { Query } from '../models';
 
 /**
  * Effects offer a way to isolate and easily test side-effects within your

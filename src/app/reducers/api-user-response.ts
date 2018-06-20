@@ -1,4 +1,3 @@
-import { createSelector } from 'reselect';
 import * as userApiAction from '../actions/user-api';
 import { UserApiResponse } from '../models/api-user-response';
 

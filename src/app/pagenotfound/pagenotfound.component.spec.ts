@@ -1,6 +1,4 @@
 /* tslint:disable:no-unused-variable */
-
-import { Component } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { TestBed, async } from '@angular/core/testing';
 import { PageNotFoundComponent } from './pagenotfound.component';

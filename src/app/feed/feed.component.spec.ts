@@ -1,7 +1,7 @@
 /* tslint:disable:no-unused-variable */
 
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { TestBed, async } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule, FormControl } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import {
