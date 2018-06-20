@@ -1,5 +1,3 @@
-import { createSelector } from 'reselect';
-
 import * as userQueryAction from '../actions/user-query';
 import { UserQuery } from '../models';
 

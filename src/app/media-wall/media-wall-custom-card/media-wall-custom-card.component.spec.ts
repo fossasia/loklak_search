@@ -1,9 +1,6 @@
-import { NgModule } from '@angular/core';
-import { Component, Input, Output } from '@angular/core';
-import { TestBed, async } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import { MatSlideToggleModule } from '@angular/material';
 import { MediaWallCustomCardComponent } from './media-wall-custom-card.component';
-
 
 describe('MediaWallCustomCardComponent', () => {
 	beforeEach(() => {

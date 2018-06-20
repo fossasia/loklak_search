@@ -1,11 +1,6 @@
 import * as fromApiResponse from './api-response';
 import * as apiAction from '../actions/api';
 import * as paginationAction from '../actions/pagination';
-import { ApiResponse,
-				ApiResponseResult,
-				ApiResponseMetadata,
-				ApiResponseUser,
-				ApiResponseAggregations } from '../models/api-response';
 import { MockApiResponse } from '../shared/mocks/feedItem.mock';
 
 describe('ApiResponseReducer', () => {

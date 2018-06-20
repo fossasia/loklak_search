@@ -1,6 +1,5 @@
 import { Action } from '@ngrx/store';
 import { SuggestResponse } from '../models/api-suggest';
-import { SuggestQuery } from '../models';
 
 /**
  * For each action type in an action group, make a simple

@@ -10,13 +10,9 @@ import {
 } from '@angular/core';
 
 import { FormControl } from '@angular/forms';
-import { Location } from '@angular/common';
 
 import { Store } from '@ngrx/store';
 import * as fromRoot from '../../reducers';
-
-import * as queryAction from '../../actions/query';
-
 import { Observable, Subscription } from 'rxjs';
 
 import { MatAutocompleteTrigger } from '@angular/material';
@@ -45,8 +41,7 @@ export class FeedHeaderComponent implements OnInit, OnDestroy {
 	hidespeech: Observable<boolean>;
 
 	constructor(
-		private store: Store<fromRoot.State>,
-		private speech: SpeechService
+		private store: Store<fromRoot.State>
 	) {
 		this.hidespeech = store.select(fromRoot.getspeechStatus);
 	}

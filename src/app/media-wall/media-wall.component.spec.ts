@@ -1,14 +1,10 @@
 /* tslint:disable:no-unused-variable */
-
-import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, Input, Output } from '@angular/core';
 import { TestBed, async } from '@angular/core/testing';
-import { Route } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
 import {
 	MatDialogModule,
-	MatDialog,
 	MatSlideToggleModule,
 	MatSelectModule,
 	MatCheckboxModule,
@@ -23,7 +19,6 @@ import { MediaWallModerationComponent } from './media-wall-moderation/media-wall
 import { MediaWallDesignComponent } from './media-wall-design/media-wall-design.component';
 
 import { reducers } from '../reducers';
-import { RouterStub } from '../../testing';
 import { MediaWallComponent } from './media-wall.component';
 import { MasonryModule } from '../app-masonry/app-masonry.module';
 import { LazyImgModule } from '../lazy-img/lazy-img.module';

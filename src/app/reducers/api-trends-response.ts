@@ -1,5 +1,4 @@
-import { createSelector } from 'reselect';
-import { ApiResponseTrendingHashtags, ApiResponseMetadata } from '../models/api-response';
+import { ApiResponseTrendingHashtags } from '../models/api-response';
 import * as apiActions from '../actions/api';
 
 /**

@@ -20,7 +20,7 @@ export class AppComponent implements OnInit, OnDestroy {
 	searchData: String;
 
 	constructor (
-		private store: Store<fromRoot.State> ,
+		private store: Store<fromRoot.State>,
 		private router: Router,
 		private speech: SpeechService
 	) {
@@ -41,11 +41,11 @@ export class AppComponent implements OnInit, OnDestroy {
 	ngOnInit() {
 		this.__subscriptions__.push(
 			this.router.events
-									.subscribe((val: NavigationEnd ) => {
-											if (val instanceof NavigationEnd) {
-												window.scrollTo(0, 0);
-											}
-									})
+				.subscribe((val: NavigationEnd ) => {
+						if (val instanceof NavigationEnd) {
+							window.scrollTo(0, 0);
+						}
+				})
 		);
 	}
 

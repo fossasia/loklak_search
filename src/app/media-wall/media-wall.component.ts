@@ -26,8 +26,6 @@ import { Query } from '../models/query';
 import { ApiResponseResult } from '../models/api-response';
 import { WallHeader, WallBackground, WallCard } from '../models';
 
-
-
 @Component({
 	selector: 'app-media-wall',
 	templateUrl: './media-wall.component.html',

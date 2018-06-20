@@ -1,5 +1,4 @@
 import { Action } from '@ngrx/store';
-import { WallHeader, WallBackground, WallCard } from '../models';
 
 /**
  * For each action type in an action group, make a simple

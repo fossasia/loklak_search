@@ -1,7 +1,5 @@
-import { createSelector } from 'reselect';
-
 import * as queryAction from '../actions/query';
-import { Query, FilterList, TimeBound, parseQueryToQueryString, parseQueryToRouterString } from '../models';
+import { Query, parseQueryToQueryString, parseQueryToRouterString } from '../models';
 import { fromRegExp } from '../utils';
 
 /**

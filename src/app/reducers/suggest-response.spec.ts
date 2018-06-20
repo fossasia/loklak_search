@@ -1,6 +1,5 @@
 import * as fromSuggestionResponse from './suggest-response';
 import * as suggestAction from '../actions/suggest';
-import { SuggestResponse } from '../models/api-suggest';
 import { MockSuggestResponse } from '../shared/mocks/suggestResponse.mock';
 
 describe('SuggestReducer', () => {
