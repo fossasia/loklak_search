@@ -5,7 +5,7 @@
 				[doCloseSuggestBox$]="doCloseSuggestBox$()"
 				(searchEvent)="search($event)"
 				(relocateEvent)="relocateURL($event)"></feed-header>
-		<div *ngIf="(isSearching$ | async)">
+		<div *ngIf="(isSearching$ | async) && !newsStatus">
 			<div class="searching">
 			<!-- Hook Up the Material Design Progress Bar. -->
 			</div>
@@ -14,7 +14,7 @@
 			</div>
 		</div>
 		<br>
-		<div *ngIf="!(isSearching$ | async)" class="feed-wrapper">
+		<div *ngIf="!(isSearching$ | async) && !newsStatus" class="feed-wrapper">
 			<div *ngIf="(areResultsAvailable$ | async)" class="wrapper feed-results">
 				<div *ngFor="let item of (apiResponseResults$ | async); let i = index ">
 					<feed-card [feedItem]="item" [feedIndex]="i"></feed-card>
@@ -44,6 +44,11 @@
 									((query$ | async).displayString) &&
 									!(isSearching$ | async )" >
 				<feed-not-found [query]="(query$ | async)"></feed-not-found>
+			</div>
+		</div>
+		<div *ngIf="newsStatus" class="feed-wrapper">
+			<div class="wrapper feed-results">
+				<app-feed-news></app-feed-news>
 			</div>
 		</div>
 </div>

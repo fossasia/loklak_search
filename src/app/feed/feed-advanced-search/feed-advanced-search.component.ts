@@ -10,6 +10,7 @@ import { Store } from '@ngrx/store';
 import * as fromRoot from '../../reducers';
 import * as queryAction from '../../actions/query';
 import { Query, FilterList, TimeBound } from '../../models';
+import * as newsAction from '../../actions/news';
 
 @Component({
 	selector: 'feed-advanced-search',
@@ -66,24 +67,31 @@ export class FeedAdvancedSearchComponent implements OnInit {
 
 	public getFilterResults(value: string) {
 		if (value === 'all') {
+			this.store.dispatch(new newsAction.NewsStatusAction(false));
 			this.selectedTab = 'all';
 			this.filterList = {
 				image: false,
 				video: false
 			};
 		} else if (value === 'image') {
+			this.store.dispatch(new newsAction.NewsStatusAction(false));
 			this.selectedTab = 'image';
 			this.filterList = {
 				image: true,
 				video: false
 			};
 		} else if (value === 'video') {
+			this.store.dispatch(new newsAction.NewsStatusAction(false));
 			this.selectedTab = 'video';
 			this.filterList = {
 				image: false,
 				video: true
 			};
+		} else if (value === 'news') {
+			this.store.dispatch(new newsAction.NewsStatusAction(true));
+			this.selectedTab = 'news';
 		} else {
+			this.store.dispatch(new newsAction.NewsStatusAction(false));
 			this.selectedTab = 'all';
 			this.filterList = {
 				image: false,

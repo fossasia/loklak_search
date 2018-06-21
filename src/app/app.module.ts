@@ -20,7 +20,8 @@ import {
 	UserQueryEffects,
 	WallPaginationEffects,
 	MediaWallDirectUrlEffects,
-	SetTitleEffects
+	SetTitleEffects,
+	DisplayNewsEffects
 } from './effects';
 
 import { LoklakAppRoutingModule } from './app-routing.module';
@@ -105,7 +106,8 @@ import { SpeechComponent } from './speech/speech.component';
 			MediaWallQueryEffects,
 			WallPaginationEffects,
 			MediaWallDirectUrlEffects,
-			SetTitleEffects
+			SetTitleEffects,
+			DisplayNewsEffects
 		]),
 
 		/**

@@ -29,6 +29,7 @@ import { FeedLightboxComponent } from './feed-lightbox/feed-lightbox.component';
 import { FeedUserCardComponent } from './feed-user-card/feed-user-card.component';
 import { InViewportDirective } from '../shared/in-viewport.directive';
 import { FeedAdvancedSearchComponent } from './feed-advanced-search/feed-advanced-search.component';
+import { FeedNewsComponent } from './feed-news/feed-news.component';
 
 
 @NgModule({
@@ -102,7 +103,8 @@ import { FeedAdvancedSearchComponent } from './feed-advanced-search/feed-advance
 		UserInfoBoxComponent,
 		FeedLightboxComponent,
 		FeedUserCardComponent,
-		FeedAdvancedSearchComponent
+		FeedAdvancedSearchComponent,
+		FeedNewsComponent
 	],
 	providers: [
 		SpeechService
