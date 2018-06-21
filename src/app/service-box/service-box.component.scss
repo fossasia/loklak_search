@@ -6,8 +6,8 @@
 	box-shadow: 0 2px 10px rgba(0,0,0,.2);
 	padding: 30px;
 	position: absolute;
-	right: 0;
-	top: 45px;
+	right: 1px;
+	top: 48px;
 	z-index: 1;
 	background: white;
 	visibility: hidden;
@@ -83,4 +83,28 @@
 			}
 		}
 	}
+}
+
+button {
+	color: black;
+	background-color: transparent;
+	padding: 13px;
+	display: inline-block;
+	margin: 4px -2px;
+	border-radius: 50%;
+	height: 46px;
+	width: 24px;
+}
+
+.mat-icon {
+	height: 30px;
+	width: 24px;
+}
+
+.mat-button {
+	position: relative;
+	padding: 8px;
+	vertical-align: baseline;
+	min-width: 48px;
+	min-height: 42px;
 }
