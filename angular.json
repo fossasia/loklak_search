@@ -23,15 +23,18 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.app.json",
             "assets": [
-							"src/assets",
-							"src/manifest.json"
+              "src/assets",
+              "src/manifest.json"
             ],
             "styles": [
+              {
+                "input": "node_modules/@angular/material/prebuilt-themes/indigo-pink.css"
+              },
               "src/styles/main.scss"
             ],
             "scripts": [
-							"./node_modules/wicg-inert/dist/inert.min.js"
-						]
+              "./node_modules/wicg-inert/dist/inert.min.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -78,12 +81,15 @@
             "tsConfig": "src/tsconfig.spec.json",
             "karmaConfig": "src/karma.conf.js",
             "styles": [
-              "src/styles.scss"
+              {
+                "input": "node_modules/@angular/material/prebuilt-themes/indigo-pink.css"
+              },
+              "src/styles/main.scss"
             ],
             "scripts": [],
             "assets": [
-							"src/assets",
-							"src/manifest.json"
+              "src/assets",
+              "src/manifest.json"
             ]
           }
         },
