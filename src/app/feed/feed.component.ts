@@ -58,6 +58,7 @@ export class FeedComponent implements OnInit, AfterViewInit, OnDestroy {
 	public suggestQuery$: Observable<SuggestQuery>;
 	public isSuggestLoading$: Observable<boolean>;
 	public suggestResponse$: Observable<SuggestResults[]>;
+	public newsStatus = false;
 
 	constructor(
 		private route: ActivatedRoute,
@@ -68,6 +69,7 @@ export class FeedComponent implements OnInit, AfterViewInit, OnDestroy {
 	) { }
 
 	ngOnInit() {
+		this.store.select(fromRoot.getNewsStatus).subscribe(status => this.newsStatus = status);
 		this.queryFromURL();
 		this.getDataFromStore();
 	}

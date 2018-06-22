@@ -1,0 +1,15 @@
+<div *ngIf="newsResponse.length === 0">
+  <div class="searching">
+    <!-- Hook Up the Material Design Progress Bar. -->
+  </div>
+  <div class="searching-message">
+    Searching top news of last 30 days.
+</div>
+</div>
+<div class="feed-wrapper">
+<div class="wrapper feed-results">
+    <div *ngFor="let item of newsResponse.slice(0,30); let i = index ">
+      <feed-card [feedItem]="item" [feedIndex]="i"></feed-card>
+  </div>
+</div>
+</div>

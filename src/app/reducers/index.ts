@@ -57,6 +57,8 @@ import * as fromMediaWallPagination from './media-wall-pagination';
 import * as fromMediaWallDesign from './media-wall-design';
 import * as fromMediaWallDirectUrl from './media-wall-direct-url';
 import * as fromSpeech from './speech';
+import * as fromNews from './news-status';
+import * as fromNewsResponse from './news-response';
 
 /**
  * As mentioned, we treat each reducer like a table in a database. This means
@@ -83,6 +85,8 @@ export interface State {
 	mediaWallDirectUrl: fromMediaWallDirectUrl.State;
 	speech: fromSpeech.State;
 	title: fromTitle.State;
+	newsStatus: fromNews.State;
+	newsResponse: fromNewsResponse.State;
 }
 
 /**
@@ -112,7 +116,9 @@ export const reducers: ActionReducerMap<State> = {
 	mediaWallPagination: fromMediaWallPagination.reducer,
 	mediaWallDesign: fromMediaWallDesign.reducer,
 	mediaWallDirectUrl: fromMediaWallDirectUrl.reducer,
-	speech: fromSpeech.reducer
+	speech: fromSpeech.reducer,
+	newsStatus: fromNews.reducer,
+	newsResponse: fromNewsResponse.reducer
 };
 
 export const metaReducers: MetaReducer<State>[] =
@@ -345,3 +351,19 @@ export const getIsUserSearchSuccess =
 export const getSpeechState = (state: State) => state.speech;
 
 export const getspeechStatus = createSelector(getSpeechState, fromSpeech.getspeechStatus);
+
+/**
+ * Selector for News Status
+ */
+
+export const getNewsState = (state: State) => state.newsStatus;
+
+export const getNewsStatus = createSelector(getNewsState, fromNews.getNewsStatus);
+
+/**
+ * Selector for News Response
+ */
+
+export const getNewsResponseState = (state: State) => state.newsResponse;
+
+export const getNewsResponse = createSelector(getNewsResponseState, fromNewsResponse.getNewsResponse);

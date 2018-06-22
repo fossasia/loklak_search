@@ -8,3 +8,4 @@ export * from './query.effects';
 export * from './user-query.effects';
 export * from './media-wall-direct-url.effects';
 export * from './title.effects';
+export * from './news.effects';
