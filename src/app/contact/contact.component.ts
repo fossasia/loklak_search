@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Title } from '@angular/platform-browser';
-import { Observable } from 'rxjs';
+import * as titleAction from '../actions/title';
+import { Store } from '@ngrx/store';
+import * as fromRoot from '../reducers';
 
 @Component({
 	selector: 'app-contact',
@@ -10,10 +11,10 @@ import { Observable } from 'rxjs';
 export class ContactComponent implements OnInit {
 	public formcontrol = false;
 
-	constructor( private titleService: Title) { }
+	constructor( private store: Store<fromRoot.State> ) { }
 
 	ngOnInit() {
-		this.titleService.setTitle('Contact Loklak');
+		this.store.dispatch(new titleAction.SetTitleAction('Contact Loklak'));
 	}
 
 	public contactform(event) {

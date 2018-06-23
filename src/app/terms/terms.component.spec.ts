@@ -1,9 +1,8 @@
 /* tslint:disable:no-unused-variable */
-
 import { Component } from '@angular/core';
 import { TestBed, async } from '@angular/core/testing';
-import { Title } from '@angular/platform-browser';
 import { TermsComponent } from './terms.component';
+import { Store, StateObservable } from '@ngrx/store';
 
 @Component({
 	selector: 'app-navbar',
@@ -18,7 +17,6 @@ class AppNavbarStubComponent { }
 class AppFooterStubComponent { }
 
 describe('Component: About', () => {
-	let termsTitle: Title;
 	beforeEach(() => {
 		TestBed.configureTestingModule({
 			declarations: [
@@ -26,7 +24,10 @@ describe('Component: About', () => {
 				AppNavbarStubComponent,
 				AppFooterStubComponent
 			],
-			providers: [{ provide: Title, useClass: Title }]
+			providers: [
+				{ provide: Store, useValue: {} },
+				{ provide: StateObservable, useValue: {} }
+			]
 		});
 	});
 
@@ -34,14 +35,6 @@ describe('Component: About', () => {
 		const fixture = TestBed.createComponent(TermsComponent);
 		const component = fixture.debugElement.componentInstance;
 		expect(component).toBeTruthy();
-	});
-
-		it('should have a title Loklak Terms of Service', () => {
-			const fixture = TestBed.createComponent(TermsComponent);
-			fixture.detectChanges();
-			const component = fixture.debugElement.componentInstance;
-			termsTitle = TestBed.get(Title);
-			expect(termsTitle.getTitle()).toBe('Loklak Terms of Service');
 	});
 
 		it('should have an app-footer component', async(() => {
