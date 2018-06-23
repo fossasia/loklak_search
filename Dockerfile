@@ -1,5 +1,5 @@
 FROM node:6.9.1-alpine as builder
-LABEL MAINTAINER="singh.pratyush96@gmail.com"
+LABEL maintainer="singh.pratyush96@gmail.com"
 
 COPY package.json package-lock.json ./
 
@@ -11,7 +11,7 @@ WORKDIR /ng-app
 
 COPY . .
 
-RUN $(npm bin)/ng build --prod --build-optimizer
+RUN "$(npm bin)/ng build --prod --build-optimizer"
 
 FROM nginx:1.13.3-alpine
 
