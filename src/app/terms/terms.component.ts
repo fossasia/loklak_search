@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Title } from '@angular/platform-browser';
+import * as titleAction from '../actions/title';
+import { Store } from '@ngrx/store';
+import * as fromRoot from '../reducers';
 
 @Component({
 	selector: 'app-terms',
@@ -8,10 +10,10 @@ import { Title } from '@angular/platform-browser';
 })
 export class TermsComponent implements OnInit {
 
-	constructor( private titleService: Title) { }
+	constructor( private store: Store<fromRoot.State> ) { }
 
 	ngOnInit() {
-		this.titleService.setTitle('Loklak Terms of Service');
+		this.store.dispatch(new titleAction.SetTitleAction('Loklak Terms of Service'));
 	}
 
 }

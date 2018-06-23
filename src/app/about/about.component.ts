@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Title } from '@angular/platform-browser';
+import * as titleAction from '../actions/title';
+import { Store } from '@ngrx/store';
+import * as fromRoot from '../reducers';
 
 @Component({
 	selector: 'app-about',
@@ -8,12 +10,10 @@ import { Title } from '@angular/platform-browser';
 })
 export class AboutComponent implements OnInit {
 
-	constructor(
-		private titleService: Title
-	) { }
+	constructor( private store: Store<fromRoot.State> ) { }
 
 	ngOnInit() {
-		this.titleService.setTitle('About Loklak');
+		this.store.dispatch(new titleAction.SetTitleAction('About Loklak'));
 	}
 
 }

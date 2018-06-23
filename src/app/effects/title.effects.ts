@@ -4,8 +4,6 @@ import { Effect, Actions, ofType } from '@ngrx/effects';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import * as titleAction from '../actions/title';
-// import * as fromRoot from '../reducers';
-// import { Store } from '@ngrx/store';
 
 @Injectable()
 export class SetTitleEffects {

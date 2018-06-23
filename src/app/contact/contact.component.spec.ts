@@ -1,16 +1,12 @@
 /* tslint:disable:no-unused-variable */
-
-import { TestBed, async, inject } from '@angular/core/testing';
+import { TestBed, async } from '@angular/core/testing';
 import { Output, EventEmitter } from '@angular/core';
-import { Title } from '@angular/platform-browser';
-
+import { Store, StateObservable } from '@ngrx/store';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-
 import { ContactComponent } from './contact.component';
-
 import { RouterStub } from '../../testing';
 
 @Component({
@@ -34,7 +30,6 @@ class AppNavbarStubComponent { }
 class AppFooterStubComponent { }
 
 describe('Component: Contact', () => {
-	let contactTitle: Title;
 	beforeEach(() => {
 		TestBed.configureTestingModule({
 			imports: [
@@ -49,7 +44,8 @@ describe('Component: Contact', () => {
 			],
 			providers: [
 				{ provide: Router, useClass: RouterStub },
-				{ provide: Title, useClass: Title }
+				{ provide: Store, useValue: {} },
+				{ provide: StateObservable, useValue: {} }
 			]
 		});
 	});
@@ -58,14 +54,6 @@ describe('Component: Contact', () => {
 		const fixture = TestBed.createComponent(ContactComponent);
 		const component = fixture.debugElement.componentInstance;
 		expect(component).toBeTruthy();
-	});
-
-	it('should have a title Contact Loklak', () => {
-		const fixture = TestBed.createComponent(ContactComponent);
-		fixture.detectChanges();
-		const component = fixture.debugElement.componentInstance;
-		contactTitle = TestBed.get(Title);
-		expect(contactTitle.getTitle()).toBe('Contact Loklak');
 	});
 
 		it('should have an app-footer component', async(() => {
