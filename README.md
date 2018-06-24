@@ -2,6 +2,7 @@
 
 [![Join the chat at https://gitter.im/loklak/loklak](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/loklak/loklak)
 [![Code Climate](https://codeclimate.com/github/fossasia/loklak_search/badges/gpa.svg)](https://codeclimate.com/github/fossasia/loklak_search)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/cf7beeb59bce451f9e02958f301554d8)](https://www.codacy.com/app/fossasia/loklak_search?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=fossasia/loklak_search&amp;utm_campaign=Badge_Grade)
 [![codecov](https://codecov.io/gh/fossasia/loklak_search/branch/master/graph/badge.svg)](https://codecov.io/gh/fossasia/loklak_search)
 [![Percentage of issues still open](http://isitmaintained.com/badge/open/fossasia/loklak_search.svg)](http://isitmaintained.com/project/fossasia/loklak_search "Percentage of issues still open")
 [![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/fossasia/loklak_search.svg)](http://isitmaintained.com/project/fossasia/loklak_search "Average time to resolve an issue")
