@@ -46,6 +46,10 @@ git commit -m "Travis CI Clean Deploy : ${SHA}"
 git checkout $SOURCE_BRANCH
 
 # Actual building and setup of current push or PR.
+npm cache clean --force
+npm install npm@latest -g
+rm package-lock.json
+npm install -g @angular/cli
 npm install
 ng build --prod --aot --build-optimizer
 git checkout $TARGET_BRANCH
