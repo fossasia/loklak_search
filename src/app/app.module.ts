@@ -8,7 +8,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 
 import { SpeechService } from './services/speech.service';
-
+import { AuthService } from './services/auth.service';
 import { reducers, metaReducers } from './reducers';
 import {
 	ApiSearchEffects,
@@ -35,6 +35,10 @@ import {
 	SuggestService
 } from './services';
 import { SpeechComponent } from './speech/speech.component';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+import { environment } from '../environments/environment';
 
 @NgModule({
 	declarations: [
@@ -118,7 +122,12 @@ import { SpeechComponent } from './speech/speech.component';
 		/**
 		/* Module defines the '404 Not found Page' for the Loklak Project.
 		*/
-		PageNotFoundModule
+		PageNotFoundModule,
+
+		// Firebase Setup
+		AngularFireModule.initializeApp(environment.firebase, 'loklak-search'),
+		AngularFirestoreModule, // imports firebase/firestore, only needed for database features
+		AngularFireAuthModule, // imports firebase/auth, only needed for auth features
 	],
 	providers: [
 		/**
@@ -134,7 +143,8 @@ import { SpeechComponent } from './speech/speech.component';
 		SearchService,
 		UserService,
 		SuggestService,
-		SpeechService
+		SpeechService,
+		AuthService
 	],
 	bootstrap: [AppComponent]
 })
