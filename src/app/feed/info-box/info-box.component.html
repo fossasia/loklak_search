@@ -9,11 +9,11 @@
 				<tbody>
 					<tr class="leaderboard-item" *ngFor="let item of topTwitterers">
 						<td>
-							<img src="https://twitter.com/{{ item[1] | lowercase }}/profile_image?size=normal" alt="{{item[1]}}" *ngIf="inviewporttwitters">
-							<span class="label leaderboard-label">{{item[1].length}}</span>
+							<img src="{{item[1][1]}}" alt="{{item[1][0]}}" *ngIf="inviewporttwitters">
+							<span class="label leaderboard-label">{{item[1][0].length}}</span>
 						</td>
 						<td class="leaderboard-text">
-							<a [routerLink]="['/search']" [queryParams]="{ query : 'from:' + item[1] }">@{{item[1]}}</a>
+							<a [routerLink]="['/search']" [queryParams]="{ query : 'from:' + item[1][0] }">@{{item[1][0]}}</a>
 						</td>
 					</tr>
 				</tbody>
@@ -42,11 +42,11 @@
 				<tbody>
 					<tr class="leaderboard-item" *ngFor="let item of topMentions">
 						<td>
-							<img src="https://twitter.com/{{ item[1][0] | lowercase  }}/profile_image?size=normal" alt="{{item[1][0]}}" *ngIf="inviewportmentions">
+							<img src="{{item[1][1]}}" alt="{{item[1][0]}}" *ngIf="inviewportmentions">
 							<span class="label leaderboard-label">{{item[1][0].length}}</span>
 						</td>
 						<td class="leaderboard-text">
-							<a [routerLink]="['/search']" [queryParams]="{ query : 'from:' + item[1][0] }">@{{item[1][0]}}</a>
+							<a [routerLink]="['/search']" [queryParams]="{ query : 'from:' + item[1][0][0] }">@{{item[1][0][0]}}</a>
 						</td>
 					</tr>
 				</tbody>
