@@ -66,7 +66,15 @@ export class InfoBoxComponent implements OnInit, OnChanges {
 	}
 	sortTwiterers(statistics) {
 		let sortable = [];
-		statistics = statistics.filter((el, i, a) => i === a.indexOf(el));
+		for ( let i = 0; i < statistics.length - 1; i++ ) {
+			for ( let j = i + 1; j < statistics.length; j++ ) {
+				if (statistics[i][0] === statistics[j][0]) {
+					if (i !== j) {
+						statistics.splice(j, 1);
+					}
+				}
+			}
+		}
 		if (statistics !== undefined && statistics.length !== 0) {
 			for (const s in statistics) {
 				if (s) {
@@ -131,10 +139,16 @@ export class InfoBoxComponent implements OnInit, OnChanges {
 				tagStrings.push(this.ApiResponseResult[i]['hashtags']);
 			}
 			if (this.ApiResponseResult[i]['screen_name'].length !== 0) {
-				screenStrings.push(this.ApiResponseResult[i]['screen_name']);
+				screenStrings.push([
+					this.ApiResponseResult[i]['screen_name'],
+					this.ApiResponseResult[i]['user']['profile_image_url_https']
+				]);
 			}
 			if (this.ApiResponseResult[i]['mentions'].length !== 0) {
-				mentionStrings.push(this.ApiResponseResult[i]['mentions']);
+				mentionStrings.push([
+					this.ApiResponseResult[i]['mentions'],
+					this.ApiResponseResult[i]['user']['profile_image_url_https']
+				]);
 			}
 			if (this.ApiResponseResult[i]['created_at'].length !== 0) {
 				createdStrings.push(this.ApiResponseResult[i]['created_at']);
@@ -173,4 +187,3 @@ export class InfoBoxComponent implements OnInit, OnChanges {
 		}
 	}
 }
-
