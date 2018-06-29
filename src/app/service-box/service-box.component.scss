@@ -20,7 +20,12 @@ button.sign-in {
     border-width: 0.4px;
     font-weight: 600;
     position: relative;
-    left: 115px;
+	left: 115px;
+	cursor: pointer;
+	&:hover {
+		border: 1px solid #ddd;
+		box-shadow: 0 0 11px rgba(33,33,33,.2);
+	}
 }
 
 .mat-icon-button {
