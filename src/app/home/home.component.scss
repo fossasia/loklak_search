@@ -180,7 +180,6 @@ service-box {
 								margin: 0px 0px;
 								font-family: 'Roboto', sans-serif;
 								white-space: nowrap;
-
 							}
 						}
 					}
@@ -188,12 +187,6 @@ service-box {
 			}
 		}
 	}
-}
-
-.bot {
-	position: fixed;
-    left: 50%;
-    transform: translate(-50%, 0);
 }
 
 @media (min-width: 768px) and (min-height: 500px) {

@@ -36,8 +36,10 @@
 						</span>
 					</div>
 				</span>
+			</div>
+			<div class="bottom-list">
 				<span>
-					<div class="bot" *ngIf="(apiResponseHashtags$ | async).length !== 0">
+					<div *ngIf="(apiResponseHashtags$ | async).length !== 0">
 						<span *ngFor ="let item of ((apiResponseHashtags$ | async).slice(6,10));">
 							<a [routerLink]="['/search']"
 								[queryParams]="{ query : '#' + item.tag }">#{{item.tag}}</a>&nbsp;&nbsp;
