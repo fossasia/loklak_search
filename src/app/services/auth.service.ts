@@ -18,6 +18,24 @@ export class AuthService {
 		);
 	}
 
+	signInWithGithub() {
+		return this.afAuth.auth.signInWithPopup(
+			new firebase.auth.GithubAuthProvider()
+		);
+	}
+
+	signInWithGoogle() {
+		return this.afAuth.auth.signInWithPopup(
+			new firebase.auth.GoogleAuthProvider()
+		);
+	}
+
+	signInWithFacebook() {
+		return this.afAuth.auth.signInWithPopup(
+			new firebase.auth.FacebookAuthProvider()
+		);
+	}
+
 	logout() {
 		this.afAuth.auth.signOut();
 	}
