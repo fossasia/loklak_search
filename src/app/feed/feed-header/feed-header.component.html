@@ -29,6 +29,8 @@
 		<div class="panel">
 			<service-box></service-box>
 		</div>
+		<a class="login" routerLink="/login" *ngIf="!(user | async)?.uid">Login</a>
+		<a class="logout" (click)="logout()" *ngIf="(user | async)?.uid">Logout</a>
 	</div>
 	<feed-advanced-search></feed-advanced-search>
 </div>

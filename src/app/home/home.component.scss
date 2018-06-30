@@ -43,9 +43,9 @@ div.outer-wrapper {
 	@include --center-flex();
 
 service-box {
-		position: absolute;
-		top: 20px;
-		right: 30px;
+	position: absolute;
+	top: 20px;
+	right: 30px;
 }
 
 	div.wrapper {
@@ -195,5 +195,39 @@ service-box {
 		bottom: 0px;
 		left: 0px;
 		width: 100vw;
+	}
+}
+
+.login {
+	background: #0066ff;
+    color: white;
+    position: absolute;
+    top: 26px;
+    right: 30px;
+    height: 28px;
+    width: 52px;
+    border-radius: 3px;
+    padding: 5px 0px 0px 7px;
+	&:hover {
+		text-decoration: none;
+		color: white;
+		box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	}
+}
+
+.logout {
+	background: #0066ff;
+    color: white;
+    position: absolute;
+    top: 26px;
+    right: 24px;
+    height: 28px;
+    width: 58px;
+    border-radius: 3px;
+    padding: 5px 0px 0px 7px;
+	&:hover {
+		text-decoration: none;
+		color: white;
+		box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 	}
 }

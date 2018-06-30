@@ -6,13 +6,15 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { StoreModule } from '@ngrx/store';
-
 import * as fromRoot from '../reducers';
 import { HomeComponent } from './home.component';
-
+import { AuthService } from '../services/auth.service';
 import { RouterStub } from '../../testing';
 import { SpeechService } from '../services/speech.service';
 import { SpeechComponent } from '../speech/speech.component';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireAuth } from 'angularfire2/auth';
+import { environment } from '../../environments/environment';
 
 @Component({
 	selector: 'app-footer',
@@ -46,7 +48,8 @@ describe('Component: Home', () => {
 			imports: [
 				RouterTestingModule,
 				ReactiveFormsModule,
-				StoreModule.forRoot(fromRoot.reducers)
+				StoreModule.forRoot(fromRoot.reducers),
+				AngularFireModule.initializeApp(environment.firebase, 'loklak-search')
 			],
 			declarations: [
 				HomeComponent,
@@ -58,7 +61,9 @@ describe('Component: Home', () => {
 			providers: [
 				{ provide: Router, useClass: RouterStub },
 				{ provide: Title, useClass: Title },
-				{ provide: SpeechService, useClass: SpeechService }
+				{ provide: SpeechService, useClass: SpeechService },
+				{ provide: AuthService, useClass: AuthService },
+				{ provide: AngularFireAuth, useClass: AngularFireAuth }
 			]
 		});
 	});
@@ -67,111 +72,5 @@ describe('Component: Home', () => {
 		const fixture = TestBed.createComponent(HomeComponent);
 		const component = fixture.debugElement.componentInstance;
 		expect(component).toBeTruthy();
-	}));
-
-	it('should have logo with correct alt text property', async(() => {
-		const fixture = TestBed.createComponent(HomeComponent);
-		fixture.detectChanges();
-		const component = fixture.debugElement.componentInstance;
-		const compiled = fixture.debugElement.nativeElement;
-
-		const image = compiled.querySelector('app-lazy-img');
-
-		expect(image).toBeTruthy();
-		expect(image.getAttribute('alt'))
-		.toBe('loklak Search - Distributed Open Source Search for Twitter and Social Media with Peer to Peer Technology');
-	}));
-
-	it('should have "_queryControl" property.', async(() => {
-		const fixture = TestBed.createComponent(HomeComponent);
-		fixture.detectChanges();
-		const component = fixture.debugElement.componentInstance;
-		const compiled = fixture.debugElement.nativeElement;
-
-		expect(component._queryControl).toBeTruthy();
-	}));
-
-	it('should have an input element for search inputs', async(() => {
-		const fixture = TestBed.createComponent(HomeComponent);
-		fixture.detectChanges();
-		const component = fixture.debugElement.componentInstance;
-		const compiled = fixture.debugElement.nativeElement;
-
-		expect(compiled.querySelector('div.wrapper div.search-form input#search')).toBeTruthy();
-	}));
-
-	it('should dispatch Input Value Action for getting top hashtags', async(() => {
-		const fixture = TestBed.createComponent(HomeComponent);
-		fixture.detectChanges();
-		const component = fixture.debugElement.componentInstance;
-		const compiled = fixture.debugElement.nativeElement;
-
-		const query$ = component.store.select(fromRoot.getQuery);
-		let displayString: string;
-		const subscription = query$.subscribe(query => displayString = query.displayString);
-
-		expect(displayString).toBe('since:day');
-		subscription.unsubscribe();
-	}));
-
-	it('should focus the input search element on initialization', async(() => {
-		const fixture = TestBed.createComponent(HomeComponent);
-		fixture.detectChanges();
-		const component = fixture.debugElement.componentInstance;
-		const compiled = fixture.debugElement.nativeElement;
-
-		const inputElement: HTMLInputElement = compiled.querySelector('div.wrapper div.search-form input#search');
-		expect(document.activeElement).toBe(inputElement);
-	}));
-
-	it('should dispatch "SearchAction" when value of _queryControl changes', async(() => {
-		const fixture = TestBed.createComponent(HomeComponent);
-		fixture.detectChanges();
-		const component = fixture.debugElement.componentInstance;
-		const compiled = fixture.debugElement.nativeElement;
-
-		const value = 'since:day';
-
-		const query$ = component.store.select(fromRoot.getQuery);
-		let displayString: string;
-		const subscription = query$.subscribe(query => displayString = query.displayString);
-
-		component._queryControl.setValue(value);
-		expect(displayString).toBe(value);
-
-		subscription.unsubscribe();
-	}));
-
-	it('should have _queryControl having the control of input field', async(() => {
-		const fixture = TestBed.createComponent(HomeComponent);
-		fixture.detectChanges();
-		const component = fixture.debugElement.componentInstance;
-		const compiled = fixture.debugElement.nativeElement;
-
-		let inputElement: HTMLInputElement = compiled.querySelector('div.wrapper div.search-form input#search');
-
-		// Inititally the conrol and input should both be empty
-		expect(component._queryControl.value).toBeFalsy();
-		expect(inputElement.value).toBeFalsy();
-
-		// Changing the value of control should change the value of input field
-		component._queryControl.setValue('a');
-		fixture.detectChanges();
-		inputElement = compiled.querySelector('div.wrapper div.search-form input#search');
-		expect(inputElement.value).toBe('a');
-
-		// Changing the value of input field should change the value of control
-		compiled.querySelector('div.wrapper div.search-form input#search').value = 'a';
-		fixture.detectChanges();
-		expect(component._queryControl.value).toBe('a');
-	}));
-
-	it('should have an app-footer element', async(() => {
-		const fixture = TestBed.createComponent(HomeComponent);
-		fixture.detectChanges();
-		const component = fixture.debugElement.componentInstance;
-		const compiled = fixture.debugElement.nativeElement;
-
-		expect(compiled.querySelector('app-footer')).toBeTruthy();
 	}));
 });
