@@ -16,6 +16,8 @@ import { MatAutocompleteTrigger } from '@angular/material';
 
 import { SuggestResults } from '../../models/api-suggest';
 import * as speechactions from '../../actions/speech';
+import { AuthService } from './../../services/auth.service';
+import * as firebase from 'firebase/app';
 
 @Component({
 	selector: 'feed-header',
@@ -34,11 +36,14 @@ export class FeedHeaderComponent implements OnInit, OnDestroy {
 	public searchInputControl = new FormControl();
 	public inputFocused = false;
 	hidespeech: Observable<boolean>;
+	public user: Observable<firebase.User>;
 
 	constructor(
-		private store: Store<fromRoot.State>
+		private store: Store<fromRoot.State>,
+		private afAuth: AuthService
 	) {
 		this.hidespeech = store.select(fromRoot.getspeechStatus);
+		this.user = this.afAuth.authState;
 	}
 
 	speechRecognition() {
@@ -69,6 +74,10 @@ export class FeedHeaderComponent implements OnInit, OnDestroy {
 
 	public closeSuggestBox(): void {
 		this.autoCompleteTrigger.closePanel();
+	}
+
+	logout() {
+		this.afAuth.logout();
 	}
 
 	ngOnDestroy() {

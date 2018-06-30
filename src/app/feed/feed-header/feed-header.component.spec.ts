@@ -15,6 +15,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { reducers } from '../../reducers';
 import { SpeechService } from '../../services/speech.service';
 import { SpeechComponent } from '../../speech/speech.component';
+import { AuthService } from '../../services/auth.service';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireAuth } from 'angularfire2/auth';
+import { environment } from '../../../environments/environment';
 
 @Component({
 	selector: 'service-box',
@@ -34,7 +38,8 @@ describe('Component: FeedHeader', () => {
 				MatMenuModule,
 				MatAutocompleteModule,
 				FormsModule,
-				StoreModule.forRoot(reducers)
+				StoreModule.forRoot(reducers),
+				AngularFireModule.initializeApp(environment.firebase, 'loklak-search')
 			],
 			declarations: [
 				FeedHeaderComponent,
@@ -42,7 +47,11 @@ describe('Component: FeedHeader', () => {
 				ServiceBoxStubComponent,
 				SpeechComponent
 			],
-			providers: [ SpeechService ]
+			providers: [
+				SpeechService,
+				AuthService,
+				AngularFireAuth
+			]
 		});
 	});
 

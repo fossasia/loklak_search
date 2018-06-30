@@ -16,6 +16,10 @@ const routes: Routes = [
 		data: { preload: true }
 	},
 	{
+		path: 'login',
+		loadChildren: './login/login.module#LoginModule'
+	},
+	{
 		path: 'about',
 		loadChildren: './about/about.module#AboutModule'
 	},

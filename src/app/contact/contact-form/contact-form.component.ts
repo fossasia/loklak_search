@@ -3,14 +3,6 @@ import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms'
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { countrycodearray } from '../../shared/countrycode/countrycode';
 
-interface User {
-	name: string;
-	email: string;
-	countrycode: number;
-	telephone: number;
-	message: string;
-}
-
 @Component({
 	selector: 'contact-form',
 	templateUrl: './contact-form.component.html',

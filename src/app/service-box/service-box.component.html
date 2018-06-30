@@ -1,98 +1,94 @@
 <div id="side-menu">
-		<span>
-			<button class="sign-in" (click)="signInWithTwitter()" *ngIf="!(user | async)?.uid">Sign in</button>
-			<button class="sign-in" (click)="logout()" *ngIf="(user | async)?.uid">Sign Out</button>
-			<button aria-label="button" mat-icon-button (click)="opened = !opened">
-				<mat-icon>apps</mat-icon>
-			</button>
-		<div class="box" [class.opened]="opened">
-			<div class="tip">
-				<div class="border"></div>
-				<div class="foreground"></div>
-			</div>
+	<button aria-label="button" mat-icon-button (click)="opened = !opened">
+		<mat-icon>apps</mat-icon>
+	</button>
+	<div class="box" [class.opened]="opened">
+		<div class="tip">
+			<div class="border"></div>
+			<div class="foreground"></div>
+		</div>
+	<div class="services">
+		<div class="row">
+				<a href="https://blog.fossasia.org">
+				<div class="col">
+					<div class="img">
+						<img src="assets/images/blog.png" alt="Fossasia">
+					</div>
+					<span>Blogs</span>
+				</div>
+			</a>
+			<a href="https://github.com/fossasia/loklak_search">
+				<div class="col">
+					<div class="img">
+						<img src="assets/images/github.png" alt="Fossasia">
+					</div>
+					<span>Github</span>
+				</div>
+			</a>
+			<a href="https://github.com/fossasia/loklak_search/issues">
+				<div class="col">
+					<div class="img">
+						<img src="assets/images/bug.png" alt="Fossasia">
+					</div>
+					<span>Bug Report</span>
+				</div>
+			</a>
+		</div>
+	</div>
+	<hr />
 		<div class="services">
 			<div class="row">
-				 <a href="https://blog.fossasia.org">
+				<a href="https://fossasia.org/">
 					<div class="col">
 						<div class="img">
-							<img src="assets/images/blog.png" alt="Fossasia">
+							<img src="assets/images/fossasia_logo_55x22.png" width="55" height="22" alt="Fossasia">
 						</div>
-						<span>Blogs</span>
+						<span>FOSSASIA</span>
 					</div>
 				</a>
-				<a href="https://github.com/fossasia/loklak_search">
+				<a href="https://phimp.me">
 					<div class="col">
 						<div class="img">
-							<img src="assets/images/github.png" alt="Fossasia">
+							<img src="assets/images/phimpme_64x64.png" width="50" height="50" alt="Phimpme">
 						</div>
-						<span>Github</span>
+						<span>Phimpme</span>
 					</div>
 				</a>
-				<a href="https://github.com/fossasia/loklak_search/issues">
+				<a href="https://susper.com/">
 					<div class="col">
 						<div class="img">
-							<img src="assets/images/bug.png" alt="Fossasia">
+							<img src="assets/images/susper_60x16.png" width="60" height="16" alt="Susper">
 						</div>
-						<span>Bug Report</span>
+						<span>Susper</span>
+					</div>
+				</a>
+			</div>
+			<div class="row">
+				<a href="https://chat.susi.ai/">
+					<div class="col">
+						<div class="img">
+							<img src="assets/images/susi_60x12.png" width="60" height="12" alt="Susi.AI">
+						</div>
+						<span>Susi.AI</span>
+					</div>
+				</a>
+				<a href="https://pslab.fossasia.org/">
+					<div class="col">
+						<div class="img">
+							<img src="assets/images/pslab_64x68.png" width="50" height="50" alt="PSLab">
+						</div>
+						<span>PSLab</span>
+					</div>
+				</a>
+				<a href="https://eventyay.com/">
+					<div class="col">
+						<div class="img">
+							<img src="assets/images/eventyay.png" width="60" height="18" alt="Eventyay">
+						</div>
+						<span>Eventyay</span>
 					</div>
 				</a>
 			</div>
 		</div>
-		<hr />
-			<div class="services">
-				<div class="row">
-					<a href="https://fossasia.org/">
-						<div class="col">
-							<div class="img">
-								<img src="assets/images/fossasia_logo_55x22.png" width="55" height="22" alt="Fossasia">
-							</div>
-							<span>FOSSASIA</span>
-						</div>
-					</a>
-					<a href="https://phimp.me">
-						<div class="col">
-							<div class="img">
-								<img src="assets/images/phimpme_64x64.png" width="50" height="50" alt="Phimpme">
-							</div>
-							<span>Phimpme</span>
-						</div>
-					</a>
-					<a href="https://susper.com/">
-						<div class="col">
-							<div class="img">
-								<img src="assets/images/susper_60x16.png" width="60" height="16" alt="Susper">
-							</div>
-							<span>Susper</span>
-						</div>
-					</a>
-				</div>
-				<div class="row">
-					<a href="https://chat.susi.ai/">
-						<div class="col">
-							<div class="img">
-								<img src="assets/images/susi_60x12.png" width="60" height="12" alt="Susi.AI">
-							</div>
-							<span>Susi.AI</span>
-						</div>
-					</a>
-					<a href="https://pslab.fossasia.org/">
-						<div class="col">
-							<div class="img">
-								<img src="assets/images/pslab_64x68.png" width="50" height="50" alt="PSLab">
-							</div>
-							<span>PSLab</span>
-						</div>
-					</a>
-					<a href="https://eventyay.com/">
-						<div class="col">
-							<div class="img">
-								<img src="assets/images/eventyay.png" width="60" height="18" alt="Eventyay">
-							</div>
-							<span>Eventyay</span>
-						</div>
-					</a>
-				</div>
-			</div>
-		</div>
-		</span>
 	</div>
+</div>

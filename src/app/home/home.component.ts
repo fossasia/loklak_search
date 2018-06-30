@@ -10,8 +10,9 @@ import * as queryAction from '../actions/query';
 import * as trendsAction from '../actions/trends';
 import * as suggestAction from '../actions/suggest';
 import * as speechactions from '../actions/speech';
-
 import * as titleAction from '../actions/title';
+import { AuthService } from './../services/auth.service';
+import * as firebase from 'firebase/app';
 
 @Component({
 	selector: 'app-home',
@@ -27,16 +28,19 @@ export class HomeComponent implements OnInit, OnDestroy, AfterContentChecked {
 	public inputFocused = false;
 	hidespeech: Observable<boolean>;
 	public apiResponseHashtags$: Observable<Array<{ tag: string, count: number }>>;
+	public user: Observable<firebase.User>;
 
 	constructor(
 		private router: Router,
 		private elementRef: ElementRef,
 		private changeDetectorRef: ChangeDetectorRef,
-		private store: Store<fromRoot.State>
+		private store: Store<fromRoot.State>,
+		private afAuth: AuthService
 	) {
 		this.hidespeech = store.select(fromRoot.getspeechStatus);
 		this.getHashTagsFromLastDay();
 		this.getDataOfTrendingHashTags();
+		this.user = this.afAuth.authState;
 	}
 
 	speechRecognition() {
@@ -110,6 +114,10 @@ export class HomeComponent implements OnInit, OnDestroy, AfterContentChecked {
 	private getHashTagsFromLastDay() {
 		this.store.dispatch(new queryAction.RelocationAfterQueryResetAction());
 		this.store.dispatch(new queryAction.InputValueChangeAction('since:day'));
+	}
+
+	logout() {
+		this.afAuth.logout();
 	}
 
 	/**
