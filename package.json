@@ -47,7 +47,6 @@
     "reselect": "^3.0.1",
     "rxjs": "^6.0.0",
     "screenfull": "^3.2.2",
-    "source-map": "^0.7.3",
     "sw-precache": "^5.2.1",
     "sw-toolbox": "^3.6.0",
     "ts-helpers": "^1.1.2",
@@ -87,7 +86,7 @@
     "webpack-bundle-analyzer": "^2.13.1"
   },
   "engines": {
-    "node": "8.9.0",
-    "npm": "6.1.0"
+    "node": "9.0.0",
+    "npm": "5.5.1"
   }
 }
