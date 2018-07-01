@@ -9,7 +9,6 @@
 
 Development: [![Build Status](https://travis-ci.org/fossasia/loklak_search.svg?branch=development)](https://travis-ci.org/fossasia/loklak_search)
 Master: [![Build Status](https://travis-ci.org/fossasia/loklak_search.svg?branch=master)](https://travis-ci.org/fossasia/loklak_search)
-Dependency: [![Gemnasium](https://img.shields.io/gemnasium/mathiasbynens/he.svg)](https://gemnasium.com/github.com/fossasia/loklak_search)
 
 The loklak_search creates a website using the loklak server as a data source. The goal is to get a search site, that offers timeline search as well as custom media search, account and geolocation search.
 
