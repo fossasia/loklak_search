@@ -22,11 +22,6 @@ export class SearchService {
 							'&timezoneOffset=' + config.getTimezoneOffset() +
 							'&startRecord=' + config.startRecord.toString();
 
-		if (config.getAggregationFieldString()) {
-			jsonpUrl += '&fields=' + config.getAggregationFieldString() +
-						'&limit=' + config.aggregationLimit.toString();
-		}
-
 		if (config.getFilterString()) {
 			jsonpUrl += '&filter=' + config.getFilterString();
 		}

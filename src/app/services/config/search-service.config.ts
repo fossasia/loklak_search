@@ -19,11 +19,11 @@ export class SearchServiceConfig {
 	}
 
 	private setDefaults() {
-		this._count = 20;
+		this._count = 100;
 		this._source = 'all';
 		this._fields = new Set<AggregationFields>();
 		this._aggregationLimit = 10;
-		this._maximumRecords = 20;
+		this._maximumRecords = 100;
 		this._startRecord = 1;
 		this._timezoneOffset = new Date().getTimezoneOffset().toString();
 		this._filters = new Set<Filter>();
