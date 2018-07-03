@@ -66,6 +66,19 @@ export class InfoBoxComponent implements OnInit, OnChanges {
 	}
 	sortTwiterers(statistics) {
 		let sortable = [];
+		const temp = [];
+		for (let i = 0; i < statistics.length; i++) {
+			let check = true;
+			for (let j = 0; j < temp.length; j++) {
+				if ( statistics[i][0] === temp[j][0] ) {
+					check = false;
+				}
+			}
+			if ( check ) {
+				temp.push(statistics[i]);
+			}
+		}
+		statistics = temp;
 		for ( let i = 0; i < statistics.length - 1; i++ ) {
 			for ( let j = i + 1; j < statistics.length; j++ ) {
 				if (statistics[i][0] === statistics[j][0]) {
