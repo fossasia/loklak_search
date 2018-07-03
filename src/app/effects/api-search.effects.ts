@@ -53,7 +53,6 @@ export class ApiSearchEffects {
 						skip(1)
 					);
 
-				searchServiceConfig.addAggregationFields(['created_at', 'screen_name', 'mentions', 'hashtags']);
 				if (query.filter.image) {
 					searchServiceConfig.addFilters(['image']);
 				} else {
