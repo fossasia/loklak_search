@@ -4,7 +4,7 @@ dist: trusty
 language: node_js
 
 node_js:
-  - '9.0.0'
+  - '8.11.3'
 
 cache:
   directories:
