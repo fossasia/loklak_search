@@ -19,11 +19,15 @@
 									{{suggestion.query}}
 							</mat-option>
 						</mat-autocomplete>
-						<button title="Search by voice" class="btn btn-default" id="speech-button" type="submit">
-							<a><img src="../../assets/images/microphone.png" class="microphone" (click)="speechRecognition()"/></a>
-						</button>
-						<i id="search-suffix-icon" class="material-icons material-icons.md-dark">search</i>
 				</div>
+				<span class="feature">
+					<button title="Search by voice" class="btn btn-default" id="speech-button" type="submit">
+						<a><img src="../../assets/images/microphone.png" class="microphone" (click)="speechRecognition()"/></a>
+					</button>
+					<button class="btn btn-default">
+						<i id="search-suffix-icon" class="material-icons material-icons.md-dark">search</i>
+					</button>
+				</span>
 			</div>
 		</div>
 		<div class="panel">

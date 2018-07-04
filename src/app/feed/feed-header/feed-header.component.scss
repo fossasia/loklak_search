@@ -52,6 +52,7 @@
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
+		position: relative;
 
 		div.logo-and-form {
 			margin-right: 82px;
@@ -76,6 +77,18 @@
 			.search-form {
 				height: 100%;
 				flex: 1;
+
+				.feature {
+					top: -42.5px;
+					left: -2px;
+					position: relative;
+					float: right;
+					margin-right: 6px;
+					button {
+						background: white;
+						outline: none;
+					}
+				}
 
 				.search-input {
 					@include --center-flex();
@@ -162,4 +175,8 @@
 		color: white;
 		box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 	}
+}
+
+.btn {
+	padding: 5.5px 5px;
 }
