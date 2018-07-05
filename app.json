@@ -1,0 +1,31 @@
+{
+	"name": "loklak-search",
+	"description": "Loklak Search - Distributed Open Source Search for Twitter and Social Media with Peer to Peer Technology",
+	"repository": "https://github.com/fossasia/loklak_search",
+	"keywords": [
+		"loklak",
+		"fossasia",
+		"Angular"
+	],
+	"scripts": {
+	},
+	"env": {
+		"LANG": {
+		"required": true
+	},
+	"SERVICE_ACCOUNT_JSON" : {
+			"description": "The service-account.json from Firebase app.",
+			"required": true
+		}
+	},
+	"formation": {
+	},
+	"addons": [
+
+	],
+	"buildpacks": [
+  		{
+    		"url": "heroku/nodejs"
+  		}
+	]
+}

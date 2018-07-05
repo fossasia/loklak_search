@@ -14,7 +14,7 @@ The loklak_search creates a website using the loklak server as a data source. Th
 
 In order to run the service, you can use the API of https://api.loklak.org or install your own loklak server data storage engine. [loklak_server](https://github.com/loklak/loklak_server) is a server application which collects messages from various social media tweet sources, including Twitter. The server contains a search index and a peer-to-peer index sharing interface. All messages are stored in an elasticsearch index.
 
-The site of this repo is deployed on the GitHub gh-pages branch and automatically deployed here: https://loklak.org
+The site of this repo is deployed on the GitHub gh-pages branch and automatically deployed here: https://loklak.org. The development branch is deployed on Heroku: https://loklak-search.herokuapp.com
 
 ---
 
@@ -46,10 +46,6 @@ After installing angular-cli we need to install our required node modules, so we
 ```sh
 $ npm install
 ```
-After installing node modules we need to install `webpack`, so we will do that by using the following command:
-```sh
-$ npm install webpack
-```
 
 ## How to deploy?
 ### Running on localhost:
@@ -78,6 +74,15 @@ With these very simple steps you can have loklak_search deployed:
 * **Step 5:** As you search you might see that it can't find anything, to resolve this, on search you will see there is a red shield on search bar, click on it and allow to load scripts
 * **Step 6:** Reload and you will have a function loklak search page deployed with github pages.
 
+### For deploying with [Heroku](https://www.heroku.com/):
+
+loklak_search can be deployed on Heroku using:
+1. [Deployment on Heroku](docs/installation/heroku.md)
+
+One-click Heroku deployment is also available:
+
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/fossasia/loklak_search)
+
 ### Loklak Server
 See here to run your own https://github.com/loklak/loklak_server (recommended), and change `apiUrl` in config accordingly. Last resource, or for production is https://api.loklak.org
 
@@ -89,7 +94,7 @@ This is an Open Source project and we would be happy to see contributors who rep
 
 We have the following branches:
  * **development**
-   All development goes on in the development branch. If you're making a contribution, please make a pull request to _development_. PRs to the branch must pass a build check and a unit-test check on Travis.
+   All development goes on in the development branch. If you're making a contribution, please make a pull request to _development_. PRs to the branch must pass a build check and a unit-test check on Travis (https://loklak-search.herokuapp.com - Is running off the latest development branch).
  * **master**
 	 This branch contains shipped code. After significant features/bug-fixes are accumulated on development, development branch is merged into master branch. (https://loklak.org - Is running off the lastest master branch.).
  * **gh-pages**
