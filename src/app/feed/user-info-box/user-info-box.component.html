@@ -24,27 +24,27 @@
 			<div class="listing">
 				<ul class="list-container">
 					<li class="list-item">
-						<span class="item-label">Tweets:</span>
+						<span class="item-label">Tweets:&nbsp;</span>
 						<span class="item-content">{{ apiResponseUser.statuses_count }}</span>
 					</li>
 					<li class="list-item">
-						<span class="item-label">Following:</span>
+						<span class="item-label">Following:&nbsp;</span>
 						<span class="item-content">{{ apiResponseUser.friends_count }}</span>
 					</li>
 					<li class="list-item">
-						<span class="item-label">Followers:</span>
+						<span class="item-label">Followers:&nbsp;</span>
 						<span class="item-content">{{ apiResponseUser.followers_count }}</span>
 					</li>
 					<li class="list-item">
-						<span class="item-label">Likes:</span>
+						<span class="item-label">Likes:&nbsp;</span>
 						<span class="item-content">{{ apiResponseUser.favourites_count }}</span>
 					</li>
 					<li class="list-item">
-						<span class="item-label">Location:</span>
+						<span class="item-label">Location:&nbsp;</span>
 						<span class="item-content" *ngIf="apiResponseUser.location">{{ apiResponseUser.location }}</span>
 					</li>
 					<li class="list-item">
-						<span class="item-label">Website:</span>
+						<span class="item-label">Website:&nbsp;</span>
 						<span class="item-content" *ngIf="apiResponseUser.entities"><a *ngIf="apiResponseUser.entities.url" href="{{ apiResponseUser.entities.url.urls[0].url }}">{{ apiResponseUser.entities.url.urls[0].expanded_url }}</a></span>
 					</li>
 				</ul>
