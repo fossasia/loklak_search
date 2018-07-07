@@ -25,10 +25,10 @@
 				<tbody>
 					<tr class="leaderboard-item"  *ngFor ="let item of topHashtags">
 						<td>
-							<div  class="leaderboard-count">{{item[1][0].length}}</div>
+							<div  class="leaderboard-count">{{item[1]}}</div>
 						</td>
 						<td class="leaderboard-text">
-							<a [routerLink]="['/search']" [queryParams]="{ query : '#' + item[1][0] }">#{{item[1][0]}}</a>
+							<a [routerLink]="['/search']" [queryParams]="{ query : '#' + item[0] }">#{{item[0]}}</a>
 						</td>
 					</tr>
 				</tbody>
