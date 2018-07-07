@@ -8,7 +8,7 @@
 				<img class="banner" src="{{ apiResponseUser.profile_banner_url }}"/>
 			</div>
 			<div class="profile-image">
-				<img src="https://twitter.com/{{ apiResponseUser.screen_name | lowercase }}/profile_image?size=bigger"/>
+				<img src="{{ apiResponseUser.profile_image_url_https }}" onerror="this.src='assets/images/def94.jpg'"/>
 			</div>
 		</div>
 		<div>
@@ -56,7 +56,7 @@
 				<li class="gallery-item"  *ngFor="let item of (sortedApiResponseUserFollowers.slice(0,3)); let i = index ">
 					<a [routerLink]="['/search']" [queryParams]="{ query : 'from:' + item.screen_name }">
 						<div class="item-image">
-							<img src="https://twitter.com/{{ item.screen_name | lowercase }}/profile_image?size=bigger"/>
+							<img src="{{ item.profile_image_url_https }}" onerror="this.src='assets/images/def94.jpg'"/>
 						</div>
 						<div class="item-desc">
 							<div class="item-name">
@@ -79,7 +79,7 @@
 				<li class="gallery-item"  *ngFor="let item of (sortedApiResponseUserFollowing.slice(0,3)); let i = index ">
 					<a [routerLink]="['/search']" [queryParams]="{ query : 'from:' + item.screen_name }">
 						<div class="item-image">
-							<img src="https://twitter.com/{{ item.screen_name | lowercase }}/profile_image?size=bigger"/>
+							<img src="{{ item.profile_image_url_https }}" onerror="this.src='assets/images/def94.jpg'"/>
 						</div>
 						<div class="item-desc">
 							<div class="item-name">

@@ -33,9 +33,6 @@ export class ApiUserSearchEffects {
 					ofType(userApiAction.ActionTypes.USER_SEARCH),
 					skip(1)
 				);
-
-				const follow_count = 10;
-
 				return this.apiUserService.fetchQuery(query.screen_name)
 					.pipe(
 						takeUntil(nextSearch$),
