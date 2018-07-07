@@ -42,11 +42,11 @@
 				<tbody>
 					<tr class="leaderboard-item" *ngFor="let item of topMentions">
 						<td>
-							<img src="{{item[1][1]}}" alt="{{item[1][0]}}" *ngIf="inviewportmentions" onerror="this.src='assets/images/def94.jpg'">
-							<span class="label leaderboard-label">{{item[1][0].length}}</span>
+							<img src="https://twitter.com/{{item[0]}}/profile_image?size=mini" alt="{{item[0]}}" *ngIf="inviewportmentions" onerror="this.src='assets/images/def94.jpg'">
+							<span class="label leaderboard-label">{{item[1]}}</span>
 						</td>
 						<td class="leaderboard-text">
-							<a [routerLink]="['/search']" [queryParams]="{ query : 'from:' + item[1][0][0] }">@{{item[1][0][0]}}</a>
+							<a [routerLink]="['/search']" [queryParams]="{ query : 'from:' + item[0] }">@{{item[0]}}</a>
 						</td>
 					</tr>
 				</tbody>
