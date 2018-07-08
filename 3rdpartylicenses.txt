@@ -1,4 +1,4 @@
-@angular/cdk@6.2.0
+@angular/material@6.3.2
 MIT
 The MIT License
 
@@ -22,7 +22,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
-@angular/material@6.2.0
+@angular/cdk@6.3.2
 MIT
 The MIT License
 
@@ -46,7 +46,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
-rxjs@6.2.0
+rxjs@6.2.1
 Apache-2.0
 Apache License
                          Version 2.0, January 2004
@@ -270,7 +270,7 @@ masonry-layout@4.2.1
 MIT
 MIT
 
-screenfull@3.3.1
+screenfull@3.3.2
 MIT
 MIT License
 
@@ -451,15 +451,15 @@ WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 OTHER DEALINGS IN THE SOFTWARE.
 
-@angular/core@6.0.3
+@angular/core@6.0.7
 MIT
 MIT
 
-@angular/platform-browser@6.0.3
+@angular/platform-browser@6.0.7
 MIT
 MIT
 
-tslib@1.9.2
+tslib@1.9.3
 Apache-2.0
 Apache License
 
@@ -517,11 +517,15 @@ If the Work includes a "NOTICE" text file as part of its distribution, then any 
 
 END OF TERMS AND CONDITIONS
 
-@angular/common@6.0.3
+@angular/common@6.0.7
 MIT
 MIT
 
-@angular/animations@6.0.3
+@angular/router@6.0.7
+MIT
+MIT
+
+@angular/animations@6.0.7
 MIT
 MIT
 
@@ -548,7 +552,58 @@ CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
 TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-@angular/forms@6.0.3
+firebase@5.2.0
+Apache-2.0
+Apache-2.0
+
+@firebase/polyfill@0.3.3
+Apache-2.0
+Apache-2.0
+
+@firebase/app@0.3.3
+Apache-2.0
+Apache-2.0
+
+@firebase/util@0.2.1
+Apache-2.0
+Apache-2.0
+
+whatwg-fetch@2.0.4
+MIT
+Copyright (c) 2014-2016 GitHub, Inc.
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+@firebase/firestore@0.5.6
+Apache-2.0
+Apache-2.0
+
+@firebase/logger@0.1.1
+Apache-2.0
+Apache-2.0
+
+@firebase/webchannel-wrapper@0.2.8
+Apache-2.0
+Apache-2.0
+
+@angular/forms@6.0.7
 MIT
 MIT
 
@@ -576,7 +631,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-ngrx-store-freeze@0.2.3
+ngrx-store-freeze@0.2.4
 MIT
 The MIT License (MIT)
 
@@ -609,7 +664,7 @@ https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Obj
 
 https://developer.mozilla.org/en-US/docs/Project:Copyrights
 
-@angular/router@6.0.3
+angularfire2@5.0.0-rc.11
 MIT
 MIT
 
