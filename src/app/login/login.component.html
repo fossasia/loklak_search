@@ -12,7 +12,7 @@
 	<div class="overlay-content">
         <form class="contact-form" [formGroup]="loginForm" novalidate>
 			<fieldset>
-				<legend>Loklak Login</legend>
+				<legend class="legend-font">Loklak Login</legend>
 				<div class="form-group">
 					<input type="text" formControlName="email" id="email" placeholder="xyz@example.com" name="email">
 				</div>
@@ -20,24 +20,39 @@
 					<input type="password" formControlName="password" id="password" placeholder="Your Secret Password" name="password">
 				</div>
 				<div class="form-group">
-                    <mat-button-toggle (click)="loginWithCredentials(loginForm.value);" type="submit" value="submit" class="login Submit">
-                        Sign Up
-                    </mat-button-toggle>
+                    <span class="login">
+                        <button (click)="signUpWithCredentials(loginForm.value);">
+                            <span>Sign up</span>
+                        </button>
+                    </span>
+                    <span class="login">
+                        <button (click)="loginWithCredentials(loginForm.value);">
+                            <span>Login</span>
+                        </button>
+                    </span>
             </div>
-        <br><br><br>
+        <hr>
         <div class="form-group">
-            <mat-button-toggle class="login twitter" (click)="signInWithTwitter()">
-                Twitter
-            </mat-button-toggle>
-            <mat-button-toggle class="login github" (click)="signInWithGithub()">
-                Github
-            </mat-button-toggle>
-            <mat-button-toggle class="login google" (click)="signInWithGoogle()">
-                Google
-            </mat-button-toggle>
-            <mat-button-toggle class="login facebook" (click)="signInWithFacebook()">
-                Facebook
-            </mat-button-toggle>
+            <span class="social">
+            <a class="btn btn-block btn-social btn-twitter" (click)="signInWithTwitter()">
+                <span class="fa fa-twitter fa-2x"></span>
+            </a>
+            </span>
+            <span class="social">
+            <a class="btn btn-block btn-social btn-github" (click)="signInWithGithub()">
+                <span class="fa fa-github fa-2x"></span>
+            </a>
+            </span>
+            <span class="social">
+            <a class="btn btn-block btn-social btn-google" (click)="signInWithGoogle()">
+                <span class="fa fa-google fa-2x"></span>
+            </a>
+            </span>
+            <span class="social">
+            <a class="btn btn-block btn-social btn-facebook" (click)="signInWithFacebook()">
+                <span class="fa fa-facebook fa-2x"></span>
+            </a>
+            </span>
           </div>
 			</fieldset>
 		</form>
