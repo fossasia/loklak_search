@@ -34,19 +34,30 @@ export class InfoBoxComponent implements OnChanges {
 		this.parseApiResponseData();
 	}
 	sortHashtags(statistics) {
-		let sortable = [];
 		/* A check for both the data and the individual objects is necessary, also if the data is not empty*/
+		let stored = [];
 		if (statistics !== undefined && statistics.length !== 0) {
 			for (const s in statistics) {
 				if (s) {
-					sortable.push([s, statistics[s]]);
+					for (let i = 0; i < statistics[s].length; i++) {
+						stored.push(statistics[s][i]);
+					}
 				}
 			}
-			sortable.sort(function (a, b) {
-				return b[1] - a[1];
-			});
-			sortable = (sortable.slice(0, 10));
-			this.topHashtags = sortable;
+			stored = stored.reduce(function (acc, curr) {
+				if (typeof acc[curr] === 'undefined') {
+						acc[curr] = 1;
+				} else {
+					acc[curr] += 1;
+				}
+				return acc;
+			}, []);
+			this.topHashtags = Object.keys(stored)
+			.map(key => key.trim())
+			.filter(key => key !== '')
+			.map(key => ([key, stored[key]]))
+			.sort((a, b) => b[1] - a[1])
+			.slice(0, 10);
 			this.areTopHashtagsAvailable = true;
 			return this.topHashtags;
 
