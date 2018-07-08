@@ -1,8 +1,6 @@
 import { ApiResponseResult } from './../../models/api-response';
-import { Component, OnInit, OnChanges, Input } from '@angular/core';
-import { Store } from '@ngrx/store';
+import { Component, OnChanges, Input } from '@angular/core';
 import { Observable } from 'rxjs';
-import * as fromRoot from '../../reducers';
 import { Query } from '../../models';
 
 @Component({
@@ -10,7 +8,7 @@ import { Query } from '../../models';
 	templateUrl: './info-box.component.html',
 	styleUrls: ['./info-box.component.scss']
 })
-export class InfoBoxComponent implements OnInit, OnChanges {
+export class InfoBoxComponent implements OnChanges {
 	@Input() public query: Query;
 	@Input() public ApiResponseResult: ApiResponseResult[];
 	public inviewporttwitters: Observable<boolean>;
@@ -31,12 +29,6 @@ export class InfoBoxComponent implements OnInit, OnChanges {
 		scaleShowVerticalLines: false,
 		responsive: true
 	};
-
-	constructor(
-		private store: Store<fromRoot.State>
-	) { }
-
-	ngOnInit() { }
 
 	ngOnChanges() {
 		this.parseApiResponseData();
@@ -109,18 +101,29 @@ export class InfoBoxComponent implements OnInit, OnChanges {
 
 	}
 	sortMentions(statistics) {
-		let sortable = [];
+		let stored = [];
 		if (statistics !== undefined && statistics.length !== 0) {
 			for (const s in statistics) {
 				if (s) {
-					sortable.push([s, statistics[s]]);
+					for (let i = 0; i < statistics[s][0].length; i++) {
+						stored.push(statistics[s][0][i]);
+					}
 				}
 			}
-			sortable.sort(function (a, b) {
-				return b[1] - a[1];
-			});
-			sortable = (sortable.slice(0, 10));
-			this.topMentions = sortable;
+			stored = stored.reduce(function (acc, curr) {
+				if (typeof acc[curr] === 'undefined') {
+						acc[curr] = 1;
+				} else {
+					acc[curr] += 1;
+				}
+				return acc;
+			}, []);
+			this.topMentions = Object.keys(stored)
+			.map(key => key.trim())
+			.filter(key => key !== '')
+			.map(key => ([key, stored[key]]))
+			.sort((a, b) => b[1] - a[1])
+			.slice(0, 10);
 			this.areTopMentionsAvailable = true;
 			return this.topMentions;
 		} else {
@@ -159,8 +162,7 @@ export class InfoBoxComponent implements OnInit, OnChanges {
 			}
 			if (this.ApiResponseResult[i]['mentions'].length !== 0) {
 				mentionStrings.push([
-					this.ApiResponseResult[i]['mentions'],
-					this.ApiResponseResult[i]['user']['profile_image_url_https']
+					this.ApiResponseResult[i]['mentions']
 				]);
 			}
 			if (this.ApiResponseResult[i]['created_at'].length !== 0) {
