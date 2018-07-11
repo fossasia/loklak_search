@@ -35,7 +35,7 @@ export class InfoBoxComponent implements OnChanges {
 	}
 	sortHashtags(statistics) {
 		/* A check for both the data and the individual objects is necessary, also if the data is not empty*/
-		let stored = [];
+		const stored = [];
 		if (statistics !== undefined && statistics.length !== 0) {
 			for (const s in statistics) {
 				if (s) {
@@ -44,20 +44,7 @@ export class InfoBoxComponent implements OnChanges {
 					}
 				}
 			}
-			stored = stored.reduce(function (acc, curr) {
-				if (typeof acc[curr] === 'undefined') {
-						acc[curr] = 1;
-				} else {
-					acc[curr] += 1;
-				}
-				return acc;
-			}, []);
-			this.topHashtags = Object.keys(stored)
-			.map(key => key.trim())
-			.filter(key => key !== '')
-			.map(key => ([key, stored[key]]))
-			.sort((a, b) => b[1] - a[1])
-			.slice(0, 10);
+			this.topHashtags = this.parseRawDataWithFrequency(stored);
 			this.areTopHashtagsAvailable = true;
 			return this.topHashtags;
 
@@ -112,7 +99,7 @@ export class InfoBoxComponent implements OnChanges {
 
 	}
 	sortMentions(statistics) {
-		let stored = [];
+		const stored = [];
 		if (statistics !== undefined && statistics.length !== 0) {
 			for (const s in statistics) {
 				if (s) {
@@ -121,20 +108,7 @@ export class InfoBoxComponent implements OnChanges {
 					}
 				}
 			}
-			stored = stored.reduce(function (acc, curr) {
-				if (typeof acc[curr] === 'undefined') {
-						acc[curr] = 1;
-				} else {
-					acc[curr] += 1;
-				}
-				return acc;
-			}, []);
-			this.topMentions = Object.keys(stored)
-			.map(key => key.trim())
-			.filter(key => key !== '')
-			.map(key => ([key, stored[key]]))
-			.sort((a, b) => b[1] - a[1])
-			.slice(0, 10);
+			this.topMentions = this.parseRawDataWithFrequency(stored);
 			this.areTopMentionsAvailable = true;
 			return this.topMentions;
 		} else {
@@ -142,6 +116,25 @@ export class InfoBoxComponent implements OnChanges {
 			this.topMentions = [];
 			return this.topMentions;
 		}
+	}
+
+	public parseRawDataWithFrequency(stored) {
+		let topFrequencyData = [];
+		stored = stored.reduce(function (acc, curr) {
+			if (typeof acc[curr] === 'undefined') {
+					acc[curr] = 1;
+			} else {
+				acc[curr] += 1;
+			}
+			return acc;
+		}, []);
+		topFrequencyData = Object.keys(stored)
+		.map(key => key.trim())
+		.filter(key => key !== '')
+		.map(key => ([key, stored[key]]))
+		.sort((a, b) => b[1] - a[1])
+		.slice(0, 10);
+		return topFrequencyData;
 	}
 
 	public inviewtwitters(event) {
