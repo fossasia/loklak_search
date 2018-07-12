@@ -12,7 +12,7 @@
 			</div>
 		</div>
 		<div>
-			<div class="heading">
+			<div class="heading" *ngIf="apiResponseUser">
 				<h2>{{ apiResponseUser.name }}</h2>
 				<span>@{{ apiResponseUser.screen_name }}</span>
 			</div>
@@ -21,7 +21,7 @@
 					[text]="apiResponseUser.description"
 					[useAll]="true"></feed-linker>
 			</div>
-			<div class="listing">
+			<div class="listing" *ngIf="apiResponseUser">
 				<ul class="list-container">
 					<li class="list-item">
 						<span class="item-label">Tweets:&nbsp;</span>
