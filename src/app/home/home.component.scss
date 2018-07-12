@@ -42,11 +42,11 @@ div.outer-wrapper {
 	position:  relative;
 	@include --center-flex();
 
-service-box {
-	position: absolute;
-	top: 20px;
-	right: 30px;
-}
+	service-box {
+		position: absolute;
+		top: 20px;
+		right: 30px;
+	}
 
 	div.wrapper {
 		position: relative;
@@ -133,55 +133,27 @@ service-box {
 				}
 		}
 
-		div.top-hashtags{
-			display: inline-block;
+		div.top-hashtags {
+			max-width: 584px;
+			display: flex;
+			align-items: center;
 			font-size: small;
-			height: 12px;
+			flex-direction: column;
 
-			h4.heading{
-				text-align: center;
-			}
-
-			span.waiting-text{
-				padding-left:30px;
-			}
-		}
-
-		div.top-hashtags-wrapper{
-			height: 24px;
-
-			div.top-hashtags {
-				max-width: 584px;
+			.top-list,
+			.bottom-list {
 				display: flex;
 				align-items: center;
-				font-size: small;
+				flex-wrap: wrap;
 
-				.trending {
-					margin-right: 10px;
-					color: grey;
-				}
-
-				.hashtag-list {
+				.hashtag {
 					display: flex;
 					align-items: center;
-					flex-direction: column;
 
-					.top-list,
-					.bottom-list {
-						display: flex;
-						align-items: center;
-						flex-wrap: wrap;
-
-						.hashtag {
-							display: flex;
-							align-items: center;
-
-							pre {
-								margin: 0px 0px;
-								font-family: 'Roboto', sans-serif;
-								white-space: nowrap;
-							}
-						}
+					pre {
+						margin: 0px 0px;
+						font-family: 'Roboto', sans-serif;
+						white-space: nowrap;
 					}
 				}
 			}
