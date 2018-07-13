@@ -2,6 +2,8 @@ import { ApiResponseResult } from './../../models/api-response';
 import { Component, OnChanges, Input } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Query } from '../../models';
+import { Store } from '@ngrx/store';
+import * as fromRoot from '../../reducers';
 
 @Component({
 	selector: 'info-box',
@@ -11,6 +13,7 @@ import { Query } from '../../models';
 export class InfoBoxComponent implements OnChanges {
 	@Input() public query: Query;
 	@Input() public ApiResponseResult: ApiResponseResult[];
+	public query$: Observable<Query>;
 	public inviewporttwitters: Observable<boolean>;
 	public inviewportmentions: Observable<boolean>;
 	public areTopHashtagsAvailable: boolean;
@@ -20,7 +23,7 @@ export class InfoBoxComponent implements OnChanges {
 	public topHashtags;
 	public topMentions;
 	public topTwitterers;
-
+	public stringQuery;
 	public barChartLabels: string[] = ['0'];
 	public barChartType = 'bar';
 	public barChartLegend = true;
@@ -30,8 +33,11 @@ export class InfoBoxComponent implements OnChanges {
 		responsive: true
 	};
 
+	constructor( private store: Store<fromRoot.State> ) {}
+
 	ngOnChanges() {
 		this.parseApiResponseData();
+		this.store.select(fromRoot.getQuery).subscribe(query => this.stringQuery = query.displayString);
 	}
 	sortHashtags(statistics) {
 		/* A check for both the data and the individual objects is necessary, also if the data is not empty*/

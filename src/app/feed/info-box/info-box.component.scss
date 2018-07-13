@@ -37,6 +37,32 @@
     }
 }
 
+.data {
+    display: inline-block;
+    text-decoration: none;
+    img {
+        height: 24px;
+        border-radius: 20%;
+    }
+    span {
+        padding: 5px;
+        vertical-align: super;
+    }
+}
+
+.rss {
+    background-color: #F79128;
+    color: white;
+    height: 24px;
+    border-radius: 9%;
+}
+
+.json {
+    background-color: #5EBC62;
+    color: white;
+    height: 24px;
+    border-radius: 9%;
+}
 
 .leaderboard-count {
     background-color: #337ab7;
