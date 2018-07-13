@@ -10,6 +10,7 @@ import {
 	MatButtonModule,
 	MatButtonToggleModule
 } from '@angular/material';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
 	imports: [
@@ -28,7 +29,10 @@ import {
 		MatMenuModule,
 		MatIconModule,
 		MatButtonModule,
-		MatButtonToggleModule
+		MatButtonToggleModule,
+
+		// To create snack-bar for messages on login/signup page.
+		MatSnackBarModule
 	],
 	declarations: [
 		LoginComponent
