@@ -66,3 +66,27 @@ export const untilRegExp: RegExp = /until:?([^\s]+)/;
  * Quantifier(+) - Matches between one and unlimited times, as many times as possible, giving back as needed (greedy)
  */
 export const filterRegExp: RegExp = /filter:?([^\s]+)/;
+
+
+/**
+ * hashtag RegExp
+ *
+ * hashtag: matches the characters hashtag: literally (case sensitive)
+ *
+ * ([^\s]+) - First capturing group
+ * [^\s] - Match every non whitespace character
+ * Quantifier(+) - Matches between one and unlimited times, as many times as possible, giving back as needed (greedy)
+ */
+export const hashtagRegExp: RegExp = /#:?([^\s]+)/;
+
+
+/**
+ * mention RegExp
+ *
+ * mention: matches the characters mention: literally (case sensitive)
+ *
+ * ([^\s]+) - First capturing group
+ * [^\s] - Match every non whitespace character
+ * Quantifier(+) - Matches between one and unlimited times, as many times as possible, giving back as needed (greedy)
+ */
+export const mentionRegExp: RegExp = /@:?([^\s]+)/;
