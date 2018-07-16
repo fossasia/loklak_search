@@ -4,7 +4,9 @@ import {
 	nearRegExp,
 	sinceRegExp,
 	untilRegExp,
-	filterRegExp
+	filterRegExp,
+	hashtagRegExp,
+	mentionRegExp
 } from './reg-exp';
 
 describe('reg-exp', () => {
@@ -115,6 +117,40 @@ describe('reg-exp', () => {
 	it('should return false when input is (image:filter)', () => {
 		const str = 'image:filter';
 		const match: RegExpExecArray = filterRegExp.exec(str);
+		expect(match).toBeNull();
+		expect(match).toBeFalsy();
+	});
+
+	// Test expression of the form hashtagRegExp
+	it('should return true when input is (#FOSSASIA)', () => {
+		const str = '#FOSSASIA';
+		const match: RegExpExecArray = hashtagRegExp.exec(str);
+		expect(match[0]).toEqual('#FOSSASIA');
+		expect(match[1]).toEqual('FOSSASIA');
+		expect(match).toBeTruthy();
+	});
+
+	// Test expression of the form hashtagRegExp
+	it('should return false when input is (near:19:06:2018)', () => {
+		const str = 'near:19:06:2018';
+		const match: RegExpExecArray = hashtagRegExp.exec(str);
+		expect(match).toBeNull();
+		expect(match).toBeFalsy();
+	});
+
+	// Test expression of the form mentionRegExp
+	it('should return true when input is (@FOSSASIA)', () => {
+		const str = '@FOSSASIA';
+		const match: RegExpExecArray = mentionRegExp.exec(str);
+		expect(match[0]).toEqual('@FOSSASIA');
+		expect(match[1]).toEqual('FOSSASIA');
+		expect(match).toBeTruthy();
+	});
+
+	// Test expression of the form mentionRegExp
+	it('should return false when input is (from:FOSSASIA)', () => {
+		const str = 'from:FOSSASIA';
+		const match: RegExpExecArray = mentionRegExp.exec(str);
 		expect(match).toBeNull();
 		expect(match).toBeFalsy();
 	});
