@@ -8,9 +8,9 @@ import { UserResponse } from '../models/api-user-response';
 @Injectable()
 export class UserService {
 
-	private static minified_results = true;
-	private static followers = '4';
-	private static following = '4';
+	public minified_results = true;
+	public followers = '4';
+	public following = '4';
 
 	constructor(
 		private http: HttpClient
@@ -22,9 +22,9 @@ export class UserService {
 
 		const jsonpUrl = 'https://api.loklak.org/api/user.json' +
 							'?screen_name=' + screen_name +
-							'&followers=' + UserService.followers +
-							'&following=' + UserService.following +
-							'&minified=' + UserService.minified_results.toString();
+							'&followers=' + this.followers +
+							'&following=' + this.following +
+							'&minified=' + this.minified_results.toString();
 
 		return this.http
 			.jsonp<UserResponse>(jsonpUrl, 'callback')
