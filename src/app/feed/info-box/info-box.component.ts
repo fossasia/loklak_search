@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Query } from '../../models';
 import { Store } from '@ngrx/store';
 import * as fromRoot from '../../reducers';
+import { hashtagRegExp, fromRegExp, mentionRegExp } from '../../utils/reg-exp';
 
 @Component({
 	selector: 'info-box',
@@ -24,6 +25,7 @@ export class InfoBoxComponent implements OnChanges {
 	public topMentions;
 	public topTwitterers;
 	public stringQuery;
+	public queryString;
 	public barChartLabels: string[] = ['0'];
 	public barChartType = 'bar';
 	public barChartLegend = true;
@@ -38,6 +40,19 @@ export class InfoBoxComponent implements OnChanges {
 	ngOnChanges() {
 		this.parseApiResponseData();
 		this.store.select(fromRoot.getQuery).subscribe(query => this.stringQuery = query.displayString);
+		if ( hashtagRegExp.exec(this.stringQuery) !== null ) {
+			// Check for hashtag this.stringQuery
+			this.queryString = '%23' + hashtagRegExp.exec(this.stringQuery)[1] + '' + hashtagRegExp.exec(this.stringQuery)[0];
+		} else if ( fromRegExp.exec(this.stringQuery) !== null ) {
+			// Check for from user this.stringQuery
+			this.queryString = 'from%3A' + fromRegExp.exec(this.stringQuery)[1];
+		} else if ( mentionRegExp.exec(this.stringQuery) !== null ) {
+			// Check for mention this.stringQuery
+			this.queryString = '%40' + mentionRegExp.exec(this.stringQuery)[1];
+		} else {
+			// for other queries
+			this.queryString = this.stringQuery;
+		}
 	}
 	sortHashtags(statistics) {
 		/* A check for both the data and the individual objects is necessary, also if the data is not empty*/
