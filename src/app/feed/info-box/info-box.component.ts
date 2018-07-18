@@ -127,7 +127,9 @@ export class InfoBoxComponent implements OnChanges {
 			for (const s in statistics) {
 				if (s) {
 					for (let i = 0; i < statistics[s][0].length; i++) {
-						stored.push(statistics[s][0][i]);
+						if ( this.stringQuery.substring(1).toLowerCase() !== statistics[s][0][i].toLowerCase() ) {
+							stored.push(statistics[s][0][i]);
+						}
 					}
 				}
 			}
