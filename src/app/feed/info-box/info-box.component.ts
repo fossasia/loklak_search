@@ -38,8 +38,8 @@ export class InfoBoxComponent implements OnChanges {
 	constructor( private store: Store<fromRoot.State> ) {}
 
 	ngOnChanges() {
-		this.parseApiResponseData();
 		this.store.select(fromRoot.getQuery).subscribe(query => this.stringQuery = query.displayString);
+		this.parseApiResponseData();
 		if ( hashtagRegExp.exec(this.stringQuery) !== null ) {
 			// Check for hashtag this.stringQuery
 			this.queryString = '%23' + hashtagRegExp.exec(this.stringQuery)[1] + '' + hashtagRegExp.exec(this.stringQuery)[0];
@@ -61,7 +61,9 @@ export class InfoBoxComponent implements OnChanges {
 			for (const s in statistics) {
 				if (s) {
 					for (let i = 0; i < statistics[s].length; i++) {
-						stored.push(statistics[s][i]);
+						if ( this.stringQuery.substring(1).toLowerCase() !== statistics[s][i].toLowerCase() ) {
+							stored.push(statistics[s][i]);
+						}
 					}
 				}
 			}
