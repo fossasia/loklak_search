@@ -4,7 +4,7 @@ import { SpeechService } from '../services/speech.service';
 import * as speechactions from '../actions/speech';
 import { Store } from '@ngrx/store';
 import { Router } from '@angular/router';
-import { Subscription, timer } from 'rxjs';
+import { timer } from 'rxjs';
 import * as fromRoot from '../reducers';
 
 @Component({

@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import { StoreModule } from '@ngrx/store';
 import { RouterTestingModule } from '@angular/router/testing';
 
@@ -7,10 +7,7 @@ import { SpeechService } from '../services/speech.service';
 import { reducers } from '../reducers';
 
 describe('SpeechComponent', () => {
-	let component: SpeechComponent;
-	let fixture: ComponentFixture<SpeechComponent>;
-
-	beforeEach(async(() => {
+	beforeEach(() => {
 		TestBed.configureTestingModule({
 			imports: [
 				RouterTestingModule,
@@ -18,13 +15,6 @@ describe('SpeechComponent', () => {
 			],
 			declarations: [ SpeechComponent ],
 			providers: [ SpeechService ]
-		})
-		.compileComponents();
-	}));
-
-	beforeEach(() => {
-		fixture = TestBed.createComponent(SpeechComponent);
-		component = fixture.componentInstance;
-		fixture.detectChanges();
+		});
 	});
 });
