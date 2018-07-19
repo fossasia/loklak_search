@@ -1,5 +1,6 @@
 /* tslint:disable:no-unused-variable */
 import { Component } from '@angular/core';
+import { RouterTestingModule } from '@angular/router/testing';
 import { TestBed, async } from '@angular/core/testing';
 import { TermsComponent } from './terms.component';
 import { Store, StateObservable } from '@ngrx/store';
@@ -16,9 +17,12 @@ class AppNavbarStubComponent { }
 })
 class AppFooterStubComponent { }
 
-describe('Component: About', () => {
+describe('Component: Terms', () => {
 	beforeEach(() => {
 		TestBed.configureTestingModule({
+			imports: [
+				RouterTestingModule
+			],
 			declarations: [
 				TermsComponent,
 				AppNavbarStubComponent,
