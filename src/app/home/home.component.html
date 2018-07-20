@@ -26,7 +26,7 @@
 			<span class="highlight">followers:user</span> find followers of a user.
 		</div>
 
-		<div class="top-hashtags">
+		<div class="top-hashtags" *ngIf="apiResponseHashtags$">
 			<div class="top-list">
 				<span>
 					<div *ngIf="(apiResponseHashtags$ | async).length !== 0">
