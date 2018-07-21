@@ -4,7 +4,7 @@
 			<img *ngIf="feedItem.profile_banner_url" src="{{ feedItem.profile_banner_url }}/600x200"/>
 		</div>
 		<div class="profile-image">
-			<img src="{{ feedItem.profile_image_url }}"/>
+			<img *ngIf="feedItem.profile_image_url" src="{{ feedItem.profile_image_url }}"/>
 		</div>
 	</div>
 	<a [routerLink]="['/search']" [queryParams]="{ query : 'from:' + feedItem.screen_name }">
