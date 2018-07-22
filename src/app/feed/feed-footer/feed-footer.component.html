@@ -1,4 +1,4 @@
-<div class="wrapper">
+<div class="wrapper" *ngIf="sortedApiResponseTags">
 	<div *ngIf="sortedApiResponseTags.length != 0">
 		<div class="heading">
 			Hashtags related to <span class="query">{{query}}</span>
