@@ -19,14 +19,13 @@
 	</div>
 
 	<div class="tools">
-		<mat-button-toggle (change)="toggleSearchTools()">
+		<button (click)="toggleSearchTools()" class="tab">
 			Tools
-		</mat-button-toggle>
-		<mat-button-toggle
-		[matMenuTriggerFor]="viewMenu"
-		(change)="viewButtonChecked = !viewButtonChecked"
-		[checked]="viewButtonChecked">Views</mat-button-toggle>
-
+		</button>
+		<button (click)="viewButtonChecked = !viewButtonChecked"
+				class="tab">
+			Views
+		</button>
 		<div class="tool-list" [class.show]="showTools">
 			<div class="search-tools">
 				<div class="time-bound-search">
@@ -89,13 +88,14 @@
 				*ngIf="!(isSearching$ | async) && (areResultsAvailable$ | async)">
 				<!-- Hook up a message if needed like google does "About xxxxx results (y.yy seconds)" -->
 			</div>
-			<mat-menu #viewMenu="matMenu" [overlapTrigger]="false" (close)="viewButtonChecked = false">
-					<a mat-menu-item class="media-wall-route"
-					type="button"
-					[routerLink]="['/wall']"
-					[queryParams]="{ query : (query$ | async).queryString }"
-					target="_blank"><h5 class="display-media">Display as Media Wall</h5></a>
-			</mat-menu>
 		</div>
+			<a mat-menu-item class="media-wall-route views-search"
+				*ngIf="viewButtonChecked"
+				type="button"
+				[routerLink]="['/wall']"
+				[queryParams]="{ query : (query$ | async).queryString }"
+				target="_blank">
+					<h5 class="display-media">Display as Media Wall</h5>
+			</a>
 	</div>
 </div>
