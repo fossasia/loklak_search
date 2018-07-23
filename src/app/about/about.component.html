@@ -21,14 +21,14 @@
          <div class="col-lg-4 col-sm-12">
             <h5 class="bold">News from us</h5>
             <p>Read up on our latest news and browse our blog
-							(<a href="http://blog.loklak.net" target="_self">http://blog.loklak.net</a>) for updates on our work.
+							(<a href="{{ configUrl.loklak.blog }}" target="_self">{{ configUrl.loklak.blog }}</a>) for updates on our work.
 						</p>
          </div>
          <div class="col-lg-4 col-sm-12">
             <h5 class="bold">Developers</h5>
             <p>Want to know how to set up loklak yourself or you would like to develop an app based on loklak.
-							You can use the <a href="https://api.loklak.org" target="_self">loklak APIs</a>.
-							Our developer portal is on <a href="https://dev.loklak.org" target="_self">dev.loklak.org</a>.
+							You can use the <a href="{{ configUrl.loklak.apiServer }}" target="_self">loklak APIs</a>.
+							Our developer portal is on <a href="{{ configUrl.loklak.dev }}" target="_self">dev.{{ configUrl.loklak.apiBase }}</a>.
 						</p>
          </div>
          <div class="col-lg-4 col-sm-12">
@@ -36,8 +36,8 @@
             <p>
 							Get involved as an Open Source developer, designer or tester and start your adventure today!
 							Solve an issue or feature request on our repositories with
-							<a href="https://github.com/fossasia?utf8=%E2%9C%93&query=loklak" target="_self">FOSSASIA</a> or
-							the <a href="https://github.com/loklak/" target="_self">loklak GitHub organization</a>,
+							<a href="{{ configUrl.github.fossasia }}?utf8=%E2%9C%93&query=loklak" target="_self">FOSSASIA</a> or
+							the <a href="{{ configUrl.github.loklak }}" target="_self">loklak GitHub organization</a>,
 							build up your developer profile and become part of a fantastic community.
 						</p>
          </div>

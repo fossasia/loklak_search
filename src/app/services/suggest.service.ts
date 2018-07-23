@@ -2,8 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
-
-
+import { defaultUrlConfig } from '../shared/url-config';
 import { SuggestResponse } from '../models/api-suggest';
 
 @Injectable()
@@ -20,7 +19,7 @@ export class SuggestService {
 	// TODO: make the searchParams as configureable model rather than this approach.
 	public fetchQuery(query: string): Observable<SuggestResponse> {
 
-		const jsonpUrl = 'https://api.loklak.org/api/suggest.json' +
+		const jsonpUrl = defaultUrlConfig.loklak.apiServer + '/api/suggest.json' +
 							'?q=' + query +
 							'&count=' + SuggestService.count +
 							'&minified=' + SuggestService.minified_results.toString() +

@@ -5,6 +5,7 @@ import { Query } from '../../models';
 import { Store } from '@ngrx/store';
 import * as fromRoot from '../../reducers';
 import { hashtagRegExp, fromRegExp, mentionRegExp } from '../../utils/reg-exp';
+import { defaultUrlConfig } from '../../shared/url-config';
 
 @Component({
 	selector: 'info-box',
@@ -34,6 +35,8 @@ export class InfoBoxComponent implements OnChanges {
 		scaleShowVerticalLines: false,
 		responsive: true
 	};
+
+	public configUrl = defaultUrlConfig;
 
 	constructor( private store: Store<fromRoot.State> ) {}
 

@@ -1,4 +1,5 @@
 import { UserApiResponse , UserTopology, UserResponse, UserQuery } from '../../models';
+import { defaultUrlConfig } from '../url-config';
 
 export const MockUserApiResponse: UserApiResponse = {
 		$P: 'I',
@@ -37,9 +38,9 @@ export const MockUserApiResponse: UserApiResponse = {
 		entities: {
 			description: {
 			urls: [{
-				expanded_url: 'https://loklak.org',
+				expanded_url: defaultUrlConfig.loklak.apiServer,
 				indices: [ 93, 115 ],
-				display_url : 'loklak.org',
+				display_url : defaultUrlConfig.loklak.apiBase,
 				url : 'https://t.co/D8XmZwuU2Y'
 			}]
 			},

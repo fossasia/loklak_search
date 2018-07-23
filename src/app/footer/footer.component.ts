@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { defaultUrlConfig } from '../shared/url-config';
 
 @Component({
 	selector: 'app-footer',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 	styleUrls: ['./footer.component.scss']
 })
 export class FooterComponent implements OnInit {
+
+	public configUrl = defaultUrlConfig;
 
 	constructor() { }
 
