@@ -57,11 +57,11 @@
 			font-size: 14px;
 		}
 
-    .lightbox-timestamp{
-        margin-left: 15px;
-        color:black;
-        font-size: 13px;
-    }
+		.lightbox-timestamp{
+			margin-left: 15px;
+			color:black;
+			font-size: 13px;
+		}
 
 		.lightbox-tweet{
 			position: absolute;
@@ -89,39 +89,38 @@
         .lightbox-actions{
             position: absolute;
             left: 20px;
-				bottom: 20%;
-				margin-top: 20px;
+			bottom: 20%;
+			margin-top: 20px;
+			display: flex;
+			justify-content: space-between;
+
+			i.lightbox-md-20{
+				font-size: 20px;
+			}
+
+			.lightbox-action {
+				color: #aab8c2;
 				display: flex;
-				justify-content: space-between;
 
-				i.lightbox-md-20{
-					font-size: 20px;
+				.lightbox-counter{
+					margin-left: 5px;
 				}
+			}
 
+			.lightbox-reply:hover {
+				color: #89C9FA;
+				cursor: pointer;
+			}
 
-            .lightbox-action {
-					color: #aab8c2;
-					display: flex;
+			.lightbox-retweet:hover {
+				color: #19cf86;
+				cursor : pointer;
+			}
 
-					.lightbox-counter{
-						margin-left: 5px;
-					}
-				}
-
-				.lightbox-reply:hover {
-					color: #89C9FA;
-                    cursor: pointer;
-				}
-
-				.lightbox-retweet:hover {
-					color: #19cf86;
-                    cursor : pointer;
-				}
-
-				.lightbox-like:hover {
-					color: #e81c4f;
-                    cursor : pointer;
-				}
+			.lightbox-like:hover {
+				color: #e81c4f;
+				cursor : pointer;
+			}
 
             .lightbox-space {
                 margin-left: 60px;
@@ -131,31 +130,27 @@
 
     @media screen and (max-width:600px) {
 
-        .overlay-content{
-
+        .overlay-content {
             width:100%;
             height: 60vh;
             position: relative;
 
-            .lightbox-close{
-
+            .lightbox-close {
                 position:absolute;
                 left:90%;
             }
 
-            .lightbox-btn{
+            .lightbox-btn {
                 position:absolute;
                 left:5%;
                 bottom: 5%;
             }
 
-            .lightbox-actions{
+            .lightbox-actions {
                 position: absolute;
                 bottom: 20%;
                 right:20%;
             }
         }
-}
-
-
+	}
 }

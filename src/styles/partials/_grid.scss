@@ -22,18 +22,17 @@
 		width: 95%;
 		max-width: 1170px;
 	}
-
 	@for $i from 1 through 12 {
-    .col-sm-#{$i} {
-        width: 100% / 12 * $i;
-    }
+        .col-sm-#{$i} {
+            width: 100% / 12 * $i;
+        }
 	}
 }
 
 @media #{$breakpoint-large} {
 	@for $i from 1 through 12 {
-    .col-lg-#{$i} {
-        width: 100% / 12 * $i;
-    }
+        .col-lg-#{$i} {
+            width: 100% / 12 * $i;
+        }
 	}
 }

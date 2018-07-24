@@ -69,9 +69,7 @@ a.post-link {
 				object-position: center;
 				border: 1px solid transparent;
 				border-radius: 8px;
-   		}
-
-
+			}
 			iframe.card-videos {
 				width:100%;
 				height:315px;
@@ -106,17 +104,17 @@ a.post-link {
 
 				i.reply:hover {
 					color: #89C9FA;
-          cursor: pointer;
+					cursor: pointer;
 				}
 
 				i.retweet:hover {
 					color: #19cf86;
-          cursor: pointer;
+					cursor: pointer;
 				}
 
 				i.like:hover {
 					color: #e81c4f;
-          cursor: pointer;
+					cursor: pointer;
 				}
 			}
 		}

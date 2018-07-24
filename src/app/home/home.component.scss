@@ -108,12 +108,10 @@ div.outer-wrapper {
 					box-shadow: none;
 					height: 44px;
 					background: #ffffff;
-
 					&:focus {
 						outline: none;
 					}
 				}
-
 				#search-suffix-icon {
 					pointer-events: none;
 					padding: 10px 15px 10px 0px;
@@ -122,15 +120,15 @@ div.outer-wrapper {
 		}
 
 		div.help-text{
-				font-size: 12px;
-				line-height: 1.4;
-				width: 100%;
-				margin-bottom: 20px;
+			font-size: 12px;
+			line-height: 1.4;
+			width: 100%;
+			margin-bottom: 20px;
 
-				.highlight{
-					background-color: #eeeeee;
-					padding: 1px 3px;
-				}
+			.highlight{
+				background-color: #eeeeee;
+				padding: 1px 3px;
+			}
 		}
 
 		div.top-hashtags {
