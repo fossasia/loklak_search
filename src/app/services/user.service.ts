@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
-
+import { defaultUrlConfig } from '../shared/url-config';
 import { UserResponse } from '../models/api-user-response';
 
 @Injectable()
@@ -20,7 +20,7 @@ export class UserService {
 	public fetchQuery(user: string): Observable<UserResponse> {
 		const screen_name = user.charAt(0).toUpperCase() + user.slice(1);
 
-		const jsonpUrl = 'https://api.loklak.org/api/user.json' +
+		const jsonpUrl = defaultUrlConfig.loklak.apiServer + '/api/user.json' +
 							'?screen_name=' + screen_name +
 							'&followers=' + this.followers +
 							'&following=' + this.following +

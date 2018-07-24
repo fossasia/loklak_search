@@ -5,6 +5,7 @@ import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import { SearchServiceConfig } from '.';
 import { ApiResponse } from '../models/api-response';
+import { defaultUrlConfig } from '../shared/url-config';
 
 @Injectable()
 export class SearchService {
@@ -14,7 +15,7 @@ export class SearchService {
 	) { }
 
 	public fetchQuery(query: string, config: SearchServiceConfig): Observable<ApiResponse> {
-		let jsonpUrl = 'https://api.loklak.org/api/search.json' +
+		let jsonpUrl = defaultUrlConfig.loklak.apiServer + '/api/search.json' +
 						'?timezoneOffset=' + config.getTimezoneOffset();
 
 		if ( hashtagRegExp.exec(query) !== null ) {

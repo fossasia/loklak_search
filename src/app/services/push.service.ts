@@ -6,6 +6,8 @@ import {
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ApiResponse, PushApiResponse } from '../models';
+import { defaultUrlConfig } from '../shared/url-config';
+
 @Injectable({
 	providedIn: 'root'
 })
@@ -22,7 +24,7 @@ export class PushService {
 	public postData(data: ApiResponse): Observable<PushApiResponse> {
 
 		// End point to make a Post to.
-		const httpUrl = 'https://api.loklak.org/api/push.json';
+		const httpUrl = defaultUrlConfig.loklak.apiServer + '/api/push.json';
 
 		const headers = new HttpHeaders({
 			'Content-Type': 'application/x-www-form-urlencoded',

@@ -64,21 +64,21 @@
 	</div>
 </div>
 <div class="row link-sidebar-container">
-	<span class="link-sidebar"><a href="https://github.com/fossasia/loklak_search/issues/">Bug Report or Feature Request</a></span>
-	<span class="link-sidebar"><a href="https://fossasia.org">Developed by FOSSASIA</a></span>
-	<span class="link-sidebar"><a href="https://github.com/fossasia/loklak_search/graphs/contributors">Contributors</a></span>
-	<span class="link-sidebar"><a href="https://apps.loklak.org">Web Apps</a></span>
+	<span class="link-sidebar"><a href="{{ configUrl.github.loklakSearch }}/issues/">Bug Report or Feature Request</a></span>
+	<span class="link-sidebar"><a href="{{ configUrl.fossasia.root }}">Developed by FOSSASIA</a></span>
+	<span class="link-sidebar"><a href="{{ configUrl.github.loklakSearch }}/graphs/contributors">Contributors</a></span>
+	<span class="link-sidebar"><a href="{{ configUrl.loklak.apps }}">Web Apps</a></span>
 	<span class="link-sidebar"><a href="https://play.google.com/store/apps/details?id=org.loklak.android.wok">loklak Android Wok</a></span>
-	<span class="link-sidebar"><a href="https://www.facebook.com/loklak.org/">Like on Facebook</a></span>
+	<span class="link-sidebar"><a href="https://www.facebook.com/{{ configUrl.loklak.apiBase }}/">Like on Facebook</a></span>
 	<span class="link-sidebar"><a href="https://twitter.com/loklak_">Follow on Twitter</a></span>
 </div>
 <div class="row">
 	<span>
-			<a class="data rss" href="http://api.loklak.org/api/search.rss?timezoneOffset=-330&q={{queryString}}" target="_blank">
+			<a class="data rss" href="{{ configUrl.loklak.apiServer }}/api/search.rss?timezoneOffset=-330&q={{queryString}}" target="_blank">
 				<img src="assets/images/RssOrange.jpg"/>
 				<span><B>RSS</B></span>
 			</a>&nbsp;
-			<a class="data json" href="http://api.loklak.org/api/search.json?timezoneOffset=-330&q={{queryString}}" target="_blank">
+			<a class="data json" href="{{ configUrl.loklak.apiServer }}/api/search.json?timezoneOffset=-330&q={{queryString}}" target="_blank">
 				<img src="assets/images/JsonGreen.jpg"/>
 				<span><B>JSON</B></span>
 			</a>
