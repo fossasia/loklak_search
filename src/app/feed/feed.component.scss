@@ -15,11 +15,9 @@
 
 .outer-wrapper {
 	min-height: 94vh;
-
 	.feed-wrapper {
 		padding-top: 30px;
 		flex-direction: row;
-
 		.wrapper {
 			margin-left: 150px;
 			float: none;
@@ -37,36 +35,9 @@
 			.feed-results {
 				width: 632px;
 			}
-
-			.user-feed-results {
-				width: 1120px;
-			}
 		}
-
-		.user-feed-results {
-			display:flex;
-			flex-wrap: wrap;
-			justify-content: space-between;
-		}
-
-			.card-wrapper {
-
-				width: 100%;
-
-				@media(min-width: 600px) {
-					width: 49%;
-				}
-
-				@media(min-width: 1000px) {
-					width: 24%;
-				}
-
-				margin-bottom: 15px;
-				border: 1px solid #e1e8ed;
-			}
 
 		.feed-info-box {
-
 			@media(min-width: 1180px) {
 				width: calc(100% - 812px);
 				max-width: 454px;
@@ -82,22 +53,12 @@
 	}
 }
 
-@media (min-height: 550px) {
-	app-footer.peeking {
-		position: absolute;
-		bottom: 0;
-		left: 0;
-		width: 100vw;
-	}
-}
-
 @media all and (max-width:1000px){
-		.feed-wrapper{
-			flex-direction: row-reverse;
-			-webkit-flex-flow: column wrap;
-		    flex-flow: column wrap;
-		}
-
+	.feed-wrapper{
+		flex-direction: row-reverse;
+		-webkit-flex-flow: column wrap;
+		flex-flow: column wrap;
+	}
 }
 
 .searching {
@@ -117,11 +78,6 @@
 	text-align: center;
 	padding: 10px;
 	margin: 0 23%;
-}
-
-.pagination {
-	width: 100%;
-	padding: 20px;
 }
 
 @keyframes spin {
@@ -148,41 +104,8 @@ button {
 	color: white;
     background-color: #d23e42;
     border-radius: 76px;
-
 	&:focus {
 		border: none;
 		outline: none;
 	}
-}
-
-.top-hashtags {
-	font-size: 16px;
-}
-
-.inner-text {
-	padding-top: 10%;
-}
-
-.row:first-child {
-	display: flex;
-	justify-content: space-between;
-}
-
-.link-sidebar-container {
-	-webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.42), 0 0 0 1px rgba(0, 0, 0, 0.1);
-	box-shadow: 0 2px 2px 0 rgba(0,0,0,0.47), 0 0 0 1px rgba(0,0,0,0.08);
-	border-radius: 2px;
-	width: 85%;
-	display: flex;
-	flex-wrap: wrap;	
-	margin: 36px 15px;
-    padding: 36px 28px;
-    min-height: 130x;
-    margin-bottom: 20px;
-    position: relative;
-}
-
-.link-sidebar {
-	margin: 3px 7px;
-	padding: 0px 15px;
 }

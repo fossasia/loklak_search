@@ -8,7 +8,6 @@ img {
 	top: 0;
 	left: 0;
 	transition: opacity 0.15s ease-in;
-
 	&.loaded {
 		opacity: 1;
 	}
@@ -29,7 +28,6 @@ div.error {
 	opacity: 0;
 	transition: opacity 0.15s ease-in;
 	pointer-events: none;
-
 	&.show {
 		opacity: 1;
 		pointer-events: auto;

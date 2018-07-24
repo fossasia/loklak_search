@@ -5,64 +5,63 @@
 	padding: 0;
 }
 
-	#navbar-toggle-cbox {
-		display: none;
-	}
+#navbar-toggle-cbox {
+	display: none;
+}
 
-	.navbar-header {
-		width: 100%;
-	}
+.navbar-header {
+	width: 100%;
+}
 
-		.navbar-brand {
+.navbar-brand {
+	display: block;
+	height: 50px;
+	font-family: "Courier New";
+	padding:15px 15px;
+	font-size:40px;
+	color: #C8254D;
+	line-height: 20px;
+}
+
+a:hover {
+	text-decoration: none;
+}
+
+.navbar-toggle {
+	height: 38px;
+	width: 40px;
+	border: 1px solid rgb(221,221,221);
+	border-radius : 4px;
+	float: right;
+	margin: 8px 15px 8px 0px;
+	padding: 7px 8px;
+}
+
+.navbar-collapse {
+	display: none;
+	border: 1px solid rgb(231,231,231);
+
+	li {
+		position: relative;
+		display: block;
+
+		a {
+			color: rgb(119,119,119);
 			display: block;
-			height: 50px;
-			font-family: "Courier New";
-			padding:15px 15px;
-			font-size:40px;
-			color: #C8254D;
+			padding: 10px 15px;
 			line-height: 20px;
 		}
 
 		a:hover {
+			color: rgb(51,51,51);
 			text-decoration: none;
 		}
-
-		.navbar-toggle {
-			height: 38px;
-			width: 40px;
-			border: 1px solid rgb(221,221,221);
-			border-radius : 4px;
-			float: right;
-			margin: 8px 15px 8px 0px;
-			padding: 7px 8px;
-		}
-
-	.navbar-collapse {
-		display: none;
-		border: 1px solid rgb(231,231,231);
-
-		li {
-			position: relative;
-			display: block;
-
-			a {
-				color: rgb(119,119,119);
-				display: block;
-				padding: 10px 15px;
-				line-height: 20px;
-			}
-
-			a:hover {
-				color: rgb(51,51,51);
-				text-decoration: none;
-			}
-
-		}
 	}
+}
 
-		#navbar-toggle-cbox:checked ~ .navbar-collapse {
-		  display: block;
-		}
+#navbar-toggle-cbox:checked ~ .navbar-collapse {
+	display: block;
+}
 
 @media only screen and (min-width: 768px) {
 	.navbar-header {
