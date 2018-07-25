@@ -67,6 +67,13 @@ export class FeedHeaderComponent implements OnInit, OnDestroy {
 		}
 	}
 
+	onClick() {
+		if (this.searchInputControl.value.trim() !== '') {
+			this.searchEvent.emit(this.searchInputControl.value.trim());
+			this.setupSuggestBoxClosing();
+		}
+	}
+
 	public closeSuggestBox(): void {
 		this.autoCompleteTrigger.closePanel();
 	}
