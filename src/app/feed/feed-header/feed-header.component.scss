@@ -119,18 +119,6 @@
 							outline: none;
 						}
 					}
-
-					#search-suffix-icon {
-						right: 0;
-						pointer-events: none;
-						padding: 10px 15px 10px 0px;
-					}
-
-					&.focused {
-						#search-suffix-icon {
-							color: var(--accent-color, $accent-color);
-						}
-					}
 				}
 			}
 		}
@@ -145,4 +133,12 @@
 
 .btn {
 	padding: 5.5px 5px;
+	a {
+		text-decoration: none;
+	}
+}
+
+#search-suffix-icon {
+	color: #d10042;
+	text-decoration: none;
 }
