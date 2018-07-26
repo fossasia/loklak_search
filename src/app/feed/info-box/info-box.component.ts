@@ -210,7 +210,7 @@ export class InfoBoxComponent implements OnChanges {
 	getChartData(statistics) {
 
 		for (let i = 0; i < statistics.length; i++) {
-			statistics[i] = JSON.stringify(statistics[i]).substring(15, statistics.length);
+			statistics[i] = JSON.stringify(statistics[i]).substring(1, 11);
 		}
 		const count = {};
 		statistics.forEach(function(i) { count[i] = (count[i] || 0) + 1; });
