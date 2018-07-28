@@ -29,10 +29,6 @@ export class SearchServiceConfig {
 		this._filters = new Set<Filter>();
 	}
 
-	public restoreDefaults() {
-		this.setDefaults();
-	}
-
 	public get count(): number {
 		return this._count;
 	}
@@ -106,10 +102,6 @@ export class SearchServiceConfig {
 		this._timezoneOffset = date.getTimezoneOffset().toString();
 	}
 
-	public resetTimezoneOffset() {
-		this._timezoneOffset = new Date().getTimezoneOffset().toString();
-	}
-
 	public addFilters(filters: Filter[]) {
 		filters.forEach(filter => {
 			this._filters.add(filter);
@@ -120,10 +112,6 @@ export class SearchServiceConfig {
 		filters.forEach(filter => {
 			this._filters.delete(filter);
 		});
-	}
-
-	public removeAllFilters() {
-		this._filters.clear();
 	}
 
 	public getFilterSet(): Set<Filter> {
