@@ -34,6 +34,7 @@
     "@ngrx/store": "^6.0.1",
     "@ngrx/store-devtools": "^6.0.1",
     "@types/node": "~8.9.4",
+    "adm-zip": "^0.4.11",
     "angularfire2": "^5.0.0-rc.11",
     "core-js": "^2.5.4",
     "express": "^4.16.3",
