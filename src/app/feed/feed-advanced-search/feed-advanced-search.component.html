@@ -89,13 +89,16 @@
 				<!-- Hook up a message if needed like google does "About xxxxx results (y.yy seconds)" -->
 			</div>
 		</div>
-			<a mat-menu-item class="media-wall-route views-search"
-				*ngIf="viewButtonChecked"
-				type="button"
-				[routerLink]="['/wall']"
-				[queryParams]="{ query : (query$ | async).queryString }"
-				target="_blank">
-					<h5 class="display-media">Display as Media Wall</h5>
-			</a>
+		<a mat-menu-item class="media-wall-route views-search"
+			*ngIf="viewButtonChecked"
+			type="button"
+			[routerLink]="['/wall']"
+			[queryParams]="{ query : (query$ | async).queryString }"
+			target="_blank">
+				<h5 class="display-media">Display as Media Wall</h5>
+		</a>
+		<a routerLink="/settings" target="_blank" class="tab">
+			Settings
+		</a>
 	</div>
 </div>

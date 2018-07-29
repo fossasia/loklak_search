@@ -46,7 +46,7 @@ div.wrapper{
 		display: flex;
 		flex-direction: row;
 		align-items: baseline;
-		margin-left: 177px;
+		margin-left: 131px;
 		button {
 			outline: none;
 		}
@@ -65,13 +65,29 @@ div.wrapper{
 				color: #222;
 			}
 		}
+		a.tab {
+			cursor: pointer;
+			min-width: 50px;
+			text-decoration: none;
+			background:  transparent;
+			border: none;
+			padding: 12px;
+			margin-right: 15px;
+			font-family: Arial, sans-serif;
+			color: #777;
+			text-align: center;
+			font-size: 0.9em;
+			&:hover {
+				color: #222;
+			}
+		}
 		a.views-search {
 			position: absolute;
 			box-shadow: 0px 2px 2px 0px grey;
 			margin: 0px;
 			top: 38px;
 			z-index: 52;
-			left: 689px;
+			left: 642px;
 			color: rgba(0,0,0,.87);
 		}
 		button.toggleButton {
