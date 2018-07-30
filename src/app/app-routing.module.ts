@@ -39,6 +39,10 @@ const routes: Routes = [
 	{
 		path: 'wall',
 		loadChildren: './media-wall/media-wall.module#MediaWallModule'
+	},
+	{
+		path: 'settings',
+		loadChildren: './settings/settings.module#SettingsModule'
 	}
 ];
 

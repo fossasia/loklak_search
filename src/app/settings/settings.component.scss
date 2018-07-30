@@ -1,0 +1,48 @@
+@import '~src/styles/main';
+
+div.outer-wrapper {
+	min-height: 100vh;
+	width: 100%;
+	// background-color: #f9f2f4;
+	position:  relative;
+	@include --center-flex();
+
+	div.wrapper {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-around;
+		align-items: center;
+		width: 584px;
+		box-shadow: 0px 2px 5px 2px #D10046;
+		margin: 15px;
+		background-color: #f9f2f4;
+		@include --center-flex-vertical();
+
+		width: 584px;
+		margin: 15px;
+		h1 {
+			font-weight: 300;
+			text-align: center;
+			font-size: 2.5em;
+			margin: 15px 0px 0px 0px;
+            font-family: 'Roboto', sans-serif;
+		}
+		h2 {
+			text-align: center;
+			color: #d10042;
+		}
+		h5 {
+			text-align: center;
+		}
+		.url-container {
+			width: 100%;
+			h4 {
+				text-align: center;
+			}
+			.news {
+				color: #d10042;
+			}
+		}
+	}
+}
