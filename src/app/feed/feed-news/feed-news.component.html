@@ -8,7 +8,7 @@
 </div>
 <div class="feed-wrapper">
 <div class="wrapper feed-results">
-    <div *ngFor="let item of newsResponse.slice(0,30); let i = index ">
+    <div *ngFor="let item of newsResponse; let i = index ">
       <feed-card [feedItem]="item" [feedIndex]="i"></feed-card>
   </div>
 </div>
