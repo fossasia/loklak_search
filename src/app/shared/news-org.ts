@@ -1,4 +1,8 @@
 export const newsOrgs = [
 	'CNN',
-	'nytimes'
+	'CNNPolitics',
+	'BBC',
+	'nytimes',
+	'guardian',
+	'toi'
 ];
