@@ -118,8 +118,9 @@ export function parseStringToQuery(str: string): Query {
 	}
 
 	if (nearMatch && nearMatch[1] !== ':') {
-		if (validators.containAlphabetsOnly(nearMatch[1])) {
+		if (validators.containAlphabetsOnly(nearMatch[1]) && fromMatch.index === 0) {
 			queryObject.location = nearMatch[1];
+			queryObject.displayString = nearMatch[0];
 		} else {
 			// Handle Invalid later
 		}

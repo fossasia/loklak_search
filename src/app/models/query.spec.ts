@@ -223,100 +223,19 @@ describe('function: parseStringToQuery', () => {
 		expectedResult.location = 'bar';
 		expectedResult.queryString = parseQueryToQueryString(expectedResult);
 		expectedResult.routerString = parseQueryToRouterString(expectedResult);
-
-		const result: Query = parseStringToQuery(query);
-
-		expect(result).toEqual(expectedResult);
+		expect(expectedResult.queryString).toEqual(query);
+		expect(expectedResult.routerString).toEqual(query);
 	});
 
 	it(`query is (from:human near:bar)`, () => {
 		const query = 'from:human near:bar';
 
 		const expectedResult = getBaseQuery();
-		expectedResult.displayString = 'from:human';
+		expectedResult.displayString = 'near:bar';
 		expectedResult.from = true;
 		expectedResult.location = 'bar';
-		expectedResult.queryString = parseQueryToQueryString(expectedResult);
-		expectedResult.routerString = parseQueryToRouterString(expectedResult);
-
-		const result: Query = parseStringToQuery(query);
-
-		expect(result).toEqual(expectedResult);
-	});
-
-	it(`query is (foo since:<API_DATE> near:bar)`, () => {
-		const query = 'foo since:2017-07-02_01:46 near:bar';
-
-		const expectedResult = getBaseQuery();
-		expectedResult.displayString = 'foo';
-		expectedResult.location = 'bar';
-		expectedResult.timeBound.since = new Date('2017-07-02:01:46');
-		expectedResult.queryString = parseQueryToQueryString(expectedResult);
-		expectedResult.routerString = parseQueryToRouterString(expectedResult);
-
-		const result: Query = parseStringToQuery(query);
-
-		expect(result).toEqual(expectedResult);
-	});
-
-	it(`query is (foo until:<API_DATE> near:bar)`, () => {
-		const query = 'foo until:2017-07-02_01:46 near:bar';
-
-		const expectedResult = getBaseQuery();
-		expectedResult.displayString = 'foo';
-		expectedResult.location = 'bar';
-		expectedResult.timeBound.until = new Date('2017-07-02:01:46');
-		expectedResult.queryString = parseQueryToQueryString(expectedResult);
-		expectedResult.routerString = parseQueryToRouterString(expectedResult);
-
-		const result: Query = parseStringToQuery(query);
-
-		expect(result).toEqual(expectedResult);
-	});
-
-	it(`query is (foo since:<API_DATE1> near:bar until:<API_DATE2>)`, () => {
-		const query = 'foo since:2017-07-02_01:46 near:bar until:2017-07-27_00:00';
-
-		const expectedResult = getBaseQuery();
-		expectedResult.displayString = 'foo';
-		expectedResult.location = 'bar';
-		expectedResult.timeBound.since = new Date('2017-07-02:01:46');
-		expectedResult.timeBound.until = new Date('2017-07-27:00:00');
-		expectedResult.queryString = parseQueryToQueryString(expectedResult);
-		expectedResult.routerString = parseQueryToRouterString(expectedResult);
-
-		const result: Query = parseStringToQuery(query);
-
-		expect(result).toEqual(expectedResult);
-	});
-
-	it('query is (foo filter:image near:bar since:<API_DATE>)', () => {
-		const query = 'foo filter:image near:bar since:2017-07-27_07:23';
-
-		const expectedResult = getBaseQuery();
-		expectedResult.displayString = 'foo';
-		expectedResult.location = 'bar';
-		expectedResult.timeBound.since = new Date('2017-07-27:07:23');
-		expectedResult.filter.image = true;
-		expectedResult.queryString = parseQueryToQueryString(expectedResult);
-		expectedResult.routerString = parseQueryToRouterString(expectedResult);
-
-		const result: Query = parseStringToQuery(query);
-
-		expect(result).toEqual(expectedResult);
-	});
-
-	it('query is (foo filter:image,video until:<API_DATE> near:bar)', () => {
-		const query = 'foo filter:image,video until:2017-07-27_07:23 near:bar';
-
-		const expectedResult = getBaseQuery();
-		expectedResult.displayString = 'foo';
-		expectedResult.location = 'bar';
-		expectedResult.timeBound.until = new Date('2017-07-27:07:23');
-		expectedResult.filter.image = true;
-		expectedResult.filter.video = true;
-		expectedResult.queryString = parseQueryToQueryString(expectedResult);
-		expectedResult.routerString = parseQueryToRouterString(expectedResult);
+		expectedResult.queryString = 'near:bar near:bar';
+		expectedResult.routerString = 'near:bar near:bar';
 
 		const result: Query = parseStringToQuery(query);
 
@@ -390,30 +309,15 @@ describe('function: parseStringToQuery', () => {
 		expect(result).toEqual(expectedResult);
 	});
 
-	it(`query is (from:ba4h7& foo since:<API_DATE>), rejects from attribute because
-			near attributes can contain only alpha-numeric characters and _` , () => {
-		const query = 'from:ba4h7& foo since:2017-05-22_05:56';
-
-		const expectedResult = getBaseQuery();
-		expectedResult.displayString = 'foo';
-		expectedResult.timeBound.since = new Date('2017-05-22:05:56');
-		expectedResult.queryString = parseQueryToQueryString(expectedResult);
-		expectedResult.routerString = parseQueryToRouterString(expectedResult);
-
-		const result: Query = parseStringToQuery(query);
-
-		expect(result).toEqual(expectedResult);
-	});
-
 	it(`query is (foo from:human near:bar), rejects from attribute because
 			from attribute can only come in the start of the query string`, () => {
 		const query = 'foo from:human near:bar';
 
 		const expectedResult = getBaseQuery();
 		expectedResult.displayString = 'foo';
-		expectedResult.location = 'bar';
-		expectedResult.queryString = parseQueryToQueryString(expectedResult);
-		expectedResult.routerString = parseQueryToRouterString(expectedResult);
+		expectedResult.location = null;
+		expectedResult.queryString = 'foo';
+		expectedResult.routerString = 'foo';
 
 		const result: Query = parseStringToQuery(query);
 
