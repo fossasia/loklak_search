@@ -1,4 +1,4 @@
-import { hashtagRegExp, fromRegExp, mentionRegExp } from './../utils/reg-exp';
+import { hashtagRegExp, fromRegExp, mentionRegExp, nearRegExp } from './../utils/reg-exp';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
@@ -27,6 +27,9 @@ export class SearchService {
 		} else if ( mentionRegExp.exec(query) !== null ) {
 			// Check for mention query
 			jsonpUrl += '&q=%40' + mentionRegExp.exec(query)[1];
+		} else if ( nearRegExp.exec(query) !== null ) {
+			// Check for near query
+			jsonpUrl += '&q=near%3A' + nearRegExp.exec(query)[1];
 		} else {
 			// for other queries
 			jsonpUrl += '&q=' + query;
