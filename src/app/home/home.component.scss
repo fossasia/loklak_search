@@ -49,18 +49,11 @@ div.outer-wrapper {
 	}
 
 	div.wrapper {
-		position: relative;
+		position: absolute;
 		@include --center-flex-vertical();
 
-		width: 584px;
-		margin: 15px;
-		top: -9.5vh;
-
-		@media(max-height: 550px) {
-			& {
-				top: 0px;
-			}
-		}
+		width: 45%;
+		top: 16.5vh;
 
 		h1 {
 			font-weight: 300;
@@ -80,7 +73,8 @@ div.outer-wrapper {
 		}
 
 		div.search-form {
-			width: 100%;
+			width: 85vw;
+			max-width: 584px;
 			@include --center-flex();
 
 			div.search-input {
@@ -122,7 +116,8 @@ div.outer-wrapper {
 		div.help-text{
 			font-size: 12px;
 			line-height: 1.4;
-			width: 100%;
+			width: 85vw;
+			max-width: 584px;
 			margin-bottom: 20px;
 
 			.highlight{
@@ -133,6 +128,7 @@ div.outer-wrapper {
 
 		div.top-hashtags {
 			max-width: 584px;
+			width: 85vw;
 			display: flex;
 			align-items: center;
 			font-size: small;
