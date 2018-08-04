@@ -21,7 +21,19 @@
 	position: relative !important;
 	left: 115px !important;
 }
+@media only screen and (max-width: 576px) {
+    .box{
+		right:-210px !important;
+		padding: 10px !important;
+	}
+	div.outer-wrapper service-box{
+		margin-left: 47% !important;
 
+	}
+	button.mat-icon-button {
+		left:12.2em !important;
+	}
+}
 .box {
 	border: 1px solid #ccc;
 	box-shadow: 0 2px 10px rgba(0,0,0,.2);
