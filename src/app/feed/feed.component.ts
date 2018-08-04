@@ -30,6 +30,7 @@ import { SuggestResults } from '../models/api-suggest';
 import { Query, parseStringToQuery } from '../models/query';
 import { SuggestQuery } from '../models/suggest';
 import { UserApiResponse } from '../models/api-user-response';
+import { fromRegExp } from '../utils/reg-exp';
 
 @Component({
 	selector: 'app-feed',
@@ -39,7 +40,7 @@ import { UserApiResponse } from '../models/api-user-response';
 })
 export class FeedComponent implements OnInit, AfterViewInit, OnDestroy {
 	private __subscriptions__: Subscription[] = new Array<Subscription>();
-	navIsFixed: boolean;
+	public navIsFixed: boolean;
 	public query$: Observable<Query>;
 	public isSearching$: Observable<boolean>;
 	public areResultsAvailable$: Observable<boolean>;
@@ -48,7 +49,7 @@ export class FeedComponent implements OnInit, AfterViewInit, OnDestroy {
 	public apiResponseAggregations$: Observable<ApiResponseAggregations>;
 	public isNextPageLoading$: Observable<boolean>;
 	public areMorePagesAvailable$: Observable<boolean>;
-
+	public fromQuery = false;
 	public isUserInfoSearching$: Observable<boolean>;
 	public areUserResultsValid$: Observable<boolean>;
 	public apiResponseUser$: Observable<UserApiResponse>;
@@ -141,9 +142,15 @@ export class FeedComponent implements OnInit, AfterViewInit, OnDestroy {
 		this.suggestQuery$ = this.store.select(fromRoot.getSuggestQuery);
 		this.isSuggestLoading$ = this.store.select(fromRoot.getSuggestLoading);
 		this.suggestResponse$ = this.store.select(fromRoot.getSuggestResponseEntities);
-		this.query$.subscribe(displayString =>
-			this.store.dispatch(new titleAction.SetTitleAction(displayString.displayString + ' - Loklak Search'
-		)));
+		this.query$.subscribe(displayString => {
+				this.store.dispatch(new titleAction.SetTitleAction(displayString.displayString + ' - Loklak Search'
+			));
+			if ( fromRegExp.exec(displayString.displayString) !== null ) {
+				this.fromQuery = true;
+			} else {
+				this.fromQuery = false;
+			}
+		});
 	}
 
 	/**
