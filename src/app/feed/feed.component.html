@@ -33,7 +33,7 @@
 						[query] = "(query$ | async)"
 						[ApiResponseResult]="(apiResponseResults$ | async)"></info-box>
 					<user-info-box
-						*ngIf="(areUserResultsValid$ | async)"
+						*ngIf="(areUserResultsValid$ | async) && fromQuery"
 						[apiResponseUser] = "(apiResponseUser$ | async)"
 						[apiResponseUserFollowing] = "apiResponseUserFollowing$ | async"
 						[apiResponseUserFollowers] = "apiResponseUserFollowers$ | async"
