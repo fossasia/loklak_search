@@ -4,6 +4,7 @@ import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import { defaultUrlConfig } from '../shared/url-config';
 import { SuggestResponse } from '../models/api-suggest';
+import { hashtagRegExp } from './../utils/reg-exp';
 
 @Injectable()
 export class SuggestService {
@@ -19,12 +20,16 @@ export class SuggestService {
 	// TODO: make the searchParams as configureable model rather than this approach.
 	public fetchQuery(query: string): Observable<SuggestResponse> {
 
-		const jsonpUrl = defaultUrlConfig.loklak.apiServer + '/api/suggest.json' +
-							'?q=' + query +
-							'&count=' + SuggestService.count +
-							'&minified=' + SuggestService.minified_results.toString() +
-							'&order=' + SuggestService.order +
-							'&orderby=' + SuggestService.orderby;
+		let jsonpUrl = defaultUrlConfig.loklak.apiServer + '/api/suggest.json';
+		if ( hashtagRegExp.exec(query) !== null ) {
+			jsonpUrl += '?callback=JSONP_CALLBACK&q=' + query;
+		} else {
+			jsonpUrl += '?q=' + query +
+						'&count=' + SuggestService.count +
+						'&minified=' + SuggestService.minified_results.toString() +
+						'&order=' + SuggestService.order +
+						'&orderby=' + SuggestService.orderby;
+		}
 
 		return this.http
 			.jsonp<SuggestResponse>(jsonpUrl, 'callback')
