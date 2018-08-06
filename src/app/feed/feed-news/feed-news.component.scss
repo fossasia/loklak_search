@@ -1,5 +1,9 @@
 @import "../feed.component.scss";
 
+.feed-wrapper{
+	margin-top: -5%;
+}
+
 .searching {
 	border-radius: 50%;
 	margin: 13% 72.5% auto;
@@ -17,4 +21,30 @@
 	text-align: center;
 	padding: 10px;
 	margin: 6% -25.5% 23% 38%;
+}
+
+.message {
+	margin-top: -4%;
+	color: #808080;
+	font-size: small;
+	transform: translate(0, -100%);
+	transition: transform 0.1s ease-in-out, opacity 0.05s ease-in-out;
+	a {
+		color: #808080;
+	}
+	a:hover {
+		text-decoration: none;
+		color: #222;
+	}
+}
+
+.info {
+	margin-top: 3%;
+}
+
+@media(max-width: 1000px) and (min-width: 769px) {
+	.message {
+		margin-left: 150px;
+		max-width: 600px;
+	}
 }
