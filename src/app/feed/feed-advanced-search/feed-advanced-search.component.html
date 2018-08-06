@@ -19,11 +19,11 @@
 	</div>
 
 	<div class="tools">
-		<button (click)="toggleSearchTools()" class="tab">
+		<button (click)="toggleSearchTools()" class="tab tool-tab">
 			Tools
 		</button>
 		<button (click)="viewButtonChecked = !viewButtonChecked"
-				class="tab">
+				class="tab views">
 			Views
 		</button>
 		<div class="tool-list" [class.show]="showTools">
@@ -97,7 +97,7 @@
 			target="_blank">
 				<h5 class="display-media">Display as Media Wall</h5>
 		</a>
-		<a routerLink="/settings" target="_blank" class="tab">
+		<a routerLink="/settings" target="_blank" class="tab tab_setting">
 			Settings
 		</a>
 	</div>
