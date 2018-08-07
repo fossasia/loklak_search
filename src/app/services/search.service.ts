@@ -1,4 +1,4 @@
-import { hashtagRegExp, fromRegExp, mentionRegExp, nearRegExp } from './../utils/reg-exp';
+import { hashtagRegExp, fromRegExp, mentionRegExp, nearRegExp, sinceRegExp } from './../utils/reg-exp';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
@@ -15,8 +15,13 @@ export class SearchService {
 	) { }
 
 	public fetchQuery(query: string, config: SearchServiceConfig): Observable<ApiResponse> {
-		let jsonpUrl = defaultUrlConfig.loklak.apiServer + '/api/search.json' +
-						'?timezoneOffset=' + config.getTimezoneOffset();
+		let jsonpUrl = defaultUrlConfig.loklak.apiServer + '/api/search.json';
+
+		if ( sinceRegExp.exec(query) === null && hashtagRegExp.exec(query) !== null ) {
+			jsonpUrl += '?callback=JSONP_CALLBACK&timezoneOffset=' + config.getTimezoneOffset();
+		} else {
+			jsonpUrl += '?timezoneOffset=' + config.getTimezoneOffset();
+		}
 
 		if ( hashtagRegExp.exec(query) !== null ) {
 			// Check for hashtag query
