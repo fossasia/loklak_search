@@ -1,3 +1,12 @@
+<div class="message" *ngIf="newsResponse.length !== 0">
+  <!-- Message about total results-->
+  About {{ newsResponse.length }} results
+</div>
+<div class="message info">
+  <!-- Message about news organization file-->
+  News tab shows results filtered according to news organizations. If you wish to propose or change this list, please check
+  <a href="{{ defaultUrl.extras.newsOrgFileSource }}" target="_blank">here</a>.
+</div>
 <div *ngIf="newsResponse.length === 0">
   <div class="searching">
     <!-- Hook Up the Material Design Progress Bar. -->

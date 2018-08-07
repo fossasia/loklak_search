@@ -1,3 +1,4 @@
+import { defaultUrlConfig } from './../../shared/url-config';
 import { ApiResponseResult } from './../../models/api-response';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
@@ -16,7 +17,7 @@ export class FeedNewsComponent implements OnInit, OnDestroy {
 	public newsResponse: ApiResponseResult[] = [];
 	public query: string;
 	public query$: Observable<Query>;
-
+	public defaultUrl = defaultUrlConfig;
 	constructor(
 		private store: Store<fromRoot.State>
 	) { }
