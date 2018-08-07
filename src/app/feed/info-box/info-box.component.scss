@@ -111,3 +111,9 @@
     margin: 3px 7px;
     padding: 0px 15px;
 }
+
+@media (max-width: 470px) {
+	.top-hashtags {
+		display: none;
+	}
+}

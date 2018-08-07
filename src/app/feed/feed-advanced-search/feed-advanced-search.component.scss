@@ -46,7 +46,7 @@ div.wrapper{
 		display: flex;
 		flex-direction: row;
 		align-items: baseline;
-		margin-left: 131px;
+		margin-left: 15vw;
 		button {
 			outline: none;
 		}
@@ -146,6 +146,22 @@ div.wrapper{
 		}
 	}
 }
+@media (max-width: 416px){
+	a.tab{
+		padding: 0px !important;
+	}
+}
+@media (max-width: 392px){
+	a.tab_setting{
+		display: none;
+	}
+}
+@media (max-width: 416px){
+	a.tab_setting{
+		padding: 0px;
+	}
+}
+
 @media (max-width: 768px) {
 	div.wrapper {
 		div.tab-list {
@@ -160,6 +176,101 @@ div.wrapper{
 				left: 0;
 			}
 		}
+	}
+}
+
+@media (max-width: 560px) {
+	div.wrapper {
+		top: 129px;
+	}
+}
+
+@media (max-width: 560px) and (min-width: 518px) {
+	div.wrapper {
+		margin-left: 2%;
+	}
+}
+
+@media (max-width: 517px) and (min-width: 488px) {
+	div.wrapper {
+		margin-left: 2%;
+	}
+	button.tab {
+		padding: 0px!important
+	}
+}
+
+@media (max-width: 488px) and (min-width: 452px) {
+	button.tab {
+		margin-right: 5px !important
+	}
+}
+
+@media (min-width: 769px) and (max-width: 860px) {
+	a.views-search {
+		left: 554px !important;
+	}
+}
+
+@media (min-width: 425px) and (max-width: 768px) {
+	a.views-search {
+		left: 239px !important;
+	}
+}
+
+@media (min-width: 381px) and (max-width: 424px) {
+	a.views-search {
+		left: 200px !important;
+	}
+}
+
+@media (max-width: 380px) {
+	a.views-search {
+		left: 156px !important;
+	}
+}
+
+@media (max-width: 452px) {
+	button.tab{
+		margin-right: 0px!important;
+	}
+	// button.tab.tool-tab{
+	// 	margin-left: 48px!important;
+	// }
+}
+@media (max-width: 380px)  {
+	button.tab.tool-tab{
+		margin-left: 8px!important;
+	}
+}
+@media (max-width: 340px) {
+	button.tab.list{
+		padding: 10px 0 10px 10px;
+	}
+	button.tab.tool-tab{
+		margin-right: -15px!important;
+		padding: 12px 12px 12px 0px!important
+	}
+	div.tools{
+		margin-left: 0px!important;
+	}
+}
+
+@media (max-width: 768px) and (min-width: 561px) {
+	div.wrapper {
+		left: 20%;
+	}
+}
+
+@media (max-width: 634px) and (min-width: 561px) {
+	div.wrapper {
+		left: 7%;
+	}
+}
+
+@media (max-width: 768px) and (min-width: 653px) {
+	div.tools {
+		margin-left: 12%;
 	}
 }
 

@@ -6,7 +6,7 @@
 	width: 2px;
     float: right;
     position: absolute;
-    right: 204px;
+    right: 176px;
     z-index: 2;
 }
 
@@ -23,7 +23,7 @@
 }
 @media only screen and (max-width: 576px) {
     .box{
-		right:-210px !important;
+		right:-14em !important;
 		padding: 10px !important;
 	}
 	div.outer-wrapper service-box{
@@ -31,7 +31,7 @@
 
 	}
 	button.mat-icon-button {
-		left:12.2em !important;
+		left:11.2em !important;
 	}
 }
 .box {
