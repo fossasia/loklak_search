@@ -30,6 +30,9 @@ export const defaultUrlConfig = {
 	eventyay: {
 		root: 'https://eventyay.com'
 	},
+	badgeyay: {
+		root: 'http://badgeyay.com'
+	},
 	extras: {
 		newsOrgFileSource: 'https://github.com/fossasia/loklak_search/blob/development/src/app/shared/news-org.ts'
 	}
