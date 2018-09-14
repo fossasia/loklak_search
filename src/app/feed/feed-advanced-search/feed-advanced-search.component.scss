@@ -46,7 +46,7 @@ div.wrapper{
 		display: flex;
 		flex-direction: row;
 		align-items: baseline;
-		margin-left: 9vw;
+		margin: 0% 120px 0;
 		button {
 			outline: none;
 		}
@@ -84,10 +84,10 @@ div.wrapper{
 		a.views-search {
 			position: absolute;
 			box-shadow: 0px 2px 2px 0px grey;
-			margin: 0px;
+			margin: 0% -96px 0px;
 			top: 38px;
 			z-index: 52;
-			left: 642px;
+			left: 97%;
 			color: rgba(0,0,0,.87);
 		}
 		button.toggleButton {
