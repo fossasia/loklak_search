@@ -132,8 +132,9 @@ export class FeedLinkerComponent implements OnInit {
 
 		let startIndex = 0;
 		const endIndex = this.text.length;
-
+		let prevInd = -1;
 		indexedChunks.forEach(element => {
+			if ( element.index !== prevInd ) {
 			if (startIndex !== element.index) {
 				const shard = new Shard(ShardType.plain, this.text.substring(startIndex, element.index));
 				this.shardArray.push(shard);
@@ -168,7 +169,8 @@ export class FeedLinkerComponent implements OnInit {
 				this.shardArray.push(shard);
 				startIndex += element.str.length;
 			}
-		});
+			prevInd = element.index;
+		}});
 
 		if (startIndex !== endIndex) {
 			const shard = new Shard(ShardType.plain, this.text.substring(startIndex));

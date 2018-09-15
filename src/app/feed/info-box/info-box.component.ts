@@ -71,7 +71,7 @@ export class InfoBoxComponent implements OnChanges {
 				}
 			}
 			this.topHashtags = this.parseRawDataWithFrequency(stored);
-			this.areTopHashtagsAvailable = true;
+			this.areTopHashtagsAvailable = this.topHashtags.length > 0;
 			return this.topHashtags;
 
 		} else if (typeof statistics === 'undefined') {
