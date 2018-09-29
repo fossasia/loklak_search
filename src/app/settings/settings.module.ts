@@ -3,6 +3,9 @@ import { CommonModule } from '@angular/common';
 import { LoklakSettingsRoutingModule } from './settings-routing.module';
 import { SettingsComponent } from './settings.component';
 
+import { FooterModule } from '../footer/footer.module';
+import { NavbarModule } from '../navbar/navbar.module';
+
 @NgModule({
 	imports: [
 		/**
@@ -12,7 +15,9 @@ import { SettingsComponent } from './settings.component';
 		 * The net effect is that an importer of `BrowserModule` gets `CommonModule` directives automatically.
 		 */
 		CommonModule,
-		LoklakSettingsRoutingModule
+		LoklakSettingsRoutingModule,
+		NavbarModule,
+		FooterModule
 	],
 	declarations: [
 		SettingsComponent
