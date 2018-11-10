@@ -1,5 +1,6 @@
 import { Component, OnInit, ElementRef, HostListener } from '@angular/core';
 import { defaultUrlConfig } from '../shared/url-config';
+import { defaultImageurlConfig } from '../shared/url-config';
 
 @Component({
 	selector: 'service-box',
@@ -9,6 +10,7 @@ import { defaultUrlConfig } from '../shared/url-config';
 export class ServiceBoxComponent implements OnInit {
 	public opened = false;
 	public configUrl = defaultUrlConfig;
+	public imageUrl = defaultImageurlConfig;
 
 	@HostListener('document: click', ['$event'])
 	boxClose(event: Event) {

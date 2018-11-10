@@ -12,7 +12,7 @@
 					<input type="text" id="search" name="search" [formControl]="_queryControl" title="Search"
 					(keypress)="onEnter($event)" (focus)="inputFocused=true" (focusout)="inputFocused=false"/>
 					<button title="Search by voice" class="btn btn-default" id="speech-button" type="submit">
-        				<a><img src="../../assets/images/microphone.png" class="microphone" (click)="speechRecognition()"/></a>
+        				<a><img src="{{ configUrl.microphone.root }}" class="microphone" (click)="speechRecognition()"/></a>
 			        </button>
 			</div>
 		</div>
