@@ -41,12 +41,20 @@ div.wrapper{
 		font-family: Arial, sans-serif;
 		font-size: 14px;
 	}
+	@media only screen  and (min-width:565px) and (max-width: 861px ) {
+		div.tools {
+			margin-left: 5% !important;
+		}
+		
+	}
+
+   
 
 	div.tools {
 		display: flex;
 		flex-direction: row;
 		align-items: baseline;
-		margin-left: 15vw;
+		margin-left: 21%;
 		button {
 			outline: none;
 		}
