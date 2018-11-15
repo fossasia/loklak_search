@@ -1,17 +1,24 @@
-<div class="outer-wrapper">
-	<div class="wrapper">
-    <!-- Source Url Config -->
-    <h1><u>URL Configuration</u></h1>
-    <div class="url-container" *ngFor="let key of urlObject">
-      <h2>{{key[0]}}</h2>
-      <div *ngFor="let value of key[1]">
-        <h4>{{value | lowercase}}</h4>
+<div id="main">
+  <div class="container-fluid" id="url">
+    <div id="url">URL Configuration</div>
+    <div class="row">
+      <div class="url-container col-lg-3 col-md-5 col-sm-5  card" *ngFor="let key of urlObject;let j =index;">
+        <h2>{{key[0]|uppercase}}</h2>
+        <div *ngFor="let value of key[1];let i=index;">
+          <div *ngIf="i%2==0">{{urlObjecttext[j][1][i] | lowercase}}</div>
+          <div *ngIf="i%2!=0"><a href="{{value | lowercase}}">{{urlObjecttext[j][1][i] }}</a></div>
+        </div>
       </div>
     </div>
+
     <!-- News Config -->
-    <h1><u>News Configuration</u></h1>
-    <div class="url-container" *ngFor="let key of newsConfigOrgs">
-      <h4 class="news">{{key}}</h4>
+    <div class="container-fluid card">
+
+      <h1><u>News Configuration</u></h1>
+
+      <div class="url-container" *ngFor="let key of newsConfigOrgs">
+        <h4 class="news">{{key | uppercase}}</h4>
+      </div>
     </div>
-	</div>
+  </div>
 </div>
