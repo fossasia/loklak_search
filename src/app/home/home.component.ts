@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy, ChangeDetectionStrategy, ElementRef, ChangeDetectorRef, AfterContentChecked } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
+import { defaultImageurlConfig } from '../shared/url-config';
 
 import { Observable, Subscription } from 'rxjs';
 
@@ -26,6 +27,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterContentChecked {
 	public inputFocused = false;
 	hidespeech: Observable<boolean>;
 	public apiResponseHashtags$: Observable<Array<{ tag: string, count: number }>>;
+	public configUrl = defaultImageurlConfig;
 
 	constructor(
 		private router: Router,

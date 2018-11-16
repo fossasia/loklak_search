@@ -3,7 +3,7 @@ import * as titleAction from '../actions/title';
 import { Store } from '@ngrx/store';
 import * as fromRoot from '../reducers';
 import { defaultUrlConfig } from '../shared/url-config';
-
+import { defaultImageurlConfig } from '../shared/url-config';
 @Component({
 	selector: 'app-about',
 	templateUrl: './about.component.html',
@@ -12,6 +12,7 @@ import { defaultUrlConfig } from '../shared/url-config';
 export class AboutComponent implements OnInit {
 
 	public configUrl = defaultUrlConfig;
+	public imageUrl = defaultImageurlConfig;
 	constructor( private store: Store<fromRoot.State> ) { }
 
 	ngOnInit() {

@@ -37,3 +37,41 @@ export const defaultUrlConfig = {
 		newsOrgFileSource: 'https://github.com/fossasia/loklak_search/blob/development/src/app/shared/news-org.ts'
 	}
 };
+export const defaultImageurlConfig = {
+	banner: {
+		root: 'assets/images/banner.jpg'
+	},
+	blog: {
+		root: 'assets/images/blog.png',
+	},
+	github: {
+		root: 'assets/images/github.png',
+	},
+	fossasia: {
+		root: `assets/images/fossasia_logo_55x22.png`,
+	},
+	phimpme: {
+		root: 'assets/images/phimpme_64x64.png'
+	},
+	bug: {
+		root: 'assets/images/bug.png'
+	},
+	susper: {
+		root: 'assets/images/susper_60x16.png'
+	},
+	susichat: {
+		root: 'assets/images/susi_60x12.png'
+	},
+	pslab: {
+		root: 'assets/images/pslab_64x68.png'
+	},
+	eventyay: {
+		root: 'assets/images/eventyay.png'
+	},
+	badgeyay: {
+		root: 'assets/images/badgeyay.png'
+	},
+	microphone: {
+		root: '../../assets/images/microphone.png'
+	}
+};
