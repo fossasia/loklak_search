@@ -5,7 +5,7 @@
 	<div *ngIf="(!isUserResponseLoading)" class="wrapper">
 		<div class="image-gallery">
 			<div class="profile-banner-image">
-				<img class="banner" src="{{ apiResponseUser.profile_banner_url }}"/>
+				<img class="banner" src="{{ apiResponseUser.profile_banner_url }}" onerror="this.style.display='none'"/>
 			</div>
 			<div class="profile-image">
 				<img src="{{ apiResponseUser.profile_image_url_https }}" onerror="this.src='assets/images/def94.jpg'"/>

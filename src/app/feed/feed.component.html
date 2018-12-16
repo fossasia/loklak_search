@@ -29,15 +29,15 @@
 					[apiResponseTags]="(apiResponseTags$ | async)"></feed-footer>
 			</div>
 			<div *ngIf="(areResultsAvailable$ | async)" class="wrapper feed-info-box">
-					<info-box 
-						[query] = "(query$ | async)"
-						[ApiResponseResult]="(apiResponseResults$ | async)"></info-box>
 					<user-info-box
 						*ngIf="(areUserResultsValid$ | async) && fromQuery"
 						[apiResponseUser] = "(apiResponseUser$ | async)"
 						[apiResponseUserFollowing] = "apiResponseUserFollowing$ | async"
 						[apiResponseUserFollowers] = "apiResponseUserFollowers$ | async"
 						[isUserResponseLoading]= "(isUserInfoSearching$ | async)"></user-info-box>
+					<info-box 
+						[query] = "(query$ | async)"
+						[ApiResponseResult]="(apiResponseResults$ | async)"></info-box>
 			</div>
 			<div class="results-not-found"
 						*ngIf="!(areResultsAvailable$ | async) &&
