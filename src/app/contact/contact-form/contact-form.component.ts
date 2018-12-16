@@ -20,14 +20,15 @@ export class ContactFormComponent implements OnInit {
 	ngOnInit() {
 		this.contactForm = new FormGroup({
 			name: new FormControl('', [<any>Validators.required]),
-			email: new FormControl('', [<any>Validators.required]),
+			email: new FormControl('', [<any>Validators.required, <any>Validators.email]),
 			countrycode: new FormControl('', [<any>Validators.required]),
-			telephone: new FormControl('', [<any>Validators.required]),
-			message: new FormControl('', [<any>Validators.required, <any>Validators.minLength(200)])
+			telephone: new FormControl('', [<any>Validators.required, <any>Validators.minLength(10), <any>Validators.pattern('^[0-9]*$')]),
+			message: new FormControl('', [<any>Validators.required, <any>Validators.minLength(100)])
 			});
 	}
 
 	public sendtosuperuser(user) {
+		this.hideContactForm.emit(false);
 		const headers = new HttpHeaders();
 		const formObj = user.getRawValue();
 		const data = JSON.stringify(formObj);
@@ -43,7 +44,7 @@ export class ContactFormComponent implements OnInit {
 						console.log('Sent successfully');
 					});
 			});
-		}
+	}
 
 
 	public showSubmit() {
