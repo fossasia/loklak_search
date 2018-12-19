@@ -9,10 +9,43 @@
 
 #left{
 	width:22.6993866%;
+	padding-left: 20px;
 }
 
 #right{
 	width:67.7%;
+	margin-left: 50px;
+	padding-top: 50px;
+}
+
+.wrapper{
+	position: fixed;
+	overflow-y: scroll;
+	bottom: 0;
+	top: 75px;
+	bottom:40px;
+	width: inherit;
+}
+
+.sidebar-list{
+	display: block;
+}
+
+.sidebar-list>li{
+	font-size: 18px;
+	height: 100%;
+	cursor: pointer;
+	max-width: 100%;
+	overflow-x: hidden;
+}
+
+.sidebar-list>li.active{
+	color: #C8254D;
+}
+
+.sidebar-list>li>a{
+	color: inherit;
+	text-decoration: none;
 }
 
 @media only screen and (max-width: 500px) {
@@ -21,5 +54,13 @@
 	}
 	#right{
 			width: 100%;
+			margin-left: 0px;
+			margin-top: 50px;
+	}
+	.sidebar-list{
+			display: none;
+	}
+	.wrapper{
+			position: relative;
 	}
 }
