@@ -41,19 +41,53 @@ describe('Component: Terms', () => {
 		expect(component).toBeTruthy();
 	});
 
-		it('should have an app-footer component', async(() => {
+	it('should have an app-footer component', async(() => {
 		const fixture = TestBed.createComponent(TermsComponent);
-		const component = fixture.debugElement.componentInstance;
 		const compiled = fixture.debugElement.nativeElement;
 
 		expect(compiled.querySelector('app-footer')).toBeTruthy();
 	}));
 
-		it('should have an app-navbar component', async(() => {
+	it('should have an app-navbar component', async(() => {
 		const fixture = TestBed.createComponent(TermsComponent);
-		const component = fixture.debugElement.componentInstance;
 		const compiled = fixture.debugElement.nativeElement;
 
 		expect(compiled.querySelector('app-navbar')).toBeTruthy();
 	}));
+
+	it('should have a div with id left', () => {
+		const fixture = TestBed.createComponent(TermsComponent);
+		const compiled = fixture.debugElement.nativeElement;
+		expect(compiled.querySelector('div#left'));
+	});
+
+	it('should have a div with id right', () => {
+		const fixture = TestBed.createComponent(TermsComponent);
+		const compiled = fixture.debugElement.nativeElement;
+		expect(compiled.querySelector('div#right'));
+	});
+
+	it('should have a sidebar menu', () => {
+		const fixture = TestBed.createComponent(TermsComponent);
+		const compiled = fixture.debugElement.nativeElement;
+		expect(compiled.querySelector('ul.sidebar-list'));
+	});
+
+	it('should have an active list on sidebar menu', () => {
+		const fixture = TestBed.createComponent(TermsComponent);
+		const compiled = fixture.debugElement.nativeElement;
+		expect(compiled.querySelector('ul.sidebar-list li.active'));
+	});
+
+	it('should scroll', async(() => {
+		const fixture = TestBed.createComponent(TermsComponent);
+		const compiled = fixture.debugElement.nativeElement;
+		const element = compiled.querySelector('li.element4 a');
+
+		element.click();
+		fixture.whenStable().then(() => {
+			expect(compiled.querySelector('li.element4.active')).toBeTruthy();
+		});
+	}));
+
 });
