@@ -16,4 +16,17 @@ export class PrivacyComponent implements OnInit {
 		this.store.dispatch(new titleAction.SetTitleAction('Loklak Privacy Policy'));
 	}
 
+	scrollTo(el) {
+		const element = document.getElementById(el);
+		document.getElementsByClassName('active')[0].classList.remove('active');
+		document.getElementsByClassName(el)[0].classList.add('active');
+		const headerOffset = 75;
+		const elementPosition = element.offsetTop;
+		const offsetPosition = elementPosition - headerOffset;
+
+		window.scrollTo({
+			top: offsetPosition,
+			behavior: 'smooth'
+		});
+	}
 }
