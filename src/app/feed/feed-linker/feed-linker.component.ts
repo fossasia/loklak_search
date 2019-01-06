@@ -79,8 +79,6 @@ export class FeedLinkerComponent implements OnInit {
 		this.showed.emit(true);
 	}
 
-
-
 	private generateShards() {
 		const indexedChunks: StringIndexedChunks[] = [];
 

@@ -49,7 +49,38 @@ describe('Component: FeedHeader', () => {
 	});
 
 	it('should create an instance', async(() => {
-		const component = TestBed.createComponent(FeedHeaderComponent);
+		const fixture = TestBed.createComponent(FeedHeaderComponent);
+		const component = fixture.debugElement.componentInstance;
 		expect(component).toBeTruthy();
+	}));
+
+	it('should call setupSuggestBoxClosing() on calling OnEnter()', async(() => {
+		const fixture = TestBed.createComponent(FeedHeaderComponent);
+		const component = fixture.debugElement.componentInstance;
+		spyOn(component, 'setupSuggestBoxClosing');
+		component.searchInputControl = {
+			value: 'testValue'
+		};
+		component.onEnter({ which : 13 });
+		expect(component.setupSuggestBoxClosing).toHaveBeenCalled();
+	}));
+
+	it('should call setupSuggestBoxClosing() on calling onClick()', async(() => {
+		const fixture = TestBed.createComponent(FeedHeaderComponent);
+		const component = fixture.debugElement.componentInstance;
+		spyOn(component, 'setupSuggestBoxClosing');
+		component.searchInputControl = {
+			value: 'testValue'
+		};
+		component.onClick();
+		expect(component.setupSuggestBoxClosing).toHaveBeenCalled();
+	}));
+
+	it('should call setupSuggestBoxClosing() on calling closeSuggestBox()', async(() => {
+		const fixture = TestBed.createComponent(FeedHeaderComponent);
+		const component = fixture.debugElement.componentInstance;
+		spyOn(component.autoCompleteTrigger, 'closePanel');
+		component.closeSuggestBox();
+		expect(component.autoCompleteTrigger.closePanel).toHaveBeenCalled();
 	}));
 });
