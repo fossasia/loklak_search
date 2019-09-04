@@ -4,8 +4,10 @@
     <h1><u>URL Configuration</u></h1>
     <div class="url-container" *ngFor="let key of urlObject">
       <h2>{{key[0]}}</h2>
-      <div *ngFor="let value of key[1]">
-        <h4>{{value | lowercase}}</h4>
+      <div *ngFor="let value of key[1]; let i=index">
+        <h4 *ngIf="i%2 == 0">
+          <a target="blank" href="{{key[1][i+1]}}">{{value | lowercase}}</a>
+        </h4>
       </div>
     </div>
     <!-- News Config -->
