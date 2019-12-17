@@ -9,7 +9,6 @@ import { countrycodearray } from '../../shared/countrycode/countrycode';
 	styleUrls: ['./contact-form.component.scss']
 })
 export class ContactFormComponent implements OnInit {
-	
 	public contactForm: FormGroup;
 	public submitted = false;
 	public selectedValue = null;
