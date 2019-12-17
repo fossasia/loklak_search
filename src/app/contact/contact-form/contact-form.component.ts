@@ -43,7 +43,7 @@ export class ContactFormComponent implements OnInit {
 		const headers = new HttpHeaders();
 		const formObj = this.contactForm.value;
 		const data = JSON.stringify(formObj);
-		console.log(this.contactForm.value);
+		// console.log(this.contactForm.value);
 
 		headers.append('Content-Type', 'application/X-www-form-urlencoded');
 		headers.append('Accept', 'application/json');
