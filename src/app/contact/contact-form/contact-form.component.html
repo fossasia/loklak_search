@@ -1,47 +1,128 @@
 <div class="overlay">
 	<div class="overlay-content">
 		<button class="form-close" (click)="hideContactForm.emit(false)">x</button>
-		<form class="contact-form" [formGroup]="contactForm" novalidate (ngSubmit)="sendtosuperuser(contactForm.value); showSubmit()"
-		 method="POST" action="https://formspree.io/office@fossasia.org">
+		<form
+			class="contact-form"
+			[formGroup]="contactForm"
+			novalidate
+			(ngSubmit)="sendtosuperuser(contactForm.value); showSubmit()"
+			method="POST"
+			action="https://formspree.io/office@fossasia.org"
+		>
 			<fieldset>
 				<legend>Contact Form</legend>
-				<div class="form-group">
+				<div class="form-group getRawValue">
 					<label class="form-label" for="name">*Name </label>
-					<input type="text" formControlName="name" id="name" placeholder="Your name" name="name">
-					<div class="validators"><small *ngIf="!(contactForm.controls.name.valid || (contactForm.controls.name.pristine && !submitted))">
-        Name is required
-        </small></div>
+					<input
+						type="text"
+						formControlName="name"
+						id="name"
+						placeholder="Your name"
+						name="name"
+					/>
+					<div class="validators">
+						<small
+							*ngIf="
+								!(
+									contactForm.controls.name.valid ||
+									(contactForm.controls.name.pristine && !submitted)
+								)
+							"
+						>
+							Name is required
+						</small>
+					</div>
 				</div>
 				<div class="form-group">
 					<label class="form-label" for="email">*Email </label>
-					<input type="email" formControlName="email" id="email" placeholder="xyz@example.com" name="email">
-					<div class="validators"><small *ngIf="!(contactForm.controls.email.valid || (contactForm.controls.email.pristine && !submitted))">
-        Valid Email is required
-        </small> </div>
+					<input
+						type="email"
+						formControlName="email"
+						id="email"
+						placeholder="xyz@example.com"
+						name="email"
+					/>
+					<div class="validators">
+						<small
+							*ngIf="
+								!(
+									contactForm.controls.email.valid ||
+									(contactForm.controls.email.pristine && !submitted)
+								)
+							"
+						>
+							Valid Email is required
+						</small>
+					</div>
 				</div>
 				<div class="form-group">
 					<label class="form-label" for="telephone">*Mobile Number </label>
 					<span class="telephonegroup">
-        <select formControlName="countrycode" id="telephone" name="countrycode" placeholder="Country Code" [(ngModel)]="selectedValue" >
-        <option *ngFor="let c of countries" [value]="c.code">{{c.name}} (+{{c.code}})</option>
-</select> -
-        <input type="tel" formControlName="telephone" id="telephone" placeholder="Mobile Number" name="telephone">
-        </span>
-					<div class="validators"><small *ngIf="!(contactForm.controls.telephone.valid || (contactForm.controls.telephone.pristine && !submitted))">
-        Valid Mobile Number is required.
-        </small> </div>
+						<select
+							formControlName="countrycode"
+							id="telephone"
+							name="countrycode"
+							placeholder="Country Code"
+							[(ngModel)]="selectedValue"
+						>
+							<option *ngFor="let c of countries" [value]="c.code"
+								>{{ c.name }} (+{{ c.code }})</option
+							>
+						</select>
+						-
+						<input
+							type="tel"
+							formControlName="telephone"
+							id="telephone"
+							placeholder="Mobile Number"
+							name="telephone"
+						/>
+					</span>
+					<div class="validators">
+						<small
+							*ngIf="
+								!(
+									contactForm.controls.telephone.valid ||
+									(contactForm.controls.telephone.pristine && !submitted)
+								)
+							"
+						>
+							Valid Mobile Number is required.
+						</small>
+					</div>
 				</div>
 				<div class="form-group">
 					<label class="form-label" for="input">*Message</label>
-					<textarea rows="30" cols="8" type="text" formControlName="message" id="input" name="message" placeholder="Minimum 100 characters"></textarea>
-					<div class="validators"><small *ngIf="!(contactForm.controls.message.valid || (contactForm.controls.message.pristine && !submitted))">
-        Describe more with Minimum 100 characters.
-        </small> </div>
+					<textarea
+						rows="30"
+						cols="8"
+						type="text"
+						formControlName="message"
+						id="input"
+						name="message"
+						placeholder="Minimum 100 characters"
+					></textarea>
+					<div class="validators">
+						<small
+							*ngIf="
+								!(
+									contactForm.controls.message.valid ||
+									(contactForm.controls.message.pristine && !submitted)
+								)
+							"
+						>
+							Describe more with Minimum 100 characters.
+						</small>
+					</div>
 				</div>
 				<div class="form-group">
 					<small>*All fields are mandatory</small>
-					<button type="submit" [disabled]="!contactForm.valid" value="submit">Submit<input type="hidden" name="_next" value="/contact" /></button>
-					<small *ngIf="submitted && contactForm.valid ">Your Form has been submitted</small>
+					<button type="submit" [disabled]="!contactForm.valid" value="submit">
+						Submit<input type="hidden" name="_next" value="/contact" />
+					</button>
+					<small *ngIf="submitted && contactForm.valid"
+						>Your Form has been submitted</small
+					>
 				</div>
 			</fieldset>
 		</form>

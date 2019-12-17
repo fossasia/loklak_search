@@ -1,14 +1,21 @@
 <div class="info-box">
-	<div *ngIf="(isUserResponseLoading)" class="preloader">
+	<div *ngIf="isUserResponseLoading" class="preloader">
 		<div class="loading"></div>
 	</div>
-	<div *ngIf="(!isUserResponseLoading)" class="wrapper">
+	<div *ngIf="!isUserResponseLoading" class="wrapper">
 		<div class="image-gallery">
 			<div class="profile-banner-image">
-				<img class="banner" src="{{ apiResponseUser.profile_banner_url }}" onerror="this.style.display='none'"/>
+				<img
+					class="banner"
+					src="{{ apiResponseUser.profile_banner_url }}"
+					onerror="this.style.display='none'"
+				/>
 			</div>
 			<div class="profile-image">
-				<img src="{{ apiResponseUser.profile_image_url_https }}" onerror="this.src='assets/images/def94.jpg'"/>
+				<img
+					src="{{ apiResponseUser.profile_image_url_https }}"
+					onerror="this.src='assets/images/def94.jpg'"
+				/>
 			</div>
 		</div>
 		<div>
@@ -19,33 +26,50 @@
 			<div class="desc" *ngIf="apiResponseUser">
 				<feed-linker
 					[text]="apiResponseUser.description"
-					[useAll]="true"></feed-linker>
+					[useAll]="true"
+				></feed-linker>
 			</div>
 			<div class="listing" *ngIf="apiResponseUser">
 				<ul class="list-container">
 					<li class="list-item">
 						<span class="item-label">Tweets:&nbsp;</span>
-						<span class="item-content">{{ apiResponseUser.statuses_count }}</span>
+						<span class="item-content">{{
+							apiResponseUser.statuses_count
+						}}</span>
 					</li>
 					<li class="list-item">
 						<span class="item-label">Following:&nbsp;</span>
-						<span class="item-content">{{ apiResponseUser.friends_count }}</span>
+						<span class="item-content">{{
+							apiResponseUser.friends_count
+						}}</span>
 					</li>
 					<li class="list-item">
 						<span class="item-label">Followers:&nbsp;</span>
-						<span class="item-content">{{ apiResponseUser.followers_count }}</span>
+						<span class="item-content">{{
+							apiResponseUser.followers_count
+						}}</span>
 					</li>
 					<li class="list-item">
 						<span class="item-label">Likes:&nbsp;</span>
-						<span class="item-content">{{ apiResponseUser.favourites_count }}</span>
+						<span class="item-content">{{
+							apiResponseUser.favourites_count
+						}}</span>
 					</li>
 					<li class="list-item">
 						<span class="item-label">Location:&nbsp;</span>
-						<span class="item-content" *ngIf="apiResponseUser.location">{{ apiResponseUser.location }}</span>
+						<span class="item-content" *ngIf="apiResponseUser.location">{{
+							apiResponseUser.location
+						}}</span>
 					</li>
 					<li class="list-item">
 						<span class="item-label">Website:&nbsp;</span>
-						<span class="item-content" *ngIf="apiResponseUser.entities"><a *ngIf="apiResponseUser.entities.url" href="{{ apiResponseUser.entities.url.urls[0].url }}">{{ apiResponseUser.entities.url.urls[0].expanded_url }}</a></span>
+						<span class="item-content" *ngIf="apiResponseUser.entities"
+							><a
+								*ngIf="apiResponseUser.entities.url"
+								href="{{ apiResponseUser.entities.url.urls[0].url }}"
+								>{{ apiResponseUser.entities.url.urls[0].expanded_url }}</a
+							></span
+						>
 					</li>
 				</ul>
 			</div>
@@ -53,20 +77,31 @@
 		<div class="followers gallery" *ngIf="apiResponseUserFollowers.length > 0">
 			<h3>Followers</h3>
 			<ul class="gallery-container">
-				<li class="gallery-item"  *ngFor="let item of (sortedApiResponseUserFollowers.slice(0,3)); let i = index ">
-					<a [routerLink]="['/search']" [queryParams]="{ query : 'from:' + item.screen_name }">
+				<li
+					class="gallery-item"
+					*ngFor="
+						let item of sortedApiResponseUserFollowers.slice(0, 3);
+						let i = index
+					"
+				>
+					<a
+						[routerLink]="['/search']"
+						[queryParams]="{ query: 'from:' + item.screen_name }"
+					>
 						<div class="item-image">
-							<img src="{{ item.profile_image_url_https }}" onerror="this.src='assets/images/def94.jpg'"/>
+							<img
+								src="{{ item.profile_image_url_https }}"
+								onerror="this.src='assets/images/def94.jpg'"
+							/>
 						</div>
 						<div class="item-desc">
 							<div class="item-name">
 								{{ item.name }}
 							</div>
-							<div class="item-handle">
-								@{{ item.screen_name }}
-							</div>
+							<div class="item-handle">@{{ item.screen_name }}</div>
 							<div class="item-followers">
-								<span class="item-label">Followers: </span><span class="item-content">{{ item.followers_count }}</span>
+								<span class="item-label">Followers: </span
+								><span class="item-content">{{ item.followers_count }}</span>
 							</div>
 						</div>
 					</a>
@@ -76,20 +111,31 @@
 		<div class="following gallery" *ngIf="apiResponseUserFollowing.length > 0">
 			<h3>Following</h3>
 			<ul class="gallery-container">
-				<li class="gallery-item"  *ngFor="let item of (sortedApiResponseUserFollowing.slice(0,3)); let i = index ">
-					<a [routerLink]="['/search']" [queryParams]="{ query : 'from:' + item.screen_name }">
+				<li
+					class="gallery-item"
+					*ngFor="
+						let item of sortedApiResponseUserFollowing.slice(0, 3);
+						let i = index
+					"
+				>
+					<a
+						[routerLink]="['/search']"
+						[queryParams]="{ query: 'from:' + item.screen_name }"
+					>
 						<div class="item-image">
-							<img src="{{ item.profile_image_url_https }}" onerror="this.src='assets/images/def94.jpg'"/>
+							<img
+								src="{{ item.profile_image_url_https }}"
+								onerror="this.src='assets/images/def94.jpg'"
+							/>
 						</div>
 						<div class="item-desc">
 							<div class="item-name">
 								{{ item.name }}
 							</div>
-							<div class="item-handle">
-								@{{ item.screen_name }}
-							</div>
+							<div class="item-handle">@{{ item.screen_name }}</div>
 							<div class="item-followers">
-								<span class="item-label">Followers: </span><span class="item-content">{{ item.followers_count }}</span>
+								<span class="item-label">Followers: </span
+								><span class="item-content">{{ item.followers_count }}</span>
 							</div>
 						</div>
 					</a>
