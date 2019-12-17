@@ -9,13 +9,14 @@ import { countrycodearray } from '../../shared/countrycode/countrycode';
 	styleUrls: ['./contact-form.component.scss']
 })
 export class ContactFormComponent implements OnInit {
+	
 	public contactForm: FormGroup;
 	public submitted = false;
 	public selectedValue = null;
 	public countries = countrycodearray;
 	@Output() hideContactForm: EventEmitter<any> = new EventEmitter();
 
-	constructor( private http: HttpClient ) { }
+	constructor( private http: HttpClient ) {  		 }
 
 	ngOnInit() {
 		this.contactForm = new FormGroup({
@@ -26,12 +27,12 @@ export class ContactFormComponent implements OnInit {
 			message: new FormControl('', [<any>Validators.required, <any>Validators.minLength(100)])
 			});
 	}
-
 	public sendtosuperuser(user) {
 		this.hideContactForm.emit(false);
 		const headers = new HttpHeaders();
-		const formObj = user.getRawValue();
+		const formObj = this.contactForm.value;
 		const data = JSON.stringify(formObj);
+		console.log(this.contactForm.value);
 
 
 		headers.append('Content-Type', 'application/X-www-form-urlencoded');
