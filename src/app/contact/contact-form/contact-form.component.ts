@@ -18,9 +18,7 @@ export class ContactFormComponent implements OnInit {
 	public selectedValue = null;
 	public countries = countrycodearray;
 	@Output() hideContactForm: EventEmitter<any> = new EventEmitter();
-
 	constructor(private http: HttpClient) {}
-
 	ngOnInit() {
 		this.contactForm = new FormGroup({
 			name: new FormControl('', [<any>Validators.required]),
