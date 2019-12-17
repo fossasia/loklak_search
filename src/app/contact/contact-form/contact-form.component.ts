@@ -46,9 +46,18 @@ export class ContactFormComponent implements OnInit {
 		headers.append('Content-Type', 'application/X-www-form-urlencoded');
 		headers.append('Accept', 'application/json');
 
-		this.http.post('https://formspree.io/office@fossasia.org', data, {headers: headers})
-			.subscribe((response) => {this.http.post('https://formspree.io/office@fossasia.org', data, {headers: headers})
-					.subscribe((responsesent) => {console.log('Sent successfully');});
+		this.http
+			.post('https://formspree.io/office@fossasia.org', data, {
+				headers: headers
+			})
+			.subscribe(response => {
+				this.http
+					.post('https://formspree.io/office@fossasia.org', data, {
+						headers: headers
+					})
+					.subscribe(responsesent => {
+						console.log('Sent successfully');
+					});
 			});
 	}
 
