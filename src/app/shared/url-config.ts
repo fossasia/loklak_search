@@ -1,8 +1,7 @@
 export const defaultUrlConfig = {
 	fossasia: {
 		root: 'https://fossasia.org',
-		blog: 'https://blog.fossasia.org',
-		labs: 'https://labs.fossasia.org'
+		blog: 'https://blog.fossasia.org'
 	},
 	loklak: {
 		apiServer: 'https://api.loklak.org',
