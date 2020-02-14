@@ -33,6 +33,12 @@ export const defaultUrlConfig = {
 	badgeyay: {
 		root: 'http://badgeyay.com'
 	},
+	meilix: {
+		root: 'http://meilix.org'
+	},
+	yaydoc: {
+		root: 'http://yaydoc.org'
+	},
 	extras: {
 		newsOrgFileSource: 'https://github.com/fossasia/loklak_search/blob/development/src/app/shared/news-org.ts'
 	}
@@ -70,6 +76,12 @@ export const defaultImageurlConfig = {
 	},
 	badgeyay: {
 		root: 'assets/images/badgeyay.png'
+	},
+	yaydoc: {
+		root: 'assets/images/yaydoc.png'
+	},
+	meilix: {
+		root: 'assets/images/meilix.png'
 	},
 	microphone: {
 		root: '../../assets/images/microphone.png'
