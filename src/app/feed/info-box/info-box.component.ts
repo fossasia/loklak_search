@@ -38,18 +38,24 @@ export class InfoBoxComponent implements OnChanges {
 
 	public configUrl = defaultUrlConfig;
 
-	constructor( private store: Store<fromRoot.State> ) {}
+	constructor(private store: Store<fromRoot.State>) {}
 
 	ngOnChanges() {
-		this.store.select(fromRoot.getQuery).subscribe(query => this.stringQuery = query.displayString);
+		this.store
+			.select(fromRoot.getQuery)
+			.subscribe(query => (this.stringQuery = query.displayString));
 		this.parseApiResponseData();
-		if ( hashtagRegExp.exec(this.stringQuery) !== null ) {
+		if (hashtagRegExp.exec(this.stringQuery) !== null) {
 			// Check for hashtag this.stringQuery
-			this.queryString = '%23' + hashtagRegExp.exec(this.stringQuery)[1] + '' + hashtagRegExp.exec(this.stringQuery)[0];
-		} else if ( fromRegExp.exec(this.stringQuery) !== null ) {
+			this.queryString =
+				'%23' +
+				hashtagRegExp.exec(this.stringQuery)[1] +
+				'' +
+				hashtagRegExp.exec(this.stringQuery)[0];
+		} else if (fromRegExp.exec(this.stringQuery) !== null) {
 			// Check for from user this.stringQuery
 			this.queryString = 'from%3A' + fromRegExp.exec(this.stringQuery)[1];
-		} else if ( mentionRegExp.exec(this.stringQuery) !== null ) {
+		} else if (mentionRegExp.exec(this.stringQuery) !== null) {
 			// Check for mention this.stringQuery
 			this.queryString = '%40' + mentionRegExp.exec(this.stringQuery)[1];
 		} else {
@@ -64,7 +70,10 @@ export class InfoBoxComponent implements OnChanges {
 			for (const s in statistics) {
 				if (s) {
 					for (let i = 0; i < statistics[s].length; i++) {
-						if ( this.stringQuery.substring(1).toLowerCase() !== statistics[s][i].toLowerCase() ) {
+						if (
+							this.stringQuery.substring(1).toLowerCase() !==
+							statistics[s][i].toLowerCase()
+						) {
 							stored.push(statistics[s][i]);
 						}
 					}
@@ -73,7 +82,6 @@ export class InfoBoxComponent implements OnChanges {
 			this.topHashtags = this.parseRawDataWithFrequency(stored);
 			this.areTopHashtagsAvailable = this.topHashtags.length > 0;
 			return this.topHashtags;
-
 		} else if (typeof statistics === 'undefined') {
 			this.topHashtags = [];
 			this.areTopHashtagsAvailable = false;
@@ -86,17 +94,17 @@ export class InfoBoxComponent implements OnChanges {
 		for (let i = 0; i < statistics.length; i++) {
 			let check = true;
 			for (let j = 0; j < temp.length; j++) {
-				if ( statistics[i][0] === temp[j][0] ) {
+				if (statistics[i][0] === temp[j][0]) {
 					check = false;
 				}
 			}
-			if ( check ) {
+			if (check) {
 				temp.push(statistics[i]);
 			}
 		}
 		statistics = temp;
-		for ( let i = 0; i < statistics.length - 1; i++ ) {
-			for ( let j = i + 1; j < statistics.length; j++ ) {
+		for (let i = 0; i < statistics.length - 1; i++) {
+			for (let j = i + 1; j < statistics.length; j++) {
 				if (statistics[i][0] === statistics[j][0]) {
 					if (i !== j) {
 						statistics.splice(j, 1);
@@ -110,10 +118,10 @@ export class InfoBoxComponent implements OnChanges {
 					sortable.push([s, statistics[s]]);
 				}
 			}
-			sortable.sort(function (a, b) {
+			sortable.sort(function(a, b) {
 				return b[1] - a[1];
 			});
-			sortable = (sortable.slice(0, 10));
+			sortable = sortable.slice(0, 10);
 			this.topTwitterers = sortable;
 			this.areTopTwitterersAvailable = true;
 			return this.topTwitterers;
@@ -122,7 +130,6 @@ export class InfoBoxComponent implements OnChanges {
 			this.topTwitterers = [];
 			return this.topTwitterers;
 		}
-
 	}
 	sortMentions(statistics) {
 		const stored = [];
@@ -130,7 +137,10 @@ export class InfoBoxComponent implements OnChanges {
 			for (const s in statistics) {
 				if (s) {
 					for (let i = 0; i < statistics[s][0].length; i++) {
-						if ( this.stringQuery.substring(1).toLowerCase() !== statistics[s][0][i].toLowerCase() ) {
+						if (
+							this.stringQuery.substring(1).toLowerCase() !==
+							statistics[s][0][i].toLowerCase()
+						) {
 							stored.push(statistics[s][0][i]);
 						}
 					}
@@ -148,20 +158,20 @@ export class InfoBoxComponent implements OnChanges {
 
 	public parseRawDataWithFrequency(stored) {
 		let topFrequencyData = [];
-		stored = stored.reduce(function (acc, curr) {
+		stored = stored.reduce(function(acc, curr) {
 			if (typeof acc[curr] === 'undefined') {
-					acc[curr] = 1;
+				acc[curr] = 1;
 			} else {
 				acc[curr] += 1;
 			}
 			return acc;
 		}, []);
 		topFrequencyData = Object.keys(stored)
-		.map(key => key.trim())
-		.filter(key => key !== '')
-		.map(key => ([key, stored[key]]))
-		.sort((a, b) => b[1] - a[1])
-		.slice(0, 10);
+			.map(key => key.trim())
+			.filter(key => key !== '')
+			.map(key => [key, stored[key]])
+			.sort((a, b) => b[1] - a[1])
+			.slice(0, 10);
 		return topFrequencyData;
 	}
 
@@ -182,7 +192,7 @@ export class InfoBoxComponent implements OnChanges {
 		const screenStrings = [];
 		const mentionStrings = [];
 		const createdStrings = [];
-		for ( let i = 0; i < this.ApiResponseResult.length; i++) {
+		for (let i = 0; i < this.ApiResponseResult.length; i++) {
 			if (this.ApiResponseResult[i]['hashtags'].length !== 0) {
 				tagStrings.push(this.ApiResponseResult[i]['hashtags']);
 			}
@@ -193,9 +203,7 @@ export class InfoBoxComponent implements OnChanges {
 				]);
 			}
 			if (this.ApiResponseResult[i]['mentions'].length !== 0) {
-				mentionStrings.push([
-					this.ApiResponseResult[i]['mentions']
-				]);
+				mentionStrings.push([this.ApiResponseResult[i]['mentions']]);
 			}
 			if (this.ApiResponseResult[i]['created_at'].length !== 0) {
 				createdStrings.push(this.ApiResponseResult[i]['created_at']);
@@ -208,12 +216,13 @@ export class InfoBoxComponent implements OnChanges {
 	}
 
 	getChartData(statistics) {
-
 		for (let i = 0; i < statistics.length; i++) {
 			statistics[i] = JSON.stringify(statistics[i]).substring(1, 11);
 		}
 		const count = {};
-		statistics.forEach(function(i) { count[i] = (count[i] || 0) + 1; });
+		statistics.forEach(function(i) {
+			count[i] = (count[i] || 0) + 1;
+		});
 		if (statistics !== undefined && statistics.length !== 0) {
 			const data = [];
 			const labels = [];
