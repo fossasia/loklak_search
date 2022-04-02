@@ -22,14 +22,8 @@ class FeedLinkerStubComponent {
 describe('Component: UserInfoBox', () => {
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			imports: [
-				RouterTestingModule,
-				StoreModule.forRoot(fromRoot.reducers)
-			],
-			declarations: [
-				UserInfoBoxComponent,
-				FeedLinkerStubComponent
-			]
+			imports: [RouterTestingModule, StoreModule.forRoot(fromRoot.reducers)],
+			declarations: [UserInfoBoxComponent, FeedLinkerStubComponent]
 		});
 	});
 
@@ -58,7 +52,7 @@ describe('Component: UserInfoBox', () => {
 				username: 'user3',
 				followers_count: 10,
 				statuses_count: 5
-			},
+			}
 		];
 
 		component.apiResponseUserFollowers = [
@@ -79,12 +73,24 @@ describe('Component: UserInfoBox', () => {
 			}
 		];
 		component.ngOnInit();
-		expect(component.sortedApiResponseUserFollowing[0].username).toBeTruthy('user3');
-		expect(component.sortedApiResponseUserFollowing[1].username).toBeTruthy('user1');
-		expect(component.sortedApiResponseUserFollowing[2].username).toBeTruthy('user2');
+		expect(component.sortedApiResponseUserFollowing[0].username).toBeTruthy(
+			'user3'
+		);
+		expect(component.sortedApiResponseUserFollowing[1].username).toBeTruthy(
+			'user1'
+		);
+		expect(component.sortedApiResponseUserFollowing[2].username).toBeTruthy(
+			'user2'
+		);
 
-		expect(component.sortedApiResponseUserFollowers[0].username).toBeTruthy('userF2');
-		expect(component.sortedApiResponseUserFollowers[1].username).toBeTruthy('userF1');
-		expect(component.sortedApiResponseUserFollowers[2].username).toBeTruthy('userF3');
+		expect(component.sortedApiResponseUserFollowers[0].username).toBeTruthy(
+			'userF2'
+		);
+		expect(component.sortedApiResponseUserFollowers[1].username).toBeTruthy(
+			'userF1'
+		);
+		expect(component.sortedApiResponseUserFollowers[2].username).toBeTruthy(
+			'userF3'
+		);
 	}));
 });

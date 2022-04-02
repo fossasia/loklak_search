@@ -1,34 +1,62 @@
-<div class="info-box" *ngIf="areTopMentionsAvailable ||
-							areTopTwitterersAvailable ||
-							areTopHashtagsAvailable ||
-							areFrequencyDataAvailable">
+<div
+	class="info-box"
+	*ngIf="
+		areTopMentionsAvailable ||
+		areTopTwitterersAvailable ||
+		areTopHashtagsAvailable ||
+		areFrequencyDataAvailable
+	"
+>
 	<div class="row">
-		<div class="col-sm-12 col-xs-12 col-md-6" in-viewport (inViewport)="inviewtwitters($event)" *ngIf="areTopTwitterersAvailable">
+		<div
+			class="col-sm-12 col-xs-12 col-md-6"
+			in-viewport
+			(inViewport)="inviewtwitters($event)"
+			*ngIf="areTopTwitterersAvailable"
+		>
 			<h4>Top Twitterers</h4>
 			<table class="table leaderboard">
 				<tbody>
 					<tr class="leaderboard-item" *ngFor="let item of topTwitterers">
 						<td>
-							<img src="{{item[1][1]}}" alt="{{item[1][0]}}" *ngIf="inviewporttwitters" onerror="this.src='assets/images/def94.jpg'">
-							<span class="label leaderboard-label">{{item[1][0].length}}</span>
+							<img
+								src="{{ item[1][1] }}"
+								alt="{{ item[1][0] }}"
+								*ngIf="inviewporttwitters"
+								onerror="this.src='assets/images/def94.jpg'"
+							/>
+							<span class="label leaderboard-label">{{
+								item[1][0].length
+							}}</span>
 						</td>
 						<td class="leaderboard-text">
-							<a [routerLink]="['/search']" [queryParams]="{ query : 'from:' + item[1][0] }">@{{item[1][0]}}</a>
+							<a
+								[routerLink]="['/search']"
+								[queryParams]="{ query: 'from:' + item[1][0] }"
+								>@{{ item[1][0] }}</a
+							>
 						</td>
 					</tr>
 				</tbody>
 			</table>
 		</div>
-		<div class="col-sm-12 col-xs-12 col-md-6 top-hashtags" *ngIf="areTopHashtagsAvailable">
+		<div
+			class="col-sm-12 col-xs-12 col-md-6 top-hashtags"
+			*ngIf="areTopHashtagsAvailable"
+		>
 			<h4>Top Hashtags</h4>
 			<table class="table">
 				<tbody>
-					<tr class="leaderboard-item"  *ngFor ="let item of topHashtags">
+					<tr class="leaderboard-item" *ngFor="let item of topHashtags">
 						<td>
-							<div  class="leaderboard-count">{{item[1]}}</div>
+							<div class="leaderboard-count">{{ item[1] }}</div>
 						</td>
 						<td class="leaderboard-text">
-							<a [routerLink]="['/search']" [queryParams]="{ query : '#' + item[0] }">#{{item[0]}}</a>
+							<a
+								[routerLink]="['/search']"
+								[queryParams]="{ query: '#' + item[0] }"
+								>#{{ item[0] }}</a
+							>
 						</td>
 					</tr>
 				</tbody>
@@ -36,17 +64,31 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-sm-12 col-xs-12 col-md-6" *ngIf="areTopMentionsAvailable" in-viewport (inViewport)="inviewmentions($event)">
+		<div
+			class="col-sm-12 col-xs-12 col-md-6"
+			*ngIf="areTopMentionsAvailable"
+			in-viewport
+			(inViewport)="inviewmentions($event)"
+		>
 			<h4>Top Mentions</h4>
 			<table class="table">
 				<tbody>
 					<tr class="leaderboard-item" *ngFor="let item of topMentions">
 						<td>
-							<img src="https://twitter.com/{{item[0]}}/profile_image?size=mini" alt="{{item[0]}}" *ngIf="inviewportmentions" onerror="this.src='assets/images/def94.jpg'">
-							<span class="label leaderboard-label">{{item[1]}}</span>
+							<img
+								src="https://twitter.com/{{ item[0] }}/profile_image?size=mini"
+								alt="{{ item[0] }}"
+								*ngIf="inviewportmentions"
+								onerror="this.src='assets/images/def94.jpg'"
+							/>
+							<span class="label leaderboard-label">{{ item[1] }}</span>
 						</td>
 						<td class="leaderboard-text">
-							<a [routerLink]="['/search']" [queryParams]="{ query : 'from:' + item[0] }">@{{item[0]}}</a>
+							<a
+								[routerLink]="['/search']"
+								[queryParams]="{ query: 'from:' + item[0] }"
+								>@{{ item[0] }}</a
+							>
 						</td>
 					</tr>
 				</tbody>
@@ -54,33 +96,70 @@
 		</div>
 	</div>
 	<div class="row" style="display: block;" *ngIf="areFrequencyDataAvailable">
-		<canvas baseChart
-		            [datasets]="barChartData"
-		            [labels]="barChartLabels"
-		            [options]="barChartOptions"
-		            [legend]="barChartLegend"
-		            [chartType]="barChartType"></canvas>
-
+		<canvas
+			baseChart
+			[datasets]="barChartData"
+			[labels]="barChartLabels"
+			[options]="barChartOptions"
+			[legend]="barChartLegend"
+			[chartType]="barChartType"
+		></canvas>
 	</div>
 </div>
 <div class="row link-sidebar-container">
-	<span class="link-sidebar"><a href="{{ configUrl.github.loklakSearch }}/issues/">Bug Report or Feature Request</a></span>
-	<span class="link-sidebar"><a href="{{ configUrl.fossasia.root }}">Developed by FOSSASIA</a></span>
-	<span class="link-sidebar"><a href="{{ configUrl.github.loklakSearch }}/graphs/contributors">Contributors</a></span>
-	<span class="link-sidebar"><a href="{{ configUrl.loklak.apps }}">Web Apps</a></span>
-	<span class="link-sidebar"><a href="https://play.google.com/store/apps/details?id=org.loklak.android.wok">loklak Android Wok</a></span>
-	<span class="link-sidebar"><a href="https://www.facebook.com/{{ configUrl.loklak.apiBase }}/">Like on Facebook</a></span>
-	<span class="link-sidebar"><a href="https://twitter.com/loklak_">Follow on Twitter</a></span>
+	<span class="link-sidebar"
+		><a href="{{ configUrl.github.loklakSearch }}/issues/"
+			>Bug Report or Feature Request</a
+		></span
+	>
+	<span class="link-sidebar"
+		><a href="{{ configUrl.fossasia.root }}">Developed by FOSSASIA</a></span
+	>
+	<span class="link-sidebar"
+		><a href="{{ configUrl.github.loklakSearch }}/graphs/contributors"
+			>Contributors</a
+		></span
+	>
+	<span class="link-sidebar"
+		><a href="{{ configUrl.loklak.apps }}">Web Apps</a></span
+	>
+	<span class="link-sidebar"
+		><a
+			href="https://play.google.com/store/apps/details?id=org.loklak.android.wok"
+			>loklak Android Wok</a
+		></span
+	>
+	<span class="link-sidebar"
+		><a href="https://www.facebook.com/{{ configUrl.loklak.apiBase }}/"
+			>Like on Facebook</a
+		></span
+	>
+	<span class="link-sidebar"
+		><a href="https://twitter.com/loklak_">Follow on Twitter</a></span
+	>
 </div>
 <div class="row">
 	<span>
-			<a class="data rss" href="{{ configUrl.loklak.apiServer }}/api/search.rss?timezoneOffset=-330&q={{queryString}}" target="_blank">
-				<img src="assets/images/RssOrange.jpg"/>
-				<span><B>RSS</B></span>
-			</a>&nbsp;
-			<a class="data json" href="{{ configUrl.loklak.apiServer }}/api/search.json?timezoneOffset=-330&q={{queryString}}" target="_blank">
-				<img src="assets/images/JsonGreen.jpg"/>
-				<span><B>JSON</B></span>
-			</a>
+		<a
+			class="data rss"
+			href="{{
+				configUrl.loklak.apiServer
+			}}/api/search.rss?timezoneOffset=-330&q={{ queryString }}"
+			target="_blank"
+		>
+			<img src="assets/images/RssOrange.jpg" />
+			<span><B>RSS</B></span> </a
+		>&nbsp;
+		<a
+			class="data json"
+			href="{{
+				configUrl.loklak.apiServer
+			}}/api/search.json?timezoneOffset=-330&q={{ queryString }}"
+			target="_blank"
+		>
+			<img src="assets/images/JsonGreen.jpg" />
+			<span><B>JSON</B></span>
+		</a>
 	</span>
-</div>&nbsp;
+</div>
+&nbsp;

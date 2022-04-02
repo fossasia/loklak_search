@@ -14,9 +14,10 @@ div.outer-wrapper {
 		justify-content: space-around;
 		align-items: center;
 		width: 584px;
-		box-shadow: 0px 2px 5px 2px #D10046;
+		box-shadow: 2px 0px 2px 0px black;
 		margin: 15px;
-		background-color: #f9f2f4;
+		background-color: white;
+		border-radius: 20px;
 		@include --center-flex-vertical();
 
 		width: 584px;
@@ -30,7 +31,7 @@ div.outer-wrapper {
 		}
 		h2 {
 			text-align: center;
-			color: #d10042;
+			color: black;
 		}
 		h5 {
 			text-align: center;
@@ -41,7 +42,7 @@ div.outer-wrapper {
 				text-align: center;
 			}
 			.news {
-				color: #d10042;
+				color:black;
 			}
 		}
 	}

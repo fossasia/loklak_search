@@ -15,9 +15,7 @@ describe('Component: InfoBox', () => {
 				ChartsModule,
 				StoreModule.forRoot(fromRoot.reducers)
 			],
-			declarations: [
-				InfoBoxComponent
-			]
+			declarations: [InfoBoxComponent]
 		});
 	});
 
@@ -42,21 +40,13 @@ describe('Component: InfoBox', () => {
 					'FOSSASIA',
 					'pslab'
 				],
-				screen_name: [
-					'hpdang'
-				],
+				screen_name: ['hpdang'],
 				user: {
-					profile_image_url_https: 'https://pbs.twimg.com/profile_images/1141238022/fossasia-cubelogo_400x400.jpg',
+					profile_image_url_https:
+						'https://pbs.twimg.com/profile_images/1141238022/fossasia-cubelogo_400x400.jpg'
 				},
-				mentions: [
-					'fossasia',
-					'mariobehling',
-					'hpdang',
-					'mariobehling'
-				],
-				created_at: [
-					new Date()
-				]
+				mentions: ['fossasia', 'mariobehling', 'hpdang', 'mariobehling'],
+				created_at: [new Date()]
 			}
 		];
 		component.ngOnChanges();
