@@ -44,7 +44,7 @@
     "intersection-observer": "^0.5.0",
     "jasmine": "^3.1.0",
     "masonry-layout": "^4.2.1",
-    "moment": "^2.22.1",
+    "moment": "^2.29.4",
     "ng2-charts": "^1.6.0",
     "path": "^0.12.7",
     "reselect": "^3.0.1",
